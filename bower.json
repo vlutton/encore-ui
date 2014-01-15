@@ -1,0 +1,9 @@
+{
+  "name": "EncoreUI",
+  "version": "0.0.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "angular": "1.2.1"
+  }
+}

@@ -3,6 +3,7 @@ var markdown = require('node-markdown').Markdown;
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -21,12 +22,12 @@ module.exports = function(grunt) {
     modules: [],//to be filled in by build task
     pkg: grunt.file.readJSON('package.json'),
     dist: 'dist',
-    filename: 'ui-bootstrap',
+    filename: 'encore-ui',
     filenamecustom: '<%= filename %>-custom',
     meta: {
-      modules: 'angular.module("ui.bootstrap", [<%= srcModules %>]);',
-      tplmodules: 'angular.module("ui.bootstrap.tpls", [<%= tplModules %>]);',
-      all: 'angular.module("ui.bootstrap", ["ui.bootstrap.tpls", <%= srcModules %>]);',
+      modules: 'angular.module("encore.ui", [<%= srcModules %>]);',
+      tplmodules: 'angular.module("encore.ui.tpls", [<%= tplModules %>]);',
+      all: 'angular.module("encore.ui", ["encore.ui.tpls", <%= srcModules %>]);',
       banner: ['/*', 
                ' * <%= pkg.name %>',
                ' * <%= pkg.homepage %>\n',
@@ -64,6 +65,9 @@ module.exports = function(grunt) {
         src: [], //src filled in by build task
         dest: '<%= dist %>/<%= filename %>-tpls-<%= pkg.version %>.js'
       }
+    },
+    clean: {
+      dist: ["dist/*"]
     },
     copy: {
       demohtml: {
@@ -160,7 +164,7 @@ module.exports = function(grunt) {
       options: {
         dest: 'CHANGELOG.md',
         templateFile: 'misc/changelog.tpl.md',
-        github: 'angular-ui/bootstrap'
+        github: 'rnreekez/encore_ui'
       }
     },
     shell: {
@@ -191,7 +195,7 @@ module.exports = function(grunt) {
           'docs/css/style.css'
         ],
         navTemplate: 'docs/nav.html',
-        title: 'ui-bootstrap',
+        title: 'encore-ui',
         html5Mode: false
       },
       api: {
@@ -221,7 +225,7 @@ module.exports = function(grunt) {
     }
   });
 
-  //Common ui.bootstrap module containing all modules for src and templates
+  //Common encore.ui module containing all modules for src and templates
   //findModule: Adds a given module to config
   var foundModules = {};
   function findModule(name) {
@@ -244,7 +248,7 @@ module.exports = function(grunt) {
 
     var module = {
       name: name,
-      moduleName: enquote('ui.bootstrap.' + name),
+      moduleName: enquote('encore.ui.' + name),
       displayName: ucwords(breakup(name, ' ')),
       srcFiles: grunt.file.expand("src/"+name+"/*.js"),
       tplFiles: grunt.file.expand("template/"+name+"/*.html"),
@@ -276,8 +280,8 @@ module.exports = function(grunt) {
       var depArrayEnd = contents.indexOf(']', depArrayStart);
       var dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
       dependencies.split(',').forEach(function(dep) {
-        if (dep.indexOf('ui.bootstrap.') > -1) {
-          var depName = dep.trim().replace('ui.bootstrap.','').replace(/['"]/g,'');
+        if (dep.indexOf('encore.ui.') > -1) {
+          var depName = dep.trim().replace('encore.ui.','').replace(/['"]/g,'');
           if (deps.indexOf(depName) < 0) {
             deps.push(depName);
             //Get dependencies for this new dependency
@@ -294,7 +298,7 @@ module.exports = function(grunt) {
     if (dir) { grunt.config('dist', dir); }
   });
 
-  grunt.registerTask('build', 'Create bootstrap build files', function() {
+  grunt.registerTask('build', 'Create build files', function() {
     var _ = grunt.util._;
 
     //If arguments define what modules to build, build those. Else, everything
@@ -332,7 +336,7 @@ module.exports = function(grunt) {
     grunt.config('concat.dist_tpls.src', grunt.config('concat.dist_tpls.src')
                  .concat(srcFiles).concat(tpljsFiles));
 
-    grunt.task.run(['concat', 'uglify']);
+    grunt.task.run(['clean:dist', 'concat', 'uglify']);
   });
 
   grunt.registerTask('test', 'Run tests on singleRun karma server', function () {
