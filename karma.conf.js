@@ -6,7 +6,8 @@ basePath = '.';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
-  'bower_components/angular/angular.js',
+  'bower_components/angular/angular.min.js',
+  'bower_components/lodash/dist/lodash.min.js',
   'src/**/*.js',
   'templates/**/*.js'
 ];
