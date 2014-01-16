@@ -7,6 +7,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-karma');
@@ -41,13 +43,23 @@ module.exports = function(grunt) {
         tasks: ['after-test']
       },
       html: {
-        files: ['template/**/*.html'],
+        files: ['templates/**/*.html'],
         tasks: ['html2js', 'karma:watch:run']
       },
       js: {
         files: ['src/**/*.js'],
         //we don't need to jshint here, it slows down everything else
         tasks: ['karma:watch:run']
+      }
+    },
+    less: {
+      encore: {
+        options: {
+            paths: ['styles/']
+        },
+        files: {
+          '<%= dist %>/encore-ui.css': 'styles/encore-ui.less'
+        }
       }
     },
     concat: {
@@ -67,7 +79,7 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      dist: ["dist/*"]
+      dist: ["<%= dist %>/*"]
     },
     copy: {
       demohtml: {
@@ -113,7 +125,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          src: ['template/**/*.html'],
+          src: ['templates/**/*.html'],
           ext: '.html.js'
         }]
       }
@@ -251,9 +263,9 @@ module.exports = function(grunt) {
       moduleName: enquote('encore.ui.' + name),
       displayName: ucwords(breakup(name, ' ')),
       srcFiles: grunt.file.expand("src/"+name+"/*.js"),
-      tplFiles: grunt.file.expand("template/"+name+"/*.html"),
-      tpljsFiles: grunt.file.expand("template/"+name+"/*.html.js"),
-      tplModules: grunt.file.expand("template/"+name+"/*.html").map(enquote),
+      tplFiles: grunt.file.expand("templates/"+name+"/*.html"),
+      tpljsFiles: grunt.file.expand("templates/"+name+"/*.html.js"),
+      tplModules: grunt.file.expand("templates/"+name+"/*.html").map(enquote),
       dependencies: dependenciesForModule(name),
       docs: {
         md: grunt.file.expand("src/"+name+"/docs/*.md")
@@ -336,7 +348,7 @@ module.exports = function(grunt) {
     grunt.config('concat.dist_tpls.src', grunt.config('concat.dist_tpls.src')
                  .concat(srcFiles).concat(tpljsFiles));
 
-    grunt.task.run(['clean:dist', 'concat', 'uglify']);
+    grunt.task.run(['clean:dist', 'less:encore', 'concat', 'uglify']);
   });
 
   grunt.registerTask('test', 'Run tests on singleRun karma server', function () {

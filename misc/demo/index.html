@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <link href="http://387900b1ea6494b1d68e-d147a17d545b345184529f7702f4eb3d.r73.cf1.rackcdn.com/0.0.0/encore-ui.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+</head>
+<body ng-app="DemoApp">
+<div class="container">
+    <rx-nav></rx-nav>
+
+    <div class="page-content" ng-controller="ProductResourcesCtrl">
+        <rx-related-menu state="menuShown" collapsable="false" position="left">
+            <rx-user-details user="user"></rx-user-details>
+            <rx-product-resources user="user"></rx-product-resources>
+        </rx-related-menu>
+        <div class="main-content">
+        </div>
+    </div>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js" type="text/javascript"></script>
+    <script src="http://387900b1ea6494b1d68e-d147a17d545b345184529f7702f4eb3d.r73.cf1.rackcdn.com/0.0.0/encore-ui-tpls-0.0.0.js"  type="text/javascript"></script>
+    <script type="text/javascript">
+    angular.module('DemoApp', ['encore.ui'])
+    .controller('ProductResourcesCtrl', function($scope) {
+        $scope.user = 'test';
+    });
+    </script>
+</div>
+</body>
+</html>

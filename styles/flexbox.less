@@ -1,0 +1,77 @@
+/*
+FlexBox Columns
+*/
+
+@maxFlexBoxColumnWidth: 15;
+
+.flexbox-direction(@direction: row) {
+    -webkit-flex-direction: @direction;
+    -moz-flex-direction: @direction;
+    -ms-flex-direction: @direction;
+    flex-direction: @direction;
+}
+
+.flexbox-order(@order: 0) {
+    -webkit-box-order: @order;
+    -mox-box-order: @order;
+    -webkit-flex-order: @order;
+    order: @order;
+}
+
+.flexbox-wrap(@wrap: nowrap) {
+    -webkit-box-wrap: @wrap;
+    -moz-box-wrap: @wrap;
+    flex-wrap: @wrap;
+}
+
+.flexbox-display() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.flexbox(@count: 1) {
+    -webkit-box-flex: @count;
+    -moz-box-flex: @count;
+    -webkit-flex: @count;
+    -ms-flex: @count;
+    flex: @count;
+}
+
+.flex-flow(@direction: row, @wrap: nowrap) {
+    .flexbox-direction(@direction);
+    .flexbox-wrap(@wrap);
+}
+
+.flexbox-pack(@pack: start) {
+    -webkit-box-pack: @pack;
+    -moz-box-pack: @pack;
+    -webkit-flex-pack: @pack;
+}
+
+.flexbox-align(@align: stretch) {
+    -webkit-box-pack: @align;
+    -moz-box-pack: @align;
+    -webkit-flex-pack: @align;
+}
+
+.flexbox-grow(@ratio: 1) {
+    -webkit-flex-grow: @ratio;
+    -moz-flex-grow: @ratio;
+    -webkit-box-grow: @ratio;
+}
+
+// We're going to create a set list of columns for quick flexbox assignment.
+.flexbox-column-loop (@index) when (@index > 0) {
+    // create the actual css selector
+    .flex-columns-@{index} {
+        .flexbox(@index);
+    }
+
+    .flexbox-column-loop(@index - 1);
+}
+
+// This Max Values Variable in variables.less
+.flexbox-column-loop(@maxFlexBoxColumnWidth);

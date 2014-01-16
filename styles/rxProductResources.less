@@ -1,0 +1,79 @@
+@productResourceBg: #393939;
+@productResourceLink: #fff;
+@productResourceSubduedLink: #bebebe;
+
+.product-resources > li {
+    border-top: 1px solid #727272;
+
+    &:first-child {
+        border-top: 0;
+    }
+
+    &.selected {
+        background-color: @productResourceBg;
+        position: relative;
+
+        /*
+         'Right' pointing arrow next to product
+         */
+        &::after {
+            content: "";
+            position: absolute;
+            top: 2em;
+            right: -0.75em;
+            margin-top: -1.95em;
+            border: 1.95em solid transparent;
+            border-left: 0.75em solid @productResourceBg;
+            border-right: none;
+            z-index: 2;
+        }
+
+        .sub-products {
+            display: block;
+        }
+    }
+    a {
+        display: block;
+        background: no-repeat 20px center;
+        padding: 10px 0 10px 60px;
+        color: @productResourceLink;
+        font-weight: 300;
+        font-size: 1.25em;
+        text-decoration: none;
+
+        &.ico-openstack {
+            display: block;
+            background-image: url('http://387900b1ea6494b1d68e-d147a17d545b345184529f7702f4eb3d.r73.cf1.rackcdn.com/images/icon-openstack.png');
+            min-height: 30px;
+        }
+
+        & > span {
+            display:block;
+            color: @productResourceSubduedLink;
+            font-size: 0.65em;
+            margin: 2px 0;
+        }
+    }
+
+    .sub-products {
+        display: none;
+
+        li {
+            background: darken(@productResourceBg, 5%);
+            &.selected a {
+                color: @productResourceLink;
+                background: darken(@productResourceBg, 2%);
+            }
+        }
+        a {
+            font-size: 1em;
+            color: @productResourceSubduedLink;
+            padding-left: 80px;
+
+            &:hover,
+            &:focus {
+                color: @productResourceLink;
+            }
+        }
+    }
+}

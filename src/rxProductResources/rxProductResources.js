@@ -1,10 +1,18 @@
-angular.module('encore.ui.rxProductResources', [])
-    .directive('rxProductResources', function () {
-        return {
-            restrict: 'E',
-            templateUrl: 'template/rxProductResources/rxProductResources.html',
-            scope: {
-                user: '='
-            }
-        };
-    });
+angular.module('encore.ui.rxProductResources', ['encore.ui.rxActiveUrl', 'encore.ui.rxRelatedMenu'])
+/**
+ *
+ * @ngdoc directive
+ * @name encore.ui.rxProductResources
+ * @restrict E
+ * @description
+ * TBD
+ */
+.directive('rxProductResources', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxProductResources/rxProductResources.html',
+        scope: {
+            user: '='
+        }
+    };
+});

@@ -1,0 +1,181 @@
+@table-default-cell-padding: 10px;
+@linkColor: #4682c2;
+@linkColorHover  : saturate(@linkColor, 15%);
+
+html {
+/* TODO line-height of 1 is too small */
+    line-height: 1;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Roboto", sans-serif;
+    font-size: 10pt;
+}
+body {
+    margin: 0;
+    background: #f5f5f5;
+}
+
+header, nav,
+ol, ul, li,
+h1, h2, h3, h4, h5, h6,
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+/* TODO replace h1, h2 selectors with class names so that we're not tying our heading tags to a specific style */
+h1 {
+    font-size: 2.5em;
+    font-weight: 100;
+    color: #666;
+}
+h2 {
+    font-size: 2em;
+    font-weight: 100;
+    color: #666;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+table {
+    clear: both;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    td,
+    th {
+        border: 1px solid #eee;
+        padding: @table-default-cell-padding;
+        color: #555;
+    }
+    thead th {
+        text-align: left;
+        background: #878787;
+        color: #fff;
+        border: 1px solid #6e6e6e;
+    }
+}
+
+.table-striped tr:nth-child(even) {
+    background: #f6f6f6;
+}
+
+
+/*
+ Global styling for links
+
+ ```
+ <a href="#">My Link</a>
+ <a href="#" class=":visited">Visited Link</a>
+ <a href="#" class=":hover">Hovered Link</a>
+ <a href="#" class=":focus">Focused Link</a>
+ <a href="#" class=":active">Active Link</a>
+ ```
+ */
+a {
+    text-decoration: none;
+    color: @linkColor;
+}
+a:hover,
+a:focus {
+    text-decoration: underline;
+    color: @linkColorHover;
+}
+
+/*
+ Global styling for buttons
+
+ ```
+ <button class="button">My Button</button>
+ <button class="button button-small">My Button</button>
+ <button class="button button-large">My Button</button>
+ <button class="button button-green">My Button</button>
+ <button class="button button-blue">My Button</button>
+ <button class="button" disabled>My Button</button>
+ <a href="#" class="button">My Link Button</a>
+ ```
+ */
+ .button {
+    display: inline-block;
+    background: #0950a3;
+    color: #fff;
+    border: 0;
+    font-size: 1.2em;
+    font-weight: 100;
+    padding: .7em 1.5em;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+// in case the buttons are created using the <a> tag
+.button:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #00ac31;
+}
+
+.button.button-small {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: .8em;
+}
+
+.button.button-large {
+    font-size: 1.5em;
+}
+
+.button.button-green {
+    background: #00ac31;
+}
+
+.button.button-blue {
+    background: #0950a3;
+}
+
+.button[disabled] {
+    cursor: default;
+    padding-left: 20px;
+    background: #999;
+}
+
+
+/* Main Page CSS */
+.container {
+    min-height: 100%;
+    .flexbox-display();
+    .flexbox-direction(column);
+}
+
+.page-content {
+    .flexbox-display();
+    .flexbox(1);
+}
+
+.main-content {
+    .flexbox(1 1 0);
+    padding: 20px 30px 50px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    padding: 0px;
+}
+
+.btn-link:focus {
+    outline: none;
+}
