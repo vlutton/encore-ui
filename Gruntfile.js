@@ -79,7 +79,8 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      dist: ["<%= dist %>/*"]
+      dist: ["<%= dist %>/*"],
+      build: ["templates/**/*.html.js"]
     },
     copy: {
       demohtml: {
@@ -348,7 +349,7 @@ module.exports = function(grunt) {
     grunt.config('concat.dist_tpls.src', grunt.config('concat.dist_tpls.src')
                  .concat(srcFiles).concat(tpljsFiles));
 
-    grunt.task.run(['clean:dist', 'less:encore', 'concat', 'uglify']);
+    grunt.task.run(['clean:dist', 'less:encore', 'concat', 'uglify', 'clean:build']);
   });
 
   grunt.registerTask('test', 'Run tests on singleRun karma server', function () {
