@@ -9,7 +9,7 @@ files = [
   'bower_components/angular/angular.min.js',
   'bower_components/lodash/dist/lodash.min.js',
   'src/**/*.js',
-  'templates/**/*.js'
+  'templates/**/*.html.js'
 ];
 
 // list of files to exclude
