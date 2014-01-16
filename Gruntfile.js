@@ -189,12 +189,12 @@ module.exports = function(grunt) {
         'grunt changelog'
       ],
       'release-complete': [
-        'git commit CHANGELOG.md package.json -m "chore(release): v%version%"',
+        'git commit CHANGELOG.md bower.json package.json -m "chore(release): v%version%"',
         'git tag %version%'
       ],
       'release-start': [
         'grunt version:minor:"SNAPSHOT"',
-        'git commit package.json -m "chore(release): Starting v%version%"'
+        'git commit bower.json package.json -m "chore(release): Starting v%version%"'
       ]
     },
     ngdocs: {
