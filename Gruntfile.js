@@ -9,7 +9,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-cloudfiles');
+  grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-conventional-changelog');
@@ -19,6 +20,7 @@ module.exports = function(grunt) {
   grunt.util.linefeed = '\n';
 
   grunt.initConfig({
+    localConfig: require('./localConfig.js'),
     ngversion: '1.2.8',
     bsversion: '3.0.3',
     modules: [],//to be filled in by build task
@@ -58,7 +60,7 @@ module.exports = function(grunt) {
             paths: ['styles/']
         },
         files: {
-          '<%= dist %>/encore-ui.css': 'styles/encore-ui.less'
+          '<%= dist %>/encore-ui-<%= pkg.version %>.css': 'styles/encore-ui.less'
         }
       }
     },
@@ -76,6 +78,22 @@ module.exports = function(grunt) {
         },
         src: [], //src filled in by build task
         dest: '<%= dist %>/<%= filename %>-tpls-<%= pkg.version %>.js'
+      }
+    },
+    cloudfiles: {
+      staging: {
+        'user': '<%= localConfig.filesUsername %>',
+        'key': '<%= localConfig.apiKey %>',
+        'region': 'DFW',
+        'upload': [{
+            'container': 'encore-ui-staging',
+            'src': [
+                '<%= dist %>/*.js',
+                '<%= dist %>/*.css'
+            ],
+            'dest': '<%= pkg.version %>/',
+            'stripcomponents': 1
+        }]
       }
     },
     clean: {
@@ -177,7 +195,7 @@ module.exports = function(grunt) {
       options: {
         dest: 'CHANGELOG.md',
         templateFile: 'misc/changelog.tpl.md',
-        github: 'rnreekez/encore_ui'
+        github: 'rackerlabs/encore-ui'
       }
     },
     shell: {
