@@ -23,7 +23,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
         env: process.env,
         config: require('./grunt-tasks/util/config.js'),
-        localConfig: require('./localConfig.js'),
+        localConfig: require('./localConfig.js')
     };
 
     grunt.util._.extend(config, loadConfig('./grunt-tasks/options/'));
