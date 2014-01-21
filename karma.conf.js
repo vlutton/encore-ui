@@ -2,7 +2,7 @@
 module.exports = function(config) {
     config.set({
         // base path, that will be used to resolve files and exclude
-        basePath: 'app/',
+        basePath: '',
 
 
         // frameworks to use
@@ -33,10 +33,8 @@ module.exports = function(config) {
         ],
 
         preprocessors: {
-            'views/**/*.html': 'ng-html2js',
-            'modules/**/*.html': 'ng-html2js',
-            // TODO figure out how to filter 'lib' folder
-            'scripts/**/!(*.spec).js': ['coverage']
+            'src/**/templates/*.html': 'ng-html2js',
+            'src/*/!(*.spec).js': ['coverage']
         },
 
 

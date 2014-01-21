@@ -1,4 +1,6 @@
-angular.module('exampleApp')
+angular.module('encore', []);
+
+angular.module('encore')
     .controller('rxForm', function ($scope) {
         $scope.types = [
             {

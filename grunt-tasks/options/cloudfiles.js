@@ -9,8 +9,8 @@ module.exports = {
                 '<%= config.dist %>/*.js',
                 '<%= config.dist %>/*.css'
             ],
-        'dest': '<%= pkg.version %>/',
-        'stripcomponents': 1
+            'dest': '<%= pkg.version %>/',
+            'stripcomponents': 1
         }]
     }
 };
