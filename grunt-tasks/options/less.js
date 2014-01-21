@@ -7,4 +7,4 @@ module.exports = {
             '<%= config.dist %>/encore-ui-<%= pkg.version %>.css': 'styles/encore-ui.less'
         }
     }
-}
+};

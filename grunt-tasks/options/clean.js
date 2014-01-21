@@ -1,8 +1,8 @@
 module.exports = {
-    build: { 
-        src: ["<%= config.dist %>/*"]
+    build: {
+        src: ['<%= config.dist %>/*']
     },
     templates: {
-        src: ["templates/**/*.html.js"]
+        src: ['templates/**/*.html.js']
     }
-}
+};

@@ -1,5 +1,5 @@
 module.exports = {
-    files: ['Gruntfile.js','src/**/*.js'],
+    files: ['Gruntfile.js','src/**/*.js','grunt-tasks/**/*.js','misc/**/*.js'],
     options: {
         curly: true,
         immed: true,

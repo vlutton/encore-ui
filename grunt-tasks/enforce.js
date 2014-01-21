@@ -5,4 +5,4 @@ module.exports = function(grunt) {
             require('fs').chmodSync('.git/hooks/commit-msg', '0755');
         }
     });
-}
+};

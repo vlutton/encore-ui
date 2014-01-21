@@ -12,7 +12,8 @@ module.exports = {
         singleRun: true,
         colors: false,
         reporters: ['dots', 'junit'],
-        browsers: ['Chrome', 'ChromeCanary', 'Firefox', 'Opera', '/Users/jenkins/bin/safari.sh', '/Users/jenkins/bin/ie9.sh', '/Users/jenkins/bin/ie10.sh', '/Users/jenkins/bin/ie11.sh']
+        browsers: ['Chrome', 'ChromeCanary', 'Firefox', 'Opera',
+            '/Users/jenkins/bin/safari.sh', '/Users/jenkins/bin/ie11.sh']
     },
     travis: {
         singleRun: true,
@@ -20,8 +21,8 @@ module.exports = {
     },
     coverage: {
         preprocessors: {
-        'src/*/*.js': 'coverage'
+            'src/*/*.js': 'coverage'
         },
         reporters: ['progress', 'coverage']
     }
-}
+};

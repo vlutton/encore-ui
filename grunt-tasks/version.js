@@ -9,16 +9,16 @@ module.exports = function(grunt) {
             contents = grunt.file.read(file);
 
             contents = contents.replace(VERSION_REGEX, function(match, left, center) {
-            version = center;
+                version = center;
 
-            if (type) {
-                version = require('semver').inc(version, type);
-            }
+                if (type) {
+                    version = require('semver').inc(version, type);
+                }
 
-            //semver.inc strips our suffix if it existed
-            if (suffix) {
-                version += '-' + suffix;
-            }
+                //semver.inc strips our suffix if it existed
+                if (suffix) {
+                    version += '-' + suffix;
+                }
 
                 return left + version + '"';
             });
@@ -27,4 +27,4 @@ module.exports = function(grunt) {
             grunt.file.write(file, contents);
         });
     });
-}
+};

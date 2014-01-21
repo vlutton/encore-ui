@@ -6,7 +6,7 @@ module.exports = {
         src: [], //src filled in by build task
         dest: '<%= config.dist %>/<%= config.fileName %>-<%= pkg.version %>.js'
     },
-    dist_tpls: {
+    distTpls: {
         options: {
             banner: '<%= config.meta.banner %><%= config.meta.all %>\n<%= config.meta.tplmodules %>\n'
         },

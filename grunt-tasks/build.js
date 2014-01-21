@@ -5,8 +5,8 @@ module.exports = function(grunt) {
     //findModule: Adds a given module to config
     var foundModules = {};
     function findModule(name) {
-        if (foundModules[name]) { 
-            return; 
+        if (foundModules[name]) {
+            return;
         }
         foundModules[name] = true;
 
@@ -14,41 +14,41 @@ module.exports = function(grunt) {
             return text.replace(/[A-Z]/g, function (match) {
                 return separator + match;
             });
-        };
+        }
 
         function ucwords(text) {
             return text.replace(/^([a-z])|\s+([a-z])/g, function ($1) {
                 return $1.toUpperCase();
-          });
-        };
+            });
+        }
 
         function enquote(str) {
             return '"' + str + '"';
-        };
+        }
 
         var module = {
             name: name,
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
-            srcFiles: grunt.file.expand("src/"+name+"/*.js"),
-            tplFiles: grunt.file.expand("templates/"+name+"/*.html"),
-            tpljsFiles: grunt.file.expand("templates/"+name+"/*.html.js"),
-            tplModules: grunt.file.expand("templates/"+name+"/*.html").map(enquote),
+            srcFiles: grunt.file.expand('src/'+name+'/*.js'),
+            tplFiles: grunt.file.expand('templates/'+name+'/*.html'),
+            tpljsFiles: grunt.file.expand('templates/'+name+'/*.html.js'),
+            tplModules: grunt.file.expand('templates/'+name+'/*.html').map(enquote),
             dependencies: dependenciesForModule(name),
             docs: {
-                md: grunt.file.expand("src/"+name+"/docs/*.md").map(grunt.file.read).map(markdown).join("\n"),
-                js: grunt.file.expand("src/"+name+"/docs/*.js").map(grunt.file.read).join("\n"),
-                html: grunt.file.expand("src/"+name+"/docs/*.html").map(grunt.file.read).join("\n")
+                md: grunt.file.expand('src/'+name+'/docs/*.md').map(grunt.file.read).map(markdown).join('\n'),
+                js: grunt.file.expand('src/'+name+'/docs/*.js').map(grunt.file.read).join('\n'),
+                html: grunt.file.expand('src/'+name+'/docs/*.html').map(grunt.file.read).join('\n')
             }
         };
 
         module.dependencies.forEach(findModule);
         grunt.config('config.modules', grunt.config('config.modules').concat(module));
-    };
+    }
 
     function dependenciesForModule(name) {
         var deps = [];
-        
+
         grunt.file.expand('src/' + name + '/*.js')
         .map(grunt.file.read)
         .forEach(function(contents) {
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
             dependencies.split(',').forEach(function(dep) {
                 if (dep.indexOf('encore.ui.') > -1) {
                     var depName = dep.trim().replace('encore.ui.','').replace(/['"]/g,'');
-                    
+
                     if (deps.indexOf(depName) < 0) {
                         deps.push(depName);
                         //Get dependencies for this new dependency
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
             });
         });
         return deps;
-    };
+    }
 
     grunt.registerTask('build', 'Create build files', function() {
         var _ = grunt.util._;
@@ -80,7 +80,7 @@ module.exports = function(grunt) {
         if (this.args.length) {
             this.args.forEach(findModule);
             grunt.config('config.fileName', grunt.config('config.fileNamecustom'));
-        } 
+        }
         else {
             grunt.file.expand({filter: 'isDirectory', cwd: '.'}, 'src/*')
             .forEach(function(dir) {
@@ -90,14 +90,16 @@ module.exports = function(grunt) {
 
         var modules = grunt.config('config.modules');
         grunt.config('config.srcModules', _.pluck(modules, 'moduleName'));
-        grunt.config('config.tplModules', _.pluck(modules, 'tplModules').filter(function(tpls) { return tpls.length > 0;} ));
-        grunt.config('config.demoModules', 
+        grunt.config('config.tplModules', _.pluck(modules, 'tplModules').filter(function(tpls) {
+            return tpls.length > 0;
+        }));
+        grunt.config('config.demoModules',
         modules.filter(function(module) {
             return module.docs.md && module.docs.js && module.docs.html;
         })
         .sort(function(a, b) {
             if (a.name < b.name) {
-                return -1; 
+                return -1;
             }
             if (a.name > b.name) {
                 return 1;
@@ -111,8 +113,8 @@ module.exports = function(grunt) {
         grunt.config('concat.dist.src', grunt.config('concat.dist.src').concat(srcFiles));
 
         //Set the concat-with-templates task to concat the given src & tpl modules
-        grunt.config('concat.dist_tpls.src', grunt.config('concat.dist_tpls.src').concat(srcFiles).concat(tpljsFiles));
+        grunt.config('concat.distTpls.src', grunt.config('concat.distTpls.src').concat(srcFiles).concat(tpljsFiles));
 
         grunt.task.run(['clean:build', 'less:encore', 'concat', 'uglify', 'clean:templates']);
     });
-}
+};
