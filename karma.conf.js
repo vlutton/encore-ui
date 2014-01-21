@@ -1,53 +1,89 @@
+/* jshint node:true */
+module.exports = function(config) {
+    config.set({
+        // base path, that will be used to resolve files and exclude
+        basePath: 'app/',
 
-// base path, that will be used to resolve files and exclude
-basePath = '.';
 
-// list of files / patterns to load in the browser
-files = [
-  JASMINE,
-  JASMINE_ADAPTER,
-  'bower_components/angular/angular.min.js',
-  'bower_components/lodash/dist/lodash.min.js',
-  'src/**/*.js',
-  'templates/**/*.html.js'
-];
+        // frameworks to use
+        frameworks: ['mocha', 'chai', 'sinon-chai'],
 
-// list of files to exclude
-exclude = [
-];
+        // list of files / patterns to load in the browser
+        files: [
+            'bower_components/jquery/jquery.min.js',
+            'bower_components/angular/angular.js',
+            'bower_components/angular-animate/angular-animate.js',
+            'bower_components/angular-cookies/angular-cookies.js',
+            'bower_components/angular-mocks/angular-mocks.js',
+            'bower_components/angular-resource/angular-resource.js',
+            'bower_components/angular-route/angular-route.js',
+            'bower_components/angular-sanitize/angular-sanitize.js',
+            'bower_components/angular-xeditable/dist/js/xeditable.js',
+            'bower_components/lodash/dist/lodash.js',
+            'bower_components/mousetrap/mousetrap.js',
+            'bower_components/mousetrap-bind-element/mousetrap-bind-element.js',
+            'bower_components/momentjs/moment.js',
+            'src/**/*.js',
+            'src/**/templates/*.html',
+            '../test/browser-helpers.js'
+        ],
 
-// Start these browsers, currently available:
-// - Chrome
-// - ChromeCanary
-// - Firefox
-// - Opera
-// - Safari
-// - PhantomJS
-browsers = [
-  'PhantomJS'
-];
+        // list of files to exclude
+        exclude: [
+        ],
 
-// test results reporter to use
-// possible values: dots || progress
-reporters = ['progress'];
+        preprocessors: {
+            'views/**/*.html': 'ng-html2js',
+            'modules/**/*.html': 'ng-html2js',
+            // TODO figure out how to filter 'lib' folder
+            'scripts/**/!(*.spec).js': ['coverage']
+        },
 
-// web server port
-port = 9018;
 
-// cli runner port
-runnerPort = 9100;
+        // test results reporter to use
+        // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
+        reporters: ['progress', 'coverage'],
 
-// enable / disable colors in the output (reporters and logs)
-colors = true;
+        coverageReporter: {
+            type : 'html',
+            dir : '../coverage/'
+        },
 
-// level of logging
-// possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-logLevel = LOG_INFO;
+        // web server port
+        port: 9876,
 
-// enable / disable watching file and executing tests whenever any file changes
-autoWatch = false;
 
-// Continuous Integration mode
-// if true, it capture browsers, run tests and exit
-singleRun = false;
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
 
+
+        // level of logging
+        // possible values:
+        //  config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_WARN,
+
+
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: true,
+
+
+        // Start these browsers, currently available:
+        // - Chrome
+        // - ChromeCanary
+        // - Firefox
+        // - Opera
+        // - Safari (only Mac)
+        // - PhantomJS
+        // - IE (only Windows)
+        browsers: ['PhantomJS'],
+
+
+        // If browser does not capture in given timeout [ms], kill it
+        captureTimeout: 60000,
+
+
+        // Continuous Integration mode
+        // if true, it capture browsers, run tests and exit
+        singleRun: false
+    });
+};

@@ -1,0 +1,28 @@
+<div class="form-item">
+    <table class="table-striped option-table" ng-show="data.length > 0">
+        <thead ng-hide="hideHeaders">
+            <tr>
+                <th></th>
+                <th ng-repeat="column in columns" scope="col">
+                    {{column.label}}
+                </th>
+            </tr>
+        </thead>
+        <tr ng-repeat="row in data" ng-class="{current: row.id === selected, selected: row.id == $parent.model}">
+            <th scope="row" class="option-table-input">
+                <input type="{{type}}"
+                    id="{{fieldId}}_{{row.id}}"
+                    ng-model="$parent.model"
+                    value="{{row.id}}"
+                    name="{{fieldId}}"
+                    ng-disabled="row.id === selected"
+                >
+            </th>
+            <td ng-repeat="column in columns">
+                <label for="{{fieldId}}_{{row.id}}">
+                    {{row[column.key]}} <span ng-show="row.id === selected">{{column.selectedLabel}}</span>
+                </label>
+            </td>
+        </tr>
+    </table>
+</div>

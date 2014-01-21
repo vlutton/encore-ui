@@ -1,0 +1,104 @@
+@import "./vars";
+
+/*
+
+# Common Styles
+These are common styles that will be re-used across the site
+
+*/
+
+.truncate-wrapper {
+    position: relative;
+}
+.truncate {
+    display: inline-block;
+    max-width: 125px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+    white-space: nowrap;
+}
+/*
+.truncate:hover {
+    max-width:10000px;
+    position:absolute;
+    top:7px;
+    background-color:#fff;
+    padding: 4px auto;
+    padding-right:15px
+}
+*/
+
+/*
+
+Colors the text red to warn people that something important will/did happen (plus icons)
+
+```
+<a href="#" class="msg-warn link-warn">Delete</a>
+<span class="msg-warn">Something was deleted</span>
+```
+*/
+.link-action,
+.link-action a,
+.link-warn,
+.link-warn a {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.link-action:before,
+.link-action a:before {
+    content: '+ ';
+}
+
+.link-warn:before,
+.link-warn a:before {
+    content: '- ';
+}
+
+.msg-action,
+.msg-action a {
+    color: @actionGreen;
+    &:hover,
+    &:focus {
+        color: @actionGreen;
+    }
+}
+
+.msg-warn,
+.msg-warn a {
+    color: @warnRed;
+    &:hover,
+    &:focus {
+        color: @warnRedHover;
+    }
+}
+
+.list-link,
+.list-link a {
+    font-size: 1.2em;
+    padding-top: 10px;
+    display: block;
+}
+
+.action-separator {
+    font-size: 1.1em;
+    color: #ccc;
+}
+
+
+/*
+Basic color change to make text less prominant
+<h1>My Items <span class="subdued">(10)</span></h1>
+ */
+.subdued {
+    color: @subduedText;
+}
+
+/*
+This can be added to hide an element but not remove it from the spacing of the
+page
+*/
+.invisible {
+    visibility: hidden;
+}

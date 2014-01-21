@@ -22,5 +22,5 @@ npm-debug.log
 
 bower_components
 
-template/**/*.js
+templates/**/*.js
 localConfig.js
