@@ -1,3 +1,4 @@
+/*jshint node:true */
 module.exports = function(grunt) {
 
     grunt.registerTask('test', 'Run tests on singleRun karma server', function () {

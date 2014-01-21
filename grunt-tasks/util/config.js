@@ -10,7 +10,7 @@ module.exports = {
         tplmodules: 'angular.module("<%= config.moduleName %>.tpls", [<%= config.tplModules %>]);',
         all: 'angular.module("<%= config.moduleName %>", ["<%= config.moduleName %>.tpls", <%= config.srcModules %>]);',
         banner: [
-            '/*', 
+            '/*',
             ' * <%= pkg.name %>',
             ' * <%= pkg.homepage %>\n',
             ' * Version: <%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>',
