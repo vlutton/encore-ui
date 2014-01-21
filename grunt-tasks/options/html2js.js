@@ -6,7 +6,7 @@ module.exports = {
         },
         files: [{
             expand: true,
-            src: ['templates/**/*.html'],
+            src: ['src/**/templates/*.html'],
             ext: '.html.js'
         }]
     }

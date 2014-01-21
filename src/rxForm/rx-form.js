@@ -22,7 +22,7 @@ angular.module('encore.ui.rxForm', [])
 .directive('rxFormInput', function () {
     return {
         restrict: 'E',
-        templateUrl: 'views/templates/form/rx-form-input.html',
+        templateUrl: 'templates/rx-form-input.html',
         scope: {
             type: '@',
             required: '@',
@@ -64,7 +64,7 @@ angular.module('encore.ui.rxForm', [])
 .directive('rxFormRadio', function () {
     return {
         restrict: 'E',
-        templateUrl: 'views/templates/form/rx-form-radio.html',
+        templateUrl: 'templates/rx-form-radio.html',
         scope: {
             options: '=',
             fieldId: '@',
@@ -98,7 +98,7 @@ angular.module('encore.ui.rxForm', [])
 .directive('rxFormSelect', function () {
     return {
         restrict: 'E',
-        templateUrl: 'views/templates/form/rx-form-select.html',
+        templateUrl: 'templates/rx-form-select.html',
         scope: {
             options: '=',
             fieldId: '@',
@@ -141,7 +141,7 @@ angular.module('encore.ui.rxForm', [])
 .directive('rxFormOptionTable', function () {
     return {
         restrict: 'E',
-        templateUrl: 'views/templates/form/rx-form-option-table.html',
+        templateUrl: 'templates/rx-form-option-table.html',
         scope: {
             data: '=',
             columns: '=',

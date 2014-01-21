@@ -7,8 +7,8 @@ module.exports = {
         },
         files: {
             '<%= config.dist %>/encore-ui-<%= pkg.version %>.css': [
-                'src/common.less', // less files in root need to be loaded first
-                'src/*/*.less'
+                'src/global-styles/*.less', // less files in root need to be loaded first
+                'src/rx*/*.less'
             ]
         }
     }

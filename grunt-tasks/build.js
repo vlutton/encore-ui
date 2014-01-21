@@ -31,9 +31,9 @@ module.exports = function(grunt) {
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
             srcFiles: grunt.file.expand('src/'+name+'/*.js'),
-            tplFiles: grunt.file.expand('templates/'+name+'/*.html'),
-            tpljsFiles: grunt.file.expand('templates/'+name+'/*.html.js'),
-            tplModules: grunt.file.expand('templates/'+name+'/*.html').map(enquote),
+            tplFiles: grunt.file.expand('src/'+name+'/templates/*.html'),
+            tplJsFiles: grunt.file.expand('src/'+name+'/templates/*.html.js'),
+            tplModules: grunt.file.expand('src/'+name+'/templates/*.html').map(enquote),
             dependencies: dependenciesForModule(name),
             docs: {
                 md: grunt.file.expand('src/'+name+'/docs/*.md').map(grunt.file.read).map(markdown).join('\n'),
@@ -50,26 +50,26 @@ module.exports = function(grunt) {
         var deps = [];
 
         grunt.file.expand('src/' + name + '/*.js')
-        .map(grunt.file.read)
-        .forEach(function(contents) {
-            //Strategy: find where module is declared,
-            //and from there get everything inside the [] and split them by comma
-            var moduleDeclIndex = contents.indexOf('angular.module(');
-            var depArrayStart = contents.indexOf('[', moduleDeclIndex);
-            var depArrayEnd = contents.indexOf(']', depArrayStart);
-            var dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
-            dependencies.split(',').forEach(function(dep) {
-                if (dep.indexOf('encore.ui.') > -1) {
-                    var depName = dep.trim().replace('encore.ui.','').replace(/['"]/g,'');
+            .map(grunt.file.read)
+            .forEach(function(contents) {
+                //Strategy: find where module is declared,
+                //and from there get everything inside the [] and split them by comma
+                var moduleDeclIndex = contents.indexOf('angular.module(');
+                var depArrayStart = contents.indexOf('[', moduleDeclIndex);
+                var depArrayEnd = contents.indexOf(']', depArrayStart);
+                var dependencies = contents.substring(depArrayStart + 1, depArrayEnd);
+                dependencies.split(',').forEach(function(dep) {
+                    if (dep.indexOf('encore.ui.') > -1) {
+                        var depName = dep.trim().replace('encore.ui.','').replace(/['"]/g,'');
 
-                    if (deps.indexOf(depName) < 0) {
-                        deps.push(depName);
-                        //Get dependencies for this new dependency
-                        deps = deps.concat(dependenciesForModule(depName));
+                        if (deps.indexOf(depName) < 0) {
+                            deps.push(depName);
+                            //Get dependencies for this new dependency
+                            deps = deps.concat(dependenciesForModule(depName));
+                        }
                     }
-                }
+                });
             });
-        });
         return deps;
     }
 
@@ -83,9 +83,9 @@ module.exports = function(grunt) {
         }
         else {
             grunt.file.expand({filter: 'isDirectory', cwd: '.'}, 'src/*')
-            .forEach(function(dir) {
-                findModule(dir.split('/')[1]);
-            });
+                .forEach(function(dir) {
+                    findModule(dir.split('/')[1]);
+                });
         }
 
         var modules = grunt.config('config.modules');
@@ -108,12 +108,12 @@ module.exports = function(grunt) {
         }));
 
         var srcFiles = _.pluck(modules, 'srcFiles');
-        var tpljsFiles = _.pluck(modules, 'tpljsFiles');
+        var tplJsFiles = _.pluck(modules, 'tplJsFiles');
         //Set the concat task to concatenate the given src modules
         grunt.config('concat.dist.src', grunt.config('concat.dist.src').concat(srcFiles));
 
         //Set the concat-with-templates task to concat the given src & tpl modules
-        grunt.config('concat.distTpls.src', grunt.config('concat.distTpls.src').concat(srcFiles).concat(tpljsFiles));
+        grunt.config('concat.distTpls.src', grunt.config('concat.distTpls.src').concat(srcFiles).concat(tplJsFiles));
 
         grunt.task.run(['clean:build', 'less:encore', 'concat', 'uglify', 'clean:templates']);
     });
