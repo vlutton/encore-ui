@@ -10,7 +10,6 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'bower_components/jquery/jquery.min.js',
             'bower_components/angular/angular.js',
             'bower_components/angular-animate/angular-animate.js',
             'bower_components/angular-cookies/angular-cookies.js',
@@ -18,14 +17,9 @@ module.exports = function(config) {
             'bower_components/angular-resource/angular-resource.js',
             'bower_components/angular-route/angular-route.js',
             'bower_components/angular-sanitize/angular-sanitize.js',
-            'bower_components/angular-xeditable/dist/js/xeditable.js',
             'bower_components/lodash/dist/lodash.js',
-            'bower_components/mousetrap/mousetrap.js',
-            'bower_components/mousetrap-bind-element/mousetrap-bind-element.js',
-            'bower_components/momentjs/moment.js',
             'src/**/*.js',
-            'src/**/templates/*.html',
-            '../test/browser-helpers.js'
+            'src/**/templates/*.html'
         ],
 
         // list of files to exclude
