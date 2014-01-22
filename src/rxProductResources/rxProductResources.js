@@ -10,7 +10,7 @@ angular.module('encore.ui.rxProductResources', ['encore.ui.rxActiveUrl', 'encore
 .directive('rxProductResources', function () {
     return {
         restrict: 'E',
-        templateUrl: 'templates/rxProductResources/rxProductResources.html',
+        templateUrl: 'templates/rxProductResources.html',
         scope: {
             user: '='
         }

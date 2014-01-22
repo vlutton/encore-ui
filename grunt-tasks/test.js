@@ -1,4 +1,5 @@
 /*jshint node:true */
+// TODO Replace this with CB configuration
 module.exports = function(grunt) {
 
     grunt.registerTask('test', 'Run tests on singleRun karma server', function () {
