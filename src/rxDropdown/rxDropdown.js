@@ -2,7 +2,7 @@ angular.module('encore.ui.rxDropdown', [])
 .directive('rxDropdown', function ($rootScope) {
     return {
         restrict: 'E',
-        templateUrl: 'templates/rxDropdown/rxDropdown.html',
+        templateUrl: 'rxDropdown/rxDropdown.tpl.html',
         link: function (scope, element) {
             scope.visible = false;
 

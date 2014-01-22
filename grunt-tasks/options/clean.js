@@ -3,6 +3,6 @@ module.exports = {
         src: ['<%= config.dist %>/*']
     },
     templates: {
-        src: ['src/**/templates/*.html.js']
+        src: ['tmp/templates']
     }
 };

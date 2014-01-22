@@ -9,7 +9,7 @@ angular.module('encore.ui.rxNav', ['encore.ui.rxDropdown'])
  */
 .directive('rxNav', function () {
     return {
-        templateUrl: 'templates/rxNav/rxNav.html',
+        templateUrl: 'rxNav.tpl.html',
         restrict: 'E',
         controller: function ($scope) {
             $scope.bookmarks = {

@@ -31,9 +31,9 @@ module.exports = function(grunt) {
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
             srcFiles: grunt.file.expand('src/'+name+'/*.js'),
-            tplFiles: grunt.file.expand('src/'+name+'/templates/*.html'),
-            tplJsFiles: grunt.file.expand('/templates/'+name+'/*.html.js'),
-            tplModules: grunt.file.expand('src/'+name+'/templates/*.html').map(enquote),
+            tplFiles: grunt.file.expand('src/'+name+'/*.tpl.html'),
+            tplJsFiles: grunt.file.expand('templates/'+name+'*.html'),
+            tplModules: grunt.file.expand('templates/'+name+'*.html').map(enquote),
             dependencies: dependenciesForModule(name),
             docs: {
                 md: grunt.file.expand('src/'+name+'/docs/*.md').map(grunt.file.read).map(markdown).join('\n'),
@@ -109,6 +109,8 @@ module.exports = function(grunt) {
 
         var srcFiles = _.pluck(modules, 'srcFiles');
         var tplJsFiles = _.pluck(modules, 'tplJsFiles');
+
+        console.log(tplJsFiles);
 
         //Set the concat task to concatenate the given src modules
         grunt.config('concat.dist.src', grunt.config('concat.dist.src').concat(srcFiles));

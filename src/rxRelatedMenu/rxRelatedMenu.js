@@ -9,21 +9,21 @@ angular.module('encore.ui.rxRelatedMenu', [])
  * on the left side, but can be configured for the direction you want.
  * @scope
  * @param {Boolean=false} collapsable - Is this menu going to be collapsable
- * @param {String='open'} default-state - This option is only used 
+ * @param {String='open'} default-state - This option is only used
  * if collapsable is true. Potential values are 'open' or 'closed'.
  * @param {String='click'} trigger - This option is only used if
  * collapsable is true. Potential values are 'click' or 'hover'.
  * @param {Boolean} state - Is the menu opened or closed.
  * @param {String='left'} position - Where should the sidebar live? Possible
  * values are 'left' or 'right'.
- * 
+ *
  */
 .directive('rxRelatedMenu', function () {
     return {
         restrict: 'E',
         replace: true,
         transclude: true,
-        templateUrl: 'templates/rxRelatedMenu/rxRelatedMenu.html',
+        templateUrl: 'rxRelatedMenu.tpl.html',
         scope: {
             collapsable: '&',
             defaultState: '@',
