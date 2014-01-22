@@ -6,16 +6,21 @@ module.exports = {
             module: false, // no bundle module for all the html2js templates
             // remove folder name from path
             rename: function (moduleName) {
-                // grab filename from moduleName
-                var basename = path.basename(moduleName);
-                return 'templates/' + basename;
+                // convert path to array
+                var templatePath = moduleName.split(path.sep);
+
+                // remove the first directory (the module name)
+                templatePath.shift();
+
+                // return the rest of the path as a string
+                return templatePath.join(path.sep);
             }
         },
         files: [{
             expand: true,
             flatten: true,
             cwd: 'src',
-            src: ['**/*.html'],
+            src: ['**/templates/*.html'],
             dest: 'templates/'
         }]
     }

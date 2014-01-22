@@ -23,7 +23,7 @@ angular.module('encore.ui.rxRelatedMenu', [])
         restrict: 'E',
         replace: true,
         transclude: true,
-        templateUrl: 'rxRelatedMenu.tpl.html',
+        templateUrl: 'templates/rxRelatedMenu.html',
         scope: {
             collapsable: '&',
             defaultState: '@',
