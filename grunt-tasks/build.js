@@ -32,7 +32,7 @@ module.exports = function(grunt) {
             displayName: ucwords(breakup(name, ' ')),
             srcFiles: grunt.file.expand('src/'+name+'/*.js'),
             tplFiles: grunt.file.expand('src/'+name+'/templates/*.html'),
-            tplJsFiles: grunt.file.expand('src/'+name+'/templates/*.html.js'),
+            tplJsFiles: grunt.file.expand('/templates/'+name+'/*.html.js'),
             tplModules: grunt.file.expand('src/'+name+'/templates/*.html').map(enquote),
             dependencies: dependenciesForModule(name),
             docs: {
@@ -94,21 +94,22 @@ module.exports = function(grunt) {
             return tpls.length > 0;
         }));
         grunt.config('config.demoModules',
-        modules.filter(function(module) {
-            return module.docs.md && module.docs.js && module.docs.html;
-        })
-        .sort(function(a, b) {
-            if (a.name < b.name) {
-                return -1;
-            }
-            if (a.name > b.name) {
-                return 1;
-            }
-            return 0;
-        }));
+            modules.filter(function(module) {
+                return module.docs.md && module.docs.js && module.docs.html;
+            })
+            .sort(function(a, b) {
+                if (a.name < b.name) {
+                    return -1;
+                }
+                if (a.name > b.name) {
+                    return 1;
+                }
+                return 0;
+            }));
 
         var srcFiles = _.pluck(modules, 'srcFiles');
         var tplJsFiles = _.pluck(modules, 'tplJsFiles');
+
         //Set the concat task to concatenate the given src modules
         grunt.config('concat.dist.src', grunt.config('concat.dist.src').concat(srcFiles));
 
