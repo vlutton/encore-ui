@@ -4,6 +4,11 @@ module.exports = {
     dist: {
         options: {
             module: false, // no bundle module for all the html2js templates
+            htmlmin: {
+                collapseBooleanAttributes: true,
+                collapseWhitespace: true,
+                removeComments: true
+            },
             // remove folder name from path
             rename: function (moduleName) {
                 // convert path to array
