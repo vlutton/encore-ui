@@ -1,11 +1,7 @@
 {
     "author": "",
     "name": "EncoreUI",
-    "version": "0.0.1",
-    "repository" : {
-        "type" : "git",
-        "url" : "https://github.com/rackerlabs/encore-ui"
-    },
+    "version": "0.1.0-SNAPSHOT",
     "homepage": "",
     "repository": {
         "type": "git",
