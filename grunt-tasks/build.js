@@ -37,7 +37,7 @@ module.exports = function(grunt) {
             tplModules: grunt.file.expand('templates/'+name+'*.html').map(enquote),
             dependencies: dependenciesForModule(name),
             docs: {
-                md: grunt.file.expand('src/'+name+'/docs/*.md').map(grunt.file.read).map(markdown).join('\n'),
+                md: grunt.file.expand('src/'+name+'/*.md').map(grunt.file.read).map(markdown).join('\n'),
                 js: grunt.file.expand('src/'+name+'/docs/*.js').map(grunt.file.read).join('\n'),
                 html: grunt.file.expand('src/'+name+'/docs/*.html').map(grunt.file.read).join('\n')
             }
@@ -117,6 +117,9 @@ module.exports = function(grunt) {
 
         //Set the concat-with-templates task to concat the given src & tpl modules
         grunt.config('concat.distTpls.src', grunt.config('concat.distTpls.src').concat(srcFiles).concat(tplJsFiles));
+
+        //Set the copy task to process via grunt template
+        grunt.config('copy.demohtml.options.process', grunt.template.process);
 
         grunt.task.run(['clean:build', 'less:encore', 'concat', 'uglify', 'clean:templates']);
     });

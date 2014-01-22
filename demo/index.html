@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <link href="http://2b54569c547f7fb938e7-168ce9534316c683ed57b1bc0df9991d.r29.cf1.rackcdn.com/<%= pkg.version%>/encore-ui.css" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js" type="text/javascript"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js" type="text/javascript"></script>
+    <script src="http://2b54569c547f7fb938e7-168ce9534316c683ed57b1bc0df9991d.r29.cf1.rackcdn.com/<%= pkg.version%>/encore-ui-tpls.js"  type="text/javascript"></script>
+</head>
+<body ng-app="DemoApp">
+    <div class="container">
+        <rx-nav></rx-nav>
+
+
+        <ul class="dropdown-menu">
+            <% config.demoModules.forEach(function(module) {  %><li><a href="#<%= module.name %>"><%= module.displayName %></a></li><% }); %>
+        </ul>
+
+        <div class="page-content" ng-controller="ProductResourcesCtrl">
+            <rx-related-menu state="menuShown" collapsable="false" position="left">
+                <rx-user-details user="user"></rx-user-details>
+                <rx-product-resources user="user"></rx-product-resources>
+            </rx-related-menu>
+            <div class="main-content">
+
+                <% config.demoModules.forEach(function(module) { %>
+                    <section id="<%= module.name %>">
+                        <div class="page-header">
+                          <h1><%= module.displayName %><small>
+                              (encore.ui.<%= module.name %>)
+                          </small></h1>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6 show-grid">
+                                <%= module.docs.html %>
+                            </div>
+                            <div class="col-md-6">
+                                <%= module.docs.md %>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row code">
+                            <div class="col-md-12">
+                                <tabset>
+                                    <tab heading="Markup">
+                                        <div plunker-content="markup">
+                                            <pre ng-non-bindable><code data-language="html"><%- module.docs.html %></code></pre>
+                                        </div>
+                                    </tab>
+                                    <tab heading="JavaScript">
+                                        <div plunker-content="javascript">
+                                            <pre ng-non-bindable><code data-language="javascript"><%- module.docs.js %></code></pre>
+                                        </div>
+                                    </tab>
+                                </tabset>
+                            </div>
+                        </div>
+                    </section>
+                    <script><%= module.docs.js %></script>
+                <% }); %>
+
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            angular.module('DemoApp', ['encore.ui'])
+                .controller('ProductResourcesCtrl', function($scope) {
+                    $scope.user = 'test';
+                });
+        </script>
+    </div>
+</body>
+</html>
