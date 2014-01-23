@@ -18,11 +18,5 @@ module.exports = {
     travis: {
         singleRun: true,
         browsers: ['Firefox']
-    },
-    coverage: {
-        preprocessors: {
-            'src/*/*.js': 'coverage'
-        },
-        reporters: ['progress', 'coverage']
     }
 };

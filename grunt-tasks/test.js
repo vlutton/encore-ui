@@ -8,12 +8,6 @@ module.exports = function(grunt) {
         if (process.env.TRAVIS) {
             grunt.task.run('karma:travis');
         } else {
-            if(grunt.option('coverage')) {
-                var karmaOptions = grunt.config.get('karma.options'),
-                coverageOpts = grunt.config.get('karma.coverage');
-                grunt.util._.extend(karmaOptions, coverageOpts);
-                grunt.config.set('karma.options', karmaOptions);
-            }
             grunt.task.run(this.args.length ? 'karma:jenkins' : 'karma:continuous');
         }
     });

@@ -18,8 +18,7 @@ module.exports = function(config) {
             'bower_components/angular-route/angular-route.js',
             'bower_components/angular-sanitize/angular-sanitize.js',
             'bower_components/lodash/dist/lodash.js',
-            'src/**/*.js',
-            'src/**/templates/*.html'
+            'src/**/*.js'
         ],
 
         // list of files to exclude
@@ -38,7 +37,7 @@ module.exports = function(config) {
 
         coverageReporter: {
             type : 'html',
-            dir : '../coverage/'
+            dir : './coverage/'
         },
 
         // web server port

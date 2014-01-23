@@ -4,5 +4,8 @@ module.exports = {
     },
     templates: {
         src: ['templates']
+    },
+    coverage: {
+        src: ['coverage']
     }
 };

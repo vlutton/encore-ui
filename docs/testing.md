@@ -82,7 +82,7 @@ For both Midway and E2E tests, we use a Page Object library called [Astrolabe](h
 
 ### Midway Tests
 
-Goal: Validate our appplication in isolation from its dependencies (e.g. API Server)
+Goal: Validate our application in isolation from its dependencies (e.g. API Server)
 
 In order to run the midway test suite, you will need a selenium server running. To install and run selenium, see [Selenium setup with remote drivers](http://docs.seleniumhq.org/docs/03_webdriver.jsp#running-standalone-selenium-server-for-use-with-remotedrivers).
 
