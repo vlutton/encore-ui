@@ -2,7 +2,7 @@ module.exports = {
     demohtml: {
         options: {
             process: function () {
-
+                // this function intentionally left blank (gets replaced by build task)
             }
         },
         files: [{

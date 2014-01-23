@@ -1,4 +1,5 @@
-@import "./vars";
+@import 'vars';
+@import 'flexbox';
 
 /*
 
@@ -6,6 +7,99 @@
 These are common styles that will be re-used across the site
 
 */
+
+
+.table-striped tr:nth-child(even) {
+    background: #f6f6f6;
+}
+
+/*
+ Global styling for buttons
+
+ ```
+ <button class="button">My Button</button>
+ <button class="button button-small">My Button</button>
+ <button class="button button-large">My Button</button>
+ <button class="button button-green">My Button</button>
+ <button class="button button-blue">My Button</button>
+ <button class="button" disabled>My Button</button>
+ <a href="#" class="button">My Link Button</a>
+ ```
+ */
+ .button {
+    display: inline-block;
+    background: #0950a3;
+    color: #fff;
+    border: 0;
+    font-size: 1.2em;
+    font-weight: 100;
+    padding: .7em 1.5em;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+// in case the buttons are created using the <a> tag
+.button:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #00ac31;
+}
+
+.button.button-small {
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: .8em;
+}
+
+.button.button-large {
+    font-size: 1.5em;
+}
+
+.button.button-green {
+    background: #00ac31;
+}
+
+.button.button-blue {
+    background: #0950a3;
+}
+
+.button[disabled] {
+    cursor: default;
+    padding-left: 20px;
+    background: #999;
+}
+
+
+/* Main Page CSS */
+.container {
+    min-height: 100%;
+    .flexbox-display();
+    .flexbox-direction(column);
+}
+
+.page-content {
+    .flexbox-display();
+    .flexbox(1);
+}
+
+.main-content {
+    .flexbox(1 1 0);
+    padding: 20px 30px 50px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    padding: 0px;
+}
+
+.btn-link:focus {
+    outline: none;
+}
+
 
 .truncate-wrapper {
     position: relative;
