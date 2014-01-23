@@ -1,13 +1,16 @@
 module.exports = {
     encore: {
         options: {
-            sourceMap: true,
-            sourceMapFilename: '<%= config.dist %>/encore-ui.map.css',
-            outputSourceFiles: 'true'
+            // TODO figure out how to get sourcemap file to only generate once
+            // sourceMap: true,
+            // sourceMapFilename: '<%= config.dist %>/encore-ui.map.css',
+            // outputSourceFiles: 'true',
+            paths: 'src/styles/'
         },
         files: {
             '<%= config.dist %>/encore-ui.css': [
-                'src/styles/*.less', // less files in root need to be loaded first
+                'src/styles/normalize.less',
+                'src/styles/common.less',
                 'src/rx*/*.less'
             ]
         }

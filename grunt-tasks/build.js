@@ -30,7 +30,6 @@ module.exports = function(grunt) {
             name: name,
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
-            // todo remove unit tests
             srcFiles: grunt.file.expand('src/'+name+'/!(*.spec).js'),
             tplFiles: grunt.file.expand('src/'+name+'/*.tpl.html'),
             tplJsFiles: grunt.file.expand('templates/'+name+'*.html'),
@@ -83,7 +82,6 @@ module.exports = function(grunt) {
             grunt.config('config.fileName', grunt.config('config.fileNamecustom'));
         }
         else {
-            // TODO figure out a better way to filter global styles
             grunt.file.expand({filter: 'isDirectory', cwd: '.'}, 'src/!(styles)')
                 .forEach(function(dir) {
                     findModule(dir.split('/')[1]);
