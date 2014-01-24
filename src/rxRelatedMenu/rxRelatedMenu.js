@@ -2,7 +2,7 @@ angular.module('encore.ui.rxRelatedMenu', [])
 /**
  *
  * @ngdoc directive
- * @name encore.directives:rxRelatedMenu
+ * @name encore.ui.rxRelatedMenu
  * @restrict E
  * @description
  * This directive is used to create a menu for a page. By default it shows

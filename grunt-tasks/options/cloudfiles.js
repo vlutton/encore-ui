@@ -6,7 +6,7 @@ module.exports = {
         'upload': [{
             'container': 'encore-ui-staging',
             'src': [
-                '<%= config.dist %>/*'
+                '<%= config.dist %>/**/*'
             ],
             'dest': '<%= pkg.version %>/',
             'stripcomponents': 1

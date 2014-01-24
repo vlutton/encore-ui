@@ -2,7 +2,7 @@ angular.module('encore.ui.rxForm', [])
 /**
  *
  * @ngdoc directive
- * @name encore.directives:rxFormInput
+ * @name encore.ui.rxForm:rxFormInput
  * @restrict E
  * @description
  * This directive is used to create an &lt;input&gt; tag.
@@ -43,7 +43,7 @@ angular.module('encore.ui.rxForm', [])
 /**
  *
  * @ngdoc directive
- * @name encore.directives:rxFormRadio
+ * @name encore.ui.rxForm:rxFormRadio
  * @restrict E
  * @description
  * This directive is used to create a set of &lt;input type="radio"&gt; tags.
@@ -75,7 +75,7 @@ angular.module('encore.ui.rxForm', [])
 /**
  *
  * @ngdoc directive
- * @name encore.directives:rxFormSelect
+ * @name encore.ui.rxForm:rxFormSelect
  * @restrict E
  * @description
  * This directive is used to create a &lt;select&gt; box w/options.
@@ -111,7 +111,7 @@ angular.module('encore.ui.rxForm', [])
 /**
  *
  * @ngdoc directive
- * @name encore.directives:rxFormRadioTable
+ * @name encore.ui.rxForm:rxFormRadioTable
  * @restrict E
  * @description
  * This directive is used to build a table of radio inputs
