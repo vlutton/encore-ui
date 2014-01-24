@@ -74,7 +74,7 @@ Before submitting any changes, make sure the master branch is merged locally int
 
 ### Pull Request Minimum Requirements
 
-- Complete Docs and inline code comments
+- Complete documentation (a docs subfolder with working examples and [ngdocs](https://github.com/angular/angular.js/wiki/Writing-AngularJS-Documentation)), along with inline code comments as beneficial
 - Unit tests with 80% line coverage
 - Midways tests for all new UI functionality
 - Proper commit logs
