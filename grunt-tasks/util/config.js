@@ -1,6 +1,11 @@
 module.exports = {
-    app: 'app',
+    app: 'src',
     dist : 'dist',
+    liveReloadPage: require('connect-livereload')({ port: 35729 }),
+    modRewrite: require('connect-modrewrite'),
+    mountFolder : function (connect, dir) {
+        return connect.static(require('path').resolve(dir));
+    },
     fileName: 'encore-ui',
     fileNameCustom: '<%= fileName %>-custom',
     moduleName: 'encore.ui',

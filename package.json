@@ -11,7 +11,8 @@
         "node": ">=0.8.0"
     },
     "scripts": {
-        "test": "grunt test"
+        "test": "grunt test",
+        "postinstall": "grunt shell:hooks"
     },
     "dependencies": {},
     "devDependencies": {
@@ -28,7 +29,7 @@
         "grunt-connect-proxy": "~0.1.5",
         "grunt-contrib-clean": "~0.5.0",
         "grunt-contrib-concat": "~0.3.0",
-        "grunt-contrib-connect": "~0.3.0",
+        "grunt-contrib-connect": "~0.6.0",
         "grunt-contrib-copy": "~0.5.0",
         "grunt-contrib-cssmin": "~0.7.0",
         "grunt-contrib-htmlmin": "~0.1.0",
@@ -72,7 +73,6 @@
         "requirejs": "~2.1.10",
         "selenium-webdriver": "~2.39.0",
         "semver": "~2.2.0",
-        "shelljs": "~0.2.0",
         "sinon": "~1.7.3",
         "sinon-chai": "~2.4.0"
     }

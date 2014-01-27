@@ -1,3 +1,3 @@
 module.exports = function(grunt) {
-    grunt.registerTask('after-test', ['build', 'copy']);
+    grunt.registerTask('after-test', ['html2js', 'build', 'copy', 'clean:templates']);
 };
