@@ -13,14 +13,16 @@ lib-cov
 pids
 logs
 results
-dist
-# test coverage files
-coverage/
 
 node_modules
 npm-debug.log
 
 bower_components
 
-templates
+# config file with secrets
 localConfig.js
+
+# generated files/folders on build
+dist
+coverage
+templates

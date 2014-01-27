@@ -64,3 +64,29 @@ Password: pass
 
 Note that a lot of pages aren't mocked out. It's usually a safe bet that the first link/option on a page is the one that's mocked out.
 -->
+
+## Creating a New Component
+
+### Component Scaffolding
+
+In order to promote consistency between components, and make it easier to create them, we use Grunt to provide scaffolding for new components.
+
+In order to take advantage of the scaffolding, you need to install grunt-init  globally.
+
+`npm install -g grunt-init`
+
+With grunt-init now installed, navigate to the `src` directory in Encore UI.
+
+Then create a new component folder and navigate into it, **with the name of your component in camelCase**. (e.g. `mkdir myTestComponent && cd myTestComponent`)
+
+Once created, from that folder, run `grunt-init ../../grunt-tasks/component-template/`
+
+Answer the questions prompted, let the task complete, and your new component folder should be ready for you to start coding away at. That's it.
+
+### Stability Index
+
+Because we're focused on delivering fast and continually improving, some components may be less stable/polished than others. To help with this, we're following the pattern set forth by the [Node Stability Index](http://nodejs.org/api/documentation.html#documentation_stability_index). To quote:
+
+"Throughout the documentation, you will see indications of a section's stability. The Node.js API is still somewhat changing, and as it matures, certain parts are more reliable than others. Some are so proven, and so relied upon, that they are unlikely to ever change at all. Others are brand new and experimental, or known to be hazardous and in the process of being redesigned."
+
+Each component should be marked with a stability value. This should reflect where it is in its lifecycle. All components should start as experimental, and then move towards stable as it's polished. You can always find the stability index of a component in the README.md doc in the component directory.
