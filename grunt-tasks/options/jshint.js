@@ -5,7 +5,8 @@ module.exports = {
     all: [
         'Gruntfile.js',
         'src/**/*.js',
-        'grunt-tasks/**/*.js'
+        'grunt-tasks/**/*.js',
+        '!grunt-tasks/component-template/**/*.js'
     ],
     scripts: [
         'src/**/*.js',
