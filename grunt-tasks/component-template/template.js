@@ -9,10 +9,8 @@ exports.notes = 'All new components must follow the Encore UI CSS & JS Standards
 // Any existing file or directory matching this wildcard will cause a warning.
 exports.warnOn = '*';
 
-
 // The actual init template.
 exports.template = function(grunt, init, done) {
-
     init.process({}, [
         // Prompt for these values.
         init.prompt('name'),

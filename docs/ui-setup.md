@@ -6,23 +6,23 @@ If this is your first time, you'll need to set up your coding environment to be 
 
 1. Install git
 
-Many Mac OS X and Linux systems already have git installed. If your system doesn't, see [YUI's 'How to Set Up Your Git Environment'](http://yuilibrary.com/yui/docs/tutorials/git/) for instructions.
+    Many Mac OS X and Linux systems already have git installed. If your system doesn't, see [YUI's 'How to Set Up Your Git Environment'](http://yuilibrary.com/yui/docs/tutorials/git/) for instructions.
 
 2. Install Node.js
 
-[Download and install Node.js](http://howtonode.org/how-to-install-nodejs) if you don't already have it installed. All of Encore UI's build tools rely on Node.js.
+    [Download and install Node.js](http://howtonode.org/how-to-install-nodejs) if you don't already have it installed. All of Encore UI's build tools rely on Node.js.
 
 3. Install NPM
 
-NPM is used to manage Node.js dependencies. If you don't already have it installed, follow [the NPM installation instructions](http://howtonode.org/introduction-to-npm) to get a copy.
+    NPM is used to manage Node.js dependencies. If you don't already have it installed, follow [the NPM installation instructions](http://howtonode.org/introduction-to-npm) to get a copy.
 
 4. Install Bower
 
-[Bower](http://bower.io) is used to manage UI dependencies for use within the Encore application. Run `npm install -g bower` to install Bower.
+    [Bower](http://bower.io) is used to manage UI dependencies for use within the Encore application. Run `npm install -g bower` to install Bower.
 
 5. Install Grunt
 
-[Grunt](http://gruntjs.com/) is used to automate the UI build and test tasks for Encore. Run `npm install -g grunt-cli` to install Grunt.
+    [Grunt](http://gruntjs.com/) is used to automate the UI build and test tasks for Encore. Run `npm install -g grunt-cli` to install Grunt.
 
 ## Initial Encore Build
 
@@ -71,7 +71,7 @@ Note that a lot of pages aren't mocked out. It's usually a safe bet that the fir
 
 In order to promote consistency between components, and make it easier to create them, we use Grunt to provide scaffolding for new components.
 
-In order to take advantage of the scaffolding, you need to install grunt-init  globally.
+In order to take advantage of the scaffolding, you need to install grunt-init globally:
 
 `npm install -g grunt-init`
 
@@ -87,6 +87,6 @@ Answer the questions prompted, let the task complete, and your new component fol
 
 Because we're focused on delivering fast and continually improving, some components may be less stable/polished than others. To help with this, we're following the pattern set forth by the [Node Stability Index](http://nodejs.org/api/documentation.html#documentation_stability_index). To quote:
 
-"Throughout the documentation, you will see indications of a section's stability. The Node.js API is still somewhat changing, and as it matures, certain parts are more reliable than others. Some are so proven, and so relied upon, that they are unlikely to ever change at all. Others are brand new and experimental, or known to be hazardous and in the process of being redesigned."
+> Throughout the documentation, you will see indications of a section's stability. The Node.js API is still somewhat changing, and as it matures, certain parts are more reliable than others. Some are so proven, and so relied upon, that they are unlikely to ever change at all. Others are brand new and experimental, or known to be hazardous and in the process of being redesigned.
 
-Each component should be marked with a stability value. This should reflect where it is in its lifecycle. All components should start as experimental, and then move towards stable as it's polished. You can always find the stability index of a component in the README.md doc in the component directory.
+Each component is marked with a stability value. This reflects where it is in its lifecycle. All components should start as experimental and then move towards stable as it's polished. You can always find the stability index of a component in the README.md doc in the component's directory.
