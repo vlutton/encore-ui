@@ -3,7 +3,7 @@ module.exports = function (grunt) {
         'Runs app in development mode.',
         function() {
             var commonTasks = [
-                'html2js',
+                'before-test',
                 'after-test',
                 'connect:dist',
                 'karma:watch',
