@@ -30,6 +30,9 @@ module.exports = {
                     'cp grunt-tasks/git-hooks/* .git/hooks/',
                     'chmod u+x .git/hooks/jshint .git/hooks/validate-commit-msg'
                 ].join(' && ');
+            } else {
+                // do nothing
+                return '';
             }
         }
     }
