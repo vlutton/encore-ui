@@ -46,7 +46,7 @@
         "karma-phantomjs-launcher": "~0.1.1",
         "karma-requirejs": "~0.2.1",
         "karma-sinon-chai": "~0.1.0",
-        "load-grunt-tasks": "~0.2.1",
+        "load-grunt-tasks": "~0.3.0",
         "lodash": "~2.4.1",
         "mocha": "~1.17.0",
         "node-markdown": "0.1.1",
@@ -54,6 +54,6 @@
         "selenium-webdriver": "~2.39.0",
         "semver": "~2.2.0",
         "sinon": "~1.7.3",
-        "sinon-chai": "~2.4.0"
+        "sinon-chai": "~2.5.0"
     }
 }

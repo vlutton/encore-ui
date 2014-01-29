@@ -1,5 +1,4 @@
-angular.module('demo.ui.rxForm', [])
-.controller('rxForm', function ($scope) {
+function rxFormDemoCtrl ($scope) {
     $scope.types = [
         {
             'value': 'SATA',
@@ -16,4 +15,4 @@ angular.module('demo.ui.rxForm', [])
         // select the first type by default
         'volume_type': $scope.types[0].value
     };
-});
+};
