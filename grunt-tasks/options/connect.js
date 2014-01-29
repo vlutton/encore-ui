@@ -1,5 +1,3 @@
-var config = require('../util/config.js');
-
 module.exports = {
     options: {
         port: 9000,
