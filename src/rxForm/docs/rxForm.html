@@ -1,24 +1,20 @@
 <div class="forms">
-    <h2>Text Input</h2>
-    <div class="example">
-        <rx-form-input
-            type="text"
-            label="Name"
-            required="true"
-            model="volume.display_name"
-            field-id="volumeName"
-        ></rx-form-input>
-    </div>
+    <h3>Text Input</h3>
+    <rx-form-input
+        type="text"
+        label="Name"
+        required="true"
+        model="volume.display_name"
+        field-id="volumeName"
+    ></rx-form-input>
 
-    <h2>Select Box</h2>
-    <div class="example">
-        <rx-form-select
-            label="Type"
-            required="true"
-            model="volume.volume_type"
-            options="types"
-            field-id="volumeType"
-            required="true"
-        ></rx-form-select>
-    </div>
+    <h3>Select Box</h3>
+    <rx-form-select
+        label="Type"
+        required="true"
+        model="volume.volume_type"
+        options="types"
+        field-id="volumeType"
+        required="true"
+    ></rx-form-select>
 </div>

@@ -21,7 +21,7 @@ module.exports = {
         }
     },
     html: {
-        files: ['src/**/*.html'],
+        files: ['demo/*', 'src/**/*.html'],
         tasks: ['after-test'],
         options: {
             livereload: true
