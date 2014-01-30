@@ -25,4 +25,4 @@ localConfig.js
 # generated files/folders on build
 dist
 coverage
-templates
+./templates

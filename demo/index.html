@@ -53,10 +53,12 @@
                                 <h3>Markup</h3>
                                 <pre><code class="language-markup"><%- module.docs.html %></code></pre>
                             </div>
+                            <% if(module.docs.js) { %>
                             <div class="pure-u-1-2">
                                 <h3>JavaScript</h3>
                                 <pre><code class="language-clike"><%- module.docs.js %></code></pre>
                             </div>
+                            <% } %>
                         </div>
                     </section>
                     <script><%= module.docs.js %></script>

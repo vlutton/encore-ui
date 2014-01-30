@@ -12,20 +12,20 @@ angular.module('encore.ui.rxActiveUrl', [])
 .directive('rxActiveUrl', function ($location) {
     return {
         restrict: 'E',
-        template: '<li ng-class="{ selected: navactive }" ng-transclude></li>',
+        templateUrl: 'templates/rxActiveUrl.html',
         transclude: true,
         replace: true,
         scope: {
             url: '@'
         },
-        controller: function($scope) {
+        controller: function ($scope) {
             $scope.isNavActive = function (pattern) {
                 return $location.path().indexOf(pattern) !== -1;
             };
         },
         link: function (scope, element, attribute) {
             // Is the subset of whatever is in isNavActive part of the URL string?
-            scope.navactive = scope.isNavActive(attribute.url);
+            scope.navActive = scope.isNavActive(attribute.url);
         }
     };
 });
