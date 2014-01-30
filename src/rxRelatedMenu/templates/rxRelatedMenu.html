@@ -1,0 +1,6 @@
+<div class="related-menu" ng-class="{'menu-left': menuPosition == 'left', 'menu-right': menuPosition == 'right', 'collapsable': isCollapsable, 'menu-shown': state}">
+    <div ng-if="isCollapsable" class="menu-toggle" ng-click="toggleRelatedMenu()">
+        <i class="fa" ng-class="{'fa-angle-double-left': (state&&(menuPosition == 'left'))||(!state&&(menuPosition == 'right')), 'fa-angle-double-right': (!state&&(menuPosition == 'left'))||(state&&(menuPosition == 'right'))} "></i>
+    </div>
+    <div class="menu-content" ng-transclude></div>
+</div>

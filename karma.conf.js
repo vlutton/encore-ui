@@ -3,9 +3,6 @@ var path = require('path');
 /* jshint node:true */
 module.exports = function (config) {
     config.set({
-        // base path, that will be used to resolve files and exclude
-        basePath: './',
-
         // frameworks to use
         frameworks: ['mocha', 'chai', 'sinon-chai'],
 
@@ -15,8 +12,8 @@ module.exports = function (config) {
             'bower_components/angular-mocks/angular-mocks.js',
             'bower_components/lodash/dist/lodash.js',
             'src/*/*.js',
-            'utils/browser-helpers.js',
-            'src/*/templates/*.html'
+            'src/*/templates/*.html',
+            'utils/browser-helpers.js'
         ],
 
         // list of files to exclude
@@ -24,7 +21,7 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            'src/*/templates/*.html': 'ng-html2js',
+            'src/**/*.html': 'ng-html2js',
             'src/*/!(*.spec).js': ['coverage']
         },
 
@@ -61,9 +58,6 @@ module.exports = function (config) {
         // possible values:
         //  config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_WARN,
-
-        // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
 
         // Start these browsers, currently available:
         // - Chrome

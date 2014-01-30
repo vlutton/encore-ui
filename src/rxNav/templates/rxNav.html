@@ -1,0 +1,27 @@
+<header class="site-header">
+    <h1 class="logo"><a href="/">Encore</a></h1>
+    <rx-global-search></rx-global-search>
+    <nav class="main-nav">
+        <ul>
+            <!-- li class="nav-item"><rx-dropdown menu="dashboards"></rx-dropdown></li -->
+            <li class="nav-item"><rx-dropdown menu="bookmarks"></rx-dropdown></li>
+            <li class="nav-item"><rx-dropdown menu="internalTools"></rx-dropdown></li>
+        </ul>
+    </nav>
+    <nav class="user-nav">
+        <ul>
+            <!-- li class="nav-item"><a href="#" class="nav-link">Notifications (0)</a></li -->
+            <!-- li class="nav-item"><a href="#" class="nav-link">Support</a></li -->
+            <!-- li class="nav-item"><a href="#" ng-click="userSettings($event)" class="nav-link">Settings</a></li -->
+            <li class="nav-item"><a href="/login" rx-logout class="nav-link">Log out</a></li>
+        </ul>
+    </nav>
+
+    <div class="sub-header">
+        <nav class="site-breadcrumbs">
+            <rx-breadcrumbs></rx-breadcrumbs>
+        </nav>
+
+        <a class="bookmark" href="#"><i class="fa fa-bookmark"></i> &nbsp;Bookmark this page</a>
+    </div>
+</header>
