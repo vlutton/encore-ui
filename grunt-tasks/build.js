@@ -1,5 +1,11 @@
+var path = require('path');
+
 module.exports = function (grunt) {
     var markdown = require('node-markdown').Markdown;
+
+    function enquote (str) {
+        return '\'' + str + '\'';
+    }
 
     //Common encore.ui module containing all modules for src and templates
     //findModule: Adds a given module to config
@@ -22,18 +28,13 @@ module.exports = function (grunt) {
             });
         }
 
-        function enquote (str) {
-            return '"' + str + '"';
-        }
-
         var module = {
             name: name,
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
             srcFiles: grunt.file.expand('src/' + name + '/!(*.spec).js'),
             tplFiles: grunt.file.expand('src/' + name + '/*.tpl.html'),
-            tplJsFiles: grunt.file.expand('templates/' + name + '*.html'),
-            tplModules: grunt.file.expand('templates/' + name + '*.html').map(enquote),
+            tplJsFiles: grunt.file.expand('templates/' + name + '/templates/*.html'),
             dependencies: dependenciesForModule(name),
             docs: {
                 md: grunt.file.expand('src/' + name + '/*.md').map(grunt.file.read).map(markdown).join('\n'),
@@ -89,9 +90,31 @@ module.exports = function (grunt) {
 
         var modules = grunt.config('config.modules');
         grunt.config('config.srcModules', _.pluck(modules, 'moduleName'));
-        grunt.config('config.tplModules', _.pluck(modules, 'tplModules').filter(function (tpls) {
+
+        // remove any modules that don't have templates
+        var tplModules = _.pluck(modules, 'tplJsFiles').filter(function (tpls) {
             return tpls.length > 0;
-        }));
+        });
+
+        // remove first two directories from templates
+        tplModules = tplModules.map(function (tpls) {
+            tpls = tpls.map(function (tplPath) {
+                // convert path to array
+                var templatePath = tplPath.split(path.sep);
+
+                // remove the first two directories ('templates' and the module name)
+                templatePath.shift();
+                templatePath.shift();
+
+                // return the rest of the path as a string
+                return enquote(templatePath.join(path.sep));
+            });
+
+            return tpls;
+        });
+
+        grunt.config('config.tplModules', tplModules);
+
         grunt.config('config.demoModules',
             modules.filter(function (module) {
                 return module.docs.md;
