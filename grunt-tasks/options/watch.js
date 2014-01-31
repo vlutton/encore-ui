@@ -13,6 +13,13 @@ module.exports = {
             livereload: false
         }
     },
+    componentHtml: {
+        files: ['src/**/templates/*.html'],
+        tasks: ['after-test', 'karma:watch:run'],
+        options: {
+            livereload: 1337
+        }
+    },
     css: {
         files: ['src/**/*.less'],
         tasks: ['less'],
@@ -21,7 +28,7 @@ module.exports = {
         }
     },
     html: {
-        files: ['demo/*', 'src/**/*.html', 'src/**/*.md'],
+        files: ['demo/*', 'src/**/demo/*.html', 'src/**/*.md'],
         tasks: ['after-test'],
         options: {
             livereload: 1337
