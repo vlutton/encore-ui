@@ -3,7 +3,7 @@ module.exports = {
         files: ['src/**/*.js', '!src/*/*.spec.js'],
         tasks: ['jshint:scripts', 'after-test', 'karma:watch:run'],
         options: {
-            livereload: true
+            livereload: 1337
         }
     },
     specs: {
@@ -17,14 +17,14 @@ module.exports = {
         files: ['src/**/*.less'],
         tasks: ['less'],
         options: {
-            livereload: true
+            livereload: 1337
         }
     },
     html: {
-        files: ['demo/*', 'src/**/*.html'],
+        files: ['demo/*', 'src/**/*.html', 'src/**/*.md'],
         tasks: ['after-test'],
         options: {
-            livereload: true
+            livereload: 1337
         }
     }
 };

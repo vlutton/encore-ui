@@ -1,0 +1,21 @@
+<!-- Sample HTML goes here as a live example of how to the component can be used -->
+<div ng-controller="rxModalActionCtrl">
+    <p>Password: {{password}}</p>
+    <rx-modal-action
+        pre-hook="populate(this)"
+        post-hook="changePass(fields)"
+        template-url="changePassword.html">
+        Change Password
+    </rx-modal-action>
+    <script type="text/ng-template" id="changePassword.html">
+        <rx-modal-form title="Change Admin Password">
+            <p>Change {{user}} password?</p>
+            <rx-form-input
+                type="text"
+                required="true"
+                label="New Password"
+                field-id="server_password"
+                model="fields.password"></rx-form-input>
+        </rx-modal-form>
+    </script>
+</div>

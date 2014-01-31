@@ -1,6 +1,6 @@
 module.exports = {
     options: {
-        port: 9000,
+        port: 9001,
         hostname: 'localhost',
     },
     dist: {
