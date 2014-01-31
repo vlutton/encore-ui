@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     grunt.registerTask('server',
         'Runs app in development mode.',
-        function() {
+        function () {
             var commonTasks = [
                 'before-test',
                 'after-test',

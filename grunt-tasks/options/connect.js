@@ -1,11 +1,11 @@
 module.exports = {
     options: {
-        port: 9000,
+        port: 9001,
         hostname: 'localhost',
     },
     dist: {
         options: {
-            livereload: true,
+            livereload: 1337,
             base: 'dist'
         }
     }

@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h3 class="modal-title">{{title}}</h3>
+    <h4 class="modal-subtitle" ng-if="subtitle">{{subtitle}}</h4>
+</div>
+<div class="modal-body">
+    <div ng-show="$parent.isLoading" class="loading">
+        <i class="spinner gray"></i>
+    </div>
+    <form ng-hide="$parent.isLoading" name="modalActionForm" class="modal-form rx-form" ng-transclude>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="submit form-action" ng-click="$parent.submit()" type="submit" ng-disabled="modalActionForm.$invalid">{{submitText || "Submit"}}</button>
+    <button class="cancel form-action" ng-click="$parent.cancel()">{{cancelText || "Cancel"}}</button>
+</div>
