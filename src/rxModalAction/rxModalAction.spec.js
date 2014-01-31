@@ -22,7 +22,7 @@ describe('rxModalAction', function () {
 
         // load the template
         module('templates/rxModalAction.html');
-        module('templates/rxModalForm.html');
+        module('templates/rxModalActionForm.html');
 
         modalApi = {
             open: sinon.stub().returns({

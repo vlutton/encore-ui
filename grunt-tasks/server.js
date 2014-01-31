@@ -7,8 +7,7 @@ module.exports = function (grunt) {
                 'after-test',
                 'connect:dist',
                 'karma:watch',
-                'watch',
-                'karma:watch:run'
+                'watch'
             ];
 
             grunt.task.run(commonTasks);
