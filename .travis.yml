@@ -9,7 +9,7 @@ before_script:
 - bower install
 script: grunt
 notifications:
+  email: false
   hipchat:
     rooms:
-      secure: KYDaUy26C+o5p92WpxtRVRyi+qiI1qRbw/3JflU09GeE/qn7YShOulokyjH0g7jhC8l87FQGfwjpIkz3UnpygWTP15T+4K5MrRJcYDQtw6RFHYXOQLiqByyU37wgfZukUPJwS7X04kbvZIzNDWWbp9CdVgH6NyFQGU6mMQ7Bu+0=
-  email: false
+      secure: fTJRrIZaHZnNEBCzLtPK638AJSiPa0pMAdzY3fgIGa4XFC4JaCRdGK4WSSTUo6tbxAGVWEmExIBozmiEyGl/YGPMREouHyaahY8U+u8twxhGFIUD5zmSNeVfcQn1z8GZAYDthLvfelSx9pjxh4wZ4pcF/hKBXwMYonTHiEcaEs0=

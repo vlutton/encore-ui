@@ -28,7 +28,7 @@ module.exports = {
         }
     },
     html: {
-        files: ['demo/*', 'src/**/demo/*.html', 'src/**/*.md'],
+        files: ['demo/*', 'src/**/docs/*.html', 'src/**/*.md'],
         tasks: ['after-test'],
         options: {
             livereload: 1337
