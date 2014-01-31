@@ -5,7 +5,7 @@ module.exports = {
     },
     dist: {
         options: {
-            livereload: true,
+            livereload: 1337,
             base: 'dist'
         }
     }
