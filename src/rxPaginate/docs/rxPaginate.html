@@ -1,0 +1,26 @@
+<!-- Sample HTML goes here as a live example of how to the component can be used -->
+<div ng-controller="rxPaginateCtrl">
+    <table class="table-striped">
+        <thead>
+            <tr>
+                <th class="column-title" style="width:10em;">Name</th>
+                <th class="column-title">OS</a>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="server in servers | orderBy: sorter.predicate:sorter.reverse | Paginate:pager ">
+                <td>
+                    {{server.name}}
+                </td>
+                <td>{{server.os}}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr class="paginate-area">
+                <td colspan="12">
+                    <rx-paginate page-tracking="pager"></rx-paginate>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
