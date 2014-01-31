@@ -1,12 +1,15 @@
 language: node_js
 node_js:
-    - "0.10"
-
+- '0.10'
 before_install: npm install -g grunt-cli bower protractor
 install: npm install
 before_script:
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
-    - bower install
-
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+- bower install
 script: grunt
+notifications:
+  hipchat:
+    rooms:
+      secure: KYDaUy26C+o5p92WpxtRVRyi+qiI1qRbw/3JflU09GeE/qn7YShOulokyjH0g7jhC8l87FQGfwjpIkz3UnpygWTP15T+4K5MrRJcYDQtw6RFHYXOQLiqByyU37wgfZukUPJwS7X04kbvZIzNDWWbp9CdVgH6NyFQGU6mMQ7Bu+0=
+  email: false
