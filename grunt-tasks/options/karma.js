@@ -2,6 +2,10 @@ module.exports = {
     options: {
         configFile: 'karma.conf.js'
     },
+    dev: {
+        singleRun: false,
+        autoWatch: true
+    },
     watch: {
         background: true
     },
