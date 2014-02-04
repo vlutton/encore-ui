@@ -1,6 +1,6 @@
 module.exports = {
     app: 'src',
-    dist: 'dist',
+    dist: 'dist/<%= pkg.version %>',
     liveReloadPage: require('connect-livereload')({ port: 35729 }),
     mountFolder: function (connect, dir) {
         return connect.static(require('path').resolve(dir));
