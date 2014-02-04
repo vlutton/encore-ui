@@ -13,3 +13,6 @@ notifications:
   hipchat:
     rooms:
       secure: fTJRrIZaHZnNEBCzLtPK638AJSiPa0pMAdzY3fgIGa4XFC4JaCRdGK4WSSTUo6tbxAGVWEmExIBozmiEyGl/YGPMREouHyaahY8U+u8twxhGFIUD5zmSNeVfcQn1z8GZAYDthLvfelSx9pjxh4wZ4pcF/hKBXwMYonTHiEcaEs0=
+    template:
+      - '%{repository}#%{build_number} (%{branch}): %{message} (<a href="%{build_url}">Details</a>)'
+    format: html
