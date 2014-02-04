@@ -1,3 +1,3 @@
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+[![{%= stabilityName %}](http://badges.github.io/stability-badges/dist/{%= stabilityName %}.svg)](http://github.com/badges/stability-badges)
 
 {%= description %}

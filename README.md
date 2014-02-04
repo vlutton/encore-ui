@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/rackerlabs/encore-ui.png?branch=master)](https://travis-ci.org/rackerlabs/encore-ui) [![devDependency Status](https://david-dm.org/rackerlabs/encore-ui/dev-status.png)](https://david-dm.org/rackerlabs/encore-ui#info=devDependencies) [![Code Climate](https://codeclimate.com/repos/52e1365969568051f4000eed/badges/c4acf69c64dffdd7b176/gpa.png)](https://codeclimate.com/repos/52e1365969568051f4000eed/feed)
+[![Build Status](https://travis-ci.org/rackerlabs/encore-ui.png?branch=master)](https://travis-ci.org/rackerlabs/encore-ui) [![devDependency Status](https://david-dm.org/rackerlabs/encore-ui/dev-status.png)](https://david-dm.org/rackerlabs/encore-ui#info=devDependencies)
 
 # Further Reading
 
