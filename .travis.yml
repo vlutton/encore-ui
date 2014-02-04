@@ -14,5 +14,16 @@ notifications:
     rooms:
       secure: fTJRrIZaHZnNEBCzLtPK638AJSiPa0pMAdzY3fgIGa4XFC4JaCRdGK4WSSTUo6tbxAGVWEmExIBozmiEyGl/YGPMREouHyaahY8U+u8twxhGFIUD5zmSNeVfcQn1z8GZAYDthLvfelSx9pjxh4wZ4pcF/hKBXwMYonTHiEcaEs0=
     template:
-      - '%{repository}#%{build_number} (%{branch}): %{message} (<a href="%{build_url}">Details</a>)'
+    - '%{repository}#%{build_number} (%{branch}): %{message} (<a href="%{build_url}">Details</a>)'
     format: html
+before_deploy: "cd dist"
+deploy:
+  provider: cloudfiles
+  username: encorecloudfiles
+  api_key:
+    secure: J5wrry9adus3jjXASgPyWLd/0PuCpYWjyPm3J6GN1sAir2yc/yIETRlIgRutDmxg6n4Cb75AZ1mGj3dknbHJ45xv34yYFNuVZs0Xp6ySOILVPW+I+5RnamY6jfJ93rskAgoRZlfpCilmTw1ujznNFN0PmyMnwbP0J6b5oreGwVE=
+  region: DFW
+  container: encore-ui-staging
+  on:
+    repo: rackerlabs/encore-ui
+    branch: master

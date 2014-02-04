@@ -2,12 +2,12 @@ module.exports = {
     options: {
         banner: '<%= config.meta.banner %>'
     },
-    dist:{
-        src:['<%= concat.dist.dest %>'],
-        dest:'<%= config.dist %>/<%= config.fileName %>.min.js'
+    dist: {
+        src: ['<%= config.dist %>/<%= config.fileName %>.js'],
+        dest: '<%= config.dist %>/<%= config.fileName %>.min.js'
     },
-    distTpls:{
-        src:['<%= concat.distTpls.dest %>'],
-        dest:'<%= config.dist %>/<%= config.fileName %>-tpls.min.js'
+    distTpls: {
+        src: ['<%= config.dist %>/<%= config.fileName %>-tpls.js'],
+        dest: '<%= config.dist %>/<%= config.fileName %>-tpls.min.js'
     }
 };

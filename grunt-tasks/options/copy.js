@@ -11,7 +11,7 @@ module.exports = {
             expand: true,
             src: ['**/*.html'],
             cwd: 'demo/',
-            dest: 'dist/'
+            dest: '<%= config.dist %>'
         }]
     },
     demoassets: {
@@ -20,7 +20,7 @@ module.exports = {
             //Don't re-copy html files, we process those
             src: ['**/**/*', '!**/*.html'],
             cwd: 'demo/',
-            dest: 'dist/'
+            dest: '<%= config.dist %>'
         }]
     },
     coverage: {
@@ -28,7 +28,7 @@ module.exports = {
             expand: true,
             src: ['Phantom*/**/*'],
             cwd: 'coverage/',
-            dest: 'dist/coverage/',
+            dest: '<%= config.dist %>/coverage/',
             // remove 'Phantom' from path
             rename: function (dest, src) {
                 // convert src to array
