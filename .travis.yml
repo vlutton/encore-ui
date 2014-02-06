@@ -8,12 +8,13 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - bower install
 - grunt bump-only:build
-script: grunt
-after_script:
- - grunt coveralls
- - grunt connect:travis
- - sleep 3 # give Web server some time to start
- - protractor protractor.conf.js
+- grunt connect:travis &
+- sleep 2 # give Web server some time to start
+script:
+- grunt
+- protractor protractor.conf.js
+after_success:
+- grunt coveralls
 before_deploy: cd dist
 deploy:
   provider: cloudfiles
