@@ -16,20 +16,20 @@ module.exports = function (grunt) {
 
         if (validTypes.indexOf(versionType) > -1) {
             // increment the version
-            // grunt.task.run('bump-only:' + versionType);
+            grunt.task.run('bump-only:' + versionType);
 
-            // // create changelog
-            // grunt.task.run('changelog');
+            // create changelog
+            grunt.task.run('changelog');
 
-            // // commit version increment
-            // grunt.task.run('bump-commit');
+            // commit version increment
+            grunt.task.run('bump-commit');
 
-            // // build the code
-            // grunt.task.run('before-test');
-            // grunt.task.run('after-test');
+            // build the code
+            grunt.task.run('before-test');
+            grunt.task.run('after-test');
 
-            // // push files to prod
-            // grunt.task.run('cloudfiles:production');
+            // push files to prod
+            grunt.task.run('cloudfiles:production');
 
             // shipit squirrel
             squirrel = grunt.template.process(squirrel);
