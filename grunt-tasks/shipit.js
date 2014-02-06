@@ -1,5 +1,5 @@
 /*jshint node:true */
-var squirrel = '         _-------_        _________________\n' +
+var squirrel = '         _-------_        _______________\n' +
     '       .\'  ..::. `\\      /               \\\n' +
     '      /  .::\' `\'` /     | Ship it! v<%= pkg.version %> |\n' +
     '     / .::\' .--.=;     / ________________/\n' +
@@ -8,7 +8,7 @@ var squirrel = '         _-------_        _________________\n' +
     '      \\ \':|   /  \\\n' +
     '       \'-, \\./ \\)\\)\n' +
     '          `-|   );/\n' +
-    '             \'--\'-\'\'\n';
+    '             \'--\'-\'\'';
 
 module.exports = function (grunt) {
     grunt.registerTask('shipit', 'Ships code to prod', function (versionType) {
