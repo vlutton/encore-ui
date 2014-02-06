@@ -39,31 +39,13 @@ Finally, install the dependencies needed by Encore UI using NPM and bower:
 `npm install`
 `bower install`
 
-<!-- Rework once the server/build process for a dev is determined
 ## Running Encore UI
 
 Run the following command:
 
 `grunt server`
 
-A new browser tab should automatically open with the Encore website running in it. To log in to the website, use your Rackspace ID & RSA Pin + Token.
-
-### 'Stubbed' Server
-
-In order to speed development of the UI, a stubbed/mock version of the API server has been set up. This server doesn't actually have any functionality to it, aside from accepting requests and responding with some fake data.
-
-To run/use this mock server (instead of using the full-blown API server), use the following command:
-
-`grunt server:stubbed:watch`
-
-This will be run in place of the normal `grunt server` command. To access the server, load `http://localhost:9000` in a browser tab.
-
-To log in to the website, use these details to load the mock account:
-Username: user
-Password: pass
-
-Note that a lot of pages aren't mocked out. It's usually a safe bet that the first link/option on a page is the one that's mocked out.
--->
+You can then open `http://localhost:9001` in a new browser and view the demo app. The page will automatically refresh when the code is updated.
 
 ## Creating a New Component
 
