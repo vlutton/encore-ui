@@ -20,7 +20,7 @@ describe('rxSpinner', function () {
         scope.$digest();
     });
 
-    it.only('should add spinner div to element', function () {
+    it('should add spinner div to element', function () {
         var domEl = el[0];
         // should not have spinner by default
         expect(domEl.querySelector('.rx-spinner')).to.be.null;

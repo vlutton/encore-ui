@@ -9,6 +9,7 @@ before_script:
 - bower install
 - grunt bump-only:build
 script: grunt
+after_script: grunt coveralls
 notifications:
   email: false
   hipchat:
