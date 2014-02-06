@@ -8,21 +8,21 @@ var rxFormPage = Page.create({
 
     // Elements
     rxFormInput: {
-        get: function() {
+        get: function () {
             return this.findElement(this.by.id('volumeName'));
         }
     }
 });
 
 // Add midway tests to run
-describe('rxForm', function() {
+describe('rxForm', function () {
     var ptor = rxFormPage.driver;
 
     it('beforeAll', function () {
         rxFormPage.go();
     })
 
-    it('should show input', function() {
+    it('should show input', function () {
         expect(rxFormPage.rxFormInput.isDisplayed()).toEqual(true);
     });
 });
