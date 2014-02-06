@@ -3,6 +3,7 @@
 # Further Reading
 
  - [Contribution Guide](./CONTRIBUTING.md)
+ - [Versioning Guide](./docs/versioning.md)
  - [Changelog](./CHANGELOG.md)
  - [UI Setup](./docs/ui-setup.md)
  - [Architecture](./docs/architecture.md)
