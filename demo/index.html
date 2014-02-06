@@ -32,13 +32,14 @@
         <div class="page-content">
             <rx-related-menu state="menuShown" collapsable="false" position="left">
                 <ul class="product-resources">
-                    <% config.demoModules.forEach(function(module) {  %><li><a href="#<%= module.name %>"><%= module.displayName %></a></li><% }); %>
+                    <% config.demoModules.forEach(function(module) {  %><li><a href="#<%= module.name %>" ng-click="scrollTo('<%= module.name %>', $event)"><%= module.displayName %></a></li><% }); %>
                 </ul>
             </rx-related-menu>
             <div class="main-content">
 
                 <% config.demoModules.forEach(function(module) { %>
-                    <section id="<%= module.name %>" class="component">
+                    <section class="component">
+                        <a id="<%= module.name %>"></a>
                         <h2 class="component-title"><%= module.displayName %><small>
                               (encore.ui.<%= module.name %>)
                           </small></h2>
@@ -75,7 +76,19 @@
     </div>
 
     <script>
-        angular.module('demoApp', ['encore.ui']);
+        angular.module('demoApp', ['encore.ui'])
+        .run(function ($rootScope, $location, $anchorScroll) {
+            $rootScope.scrollTo = function (anchor, $event) {
+                // prevent the default jump to top
+                $event.preventDefault();
+
+                // update angular location
+                $location.hash(anchor);
+
+                // run angular scrollTo
+                $anchorScroll();
+            }
+        });
     </script>
 
     <script src="assets/prism.js"></script>
