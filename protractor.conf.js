@@ -1,13 +1,9 @@
 /*jshint node:true */
 
-exports.config = {
-    // The address of a running selenium server. If this is specified,
-    // seleniumServerJar and seleniumPort will be ignored.
-    seleniumAddress: 'http://localhost:4444/wd/hub',
-
+var config = {
     // A base URL for your application under test. Calls to protractor.get()
     // with relative paths will be prepended with this.
-    baseUrl: 'http://localhost:9000',
+    baseUrl: 'http://localhost:9001',
 
     specs: [
         './src/**/*.midway.js'
@@ -26,3 +22,18 @@ exports.config = {
         defaultTimeoutInterval: 30000
     }
 };
+
+// If we're on travis, use sauce for selenium
+if (process.env.TRAVIS) {
+    config.sauceUser = process.env.SAUCE_USERNAME,
+    config.sauceKey = process.env.SAUCE_ACCESS_KEY,
+    config.capabilities = {
+        'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+        'build': process.env.TRAVIS_BUILD_NUMBER
+    };
+} else {
+    // otherwise use a local server
+    config.seleniumAddress = 'http://localhost:4444/wd/hub';
+}
+
+exports.config = config;

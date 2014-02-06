@@ -9,16 +9,12 @@ before_script:
 - bower install
 - grunt bump-only:build
 script: grunt
-after_script: grunt coveralls
-notifications:
-  email: false
-  hipchat:
-    rooms:
-      secure: fTJRrIZaHZnNEBCzLtPK638AJSiPa0pMAdzY3fgIGa4XFC4JaCRdGK4WSSTUo6tbxAGVWEmExIBozmiEyGl/YGPMREouHyaahY8U+u8twxhGFIUD5zmSNeVfcQn1z8GZAYDthLvfelSx9pjxh4wZ4pcF/hKBXwMYonTHiEcaEs0=
-    template:
-        - '%{repository}#%{build_number} (%{branch}): %{message} (<a href="%{build_url}">Details</a>)'
-    format: html
-before_deploy: "cd dist"
+after_script:
+ - grunt coveralls
+ - grunt connect:travis
+ - sleep 3 # give Web server some time to start
+ - protractor protractor.conf.js
+before_deploy: cd dist
 deploy:
   provider: cloudfiles
   username: encorecloudfiles
@@ -30,3 +26,17 @@ deploy:
   on:
     repo: rackerlabs/encore-ui
     branch: master
+addons:
+  sauce_connect: true
+env:
+  global:
+  - secure: lBNmtcRYcHepXJsVsrQ+pr8yyrgN/1be7cDoTltXIxMq9WsTbm75Ypc4/rHhwO7K8cRMVbqEcMYbv6wZDGnpjL9z/nxTv14dS8S6wcIrLxGRwUPQ3McUqwOOrs7k2c0LiLwkJsjBBzBo+g52WY7rjPcOCXBBluZ98lar7gzP56c=
+  - secure: XvQ6cnwELTp1odgqXaLeF0n39Q9sOsVx6zICnBfayHkmQxPOmTNnvip83vA7MyhwhlTn+nFqr7PWkqLc0CIKAoWdwHhfwMAI77aJWeasPaeywvZ7L+eZ7x4JrDt7jRo7SwzmFivHgGh9RtCMltaJWwvqszRPWwMFxcj0zoetKUI=
+notifications:
+  email: false
+  hipchat:
+    rooms:
+      secure: fTJRrIZaHZnNEBCzLtPK638AJSiPa0pMAdzY3fgIGa4XFC4JaCRdGK4WSSTUo6tbxAGVWEmExIBozmiEyGl/YGPMREouHyaahY8U+u8twxhGFIUD5zmSNeVfcQn1z8GZAYDthLvfelSx9pjxh4wZ4pcF/hKBXwMYonTHiEcaEs0=
+    template:
+    - '%{repository}#%{build_number} (%{branch}): %{message} (<a href="%{build_url}">Details</a>)'
+    format: html

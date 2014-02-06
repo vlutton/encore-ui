@@ -6,7 +6,13 @@ module.exports = {
     dist: {
         options: {
             livereload: 1337,
-            base: 'dist'
+            base: '<%= config.dist %>'
+        }
+    },
+    travis: {
+        options: {
+            keepalive: true,
+            base: '<%= config.dist %>'
         }
     }
 };
