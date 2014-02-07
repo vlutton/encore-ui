@@ -1,3 +1,3 @@
 module.exports = function(grunt) {
-    grunt.registerTask('before-test', ['clean:coverage', 'jshint']);
+    grunt.registerTask('before-test', ['clean:coverage', 'jshint', 'jscs']);
 };

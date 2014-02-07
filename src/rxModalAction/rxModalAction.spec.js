@@ -37,7 +37,7 @@ describe('rxModalAction', function () {
 
         instanceApi = {
             close: function () {},
-            dismiss: function () {},
+            dismiss: function () {}
         };
         instanceMock = sinon.mock(instanceApi);
 
@@ -147,7 +147,7 @@ describe('rxModalAction', function () {
     it('should run prehook function before open', function () {
         scope.pre = sinon.spy();
 
-        el.scope().showModal({ preventDefault: function () {} });
+        el.scope().showModal({ preventDefault: function () {}});
 
         expect(scope.pre.callCount).to.equal(1);
     });
@@ -155,7 +155,7 @@ describe('rxModalAction', function () {
     it('should run posthook function after close', function () {
         scope.post = sinon.spy();
 
-        el.scope().showModal({ preventDefault: function () {} });
+        el.scope().showModal({ preventDefault: function () {}});
 
         var ctrlScope = setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
 

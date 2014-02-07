@@ -8,9 +8,9 @@ angular.module('encore.ui.rxPaginate', [])
  * Directive that takes in the page tracking object and outputs a page
  * switching controller
  *
- * @param {Object} page-tracking This is the page tracking service instance to
+ * @param {Object} pageTracking This is the page tracking service instance to
  * be used for this directive
- * @param {number} number-of-pages This is the maximum number of pages that the
+ * @param {number} numberOfPages This is the maximum number of pages that the
  * page object will display at a time.
  */
 .directive('rxPaginate', function () {

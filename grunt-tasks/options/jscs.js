@@ -1,5 +1,5 @@
 module.exports = {
-    src: 'app/scripts/**/*.js',
+    src: 'src/**/*.js',
     options: {
         config: '.jscs.json',
     }
