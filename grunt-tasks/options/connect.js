@@ -9,7 +9,7 @@ module.exports = {
             base: '<%= config.dist %>'
         }
     },
-    travis: {
+    keepalive: {
         options: {
             keepalive: true,
             base: '<%= config.dist %>'

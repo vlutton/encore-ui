@@ -22,7 +22,7 @@ describe('rxForm', function () {
         rxFormPage.go();
     })
 
-    it('should show input', function () {
-        expect(rxFormPage.rxFormInput.isDisplayed()).toEqual(true);
-    });
+    // iit('should show input', function() {
+    //     expect(rxFormPage.rxFormInput.isDisplayed()).toEqual(true);
+    // });
 });
