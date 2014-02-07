@@ -8,7 +8,7 @@ module.exports = {
             'src': [
                 '<%= config.dist %>/**/*'
             ],
-            'dest': '<%= pkg.version %>/',
+            'dest': '/',
             'stripcomponents': 1
         }]
     },
