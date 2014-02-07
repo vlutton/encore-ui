@@ -50,7 +50,7 @@ if (condition && otherCondition) {
 # Function conventions
 
 * Function names should be [camel case](http://en.wikipedia.org/wiki/CamelCase#Programming_and_coding)
-* Function names should begin with a [verb](http://en.wikipedia.org/wiki/Verb) and describe what the function does (not what calls the function).
+* Function names should be verbs if the function changes the state of the program, and nouns if they're used to return a certain value. They should describe what the function does, not what calls the function.
 * Minimize Global functions
 * Keep functions short.
 

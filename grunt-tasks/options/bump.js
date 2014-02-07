@@ -3,7 +3,7 @@ module.exports = {
         files: ['package.json', 'bower.json'],
         updateConfigs: ['pkg'],
         commit: true,
-        commitMessage: 'chore(version): v%VERSION%',
+        commitMessage: 'chore(version): v%VERSION% [skip ci]',
         commitFiles: ['package.json', 'bower.json', 'CHANGELOG.md'], // '-a' for all files
         createTag: true,
         tagName: 'v%VERSION%',
