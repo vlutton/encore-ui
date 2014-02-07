@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '0.10'
-before_install: npm install -g grunt-cli bower protractor
+before_install: npm install -g grunt-cli bower protractor mocha
 install: npm install
 before_script:
 - export DISPLAY=:99.0

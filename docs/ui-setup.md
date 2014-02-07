@@ -24,6 +24,14 @@ If this is your first time, you'll need to set up your coding environment to be 
 
     [Grunt](http://gruntjs.com/) is used to automate the UI build and test tasks for Encore. Run `npm install -g grunt-cli` to install Grunt.
 
+6. Install Protractor
+
+    [Protractor](https://github.com/angular/protractor) is used to run end to end UI tests in an AngularJS project. Run `npm install -g protractor` to install Protractor.
+
+7. Install Mocha
+
+    [Mocha](http://visionmedia.github.io/mocha/) is used to provide feedback during protractor tests. Run `npm install -g mocha` to install Mocha.
+
 ## Initial Encore Build
 
 If you haven't already, clone the Encore repo.
