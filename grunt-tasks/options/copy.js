@@ -41,5 +41,23 @@ module.exports = {
                 return dest + templatePath.join(path.sep);
             }
         }]
+    },
+    componentImages: {
+        files: [{
+            expand: true,
+            src: ['*/images/*'],
+            cwd: 'src/',
+            dest: '<%= config.dist %>/images/',
+            // remove 'images' from path
+            rename: function (dest, src) {
+                // convert src to array
+                var imagePath = src.split(path.sep);
+
+                // remove the componentName and images directory
+                imagePath.splice(0, 2);
+
+                return dest + imagePath.join(path.sep);
+            }
+        }]
     }
 };
