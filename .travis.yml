@@ -8,8 +8,7 @@ before_script:
 - sh -e /etc/init.d/xvfb start
 - bower install
 - grunt bump-only:build
-- grunt connect:travis &
-- sleep 2 # give Web server some time to start
+- grunt connect:keepalive &
 script:
 - grunt
 - protractor protractor.conf.js
