@@ -11,6 +11,10 @@ angular.module('encore.ui.rxNav', ['encore.ui.rxDropdown'])
     return {
         templateUrl: 'templates/rxNav.html',
         restrict: 'E',
+        scope: {
+            'searchFunction': '&',
+            'placeholderText': '@'
+        },
         controller: function ($scope) {
             $scope.bookmarks = {
                 linkText: 'Bookmarks',
