@@ -1,15 +1,4 @@
 /*jshint node:true */
-var squirrel = '         _-------_        _______________\n' +
-    '       .\'  ..::. `\\      /               \\\n' +
-    '      /  .::\' `\'` /     | Ship it! v<%= pkg.version %> |\n' +
-    '     / .::\' .--.=;     / ________________/\n' +
-    '     | ::\' /  C ..\\   / /\n' +
-    '     | :: |   \\  _.) <_/\n' +
-    '      \\ \':|   /  \\\n' +
-    '       \'-, \\./ \\)\\)\n' +
-    '          `-|   );/\n' +
-    '             \'--\'-\'\'';
-
 module.exports = function (grunt) {
     grunt.registerTask('shipit', 'Ships code to prod', function (versionType) {
         var validTypes = ['major', 'minor', 'patch'];
@@ -20,6 +9,9 @@ module.exports = function (grunt) {
 
             // create changelog
             grunt.task.run('changelog');
+
+            // increment version in readme
+            grunt.task.run('replace:readme');
 
             // commit version increment
             grunt.task.run('bump-commit');
@@ -32,8 +24,7 @@ module.exports = function (grunt) {
             grunt.task.run('cloudfiles:production');
 
             // shipit squirrel
-            squirrel = grunt.template.process(squirrel);
-            console.log(squirrel);
+            grunt.task.run('squirrel');
         } else {
             grunt.fatal('Must pass in version type major/minor/patch. E.g. `grunt shipit:patch`');
         }
