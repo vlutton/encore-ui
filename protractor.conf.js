@@ -9,18 +9,21 @@ var config = {
         './src/**/*.midway.js'
     ],
 
+    framework: 'mocha',
+
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
         'browserName': 'firefox'
     },
 
-    // Options to be passed to Jasmine-node.
-    jasmineNodeOpts: {
-        isVerbose: false,
-        showColors: true,
-        includeStackTrace: true,
-        defaultTimeoutInterval: 30000
+    allScriptsTimeout: 30000,
+
+    // Options to be passed to mocha
+    mochaOpts: {
+        reporter: 'spec',
+        slow: 3000
     }
+
 };
 
 // If we're on travis, use sauce for selenium

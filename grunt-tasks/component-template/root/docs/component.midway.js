@@ -1,4 +1,5 @@
 var Page = require('astrolabe').Page;
+var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Create astrolabe page for use
 var {%= name %}Page = Page.create({
@@ -24,6 +25,6 @@ describe('{%= name %}', function () {
 
     it('should show element', function () {
         // will fail b/c there is no element being added in component.html
-        expect({%= name %}Page.{%= name %}Element.isDisplayed()).toEqual(true);
+        expect({%= name %}Page.{%= name %}Element.isDisplayed()).to.eventually.eq.true;
     });
 });
