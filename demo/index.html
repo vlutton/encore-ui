@@ -28,71 +28,81 @@
     <title>Encore UI</title>
 </head>
 <body ng-app="demoApp">
-    <div class="container">
-        <rx-nav></rx-nav>
-
-        <div class="page-content">
-            <rx-related-menu state="menuShown" collapsable="false" position="left">
-                <ul class="product-resources">
-                    <% config.demoModules.forEach(function(module) {  %><li><a href="#<%= module.name %>" ng-click="scrollTo('<%= module.name %>', $event)"><%= module.displayName %></a></li><% }); %>
-                </ul>
-            </rx-related-menu>
-            <div class="main-content">
-                <p><strong><a href="ngdocs/index.html">ngdocs for Encore-UI</a></strong></p>
-
-                <% config.demoModules.forEach(function(module) { %>
-                    <section class="component">
-                        <a id="<%= module.name %>"></a>
-                        <h2 class="section-title component-title"><%= module.displayName %><small>
-                              (encore.ui.<%= module.name %>)
-                          </small></h2>
-                        <div class="pure-g">
-                            <% if(module.docs.html) { %>
-                            <div class="pure-u-1-2 component-example">
-                                <%= module.docs.html %>
-                            </div>
-                            <% } %>
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <%= module.docs.md %>
-                            </div>
-                        </div>
-                        <div class="pure-g component-code">
-                            <% if(module.docs.html) { %>
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup"><%- module.docs.html %></code></pre>
-                            </div>
-                            <% } %>
-                            <% if(module.docs.js) { %>
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike"><%- module.docs.js %></code></pre>
-                            </div>
-                            <% } %>
-                        </div>
-                    </section>
-                    <script><%= module.docs.js %></script>
-                <% }); %>
-
-            </div>
-        </div>
-    </div>
-
     <script>
+        // this script is at the top of the HTML so that any modules
+        // needing the demoApp module can use it
+
         angular.module('demoApp', ['encore.ui'])
         .run(function ($rootScope, $location, $anchorScroll) {
-            $rootScope.scrollTo = function (anchor, $event) {
-                // prevent the default jump to top
-                $event.preventDefault();
+            // Hack to make anchor link navigation work
+            document.addEventListener('click', function (ev) {
+                var target = ev.target;
 
-                // update angular location
-                $location.hash(anchor);
+                if (target.className.indexOf('item-link') > -1) {
+                    // prevent the default jump to top
+                    ev.preventDefault();
 
-                // run angular scrollTo
-                $anchorScroll();
-            }
+                    // update angular location
+                    $location.hash(target.getAttribute('href'));
+
+                    // run angular scrollTo
+                    $anchorScroll();
+                }
+            });
+
+            $rootScope.components = [{
+                title: 'All Components',
+                children: [
+                    <% config.demoModules.forEach(function (module) {  %>
+                    {
+                        href: '<%= module.name %>',
+                        linkText: '<%= module.name %>'
+                    },
+                    <% }); %>
+                ]
+            }];
         });
     </script>
+
+    <rx-app site-title="Encore Demo App" menu="components">
+        <rx-page page-title="Encore-UI Components">
+            <p><strong><a href="ngdocs/index.html">ngdocs for Encore-UI</a></strong></p>
+
+            <% config.demoModules.forEach(function(module) { %>
+                <section class="component">
+                    <a id="<%= module.name %>"></a>
+                    <h2 class="section-title component-title"><%= module.displayName %><small>
+                          (encore.ui.<%= module.name %>)
+                      </small></h2>
+                    <div class="pure-g">
+                        <% if(module.docs.html) { %>
+                        <div class="pure-u-1-2 component-example">
+                            <%= module.docs.html %>
+                        </div>
+                        <% } %>
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <%= module.docs.md %>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        <% if(module.docs.html) { %>
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup"><%- module.docs.html %></code></pre>
+                        </div>
+                        <% } %>
+                        <% if(module.docs.js) { %>
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike"><%- module.docs.js %></code></pre>
+                        </div>
+                        <% } %>
+                    </div>
+                </section>
+                <script><%= module.docs.js %></script>
+            <% }); %>
+        </rx-page>
+    </rx-app>
 
     <script src="assets/prism.js"></script>
 </body>

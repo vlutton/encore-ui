@@ -11,5 +11,10 @@ module.exports = Page.create({
         get: function () {
             return this.findElement(this.by.css('button.clearToken'));
         }
+    },
+    rxPageSubtitleButton: {
+        get: function () {
+            return this.findElement(this.by.css('button.changeSubtitle'));
+        }
     }
 });
