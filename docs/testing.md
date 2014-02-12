@@ -88,7 +88,7 @@ Once installed, the page objects can be pulled in to any midway test via:
 
 ```
 var rxPageObjects = require('rxPageObjects');
-var myComponentPage = rxPageObjects.myComponentPage;
+var myComponentPage = rxPageObjects.myComponent;
 ...
 expect(myComponentPage.someElement.isDisplayed()).toEqual(true);
 ```
