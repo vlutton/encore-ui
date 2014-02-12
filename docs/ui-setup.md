@@ -20,7 +20,7 @@ If this is your first time, you'll need to set up your coding environment to be 
 
     [Bower](http://bower.io) is used to manage UI dependencies for use within the Encore application. Run `npm install -g bower` to install Bower.
 
-5. Install Grunt
+5. Install Grunt & Protractor
 
     [Grunt](http://gruntjs.com/) is used to automate the UI build and test tasks for Encore. Run `npm install -g grunt-cli` to install Grunt.
 

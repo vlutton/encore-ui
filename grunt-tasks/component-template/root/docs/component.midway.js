@@ -1,30 +1,16 @@
-var Page = require('astrolabe').Page;
+var demoPage = require('../../../utils/demo.page.js');
+var {%= name %}Page = require('../{%= name %}.page.js').{%= name %};
 var expect = require('chai').use(require('chai-as-promised')).expect;
-
-// Create astrolabe page for use
-var {%= name %}Page = Page.create({
-    url: {
-        value: '/#{%= name %}'
-    },
-
-    // Elements
-    {%= name %}Element: {
-        get: function () {
-            return this.findElement(this.by.id('{%= name %}Element'));
-        }
-    }
-});
 
 // Add midway tests to run
 describe('{%= name %}', function () {
     var ptor = {%= name %}Page.driver;
 
     it('beforeAll', function () {
-        {%= name %}Page.go();
+        demoPage.go();
     });
 
     it('should show element', function () {
-        // will fail b/c there is no element being added in component.html
         expect({%= name %}Page.{%= name %}Element.isDisplayed()).to.eventually.eq.true;
     });
 });

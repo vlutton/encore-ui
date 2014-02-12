@@ -1,10 +1,10 @@
 module.exports = {
     'readme': {
-        src: ['README.md'],
+        src: ['README.md', 'docs/testing.md'],
         overwrite: true,
         replacements: [{
-            from: /\.com\/(?:\d\.){2}\d\/encore/g,
-            to: '.com/<%= pkg.version %>/encore'
+            from: /\.com\/(?:\d\.){2}\d\//g,
+            to: '.com/<%= pkg.version %>/'
         }]
     }
 };

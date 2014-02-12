@@ -12,5 +12,9 @@ module.exports = {
         },
         src: [], //src filled in by build task
         dest: '<%= config.dist %>/<%= config.fileName %>-tpls.js'
+    },
+    rxPageObjects: {
+        src: ['src/*/*.page.js'],
+        dest: 'index.js'
     }
 };

@@ -7,6 +7,7 @@ module.exports = function (grunt) {
                 'after-test',
                 'connect:dist',
                 'karma:watch',
+                'karma:watch:run',
                 'watch'
             ];
 
