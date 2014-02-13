@@ -7,6 +7,9 @@ In order to support continuous development/integration, taking advantage of auto
 ## Test Levels
 
 ### Component Testing
+
+Goal: Tests smallest piece of functionality or method
+
  - Code level tests
  - Stored in same location as code (separate file with *.spec.js)
  - Best for testing services, classes and objects
@@ -15,26 +18,15 @@ In order to support continuous development/integration, taking advantage of auto
  - Mocking & Stubbing required
  - Fast
  - Uses [Karma](http://karma-runner.github.io) + [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) + [Sinon](http://sinonjs.org/)
- - Think of it as testing the building blocks of an application, but not the application itself
 
 ### Midway Testing
- - Page level tests
- - Can access all parts of an application
- - Uses [stub.by](https://github.com/mrak/stubby4node) for mocking the API server responses
+
+Goal: Validate our component in a full browser
+
+ - Uses an example instance of the component
  - Uses [Selenium](https://code.google.com/p/selenium/wiki/WebDriverJs), [Protractor](https://github.com/angular/protractor/), [Astrolabe](https://github.com/stuplum/astrolabe)
  - Somewhat slow
  - Story Based
-
-## Test Variants
-
-### Smoke Tests
-
-Goal: Validate mission critical functionality before running entire test suite
-
-### Regression Tests
-
-Goal: Test that all existing components work as expected
-
 
 ## Configuration Files
 
@@ -46,19 +38,13 @@ More details on these files are found in the files themselves
 
 ## Running Tests
 
-Testing is setup to run through the `grunt test` command. Running this should execute the entire suite of tests (component/midway/e2e).
-
 ### Component Tests (aka unit tests)
 
-Goal: Tests smallest piece of functionality or method
+Unit tests automatically execute when running `grunt server`. It's best to run your tests in this fashion, as they automatically re-run on file changes.
 
-Use `grunt test:unit` to run these tests apart from running midway/e2e tests
+If you wish to run them separately, use `grunt test`.
 
-When you're making a lot of unit test related changes, it's faster to leave PhantomJS running (rather than spinning up a new instance every time). Use the following command to have grunt 'watch' your files:
-
-`grunt test:dev`
-
-### Testing Individual Components
+#### Testing Individual Components
 
 When developing a specific component, you likely don't want to run the entire test suite on every change. In order to test a single set of functionality, use the 'only' function when describing your test. For example:
 
@@ -66,40 +52,43 @@ When developing a specific component, you likely don't want to run the entire te
 
 **Be sure to remove the `only` once you're done.**
 
-#### Full Browser Regression
-
-By default, unit tests are only executed against PhantomJS. In order to test across Firefox, Chrome, Chrome Canary and Safari, run `grunt karma:full` (note 'karma', not 'test'). **Make sure you have all 4 browsers installed first**.
-
 #### Code Coverage
 
-Code coverage stats for our component tests are generated every time the test suite is executed. To view the stats, simply open the index.html file in any of the browser directories in the 'coverage' directory.
-
-
-### Page Object Model
-
-For both Midway and E2E tests, we use a Page Object library called [Astrolabe](https://github.com/stuplum/astrolabe).
-
+Code coverage stats for our component tests are generated every time the test suite is executed. To view the stats, simply open the index.html file in any of the browser directories in the 'coverage' directory. **Note**: the coverage directory only exists when the server is running.
 
 ### Midway Tests
 
-Goal: Validate our application in isolation from its dependencies (e.g. API Server)
+For Midway tests, we use a Page Object library called [Astrolabe](https://github.com/stuplum/astrolabe).
 
 In order to run the midway test suite, you will need a selenium server running. To install and run selenium, see [Selenium setup with remote drivers](http://docs.seleniumhq.org/docs/03_webdriver.jsp#running-standalone-selenium-server-for-use-with-remotedrivers).
 
-Server mocks are done using Stub.by. Server stubs are stored in the test/api-mocks folder.
+To run tests, enter `protractor protractor.conf.js` in a terminal. You need to ensure that you already have a development server running. If you haven't already, run `grunt server` in a separate tab. You will need to keep this running in the background through the entirety of the midway tests.
 
-To run tests, enter `grunt test:mid` in a terminal. You need to enusure that you already have a development server running. Do this with
+#### Testing Individual Components
 
-    grunt server:stubbed:watch
+When developing a specific components, it's much quicker to run tests only for that component (rather than run through the entire suite every time). To do this, pass in path to the file as a 'specs' option in your protractor command. For example:
 
-in order to correctly run the midway tests. You will need to keep this running in the background, so open a new terminal after running this command.
+`protractor protractor.conf.js --specs path/to/myFile.js`
 
-#### Testing Individual Pages
+#### Convienience Page Objects
 
-When developing a specific page, it's much quicker to run tests only for that page (rather than run the entire suite every time). In order to limit the tests to just that page, pass in path to the file to test as the third option in your grunt command. For example:
+In order to help developers more easily test their app, each component should provide a page object file for itself. This file will provide convenience methods for the tester to use when writing midway tests for their app.
 
-`grunt test:mid:test/midway/cloudDetailPage.js`
+The file name for this page objects follows the `componentName.page.js` convention and is included with the [Component Scaffolding](./ui-setup.md#component-scaffolding)
 
-### E2E Tests
+On build, all page object files are concatanated and tarballed into the `dist` directory. They are then published either manually or via Travis. To use these page objects, developers should include the following dependency in their `package.json` file:
 
-Goal: Validate our app & all dependencies work in correlation as expected
+    "rxPageObjects": "https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.2/rxPageObjects.tar.gz"
+
+Alternatively, they can install the file using this command:
+
+    npm install --save-dev https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.2/rxPageObjects.tar.gz
+
+Once installed, the page objects can be pulled in to any midway test via:
+
+```
+var rxPageObjects = require('rxPageObjects');
+var myComponentPage = rxPageObjects.myComponent;
+...
+expect(myComponentPage.someElement.isDisplayed()).toEqual(true);
+```

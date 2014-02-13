@@ -1,25 +1,12 @@
-var Page = require('astrolabe').Page;
-
-// Create astrolabe page for use
-var rxModalActionPage = Page.create({
-    url: {
-        value: '/#rxModalAction'
-    },
-
-    // Elements
-    rxModalActionElement: {
-        get: function () {
-            return this.findElement(this.by.id('rxModalActionElement'));
-        }
-    }
-});
+var demoPage = require('../../../utils/demo.page.js');
+var rxModalActionPage = require('../rxModalAction.page.js').rxModalAction;
 
 // Add midway tests to run
 describe('rxModalAction', function () {
     var ptor = rxModalActionPage.driver;
 
     it('beforeAll', function () {
-        rxModalActionPage.go();
+        demoPage.go();
     });
 
     // it('should show element', function () {

@@ -3,6 +3,7 @@ module.exports = {
         src: [
             'src/*/*.js',
             '!src/*/*.spec.js',
+            '!src/*/*.page.js',
             '!src/configs/configs.js'
         ],
         options: {

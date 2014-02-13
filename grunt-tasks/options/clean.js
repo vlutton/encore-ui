@@ -7,5 +7,8 @@ module.exports = {
     },
     coverage: {
         src: ['coverage']
+    },
+    rxPageObjects: {
+        src: 'index.js'
     }
 };

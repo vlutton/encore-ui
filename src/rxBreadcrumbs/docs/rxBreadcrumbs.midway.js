@@ -1,25 +1,12 @@
-var Page = require('astrolabe').Page;
+var demoPage = require('../../../utils/demo.page.js');
+var rxBreadcrumbsPage = require('../rxBreadcrumbs.page.js').rxBreadcrumbs;
 var expect = require('chai').use(require('chai-as-promised')).expect;
-
-// Create astrolabe page for use
-var rxBreadcrumbsPage = Page.create({
-    url: {
-        value: '/#rxBreadcrumbs'
-    },
-
-    // Elements
-    rxBreadcrumbsElement: {
-        get: function () {
-            return this.findElement(this.by.id('rxBreadcrumbsElement'));
-        }
-    }
-});
 
 // Add midway tests to run
 describe('rxBreadcrumbs', function () {
 
     it('beforeAll', function () {
-        rxBreadcrumbsPage.go();
+        demoPage.go();
     });
 
     // it('should show element', function () {

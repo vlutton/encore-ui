@@ -32,7 +32,7 @@ module.exports = function (grunt) {
             name: name,
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
-            srcFiles: grunt.file.expand('src/' + name + '/!(*.spec).js'),
+            srcFiles: grunt.file.expand('src/' + name + '/!(*.spec|*.page).js'),
             tplFiles: grunt.file.expand('src/' + name + '/*.tpl.html'),
             tplJsFiles: grunt.file.expand('templates/' + name + '/templates/*.html'),
             dependencies: dependenciesForModule(name),

@@ -1,26 +1,13 @@
-var Page = require('astrolabe').Page;
-
-// Create astrolabe page for use
-var rxFormPage = Page.create({
-    url: {
-        value: '/#rxForm'
-    },
-
-    // Elements
-    rxFormInput: {
-        get: function () {
-            return this.findElement(this.by.id('volumeName'));
-        }
-    }
-});
+var demoPage = require('../../../utils/demo.page.js');
+var rxFormPage = require('../rxForm.page.js').rxForm;
 
 // Add midway tests to run
 describe('rxForm', function () {
     var ptor = rxFormPage.driver;
 
     it('beforeAll', function () {
-        rxFormPage.go();
-    })
+        demoPage.go();
+    });
 
     // iit('should show input', function() {
     //     expect(rxFormPage.rxFormInput.isDisplayed()).toEqual(true);

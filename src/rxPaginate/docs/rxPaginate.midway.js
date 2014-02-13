@@ -1,25 +1,12 @@
-var Page = require('astrolabe').Page;
-
-// Create astrolabe page for use
-var rxPaginatePage = Page.create({
-    url: {
-        value: '/#rxPaginate'
-    },
-
-    // Elements
-    rxPaginateElement: {
-        get: function () {
-            return this.findElement(this.by.id('rxPaginateElement'));
-        }
-    }
-});
+var demoPage = require('../../../utils/demo.page.js');
+var rxPaginatePage = require('../rxPaginate.page.js').rxPaginate;
 
 // Add midway tests to run
 describe('rxPaginate', function () {
     var ptor = rxPaginatePage.driver;
 
     it('beforeAll', function () {
-        rxPaginatePage.go();
+        demoPage.go();
     });
 
     // it.skip('should show element', function () {
