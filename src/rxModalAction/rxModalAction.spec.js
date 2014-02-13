@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 describe('rxModalAction', function () {
-    var el, scope, compile, rootScope, mockModal, modalApi, instanceApi, instanceMock,
+    var el, scope, compile, rootScope, mockModal, modalApi, instanceApi, instanceMock, controller,
         validTemplate = '<rx-modal-action ' +
                             'template-url="test.html" ' +
                             'post-hook="post()" ' +
@@ -9,11 +9,10 @@ describe('rxModalAction', function () {
                             '>Title</rx-modal-action>';
 
     var setupModalCtrl = function (ctrl) {
-        var ctrlScope = {};
-
-        ctrl(ctrlScope, instanceApi);
-
-        return ctrlScope;
+        controller(ctrl, {
+            $scope: scope,
+            $modalInstance: instanceApi
+        });
     };
 
     beforeEach(function () {
@@ -48,12 +47,13 @@ describe('rxModalAction', function () {
         });
 
         // Inject in angular constructs
-        inject(function ($rootScope, $compile) {
+        inject(function ($rootScope, $compile, $controller) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             scope.postAction = sinon.spy();
 
             compile = $compile;
+            controller = $controller;
         });
 
         el = helpers.createDirective(validTemplate, compile, scope);
@@ -90,9 +90,9 @@ describe('rxModalAction', function () {
         instanceMock.expects('close').once();
         instanceMock.expects('dismiss').never();
 
-        var ctrlScope = setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
+        setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
 
-        ctrlScope.submit();
+        scope.submit();
 
         instanceMock.verify();
     });
@@ -105,9 +105,9 @@ describe('rxModalAction', function () {
         instanceMock.expects('close').never();
         instanceMock.expects('dismiss').once();
 
-        var ctrlScope = setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
+        setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
 
-        ctrlScope.cancel();
+        scope.cancel();
 
         instanceMock.verify();
     });
@@ -119,9 +119,9 @@ describe('rxModalAction', function () {
 
         sinon.spy(link, 'focus');
 
-        var ctrlScope = setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
+        setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
 
-        ctrlScope.submit();
+        scope.submit();
 
         sinon.assert.calledOnce(link.focus);
     });
@@ -133,13 +133,13 @@ describe('rxModalAction', function () {
 
         sinon.spy(link, 'focus');
 
-        var ctrlScope = setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
+        setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
 
-        ctrlScope.cancel();
+        scope.cancel();
 
         helpers.clickElement(link);
 
-        ctrlScope.submit();
+        scope.submit();
 
         sinon.assert.calledTwice(link.focus);
     });
@@ -157,9 +157,9 @@ describe('rxModalAction', function () {
 
         el.scope().showModal({ preventDefault: function () {}});
 
-        var ctrlScope = setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
+        setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
 
-        ctrlScope.submit();
+        scope.submit();
 
         expect(scope.post.callCount).to.equal(1);
     });

@@ -141,6 +141,6 @@ module.exports = function (grunt) {
         //Set the copy task to process via grunt template
         grunt.config('copy.demohtml.options.process', grunt.template.process);
 
-        grunt.task.run(['clean:build', 'less:encore', 'concat', 'ngmin']);
+        grunt.task.run(['clean:build', 'less:encore', 'concat']);
     });
 };

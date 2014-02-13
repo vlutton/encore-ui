@@ -1,3 +1,4 @@
+/*jshint undef:false*/
 angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 .directive('rxModalForm', function () {
     return {
@@ -13,20 +14,19 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
         }
     };
 })
+.controller('rxModalCtrl', function ($scope, $modalInstance) {
+    // define a controller for the modal to use
+    $scope.submit = function () {
+        $modalInstance.close($scope);
+    };
+
+    $scope.cancel = $modalInstance.dismiss;
+})
 .directive('rxModalAction', function ($modal) {
-    // Here we're defining a Controller for the modal to use
-    function ModalCtrl ($scope, $modalInstance) {
-        $scope.submit = function () {
-            $modalInstance.close($scope);
-        };
-
-        $scope.cancel = $modalInstance.dismiss;
-    }
-
     var createModal = function (config, scope) {
         var modal = $modal.open({
             templateUrl: config.templateUrl,
-            controller: ModalCtrl,
+            controller: 'rxModalCtrl',
             scope: scope
         });
 

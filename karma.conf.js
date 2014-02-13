@@ -6,18 +6,6 @@ module.exports = function (config) {
         // frameworks to use
         frameworks: ['mocha', 'chai', 'sinon-chai'],
 
-        // list of files / patterns to load in the browser
-        files: [
-            'bower_components/angular/angular.js',
-            'bower_components/angular-mocks/angular-mocks.js',
-            'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-            'bower_components/lodash/dist/lodash.js',
-            'bower_components/momentjs/moment.js',
-            'src/*/*.js',
-            'src/*/templates/*.html',
-            'utils/browser-helpers.js'
-        ],
-
         // list of files to exclude
         exclude: [
             'src/*/*.page.js',
