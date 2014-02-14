@@ -76,12 +76,15 @@ table {
  <a href="#" class=":active">Active Link</a>
  ```
  */
-a {
+a,
+.btn-link {
     text-decoration: none;
     color: @linkColor;
 }
 a:hover,
-a:focus {
+a:focus,
+.btn-link:hover,
+.btn-link:focus {
     text-decoration: underline;
     color: @linkColorHover;
 }

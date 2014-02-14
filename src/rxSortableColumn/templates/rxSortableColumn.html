@@ -1,0 +1,11 @@
+<div class="rx-sortable-column">
+    <button class="sort-action btn-link" ng-click="sortMethod(sortProperty)">
+        <span class="visually-hidden">Sort by&nbsp;</span>
+        <span ng-transclude></span>
+    </button>
+    <i class="sort-icon"
+        ng-style="{visibility: predicate === '{{sortProperty}}' && 'visibile' || 'hidden'}"
+        ng-class="{'desc': !reverse, 'asc': reverse}">
+            <span class="visually-hidden">Sorted {{reverse ? 'ascending' : 'descending'}}</span>
+        </i>
+</div>
