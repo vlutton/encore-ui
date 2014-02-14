@@ -9,38 +9,18 @@ function rxPaginateCtrl ($scope, PageTracking) {
     $scope.pager = PageTracking.createInstance();
     $scope.pager.itemsPerPage = 3;
 
-    $scope.servers = [
-        {
-            'name': 'Server 1',
-            'os': 'Ubuntu 12.04'
-        },
-        {
-            'name': 'Server 2',
-            'os': 'Red Hat Enterprise Linux 6.4 '
-        },
-        {
-            'name': 'Server 3',
-            'os': 'Ubuntu 12.04'
-        },
-        {
-            'name': 'Server 4',
-            'os': 'CentOS 6.4'
-        },
-        {
-            'name': 'Server 5',
-            'os': 'Ubuntu 12.10'
-        },
-        {
-            'name': 'Server 6',
-            'os': 'Ubuntu 13.04'
-        },
-        {
-            'name': 'Server 7',
-            'os': 'Red Hat Enterprise Linux 6.4 '
-        },
-        {
-            'name': 'Server 8',
-            'os': 'Ubuntu 12.10'
+    var makeServers = function (serverCount) {
+        var servers = [];
+        var os = ['Ubuntu 12.04', 'Red Hat Enterprise Linux 6.4', 'CentOS 6.4', 'Ubuntu 13.04'];
+        for (var i = 1; i < serverCount + 1; i++) {
+            var server = {
+                id: i,
+                name: 'Server ' + i,
+                os: os[i % os.length]
+            };
+            servers.push(server);
         }
-    ];
+        return servers;
+    };
+    $scope.servers = makeServers(21);
 }
