@@ -60,6 +60,8 @@
     "grunt-complexity": "~0.1.4",
     "grunt-text-replace": "~0.3.11",
     "chai-as-promised": "~4.1.0",
-    "grunt-contrib-compress": "~0.6.1"
+    "grunt-contrib-compress": "~0.6.1",
+    "grunt-contrib-cssmin": "~0.7.0",
+    "grunt-contrib-uglify": "~0.3.2"
   }
 }

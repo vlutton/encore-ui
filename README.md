@@ -7,7 +7,7 @@ To use Encore UI in your app, do the following:
 1. Include the Encore CSS file in the `<head>` of your index.html:
 
     ```
-    <link rel="stylesheet" href="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.2/encore-ui.css">
+    <link rel="stylesheet" href="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.2/encore-ui.min.css">
     ```
 
 2. Include the Encore JS file (**Angular.js must be loaded before this file**):

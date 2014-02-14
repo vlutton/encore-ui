@@ -12,6 +12,7 @@ before_script:
 script:
 - grunt
 - protractor protractor.conf.js
+- grunt karma:minified
 after_success:
 - grunt coveralls
 before_deploy: cd dist
