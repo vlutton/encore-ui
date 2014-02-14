@@ -28,7 +28,7 @@ describe('rxSortableColumn', function () {
     it('should render template correctly', function () {
         expect(el).not.be.empty;
         expect(el.find('button')).not.be.empty;
-        expect(el.find('button').text()).is.equal('Yo!');
+        expect(el.find('button').text()).to.contain('Yo!');
         expect(el.find('i')).not.be.empty;
         expect(el.find('i').hasClass('asc')).to.be.true;
     });
