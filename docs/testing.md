@@ -78,11 +78,11 @@ The file name for this page objects follows the `componentName.page.js` conventi
 
 On build, all page object files are concatanated and tarballed into the `dist` directory. They are then published either manually or via Travis. To use these page objects, developers should include the following dependency in their `package.json` file:
 
-    "rxPageObjects": "https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.2/rxPageObjects.tar.gz"
+    "rxPageObjects": "https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.3/rxPageObjects.tar.gz"
 
 Alternatively, they can install the file using this command:
 
-    npm install --save-dev https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.2/rxPageObjects.tar.gz
+    npm install --save-dev https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.3/rxPageObjects.tar.gz
 
 Once installed, the page objects can be pulled in to any midway test via:
 
