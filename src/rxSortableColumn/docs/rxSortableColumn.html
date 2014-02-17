@@ -1,0 +1,36 @@
+<div ng-controller="rxSortableColumnCtrl">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">
+                    <rx-sortable-column
+                        sort-method="sortCol"
+                        sort-property="name"
+                        predicate="sort.predicate"
+                        reverse="sort.reverse">
+                        Name
+                    </rx-sortable-column>
+                </th>
+                <th scope="col">
+                    <rx-sortable-column
+                        sort-method="sortCol"
+                        sort-property="jobTitle"
+                        predicate="sort.predicate"
+                        reverse="sort.reverse">
+                        Occupation
+                    </rx-sortable-column>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="talentPoolData">
+            <tr ng-repeat="resource in talentPool | orderBy:sort.predicate:sort.reverse">
+                <th scope="row" class="talent-name">
+                    {{resource.name}}
+                </th>
+                <td class="talent-job">
+                    {{resource.jobTitle}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

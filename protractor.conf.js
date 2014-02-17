@@ -21,7 +21,8 @@ var config = {
     // Options to be passed to mocha
     mochaOpts: {
         reporter: 'spec',
-        slow: 3000
+        slow: 3000,
+        ui: 'bdd'
     }
 
 };

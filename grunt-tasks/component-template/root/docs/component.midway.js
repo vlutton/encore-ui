@@ -6,11 +6,11 @@ var expect = require('chai').use(require('chai-as-promised')).expect;
 describe('{%= name %}', function () {
     var ptor = {%= name %}Page.driver;
 
-    it('beforeAll', function () {
+    before(function () {
         demoPage.go();
     });
 
     it('should show element', function () {
-        expect({%= name %}Page.{%= name %}Element.isDisplayed()).to.eventually.eq.true;
+        expect({%= name %}Page.rootElement.isDisplayed()).to.eventually.eq.true;
     });
 });

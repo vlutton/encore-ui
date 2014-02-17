@@ -1,13 +1,29 @@
 @import 'vars';
 @import 'flexbox';
 
+/* Main Page CSS */
+.container {
+    min-height: 100%;
+    .flexbox-display();
+    .flexbox-direction(column);
+}
+
+.page-content {
+    .flexbox-display();
+    .flexbox(1);
+}
+
+.main-content {
+    .flexbox(1 1 0);
+    padding: 20px 30px 50px;
+}
+
 /*
 
 # Common Styles
 These are common styles that will be re-used across the site
 
 */
-
 
 .table-striped tr:nth-child(even) {
     background: #f6f6f6;
@@ -72,32 +88,20 @@ These are common styles that will be re-used across the site
     background: #999;
 }
 
-
-/* Main Page CSS */
-.container {
-    min-height: 100%;
-    .flexbox-display();
-    .flexbox-direction(column);
-}
-
-.page-content {
-    .flexbox-display();
-    .flexbox(1);
-}
-
-.main-content {
-    .flexbox(1 1 0);
-    padding: 20px 30px 50px;
-}
-
+/* Style to make buttons look like plain links */
 .btn-link {
     background: none;
     border: none;
-    padding: 0px;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
 }
-
-.btn-link:focus {
-    outline: none;
+thead th .btn-link {
+    color: #fff;
+    &:hover,
+    &:focus {
+        color: #fff;
+    }
 }
 
 
@@ -193,6 +197,25 @@ Basic color change to make text less prominant
 This can be added to hide an element but not remove it from the spacing of the
 page
 */
-.invisible {
+.hidden {
     visibility: hidden;
+}
+
+/*
+ * Hide content visually but let them still be read by screen readers
+ * @see http://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html
+ */
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+body:hover .visually-hidden a,
+body:hover .visually-hidden input,
+body:hover .visually-hidden button {
+    display: none;
 }
