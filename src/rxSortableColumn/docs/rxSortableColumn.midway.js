@@ -8,8 +8,8 @@ var Page = require('astrolabe').Page;
 var examplePage = Page.create({
     resourceTable: {
         get: function () {
-            return this.findElements(this.by.repeater('resource in talentPool | orderBy:sort.predicate:sort.reverse')
-                );
+            var repeater = 'resource in talentPool | orderBy:sort.predicate:sort.reverse';
+            return this.findElements(this.by.repeater(repeater));
         }
     },
 });
