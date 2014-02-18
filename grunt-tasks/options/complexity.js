@@ -9,5 +9,13 @@ module.exports = {
         options: {
             breakOnErrors: false
         }
+    },
+    pageObjects: {
+        src: [
+            'src/*/*.page.js'
+        ],
+        options: {
+            breakOnErrors: false
+        }
     }
 };
