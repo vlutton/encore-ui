@@ -1,0 +1,25 @@
+<!-- Sample HTML goes here as a live example of how to the component can be used -->
+<div ng-controller="rxNotifyCtrl">
+    <h2>Page Stack</h2>
+    <rx-notifications></rx-notifications>
+
+    <h2>Custom Stack</h2>
+    <rx-notifications stack="custom"></rx-notifications>
+
+    <div class="form-item">
+        <label>Message text: <input type="text" ng-model="message" /></label>
+    </div>
+
+    <div class="form-item">
+        <label>Timeout (in seconds): <input type="text" ng-model="options.timeout" /></label>
+    </div>
+
+    <div class="form-item">
+        <label>Type: <input type="text" ng-model="options.type" /></label>
+    </div>
+
+    <div>
+        <button ng-click="add('page')">Add to Page Stack</button>
+        <button ng-click="add('custom')">Add to Custom Stack</button>
+    </div>
+</div>
