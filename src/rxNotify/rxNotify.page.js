@@ -5,7 +5,7 @@ exports.rxNotify = Page.create({
     // Elements
     rootElement: {
         get: function () {
-            return this.findElement(this.by.css('.rx-notify'));
+            return this.findElement(this.by.css('.rx-notifications'));
         }
     }
 });

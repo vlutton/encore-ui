@@ -1,11 +1,5 @@
 <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxNotifyCtrl">
-    <h2>Page Stack</h2>
-    <rx-notifications></rx-notifications>
-
-    <h2>Custom Stack</h2>
-    <rx-notifications stack="custom"></rx-notifications>
-
     <div class="form-item">
         <label>Message text: <input type="text" ng-model="message" /></label>
     </div>
@@ -15,11 +9,44 @@
     </div>
 
     <div class="form-item">
-        <label>Type: <input type="text" ng-model="options.type" /></label>
+        <fieldset>
+            <legend>Type:</legend>
+            <label><input type="radio" name="notify-type" ng-model="options.type" value="info" /> Info</label>
+            <label><input type="radio" name="notify-type" ng-model="options.type" value="success" /> Success</label>
+            <label><input type="radio" name="notify-type" ng-model="options.type" value="warning" /> Warning</label>
+            <label><input type="radio" name="notify-type" ng-model="options.type" value="error" /> Error</label>
+        </fieldset>
+    </div>
+
+    <div class="form-item">
+        <fieldset>
+            <legend>Show:</legend>
+            <label><input type="radio" name="notify-show" ng-model="options.show" value="immediate" /> Immediately</label>
+            <label><input type="radio" name="notify-show" ng-model="options.show" value="next" /> Next</label>
+        </fieldset>
+    </div>
+
+    <div class="form-item">
+        <label>Dismissable (by user): <input type="checkbox" ng-model="options.dismissable" /></label>
     </div>
 
     <div>
         <button ng-click="add('page')">Add to Page Stack</button>
         <button ng-click="add('custom')">Add to Custom Stack</button>
+    </div>
+
+    <div>
+        <button ng-click="routeChange()">Simulate Route Change</button>
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <h2>Page Stack</h2>
+            <rx-notifications></rx-notifications>
+        </div>
+
+        <div class="pure-u-1-2">
+            <h2>Custom Stack</h2>
+            <rx-notifications stack="custom"></rx-notifications>
+        </div>
     </div>
 </div>

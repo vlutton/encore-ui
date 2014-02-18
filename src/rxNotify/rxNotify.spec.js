@@ -156,6 +156,32 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
         });
 
+        it('should wait until shown to start timeout', function () {
+            // add message w/ 1 second timeout and show on route change
+            notifySvc.add(messageText1, {
+                timeout: 1,
+                show: 'next'
+            });
+
+            // wait until timeout expires (if it were shown immediately)
+            timeout.flush(1500);
+
+            // validate not in stack
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+
+            // simulate route change
+            rootScope.$broadcast('$routeChangeSuccess');
+
+            // validate now in stack
+            expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText1);
+
+            // wait until after timeout
+            timeout.flush(1001);
+
+            // validate not in stack
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+        });
+
         it('should remain if timeout not set', function () {
             // add message w/o timeout
             notifySvc.add(messageText1);
@@ -297,10 +323,8 @@ describe('rxNotify', function () {
             // validate hidden (via class)
             expect(el.hasClass('ng-hide')).to.be.true;
         });
-    });
 
-    describe('Directive: rxNotification', function () {
-        it('should be dismissable via click', function () {
+        it('should be dismiss messages via click', function () {
             // add message
             notifySvc.add(messageText1);
 
@@ -310,8 +334,7 @@ describe('rxNotify', function () {
             expect(el.text()).to.contain(messageText1);
 
             // trigger click on element
-            var dismissButton = el.find('rx-notification').find('button');
-            helpers.clickElement(dismissButton[0]);
+            helpers.clickElement(el[0].querySelector('.notification-dismiss'));
 
             // validate no longer exists
             expect(el.text()).to.not.contain(messageText1);

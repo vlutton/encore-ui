@@ -8,6 +8,11 @@ angular.module('encore.ui.rxNotify', [])
         restrict: 'E',
         replace: true,
         templateUrl: 'templates/rxNotifications.html',
+        controller: function ($scope) {
+            $scope.dismiss = function (message) {
+                rxNotify.dismiss(message);
+            };
+        },
         link: function ($scope) {
             var stack = $scope.stack || 'page';
 
@@ -16,21 +21,6 @@ angular.module('encore.ui.rxNotify', [])
             }, function (data) {
                 $scope.messages = data;
             });
-        }
-    };
-})
-.directive('rxNotification', function (rxNotify) {
-    return {
-        scope: {
-            message: '='
-        },
-        restrict: 'E',
-        templateUrl: 'templates/rxNotification.html',
-        // controller: function($scope, $element, $attrs, $transclude) {},
-        controller: function ($scope) {
-            $scope.dismiss = function () {
-                rxNotify.dismiss($scope.message);
-            };
         }
     };
 })
@@ -54,6 +44,11 @@ angular.module('encore.ui.rxNotify', [])
     };
 
     var addToStack = function (message) {
+        // if timeout is set, we should remove message after time expires
+        if (message.timeout > -1) {
+            dismissAfterTimeout(message);
+        }
+
         stacks[message.stack].push(message);
     };
 
@@ -120,11 +115,6 @@ angular.module('encore.ui.rxNotify', [])
 
         // add options to message
         _.merge(message, options);
-
-        // if timeout is set, we should remove message after time expires
-        if (message.timeout > -1) {
-            dismissAfterTimeout(message);
-        }
 
         // if dismiss is set to array, watch variable
         if (_.isArray(message.dismiss)) {

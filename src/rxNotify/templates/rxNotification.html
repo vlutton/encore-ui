@@ -1,4 +1,7 @@
 <div class="rx-notification notification-{{message.type}}">
     {{message.text}}
-    <button ng-click="dismiss()" class="notification-dismiss">Hide Message</button>
+    <button ng-click="dismiss()" class="notification-dismiss btn-link" ng-if="message.dismissable">
+        &times;
+        <span class="visually-hidden">Dismiss Message</span>
+    </button>
 </div>
