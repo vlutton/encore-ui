@@ -44,9 +44,25 @@ describe('rxPaginate', function () {
         });
     });
 
+    it('should not allow navigating `next` the last page', function () {
+        expect(pagination.nextPage).to.throw(pagination.NoSuchPageException);
+    });
+
+    it('should not allow navigating using `last` past the last page', function () {
+        expect(pagination.lastPage).to.throw(pagination.NoSuchPageException);
+    });
+
     it('should navigate to the first page', function () {
         pagination.firstPage();
         expect(pagination.getCurrentPageNumber()).to.eventually.equal(1);
+    });
+
+    it('should not allow navigating `prev` the first page', function () {
+        expect(pagination.previousPage).to.throw(pagination.NoSuchPageException);
+    });
+
+    it('should not allow navigating using `first` before the first page', function () {
+        expect(pagination.firstPage).to.throw(pagination.NoSuchPageException);
     });
 
 });
