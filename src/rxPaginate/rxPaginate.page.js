@@ -1,6 +1,5 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
-var exceptions = require('exceptions');
 var _ = require('lodash');
 
 var page = {
@@ -145,7 +144,7 @@ var page = {
     },
 
     NoSuchPageException: {
-        get: function () { return new exceptions.Exception('No such page'); }
+        get: function () { return this.exception('No such page'); }
     }
 
 };
