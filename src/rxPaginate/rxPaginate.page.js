@@ -31,17 +31,10 @@ var page = {
                         // Try again.
                         page.jumpToPage(pageNumber);
                     } else {
-                        return page.getCurrentPageNumber().then(function (currentPage) {
-                            if (_.last(pageNumbers) == currentPage) {
-                                // We are at the last page, and we still need to go higher.
-                                var message = pageNumber + ' exceeds max page of ' + _.last(pageNumbers);
-                                page.NoSuchPageException.thro(message);
-                            } else {
-                                page.jumpToHighestAvailablePage();
-                                // Try again.
-                                page.jumpToPage(pageNumber);
-                            }
-                        });
+                        page.checkForInvalidLastPage(pageNumber);
+                        page.jumpToHighestAvailablePage();
+                        // Try again.
+                        page.jumpToPage(pageNumber);
                     }
                 } else {
                     // Our target page is somewhere in the available pages list.
@@ -58,6 +51,7 @@ var page = {
 
     firstPage: {
         value: function () {
+            this.checkForInvalidFirstPage();
             return this.tblPagination.then(function (pages) {
                 return pages[0].then(function (firstPage) {
                     firstPage.click();
@@ -68,6 +62,7 @@ var page = {
 
     previousPage: {
         value: function () {
+            this.checkForInvalidFirstPage();
             return this.tblPagination.then(function (pages) {
                 return pages[1].then(function (previousPage) {
                     previousPage.click();
@@ -78,6 +73,7 @@ var page = {
 
     nextPage: {
         value: function () {
+            this.checkForInvalidLastPage();
             return this.tblPagination.then(function (pages) {
                 return pages[pages.length - 2].then(function (nextPage) {
                     nextPage.click();
@@ -88,6 +84,7 @@ var page = {
 
     lastPage: {
         value: function () {
+            this.checkForInvalidLastPage();
             return this.tblPagination.then(function (pages) {
                 return _.last(pages).then(function (lastPage) {
                     lastPage.click();
@@ -139,6 +136,36 @@ var page = {
             return this.tblPagination.then(function (pagination) {
                 return pagination[pagination.length - 3].then(function (highestLink) {
                     highestLink.click();
+                });
+            });
+        }
+    },
+
+    checkForInvalidFirstPage: {
+        value: function () {
+            var page = this;
+            return this.getCurrentPageNumber().then(function (currentPage) {
+                if (currentPage === 1) {
+                    page.NoSuchPageException.thro('cannot navigate back past the first page.');
+                }
+            });
+        }
+    },
+
+    checkForInvalidLastPage: {
+        // Accepts an optional `pageNumber` argument to print to the exception
+        // should the `NoSuchPageException` get triggered during this call.
+        // Otherwise, it defaults to a generic invalid page message.
+        value: function (pageNumber) {
+            var page = this;
+            return this.getCurrentPageNumber().then(function (currentPage) {
+                pageNumber = pageNumber || 'any higher number';
+                return page.getPageNumbers().then(function (pageNumbers) {
+                    if (_.last(pageNumbers) == currentPage) {
+                        // We are at the last page, and we still need to go higher.                        
+                        var message = pageNumber + ' exceeds max page of ' + _.last(pageNumbers);
+                        page.NoSuchPageException.thro(message);
+                    }
                 });
             });
         }
