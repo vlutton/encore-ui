@@ -11,8 +11,25 @@ function rxFormDemoCtrl ($scope) {
     ];
 
     $scope.volume = {
-        'display_name': 'Volume-1',
-        // select the first type by default
-        'volume_type': $scope.types[0].value
+        name: 'Volume-1',
+        type: $scope.types[0].value // select the first type by default
     };
-};
+
+    $scope.optionTableData = [
+        {
+            'name': 'asv',
+            'id': 0
+        }, {
+            'name': 'asdf',
+            'id': 1
+        }, {
+            'name': 'av',
+            'id': 2
+        }
+    ];
+
+    $scope.optionTableColumns = [{
+        'label': 'Name',
+        'key': 'name'
+    }];
+}

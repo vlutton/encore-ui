@@ -1,5 +1,3 @@
-/*jshint undef:false*/
-
 var demoPage = require('../../../utils/demo.page.js');
 var rxSortableColumn = require('../rxSortableColumn.page.js').rxSortableColumn;
 var expect = require('chai').use(require('chai-as-promised')).expect;

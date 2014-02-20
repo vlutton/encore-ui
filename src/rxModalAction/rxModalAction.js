@@ -1,4 +1,3 @@
-/*jshint undef:false*/
 angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 .directive('rxModalForm', function () {
     return {
