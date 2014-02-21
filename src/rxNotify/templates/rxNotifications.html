@@ -1,11 +1,15 @@
 <div class="rx-notifications" ng-show="messages.length > 0">
-    <div ng-repeat="message in messages">
-        <div class="rx-notification notification-{{message.type}}" rx-spinner>
-            {{message.text}}
-            <button ng-click="dismiss(message)" class="notification-dismiss btn-link" ng-if="message.dismissable">
-                &times;
-                <span class="visually-hidden">Dismiss Message</span>
-            </button>
-        </div>
+    <div
+        ng-repeat="message in messages"
+        class="rx-notification notification-{{message.type}}"
+        ng-class="{'notification-loading': message.loading}"
+        rx-spinner
+        ng-init="loading = message.loading"
+        >
+        {{message.text}}
+        <button ng-click="dismiss(message)" class="notification-dismiss btn-link" ng-if="message.dismissable && !message.loading">
+            &times;
+            <span class="visually-hidden">Dismiss Message</span>
+        </button>
     </div>
 </div>

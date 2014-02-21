@@ -43,6 +43,28 @@ rxNotify.add('My Message Text', {
 
     *Other values:* `false`
 
+- `loading` Replaces type icon with spinner. Removes option for use to dismiss message.
+
+    *Default:* `false`
+
+    *Other values:* `true`
+
+    You usually want to associate this with a 'dismiss' property. For example:
+
+    ```
+    rxNotify.add('Loading', {
+        loading: true,
+        dismiss: [$scope, 'loaded']
+    });
+
+    var apiCallback = function (data) {
+        $scope.loaded = true;
+        // do something with the data
+    }
+
+    myApiCall(apiCallback);
+    ```
+
 - `show` When to have the message appear
 
     *Default:* `'immediately'`

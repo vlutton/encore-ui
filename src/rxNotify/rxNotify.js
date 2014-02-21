@@ -32,6 +32,8 @@ angular.module('encore.ui.rxNotify', [])
             }, function (data) {
                 $scope.messages = data;
             });
+
+            $scope.loading = true;
         }
     };
 })
@@ -49,6 +51,7 @@ angular.module('encore.ui.rxNotify', [])
         type: 'info',
         timeout: -1,
         dismissable: true,
+        loading: false,
         show: 'immediate',
         dismiss: 'next',
         stack: 'page'

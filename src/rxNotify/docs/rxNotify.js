@@ -23,6 +23,9 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify) {
 
     // add a default messages
     rxNotify.add('Helpful Information');
+    rxNotify.add('Loading', {
+        loading: true
+    });
     rxNotify.add('You did it!', {
         type: 'success'
     });
