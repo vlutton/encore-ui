@@ -1,4 +1,18 @@
-angular.module('encore.ui.rxForm', [])
+angular.module('encore.ui.rxForm', ['ngSanitize'])
+// used to wrap input fields and select boxes in the proper HTML
+.directive('rxFormItem', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxFormItem.html',
+        transclude: true,
+        scope: {
+            label: '@',
+            suffix: '@',
+            prefix: '@',
+            description: '@'
+        }
+    };
+})
 /**
  *
  * @ngdoc directive
@@ -120,11 +134,14 @@ angular.module('encore.ui.rxForm', [])
  * key. Example:
  * [
  *     {
- *         'name': 'asv'
+ *         'name': 'asv',
+ *         'id': 0
  *     }, {
- *         'name': 'asdf'
+ *         'name': 'asdf',
+ *         'id': 1
  *     }, {
- *         'name': 'av'
+ *         'name': 'av',
+ *         'id': 2
  *     }
  * ]
  * @param {array} columns - Array of objects with label/key values. Example:

@@ -4,6 +4,10 @@
     margin: 15px 0 0;
 }
 
+.form-item {
+    margin-top: 5px;
+}
+
 .form-description,
 .form-item {
     margin-bottom: 15px;
@@ -17,11 +21,62 @@
 }
 
 .field-input {
-    /* Form inputs have been converted from block to inline thanks to now having a suffix parameter. */
-    margin: 0 0 0 10px;
-    display: inline;
-    color: #444;
-    background: transparent;
+    // Re-align so that the middle lines up with the form field
+    position: relative;
+    top: -5px;
+
+    input,
+    select {
+        color: #444;
+        background: transparent;
+        font-size: 1.2em;
+        border: 0;
+        border-bottom: 1px solid @inputBorder;
+        padding: 3px 5px;
+        margin: 0;
+
+        // leave some room for prefix/suffix if the field width is wider than the container width
+        max-width: 65%;
+    }
+
+    input {
+        width: 394px;
+
+        &[type="number"] {
+            width: 150px;
+        }
+
+        &[type="radio"],
+        &[type="checkbox"] {
+            width: auto;
+            vertical-align: middle;
+        }
+    }
+
+    .field-select {
+        width: @modal-select-tag-width;
+        position: relative;
+
+        select {
+            width: @modal-select-tag-width;
+            -webkit-appearance: none;
+        }
+
+        &:before {
+            content: ".";
+            width: 0;
+            height: 0;
+            font-size: 0;
+            display: block;
+            position: absolute;
+            border: 7px solid transparent;
+            border-top-color: @inputBorder;
+            border-bottom: none;
+            top: 50%;
+            margin-top: -4px;
+            right: 9px;
+        }
+    }
 }
 
 /*
@@ -29,14 +84,20 @@
  * @browsers FF
  * @see http://stackoverflow.com/questions/17209057/firefox-draws-red-border-on-required-select-box
  */
-.ng-pristine .field-input.ng-invalid-required {
+.ng-pristine .field-input .ng-invalid-required {
     box-shadow: none;
 }
 
+.field-prefix,
 .field-suffix {
     font-size: 1.2em;
-    margin-left: 5px;
     color: #727272;
+}
+.field-prefix {
+    margin: -5px 5px 0 0;
+}
+.field-suffix {
+    margin-left: 5px;
 }
 
 .field-description {
@@ -45,7 +106,7 @@
     font-style: italic;
     display: block;
     color: #444;
-    margin: 5px 0 0 110px;
+    margin: 5px 0 0 100px;
 }
 
 .option-table {
@@ -79,51 +140,6 @@
         // this 'double' makes it so that the border-color applies to the top border as well
         // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
         border-style: double;
-    }
-}
-
-.field-input[type="text"],
-.field-input[type="number"] {
-    font-size: 1.2em;
-    width: 394px;
-    border: 0;
-    border-bottom: 1px solid @inputBorder;
-    padding: 3px 5px;
-    // Re-align so that the middle lines up with the form field
-    position: relative;
-    top: -5px;
-}
-.field-input[type="number"] {
-    width: 150px;
-}
-.field-select {
-    margin-left: 106px;
-    width: @modal-select-tag-width;
-    position: relative;
-
-    select {
-        color: #444;
-        background: transparent;
-        font-size: 1.2em;
-        -webkit-appearance: none;
-        border: 0;
-        border-bottom: 1px solid @inputBorder;
-        padding: 3px 5px;
-        width: @modal-select-tag-width;
-    }
-    &:after {
-        content: ".";
-        width: 0;
-        height: 0;
-        font-size: 0;
-        display: block;
-        position: absolute;
-        border: 7px solid transparent;
-        border-top-color: @inputBorder;
-        border-bottom: none;
-        top: 50%;
-        margin-top: -4px;
-        right: 9px;
     }
 }
 
