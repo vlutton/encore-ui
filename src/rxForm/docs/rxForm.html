@@ -1,27 +1,27 @@
 <div class="forms" ng-controller="rxFormDemoCtrl">
     <h3>Example of simple text input</h3>
-    <rx-form-item label="Display Name" description="Display name for volume">
+    <rx-form-item label="Display Name" description="<a href='#'>Here</a> is my <b>HTML</b>" prefix="$" suffix="GB">
         <input type="text" ng-model="volume.name" ng-required="true" />
     </rx-form-item>
-    <p>Bound property: {{volume.name}}</p>
+    <p>Bound Value: {{volume.name}}</p>
 
     <h3>Radio Buttons</h3>
     <fieldset>
         <legend>Restart?</legend>
-        <rx-form-item label="Yes">
+        <rx-form-item label="Yes" description="{{yesOptionDescription}}">
             <input type="radio" name="volume-option" ng-model="volume.option" value="yes" />
         </rx-form-item>
-        <rx-form-item label="Apartment">
+        <rx-form-item label="Apartment" suffix="Sq. Ft.">
             <input type="radio" name="volume-option" ng-model="volume.option" value="upstairs" />
         </rx-form-item>
         <rx-form-item label="Green">
             <input type="radio" name="volume-option" ng-model="volume.option" value="purple" />
         </rx-form-item>
     </fieldset>
-    <p>Bound property: {{volume.option}}</p>
+    <p>Bound Value: {{volume.option}}</p>
 
     <h3>Select Box</h3>
-    <rx-form-item label="Type">
+    <rx-form-item label="Type" prefix="$">
         <span class="field-select">
             <select ng-model="volume.type" ng-required="true">
                 <option
@@ -32,7 +32,7 @@
             </select>
         </span>
     </rx-form-item>
-    <p>Bound property: {{volume.type}}</p>
+    <p>Bound Value: {{volume.type}}</p>
 
     <h3>Option Table</h3>
     <rx-form-option-table
@@ -42,5 +42,5 @@
         model="volume.data"
         field-id="optionTable"
         ></rx-form-option-table>
-    <p>Bound property: {{volume.data}}</p>
+    <p>Bound Value: {{volume.data}}</p>
 </div>

@@ -15,6 +15,8 @@ function rxFormDemoCtrl ($scope) {
         type: $scope.types[0].value // select the first type by default
     };
 
+    $scope.yesOptionDescription = '<b>This</b> is HTML that included in the JS';
+
     $scope.optionTableData = [
         {
             'name': 'asv',

@@ -4,6 +4,10 @@
     margin: 15px 0 0;
 }
 
+.form-item {
+    margin-top: 5px;
+}
+
 .form-description,
 .form-item {
     margin-bottom: 15px;
@@ -17,7 +21,6 @@
 }
 
 .field-input {
-    margin: 0 0 0 10px;
     // Re-align so that the middle lines up with the form field
     position: relative;
     top: -5px;
@@ -30,6 +33,10 @@
         border: 0;
         border-bottom: 1px solid @inputBorder;
         padding: 3px 5px;
+        margin: 0;
+
+        // leave some room for prefix/suffix if the field width is wider than the container width
+        max-width: 65%;
     }
 
     input {
@@ -37,6 +44,12 @@
 
         &[type="number"] {
             width: 150px;
+        }
+
+        &[type="radio"],
+        &[type="checkbox"] {
+            width: auto;
+            vertical-align: middle;
         }
     }
 
@@ -75,10 +88,16 @@
     box-shadow: none;
 }
 
+.field-prefix,
 .field-suffix {
     font-size: 1.2em;
-    margin-left: 5px;
     color: #727272;
+}
+.field-prefix {
+    margin: -5px 5px 0 0;
+}
+.field-suffix {
+    margin-left: 5px;
 }
 
 .field-description {
@@ -87,7 +106,7 @@
     font-style: italic;
     display: block;
     color: #444;
-    margin: 5px 0 0 110px;
+    margin: 5px 0 0 100px;
 }
 
 .option-table {

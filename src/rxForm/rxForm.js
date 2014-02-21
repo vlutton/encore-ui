@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxForm', [])
+angular.module('encore.ui.rxForm', ['ngSanitize'])
 // used to wrap input fields and select boxes in the proper HTML
 .directive('rxFormItem', function () {
     return {
@@ -8,6 +8,7 @@ angular.module('encore.ui.rxForm', [])
         scope: {
             label: '@',
             suffix: '@',
+            prefix: '@',
             description: '@'
         }
     };
