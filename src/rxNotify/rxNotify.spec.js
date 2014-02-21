@@ -339,5 +339,23 @@ describe('rxNotify', function () {
             // validate no longer exists
             expect(el.text()).to.not.contain(messageText1);
         });
+
+        it('should show spinner when loading set', function () {
+            // add message
+            notifySvc.add(messageText1, {
+                loading: true
+            });
+
+            scope.$digest();
+
+            // validate message is shown
+            expect(el.text()).to.contain(messageText1);
+
+            // validate spinner is shown
+            expect(el.find('rx-spinner')).to.exist;
+
+            // validate 'dismiss' action not found
+            expect(el[0].querySelector('.notification-dismiss')).to.not.exist;
+        });
     });
 });

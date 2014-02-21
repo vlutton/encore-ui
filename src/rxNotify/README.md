@@ -43,6 +43,12 @@ rxNotify.add('My Message Text', {
 
     *Other values:* `false`
 
+- `loading` Replaces type icon with spinner. Removes option for use to dismiss message.
+
+    *Default:* `false`
+
+    *Other values:* `true`
+
 - `show` When to have the message appear
 
     *Default:* `'immediately'`

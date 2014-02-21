@@ -32,6 +32,14 @@
             background-image: url('images/error-stop.png');
             color: #ffffff;
         }
+        &.notification-loading {
+            // Hide icon since it's replaced by spinner
+            background-image: none;
+            padding: 15px;
+            .rx-spinner {
+                margin-top: -5px;
+            }
+        }
     }
 
     .notification-dismiss {
