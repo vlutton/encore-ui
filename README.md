@@ -24,6 +24,10 @@ To use Encore UI in your app, do the following:
     angular.module('myApp', ['encore.ui']);
     ```
 
+# Demo App
+
+You can see all components in action by visiting [the Encore UI demo page](https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.0.4/index.html).
+
 # Further Reading
 
  - [Contribution Guide](./CONTRIBUTING.md)
