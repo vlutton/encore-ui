@@ -1,0 +1,52 @@
+@import 'mixins';
+
+.rx-notifications {
+    margin-bottom: 1.5em;
+
+    .rx-notification {
+        clear: both;
+        font-weight: 800;
+        font-size: 1.2em;
+        padding: 10px 50px;
+        margin-bottom: 2px;
+        position: relative;
+        background: no-repeat 20px 8px;
+
+        &.notification-success {
+            background-color: #ddffd3;
+            background-image: url('images/green-checkmark-circled.png');
+            color: #45ad26;
+        }
+        &.notification-info {
+            background-color: #83c9fe;
+            background-image: url('images/info-circled.png');
+            color: #1672b9;
+        }
+        &.notification-warning {
+            background-color: #ffa61b;
+            background-image: url('images/warning-triangle.png');
+            color: #ffffff;
+        }
+        &.notification-error {
+            background-color: #f21a1a;
+            background-image: url('images/error-stop.png');
+            color: #ffffff;
+        }
+    }
+
+    .notification-dismiss {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        padding: 0 15px;
+        content: '\00D7';
+        .opacity(.2);
+        color: #000;
+        &:hover,
+        &:focus {
+            .opacity(.5);
+            text-decoration: none;
+        }
+    }
+}

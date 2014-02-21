@@ -1,12 +1,12 @@
 /* jshint node:true */
 'use strict';
 
-function loadConfig(path) {
+function loadConfig (path) {
     var glob = require('glob');
     var object = {};
     var key;
 
-    glob.sync('*', {cwd: path}).forEach(function(option) {
+    glob.sync('*', { cwd: path }).forEach(function (option) {
         key = option.replace(/\.js$/,'');
         object[key] = require(path + option);
     });
@@ -14,7 +14,7 @@ function loadConfig(path) {
     return object;
 }
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     // load all grunt tasks
     require('load-grunt-tasks')(grunt);
     grunt.loadTasks('grunt-tasks');
