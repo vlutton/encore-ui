@@ -6,10 +6,10 @@
       "angular-sanitize": "~1.2.9",
       "angular-bootstrap": "~0.10.0",
       "lodash": "~2.4.1",
-      "angular-resource": "~1.2.9",
       "momentjs": "~2.5.0"
   },
   "devDependencies": {
+      "angular-resource": "~1.2.9",
       "angular-mocks": "~1.2.9"
   }
 }
