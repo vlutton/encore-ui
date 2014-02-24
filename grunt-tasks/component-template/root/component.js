@@ -1,1 +1,1 @@
-angular.module('encore.ui.{%= name %}', [])
+angular.module('encore.ui.{%= name %}', []);
