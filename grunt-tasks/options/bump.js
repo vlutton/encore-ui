@@ -1,10 +1,11 @@
 module.exports = {
     options: {
-        files: ['package.json', 'bower.json'],
+        files: ['package.json', 'bower.json', 'utils/rx-page-objects/package.json'],
         updateConfigs: ['pkg'],
         commit: true,
         commitMessage: 'chore(version): v%VERSION% [skip ci]',
-        commitFiles: ['package.json', 'bower.json', 'CHANGELOG.md', 'README.md', 'docs/testing.md'],
+        commitFiles: ['package.json', 'bower.json', 'CHANGELOG.md', 'README.md', 'docs/testing.md',
+            'utils/rx-page-objects/package.json'],
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',

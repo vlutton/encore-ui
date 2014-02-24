@@ -17,5 +17,14 @@ module.exports = {
                 return '';
             }
         }
+    },
+    rxPageObjects: {
+        command: 'npm pack',
+        options: {
+            stdout: true,
+            execOptions: {
+                cwd: 'utils/rx-page-objects'
+            }
+        }
     }
 };
