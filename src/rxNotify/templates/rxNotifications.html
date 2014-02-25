@@ -6,7 +6,7 @@
         rx-spinner
         ng-init="loading = message.loading"
         >
-        {{message.text}}
+        <span class="notification-text">{{message.text}}</span>
         <button ng-click="dismiss(message)" class="notification-dismiss btn-link" ng-if="message.dismissable && !message.loading">
             &times;
             <span class="visually-hidden">Dismiss Message</span>
