@@ -24,6 +24,6 @@ module.exports = {
             }
         },
         src: ['src/*/*.page.js'],
-        dest: 'index.js'
+        dest: 'utils/rx-page-objects/index.js'
     }
 };
