@@ -55,25 +55,36 @@ angular.module('encore.ui.rxPaginate', [])
 * the pagination or not.
 *
 * @method createInstance This is used to generate the instance of the
-* PageTracking object.
+* PageTracking object.  Enables the ability to override default showAll and itemsPerPage.
+*
+* @example
+* <pre>
+* PageTracking.createInstance({showAll: true, itemsPerPage: 15});
+* </pre>
 */
 .factory('PageTracking', function () {
-    function PageTrackingObject (showAll) {
+    function PageTrackingObject (opts) {
         this.MAX_PER_PAGE = 50;
         this.MIN_PER_PAGE = 10;
         this.ITEMS_PER_PAGE_STEP = 10;
-        this.itemsPerPage = 10;
+        this.itemsPerPage = this.MIN_PER_PAGE;
         this.pagesToShow = 5;
         this.itemSizeList = [];
         this.pageNumber = 0;
         this.pageInit = false;
         this.total = 0;
-        this.showAll = (showAll) ? true : false;
+        this.showAll = false;
+
+        if (opts) {
+            this.showAll = opts.showAll !== undefined ? opts.showAll : false;
+            this.itemsPerPage = (opts.itemsPerPage <= this.MAX_PER_PAGE &&
+                opts.itemsPerPage >= this.MIN_PER_PAGE) ? opts.itemsPerPage : this.MIN_PER_PAGE;
+        }
     }
 
     return {
-        createInstance: function (showAll) {
-            return new PageTrackingObject(showAll);
+        createInstance: function (options) {
+            return new PageTrackingObject(options);
         }
     };
 })
