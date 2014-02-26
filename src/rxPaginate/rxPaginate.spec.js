@@ -299,8 +299,7 @@ describe('Pagination', function () {
         it('Should override default itemsPerPage', function () {
             expect(tracking.createInstance().itemsPerPage).to.be.eq(10);
             expect(tracking.createInstance({ itemsPerPage: 15 }).itemsPerPage).to.be.eq(15);
-            expect(tracking.createInstance({ itemsPerPage: 55 }).itemsPerPage).to.be.eq(10);
-            expect(tracking.createInstance({ itemsPerPage: 5 }).itemsPerPage).to.be.eq(10);
+            expect(tracking.createInstance({ itemsPerPage: 55 }).itemsPerPage).to.be.eq(55);
         });
     });
 });

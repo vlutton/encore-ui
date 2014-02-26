@@ -64,27 +64,22 @@ angular.module('encore.ui.rxPaginate', [])
 */
 .factory('PageTracking', function () {
     function PageTrackingObject (opts) {
-        this.MAX_PER_PAGE = 50;
-        this.MIN_PER_PAGE = 10;
-        this.ITEMS_PER_PAGE_STEP = 10;
-        this.itemsPerPage = this.MIN_PER_PAGE;
-        this.pagesToShow = 5;
-        this.itemSizeList = [];
-        this.pageNumber = 0;
-        this.pageInit = false;
-        this.total = 0;
-        this.showAll = false;
-
-        if (opts) {
-            this.showAll = opts.showAll !== undefined ? opts.showAll : false;
-            this.itemsPerPage = (opts.itemsPerPage <= this.MAX_PER_PAGE &&
-                opts.itemsPerPage >= this.MIN_PER_PAGE) ? opts.itemsPerPage : this.MIN_PER_PAGE;
-        }
+        this.settings = _.defaults(opts, {
+            itemsPerPage: 10,
+            pagesToShow: 5,
+            itemSizeList: [],
+            pageNumber: 0,
+            pageInit: false,
+            total: 0,
+            showAll: false,
+        });
     }
 
     return {
         createInstance: function (options) {
-            return new PageTrackingObject(options);
+            options = options ? options : {};
+            var tracking = new PageTrackingObject(options);
+            return tracking.settings;
         }
     };
 })
