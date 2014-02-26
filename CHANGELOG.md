@@ -1,3 +1,17 @@
+<a name="0.0.5"></a>
+### 0.0.5 (2014-02-26)
+
+
+#### Bug Fixes
+
+* **rxPageObjects:** added package.json and switched to `npm pack` so `npm install` now works ([483f46ab](git@github.com:rackerlabs/encore-ui/commit/483f46abb3dd84884b420714a9cd16b81d0d6702))
+
+
+#### Features
+
+* **midway:** New templates for midway tests. ([c89f9f26](git@github.com:rackerlabs/encore-ui/commit/c89f9f26ae5d378ae53edb906f77b352db9ec096))
+
+
 <a name="0.0.4"></a>
 ### 0.0.4 (2014-02-21)
 
