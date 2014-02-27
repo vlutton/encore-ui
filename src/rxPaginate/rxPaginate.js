@@ -32,11 +32,6 @@ angular.module('encore.ui.rxPaginate', [])
 * This is the data service that can be used in conjunction with the pagination
 * objects to store/control page display of data tables and other items.
 *
-* @property {number} MAX_PER_PAGE This is a value that is used in the
-* iteration function to generate the item size list.
-* @property {number} MIN_PER_PAGE This is a value that is used in the
-* iteration function to generate the item size list.
-* @property {number} ITEMS_PER_PAGE_STEP This is a value that is used in the
 * iteration function to generate the item size list.
 * @property {number} itemsPerPage This is the current setting for the number
 * of items to display per page
@@ -83,51 +78,7 @@ angular.module('encore.ui.rxPaginate', [])
         }
     };
 })
-/**
-*
-* @ngdoc directive
-* @name encore.components.paginate:rxItemsPerPage
-* @restrict E
-* @description
-* Directive that takes in a page-tracking object and a label for what to call
-* items and outputs a select box that allows you to change how many items in
-* the list to show at a time
-*
-* @param {Object} pager This is the page tracking service instance to
-* be used for this directive
-* @param {string='Items'} label This is the name of the items that you are
-* restricting. It defaults to 'Items' and thus outputs 'Items per page'
-*/
-.directive('rxItemsPerPage', function () {
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'templates/rxItemsPerPage.html',
-        scope: {
-            label: '@',
-            pager: '='
-        },
-        link: function (scope) {
-            if (!scope.pager.pageInit) {
-                //scope.pager.ticketsPerPage = TQSettings.getObjectData('paging');
-                scope.pager.pageInit = true;
-            }
 
-            try {
-                scope.updatePaging = function () {
-                    scope.pager.ticketsPerPage = parseInt(scope.pager.ticketsPerPage, 10);
-                    scope.pager.pageNumber = 0;
-                }.bind(scope);
-            } catch (err) {
-                // This is here because the tests are being weird.
-            }
-
-            scope.pager.itemSizeList = _.range(scope.pager.MIN_PER_PAGE,
-                scope.pager.MAX_PER_PAGE + scope.pager.ITEMS_PER_PAGE_STEP,
-                scope.pager.ITEMS_PER_PAGE_STEP);
-        }
-    };
-})
 /**
 *
 * @ngdoc filter
