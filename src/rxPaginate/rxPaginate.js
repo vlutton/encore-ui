@@ -32,19 +32,10 @@ angular.module('encore.ui.rxPaginate', [])
 * This is the data service that can be used in conjunction with the pagination
 * objects to store/control page display of data tables and other items.
 *
-* @property {number} MAX_PER_PAGE This is a value that is used in the
-* iteration function to generate the item size list.
-* @property {number} MIN_PER_PAGE This is a value that is used in the
-* iteration function to generate the item size list.
-* @property {number} ITEMS_PER_PAGE_STEP This is a value that is used in the
-* iteration function to generate the item size list.
 * @property {number} itemsPerPage This is the current setting for the number
 * of items to display per page
 * @property {number} pagesToShow This is the number of pages to show
 * in the pagination controls
-* @property {Array} itemSizeList This is where the
-* {@link encore.components.paginate:rxItemsPerPage rxItemsPerPage}
-* Directive will store it's list of items per page
 * @property {number} pageNumber This is where the current page number is
 * stored.
 * @property {boolean} pageInit This is used to determine if the page has been
@@ -55,73 +46,34 @@ angular.module('encore.ui.rxPaginate', [])
 * the pagination or not.
 *
 * @method createInstance This is used to generate the instance of the
-* PageTracking object.
+* PageTracking object. Enables the ability to override default settings
+*
+* @example
+* <pre>
+* PageTracking.createInstance({showAll: true, itemsPerPage: 15});
+* </pre>
 */
 .factory('PageTracking', function () {
-    function PageTrackingObject (showAll) {
-        this.MAX_PER_PAGE = 50;
-        this.MIN_PER_PAGE = 10;
-        this.ITEMS_PER_PAGE_STEP = 10;
-        this.itemsPerPage = 10;
-        this.pagesToShow = 5;
-        this.itemSizeList = [];
-        this.pageNumber = 0;
-        this.pageInit = false;
-        this.total = 0;
-        this.showAll = (showAll) ? true : false;
+    function PageTrackingObject (opts) {
+        this.settings = _.defaults(opts, {
+            itemsPerPage: 10,
+            pagesToShow: 5,
+            pageNumber: 0,
+            pageInit: false,
+            total: 0,
+            showAll: false,
+        });
     }
 
     return {
-        createInstance: function (showAll) {
-            return new PageTrackingObject(showAll);
+        createInstance: function (options) {
+            options = options ? options : {};
+            var tracking = new PageTrackingObject(options);
+            return tracking.settings;
         }
     };
 })
-/**
-*
-* @ngdoc directive
-* @name encore.components.paginate:rxItemsPerPage
-* @restrict E
-* @description
-* Directive that takes in a page-tracking object and a label for what to call
-* items and outputs a select box that allows you to change how many items in
-* the list to show at a time
-*
-* @param {Object} pager This is the page tracking service instance to
-* be used for this directive
-* @param {string='Items'} label This is the name of the items that you are
-* restricting. It defaults to 'Items' and thus outputs 'Items per page'
-*/
-.directive('rxItemsPerPage', function () {
-    return {
-        restrict: 'E',
-        replace: true,
-        templateUrl: 'templates/rxItemsPerPage.html',
-        scope: {
-            label: '@',
-            pager: '='
-        },
-        link: function (scope) {
-            if (!scope.pager.pageInit) {
-                //scope.pager.ticketsPerPage = TQSettings.getObjectData('paging');
-                scope.pager.pageInit = true;
-            }
 
-            try {
-                scope.updatePaging = function () {
-                    scope.pager.ticketsPerPage = parseInt(scope.pager.ticketsPerPage, 10);
-                    scope.pager.pageNumber = 0;
-                }.bind(scope);
-            } catch (err) {
-                // This is here because the tests are being weird.
-            }
-
-            scope.pager.itemSizeList = _.range(scope.pager.MIN_PER_PAGE,
-                scope.pager.MAX_PER_PAGE + scope.pager.ITEMS_PER_PAGE_STEP,
-                scope.pager.ITEMS_PER_PAGE_STEP);
-        }
-    };
-})
 /**
 *
 * @ngdoc filter

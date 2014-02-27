@@ -279,4 +279,27 @@ describe('Pagination', function () {
             expect(paginate(items, pager)).to.eql([15,16]);
         });
     });
+
+    describe('Factory: PageTracking', function () {
+        var tracking;
+
+        beforeEach(function () {
+            module('encore.ui.rxPaginate');
+            inject(function (PageTracking) {
+                tracking = PageTracking;
+            });
+        });
+
+        it('Should override default showAll when set', function () {
+            expect(tracking.createInstance().showAll).to.be.false;
+            expect(tracking.createInstance({ showAll: true }).showAll).to.be.true;
+            expect(tracking.createInstance({ showAll: false }).showAll).to.be.false;
+        });
+
+        it('Should override default itemsPerPage', function () {
+            expect(tracking.createInstance().itemsPerPage).to.be.eq(10);
+            expect(tracking.createInstance({ itemsPerPage: 15 }).itemsPerPage).to.be.eq(15);
+            expect(tracking.createInstance({ itemsPerPage: 55 }).itemsPerPage).to.be.eq(55);
+        });
+    });
 });
