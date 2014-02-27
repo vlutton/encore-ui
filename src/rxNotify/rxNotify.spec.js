@@ -475,5 +475,24 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[otherStack].length).to.equal(1);
             expect(notifySvc.stacks[otherStack][0].text).to.equal(errorMsg);
         });
+
+        it('should convert expression to string based on response data', function () {
+            rpn.add(prom.promise, {
+                loading: loadingMsg,
+                error: errorMsg + '{{message}}'
+            }, otherStack);
+
+            expect(notifySvc.stacks[otherStack][0].text).to.equal(loadingMsg);
+
+            prom.reject({
+                message: 'test'
+            });
+
+            scope.$digest();
+
+            // expect error message to be the only thing showing
+            expect(notifySvc.stacks[otherStack].length).to.equal(1);
+            expect(notifySvc.stacks[otherStack][0].text).to.equal(errorMsg + 'test');
+        });
     });
 });
