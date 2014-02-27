@@ -43,10 +43,10 @@ describe('rxNotify', function () {
 
         it('should add unique id to message and return it on add', function () {
             // create message
-            var id = notifySvc.add(messageText1);
+            var msg = notifySvc.add(messageText1);
 
             // expect message to be first in page stack
-            expect(notifySvc.stacks[defaultStack][0].id).to.equal(id);
+            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
         });
 
         it('should allow type specification', function () {
@@ -108,7 +108,7 @@ describe('rxNotify', function () {
 
         it('should be dismissable', function () {
             // add message to be dismissed
-            var messageId = notifySvc.add(messageText1);
+            var msg = notifySvc.add(messageText1);
 
             // add other message
             notifySvc.add(messageText2);
@@ -118,7 +118,7 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack][1].text).to.equal(messageText2);
 
             // run 'dismiss' method passing in message id
-            notifySvc.dismiss(messageId, defaultStack);
+            notifySvc.dismiss(msg);
 
             // validate dismissed message not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(1);
@@ -195,10 +195,10 @@ describe('rxNotify', function () {
 
         it('should dismiss on routeChange', function () {
             // add message
-            var id = notifySvc.add(messageText1);
+            var msg = notifySvc.add(messageText1);
 
             // validate in stack
-            expect(notifySvc.stacks[defaultStack][0].id).to.equal(id);
+            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
 
             // simulate route change
             rootScope.$broadcast('$routeChangeSuccess');
@@ -209,21 +209,21 @@ describe('rxNotify', function () {
 
         it('should only dismiss manually when manual', function () {
             // add message with hide set to 'manual'
-            var id = notifySvc.add(messageText1, {
+            var msg = notifySvc.add(messageText1, {
                 dismiss: 'manual'
             });
 
             // validate in stack
-            expect(notifySvc.stacks[defaultStack][0].id).to.equal(id);
+            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
 
             // simulate route change
             rootScope.$broadcast('$routeChangeSuccess');
 
             // validate still in stack
-            expect(notifySvc.stacks[defaultStack][0].id).to.equal(id);
+            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
 
             // run 'dismiss' method passing in message id
-            notifySvc.dismiss(id, defaultStack);
+            notifySvc.dismiss(msg);
 
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
@@ -234,12 +234,12 @@ describe('rxNotify', function () {
             scope.loaded = false;
 
             // add message w/ dismiss property
-            var id = notifySvc.add(messageText1, {
+            var msg = notifySvc.add(messageText1, {
                 dismiss: [scope, 'loaded']
             });
 
             // validate in stack
-            expect(notifySvc.stacks[defaultStack][0].id).to.equal(id);
+            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
 
             // change variable to true
             scope.loaded = true;
@@ -251,7 +251,7 @@ describe('rxNotify', function () {
 
         it('should show on next on routeChange when set', function () {
             // add message with show set to 'next'
-            var id = notifySvc.add(messageText1, {
+            var msg = notifySvc.add(messageText1, {
                 show: 'next'
             });
 
@@ -262,7 +262,7 @@ describe('rxNotify', function () {
             rootScope.$broadcast('$routeChangeSuccess');
 
             // validate in stack
-            expect(notifySvc.stacks[defaultStack][0].id).to.equal(id);
+            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
 
             // simulate another route change
             rootScope.$broadcast('$routeChangeSuccess');
@@ -276,7 +276,7 @@ describe('rxNotify', function () {
             scope.error = false;
 
             // add message w/ show expression
-            var id = notifySvc.add(messageText1, {
+            var msg = notifySvc.add(messageText1, {
                 show: [scope, 'error']
             });
 
@@ -288,7 +288,7 @@ describe('rxNotify', function () {
             scope.$digest();
 
             // validate in stack
-            expect(notifySvc.stacks[defaultStack][0].id).to.equal(id);
+            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
 
             // simulate a route change to dismiss message
             rootScope.$broadcast('$routeChangeSuccess');
@@ -356,6 +356,124 @@ describe('rxNotify', function () {
 
             // validate 'dismiss' action not found
             expect(el[0].querySelector('.notification-dismiss')).to.not.exist;
+        });
+    });
+
+    describe('Service: rxPromiseNotifications', function () {
+        var prom, rpn, q;
+        var loadingMsg = 'loading';
+        var successMsg = 'success';
+        var errorMsg = 'error';
+
+        beforeEach(function () {
+            inject(function (rxPromiseNotifications, $q) {
+                rpn = rxPromiseNotifications;
+                q = $q;
+            });
+
+            prom = q.defer();
+        });
+
+        afterEach(function () {
+            prom = null;
+        });
+
+        it('should show loading message immediately', function () {
+            // create message w/o an options
+            rpn.add(prom.promise, {
+                loading: loadingMsg
+            });
+
+            // expect loading message to be in stack
+            expect(notifySvc.stacks[defaultStack][0].text).to.equal(loadingMsg);
+            expect(notifySvc.stacks[defaultStack][0].loading).to.equal(true);
+        });
+
+        it('should dismiss loading message after promise resolves', function () {
+            rpn.add(prom.promise, {
+                loading: loadingMsg,
+                success: successMsg
+            });
+
+            prom.resolve();
+
+            scope.$digest();
+
+            // expect loading message to no longer be in stack
+            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
+            expect(notifySvc.stacks[defaultStack][0].text).to.not.contain(loadingMsg);
+        });
+
+        it('should show success message after promise is resolved successfully', function () {
+            rpn.add(prom.promise, {
+                loading: loadingMsg,
+                success: successMsg
+            });
+
+            prom.resolve();
+
+            scope.$digest();
+
+            // expect success message to be the only thing showing
+            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
+            expect(notifySvc.stacks[defaultStack][0].text).to.equal(successMsg);
+        });
+
+        it('should show error message after promise is rejected', function () {
+            rpn.add(prom.promise, {
+                loading: loadingMsg,
+                error: errorMsg
+            });
+
+            prom.reject();
+
+            scope.$digest();
+
+            // expect error message to be the only thing showing
+            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
+            expect(notifySvc.stacks[defaultStack][0].text).to.equal(errorMsg);
+        });
+
+        it('should not show messages if route is changed before promise is resolved', function () {
+            rpn.add(prom.promise, {
+                loading: loadingMsg,
+                success: successMsg
+            });
+
+            // expect loading to be showing
+            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
+
+            // simulate a route change
+            rootScope.$broadcast('$routeChangeStart');
+
+            scope.$digest();
+
+            // expect loading message to no longer be in stack
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+
+            prom.resolve();
+
+            scope.$digest();
+
+            // expect no messages to be in stack
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+        });
+
+        it('should show in custom stack', function () {
+            rpn.add(prom.promise, {
+                loading: loadingMsg,
+                error: errorMsg
+            }, otherStack);
+
+            expect(notifySvc.stacks[otherStack][0].text).to.equal(loadingMsg);
+
+            prom.reject();
+
+            scope.$digest();
+
+            // expect error message to be the only thing showing
+            expect(notifySvc.stacks[otherStack].length).to.equal(1);
+            expect(notifySvc.stacks[otherStack][0].text).to.equal(errorMsg);
         });
     });
 });

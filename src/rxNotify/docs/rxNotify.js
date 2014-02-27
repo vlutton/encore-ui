@@ -1,6 +1,6 @@
 /*jshint unused:false*/
 
-function rxNotifyCtrl ($rootScope, $scope, rxNotify) {
+function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
     $scope.message = 'My message';
 
     $scope.options = {
@@ -11,6 +11,7 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify) {
     };
 
     $scope.routeChange = function (stack) {
+        $rootScope.$broadcast('$routeChangeStart', {});
         $rootScope.$broadcast('$routeChangeSuccess', {});
     };
 
@@ -36,4 +37,15 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify) {
         type: 'error',
         stack: 'custom'
     });
+
+    // stuff for rxPromiseNotifications
+    $scope.addPromise = function () {
+        $scope.deferred = $q.defer();
+
+        var promiseScope = rxPromiseNotifications.add($scope.deferred.promise, {
+            loading: 'Loading Message',
+            success: 'Success Message',
+            error: 'Error Message'
+        });
+    };
 }

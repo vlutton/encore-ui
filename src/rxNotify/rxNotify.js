@@ -1,5 +1,5 @@
 /*jshint undef:false*/
-angular.module('encore.ui.rxNotify', [])
+angular.module('encore.ui.rxNotify', ['ngSanitize'])
 /*
  * Displays all messages in a stack
  * @ngdoc directive
@@ -151,20 +151,11 @@ angular.module('encore.ui.rxNotify', [])
     /*
      * removes a specific message from a stack
      * @public
-     * @param {string} messageId The ID of the message to remove.
-     * @param {string} stack The name of the stack the message is it
-     * @note Alternatively, you can pass in a message object and the ID/Stack will be determined from the object
+     * @param {string} msg Message to remove
      */
-    var dismiss = function (messageId, stack) {
-        // handle if message passed in (versus id)
-        if (_.isObject(messageId)) {
-            var message = messageId;
-            stack = message.stack;
-            messageId = message.id;
-        }
-
+    var dismiss = function (msg) {
         // remove message by id
-        stacks[stack] = _.reject(stacks[stack], { 'id': messageId });
+        stacks[msg.stack] = _.reject(stacks[msg.stack], { 'id': msg.id });
     };
 
     /*
@@ -211,8 +202,8 @@ angular.module('encore.ui.rxNotify', [])
             changeOnWatch(message, 'show');
         }
 
-        // return id for tracking
-        return message.id;
+        // return message object
+        return message;
     };
 
     // add a listener to root scope which listens for the event that gets fired when the route successfully changes
@@ -227,5 +218,110 @@ angular.module('encore.ui.rxNotify', [])
         clear: clear,
         dismiss: dismiss,
         stacks: stacks
+    };
+})
+.factory('rxPromiseNotifications', function (rxNotify, $rootScope, $q, $interpolate) {
+    var scope = $rootScope.$new();
+
+    /*
+     * Removes 'loading' message from stack
+     * @private
+     * @this Scope used for storing messages data
+     */
+    var dismissLoading = function () {
+        rxNotify.dismiss(this.loadingMsg);
+    };
+
+    /*
+     * shows either a success or error message
+     * @private
+     * @this Scope used for storing messages data
+     * @param {string} msgType Message type to be displayed
+     * @param {Object} response Data that's returned from the promise
+     */
+    var showMessage = function (msgType, response) {
+        if (msgType in this.msgs && !this.isCancelled) {
+            // convert any bound properties into a string based on obj from result
+            var exp = $interpolate(this.msgs[msgType]);
+            var msg = exp(response);
+
+            var msgOpts = {
+                type: msgType
+            };
+
+            // if a custom stack is passed in, specify that for the message options
+            if (this.stack) {
+                msgOpts.stack = this.stack;
+            }
+
+            rxNotify.add(msg, msgOpts);
+        }
+    };
+
+    /*
+     * cancels all messages from displaying
+     * @private
+     * @this Scope used for storing messages data
+     */
+    var cancelMessages = function () {
+        this.isCancelled = true;
+        this.deferred.reject();
+    };
+
+    /*
+     * Creates a new promise notification handler to show loading, success/error messages
+     * @public
+     * @param {Object} promise The promise to attach to for showing success/error messages
+     * @param {Object} msgs The messages to display. Can take in HTML/expressions
+     * @param {Object} msgs.loading Loading message to show while promise is unresolved
+     * @param {Object} [msgs.success] Success message to show on successful promise resolve
+     * @param {Object} [msgs.error] Error message to show on promise rejection
+     * @param {string} [stack] What stack to add to. Defaults to default rxNotify stack
+     */
+    var add = function (promise, msgs, stack) {
+        var deferred = $q.defer();
+
+        var uid = _.uniqueId('promise_');
+
+        scope[uid] = {
+            isCancelled: false,
+            msgs: msgs,
+            stack: stack
+        };
+
+        // add loading message to page
+        var loadingOpts = {
+            loading: true
+        };
+
+        if (stack) {
+            loadingOpts.stack = stack;
+        }
+
+        scope[uid].loadingMsg = rxNotify.add(msgs.loading, loadingOpts);
+
+        // bind promise to show message actions
+        deferred.promise
+            .then(showMessage.bind(scope[uid], 'success'), showMessage.bind(scope[uid], 'error'))
+            .finally(dismissLoading.bind(scope[uid]));
+
+        // react based on promise passed in
+        promise.then(function (response) {
+            deferred.resolve(response);
+        }, function (reason) {
+            deferred.reject(reason);
+        });
+
+        // if page change, cancel everything
+        $rootScope.$on('$routeChangeStart', cancelMessages.bind(scope[uid]));
+
+        // attach deferred to scope for later access
+        scope[uid].deferred = deferred;
+
+        return scope[uid];
+    };
+
+    return {
+        add: add
     };
 });
