@@ -168,7 +168,7 @@ Stacks are just separate notification areas. Normally, all messages created will
 
 You can also create custom stacks for speficic notification areas. Say you have a form on your page that you want to add error messages to. You can create a custom stack for this form and send form-specific messages to it.
 
-### Using the Page Stack
+## Using the Page Stack
 
 The default notification stack is added by default to the page template, so it should be ready to use without any work (unless the app uses a custom template). The HTML to add the default stack to the page is:
 
@@ -176,10 +176,10 @@ The default notification stack is added by default to the page template, so it s
 
 Note that a 'stack' attribute does not need to be defined.
 
-### Creating a Custom Stack
+## Creating a Custom Stack
 
 See 'stack' under 'Message options'
 
-### Clearing all messages in a stack
+## Clearing all messages in a stack
 
 You can clear all messages in a specific stack programmatically via the **`rxNotify.clear`** function. Simply pass in the name of the stack to clear: **`rxNotify.clear('page')`**.
