@@ -183,3 +183,7 @@ See 'stack' under 'Message options'
 ## Clearing all messages in a stack
 
 You can clear all messages in a specific stack programmatically via the **`rxNotify.clear`** function. Simply pass in the name of the stack to clear: **`rxNotify.clear('page')`**.
+
+## rxPromiseNotifications
+
+It's a common pattern with API requests that you'll show a loading message, followed by either a success or failure message depending on the result of the call. rxPromiseNotifications is the service created for this pattern. See the API docs for more information on how to call/use rxPromiseNotifications.

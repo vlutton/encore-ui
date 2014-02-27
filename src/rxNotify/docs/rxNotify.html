@@ -40,8 +40,16 @@
     </div>
 
     <div>
+        <h3>rxPromiseNotifications</h3>
+        <button ng-click="addPromise()">Create messages</button>
+        <button ng-click="deferred.resolve();">Resolve Promise</button>
+        <button ng-click="deferred.reject();">Reject Promise</button>
+    </div>
+
+    <div>
         <button ng-click="routeChange()">Simulate Route Change</button>
     </div>
+
     <div class="pure-g">
         <div class="pure-u-1-2">
             <h2>Page Stack</h2>
