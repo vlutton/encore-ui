@@ -62,7 +62,6 @@ angular.module('encore.ui.rxPaginate', [])
         this.settings = _.defaults(opts, {
             itemsPerPage: 10,
             pagesToShow: 5,
-            itemSizeList: [],
             pageNumber: 0,
             pageInit: false,
             total: 0,
