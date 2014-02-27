@@ -68,7 +68,10 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
             dismissAfterTimeout(message);
         }
 
-        stacks[message.stack].push(message);
+        // make sure there's actual text to add
+        if (message.text.length > 0) {
+            stacks[message.stack].push(message);
+        }
     };
 
     /*

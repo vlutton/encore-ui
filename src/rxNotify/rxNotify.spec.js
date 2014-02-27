@@ -41,12 +41,27 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText1);
         });
 
+        it('should not add message if `text` is empty', function () {
+            // create message w/o text
+            notifySvc.add('');
+
+            // validate message not added
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+
+            // test that if someone really wants an empty message, they can get it
+            // create message w/ a single space
+            notifySvc.add(' ');
+
+            // validate message added
+            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
+        });
+
         it('should add unique id to message and return it on add', function () {
             // create message
             var msg = notifySvc.add(messageText1);
 
             // expect message to be first in page stack
-            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
+            expect(notifySvc.stacks[defaultStack][0].id).to.eql(msg.id);
         });
 
         it('should allow type specification', function () {
@@ -391,8 +406,7 @@ describe('rxNotify', function () {
 
         it('should dismiss loading message after promise resolves', function () {
             rpn.add(prom.promise, {
-                loading: loadingMsg,
-                success: successMsg
+                loading: loadingMsg
             });
 
             prom.resolve();
@@ -400,8 +414,7 @@ describe('rxNotify', function () {
             scope.$digest();
 
             // expect loading message to no longer be in stack
-            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
-            expect(notifySvc.stacks[defaultStack][0].text).to.not.contain(loadingMsg);
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
         });
 
         it('should show success message after promise is resolved successfully', function () {
