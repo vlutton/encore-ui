@@ -9,6 +9,6 @@ module.exports = {
         src: ['coverage']
     },
     rxPageObjects: {
-        src: 'index.js'
+        src: ['utils/rx-page-objects/index.js', 'utils/rx-page-objects/*.tgz']
     }
 };

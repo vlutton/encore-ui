@@ -59,5 +59,11 @@ module.exports = {
                 return dest + imagePath.join(path.sep);
             }
         }]
+    },
+    rxPageObjects: {
+        expand: true,
+        flatten: true,
+        src: 'utils/rx-page-objects/*.tgz',
+        dest: '<%= config.dist %>/'
     }
 };
