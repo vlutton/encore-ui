@@ -32,14 +32,10 @@ angular.module('encore.ui.rxPaginate', [])
 * This is the data service that can be used in conjunction with the pagination
 * objects to store/control page display of data tables and other items.
 *
-* iteration function to generate the item size list.
 * @property {number} itemsPerPage This is the current setting for the number
 * of items to display per page
 * @property {number} pagesToShow This is the number of pages to show
 * in the pagination controls
-* @property {Array} itemSizeList This is where the
-* {@link encore.components.paginate:rxItemsPerPage rxItemsPerPage}
-* Directive will store it's list of items per page
 * @property {number} pageNumber This is where the current page number is
 * stored.
 * @property {boolean} pageInit This is used to determine if the page has been
@@ -50,7 +46,7 @@ angular.module('encore.ui.rxPaginate', [])
 * the pagination or not.
 *
 * @method createInstance This is used to generate the instance of the
-* PageTracking object.  Enables the ability to override default showAll and itemsPerPage.
+* PageTracking object. Enables the ability to override default settings
 *
 * @example
 * <pre>
