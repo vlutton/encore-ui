@@ -2,140 +2,165 @@
 
 Service (rxNotify) and Directive (rxNotifications) for displaying status messages on a page.
 
-## Messages
-
-### Adding a New Message
+## Adding a New Message
 
 To add a new message to a stack, inject 'rxNotify' into your function and run:
 
-```
-rxNotify.add('My Message Text');
-```
+> `rxNotify.add('My Message Text');`
 
 This will add a new message to the default stack ('page') with all default options set. To customize options, pass in an object as the second argument with you specific options set:
 
-```
-rxNotify.add('My Message Text', {
-    stack: 'custom',
-    type: 'warning'
-});
-```
+> `rxNotify.add('My Message Text', {`
 
-#### Message options
+>>    `stack: 'custom',`
 
-- `type` Message type
+>>    `type: 'warning'`
 
-    *Default:* `'info'`
+> `});`
 
-    *Other values:* `'warn'`, `'error'`, `'success'`
+## Message options
 
-- `timeout` Time (in seconds) for message to appear
+------
 
-    *Default:* `-1`
+- **`type`**: *Message type.*
 
-    Message displays indefinitely
+    > Default: `'info'`
 
-    *Other values:* Any positive integer
+    *Other values*: `'warn'`, `'error'`, `'success'`
 
-- `dismissable` Whether a user can dismiss the message via a 'x' icon
+------
 
-    *Default:* `true`
+- **`timeout`**: *Time (in seconds) for message to appear.*
 
-    *Other values:* `false`
+    > Default: `-1` (Message displays indefinitely)
 
-- `loading` Replaces type icon with spinner. Removes option for use to dismiss message.
+    *Other values*: Any positive integer
 
-    *Default:* `false`
+------
 
-    *Other values:* `true`
+- **`dismissable`**: *Whether a user can dismiss the message via an 'x' icon.*
 
-    You usually want to associate this with a 'dismiss' property. For example:
+    > Default: `true`
 
-    ```
-    rxNotify.add('Loading', {
-        loading: true,
-        dismiss: [$scope, 'loaded']
-    });
+    *Other values*: `false`
 
-    var apiCallback = function (data) {
-        $scope.loaded = true;
-        // do something with the data
-    }
+------
 
-    myApiCall(apiCallback);
-    ```
+- **`loading`** *Replaces type icon with spinner. Removes option for use to dismiss message.*
 
-- `show` When to have the message appear
+    > Default: `false`
 
-    *Default:* `'immediately'`
+    *Other values*: `true`
 
-    *Other values:*
-    - `'next'`: Show message after the next route change
-    - `[scope, 'property']`:
-        Pass in a property on a scope to watch for a change. When the property value equals true, the message is shown.
+    You usually want to associate this with a 'dismiss' property.
 
-        Example:
-        ```
-        $scope.loaded = false;
+    **Example**:
 
-        rxNotify.add('Content loaded!', {
-            show: [$scope, 'loaded']
-        });
 
-        $timeout(function () {
-            $scope.loaded = true;
-        }, 1500);
-        ```
+    > `rxNotify.add('Loading', {`
 
-- `dismiss` When to have the message disappear
+    >>  `loading: true,`
 
-    *Default:* `'next'`
+    >>  `dismiss: [$scope, 'loaded']`
 
-    Dismiss message after the next route change
+    > `});`
+
+    > `var apiCallback = function (data) {`
+
+    >>  `$scope.loaded = true;`
+
+    >>  `// do something with the data`
+
+    > `}`
+
+    > `myApiCall(apiCallback);`
+
+------
+
+- **`show`**: *When to have the message appear.*
+
+    > Default: `'immediately'`
 
     *Other values:*
 
-    - `[scope, 'property']`:
-        Pass in a property on a scope to watch for a change. When the property value equals true, the message is dismissed.
+    > `'next'`: Show message after the next route change
 
-        Example:
-        ```
-        $scope.loaded = false;
+    > `[scope, 'property']`:
 
-        rxNotify.add('Loading Content', {
-            dismiss: [$scope, 'loaded']
-        });
+    >> Pass in a property on a scope to watch for a change. When the property value equals true, the message is shown.
 
-        $timeout(function () {
-            $scope.loaded = true;
-        }, 1500);
-        ```
+    **Example**:
 
-- `stack` Which message stack the message gets added to
+    > `$scope.loaded = false;`
 
-    *Default:* `'page'`
+    > `rxNotify.add('Content loaded!', {`
 
-    *Other values:* Any string
+    >>  `show: [$scope, 'loaded']`
 
-    Example:
-    ```
-    rxNotify.add('Username required', {
-        type: 'error',
-        stack: 'loginForm'
-    });
-    ```
+    > `});`
 
-    ```
-    <rx-notifications stack="loginForm"></rx-notifications>
-    ```
+    > `$timeout(function () {`
 
-### Dismissing a message programatically
+    >>  `$scope.loaded = true;`
+
+    > `}, 1500);`
+
+------
+
+- **`dismiss`**: *When to have the message disappear.*
+
+    > Default: `'next'` (Dismiss message after the next route change)
+
+    *Other values:*
+
+    > `[scope, 'property']`:
+    >>    Pass in a property on a scope to watch for a change. When the property value equals true, the message is dismissed.
+
+    **Example**:
+
+    > `$scope.loaded = false;`
+
+    > `rxNotify.add('Loading Content', {`
+
+    >>  `dismiss: [$scope, 'loaded']`
+
+    > `});`
+
+    > `$timeout(function () {`
+
+    >>  `$scope.loaded = true;`
+
+    > `}, 1500);`
+
+------
+
+- **`stack`**: *Which message stack the message gets added to.*
+
+    > Default: `'page'`
+
+    > *Other values:* Any string
+
+    **Example**:
+
+    > `rxNotify.add('Username required', {`
+
+    >>  `type: 'error',`
+
+    >>  `stack: 'loginForm'`
+
+    > `});`
+
+    > `<rx-notifications stack="loginForm"></rx-notifications>`
+
+------
+
+## Dismissing a message programatically
 
 Most messages are dismissed either by the user, a route change or using the custom 'dismiss' property.
 
-If you need to dismiss a message programmaticaly, you can run `rxNotify.dismiss(message)`, where message is the message object to dismiss.
+If you need to dismiss a message programmaticaly, you can run **`rxNotify.dismiss(message)`**, where message is the message object to dismiss.
 
-If you don't have the full message object, passing in the Message ID (which is returned from `rxNotify.add`) and the stack the message is in: `rxNotify.dismiss('42', 'page')`.
+If you don't have the full message object, passing in the Message ID (which is returned from **`rxNotify.add`**) and the stack the message is in: **`rxNotify.dismiss('42', 'page')`**.
 
 ## Stacks
 
@@ -147,9 +172,7 @@ You can also create custom stacks for speficic notification areas. Say you have 
 
 The default notification stack is added by default to the page template, so it should be ready to use without any work (unless the app uses a custom template). The HTML to add the default stack to the page is:
 
-```
-<rx-notifications></rx-notifications>
-```
+> `<rx-notifications></rx-notifications>`
 
 Note that a 'stack' attribute does not need to be defined.
 
@@ -159,4 +182,4 @@ See 'stack' under 'Message options'
 
 ### Clearing all messages in a stack
 
-You can clear all messages in a specific stack programmatically via the `rxNotify.clear` function. Simply pass in the name of the stack to clear: `rxNotify.clear('page')`.
+You can clear all messages in a specific stack programmatically via the **`rxNotify.clear`** function. Simply pass in the name of the stack to clear: **`rxNotify.clear('page')`**.
