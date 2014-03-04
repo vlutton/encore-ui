@@ -1,7 +1,7 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
 
-var page = {
+var rxSortableColumn = {
 
     btnSort: {
         get: function () {
@@ -60,10 +60,10 @@ var page = {
 exports.rxSortableColumn = {
 
     initialize: function (rxSortableColumnElement) {
-        page.rootElement = {
+        rxSortableColumn.rootElement = {
             get: function () { return rxSortableColumnElement; }
         };
-        return Page.create(page);
+        return Page.create(rxSortableColumn);
     }
 
 };

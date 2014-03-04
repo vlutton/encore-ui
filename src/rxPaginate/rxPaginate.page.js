@@ -2,14 +2,14 @@
 var Page = require('astrolabe').Page;
 var _ = require('lodash');
 
-var page = {
+var rxPaginate = {
 
     lnkCurrentPage: {
-        get: function () { return this.rxPaginate.findElement(this.by.css('.pagination .active a')); }
+        get: function () { return this.rootElement.findElement(this.by.css('.pagination .active a')); }
     },
 
     tblPagination: {
-        get: function () { return this.rxPaginate.findElements(this.by.css('.pagination li a')); }
+        get: function () { return this.rootElement.findElements(this.by.css('.pagination li a')); }
     },
 
     jumpToPage: {
@@ -178,9 +178,9 @@ var page = {
 
 exports.rxPaginate = {
     initialize: function (rxPaginationElement) {
-        page.rxPaginate = {
+        rxPaginate.rootElement = {
             get: function () { return rxPaginationElement; }
         };
-        return Page.create(page);
+        return Page.create(rxPaginate);
     }
 };
