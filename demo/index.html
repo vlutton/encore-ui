@@ -11,8 +11,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.js"></script>
     <script src="./encore-ui-tpls.min.js"></script>
 
-    <link href="assets/prism.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
+    <link href="assets/prism.css" rel="stylesheet" />
 
     <link href="./encore-ui.css" rel="stylesheet" type="text/css" />
 
@@ -22,6 +23,12 @@
             -moz-box-sizing: border-box;
             box-sizing: border-box;
             padding: 1em;
+        }
+
+        .component {
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 2em;
+            padding-bottom: 2em;
         }
     </style>
 
@@ -42,7 +49,7 @@
                 <% config.demoModules.forEach(function(module) { %>
                     <section class="component">
                         <a id="<%= module.name %>"></a>
-                        <h2 class="component-title"><%= module.displayName %><small>
+                        <h2 class="section-title component-title"><%= module.displayName %><small>
                               (encore.ui.<%= module.name %>)
                           </small></h2>
                         <div class="pure-g">

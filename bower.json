@@ -2,14 +2,15 @@
   "name": "EncoreUI",
   "version": "0.0.5",
   "dependencies": {
-      "angular": "~1.2.9",
-      "angular-sanitize": "~1.2.9",
-      "angular-bootstrap": "~0.10.0",
-      "lodash": "~2.4.1",
-      "momentjs": "~2.5.0"
+    "angular": "~1.2.9",
+    "angular-sanitize": "~1.2.9",
+    "angular-bootstrap": "~0.10.0",
+    "lodash": "~2.4.1",
+    "momentjs": "~2.5.0",
+    "normalize-css": "~3.0.0"
   },
   "devDependencies": {
-      "angular-resource": "~1.2.9",
-      "angular-mocks": "~1.2.9"
+    "angular-resource": "~1.2.9",
+    "angular-mocks": "~1.2.9"
   }
 }
