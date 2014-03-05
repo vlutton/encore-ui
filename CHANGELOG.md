@@ -1,3 +1,18 @@
+<a name="0.2.0"></a>
+## 0.2.0 (2014-03-05)
+
+
+#### Features
+
+* **demo:** demo pages now live on gh-pages branch instead of CDN ([a4ad3011](git@github.com:rackerlabs/encore-ui/commit/a4ad301194dc880c8c50af4bcfec054cc4990e79))
+
+
+#### Breaking Changes
+
+* normalize.less is no longer added by default to the encore-ui.css package.
+ ([6ab470fa](git@github.com:rackerlabs/encore-ui/commit/6ab470fa56dfb7b05f2a759ecc057b717f99ca39))
+
+
 <a name="0.1.0"></a>
 ## 0.1.0 (2014-03-04)
 
