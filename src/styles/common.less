@@ -1,11 +1,68 @@
 @import 'vars';
 @import 'flexbox';
 
-/* Main Page CSS */
+html {
+    line-height: 1;
+}
+
+// Set default font & size
+html, button, input, select,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    font-size: 13px;
+}
+
+header, nav,
+ol, ul, li,
+h1, h2, h3, h4, h5, h6,
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+p {
+    line-height: 1.2;
+}
+
+/*
+ Global styling for links
+
+ ```
+ <a href="#">My Link</a>
+ <a href="#" class=":visited">Visited Link</a>
+ <a href="#" class=":hover">Hovered Link</a>
+ <a href="#" class=":focus">Focused Link</a>
+ <a href="#" class=":active">Active Link</a>
+ ```
+ */
+a {
+    text-decoration: none;
+    color: @linkColor;
+}
+a:hover,
+a:focus {
+    text-decoration: underline;
+    color: @linkColorHover;
+}
+
+/* Layout Styles */
 .container {
     min-height: 100%;
     .flexbox-display();
     .flexbox-direction(column);
+    background: #f5f5f5;
 }
 
 .page-content {
@@ -25,8 +82,61 @@ These are common styles that will be re-used across the site
 
 */
 
+/* Heading Styles */
+.section-title {
+    font-size: 2em;
+    font-weight: 100;
+    color: #666;
+    margin-top: 40px;
+    margin-bottom: 15px;
+}
+
+/* Table Styles */
+table {
+    clear: both;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    td,
+    th {
+        border: 1px solid #eee;
+        padding: @table-default-cell-padding;
+        color: #555;
+    }
+    thead th {
+        text-align: left;
+        background: #878787;
+        color: #fff;
+        border: 1px solid #6e6e6e;
+    }
+}
 .table-striped tr:nth-child(even) {
     background: #f6f6f6;
+}
+
+/*
+ Global styling for links
+
+ ```
+ <a href="#">My Link</a>
+ <a href="#" class=":visited">Visited Link</a>
+ <a href="#" class=":hover">Hovered Link</a>
+ <a href="#" class=":focus">Focused Link</a>
+ <a href="#" class=":active">Active Link</a>
+ ```
+ */
+a,
+.btn-link {
+    text-decoration: none;
+    color: @linkColor;
+}
+a:hover,
+a:focus,
+.btn-link:hover,
+.btn-link:focus {
+    text-decoration: underline;
+    color: @linkColorHover;
 }
 
 /*
@@ -103,29 +213,6 @@ thead th .btn-link {
         color: #fff;
     }
 }
-
-
-.truncate-wrapper {
-    position: relative;
-}
-.truncate {
-    display: inline-block;
-    max-width: 125px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: top;
-    white-space: nowrap;
-}
-/*
-.truncate:hover {
-    max-width:10000px;
-    position:absolute;
-    top:7px;
-    background-color:#fff;
-    padding: 4px auto;
-    padding-right:15px
-}
-*/
 
 /*
 
@@ -218,4 +305,18 @@ body:hover .visually-hidden a,
 body:hover .visually-hidden input,
 body:hover .visually-hidden button {
     display: none;
+}
+
+/*
+ * Provide clearfix functionality
+ * @see http://nicolasgallagher.com/micro-clearfix-hack/
+ */
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
 }
