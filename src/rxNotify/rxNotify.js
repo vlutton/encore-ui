@@ -215,6 +215,17 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         addAllNext();
     });
 
+    // if page changes, cancel messages waiting on variable updates
+    $rootScope.$on('$routeChangeStart', function () {
+        _.each(stacks, function (stack) {
+            _.each(stack, function (message) {
+                if (_.isArray(message.dismiss)) {
+                    dismiss(message);
+                }
+            });
+        });
+    });
+
     // expose public API
     return {
         add: add,
