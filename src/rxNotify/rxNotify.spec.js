@@ -264,7 +264,7 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
         });
 
-        it('should dismiss message waiting on scope update if page changed', function () {
+        it('should dismiss message waiting on scope update if scope destroyed', function () {
             // set expression to equal true (showing)
             scope.loaded = false;
 
@@ -276,8 +276,7 @@ describe('rxNotify', function () {
             // validate in stack
             expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
 
-            // simulate route change
-            rootScope.$broadcast('$routeChangeStart');
+            scope.$destroy();
 
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);

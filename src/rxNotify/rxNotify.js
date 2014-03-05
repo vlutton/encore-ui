@@ -106,6 +106,11 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
             cb = addToStack;
         } else if (changeType == 'dismiss') {
             cb = dismiss;
+
+            // add a listener to dismiss message if scope is destroyed
+            scope.$on('$destroy', function () {
+                dismiss(message);
+            });
         }
 
         scope.$watch(prop, function (newVal) {
@@ -213,17 +218,6 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
     $rootScope.$on('$routeChangeSuccess', function processRouteChange () {
         clearAllDismissable();
         addAllNext();
-    });
-
-    // if page changes, cancel messages waiting on variable updates
-    $rootScope.$on('$routeChangeStart', function () {
-        _.each(stacks, function (stack) {
-            _.each(stack, function (message) {
-                if (_.isArray(message.dismiss)) {
-                    dismiss(message);
-                }
-            });
-        });
     });
 
     // expose public API
