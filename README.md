@@ -26,7 +26,7 @@ To use Encore UI in your app, do the following:
 
 # Demo App
 
-You can see all components in action by visiting [the Encore UI demo page](https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.1.0/index.html).
+You can see all components in action by visiting [the Encore UI demo page](http://rackerlabs.github.io/encore-ui/0.1.0/).
 
 # Further Reading
 

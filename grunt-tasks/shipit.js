@@ -23,6 +23,9 @@ module.exports = function (grunt) {
             // push files to prod
             grunt.task.run('cloudfiles:production');
 
+            // update gh-pages branch
+            grunt.task.run('gh-pages');
+
             // shipit squirrel
             grunt.task.run('squirrel');
         } else {

@@ -1,4 +1,12 @@
 module.exports = {
+    docs: {
+        src: [
+            '<%= config.dist %>/index.html',
+            '<%= config.dist %>/assets',
+            '<%= config.dist %>/images',
+            '<%= config.dist %>/coverage'
+        ]
+    },
     build: {
         src: ['<%= config.dist %>/*']
     },
