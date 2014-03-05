@@ -15,7 +15,9 @@ script:
 - grunt karma:minified
 after_success:
 - grunt coveralls
-before_deploy: cd dist
+before_deploy:
+- grunt clean:docs
+- cd dist
 deploy:
   provider: cloudfiles
   username: encorecloudfiles
@@ -40,4 +42,4 @@ notifications:
     - '%{repository}#%{build_number} (%{branch}): %{message} (<a href="%{build_url}">Details</a>)'
     format: html
     rooms:
-      secure: fgyHZqqWEWDrZnl+oiLOyqePXa2qYCLfEfEHtQKbG18daK6Z/diPB+LbkHfUKt7DY39vc/UnzAVhlVG3nvaq+7/a0D8zSrJpMUUfiSN+Ule+9VysFON1/Y7sZsC4lDO7Qxj8HcefFKMV/uw0sgTpkdpjZMf40OzvW4BzofNABS0=
+      secure: Pi8hykadFihWPglnHkpcJY5JlWRZ4Skg1oSn6Iqlgp2vA2oHFjFewHbzW0jCw025cut7m1rPRqg2se/X3gKf2TRkpWZso5jovopiHw9ULUL/B13Ihd5XH8AK8Bby4NgKhUepxVMWTuPu7r+O5RwQ3RTDFJtT1oSQnk0NDI5KK/Q=
