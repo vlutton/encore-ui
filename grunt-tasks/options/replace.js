@@ -8,6 +8,9 @@ module.exports = {
         }, {
             from: /\-(?:\d\.){2}\d\.tgz/g,
             to: '-<%= pkg.version %>.tgz'
+        }, {
+            from: /encore\-ui\/(?:\d\.){2}\d\//g,
+            to: 'encore-ui/<%= pkg.version %>/'
         }]
     }
 };
