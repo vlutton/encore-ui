@@ -1,3 +1,17 @@
+<a name="0.2.1"></a>
+### 0.2.1 (2014-03-06)
+
+
+#### Bug Fixes
+
+* **grunt:**
+  * gh-pages fixes (only add, commit msg) ([f003f9b8](git@github.com:rackerlabs/encore-ui/commit/f003f9b80a76b67e5e8d89117c6308ec8ff62cda))
+  * updated replace task to work with new encore demo link ([ab461cf5](git@github.com:rackerlabs/encore-ui/commit/ab461cf5cd4f001133a49d2e59b73c0672f2df10))
+* **rxNotify:**
+  * message dismissed if scope being watched is destroyed ([fbfa4d25](git@github.com:rackerlabs/encore-ui/commit/fbfa4d25fae4f257437636519fc3fce68ece6a3b))
+  * Dismiss loading messages on page change ([0947bafa](git@github.com:rackerlabs/encore-ui/commit/0947bafa67c3bb0f1226b3e572649a08bd665204))
+
+
 <a name="0.2.0"></a>
 ## 0.2.0 (2014-03-05)
 
