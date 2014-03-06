@@ -106,6 +106,11 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
             cb = addToStack;
         } else if (changeType == 'dismiss') {
             cb = dismiss;
+
+            // add a listener to dismiss message if scope is destroyed
+            scope.$on('$destroy', function () {
+                dismiss(message);
+            });
         }
 
         scope.$watch(prop, function (newVal) {

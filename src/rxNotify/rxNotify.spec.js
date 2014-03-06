@@ -264,6 +264,24 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
         });
 
+        it('should dismiss message waiting on scope update if scope destroyed', function () {
+            // set expression to equal true (showing)
+            scope.loaded = false;
+
+            // add message w/ dismiss property
+            var msg = notifySvc.add(messageText1, {
+                dismiss: [scope, 'loaded']
+            });
+
+            // validate in stack
+            expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
+
+            scope.$destroy();
+
+            // validate not in stack
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+        });
+
         it('should show on next on routeChange when set', function () {
             // add message with show set to 'next'
             var msg = notifySvc.add(messageText1, {
