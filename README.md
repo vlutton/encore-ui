@@ -6,7 +6,7 @@ Encore-UI is a library of reusable AngularJS widgets for internal Rackspace proj
 
 # Demo App
 
-You can see all components in action by visiting [the Encore UI demo page](http://rackerlabs.github.io/encore-ui/0.2.1/).
+You can see all components in action by visiting [the Encore-UI demo page](http://rackerlabs.github.io/encore-ui/).
 
 # Support
 
@@ -22,8 +22,9 @@ To discuss bugs and features, please use [the GitHub Issues Page](https://github
 
 # Installation (AKA How to use Encore-UI)
 
-To use Encore UI in your app, do the following:
+## CDN
 
+To use the Encore-UI CDN in your app, do the following:
 
 1. Install and include the dependencies listed in [bower.json](./bower.json) (items listed in devDependencies are not required)
 
@@ -44,6 +45,14 @@ To use Encore UI in your app, do the following:
     ```
     angular.module('myApp', ['encore.ui']);
     ```
+
+## Bower
+
+If you have a static server that you'd like to build your files off of, you can install Encore-UI via
+
+```
+bower install encore-ui
+```
 
 # Further Reading
 

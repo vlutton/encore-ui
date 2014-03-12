@@ -1,8 +1,7 @@
 module.exports = {
     options: {
-        base: 'dist',
-        add: true,
-        message: 'docs(ghpages): add v<%= config.dist %>'
+        base: '<%= config.docs %>',
+        message: 'docs(ghpages): release v<%= pkg.version %>'
     },
     src: '**/*'
 };
