@@ -8,7 +8,7 @@ module.exports = {
             paths: 'src/styles/'
         },
         files: {
-            '<%= config.dist %>/encore-ui.css': [
+            '<%= config.dist %>/<%= config.fileName %>.css': [
                 'src/styles/normalize.less',
                 'src/styles/common.less',
                 'src/rx*/*.less'

@@ -1,12 +1,15 @@
 module.exports = {
     app: 'src',
-    dist: 'dist/<%= pkg.version %>',
+    build: 'build',
+    dist: 'build/dist', // used for js/css files pushed to CDN/bower
+    docs: 'build', // used for demo, coverage, jsdocs files to go to gh-pages (same a 'build' folder, but a
+                   // different variable in case they're later changed)
+    bower: 'bower',
     liveReloadPage: require('connect-livereload')({ port: 35729 }),
     mountFolder: function (connect, dir) {
         return connect.static(require('path').resolve(dir));
     },
-    fileName: 'encore-ui',
-    fileNameCustom: '<%= fileName %>-custom',
+    fileName: 'encore-ui-<%= pkg.version %>',
     moduleName: 'encore.ui',
     modules: [],
     meta: {

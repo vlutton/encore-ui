@@ -6,13 +6,13 @@ module.exports = {
     dist: {
         options: {
             livereload: 1337,
-            base: '<%= config.dist %>'
+            base: '<%= config.docs %>'
         }
     },
     keepalive: {
         options: {
             keepalive: true,
-            base: '<%= config.dist %>'
+            base: '<%= config.docs %>'
         }
     }
 };

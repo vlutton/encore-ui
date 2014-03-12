@@ -11,7 +11,7 @@ module.exports = {
             expand: true,
             src: ['**/*.html'],
             cwd: 'demo/',
-            dest: '<%= config.dist %>'
+            dest: '<%= config.docs %>'
         }]
     },
     demoassets: {
@@ -20,7 +20,7 @@ module.exports = {
             //Don't re-copy html files, we process those
             src: ['**/**/*', '!**/*.html'],
             cwd: 'demo/',
-            dest: '<%= config.dist %>'
+            dest: '<%= config.docs %>'
         }]
     },
     coverage: {
@@ -28,7 +28,7 @@ module.exports = {
             expand: true,
             src: ['Phantom*/**/*'],
             cwd: 'coverage/',
-            dest: '<%= config.dist %>/coverage/',
+            dest: '<%= config.docs %>/coverage/',
             // remove 'Phantom' from path
             rename: function (dest, src) {
                 // convert src to array
@@ -65,5 +65,22 @@ module.exports = {
         flatten: true,
         src: 'utils/rx-page-objects/*.tgz',
         dest: '<%= config.dist %>/'
+    },
+    bower: {
+        files: [{
+            expand: true,
+            cwd: '<%= config.dist %>/',
+            src: '**/*',
+            dest: '<%= config.bower %>/',
+            // remove version number from file names
+            rename: function (dest, src) {
+                var strippedVersion = src.replace(/\-(?:\d\.){2}\d/g, '');
+
+                return dest + strippedVersion;
+            }
+        }, {
+            src: 'bower.json',
+            dest: '<%= config.bower %>/bower.json'
+        }]
     }
 };

@@ -26,5 +26,23 @@ module.exports = {
                 cwd: 'utils/rx-page-objects'
             }
         }
+    },
+    bower: {
+        command:  function () {
+            return [
+                // cd into bower directory
+                'cd bower',
+                // add & commit files
+                'git commit -a -m "v<%= pkg.version %>"',
+                // tag files to new version
+                'git tag "v<%= pkg.version %>";',
+                // push to github
+                'git push;',
+                'git push --tags;',
+            ].join(' && ');
+        },
+        options: {
+            stdout: true,
+        }
     }
 };

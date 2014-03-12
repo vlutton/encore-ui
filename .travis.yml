@@ -16,8 +16,7 @@ script:
 after_success:
 - grunt coveralls
 before_deploy:
-- grunt clean:docs
-- cd dist
+- cd build/dist
 deploy:
   provider: cloudfiles
   username: encorecloudfiles
