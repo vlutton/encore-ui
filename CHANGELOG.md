@@ -1,3 +1,18 @@
+<a name="0.2.2"></a>
+### 0.2.2 (2014-03-12)
+
+
+#### Bug Fixes
+
+* **grunt:** Change docs to guides in bump.js ([c0cda860](git@github.com:rackerlabs/encore-ui/commit/c0cda8600441ee8f144704a523a52f7d61e82615))
+* **template:** protractor inside test suites only. ([88385b64](git@github.com:rackerlabs/encore-ui/commit/88385b64231ceb0457d9d738de9bb34182ec794b))
+
+
+#### Features
+
+* **rxButton:** Initial version of the rxButton. ([11361c67](git@github.com:rackerlabs/encore-ui/commit/11361c67211793478f45a4df13bb423278e5e1ba))
+
+
 <a name="0.2.1"></a>
 ### 0.2.1 (2014-03-06)
 
