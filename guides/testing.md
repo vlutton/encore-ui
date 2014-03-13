@@ -4,30 +4,6 @@ Goal: Ability to deliver features *quickly* to production with high *reliability
 
 In order to support continuous development/integration, taking advantage of automated testing is a must. While the goal of automated testing is to provide full coverage, it also needs to be seemlessly integrated into the developer environment.
 
-## Test Levels
-
-### Component Testing
-
-Goal: Tests smallest piece of functionality or method
-
- - Code level tests
- - Stored in same location as code (separate file with *.spec.js)
- - Best for testing services, classes and objects
- - Does contain "functional" tests (can test browser interactions like 'click')
- - Sandboxed & Isolated testing
- - Mocking & Stubbing required
- - Fast
- - Uses [Karma](http://karma-runner.github.io) + [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) + [Sinon](http://sinonjs.org/)
-
-### Midway Testing
-
-Goal: Validate our component in a full browser
-
- - Uses an example instance of the component
- - Uses [Selenium](https://code.google.com/p/selenium/wiki/WebDriverJs), [Protractor](https://github.com/angular/protractor/), [Astrolabe](https://github.com/stuplum/astrolabe)
- - Somewhat slow
- - Story Based
-
 ## Configuration Files
 
 More details on these files are found in the files themselves
@@ -78,11 +54,11 @@ The file name for this page objects follows the `componentName.page.js` conventi
 
 On build, all page object files are concatanated and tarballed into the `dist` directory. They are then published either manually or via Travis. To use these page objects, developers should include the following dependency in their `package.json` file:
 
-    "rx-page-objects": "https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.2.1/rx-page-objects-0.2.1.tgz"
+    "rx-page-objects": "https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/rx-page-objects-0.2.2.tgz"
 
 Alternatively, they can install the file using this command:
 
-    npm install --save-dev https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.2.1/rx-page-objects-0.2.1.tgz
+    npm install --save-dev https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/rx-page-objects-0.2.2.tgz
 
 Once installed, the page objects can be pulled in to any midway test via:
 
@@ -92,3 +68,27 @@ var myComponentPage = rxPageObjects.myComponent;
 ...
 expect(myComponentPage.someElement.isDisplayed()).toEqual(true);
 ```
+
+## Test Levels
+
+### Component Testing
+
+Goal: Tests smallest piece of functionality or method
+
+ - Code level tests
+ - Stored in same location as code (separate file with *.spec.js)
+ - Best for testing services, classes and objects
+ - Does contain "functional" tests (can test browser interactions like 'click')
+ - Sandboxed & Isolated testing
+ - Mocking & Stubbing required
+ - Fast
+ - Uses [Karma](http://karma-runner.github.io) + [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) + [Sinon](http://sinonjs.org/)
+
+### Midway Testing
+
+Goal: Validate our component in a full browser
+
+ - Uses an example instance of the component
+ - Uses [Selenium](https://code.google.com/p/selenium/wiki/WebDriverJs), [Protractor](https://github.com/angular/protractor/), [Astrolabe](https://github.com/stuplum/astrolabe)
+ - Somewhat slow
+ - Story Based

@@ -10,6 +10,7 @@ module.exports = {
         return connect.static(require('path').resolve(dir));
     },
     fileName: 'encore-ui-<%= pkg.version %>',
+    fileNameTpl: 'encore-ui-tpls-<%= pkg.version %>',
     moduleName: 'encore.ui',
     modules: [],
     meta: {

@@ -20,7 +20,7 @@ If you live and die by IRC, there is also a room available on freenode.net at #e
 
 To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open).
 
-# Installation (AKA How to use Encore-UI)
+# Installation (How to use Encore-UI)
 
 ## CDN
 
@@ -31,13 +31,13 @@ To use the Encore-UI CDN in your app, do the following:
 2. Include the Encore CSS file in the `<head>` of your index.html:
 
     ```
-    <link rel="stylesheet" href="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.2.2/encore-ui.min.css">
+    <link rel="stylesheet" href="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/encore-ui.min-0.2.2.css">
     ```
 
 3. Include the Encore JS file (**Dependencies must be included before this line**):
 
     ```
-    <script src="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.2.2/encore-ui-tpls.min.js"></script>
+    <script src="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/encore-ui-tpls-0.2.2.min.js"></script>
     ```
 
 4. Add 'encore.ui' as a dependency in your app.js module declaration. For example:
@@ -48,7 +48,7 @@ To use the Encore-UI CDN in your app, do the following:
 
 ## Bower
 
-If you have a static server that you'd like to build your files off of, you can install Encore-UI via
+If you have a static server that you'd like to build your files off of, you can install Encore-UI via [Bower](http://bower.io):
 
 ```
 bower install encore-ui
@@ -57,10 +57,10 @@ bower install encore-ui
 # Further Reading
 
  - [Contribution Guide](./CONTRIBUTING.md)
- - [Changelog](./CHANGELOG.md)
  - [Versioning Guide](./guides/versioning.md)
+ - [Changelog](./CHANGELOG.md)
  - [UI Setup](./guides/ui-setup.md)
- - [Architecture](./guides/architecture.md)
  - [Testing](./guides/testing.md)
  - [CSS Style Guide](./guides/css-styleguide.md)
  - [JS Style Guide](./guides/js-styleguide.md)
+ - [Architecture](./guides/architecture.md)

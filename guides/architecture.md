@@ -96,7 +96,8 @@
 
 ### Midway Testing Framework/Assertion Library
 
-- [Jasmine](http://pivotal.github.io/jasmine/)
+- [Mocha](http://visionmedia.github.io/mocha/)
+- [Chai as Promised](https://github.com/domenic/chai-as-promised)
 
 ### Midway Testing Browser Runner
 

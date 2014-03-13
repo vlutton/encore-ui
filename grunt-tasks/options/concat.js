@@ -13,7 +13,7 @@ module.exports = {
             banner: '<%= config.meta.banner %><%= config.meta.all %>\n<%= config.meta.tplmodules %>\n'
         },
         src: [], //src filled in by build task
-        dest: '<%= config.dist %>/<%= config.fileName %>-tpls.js'
+        dest: '<%= config.dist %>/<%= config.fileNameTpl %>.js'
     },
     rxPageObjects: {
         options: {
