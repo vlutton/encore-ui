@@ -2,7 +2,7 @@
 
 describe('rxSpinner', function () {
     var scope, compile, rootScope, el;
-    var validTemplate = '<div rx-spinner></div>';
+    var validTemplate = '<div rx-spinner toggle="toggle"></div>';
 
     beforeEach(function () {
         // load module
@@ -26,12 +26,12 @@ describe('rxSpinner', function () {
         expect(domEl.querySelector('.rx-spinner')).to.be.null;
 
         // should have it when loading is true
-        scope.loading = true;
+        scope.toggle = true;
         scope.$digest();
         expect(domEl.querySelector('.rx-spinner')).to.exist;
 
         // should not have it when loading is set back to false
-        scope.loading = false;
+        scope.toggle = false;
         scope.$digest();
         expect(domEl.querySelector('.rx-spinner')).to.be.null;
     });
