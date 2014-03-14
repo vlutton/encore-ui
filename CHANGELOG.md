@@ -1,3 +1,24 @@
+<a name="0.3.0"></a>
+## 0.3.0 (2014-03-14)
+
+
+#### Bug Fixes
+
+* **readme:** more updates to docs based on changes ([72137b41](git@github.com:rackerlabs/encore-ui/commit/72137b416bad3cfa63afcfbe2223c3ee68e954a0))
+* **rxSortUtil:** breaking tests due to not having a pager present ([c5d378f3](git@github.com:rackerlabs/encore-ui/commit/c5d378f34c6c074ebdf6e330d3e86418d2af01bb))
+* **rxSpinner:** Fixed some minor display issues and added size options ([9ac8d17d](git@github.com:rackerlabs/encore-ui/commit/9ac8d17d033fc8a47626921c1df8e1df0a69df90))
+
+
+#### Breaking Changes
+
+* Path to Encore UI files has now changed
+
+    Instead of the convention being /v0.0.0/filename.ext
+    It is now filename-0.0.0.ext
+    This was done to support build changes that occured (and match industry conventions)
+ ([fd63960f](git@github.com:rackerlabs/encore-ui/commit/fd63960f4a4e5432e3f67d10460c14c6ade59800))
+
+
 <a name="0.2.2"></a>
 ### 0.2.2 (2014-03-12)
 
