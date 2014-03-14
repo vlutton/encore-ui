@@ -50,7 +50,13 @@ angular.module('encore.ui.rxSortableColumn', [])
     util.sortCol = function ($scope, predicate) {
         var reverse = ($scope.sort.predicate === predicate) ? !$scope.sort.reverse : false;
         $scope.sort = { reverse: reverse, predicate: predicate };
-        $scope.pager.pageNumber = 0;
+
+        // This execution should be moved outside of the scope for rxSortUtil
+        // already rxSortUtil.sortCol has to be wrapped, and can be implemented there
+        // rather than have rxSortUtil.sortCol check/expect for a pager to be present.
+        if ($scope.pager) {
+            $scope.pager.pageNumber = 0;
+        }
     };
 
     return util;
