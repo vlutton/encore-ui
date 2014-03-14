@@ -9,7 +9,8 @@ module.exports = {
                 '<%= config.dist %>/**/*'
             ],
             'dest': '/',
-            'stripcomponents': 1
+            // Remove '/dist/build/' from path
+            'stripcomponents': 2
         }]
     },
     staging: {
@@ -22,7 +23,8 @@ module.exports = {
                 '<%= config.dist %>/**/*'
             ],
             'dest': '/',
-            'stripcomponents': 1
+            // Remove '/dist/build/' from path
+            'stripcomponents': 2
         }]
     },
     production: {
@@ -35,7 +37,8 @@ module.exports = {
                 '<%= config.dist %>/**/*'
             ],
             'dest': '/',
-            'stripcomponents': 1
+            // Remove '/dist/build/' from path
+            'stripcomponents': 2
         }]
     }
 };
