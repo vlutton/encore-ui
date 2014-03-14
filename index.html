@@ -9,13 +9,13 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.js"></script>
-    <script src="./dist/encore-ui-0.2.1-tpls.min.js"></script>
+    <script src="./dist/encore-ui-tpls-0.3.0.min.js"></script>
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
 
-    <link href="./dist/encore-ui-0.2.1.css" rel="stylesheet" type="text/css" />
+    <link href="./dist/encore-ui-0.3.0.css" rel="stylesheet" />
 
     <style>
         .pure-g > div {
@@ -41,7 +41,7 @@
         <div class="page-content">
             <rx-related-menu state="menuShown" collapsable="false" position="left">
                 <ul class="product-resources">
-                    <li><a href="#configs" ng-click="scrollTo('configs', $event)">Configs</a></li><li><a href="#rxActiveUrl" ng-click="scrollTo('rxActiveUrl', $event)">Rx Active Url</a></li><li><a href="#rxAge" ng-click="scrollTo('rxAge', $event)">Rx Age</a></li><li><a href="#rxBreadcrumbs" ng-click="scrollTo('rxBreadcrumbs', $event)">Rx Breadcrumbs</a></li><li><a href="#rxCapitalize" ng-click="scrollTo('rxCapitalize', $event)">Rx Capitalize</a></li><li><a href="#rxDiskSize" ng-click="scrollTo('rxDiskSize', $event)">Rx Disk Size</a></li><li><a href="#rxForm" ng-click="scrollTo('rxForm', $event)">Rx Form</a></li><li><a href="#rxLogout" ng-click="scrollTo('rxLogout', $event)">Rx Logout</a></li><li><a href="#rxModalAction" ng-click="scrollTo('rxModalAction', $event)">Rx Modal Action</a></li><li><a href="#rxNotify" ng-click="scrollTo('rxNotify', $event)">Rx Notify</a></li><li><a href="#rxPageTitle" ng-click="scrollTo('rxPageTitle', $event)">Rx Page Title</a></li><li><a href="#rxPaginate" ng-click="scrollTo('rxPaginate', $event)">Rx Paginate</a></li><li><a href="#rxSortableColumn" ng-click="scrollTo('rxSortableColumn', $event)">Rx Sortable Column</a></li><li><a href="#rxSpinner" ng-click="scrollTo('rxSpinner', $event)">Rx Spinner</a></li>
+                    <li><a href="#configs" ng-click="scrollTo('configs', $event)">Configs</a></li><li><a href="#rxActiveUrl" ng-click="scrollTo('rxActiveUrl', $event)">Rx Active Url</a></li><li><a href="#rxAge" ng-click="scrollTo('rxAge', $event)">Rx Age</a></li><li><a href="#rxBreadcrumbs" ng-click="scrollTo('rxBreadcrumbs', $event)">Rx Breadcrumbs</a></li><li><a href="#rxButton" ng-click="scrollTo('rxButton', $event)">Rx Button</a></li><li><a href="#rxCapitalize" ng-click="scrollTo('rxCapitalize', $event)">Rx Capitalize</a></li><li><a href="#rxDiskSize" ng-click="scrollTo('rxDiskSize', $event)">Rx Disk Size</a></li><li><a href="#rxForm" ng-click="scrollTo('rxForm', $event)">Rx Form</a></li><li><a href="#rxLogout" ng-click="scrollTo('rxLogout', $event)">Rx Logout</a></li><li><a href="#rxModalAction" ng-click="scrollTo('rxModalAction', $event)">Rx Modal Action</a></li><li><a href="#rxNotify" ng-click="scrollTo('rxNotify', $event)">Rx Notify</a></li><li><a href="#rxPageTitle" ng-click="scrollTo('rxPageTitle', $event)">Rx Page Title</a></li><li><a href="#rxPaginate" ng-click="scrollTo('rxPaginate', $event)">Rx Paginate</a></li><li><a href="#rxSortableColumn" ng-click="scrollTo('rxSortableColumn', $event)">Rx Sortable Column</a></li><li><a href="#rxSpinner" ng-click="scrollTo('rxSpinner', $event)">Rx Spinner</a></li>
                 </ul>
             </rx-related-menu>
             <div class="main-content">
@@ -258,6 +258,76 @@ function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
     }, {
         name: 'Create New Server'
     }]);
+}</script>
+                
+                    <section class="component">
+                        <a id="rxButton"></a>
+                        <h2 class="section-title component-title">Rx Button<small>
+                              (encore.ui.rxButton)
+                          </small></h2>
+                        <div class="pure-g">
+                            
+                            <div class="pure-u-1-2 component-example">
+                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+<div ng-controller="rxButtonCtrl">
+    <rx-button toggle-msg="Authenticating" default-msg="Login"
+        toggle="status.loading" ng-click="login()">
+    </rx-button>
+</div>
+                            </div>
+                            
+                            <div class="pure-u-1-2 component-description">
+                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+
+<p>Button for handling async operations.</p>
+                            </div>
+                        </div>
+                        <div class="pure-g component-code">
+                            
+                            <div class="pure-u-1-2">
+                                <h3>Markup</h3>
+                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+&lt;div ng-controller=&quot;rxButtonCtrl&quot;&gt;
+    &lt;rx-button toggle-msg=&quot;Authenticating&quot; default-msg=&quot;Login&quot;
+        toggle=&quot;status.loading&quot; ng-click=&quot;login()&quot;&gt;
+    &lt;/rx-button&gt;
+&lt;/div&gt;</code></pre>
+                            </div>
+                            
+                            
+                            <div class="pure-u-1-2">
+                                <h3>JavaScript</h3>
+                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+function rxButtonCtrl ($scope, $timeout) {
+    $scope.status = {
+        loading: false
+    };
+
+    $scope.login = function () {
+        $scope.status.loading = true;
+
+        $timeout(function () {
+            $scope.status.loading = false;
+        }, 4000);
+    };
+}</code></pre>
+                            </div>
+                            
+                        </div>
+                    </section>
+                    <script>/*jshint unused:false*/
+function rxButtonCtrl ($scope, $timeout) {
+    $scope.status = {
+        loading: false
+    };
+
+    $scope.login = function () {
+        $scope.status.loading = true;
+
+        $timeout(function () {
+            $scope.status.loading = false;
+        }, 4000);
+    };
 }</script>
                 
                     <section class="component">
@@ -1590,15 +1660,18 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
                             
                             <div class="pure-u-1-2 component-example">
                                 <div ng-controller="rxSpinnerCtrl">
-    <div rx-spinner loading="loading" class="rxSpinnerExample">Loading = {{loading}}</div>
+    <div rx-spinner toggle="loading" class="rxSpinnerExample">Spinning = {{loading}}</div>
     <button ng-click="toggleLoading()">Toggle Loading</button>
 </div>
 <style type="text/css">
 .rxSpinnerExample {
     background: #00ac31;
     padding: 20px;
+    color: white;
+    line-height: 20px;
 }
 </style>
+
                             </div>
                             
                             <div class="pure-u-1-2 component-description">
@@ -1612,15 +1685,18 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
                             <div class="pure-u-1-2">
                                 <h3>Markup</h3>
                                 <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSpinnerCtrl&quot;&gt;
-    &lt;div rx-spinner loading=&quot;loading&quot; class=&quot;rxSpinnerExample&quot;&gt;Loading = {{loading}}&lt;/div&gt;
+    &lt;div rx-spinner toggle=&quot;loading&quot; class=&quot;rxSpinnerExample&quot;&gt;Spinning = {{loading}}&lt;/div&gt;
     &lt;button ng-click=&quot;toggleLoading()&quot;&gt;Toggle Loading&lt;/button&gt;
 &lt;/div&gt;
 &lt;style type=&quot;text/css&quot;&gt;
 .rxSpinnerExample {
     background: #00ac31;
     padding: 20px;
+    color: white;
+    line-height: 20px;
 }
-&lt;/style&gt;</code></pre>
+&lt;/style&gt;
+</code></pre>
                             </div>
                             
                             
