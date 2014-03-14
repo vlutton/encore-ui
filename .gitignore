@@ -24,7 +24,10 @@ bower_components
 localConfig.js
 
 # generated files/folders on build
-/dist
-/coverage
-/templates
-/index.js
+coverage/
+templates/
+./index.js
+build/
+bower/
+dist/
+utils/rx-page-objects/index.js

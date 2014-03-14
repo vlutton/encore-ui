@@ -2,32 +2,38 @@
 module.exports = function (grunt) {
     grunt.registerTask('shipit', 'Ships code to prod', function (versionType) {
         var validTypes = ['major', 'minor', 'patch'];
+        var tasks = [];
 
         if (validTypes.indexOf(versionType) > -1) {
             // increment the version
-            grunt.task.run('bump-only:' + versionType);
+            tasks.push('bump-only:' + versionType);
 
             // create changelog
-            grunt.task.run('changelog');
+            tasks.push('changelog');
 
             // increment version in readme
-            grunt.task.run('replace:readme');
+            tasks.push('replace:readme');
 
             // commit version increment
-            grunt.task.run('bump-commit');
+            tasks.push('bump-commit');
 
             // build the code
-            grunt.task.run('before-test');
-            grunt.task.run('after-test');
+            tasks.push('before-test');
+            tasks.push('after-test');
 
             // push files to prod
-            grunt.task.run('cloudfiles:production');
+            tasks.push('cloudfiles:production');
 
             // update gh-pages branch
-            grunt.task.run('gh-pages');
+            tasks.push('gh-pages:ghPages');
+
+            // update bower repo
+            tasks.push('bower');
 
             // shipit squirrel
-            grunt.task.run('squirrel');
+            tasks.push('squirrel');
+
+            grunt.task.run(tasks);
         } else {
             grunt.fatal('Must pass in version type major/minor/patch. E.g. `grunt shipit:patch`');
         }

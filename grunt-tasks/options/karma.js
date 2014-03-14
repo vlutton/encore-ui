@@ -27,7 +27,7 @@ module.exports = {
         options: {
             files: files.concat([
                 'src/*/*.spec.js',
-                '<%= config.dist %>/encore-ui-tpls.min.js'
+                '<%= config.dist %>/<%= config.fileNameTpl %>.min.js'
             ])
         },
         singleRun: true,

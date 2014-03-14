@@ -1,14 +1,9 @@
 module.exports = {
-    docs: {
-        src: [
-            '<%= config.dist %>/index.html',
-            '<%= config.dist %>/assets',
-            '<%= config.dist %>/images',
-            '<%= config.dist %>/coverage'
-        ]
+    bower: {
+        src: '<%= config.bower %>'
     },
     build: {
-        src: ['<%= config.dist %>/*']
+        src: ['<%= config.build %>']
     },
     templates: {
         src: ['templates']

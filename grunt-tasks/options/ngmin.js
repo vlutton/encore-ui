@@ -7,7 +7,7 @@ module.exports = {
         dest: '<%= config.dist %>/<%= config.fileName %>.min.js'
     },
     distTpls: {
-        src: ['<%= config.dist %>/<%= config.fileName %>-tpls.js'],
-        dest: '<%= config.dist %>/<%= config.fileName %>-tpls.min.js'
+        src: ['<%= config.dist %>/<%= config.fileNameTpl %>.js'],
+        dest: '<%= config.dist %>/<%= config.fileNameTpl %>.min.js'
     }
 };

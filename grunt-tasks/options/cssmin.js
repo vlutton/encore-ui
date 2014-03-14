@@ -3,7 +3,7 @@ module.exports = {
         options: {
             report: 'gzip'
         },
-        dest: '<%= config.dist %>/encore-ui.min.css',
-        src: '<%= config.dist %>/encore-ui.css'
+        dest: '<%= config.dist %>/<%= config.fileName %>.min.css',
+        src: '<%= config.dist %>/<%= config.fileName %>.css'
     }
 };

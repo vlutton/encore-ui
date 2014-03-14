@@ -6,7 +6,7 @@ Encore-UI is a library of reusable AngularJS widgets for internal Rackspace proj
 
 # Demo App
 
-You can see all components in action by visiting [the Encore UI demo page](http://rackerlabs.github.io/encore-ui/0.2.2/).
+You can see all components in action by visiting [the Encore-UI demo page](http://rackerlabs.github.io/encore-ui/).
 
 # Support
 
@@ -20,23 +20,24 @@ If you live and die by IRC, there is also a room available on freenode.net at #e
 
 To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open).
 
-# Installation (AKA How to use Encore-UI)
+# Installation (How to use Encore-UI)
 
-To use Encore UI in your app, do the following:
+## CDN
 
+To use the Encore-UI CDN in your app, do the following:
 
 1. Install and include the dependencies listed in [bower.json](./bower.json) (items listed in devDependencies are not required)
 
 2. Include the Encore CSS file in the `<head>` of your index.html:
 
     ```
-    <link rel="stylesheet" href="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.2.2/encore-ui.min.css">
+    <link rel="stylesheet" href="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/encore-ui-0.2.2.min.css">
     ```
 
 3. Include the Encore JS file (**Dependencies must be included before this line**):
 
     ```
-    <script src="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/0.2.2/encore-ui-tpls.min.js"></script>
+    <script src="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/encore-ui-tpls-0.2.2.min.js"></script>
     ```
 
 4. Add 'encore.ui' as a dependency in your app.js module declaration. For example:
@@ -45,13 +46,21 @@ To use Encore UI in your app, do the following:
     angular.module('myApp', ['encore.ui']);
     ```
 
+## Bower
+
+If you have a static server that you'd like to build your files off of, you can install Encore-UI via [Bower](http://bower.io):
+
+```
+bower install encore-ui
+```
+
 # Further Reading
 
  - [Contribution Guide](./CONTRIBUTING.md)
- - [Changelog](./CHANGELOG.md)
  - [Versioning Guide](./guides/versioning.md)
+ - [Changelog](./CHANGELOG.md)
  - [UI Setup](./guides/ui-setup.md)
- - [Architecture](./guides/architecture.md)
  - [Testing](./guides/testing.md)
  - [CSS Style Guide](./guides/css-styleguide.md)
  - [JS Style Guide](./guides/js-styleguide.md)
+ - [Architecture](./guides/architecture.md)
