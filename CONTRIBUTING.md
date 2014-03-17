@@ -66,7 +66,7 @@ We use [the same commit format that the Angular Team follows](https://docs.googl
 * Unit Tested - Minimum coverage requirement - 80% (simple controllers/services may not need to be unit tested, depending on how basic their logic is)
 * Midways tests also need to be created for any new components
 
-[More on testing](./docs/testing.md)
+[More on testing](./guides/testing.md)
 
 ## Submitting changes
 
