@@ -41,6 +41,17 @@
         type="radio"
         model="volume.data"
         field-id="optionTable"
+        selected="0"
         ></rx-form-option-table>
     <p>Bound Value: {{volume.data}}</p>
+
+    <rx-form-option-table
+        columns="optionTableColumns"
+        type="checkbox"
+        model="volume.checked"
+        field-id="optionCheckboxTable"
+        data="optionTableCheckboxData"
+        ></rx-form-option-table>
+    <p>Item 1 Value: {{volume.checked[0]}}</p>
+    <p>Item 2 Value: {{volume.checked[1]}}</p>
 </div>

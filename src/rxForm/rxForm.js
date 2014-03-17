@@ -125,23 +125,23 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
 /**
  *
  * @ngdoc directive
- * @name encore.ui.rxForm:rxFormRadioTable
+ * @name encore.ui.rxForm:rxFormOptionTable
  * @restrict E
  * @description
- * This directive is used to build a table of radio inputs
+ * This directive is used to build a table of radio/checkbox inputs
  * @scope
- * @param {Array} data - Array of objects used to populate table. Should have properties that match columns
+ * @param {Array} data - Array of objects used to populate table. Properties must match columns data
  * key. Example:
  * [
  *     {
- *         'name': 'asv',
- *         'id': 0
+ *         'name': 'Option 1',
+ *         'value': 0
  *     }, {
- *         'name': 'asdf',
- *         'id': 1
+ *         'name': 'Option 2',
+ *         'value': 1
  *     }, {
- *         'name': 'av',
- *         'id': 2
+ *         'name': 'Option 3',
+ *         'value': 2
  *     }
  * ]
  * @param {array} columns - Array of objects with label/key values. Example:
@@ -166,6 +166,26 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             type: '@',
             model: '=',
             fieldId: '@'
+        },
+        controller: function ($scope) {
+            // Determines whether the row is the initial choice
+            $scope.isCurrent = function (val) {
+                return (val == $scope.selected);
+            };
+
+            // Determines whether the row is selected
+            $scope.isSelected = function (val, idx) {
+                // row can only be 'selected' if it's not the default 'selected' value
+                if (!$scope.isCurrent(val)) {
+                    if ($scope.type == 'radio') {
+                        return (val == $scope.model);
+                    } else if ($scope.type == 'checkbox') {
+                        return $scope.model[idx];
+                    }
+                }
+
+                return false;
+            };
         }
     };
 });
