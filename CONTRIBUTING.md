@@ -22,13 +22,13 @@ A **code review** validates your implementation details
 
 ## Encore UI Developer Setup
 
-[Encore UI Developer Setup](./docs/ui-setup.md) - How to install the Encore UI codebase
+[Encore UI Developer Setup](./guides/ui-setup.md) - How to install the Encore UI codebase
 
 ## Coding Standards
 
-[CSS Style Guide](./docs/css-styleguide.md)
+[CSS Style Guide](./guides/css-styleguide.md)
 
-[JavaScript Style Guide](./docs/js-styleguide.md)
+[JavaScript Style Guide](./guides/js-styleguide.md)
 
 ## Code Contribution Process
 
