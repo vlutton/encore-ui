@@ -11,6 +11,7 @@ describe('rxNotify', function () {
     beforeEach(function () {
         // load module
         module('encore.ui.rxNotify');
+        module('encore.ui.rxSpinner');
 
         // load templates
         module('templates/rxNotifications.html');
@@ -385,7 +386,7 @@ describe('rxNotify', function () {
             expect(el.text()).to.contain(messageText1);
 
             // validate spinner is shown
-            expect(el.find('rx-spinner')).to.exist;
+            expect(el.find('div').find('div')[0]).to.exist;
 
             // validate 'dismiss' action not found
             expect(el[0].querySelector('.notification-dismiss')).to.not.exist;
