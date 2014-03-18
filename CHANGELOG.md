@@ -1,3 +1,13 @@
+<a name="0.3.1"></a>
+### 0.3.1 (2014-03-18)
+
+
+#### Bug Fixes
+
+* **rxNotify:** Simple fix for getting rxSpinner to work on rxNotify ([65da492e](git@github.com:rackerlabs/encore-ui/commit/65da492e523dc44e3094784da897c7639cd92b7f))
+* **rxProductResources:** FIX EN-623 ([5afce73e](git@github.com:rackerlabs/encore-ui/commit/5afce73eaf4b7406dd29884bbb0f04bafcbf8a54))
+
+
 <a name="0.3.0"></a>
 ## 0.3.0 (2014-03-14)
 
