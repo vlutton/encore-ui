@@ -3,6 +3,7 @@ var files = [
     'bower_components/angular/angular.js',
     'bower_components/angular-mocks/angular-mocks.js',
     'bower_components/angular-sanitize/angular-sanitize.js',
+    'bower_components/angular-resource/angular-resource.js',
     'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
     'bower_components/lodash/dist/lodash.js',
     'bower_components/momentjs/moment.js',

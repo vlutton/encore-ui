@@ -62,6 +62,8 @@
     "chai-as-promised": "~4.1.0",
     "grunt-contrib-cssmin": "~0.8.0",
     "grunt-contrib-uglify": "~0.3.2",
-    "grunt-gh-pages": "^0.9.1"
+    "grunt-gh-pages": "^0.9.1",
+    "grunt-connect-proxy": "^0.1.10",
+    "connect-modrewrite": "^0.6.4-pre"
   }
 }

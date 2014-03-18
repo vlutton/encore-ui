@@ -1,0 +1,34 @@
+/* jshint node: true */
+describe('rxIdentity', function () {
+    var identity, $httpBackend, token;
+
+    token = {
+        'access': { 'token': { 'id': 'somecrazyid', 'expires': '2014-03-20T19:47:36.711Z',
+        'tenant': { 'id': '655062', 'name': '655062' }, 'RAX-AUTH:authenticatedBy': ['PASSWORD'] }}
+    };
+
+    beforeEach(function () {
+        module('encore.ui.rxIdentity');
+        inject(function ($injector) {
+            $httpBackend = $injector.get('$httpBackend');
+            identity = $injector.get('Identity');
+        });
+    });
+
+    describe('Identity Service', function () {
+        it('Identity.loginWithJSON() should get a token', function () {
+            $httpBackend.expectPOST('/identity/tokens').respond(token);
+            var result = identity.loginWithJSON({ username: 'Batman', token: 'bat-token' });
+            $httpBackend.flush();
+            expect(result.access).not.be.empty;
+        });
+
+        it('Identity.login() enables login via username/password', function () {
+            var callback = function () { return; };
+            $httpBackend.expectPOST('/identity/tokens').respond(token);
+            var result = identity.login({ username: 'Batman', password: 'dark-knight' }, callback, callback);
+            $httpBackend.flush();
+            expect(result.access).not.be.empty;
+        });
+    });
+});
