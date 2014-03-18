@@ -20,7 +20,7 @@ If you live and die by IRC, there is also a room available on freenode.net at #e
 
 To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open).
 
-# Installation (How to use Encore-UI)
+# Installation (Using Encore-UI)
 
 ## CDN
 
@@ -64,3 +64,4 @@ bower install encore-ui
  - [CSS Style Guide](./guides/css-styleguide.md)
  - [JS Style Guide](./guides/js-styleguide.md)
  - [Architecture](./guides/architecture.md)
+ - [JIRA Task Board](https://jira.rax.io/secure/RapidBoard.jspa?rapidView=192&view=detail) (Restricted to Rackspace employees only)
