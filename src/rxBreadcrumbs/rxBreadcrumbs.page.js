@@ -1,11 +1,15 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
 
-exports.rxBreadcrumbs = Page.create({
-    // Elements
-    rxBreadcrumbsElement: {
-        get: function () {
-            return this.findElement(this.by.id('rxBreadcrumbsElement'));
-        }
+var rxBreadcrumbs = {
+
+};
+
+exports.rxBreadcrumbs = {
+    initialize: function (rootElement) {
+        rxBreadcrumbs.rootElement = {
+            get: function () { return rootElement; }
+        };
+        return Page.create(rxBreadcrumbs);
     }
-});
+};

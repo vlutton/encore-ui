@@ -2,16 +2,17 @@ var demoPage = require('../../../utils/demo.page.js');
 var rxBreadcrumbsPage = require('../rxBreadcrumbs.page.js').rxBreadcrumbs;
 var expect = require('chai').use(require('chai-as-promised')).expect;
 
-// Add midway tests to run
 describe('rxBreadcrumbs', function () {
+    var breadcrumbs;
 
-    it('beforeAll', function () {
+    before(function () {
         demoPage.go();
+        var ptor = protractor.getInstance();
+        breadcrumbs = rxBreadcrumbsPage.initialize(ptor.findElement(protractor.By.css('.site-breadcrumbs')));
     });
 
-    // it('should show element', function () {
-    //     // will fail b/c there is no element being added in component.html
-    //     expect(rxBreadcrumbsPage.rxBreadcrumbsElement.isDisplayed()).to.eventually.equal(true);
-    // });
+    it('should show element', function () {
+        expect(breadcrumbs.rootElement.isDisplayed()).to.eventually.equal(true);
+    });
 
 });

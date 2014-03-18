@@ -1,9 +1,7 @@
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
 function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
     rxBreadcrumbsSvc.set([{
-        path: '#/servers/',
+        path: '/servers/',
         name: 'Servers'
     }, {
         name: 'Create New Server'
