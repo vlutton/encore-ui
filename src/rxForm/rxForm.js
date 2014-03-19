@@ -158,7 +158,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
  * @param {Object} model - Value to bind input to using ng-model
  * @param {String} fieldId - Used for label and input 'id' attribute
  */
-.directive('rxFormOptionTable', function () {
+.directive('rxFormOptionTable', function ($interpolate) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxFormOptionTable.html',
@@ -208,6 +208,28 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
              */
             $scope.getCheckboxValue = function (val, fallback) {
                 return _.isUndefined(val) ? fallback : val;
+            };
+
+            /*
+             * Get the value out of a key from the row, or parse an expression
+             * @param {String} expr - Key or Angular Expression (or static text) to be compiled
+             * @param {Object} row - Data object with data to be used against the expression
+             */
+            $scope.getContent = function (column, row) {
+                var expr = column.key;
+                // If no expression exit out;
+                if (!expr) {
+                    return;
+                }
+
+                // if the expr is a property of row, then we expect the value of the key.
+                if (row.hasOwnProperty(expr)) {
+                    return row[expr];
+                }
+
+                // Compile expression & Run output template
+                var outputHTML = $interpolate(expr)(row);
+                return outputHTML;
             };
         }
     };

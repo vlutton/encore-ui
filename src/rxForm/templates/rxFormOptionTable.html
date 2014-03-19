@@ -28,7 +28,8 @@
             </th>
             <td ng-repeat="column in columns">
                 <label for="{{fieldId}}_{{$parent.$index}}">
-                    {{row[column.key]}} <span ng-show="isCurrent(row.value)">{{column.selectedLabel}}</span>
+                    <span ng-bind-html="getContent(column, row)"></span>
+                    <span ng-show="isCurrent(row.value)">{{column.selectedLabel}}</span>
                 </label>
             </td>
         </tr>
