@@ -1,3 +1,18 @@
+<a name="0.3.2"></a>
+### 0.3.2 (2014-03-19)
+
+
+#### Bug Fixes
+
+* **rxBreadcrumbs:** change default hash in path URIs ([085a0044](git@github.com:rackerlabs/encore-ui/commit/085a00444d5b09703df4f8ed660793a45e1bb251))
+
+
+#### Features
+
+* **rxNav:** allow custom links and logo ([e139497b](git@github.com:rackerlabs/encore-ui/commit/e139497ba45026d59d518be0c5e043659a6adc4b))
+* **rxSessionStorage:** Simple wrapper for sessionStorage object ([ed0bff0c](git@github.com:rackerlabs/encore-ui/commit/ed0bff0c8e8fd8f8d5247b6650876db6899b87a2))
+
+
 <a name="0.3.1"></a>
 ### 0.3.1 (2014-03-18)
 
