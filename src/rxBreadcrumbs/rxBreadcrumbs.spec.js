@@ -59,8 +59,8 @@ describe('Breadcrumbs', function () {
             var links = el.find('a');
 
             expect(links).to.have.length(2);
-            expect(links.eq(0).attr('href')).to.eql('/#/');
-            expect(links.eq(1).attr('href')).to.eql('/#/one');
+            expect(links.eq(0).attr('href')).to.eql('');
+            expect(links.eq(1).attr('href')).to.eql('one');
         });
 
         it('should add a class of "first" to the first breadcrumb', function () {
