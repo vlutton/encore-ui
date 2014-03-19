@@ -13,7 +13,9 @@ angular.module('encore.ui.rxNav', ['encore.ui.rxDropdown'])
         restrict: 'E',
         scope: {
             'searchFunction': '&',
-            'placeholderText': '@'
+            'placeholderText': '@',
+            'links': '=?',
+            'logo': '=?'
         },
         controller: function ($scope) {
             $scope.bookmarks = {
