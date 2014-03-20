@@ -22,22 +22,44 @@ angular.module('encore.ui.rxSessionStorage', [])
     * SessionStorage.clear(); // no return value
     * </pre>
     */
-    .factory('SessionStorage', function ($window) {
-        $window.sessionStorage.__proto__.setObject = function (key, val) {
-            var value = _.isObject(val) || _.isArray(val) ? JSON.stringify(val) : val;
+    .service('SessionStorage', function ($window) {
+        this.setItem = function (key, value) {
             $window.sessionStorage.setItem(key, value);
         };
 
-        $window.sessionStorage.__proto__.getObject = function (key) {
+        this.getItem = function (key) {
+            return $window.sessionStorage.getItem(key);
+        };
+
+        this.key = function (key) {
+            return $window.sessionStorage.key(key);
+        };
+
+        this.removeItem = function (key) {
+            $window.sessionStorage.removeItem(key);
+        };
+
+        this.clear = function () {
+            $window.sessionStorage.clear();
+        };
+
+        this.__defineGetter__('length', function () {
+            return $window.sessionStorage.length;
+        });
+
+        this.setObject = function (key, val) {
+            var value = _.isObject(val) || _.isArray(val) ? JSON.stringify(val) : val;
+            this.setItem(key, value);
+        };
+
+        this.getObject = function (key) {
             var item = $window.sessionStorage.getItem(key);
             try {
                 item = JSON.parse(item);
-            } catch (variable) {
+            } catch (error) {
                 return item;
             }
 
             return item;
         };
-
-        return $window.sessionStorage;
     });
