@@ -1,0 +1,11 @@
+<!-- Example only works when running locally since rxIdentity requires a proxy -->
+<div ng-controller="rxIdentityCtrl">
+    <form>
+        <label>Username:</label>
+        <input type="text" name="username" ng-model="user.username" />
+        <label>Password:</label>
+        <input type="password" name="password" ng-model="user.password" />
+        <rx-button toggle-msg="Authenticating" default-msg="Login"
+            toggle="toggle" ng-click="login()"></rx-button>
+    </form>
+</div>

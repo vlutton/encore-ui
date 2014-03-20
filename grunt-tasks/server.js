@@ -5,6 +5,7 @@ module.exports = function (grunt) {
             var commonTasks = [
                 'before-test',
                 'after-test',
+                'configureProxies',
                 'connect:dist',
                 'karma:watch',
                 'karma:watch:run',
