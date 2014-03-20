@@ -23,17 +23,17 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
                 rxNotify.dismiss(message);
             };
         },
-        link: function ($scope) {
-            var stack = $scope.stack || 'page';
+        link: function (scope) {
+            var stack = scope.stack || 'page';
 
             // watch the stack for updates
-            $scope.$watch(function () {
+            scope.$watch(function () {
                 return rxNotify.stacks[stack];
             }, function (data) {
-                $scope.messages = data;
+                scope.messages = data;
             });
 
-            $scope.loading = true;
+            scope.loading = true;
         }
     };
 })
