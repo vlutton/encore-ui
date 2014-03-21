@@ -1,3 +1,13 @@
+<a name="0.3.3"></a>
+### 0.3.3 (2014-03-21)
+
+
+#### Features
+
+* **rxIdentity:** Auth service for Rackspace Identity API ([34f3b0e8](git@github.com:rackerlabs/encore-ui/commit/34f3b0e8444fc8bb0d0623e6be9034df0a745573))
+* **rxLocalStorage:** Implemented local storage injectable service ([84df46e4](git@github.com:rackerlabs/encore-ui/commit/84df46e48a056e49c1b0f53383d90d9b96c0e10d))
+
+
 <a name="0.3.2"></a>
 ### 0.3.2 (2014-03-19)
 
