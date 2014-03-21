@@ -6,16 +6,17 @@
     <!-- TODO build path to angular/lodash version based on bower.json -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular-sanitize.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular-resource.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.js"></script>
-    <script src="./dist/encore-ui-tpls-0.3.2.min.js"></script>
+    <script src="./dist/encore-ui-tpls-0.3.3.min.js"></script>
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
 
-    <link href="./dist/encore-ui-0.3.2.css" rel="stylesheet" />
+    <link href="./dist/encore-ui-0.3.3.css" rel="stylesheet" />
 
     <style>
         .pure-g > div {
@@ -41,7 +42,7 @@
         <div class="page-content">
             <rx-related-menu state="menuShown" collapsable="false" position="left">
                 <ul class="product-resources">
-                    <li><a href="#configs" ng-click="scrollTo('configs', $event)">Configs</a></li><li><a href="#rxActiveUrl" ng-click="scrollTo('rxActiveUrl', $event)">Rx Active Url</a></li><li><a href="#rxAge" ng-click="scrollTo('rxAge', $event)">Rx Age</a></li><li><a href="#rxBreadcrumbs" ng-click="scrollTo('rxBreadcrumbs', $event)">Rx Breadcrumbs</a></li><li><a href="#rxButton" ng-click="scrollTo('rxButton', $event)">Rx Button</a></li><li><a href="#rxCapitalize" ng-click="scrollTo('rxCapitalize', $event)">Rx Capitalize</a></li><li><a href="#rxDiskSize" ng-click="scrollTo('rxDiskSize', $event)">Rx Disk Size</a></li><li><a href="#rxForm" ng-click="scrollTo('rxForm', $event)">Rx Form</a></li><li><a href="#rxLogout" ng-click="scrollTo('rxLogout', $event)">Rx Logout</a></li><li><a href="#rxModalAction" ng-click="scrollTo('rxModalAction', $event)">Rx Modal Action</a></li><li><a href="#rxNotify" ng-click="scrollTo('rxNotify', $event)">Rx Notify</a></li><li><a href="#rxPageTitle" ng-click="scrollTo('rxPageTitle', $event)">Rx Page Title</a></li><li><a href="#rxPaginate" ng-click="scrollTo('rxPaginate', $event)">Rx Paginate</a></li><li><a href="#rxSessionStorage" ng-click="scrollTo('rxSessionStorage', $event)">Rx Session Storage</a></li><li><a href="#rxSortableColumn" ng-click="scrollTo('rxSortableColumn', $event)">Rx Sortable Column</a></li><li><a href="#rxSpinner" ng-click="scrollTo('rxSpinner', $event)">Rx Spinner</a></li>
+                    <li><a href="#configs" ng-click="scrollTo('configs', $event)">Configs</a></li><li><a href="#rxActiveUrl" ng-click="scrollTo('rxActiveUrl', $event)">Rx Active Url</a></li><li><a href="#rxAge" ng-click="scrollTo('rxAge', $event)">Rx Age</a></li><li><a href="#rxBreadcrumbs" ng-click="scrollTo('rxBreadcrumbs', $event)">Rx Breadcrumbs</a></li><li><a href="#rxButton" ng-click="scrollTo('rxButton', $event)">Rx Button</a></li><li><a href="#rxCapitalize" ng-click="scrollTo('rxCapitalize', $event)">Rx Capitalize</a></li><li><a href="#rxDiskSize" ng-click="scrollTo('rxDiskSize', $event)">Rx Disk Size</a></li><li><a href="#rxForm" ng-click="scrollTo('rxForm', $event)">Rx Form</a></li><li><a href="#rxIdentity" ng-click="scrollTo('rxIdentity', $event)">Rx Identity</a></li><li><a href="#rxLocalStorage" ng-click="scrollTo('rxLocalStorage', $event)">Rx Local Storage</a></li><li><a href="#rxLogout" ng-click="scrollTo('rxLogout', $event)">Rx Logout</a></li><li><a href="#rxModalAction" ng-click="scrollTo('rxModalAction', $event)">Rx Modal Action</a></li><li><a href="#rxNotify" ng-click="scrollTo('rxNotify', $event)">Rx Notify</a></li><li><a href="#rxPageTitle" ng-click="scrollTo('rxPageTitle', $event)">Rx Page Title</a></li><li><a href="#rxPaginate" ng-click="scrollTo('rxPaginate', $event)">Rx Paginate</a></li><li><a href="#rxSessionStorage" ng-click="scrollTo('rxSessionStorage', $event)">Rx Session Storage</a></li><li><a href="#rxSortableColumn" ng-click="scrollTo('rxSortableColumn', $event)">Rx Sortable Column</a></li><li><a href="#rxSpinner" ng-click="scrollTo('rxSpinner', $event)">Rx Spinner</a></li>
                 </ul>
             </rx-related-menu>
             <div class="main-content">
@@ -633,6 +634,158 @@ function rxDiskSizeCtrl ($scope) {
         'key': 'name'
     }];
 }</script>
+                
+                    <section class="component">
+                        <a id="rxIdentity"></a>
+                        <h2 class="section-title component-title">Rx Identity<small>
+                              (encore.ui.rxIdentity)
+                          </small></h2>
+                        <div class="pure-g">
+                            
+                            <div class="pure-u-1-2 component-example">
+                                <!-- Example only works when running locally since rxIdentity requires a proxy -->
+<div ng-controller="rxIdentityCtrl">
+    <form>
+        <label>Username:</label>
+        <input type="text" name="username" ng-model="user.username" />
+        <label>Password:</label>
+        <input type="password" name="password" ng-model="user.password" />
+        <rx-button toggle-msg="Authenticating" default-msg="Login"
+            toggle="toggle" ng-click="login()"></rx-button>
+    </form>
+</div>
+
+                            </div>
+                            
+                            <div class="pure-u-1-2 component-description">
+                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+
+<p>Service for authenticating with Rackspaces' Identity service</p>
+                            </div>
+                        </div>
+                        <div class="pure-g component-code">
+                            
+                            <div class="pure-u-1-2">
+                                <h3>Markup</h3>
+                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Example only works when running locally since rxIdentity requires a proxy --&gt;
+&lt;div ng-controller=&quot;rxIdentityCtrl&quot;&gt;
+    &lt;form&gt;
+        &lt;label&gt;Username:&lt;/label&gt;
+        &lt;input type=&quot;text&quot; name=&quot;username&quot; ng-model=&quot;user.username&quot; /&gt;
+        &lt;label&gt;Password:&lt;/label&gt;
+        &lt;input type=&quot;password&quot; name=&quot;password&quot; ng-model=&quot;user.password&quot; /&gt;
+        &lt;rx-button toggle-msg=&quot;Authenticating&quot; default-msg=&quot;Login&quot;
+            toggle=&quot;toggle&quot; ng-click=&quot;login()&quot;&gt;&lt;/rx-button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+</code></pre>
+                            </div>
+                            
+                            
+                            <div class="pure-u-1-2">
+                                <h3>JavaScript</h3>
+                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+function rxIdentityCtrl ($scope, Identity) {
+    $scope.user = {};
+    $scope.login = function () {
+        $scope.toggle = true;
+        Identity.login($scope.user,
+            function (authToken) {
+                $scope.toggle = false;
+                alert(&#x27;Congrats! Logged In&#x27;);
+            },
+            function (error) {
+                $scope.toggle = false;
+                alert(&#x27;Login attempt failed.&#x27;);
+            });
+    };
+}
+</code></pre>
+                            </div>
+                            
+                        </div>
+                    </section>
+                    <script>/*jshint unused:false*/
+function rxIdentityCtrl ($scope, Identity) {
+    $scope.user = {};
+    $scope.login = function () {
+        $scope.toggle = true;
+        Identity.login($scope.user,
+            function (authToken) {
+                $scope.toggle = false;
+                alert('Congrats! Logged In');
+            },
+            function (error) {
+                $scope.toggle = false;
+                alert('Login attempt failed.');
+            });
+    };
+}
+</script>
+                
+                    <section class="component">
+                        <a id="rxLocalStorage"></a>
+                        <h2 class="section-title component-title">Rx Local Storage<small>
+                              (encore.ui.rxLocalStorage)
+                          </small></h2>
+                        <div class="pure-g">
+                            
+                            <div class="pure-u-1-2 component-example">
+                                <div ng-controller="rxLocalStorageCtrl">
+    <label>Who is the Joker's side kick?</label>
+    <button ng-click="setSideKick()">Store Answer</button>
+    <button ng-click="getSideKick()">Answer?</button>
+</div>
+
+                            </div>
+                            
+                            <div class="pure-u-1-2 component-description">
+                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+
+<p>Simple wrapper of the global session localStorage object for interacting with local storage.</p>
+                            </div>
+                        </div>
+                        <div class="pure-g component-code">
+                            
+                            <div class="pure-u-1-2">
+                                <h3>Markup</h3>
+                                <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxLocalStorageCtrl&quot;&gt;
+    &lt;label&gt;Who is the Joker&#x27;s side kick?&lt;/label&gt;
+    &lt;button ng-click=&quot;setSideKick()&quot;&gt;Store Answer&lt;/button&gt;
+    &lt;button ng-click=&quot;getSideKick()&quot;&gt;Answer?&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+                            </div>
+                            
+                            
+                            <div class="pure-u-1-2">
+                                <h3>JavaScript</h3>
+                                <pre ng-non-bindable><code class="language-clike">function rxLocalStorageCtrl ($scope, LocalStorage) {
+    $scope.setSideKick = function () {
+        LocalStorage.setObject(&#x27;joker&#x27;, { name: &#x27;Harley Quinn&#x27; });
+    };
+
+    $scope.getSideKick = function () {
+        var sidekick = LocalStorage.getObject(&#x27;joker&#x27;);
+        alert(sidekick.name);
+    };
+}
+</code></pre>
+                            </div>
+                            
+                        </div>
+                    </section>
+                    <script>function rxLocalStorageCtrl ($scope, LocalStorage) {
+    $scope.setSideKick = function () {
+        LocalStorage.setObject('joker', { name: 'Harley Quinn' });
+    };
+
+    $scope.getSideKick = function () {
+        var sidekick = LocalStorage.getObject('joker');
+        alert(sidekick.name);
+    };
+}
+</script>
                 
                     <section class="component">
                         <a id="rxLogout"></a>
@@ -1495,6 +1648,7 @@ function rxPaginateCtrl ($scope, PageTracking) {
                             <div class="pure-u-1-2 component-example">
                                 <div ng-controller="rxSessionStorageCtrl">
     <label>Who is Batman's side kick?</label>
+    <button ng-click="setSideKick()">Store Answer</button>
     <button ng-click="getSideKick()">Answer?</button>
 </div>
 
@@ -1514,6 +1668,7 @@ same as the W3C's specification provided at: http://dev.w3.org/html5/webstorage/
                                 <h3>Markup</h3>
                                 <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSessionStorageCtrl&quot;&gt;
     &lt;label&gt;Who is Batman&#x27;s side kick?&lt;/label&gt;
+    &lt;button ng-click=&quot;setSideKick()&quot;&gt;Store Answer&lt;/button&gt;
     &lt;button ng-click=&quot;getSideKick()&quot;&gt;Answer?&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
@@ -1522,9 +1677,11 @@ same as the W3C's specification provided at: http://dev.w3.org/html5/webstorage/
                             
                             <div class="pure-u-1-2">
                                 <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
-function rxSessionStorageCtrl ($scope, SessionStorage) {
-    SessionStorage.setItem(&#x27;Batman&#x27;, &#x27;Robin&#x27;);
+                                <pre ng-non-bindable><code class="language-clike">function rxSessionStorageCtrl ($scope, SessionStorage) {
+
+    $scope.setSideKick = function () {
+        SessionStorage.setItem(&#x27;Batman&#x27;, &#x27;Robin&#x27;);
+    };
 
     $scope.getSideKick = function () {
         alert(SessionStorage.getItem(&#x27;Batman&#x27;));
@@ -1535,9 +1692,11 @@ function rxSessionStorageCtrl ($scope, SessionStorage) {
                             
                         </div>
                     </section>
-                    <script>/*jshint unused:false*/
-function rxSessionStorageCtrl ($scope, SessionStorage) {
-    SessionStorage.setItem('Batman', 'Robin');
+                    <script>function rxSessionStorageCtrl ($scope, SessionStorage) {
+
+    $scope.setSideKick = function () {
+        SessionStorage.setItem('Batman', 'Robin');
+    };
 
     $scope.getSideKick = function () {
         alert(SessionStorage.getItem('Batman'));
