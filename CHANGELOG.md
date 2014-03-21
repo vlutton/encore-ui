@@ -1,3 +1,17 @@
+<a name="0.3.4"></a>
+### 0.3.4 (2014-03-21)
+
+
+#### Bug Fixes
+
+* **rxFormOptionTable:** fix issues 94 and 95 ([83d6bf92](git@github.com:rackerlabs/encore-ui/commit/83d6bf924eb70dfa2a61435768b5d107705a48f7))
+
+
+#### Features
+
+* **rxFormOptionTable:** allow setting true/false-value for checkbox ([bdb0d410](git@github.com:rackerlabs/encore-ui/commit/bdb0d4107ccb42e01efb73ccd82dd89193ba10a2))
+
+
 <a name="0.3.3"></a>
 ### 0.3.3 (2014-03-21)
 
