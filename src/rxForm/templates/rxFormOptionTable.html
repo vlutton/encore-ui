@@ -1,6 +1,6 @@
 <div class="form-item">
     <table class="table-striped option-table" ng-show="data.length > 0">
-        <thead ng-hide="hideHeaders">
+        <thead>
             <tr>
                 <th></th>
                 <th ng-repeat="column in columns" scope="col">
@@ -8,19 +8,27 @@
                 </th>
             </tr>
         </thead>
-        <tr ng-repeat="row in data" ng-class="{current: row.id === selected, selected: row.id == $parent.model}">
-            <th scope="row" class="option-table-input">
-                <input type="{{type}}"
-                    id="{{fieldId}}_{{row.id}}"
-                    ng-model="$parent.model"
-                    value="{{row.id}}"
+        <tr ng-repeat="row in data" ng-class="{current: isCurrent(row.value), selected: isSelected(row.value, $index)}">
+            <th scope="row" class="option-table-input" ng-switch="type">
+                <input type="radio"
+                    ng-switch-when="radio"
+                    id="{{fieldId}}_{{$index}}"
+                    ng-model="$parent.$parent.model"
+                    value="{{row.value}}"
                     name="{{fieldId}}"
-                    ng-disabled="row.id === selected"
+                    ng-disabled="isCurrent(row.value)"
+                >
+                <input type="checkbox"
+                    ng-switch-when="checkbox"
+                    id="{{fieldId}}_{{$index}}"
+                    ng-model="$parent.model[$index]"
+                    ng-true-value="{{ getCheckboxValue(row.value, true) }}"
+                    ng-false-value="{{ getCheckboxValue(row.falseValue, false) }}"
                 >
             </th>
             <td ng-repeat="column in columns">
-                <label for="{{fieldId}}_{{row.id}}">
-                    {{row[column.key]}} <span ng-show="row.id === selected">{{column.selectedLabel}}</span>
+                <label for="{{fieldId}}_{{$parent.$index}}">
+                    {{row[column.key]}} <span ng-show="isCurrent(row.value)">{{column.selectedLabel}}</span>
                 </label>
             </td>
         </tr>

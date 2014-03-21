@@ -12,26 +12,36 @@ function rxFormDemoCtrl ($scope) {
 
     $scope.volume = {
         name: 'Volume-1',
-        type: $scope.types[0].value // select the first type by default
+        type: _.first($scope.types).value, // select the first type by default
+        checked: []
     };
 
     $scope.yesOptionDescription = '<b>This</b> is HTML that included in the JS';
 
     $scope.optionTableData = [
         {
-            'name': 'asv',
-            'id': 0
+            'name': 'Option #1',
+            'value': 0
         }, {
-            'name': 'asdf',
-            'id': 1
+            'name': 'Option #2',
+            'value': 1
         }, {
-            'name': 'av',
-            'id': 2
+            'name': 'Option #3',
+            'value': 2
         }
     ];
 
     $scope.optionTableColumns = [{
         'label': 'Name',
-        'key': 'name'
+        'key': 'name',
+        'selectedLabel': '(Already saved data)'
+    }];
+
+    $scope.optionTableCheckboxData = [{
+        'name': 'Item 1'
+    }, {
+        'name': 'Item 2',
+        'value': 'checked',
+        'falseValue': 'unchecked'
     }];
 }

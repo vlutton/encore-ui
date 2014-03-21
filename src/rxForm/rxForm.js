@@ -125,31 +125,34 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
 /**
  *
  * @ngdoc directive
- * @name encore.ui.rxForm:rxFormRadioTable
+ * @name encore.ui.rxForm:rxFormOptionTable
  * @restrict E
  * @description
- * This directive is used to build a table of radio inputs
+ * This directive is used to build a table of radio/checkbox inputs
  * @scope
- * @param {Array} data - Array of objects used to populate table. Should have properties that match columns
+ * @param {Array} data - Array of objects used to populate table. Properties must match columns data
  * key. Example:
+ * ```
  * [
  *     {
- *         'name': 'asv',
- *         'id': 0
+ *         'name': 'Option 1',
+ *         'value': 0
  *     }, {
- *         'name': 'asdf',
- *         'id': 1
+ *         'name': 'Option 2',
+ *         'value': 1
  *     }, {
- *         'name': 'av',
- *         'id': 2
+ *         'name': 'Option 3',
+ *         'value': 2
  *     }
  * ]
+ * ```
  * @param {array} columns - Array of objects with label/key values. Example:
  * ```
  * [{
  *     'label': 'Name',
  *     'key': 'name'
  * }]
+ * ```
  * @param {String=} selected - Key of item that's selected (and therefore will have input disabled)
  * @param {String} type - Type of input to be used
  * @param {Object} model - Value to bind input to using ng-model
@@ -166,6 +169,46 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             type: '@',
             model: '=',
             fieldId: '@'
+        },
+        controller: function ($scope) {
+            var determineMatch = function (val1, val2) {
+                if (_.isUndefined(val1) || _.isUndefined(val2)) {
+                    return false;
+                }
+
+                return (val1 == val2);
+            };
+
+            // Determines whether the row is the initial choice
+            $scope.isCurrent = function (val) {
+                return determineMatch(val, $scope.selected);
+            };
+
+            // Determines whether the row is selected
+            $scope.isSelected = function (val, idx) {
+                // row can only be 'selected' if it's not the default 'selected' value
+                if (!$scope.isCurrent(val)) {
+                    if ($scope.type == 'radio') {
+                        return (val == $scope.model);
+                    } else if ($scope.type == 'checkbox') {
+                        if (_.isUndefined(val)) {
+                            val = 'true';
+                        }
+                        return determineMatch(val, $scope.model[idx]);
+                    }
+                }
+
+                return false;
+            };
+
+            /*
+             * Convenience method to set ng-true-value or ng-false-value with fallback
+             * @param {String} val Value that's passed in from data
+             * @param {Any} fallback Value to use if 'val' is undefiend
+             */
+            $scope.getCheckboxValue = function (val, fallback) {
+                return _.isUndefined(val) ? fallback : val;
+            };
         }
     };
 });
