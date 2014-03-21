@@ -64,6 +64,7 @@
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-gh-pages": "^0.9.1",
     "grunt-connect-proxy": "^0.1.10",
-    "connect-modrewrite": "^0.6.4-pre"
+    "connect-modrewrite": "^0.6.4-pre",
+    "grunt-bower-install": "^1.3.0"
   }
 }

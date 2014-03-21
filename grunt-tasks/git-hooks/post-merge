@@ -14,4 +14,4 @@ check_run package.json "npm install && npm prune"
 
 # `bower install` and `bower prune` if the `bower.json` file gets changed
 # to install all the frontend dependencies removing the unused packages ( not listed into the  `bower.json` file )
-check_run bower.json "bower install && bower prune"
+check_run bower.json "bower install && bower prune && grunt bowerInstall"
