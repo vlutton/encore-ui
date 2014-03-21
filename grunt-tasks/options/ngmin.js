@@ -4,10 +4,10 @@ module.exports = {
     },
     dist: {
         src: ['<%= config.dist %>/<%= config.fileName %>.js'],
-        dest: '<%= config.dist %>/<%= config.fileName %>.min.js'
+        dest: '<%= config.dist %>/<%= config.fileName %>.js'
     },
     distTpls: {
         src: ['<%= config.dist %>/<%= config.fileNameTpl %>.js'],
-        dest: '<%= config.dist %>/<%= config.fileNameTpl %>.min.js'
+        dest: '<%= config.dist %>/<%= config.fileNameTpl %>.js'
     }
 };
