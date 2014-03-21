@@ -1,0 +1,12 @@
+.pure-g > div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 1em;
+}
+
+.component {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 2em;
+    padding-bottom: 2em;
+}

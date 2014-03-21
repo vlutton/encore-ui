@@ -3,35 +3,27 @@
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
 
-    <!-- TODO build path to angular/lodash version based on bower.json -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular-sanitize.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular-resource.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.js"></script>
-    <script src="./dist/<%= config.fileNameTpl %>.min.js"></script>
+    <!-- Content inside bower:css is auto-generated via `grunt bowerInstall` -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
+    <!-- endbower -->
 
-    <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.0/normalize.min.css" rel="stylesheet" />
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
+    <link href="dist/<%= config.fileName %>.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
+    <link href="assets/demo.css" rel="stylesheet" />
 
-    <link href="./dist/<%= config.fileName %>.css" rel="stylesheet" />
+    <!-- Content inside bower:js is auto-generated via `grunt bowerInstall` -->
+    <!-- bower:js -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/momentjs/moment.js"></script>
+    <!-- endbower -->
 
-    <style>
-        .pure-g > div {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            padding: 1em;
-        }
-
-        .component {
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 2em;
-            padding-bottom: 2em;
-        }
-    </style>
+    <script src="dist/<%= config.fileNameTpl %>.min.js"></script>
 
     <title>Encore UI</title>
 </head>

@@ -1,12 +1,14 @@
 // list of files / patterns to load in the browser
 var files = [
-    'bower_components/angular/angular.js',
-    'bower_components/angular-mocks/angular-mocks.js',
-    'bower_components/angular-sanitize/angular-sanitize.js',
-    'bower_components/angular-resource/angular-resource.js',
-    'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-    'bower_components/lodash/dist/lodash.js',
-    'bower_components/momentjs/moment.js',
+    // bower:js
+    'demo/bower_components/angular/angular.js',
+    'demo/bower_components/angular-sanitize/angular-sanitize.js',
+    'demo/bower_components/angular-resource/angular-resource.js',
+    'demo/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+    'demo/bower_components/lodash/dist/lodash.compat.js',
+    'demo/bower_components/momentjs/moment.js',
+    'demo/bower_components/angular-mocks/angular-mocks.js',
+    // endbower
     'utils/browser-helpers.js'
 ];
 
