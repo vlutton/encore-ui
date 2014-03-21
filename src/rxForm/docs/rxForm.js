@@ -38,10 +38,10 @@ function rxFormDemoCtrl ($scope) {
     }];
 
     $scope.optionTableCheckboxData = [{
-        'name': 'Item 1',
-        'value': 'My Value #1'
+        'name': 'Item 1'
     }, {
         'name': 'Item 2',
-        'value': 'My Value #2'
+        'value': 'checked',
+        'falseValue': 'unchecked'
     }];
 }

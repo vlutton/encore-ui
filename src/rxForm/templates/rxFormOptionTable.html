@@ -22,7 +22,8 @@
                     ng-switch-when="checkbox"
                     id="{{fieldId}}_{{$index}}"
                     ng-model="$parent.model[$index]"
-                    ng-true-value="{{row.value}}"
+                    ng-true-value="{{ getCheckboxValue(row.value, true) }}"
+                    ng-false-value="{{ getCheckboxValue(row.falseValue, false) }}"
                 >
             </th>
             <td ng-repeat="column in columns">

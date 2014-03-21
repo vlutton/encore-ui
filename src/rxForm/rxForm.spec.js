@@ -113,18 +113,18 @@ describe('rxFormOptionTable', function () {
         var checkTableScope = checkTable.isolateScope();
 
         // nothing should be selected by default
-        expect(checkTableScope.isSelected(0, 0), 'Item 1').to.be.undefined;
-        expect(checkTableScope.isSelected(1, 1), 'Item 2').to.be.undefined;
+        expect(checkTableScope.isSelected(0, 0), 'Item 1').to.be.false;
+        expect(checkTableScope.isSelected(1, 1), 'Item 2').to.be.false;
 
         // select second item
-        checkScope.myModel[1] = true;
+        checkScope.myModel[1] = 1;
         checkScope.$digest();
 
-        expect(checkTableScope.isSelected(0, 0), 'Item 1 still unselected').to.be.undefined;
+        expect(checkTableScope.isSelected(0, 0), 'Item 1 still unselected').to.be.false;
         expect(checkTableScope.isSelected(1, 1), 'Item 2 now selected').to.be.true;
 
         // select first item
-        checkScope.myModel[0] = true;
+        checkScope.myModel[0] = 0;
         checkScope.$digest();
 
         expect(checkTableScope.isSelected(0, 0), 'Item 1 now selected').to.be.true;

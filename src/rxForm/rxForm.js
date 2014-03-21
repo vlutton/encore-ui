@@ -168,9 +168,17 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             fieldId: '@'
         },
         controller: function ($scope) {
+            var determineMatch = function (val1, val2) {
+                if (_.isUndefined(val1) || _.isUndefined(val2)) {
+                    return false;
+                }
+
+                return (val1 == val2);
+            };
+
             // Determines whether the row is the initial choice
             $scope.isCurrent = function (val) {
-                return (val == $scope.selected);
+                return determineMatch(val, $scope.selected);
             };
 
             // Determines whether the row is selected
@@ -180,11 +188,23 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
                     if ($scope.type == 'radio') {
                         return (val == $scope.model);
                     } else if ($scope.type == 'checkbox') {
-                        return $scope.model[idx];
+                        if (_.isUndefined(val)) {
+                            val = 'true';
+                        }
+                        return determineMatch(val, $scope.model[idx]);
                     }
                 }
 
                 return false;
+            };
+
+            /*
+             * Convenience method to set ng-true-value or ng-false-value with fallback
+             * @param {String} val Value that's passed in from data
+             * @param {Any} fallback Value to use if 'val' is undefiend
+             */
+            $scope.getCheckboxValue = function (val, fallback) {
+                return _.isUndefined(val) ? fallback : val;
             };
         }
     };
