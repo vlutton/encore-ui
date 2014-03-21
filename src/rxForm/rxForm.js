@@ -132,6 +132,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
  * @scope
  * @param {Array} data - Array of objects used to populate table. Properties must match columns data
  * key. Example:
+ * ```
  * [
  *     {
  *         'name': 'Option 1',
@@ -144,12 +145,14 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
  *         'value': 2
  *     }
  * ]
+ * ```
  * @param {array} columns - Array of objects with label/key values. Example:
  * ```
  * [{
  *     'label': 'Name',
  *     'key': 'name'
  * }]
+ * ```
  * @param {String=} selected - Key of item that's selected (and therefore will have input disabled)
  * @param {String} type - Type of input to be used
  * @param {Object} model - Value to bind input to using ng-model

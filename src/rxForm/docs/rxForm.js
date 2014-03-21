@@ -12,7 +12,7 @@ function rxFormDemoCtrl ($scope) {
 
     $scope.volume = {
         name: 'Volume-1',
-        type: $scope.types[0].value, // select the first type by default
+        type: _.first($scope.types).value, // select the first type by default
         checked: []
     };
 
