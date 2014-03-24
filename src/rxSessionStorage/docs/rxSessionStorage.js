@@ -1,5 +1,4 @@
 function rxSessionStorageCtrl ($scope, SessionStorage) {
-
     $scope.setSideKick = function () {
         SessionStorage.setItem('Batman', 'Robin');
     };
