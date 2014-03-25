@@ -131,6 +131,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxSession:Session",
+      "shortName": "Session",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Service for managing user session in encore-ui.",
+      "keywords": "api encore encore-ui expired gettoken isauthenticated iscurrent logoff managing rxlocalstorage rxsession service session stored storetoken token true ui user valid"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxSessionStorage:SessionStorage",
       "shortName": "SessionStorage",
       "type": "service",
