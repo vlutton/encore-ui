@@ -1,3 +1,12 @@
+<a name="0.3.5"></a>
+### 0.3.5 (2014-03-25)
+
+
+#### Features
+
+* **rxSession:** Simple service for managing user session. ([52fa1c1a](git@github.com:rackerlabs/encore-ui/commit/52fa1c1adf88aad4ba8e3756317d6fda96ac8bd9))
+
+
 <a name="0.3.4"></a>
 ### 0.3.4 (2014-03-21)
 
