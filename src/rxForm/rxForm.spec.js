@@ -130,4 +130,34 @@ describe('rxFormOptionTable', function () {
         expect(checkTableScope.isSelected(0, 0), 'Item 1 now selected').to.be.true;
         expect(checkTableScope.isSelected(1, 1), 'Item 2 still selected').to.be.true;
     });
+
+    it('should correctly return the attribute from the passed object', function () {
+        var column = { key: 'test' },
+            data = { test: 'VALUE' };
+        expect(elScope.getContent(column, data)).to.be.eq('VALUE');
+    });
+
+    it('should correctly interpolate expression and output nested properties from an object', function () {
+        var column = { key: '{{ test.data }}' },
+            data = { test: { data: 10 }};
+        expect(elScope.getContent(column, data)).to.be.eq('10');
+    });
+
+    it('should correctly interpolate expression and apply the uppercase filter', function () {
+        var column = { key: '{{ data | uppercase }}' },
+            data = { data: 'lowercase' };
+        expect(elScope.getContent(column, data)).to.be.eq('LOWERCASE');
+    });
+
+    it('should correctly interpolate expression and do the math inside it', function () {
+        var column = { key: '{{ value * 10 }}' },
+            data = { value: 100 };
+        expect(elScope.getContent(column, data)).to.be.eq('1000');
+    });
+
+    it('should correctly interpolate expression and apply the currency filter to it', function () {
+        var column = { key: '{{ amount | currency }}' },
+            data = { amount: 12.5 };
+        expect(elScope.getContent(column, data)).to.be.eq('$12.50');
+    });
 });
