@@ -1,3 +1,17 @@
+<a name="0.3.7"></a>
+### 0.3.7 (2014-03-26)
+
+
+#### Bug Fixes
+
+* **rxProductResources:** removed # from href for HTML5 mode ([79fdd7f8](git@github.com:rackerlabs/encore-ui/commit/79fdd7f8a577500f3bdfe28b58291754fafd9edb))
+
+
+#### Features
+
+* **rxPermission:** Service and directive for permissions ([92fb82a3](git@github.com:rackerlabs/encore-ui/commit/92fb82a3796b1d99a4caa15c08df35eaf782f19a))
+
+
 <a name="0.3.6"></a>
 ### 0.3.6 (2014-03-26)
 
