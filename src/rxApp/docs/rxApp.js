@@ -29,7 +29,6 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         }
     });
 
-
     $scope.menuItems = [{
         title: 'Example Menu',
         children: [
