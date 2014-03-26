@@ -1,3 +1,12 @@
+<a name="0.3.6"></a>
+### 0.3.6 (2014-03-26)
+
+
+#### Features
+
+* **rxFormOptionTable:** Allow expressions in keys. Give the ability for keys to be expression and to eve ([518b266a](git@github.com:rackerlabs/encore-ui/commit/518b266af8fdf686dc9239226de717794b136ed3))
+
+
 <a name="0.3.5"></a>
 ### 0.3.5 (2014-03-25)
 
