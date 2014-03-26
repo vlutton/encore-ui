@@ -1,24 +1,4 @@
 angular.module('encore.ui.configs', [])
-// TODO can ROUTE_PATHS be removed?
-.constant('ROUTE_PATHS', {
-    'login': {
-        href: '/login',
-        text: 'Login'
-    },
-    'logout': {
-        href: '/logout',
-        text: 'Logout'
-    },
-    'cbs': {
-        href: '/cbs',
-        text: 'Databases'
-    },
-    'ticketQueues': {
-        href: '/ticketqueues',
-        text: 'Ticket Queues'
-    }
-})
-.value('siteTitle', 'Encore')
 .value('devicePaths', [
     { value: '/dev/xvdb', label: '/dev/xvdb' },
     { value: '/dev/xvdd', label: '/dev/xvdd' },
