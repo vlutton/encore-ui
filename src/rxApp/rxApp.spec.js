@@ -113,7 +113,7 @@ describe('rxAppNav', function () {
 //     allow children to be dynamically injected
 });
 
-describe.only('rxAppNavItem', function () {
+describe('rxAppNavItem', function () {
     var scope, compile, rootScope, el, location;
     var template = '<rx-app-nav-item></rx-app-nav-item>';
 
