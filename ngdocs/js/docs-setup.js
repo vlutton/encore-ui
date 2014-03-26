@@ -113,6 +113,24 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxPermission:Permission",
+      "shortName": "Permission",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Simple service for accessing roles and permissions for a user.",
+      "keywords": "accessing api array encore getroles hasrole permission permissions role roles rxpermission rxsession service simple true ui user"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxPermission:rxPermission",
+      "shortName": "rxPermission",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Simple directive which will show or hide content if user specified role.",
+      "keywords": "api content directive encore hide required role rxpermission simple ui user"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxProductResources",
       "shortName": "encore.ui.rxProductResources",
       "type": "directive",

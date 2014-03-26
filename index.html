@@ -9,7 +9,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.3.6.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.3.7.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -23,7 +23,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.3.6.min.js"></script>
+    <script src="dist/encore-ui-tpls-0.3.7.min.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -34,7 +34,7 @@
         <div class="page-content">
             <rx-related-menu state="menuShown" collapsable="false" position="left">
                 <ul class="product-resources">
-                    <li><a href="#configs" ng-click="scrollTo('configs', $event)">Configs</a></li><li><a href="#rxActiveUrl" ng-click="scrollTo('rxActiveUrl', $event)">Rx Active Url</a></li><li><a href="#rxAge" ng-click="scrollTo('rxAge', $event)">Rx Age</a></li><li><a href="#rxBreadcrumbs" ng-click="scrollTo('rxBreadcrumbs', $event)">Rx Breadcrumbs</a></li><li><a href="#rxButton" ng-click="scrollTo('rxButton', $event)">Rx Button</a></li><li><a href="#rxCapitalize" ng-click="scrollTo('rxCapitalize', $event)">Rx Capitalize</a></li><li><a href="#rxDiskSize" ng-click="scrollTo('rxDiskSize', $event)">Rx Disk Size</a></li><li><a href="#rxForm" ng-click="scrollTo('rxForm', $event)">Rx Form</a></li><li><a href="#rxIdentity" ng-click="scrollTo('rxIdentity', $event)">Rx Identity</a></li><li><a href="#rxLocalStorage" ng-click="scrollTo('rxLocalStorage', $event)">Rx Local Storage</a></li><li><a href="#rxLogout" ng-click="scrollTo('rxLogout', $event)">Rx Logout</a></li><li><a href="#rxModalAction" ng-click="scrollTo('rxModalAction', $event)">Rx Modal Action</a></li><li><a href="#rxNotify" ng-click="scrollTo('rxNotify', $event)">Rx Notify</a></li><li><a href="#rxPageTitle" ng-click="scrollTo('rxPageTitle', $event)">Rx Page Title</a></li><li><a href="#rxPaginate" ng-click="scrollTo('rxPaginate', $event)">Rx Paginate</a></li><li><a href="#rxSession" ng-click="scrollTo('rxSession', $event)">Rx Session</a></li><li><a href="#rxSessionStorage" ng-click="scrollTo('rxSessionStorage', $event)">Rx Session Storage</a></li><li><a href="#rxSortableColumn" ng-click="scrollTo('rxSortableColumn', $event)">Rx Sortable Column</a></li><li><a href="#rxSpinner" ng-click="scrollTo('rxSpinner', $event)">Rx Spinner</a></li>
+                    <li><a href="#configs" ng-click="scrollTo('configs', $event)">Configs</a></li><li><a href="#rxActiveUrl" ng-click="scrollTo('rxActiveUrl', $event)">Rx Active Url</a></li><li><a href="#rxAge" ng-click="scrollTo('rxAge', $event)">Rx Age</a></li><li><a href="#rxBreadcrumbs" ng-click="scrollTo('rxBreadcrumbs', $event)">Rx Breadcrumbs</a></li><li><a href="#rxButton" ng-click="scrollTo('rxButton', $event)">Rx Button</a></li><li><a href="#rxCapitalize" ng-click="scrollTo('rxCapitalize', $event)">Rx Capitalize</a></li><li><a href="#rxDiskSize" ng-click="scrollTo('rxDiskSize', $event)">Rx Disk Size</a></li><li><a href="#rxForm" ng-click="scrollTo('rxForm', $event)">Rx Form</a></li><li><a href="#rxIdentity" ng-click="scrollTo('rxIdentity', $event)">Rx Identity</a></li><li><a href="#rxLocalStorage" ng-click="scrollTo('rxLocalStorage', $event)">Rx Local Storage</a></li><li><a href="#rxLogout" ng-click="scrollTo('rxLogout', $event)">Rx Logout</a></li><li><a href="#rxModalAction" ng-click="scrollTo('rxModalAction', $event)">Rx Modal Action</a></li><li><a href="#rxNotify" ng-click="scrollTo('rxNotify', $event)">Rx Notify</a></li><li><a href="#rxPageTitle" ng-click="scrollTo('rxPageTitle', $event)">Rx Page Title</a></li><li><a href="#rxPaginate" ng-click="scrollTo('rxPaginate', $event)">Rx Paginate</a></li><li><a href="#rxPermission" ng-click="scrollTo('rxPermission', $event)">Rx Permission</a></li><li><a href="#rxSession" ng-click="scrollTo('rxSession', $event)">Rx Session</a></li><li><a href="#rxSessionStorage" ng-click="scrollTo('rxSessionStorage', $event)">Rx Session Storage</a></li><li><a href="#rxSortableColumn" ng-click="scrollTo('rxSortableColumn', $event)">Rx Sortable Column</a></li><li><a href="#rxSpinner" ng-click="scrollTo('rxSpinner', $event)">Rx Spinner</a></li>
                 </ul>
             </rx-related-menu>
             <div class="main-content">
@@ -1716,6 +1716,86 @@ function rxPaginateCtrl ($scope, PageTracking) {
 </script>
                 
                     <section class="component">
+                        <a id="rxPermission"></a>
+                        <h2 class="section-title component-title">Rx Permission<small>
+                              (encore.ui.rxPermission)
+                          </small></h2>
+                        <div class="pure-g">
+                            
+                            <div class="pure-u-1-2 component-example">
+                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+<div ng-controller="rxPermissionCtrl">
+    <button class="storeToken" name="button" ng-click="storeToken()">Store Token</button>
+    <button class="clearToken" name="button" ng-click="clearToken()">Clear Token</button>
+
+    <rx-permission role="test">
+        <rx-notifications stack="permission"></rx-notifications>
+    </rx-permission>
+</div>
+
+                            </div>
+                            
+                            <div class="pure-u-1-2 component-description">
+                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+
+<p>Service and directive for mananging permissions in EncoreUI</p>
+                            </div>
+                        </div>
+                        <div class="pure-g component-code">
+                            
+                            <div class="pure-u-1-2">
+                                <h3>Markup</h3>
+                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+&lt;div ng-controller=&quot;rxPermissionCtrl&quot;&gt;
+    &lt;button class=&quot;storeToken&quot; name=&quot;button&quot; ng-click=&quot;storeToken()&quot;&gt;Store Token&lt;/button&gt;
+    &lt;button class=&quot;clearToken&quot; name=&quot;button&quot; ng-click=&quot;clearToken()&quot;&gt;Clear Token&lt;/button&gt;
+
+    &lt;rx-permission role=&quot;test&quot;&gt;
+        &lt;rx-notifications stack=&quot;permission&quot;&gt;&lt;/rx-notifications&gt;
+    &lt;/rx-permission&gt;
+&lt;/div&gt;
+</code></pre>
+                            </div>
+                            
+                            
+                            <div class="pure-u-1-2">
+                                <h3>JavaScript</h3>
+                                <pre ng-non-bindable><code class="language-clike">function rxPermissionCtrl ($scope, Session, rxNotify) {
+    rxNotify.add(&#x27;Respect My Authority!!&#x27;, {
+        stack: &#x27;permission&#x27;,
+        type: &#x27;warning&#x27;
+    });
+
+    $scope.storeToken = function () {
+        Session.storeToken({ access: { user: { roles: [{ name: &#x27;test&#x27; } ] }}});
+    }
+
+    $scope.clearToken = function () {
+        Session.logoff();
+    };
+}
+</code></pre>
+                            </div>
+                            
+                        </div>
+                    </section>
+                    <script>function rxPermissionCtrl ($scope, Session, rxNotify) {
+    rxNotify.add('Respect My Authority!!', {
+        stack: 'permission',
+        type: 'warning'
+    });
+
+    $scope.storeToken = function () {
+        Session.storeToken({ access: { user: { roles: [{ name: 'test' } ] }}});
+    }
+
+    $scope.clearToken = function () {
+        Session.logoff();
+    };
+}
+</script>
+                
+                    <section class="component">
                         <a id="rxSession"></a>
                         <h2 class="section-title component-title">Rx Session<small>
                               (encore.ui.rxSession)
@@ -1749,8 +1829,6 @@ function rxPaginateCtrl ($scope, PageTracking) {
                             <div class="pure-u-1-2">
                                 <h3>JavaScript</h3>
                                 <pre ng-non-bindable><code class="language-clike">function rxSessionCtrl ($scope, Session) {
-    var invalidToken = { id: &#x27;badToken&#x27; };
-    Session.storeToken(invalidToken);
 
     $scope.isAuthenticated = function () {
         alert(Session.isAuthenticated());
@@ -1762,8 +1840,6 @@ function rxPaginateCtrl ($scope, PageTracking) {
                         </div>
                     </section>
                     <script>function rxSessionCtrl ($scope, Session) {
-    var invalidToken = { id: 'badToken' };
-    Session.storeToken(invalidToken);
 
     $scope.isAuthenticated = function () {
         alert(Session.isAuthenticated());
