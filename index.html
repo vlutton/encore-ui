@@ -9,7 +9,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.3.5.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.3.6.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -23,7 +23,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.3.5.min.js"></script>
+    <script src="dist/encore-ui-tpls-0.3.6.min.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -594,13 +594,22 @@ function rxDiskSizeCtrl ($scope) {
     $scope.optionTableData = [
         {
             &#x27;name&#x27;: &#x27;Option #1&#x27;,
-            &#x27;value&#x27;: 0
+            &#x27;value&#x27;: 0,
+            &#x27;obj&#x27;: {
+                &#x27;name&#x27;: &#x27;Nested Name 1&#x27;
+            }
         }, {
             &#x27;name&#x27;: &#x27;Option #2&#x27;,
-            &#x27;value&#x27;: 1
+            &#x27;value&#x27;: 1,
+            &#x27;obj&#x27;: {
+                &#x27;name&#x27;: &#x27;Nested Name 2&#x27;
+            }
         }, {
             &#x27;name&#x27;: &#x27;Option #3&#x27;,
-            &#x27;value&#x27;: 2
+            &#x27;value&#x27;: 2,
+            &#x27;obj&#x27;: {
+                &#x27;name&#x27;: &#x27;Nested Name 3&#x27;
+            }
         }
     ];
 
@@ -608,6 +617,18 @@ function rxDiskSizeCtrl ($scope) {
         &#x27;label&#x27;: &#x27;Name&#x27;,
         &#x27;key&#x27;: &#x27;name&#x27;,
         &#x27;selectedLabel&#x27;: &#x27;(Already saved data)&#x27;
+    }, {
+        &#x27;label&#x27;: &#x27;Static Content&#x27;,
+        &#x27;key&#x27;: &#x27;Some &lt;strong&gt;Text &amp;&lt;/strong&gt; HTML&#x27;
+    }, {
+        &#x27;label&#x27;: &#x27;Expression 2&#x27;,
+        &#x27;key&#x27;: &#x27;{{ value * 100 | number:2 }}&#x27;
+    }, {
+        &#x27;label&#x27;: &#x27;Expression 3&#x27;,
+        &#x27;key&#x27;: &#x27;{{ obj.name | uppercase }}&#x27;
+    }, {
+        &#x27;label&#x27;: &#x27;Expression 4&#x27;,
+        &#x27;key&#x27;: &#x27;{{ value | currency }}&#x27;
     }];
 
     $scope.optionTableCheckboxData = [{
@@ -645,13 +666,22 @@ function rxDiskSizeCtrl ($scope) {
     $scope.optionTableData = [
         {
             'name': 'Option #1',
-            'value': 0
+            'value': 0,
+            'obj': {
+                'name': 'Nested Name 1'
+            }
         }, {
             'name': 'Option #2',
-            'value': 1
+            'value': 1,
+            'obj': {
+                'name': 'Nested Name 2'
+            }
         }, {
             'name': 'Option #3',
-            'value': 2
+            'value': 2,
+            'obj': {
+                'name': 'Nested Name 3'
+            }
         }
     ];
 
@@ -659,6 +689,18 @@ function rxDiskSizeCtrl ($scope) {
         'label': 'Name',
         'key': 'name',
         'selectedLabel': '(Already saved data)'
+    }, {
+        'label': 'Static Content',
+        'key': 'Some <strong>Text &</strong> HTML'
+    }, {
+        'label': 'Expression 2',
+        'key': '{{ value * 100 | number:2 }}'
+    }, {
+        'label': 'Expression 3',
+        'key': '{{ obj.name | uppercase }}'
+    }, {
+        'label': 'Expression 4',
+        'key': '{{ value | currency }}'
     }];
 
     $scope.optionTableCheckboxData = [{
