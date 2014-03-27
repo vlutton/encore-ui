@@ -1,3 +1,12 @@
+<a name="0.3.8"></a>
+### 0.3.8 (2014-03-27)
+
+
+#### Bug Fixes
+
+* **rxBreadcrumbs:** home should go to root of website ([7ecdaec3](git@github.com:rackerlabs/encore-ui/commit/7ecdaec3ec8d8893c8a11a76481961be397e3efe))
+
+
 <a name="0.3.7"></a>
 ### 0.3.7 (2014-03-26)
 
