@@ -2,7 +2,7 @@ angular.module('encore.ui.rxBreadcrumbs', [])
 .factory('rxBreadcrumbsSvc', function () {
     // default will always be home
     var breadcrumbs = [{
-        path: '',
+        path: '/',
         name: 'Home'
     }];
     var breadcrumbsService = {};
