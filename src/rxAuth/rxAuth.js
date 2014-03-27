@@ -1,4 +1,3 @@
-/* jshint node: true */
 angular.module('encore.ui.rxAuth',
     ['encore.ui.rxIdentity', 'encore.ui.rxSession', 'encore.ui.rxPermission'])
     .factory('Auth', function (Identity, Session, Permission) {
