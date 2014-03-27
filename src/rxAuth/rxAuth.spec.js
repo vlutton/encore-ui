@@ -23,7 +23,7 @@ describe('rxAuth', function () {
             session.logoff = sinon.stub().returns();
             session.isCurrent = sinon.stub().returns(true);
             session.isAuthenticated = sinon.stub().returns(true);
-            permission.getRoles = sinon.stub().returns([{'name':'admin'}]);
+            permission.getRoles = sinon.stub().returns([{ 'name': 'admin' }]);
 
             auth = $injector.get('Auth');
         });
