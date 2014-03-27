@@ -15,19 +15,19 @@ pids
 logs
 results
 
-node_modules
-npm-debug.log
+/node_modules/
+/npm-debug.log
 
-demo/bower_components
+/demo/bower_components
 
 # config file with secrets
-localConfig.js
+/localConfig.js
 
 # generated files/folders on build
-coverage/
-templates/
-./index.js
-build/
-bower/
-dist/
-utils/rx-page-objects/index.js
+/coverage/
+/templates/
+/index.js
+/build/
+/bower/
+/dist/
+/utils/rx-page-objects/index.js
