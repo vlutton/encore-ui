@@ -78,8 +78,6 @@ describe('rxFormOptionTable', function () {
 
     it('should determine the current row', function () {
         expect(elScope.isCurrent('0'), 'Item 1').to.be.true;
-        // should take either string or int
-        expect(elScope.isCurrent(0), 'Item 1 (using int)').to.be.true;
 
         expect(elScope.isCurrent(1), 'Item 2').to.be.false;
     });

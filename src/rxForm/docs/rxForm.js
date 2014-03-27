@@ -13,7 +13,7 @@ function rxFormDemoCtrl ($scope) {
     $scope.volume = {
         name: 'Volume-1',
         type: _.first($scope.types).value, // select the first type by default
-        checked: []
+        checked: [true, 'unchecked'] //example with first checkbox automatically checked
     };
 
     $scope.yesOptionDescription = '<b>This</b> is HTML that included in the JS';
