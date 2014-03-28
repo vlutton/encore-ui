@@ -1,4 +1,19 @@
 angular.module('encore.ui.rxIdentity', ['ngResource'])
+   /**
+    *
+    * @ngdoc service
+    * @name encore.ui.rxIdentity:Identity
+    * @description
+    * Service which is designed to authenticate with Rackspace's Identity service.
+    *
+    * @requires $resource
+    *
+    * @example
+    * <pre>
+    * Identity.loginWithJSON(json); //Returns a promise
+    * Identity.login({username: '', password: '', successCallback, errorCallback}); // returns a promise
+    * </pre>
+    */
     .factory('Identity', function ($resource) {
         var authSvc = $resource('/identity/:action',
             {},
