@@ -186,28 +186,22 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
 
             // Determines whether the row is selected
             $scope.isSelected = function (val, idx) {
-                // row can only be 'selected' if it's not the default 'selected' value
+                // row can only be 'selected' if it's not the 'current'' value
                 if (!$scope.isCurrent(val)) {
                     if ($scope.type == 'radio') {
                         return (val == $scope.model);
                     } else if ($scope.type == 'checkbox') {
-                        if (_.isUndefined(val)) {
-                            val = 'true';
+                        if (!_.isUndefined(val)) {
+                            // if 'val' is defined, run it through our custom matcher
+                            return determineMatch(val, $scope.model[idx]);
+                        } else {
+                            // otherwise, just return the value of the model and angular can decide
+                            return $scope.model[idx];
                         }
-                        return determineMatch(val, $scope.model[idx]);
                     }
                 }
 
                 return false;
-            };
-
-            /*
-             * Convenience method to set ng-true-value or ng-false-value with fallback
-             * @param {String} val Value that's passed in from data
-             * @param {Any} fallback Value to use if 'val' is undefiend
-             */
-            $scope.getCheckboxValue = function (val, fallback) {
-                return _.isUndefined(val) ? fallback : val;
             };
 
             /*
