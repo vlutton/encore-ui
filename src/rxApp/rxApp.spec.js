@@ -51,7 +51,7 @@ describe('rxApp', function () {
         // get page title element
         var pageTitle = elCustom[0].querySelector('.site-title');
 
-        // validate it matches 'Encore'
+        // validate it matches custom app name
         expect(pageTitle.textContent).to.equal('My App');
     });
 
@@ -110,7 +110,7 @@ describe('rxAppNav', function () {
         expect(el.hasClass('rx-app-nav-level-1')).to.be.true;
     });
 
-//     allow children to be dynamically injected
+//    TODO allow children to be dynamically injected
 });
 
 describe('rxAppNavItem', function () {
@@ -164,9 +164,14 @@ describe('rxAppNavItem', function () {
             location = $location;
         });
 
-        scope.item = menuItem;
+        scope.item = _.clone(menuItem, true);
 
         el = helpers.createDirective(template, compile, scope);
+    });
+
+    afterEach(function () {
+        el = null;
+        scope = null;
     });
 
     it('should exist', function () {
@@ -195,7 +200,7 @@ describe('rxAppNavItem', function () {
 
     it('should set active state based on JSON', function () {
         // should keep active state already defined, even though not on path
-        expect(scope.item.children[0].active).to.be.false;
+        expect(scope.item.children[0].active).to.be.true;
 
         // update location again to somewhere else
         location.path('somewhereElse');
@@ -250,7 +255,7 @@ describe('rxAppNavItem', function () {
         expect(children.scope().level).to.equal(2);
     });
 
-//     show header for children if present and active
-//     allow different links based on environment
-//     build links based on environment
+//     TODO show header for children if present and active
+//     TODO allow different links based on environment
+//     TODO build links based on environment
 });

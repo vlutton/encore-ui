@@ -27,7 +27,7 @@
 
     input,
     select {
-        color: #444;
+        color: @inputColor;
         background: transparent;
         font-size: 1.2em;
         border: 0;
@@ -54,11 +54,11 @@
     }
 
     .field-select {
-        width: @modal-select-tag-width;
+        width: @modalSelectWidth;
         position: relative;
 
         select {
-            width: @modal-select-tag-width;
+            width: @modalSelectWidth;
             -webkit-appearance: none;
         }
 
@@ -125,7 +125,7 @@
     label {
         // add padding to labels so they take up the entire cell's space
         display: block;
-        padding: @table-default-cell-padding;
+        padding: @tableCellPadding;
         cursor: pointer;
     }
     .current td {

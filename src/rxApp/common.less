@@ -5,7 +5,7 @@
     button, input, select,
     .pure-g [class *= "pure-u"],
     .pure-g-r [class *= "pure-u"] {
-        font-family: "Roboto", sans-serif;
+        font-family: @appFont;
     }
 
     // Remove default margin/padding/etc
@@ -28,7 +28,7 @@
 
     // We want a little bit more line-spacing in paragraphs
     p {
-        line-height: 1.2;
+        line-height: @appLineHeight;
     }
 
     /*
@@ -61,19 +61,19 @@
         border-collapse: collapse;
         td,
         th {
-            border: 1px solid #eee;
-            padding: @table-default-cell-padding;
-            color: #555;
+            border: 1px solid @tableBorder;
+            padding: @tableCellPadding;
+            color: @tableCellText;
         }
         thead th {
             text-align: left;
-            background: #878787;
-            color: #fff;
-            border: 1px solid #6e6e6e;
+            background: @tableHeaderBg;
+            color: tableHeaderText;
+            border: 1px solid @tableHeaderBorder;
         }
     }
     .table-striped tr:nth-child(even) {
-        background: #f6f6f6;
+        background: @tableBgAlt;
     }
 
     /*
@@ -91,8 +91,8 @@
      */
      .button {
         display: inline-block;
-        background: #0950a3;
-        color: #fff;
+        background: @buttonBg;
+        color: @buttonText;
         border: 0;
         font-size: 1.2em;
         font-weight: 100;
@@ -106,14 +106,13 @@
     // in case the buttons are created using the <a> tag
     .button:hover {
         text-decoration: none;
-        color: #fff;
-        background: #00ac31;
+        color: @buttonText;
+        background: @buttonBgHover;
     }
 
     .button.button-small {
         padding: 5px 10px;
         margin-bottom: 10px;
-        cursor: pointer;
         font-size: .8em;
     }
 
@@ -122,17 +121,17 @@
     }
 
     .button.button-green {
-        background: #00ac31;
+        background: @buttonBgHover;
     }
 
     .button.button-blue {
-        background: #0950a3;
+        background: @buttonBg;
     }
 
     .button[disabled] {
         cursor: default;
         padding-left: 20px;
-        background: #999;
+        background: @disabledBg;
     }
 
     /* Style to make buttons look like plain links */
@@ -144,10 +143,10 @@
         font-size: inherit;
     }
     thead th .btn-link {
-        color: #fff;
+        color: @tableHeaderText;
         &:hover,
         &:focus {
-            color: #fff;
+            color: @tableHeaderText;
         }
     }
 

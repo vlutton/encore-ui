@@ -2,7 +2,7 @@ angular.module('encore.ui.rxApp', [])
 .value('encoreNav', [{
     title: 'All Tools',
     children: [{
-        href: 'https://{{environment}}.encore.rackspace.com',
+        href: '/',
         linkText: 'Account-level Tools',
         directive: 'account-search',
         children: [
@@ -31,10 +31,19 @@ angular.module('encore.ui.rxApp', [])
                     }
                 ]
             }, {
-                href: '/cbs',
-                linkText: 'Block Storage'
+                href: '/{{username}}/cbs/volumes',
+                linkText: 'Block Storage',
+                children: [
+                    {
+                        href: '/{{username}}/cbs/volumes',
+                        linkText: 'Volumes'
+                    }, {
+                        href: '/{{username}}/cbs/snapshots',
+                        linkText: 'Snapshots'
+                    }
+                ]
             }, {
-                href: '/servers',
+                href: '/{{username}}/servers',
                 linkText: 'Cloud Servers'
             }
         ]
@@ -90,7 +99,7 @@ angular.module('encore.ui.rxApp', [])
 })
 .directive('rxAppNavItem', function ($compile, $location) {
     var isActive = function (pattern) {
-        return $location.path().indexOf(pattern) !== -1;
+        return _.contains($location.path(), pattern);
     };
 
     var linker = function (scope, element) {
