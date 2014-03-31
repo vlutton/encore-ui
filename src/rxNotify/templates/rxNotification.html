@@ -1,7 +1,5 @@
-<div class="rx-notification notification-{{message.type}}">
-    {{message.text}}
-    <button ng-click="dismiss()" class="notification-dismiss btn-link" ng-if="message.dismissable">
-        &times;
-        <span class="visually-hidden">Dismiss Message</span>
-    </button>
+<div class="rx-notifications">
+    <div class="rx-notification notification-{{type}}">
+        <span class="notification-text" ng-transclude></span>
+    </div>
 </div>

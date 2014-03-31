@@ -1,6 +1,21 @@
 /*jshint undef:false*/
 angular.module('encore.ui.rxNotify', ['ngSanitize'])
 /*
+ * FIXME ADD STATEMENT HERE
+ * @ngdoc directive
+ * @example <rx-notification type="warning"></rx-notification>
+ */
+.directive('rxNotification', function() {
+    return {
+        scope: {
+            type: '@'
+        },
+        transclude: true,
+        restrict: 'E',
+        templateUrl: 'templates/rxNotification.html'
+    };
+})
+/*
  * Displays all messages in a stack
  * @ngdoc directive
  * @example <rx-notifications stack="myStack"></rx-notifications>
