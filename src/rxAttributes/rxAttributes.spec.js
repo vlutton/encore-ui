@@ -1,8 +1,7 @@
 /* jshint node: true */
 describe('rxAttributes', function () {
     var scope, compile, rootScope, el;
-    var validTemplate = '<div rx-attributes="{\'my-custom-attr\': customAttrVal, \'ng-click\': noFunc}">' +
-        '</rx-attributes>';
+    var validTemplate = '<div rx-attributes="{\'my-custom-attr\': customAttrVal, \'ng-click\': noFunc}"></div>';
 
     beforeEach(function () {
         // load module
