@@ -50,6 +50,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxAuth:Auth",
+      "shortName": "Auth",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Service which provides an entire solution for authenticating, user session management",
+      "keywords": "api array authenticating broken components customization encore entire errorcallback expired facilitate getroles gettoken hasrole identity isauthenticated iscurrent login loginwithjson logoff management password permission permissions promise re-use returns role roles rxauth rxidentity rxpermission rxsession service services session smaller solution stored storetoken successcallback token true ui user valid wrapper"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxButton:rxButton",
       "shortName": "rxButton",
       "type": "directive",
@@ -92,6 +101,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "This directive is used to create a &lt;select&gt; box w/options.",
       "keywords": "api array attribute bind box create directive encore example fieldid format generate input label model ng-model ng-required options passed required rxform select staging text ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxIdentity:Identity",
+      "shortName": "Identity",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Service which is designed to authenticate with Rackspace&#39;s Identity service.",
+      "keywords": "$resource api authenticate designed encore errorcallback identity login loginwithjson password promise rackspace returns rxidentity service successcallback ui"
     },
     {
       "section": "api",
