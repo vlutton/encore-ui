@@ -1,3 +1,13 @@
+<a name="0.4.0"></a>
+## 0.4.0 (2014-03-31)
+
+
+#### Features
+
+* **rxAttributes:** allowsconditional addition of attributes ([7b04aa47](git@github.com:rackerlabs/encore-ui/commit/7b04aa4783ad73cfb160a2f82d1d5dd7bd7777e5))
+* **rxAuth:** Wrapper service which provides auth capabilities ([d1ba3d1b](git@github.com:rackerlabs/encore-ui/commit/d1ba3d1bdcd5531f898beaa8500d37d8b9c13890))
+
+
 <a name="0.3.8"></a>
 ### 0.3.8 (2014-03-27)
 
