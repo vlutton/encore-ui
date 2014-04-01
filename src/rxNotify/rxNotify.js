@@ -1,11 +1,11 @@
 /*jshint undef:false*/
 angular.module('encore.ui.rxNotify', ['ngSanitize'])
 /*
- * FIXME ADD STATEMENT HERE
+ * Display a static message with styling taken from rx-notifications
  * @ngdoc directive
- * @example <rx-notification type="warning"></rx-notification>
+ * @example <rx-notification type="warning">This is a message!</rx-notification>
  */
-.directive('rxNotification', function() {
+.directive('rxNotification', function () {
     return {
         scope: {
             type: '@'
