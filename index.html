@@ -9,7 +9,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.4.0.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.4.1.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -23,7 +23,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.4.0.min.js"></script>
+    <script src="dist/encore-ui-tpls-0.4.1.min.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -1216,15 +1216,31 @@ function rxModalActionCtrl ($scope) {
             <rx-notifications stack="custom"></rx-notifications>
         </div>
     </div>
+
+    <p>Using rx-notification</p>
+
+    <rx-notification type="error">Hello, world!</rx-notification>
+    <rx-notification type="warning">Hello, world!</rx-notification>    
+    <rx-notification type="info">Hello, world!</rx-notification>    
 </div>
                             </div>
                             
                             <div class="pure-u-1-2 component-description" ng-non-bindable>
                                 <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
-<p>Service (rxNotify) and Directive (rxNotifications) for displaying status messages on a page.</p>
+<p>Service (rxNotify) and Directives (rxNotification and rxNotifications) for displaying status messages on a page.</p>
 
-<h2>Adding a New Message</h2>
+<h2>Using rxNotification as a State Message</h2>
+
+<p>There may be situations where you will need to use the styling/markup of rxNotify's messaging queue in status messages of your own - for example, a modal window which asks if you want to delete an object, with the appropriate warning or error flags. If this is the case, we recommend using the <code>rx-notification</code> directive in your views (note difference of <code>rx-notifications</code>.</p>
+
+<blockquote>
+  <p><code>&lt;rx-notification type="warn"&gt;This is warning message!&lt;/rx-notification&gt;</code></p>
+</blockquote>
+
+<p>For all values of warn, please look below under Message options, under <code>type</code>.</p>
+
+<h2>Adding a New Message Queue via rxNotify</h2>
 
 <p>To add a new message to a stack, inject 'rxNotify' into your function and run:</p>
 
@@ -1544,6 +1560,12 @@ function rxModalActionCtrl ($scope) {
             &lt;rx-notifications stack=&quot;custom&quot;&gt;&lt;/rx-notifications&gt;
         &lt;/div&gt;
     &lt;/div&gt;
+
+    &lt;p&gt;Using rx-notification&lt;/p&gt;
+
+    &lt;rx-notification type=&quot;error&quot;&gt;Hello, world!&lt;/rx-notification&gt;
+    &lt;rx-notification type=&quot;warning&quot;&gt;Hello, world!&lt;/rx-notification&gt;    
+    &lt;rx-notification type=&quot;info&quot;&gt;Hello, world!&lt;/rx-notification&gt;    
 &lt;/div&gt;</code></pre>
                             </div>
                             
