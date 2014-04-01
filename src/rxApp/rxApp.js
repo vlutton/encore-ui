@@ -1,4 +1,17 @@
 angular.module('encore.ui.rxApp', [])
+/*
+ * This array defines the default navigation to use for all Encore sites and used by rxAppNap.
+ * It can be overwritten if necessary via the 'menu' property of rxAppNap.
+ *
+ * @property {string} title Only used on the top level, defines the title to use for all sub-navigation
+ *
+ * Common Properties for all 'children' nav items:
+ * @property {string} href The url to use for the menu item
+ * @property {string} linkText The text displayed for the menu item
+ * @property {array} children Child menu items for the navigation heirarchy
+ * @property {string} directive Name of directive to build and show when item is active. For example:
+ *                              Value of 'my-directive' becomes '<my-directive></my-directive>'
+ */
 .value('encoreNav', [{
     title: 'All Tools',
     children: [{
@@ -61,6 +74,22 @@ angular.module('encore.ui.rxApp', [])
         ]
     }]
 }])
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxApp
+* @restrict E
+* @scope
+* @description
+* Responsible for creating the HTML necessary for a common Encore layout.
+*
+* @param {string} [siteTitle] Title of site to use in upper right hand corner
+* @param {object} [menu] Menu items used for left-hand navigation
+*
+* @example
+* <pre>
+*     <rx-app site-title="Custom Title"></rx-app>
+* </pre>
+*/
 .directive('rxApp', function (encoreNav) {
     return {
         restrict: 'E',
@@ -75,6 +104,22 @@ angular.module('encore.ui.rxApp', [])
         }
     };
 })
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxPage
+* @restrict E
+* @scope
+* @description
+* Responsible for creating the HTML necessary for a page (including breadcrumbs and page title)
+*
+* @param {expression} [title] Title of page
+* @param {expression} [subtitle] Subtitle of page
+*
+* @example
+* <pre>
+*     <rx-page title="'Page Title'"></rx-page>
+* </pre>
+*/
 .directive('rxPage', function () {
     return {
         restrict: 'E',
@@ -86,6 +131,22 @@ angular.module('encore.ui.rxApp', [])
         }
     };
 })
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxAppNav
+* @restrict E
+* @scope
+* @description
+* Creates a menu based on items passed in.
+*
+* @param {object} items Menu items to display. See encoreNav for object definition
+* @param {string} [level] Level in heirarchy in page. Higher number is deeper nested. Defaults to 1
+*
+* @example
+* <pre>
+*     <rx-app-nav level="1" items="menuItems"></rx-app-nav>
+* </pre>
+*/
 .directive('rxAppNav', function () {
     return {
         restrict: 'E',
@@ -97,6 +158,19 @@ angular.module('encore.ui.rxApp', [])
         }
     };
 })
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxAppNavItem
+* @restrict E
+* @description
+* Creates a menu item. Recursively creates rx-app-nav if 'children' present.
+* 'Item' must be avialable via scope
+*
+* @example
+* <pre>
+*     <rx-app-nav-item ng-repeat="item in items"></rx-app-nav-item>
+* </pre>
+*/
 .directive('rxAppNavItem', function ($compile, $location) {
     var isActive = function (pattern) {
         return _.contains($location.path(), pattern);
