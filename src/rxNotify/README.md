@@ -1,8 +1,16 @@
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-Service (rxNotify) and Directive (rxNotifications) for displaying status messages on a page.
+Service (rxNotify) and Directives (rxNotification and rxNotifications) for displaying status messages on a page.
 
-## Adding a New Message
+## Using rxNotification as a State Message 
+
+There may be situations where you will need to use the styling/markup of rxNotify's messaging queue in status messages of your own - for example, a modal window which asks if you want to delete an object, with the appropriate warning or error flags. If this is the case, we recommend using the `rx-notification` directive in your views (note difference of `rx-notifications`.
+
+> `<rx-notification type="warn">This is warning message!</rx-notification>`
+
+For all values of warn, please look below under Message options, under `type`.
+
+## Adding a New Message Queue via rxNotify 
 
 To add a new message to a stack, inject 'rxNotify' into your function and run:
 

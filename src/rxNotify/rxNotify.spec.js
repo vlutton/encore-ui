@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 describe('rxNotify', function () {
-    var scope, compile, rootScope, el, notifySvc, timeout;
+    var scope, compile, rootScope, el, el2, notifySvc, timeout;
     var validTemplate = '<rx-notifications></rx-notifications>';
     var messageText1 = 'My Message 1';
     var messageText2 = 'My Message 2';
@@ -329,6 +329,24 @@ describe('rxNotify', function () {
 
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+        });
+    });
+
+    describe('Directive: rxNotification', function () {
+        beforeEach(function () {
+            var rxNotificationTemplate = '<rx-notification type="warning">' + messageText1 + '</rx-notification>';
+            el2 = helpers.createDirective(rxNotificationTemplate, compile, scope);
+        });
+
+        it('should have warning CSS class when setting type attribute to warning', function () {
+            // Find the second div and check for class. Why won't it take div.rx-notification?
+            var newEl = el2.find('div').eq(1);
+            expect(newEl.hasClass('notification-warning')).to.be.true;
+        });
+
+        it('should contain the message', function () {
+            var newEl = el2.find('span').eq(1);
+            expect(newEl.text()).to.contain(messageText1);
         });
     });
 
