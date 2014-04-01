@@ -1,3 +1,14 @@
+<a name="0.4.1"></a>
+### 0.4.1 (2014-04-01)
+
+
+#### Features
+
+* **rxNotifications:**
+  * Added rx-notifications directive ([f6ff97a2](git@github.com:rackerlabs/encore-ui/commit/f6ff97a2fe0e0fd228dfa9753eb8f677bfb50879))
+  * Added rx-notifications directive ([b17c4ced](git@github.com:rackerlabs/encore-ui/commit/b17c4cedef99283291d8cba6ac3aea7a68b03bb6))
+
+
 <a name="0.4.0"></a>
 ## 0.4.0 (2014-03-31)
 
