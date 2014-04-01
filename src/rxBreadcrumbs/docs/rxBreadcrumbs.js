@@ -1,9 +1,9 @@
 /*jshint unused:false*/
 function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
     rxBreadcrumbsSvc.set([{
-        path: '/servers/',
-        name: 'Servers'
+        path: '/',
+        name: 'Components'
     }, {
-        name: 'Create New Server'
+        name: 'All Components'
     }]);
 }

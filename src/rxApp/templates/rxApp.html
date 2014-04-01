@@ -1,0 +1,18 @@
+<div class="rx-app">
+    <nav class="rx-app-menu">
+        <header class="site-branding">
+            <h1 class="site-title">{{ siteTitle || 'Encore' }}</h1>
+            <div class="site-options">
+                <!-- <a href="settings" class="site-settings">Settings</a> -->
+                <a href="#" rx-logout class="site-logout">Logout</a>
+            </div>
+        </header>
+        <nav class="rx-app-nav">
+            <div ng-repeat="section in menu" class="nav-section nav-section-{{ section.type || 'all' }}">
+                <h2 class="nav-section-title">{{ section.title }}</h2>
+                <rx-app-nav items="section.children"></rx-app-nav>
+            </div>
+        </nav>
+    </nav>
+    <div class="rx-app-content" ng-transclude></div>
+</div>

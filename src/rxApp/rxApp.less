@@ -1,0 +1,222 @@
+@import 'vars';
+@import 'flexbox';
+
+/*
+ * rxApp
+ */
+.rx-app {
+    min-height: 100%;
+    .flexbox-display();
+    .flexbox-direction(row);
+    background: @appBg;
+    font-size: @appFontSize;
+    color: @appTextColor;
+
+    .rx-app-menu {
+        color: #fff;
+        font-size: 15px;
+        font-weight: 200;
+        .flexbox(0 0 300px);
+        background: #1a1a1a;
+        line-height: @appLineHeight;
+        // make sure text inputs get the color as well
+        input {
+            color: @inputColor;
+        }
+    }
+
+    .rx-app-content {
+        .flexbox(1 1 0);
+    }
+
+    .site-branding {
+        border-top: 1px solid #074285;
+        border-bottom: 1px solid #052953;
+        padding: 5px 20px;
+        overflow: hidden;
+        background: #06356b;
+
+        .site-title {
+            float: left;
+            font-weight: 300;
+        }
+        .site-options {
+            float: right;
+            font-size: .8em;
+            margin-top: 1px;
+
+            a {
+                color: #97b1d0;
+                display: inline-block;
+                margin-left: 1em;
+                &:hover,
+                &:focus {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    .rx-app-nav {
+        clear: both;
+
+        .nav-section {
+            padding-left: 5px;
+
+            .item-link {
+                background: #1a1a1a;
+                border-top: 1px solid #333333;
+                border-bottom: 1px solid #000000;
+                padding: 10px 15px;
+                display: block;
+                color: #fff;
+                text-decoration: none;
+                &:hover,
+                &:focus {
+                    background: #262626;
+                    border-top: 1px solid #404040;
+                    border-bottom: 1px solid #0d0d0d;
+                }
+                &.active {
+                    position: relative;
+                    border-color: transparent !important;
+                    background: #0E7FFF !important;
+                    cursor: default;
+                    &:after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        left: 100%;
+                        top: 0;
+                        border: transparent solid;
+                        border-width: calc(~"5px + 1em") 6px;
+                        border-left-color: #0E7FFF;
+                    }
+                }
+            }
+
+            .item-content {
+                background: #333333;
+                padding: 10px;
+            }
+        }
+
+        .nav-section-title {
+            padding: 5px 15px;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        .nav-section-all {
+            background: #407610;
+            border-top: 1px solid #568c26;
+        }
+
+        .item-directive {
+            margin-bottom: 10px;
+        }
+
+        .rx-app-nav-level-2 {
+            .item-link {
+                background: #4d4d4d;
+                border-top-color: #666666;
+                border-bottom-color: #333333;
+                &:hover,
+                &:focus {
+                    background: #595959;
+                    border-top: 1px solid #737373;
+                    border-bottom: 1px solid #404040;
+                }
+                &.active {
+                    margin-right: -10px;
+                }
+            }
+
+            .item-content {
+                background: #4d4d4d;
+                padding: 10px;
+            }
+        }
+
+        .rx-app-nav-level-3 {
+            .item-link {
+                background: #666666;
+                border-top-color: #808080;
+                border-bottom-color: #4d4d4d;
+                padding: 5px 15px;
+                font-size: 13px;
+                font-weight: 300;
+
+                &:hover,
+                &:focus {
+                    background: #595959;
+                    border-top: 1px solid #737373;
+                    border-bottom: 1px solid #404040;
+                }
+                &.active {
+                    &:after {
+                        border-width: 1em 6px;
+                    }
+                }
+            }
+
+            .item-content {
+                background: black;
+                padding: 0 0 5px 5px;
+            }
+        }
+
+        .rx-app-nav-level-4 {
+            .rx-app-nav-item:first-child {
+                border-top: 3px solid #333;
+            }
+            .item-link {
+                background: #333;
+                border: none;
+
+                &:hover,
+                &:focus {
+                    background: #404040;
+                    border: none;
+                }
+                &.active {
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .page-header {
+        background: linear-gradient(to bottom, #e7e7e7 0%, #d6d6d6 100%);
+        border-bottom: 1px solid #bbb;
+    }
+
+    .page-body {
+        padding: 20px 30px 50px;
+        clear: both;
+
+        .page-content {
+            .flexbox-display();
+            .flexbox(1);
+            .flexbox-direction(column);
+        }
+
+        .page-title,
+        .section-title {
+            font-weight: 400;
+            font-size: 1.6em;
+            color: #727272;
+        }
+
+        .page-title {
+            margin-top: 0;
+        }
+
+        .page-subtitle {
+            font-weight: 500;
+            margin: 0 0 10px;
+            font-size: 1em;
+            color: #aaa;
+        }
+    }
+}

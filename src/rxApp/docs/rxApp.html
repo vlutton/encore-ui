@@ -1,0 +1,28 @@
+<div ng-controller="rxAppCtrl">
+    <h3>Standard rxApp</h3>
+    <rx-app>
+        <rx-page title="'Standard Page Title'">
+            This is my page content
+        </rx-page>
+    </rx-app>
+
+    <h3>Customized rxApp</h3>
+    <rx-app site-title="My App" menu="menuItems" id="custom-rxApp">
+        <rx-page title="'Customized Page Title'" subtitle="subtitle">
+            <p>Click a link in the menu to see the active state change</p>
+            <button ng-click="changeSubtitle()" class="changeSubtitle">Change Subtitle</button>
+        </rx-page>
+    </rx-app>
+</div>
+
+<!--
+You'll likely want to implement your HTML in your index.html file as:
+<body ng-app="sampleApp">
+    <rx-app ng-view></rx-app>
+</body>
+
+And the template for each view/page will be something like:
+<rx-page title="'Example Page'">
+    Example content
+</rx-page>
+-->

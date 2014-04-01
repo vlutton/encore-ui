@@ -1,7 +1,4 @@
 angular.module('encore.ui.configs', [])
-.constant('ROUTE_PATHS', {
-    'login': '/login'
-})
 .value('devicePaths', [
     { value: '/dev/xvdb', label: '/dev/xvdb' },
     { value: '/dev/xvdd', label: '/dev/xvdd' },
