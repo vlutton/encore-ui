@@ -9,7 +9,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.4.1.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.5.0.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -23,55 +23,213 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.4.1.min.js"></script>
+    <script src="dist/encore-ui-tpls-0.5.0.js"></script>
 
     <title>Encore UI</title>
 </head>
 <body ng-app="demoApp">
-    <div class="container">
-        <rx-nav></rx-nav>
+    <script>
+        // this script is at the top of the HTML so that any modules
+        // needing the demoApp module can use it
 
-        <div class="page-content">
-            <rx-related-menu state="menuShown" collapsable="false" position="left">
-                <ul class="product-resources">
-                    <li><a href="#configs" ng-click="scrollTo('configs', $event)">Configs</a></li><li><a href="#rxActiveUrl" ng-click="scrollTo('rxActiveUrl', $event)">Rx Active Url</a></li><li><a href="#rxAge" ng-click="scrollTo('rxAge', $event)">Rx Age</a></li><li><a href="#rxAttributes" ng-click="scrollTo('rxAttributes', $event)">Rx Attributes</a></li><li><a href="#rxAuth" ng-click="scrollTo('rxAuth', $event)">Rx Auth</a></li><li><a href="#rxBreadcrumbs" ng-click="scrollTo('rxBreadcrumbs', $event)">Rx Breadcrumbs</a></li><li><a href="#rxButton" ng-click="scrollTo('rxButton', $event)">Rx Button</a></li><li><a href="#rxCapitalize" ng-click="scrollTo('rxCapitalize', $event)">Rx Capitalize</a></li><li><a href="#rxDiskSize" ng-click="scrollTo('rxDiskSize', $event)">Rx Disk Size</a></li><li><a href="#rxForm" ng-click="scrollTo('rxForm', $event)">Rx Form</a></li><li><a href="#rxIdentity" ng-click="scrollTo('rxIdentity', $event)">Rx Identity</a></li><li><a href="#rxLocalStorage" ng-click="scrollTo('rxLocalStorage', $event)">Rx Local Storage</a></li><li><a href="#rxLogout" ng-click="scrollTo('rxLogout', $event)">Rx Logout</a></li><li><a href="#rxModalAction" ng-click="scrollTo('rxModalAction', $event)">Rx Modal Action</a></li><li><a href="#rxNotify" ng-click="scrollTo('rxNotify', $event)">Rx Notify</a></li><li><a href="#rxPageTitle" ng-click="scrollTo('rxPageTitle', $event)">Rx Page Title</a></li><li><a href="#rxPaginate" ng-click="scrollTo('rxPaginate', $event)">Rx Paginate</a></li><li><a href="#rxPermission" ng-click="scrollTo('rxPermission', $event)">Rx Permission</a></li><li><a href="#rxSession" ng-click="scrollTo('rxSession', $event)">Rx Session</a></li><li><a href="#rxSessionStorage" ng-click="scrollTo('rxSessionStorage', $event)">Rx Session Storage</a></li><li><a href="#rxSortableColumn" ng-click="scrollTo('rxSortableColumn', $event)">Rx Sortable Column</a></li><li><a href="#rxSpinner" ng-click="scrollTo('rxSpinner', $event)">Rx Spinner</a></li>
-                </ul>
-            </rx-related-menu>
-            <div class="main-content">
-                <p><strong><a href="ngdocs/index.html">ngdocs for Encore-UI</a></strong></p>
+        angular.module('demoApp', ['encore.ui'])
+        .run(function ($rootScope, $location, $anchorScroll) {
+            // Hack to make anchor link navigation work
+            document.addEventListener('click', function (ev) {
+                var target = ev.target;
 
-                
-                    <section class="component">
-                        <a id="configs"></a>
-                        <h2 class="section-title component-title">Configs<small>
-                              (encore.ui.configs)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                if (target.className.indexOf('item-link') > -1) {
+                    // prevent the default jump to top
+                    ev.preventDefault();
+
+                    // update angular location
+                    $location.hash(target.getAttribute('href'));
+
+                    // run angular scrollTo
+                    $anchorScroll();
+                }
+            });
+
+            $rootScope.components = [{
+                title: 'All Components',
+                children: [
+                    
+                    {
+                        href: 'configs',
+                        linkText: 'configs'
+                    },
+                    
+                    {
+                        href: 'rxActiveUrl',
+                        linkText: 'rxActiveUrl'
+                    },
+                    
+                    {
+                        href: 'rxAge',
+                        linkText: 'rxAge'
+                    },
+                    
+                    {
+                        href: 'rxApp',
+                        linkText: 'rxApp'
+                    },
+                    
+                    {
+                        href: 'rxAttributes',
+                        linkText: 'rxAttributes'
+                    },
+                    
+                    {
+                        href: 'rxAuth',
+                        linkText: 'rxAuth'
+                    },
+                    
+                    {
+                        href: 'rxBreadcrumbs',
+                        linkText: 'rxBreadcrumbs'
+                    },
+                    
+                    {
+                        href: 'rxButton',
+                        linkText: 'rxButton'
+                    },
+                    
+                    {
+                        href: 'rxCapitalize',
+                        linkText: 'rxCapitalize'
+                    },
+                    
+                    {
+                        href: 'rxDiskSize',
+                        linkText: 'rxDiskSize'
+                    },
+                    
+                    {
+                        href: 'rxDropdown',
+                        linkText: 'rxDropdown'
+                    },
+                    
+                    {
+                        href: 'rxEnvironment',
+                        linkText: 'rxEnvironment'
+                    },
+                    
+                    {
+                        href: 'rxForm',
+                        linkText: 'rxForm'
+                    },
+                    
+                    {
+                        href: 'rxIdentity',
+                        linkText: 'rxIdentity'
+                    },
+                    
+                    {
+                        href: 'rxLocalStorage',
+                        linkText: 'rxLocalStorage'
+                    },
+                    
+                    {
+                        href: 'rxLogout',
+                        linkText: 'rxLogout'
+                    },
+                    
+                    {
+                        href: 'rxModalAction',
+                        linkText: 'rxModalAction'
+                    },
+                    
+                    {
+                        href: 'rxNotify',
+                        linkText: 'rxNotify'
+                    },
+                    
+                    {
+                        href: 'rxPageTitle',
+                        linkText: 'rxPageTitle'
+                    },
+                    
+                    {
+                        href: 'rxPaginate',
+                        linkText: 'rxPaginate'
+                    },
+                    
+                    {
+                        href: 'rxPermission',
+                        linkText: 'rxPermission'
+                    },
+                    
+                    {
+                        href: 'rxProductResources',
+                        linkText: 'rxProductResources'
+                    },
+                    
+                    {
+                        href: 'rxRelatedMenu',
+                        linkText: 'rxRelatedMenu'
+                    },
+                    
+                    {
+                        href: 'rxSession',
+                        linkText: 'rxSession'
+                    },
+                    
+                    {
+                        href: 'rxSessionStorage',
+                        linkText: 'rxSessionStorage'
+                    },
+                    
+                    {
+                        href: 'rxSortableColumn',
+                        linkText: 'rxSortableColumn'
+                    },
+                    
+                    {
+                        href: 'rxSpinner',
+                        linkText: 'rxSpinner'
+                    },
+                    
+                ]
+            }];
+        });
+    </script>
+
+    <rx-app site-title="Encore Demo App" menu="components">
+        <rx-page page-title="Encore-UI Components">
+            <p><strong><a href="ngdocs/index.html">ngdocs for Encore-UI</a></strong></p>
+
+            
+                <section class="component">
+                    <a id="configs"></a>
+                    <h2 class="section-title component-title">Configs<small>
+                          (encore.ui.configs)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>Common configs used throughout Encore.</p>
 
 <p>Unit tests for this only need to check for the existence of the config data, just to confirm that they're being loaded correctly. Anything more is just overkill.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            
-                        </div>
-                    </section>
-                    <script></script>
-                
-                    <section class="component">
-                        <a id="rxActiveUrl"></a>
-                        <h2 class="section-title component-title">Rx Active Url<small>
-                              (encore.ui.rxActiveUrl)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <ul>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        
+                    </div>
+                </section>
+                <script></script>
+            
+                <section class="component">
+                    <a id="rxActiveUrl"></a>
+                    <h2 class="section-title component-title">Rx Active Url<small>
+                          (encore.ui.rxActiveUrl)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <ul>
     <rx-active-url url="/servers">
         <a href="/servers">Servers</a>
     </rx-active-url>
@@ -87,19 +245,19 @@
         </ul>
     </rx-active-url>
 </ul>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/hughsk/stability-badges"><img src="http://hughsk.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/hughsk/stability-badges"><img src="http://hughsk.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>Adds a class name of 'selected' to an LI if the current url matches a pre-defined value</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;ul&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;ul&gt;
     &lt;rx-active-url url=&quot;/servers&quot;&gt;
         &lt;a href=&quot;/servers&quot;&gt;Servers&lt;/a&gt;
     &lt;/rx-active-url&gt;
@@ -115,22 +273,22 @@
         &lt;/ul&gt;
     &lt;/rx-active-url&gt;
 &lt;/ul&gt;</code></pre>
-                            </div>
-                            
-                            
                         </div>
-                    </section>
-                    <script></script>
-                
-                    <section class="component">
-                        <a id="rxAge"></a>
-                        <h2 class="section-title component-title">Rx Age<small>
-                              (encore.ui.rxAge)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div ng-controller="rxAgeCtrl">
+                        
+                        
+                    </div>
+                </section>
+                <script></script>
+            
+                <section class="component">
+                    <a id="rxAge"></a>
+                    <h2 class="section-title component-title">Rx Age<small>
+                          (encore.ui.rxAge)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxAgeCtrl">
     <ul>
         <li>{{ageHours}} &rarr; {{ageHours | rxAge}}</li>
         <li>{{ageDays}} &rarr; {{ageDays | rxAge}}</li>
@@ -138,21 +296,21 @@
         <li>{{ageYears}} &rarr; {{ageYears | rxAge}}</li>
     </ul>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>Filter to parse an age based on a date in the past.</p>
 
 <p>Note: This component requires <a href="http://momentjs.com/">moment.js</a> be loaded.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxAgeCtrl&quot;&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxAgeCtrl&quot;&gt;
     &lt;ul&gt;
         &lt;li&gt;{{ageHours}} &amp;rarr; {{ageHours | rxAge}}&lt;/li&gt;
         &lt;li&gt;{{ageDays}} &amp;rarr; {{ageDays | rxAge}}&lt;/li&gt;
@@ -160,12 +318,12 @@
         &lt;li&gt;{{ageYears}} &amp;rarr; {{ageYears | rxAge}}&lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 
 // This file is used to help build the &#x27;demo&#x27; documentation page and should be updated with example code
 function rxAgeCtrl ($scope) {
@@ -175,11 +333,11 @@ function rxAgeCtrl ($scope) {
     $scope.ageMonths = new Date((Date.now() - (day * 40.2)));
     $scope.ageYears = new Date((Date.now() - (day * 380.1)));
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
 function rxAgeCtrl ($scope) {
@@ -189,16 +347,328 @@ function rxAgeCtrl ($scope) {
     $scope.ageMonths = new Date((Date.now() - (day * 40.2)));
     $scope.ageYears = new Date((Date.now() - (day * 380.1)));
 }</script>
-                
-                    <section class="component">
-                        <a id="rxAttributes"></a>
-                        <h2 class="section-title component-title">Rx Attributes<small>
-                              (encore.ui.rxAttributes)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxApp"></a>
+                    <h2 class="section-title component-title">Rx App<small>
+                          (encore.ui.rxApp)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxAppCtrl">
+    <h3>Standard rxApp</h3>
+    <rx-app>
+        <rx-page title="'Standard Page Title'">
+            This is my page content
+        </rx-page>
+    </rx-app>
+
+    <h3>Customized rxApp</h3>
+    <rx-app site-title="My App" menu="menuItems" id="custom-rxApp">
+        <rx-page title="'Customized Page Title'" subtitle="subtitle">
+            <p>Click a link in the menu to see the active state change</p>
+            <button ng-click="changeSubtitle()" class="changeSubtitle">Change Subtitle</button>
+        </rx-page>
+    </rx-app>
+</div>
+
+<!--
+You'll likely want to implement your HTML in your index.html file as:
+<body ng-app="sampleApp">
+    <rx-app ng-view></rx-app>
+</body>
+
+And the template for each view/page will be something like:
+<rx-page title="'Example Page'">
+    Example content
+</rx-page>
+-->
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+
+<p>Responsible for creating the HTML necessary for a common Encore layout.</p>
+
+<h2>Usage</h2>
+
+<p>For apps that want to use the default Encore navigation, usage is pretty simple. In your index.html file, add the <code>rx-app</code> directive inside your app:</p>
+
+<pre><code>&lt;body ng-app="myApp"&gt;
+    &lt;rx-app&gt;
+        &lt;ng-view&gt;&lt;/ng-view&gt;
+    &lt;/rx-app&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p>By including <code>ng-view</code>, your view content will be added inside the directive. This makes setting up views for each page much simpler, since you don't have to include <code>rx-app</code> in each view.</p>
+
+<h3>rx-page</h3>
+
+<p>You'll likely want to use <code>rx-page</code> inside your template view. For example, inside a 'myView.html' file:</p>
+
+<pre><code>&lt;rx-page title="'Example Page'"&gt;
+    Here is my content
+&lt;/rx-page&gt;
+</code></pre>
+
+<p><code>rx-page</code> is used to create a common wrapper for specific page views. It automatically adds the breadcrumbs and page title/subtitle (if specified), along with the correct styling.</p>
+
+<p>Both the <code>title</code> and <code>subtitle</code> attributes accept an Angular expression, which can be a string (shown in the previous example) or a scope property. This string/property can accept other expressions, enabling you to build custom titles. The demo has an example of this usage.</p>
+
+<h3>rx-app-nav and rx-app-nav-item</h3>
+
+<p>These two directives are responsible for creating the menu in the left sidebar. They're not intended for use outside of the rx-app template code.</p>
+
+<h2>Custom Menus</h2>
+
+<p>If you'd like to create an entirely custom menu, you can pass that data in to the <code>rx-app</code> directive via the 'menu' attribute. View the demo for an example of this.</p>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxAppCtrl&quot;&gt;
+    &lt;h3&gt;Standard rxApp&lt;/h3&gt;
+    &lt;rx-app&gt;
+        &lt;rx-page title=&quot;&#x27;Standard Page Title&#x27;&quot;&gt;
+            This is my page content
+        &lt;/rx-page&gt;
+    &lt;/rx-app&gt;
+
+    &lt;h3&gt;Customized rxApp&lt;/h3&gt;
+    &lt;rx-app site-title=&quot;My App&quot; menu=&quot;menuItems&quot; id=&quot;custom-rxApp&quot;&gt;
+        &lt;rx-page title=&quot;&#x27;Customized Page Title&#x27;&quot; subtitle=&quot;subtitle&quot;&gt;
+            &lt;p&gt;Click a link in the menu to see the active state change&lt;/p&gt;
+            &lt;button ng-click=&quot;changeSubtitle()&quot; class=&quot;changeSubtitle&quot;&gt;Change Subtitle&lt;/button&gt;
+        &lt;/rx-page&gt;
+    &lt;/rx-app&gt;
+&lt;/div&gt;
+
+&lt;!--
+You&#x27;ll likely want to implement your HTML in your index.html file as:
+&lt;body ng-app=&quot;sampleApp&quot;&gt;
+    &lt;rx-app ng-view&gt;&lt;/rx-app&gt;
+&lt;/body&gt;
+
+And the template for each view/page will be something like:
+&lt;rx-page title=&quot;&#x27;Example Page&#x27;&quot;&gt;
+    Example content
+&lt;/rx-page&gt;
+--&gt;</code></pre>
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+angular.module(&#x27;demoApp&#x27;)
+.directive(&#x27;sampleNavDirective&#x27;, function () {
+    return {
+        restrict: &#x27;E&#x27;,
+        template: &#x27;&lt;input type=&quot;text&quot; placeholder=&quot;Search&quot;&gt;&#x27;
+    };
+});
+
+function rxAppCtrl ($scope, $location, $rootScope) {
+    $scope.subtitle = &#x27;With a subtitle&#x27;;
+
+    $scope.changeSubtitle = function () {
+        $scope.subtitle = &#x27;With a new subtitle at &#x27; + Date.now();
+    };
+
+    // Fake navigation
+    var customApp = document.getElementById(&#x27;custom-rxApp&#x27;);
+    customApp.addEventListener(&#x27;click&#x27;, function (ev) {
+        var target = ev.target;
+
+        if (target.className.indexOf(&#x27;item-link&#x27;) &gt; -1) {
+            // prevent the default jump to top
+            ev.preventDefault();
+
+            // update angular location
+            $location.path(target.getAttribute(&#x27;href&#x27;));
+            $rootScope.$apply();
+        }
+    });
+
+    $scope.menuItems = [{
+        title: &#x27;Example Menu&#x27;,
+        children: [
+            {
+                href: &#x27;#1&#x27;,
+                linkText: &#x27;1st Order Item&#x27;
+            },
+            {
+                href: &#x27;#2&#x27;,
+                linkText: &#x27;1st Order Item w/ Children&#x27;,
+                // childHeader: &#x27;Current Account {{ user }}&#x27;,
+                directive: &#x27;sample-nav-directive&#x27;,
+                children: [
+                    {
+                        href: &#x27;#2-1&#x27;,
+                        linkText: &#x27;2nd Order Item&#x27;,
+                        children: [{
+                            href: &#x27;#2-1-1&#x27;,
+                            linkText: &#x27;3rd Order Item&#x27;
+                        }]
+                    },
+                    {
+                        href: &#x27;#2-2&#x27;,
+                        linkText: &#x27;2nd Order Item w/ Children&#x27;,
+                        active: true,
+                        children: [
+                            {
+                                href: &#x27;#2-2-1&#x27;,
+                                linkText: &#x27;3rd Order Item&#x27;
+                            },
+                            {
+                                href: &#x27;#2-2-2&#x27;,
+                                linkText: &#x27;3rd Order Item w/ children&#x27;,
+                                active: true,
+                                children: [
+                                    {
+                                        href: &#x27;#2-2-2-1&#x27;,
+                                        linkText: &#x27;4th Order Item&#x27;,
+                                        active: true
+                                    },
+                                    {
+                                        href: &#x27;#2-2-2-2&#x27;,
+                                        linkText: &#x27;4th Order Item&#x27;
+                                    }
+                                ]
+                            },
+                            {
+                                href: &#x27;#2-2-3&#x27;,
+                                linkText: &#x27;3rd Order Item&#x27;
+                            }
+                        ]
+                    },
+                    {
+                        href: &#x27;#2-3&#x27;,
+                        linkText: &#x27;2nd Order Item&#x27;
+                    }
+                ]
+            },
+            {
+                href: &#x27;#3&#x27;,
+                linkText: &#x27;1st Order Item&#x27;
+            }
+        ]
+    }];
+}</code></pre>
+                        </div>
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
+angular.module('demoApp')
+.directive('sampleNavDirective', function () {
+    return {
+        restrict: 'E',
+        template: '<input type="text" placeholder="Search">'
+    };
+});
+
+function rxAppCtrl ($scope, $location, $rootScope) {
+    $scope.subtitle = 'With a subtitle';
+
+    $scope.changeSubtitle = function () {
+        $scope.subtitle = 'With a new subtitle at ' + Date.now();
+    };
+
+    // Fake navigation
+    var customApp = document.getElementById('custom-rxApp');
+    customApp.addEventListener('click', function (ev) {
+        var target = ev.target;
+
+        if (target.className.indexOf('item-link') > -1) {
+            // prevent the default jump to top
+            ev.preventDefault();
+
+            // update angular location
+            $location.path(target.getAttribute('href'));
+            $rootScope.$apply();
+        }
+    });
+
+    $scope.menuItems = [{
+        title: 'Example Menu',
+        children: [
+            {
+                href: '#1',
+                linkText: '1st Order Item'
+            },
+            {
+                href: '#2',
+                linkText: '1st Order Item w/ Children',
+                // childHeader: 'Current Account {{ user }}',
+                directive: 'sample-nav-directive',
+                children: [
+                    {
+                        href: '#2-1',
+                        linkText: '2nd Order Item',
+                        children: [{
+                            href: '#2-1-1',
+                            linkText: '3rd Order Item'
+                        }]
+                    },
+                    {
+                        href: '#2-2',
+                        linkText: '2nd Order Item w/ Children',
+                        active: true,
+                        children: [
+                            {
+                                href: '#2-2-1',
+                                linkText: '3rd Order Item'
+                            },
+                            {
+                                href: '#2-2-2',
+                                linkText: '3rd Order Item w/ children',
+                                active: true,
+                                children: [
+                                    {
+                                        href: '#2-2-2-1',
+                                        linkText: '4th Order Item',
+                                        active: true
+                                    },
+                                    {
+                                        href: '#2-2-2-2',
+                                        linkText: '4th Order Item'
+                                    }
+                                ]
+                            },
+                            {
+                                href: '#2-2-3',
+                                linkText: '3rd Order Item'
+                            }
+                        ]
+                    },
+                    {
+                        href: '#2-3',
+                        linkText: '2nd Order Item'
+                    }
+                ]
+            },
+            {
+                href: '#3',
+                linkText: '1st Order Item'
+            }
+        ]
+    }];
+}</script>
+            
+                <section class="component">
+                    <a id="rxAttributes"></a>
+                    <h2 class="section-title component-title">Rx Attributes<small>
+                          (encore.ui.rxAttributes)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxAttributesCtrl">
     <p><strong>The following content gets replaced by the value of ng-bind. It also gets some styles applied to it:</strong></p>
     <p rx-attributes="{'ng-bind': customContent, 'style': customStyles}">Content that's replaced</p>
@@ -209,10 +679,10 @@ function rxAgeCtrl ($scope) {
     <p><strong>The following content (you can't see it) does get replaced, but by nothing, since 'nothing' isn't a property on the scope. This is what rx-attributes avoids</strong></p>
     <p ng-bind="nothing">Content that's unintentionally replaced</p>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>This component allows you to add attributes based on a value in scope being defined or not.</p>
 
@@ -243,13 +713,13 @@ function myCtrl (scope) {
     'another-attribute-name': anotherScopeValue,
 }
 </code></pre>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxAttributesCtrl&quot;&gt;
     &lt;p&gt;&lt;strong&gt;The following content gets replaced by the value of ng-bind. It also gets some styles applied to it:&lt;/strong&gt;&lt;/p&gt;
     &lt;p rx-attributes=&quot;{&#x27;ng-bind&#x27;: customContent, &#x27;style&#x27;: customStyles}&quot;&gt;Content that&#x27;s replaced&lt;/p&gt;
@@ -260,62 +730,62 @@ function myCtrl (scope) {
     &lt;p&gt;&lt;strong&gt;The following content (you can&#x27;t see it) does get replaced, but by nothing, since &#x27;nothing&#x27; isn&#x27;t a property on the scope. This is what rx-attributes avoids&lt;/strong&gt;&lt;/p&gt;
     &lt;p ng-bind=&quot;nothing&quot;&gt;Content that&#x27;s unintentionally replaced&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 function rxAttributesCtrl ($scope) {
     $scope.customStyles = &#x27;color: red; font-weight: bold;&#x27;;
     $scope.customContent = &#x27;&quot;Custom Content&quot;&#x27;;
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 function rxAttributesCtrl ($scope) {
     $scope.customStyles = 'color: red; font-weight: bold;';
     $scope.customContent = '"Custom Content"';
 }</script>
-                
-                    <section class="component">
-                        <a id="rxAuth"></a>
-                        <h2 class="section-title component-title">Rx Auth<small>
-                              (encore.ui.rxAuth)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div ng-controller="rxAuthCtrl">
+            
+                <section class="component">
+                    <a id="rxAuth"></a>
+                    <h2 class="section-title component-title">Rx Auth<small>
+                          (encore.ui.rxAuth)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxAuthCtrl">
     <button ng-click="hasRole()">Is a Superhero?</button>
     <button ng-click="isAuthenticated()">Is Authenticatd?</button>
 </div>
 
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>Auth service which provides a common mechanism authenticating, validating permissions and managing sessions.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxAuthCtrl&quot;&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxAuthCtrl&quot;&gt;
     &lt;button ng-click=&quot;hasRole()&quot;&gt;Is a Superhero?&lt;/button&gt;
     &lt;button ng-click=&quot;isAuthenticated()&quot;&gt;Is Authenticatd?&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">function rxAuthCtrl ($scope, Auth) {
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">function rxAuthCtrl ($scope, Auth) {
     $scope.hasRole = function () {
         alert(&#x27;Has &quot;superhero&quot; Role? : &#x27; + Auth.hasRole(&#x27;superhero&#x27;));
     };
@@ -325,11 +795,11 @@ function rxAttributesCtrl ($scope) {
     };
 }
 </code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>function rxAuthCtrl ($scope, Auth) {
+                        
+                    </div>
+                </section>
+                <script>function rxAuthCtrl ($scope, Auth) {
     $scope.hasRole = function () {
         alert('Has "superhero" Role? : ' + Auth.hasRole('superhero'));
     };
@@ -339,105 +809,105 @@ function rxAttributesCtrl ($scope) {
     };
 }
 </script>
-                
-                    <section class="component">
-                        <a id="rxBreadcrumbs"></a>
-                        <h2 class="section-title component-title">Rx Breadcrumbs<small>
-                              (encore.ui.rxBreadcrumbs)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxBreadcrumbs"></a>
+                    <h2 class="section-title component-title">Rx Breadcrumbs<small>
+                          (encore.ui.rxBreadcrumbs)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxBreadcrumbsCtrl">
     <nav class="site-breadcrumbs">
         <rx-breadcrumbs></rx-breadcrumbs>
     </nav>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>Service/Directive to add/update breadcrumbs on a page</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxBreadcrumbsCtrl&quot;&gt;
     &lt;nav class=&quot;site-breadcrumbs&quot;&gt;
         &lt;rx-breadcrumbs&gt;&lt;/rx-breadcrumbs&gt;
     &lt;/nav&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
     rxBreadcrumbsSvc.set([{
-        path: &#x27;/servers/&#x27;,
-        name: &#x27;Servers&#x27;
+        path: &#x27;/&#x27;,
+        name: &#x27;Components&#x27;
     }, {
-        name: &#x27;Create New Server&#x27;
+        name: &#x27;All Components&#x27;
     }]);
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
     rxBreadcrumbsSvc.set([{
-        path: '/servers/',
-        name: 'Servers'
+        path: '/',
+        name: 'Components'
     }, {
-        name: 'Create New Server'
+        name: 'All Components'
     }]);
 }</script>
-                
-                    <section class="component">
-                        <a id="rxButton"></a>
-                        <h2 class="section-title component-title">Rx Button<small>
-                              (encore.ui.rxButton)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxButton"></a>
+                    <h2 class="section-title component-title">Rx Button<small>
+                          (encore.ui.rxButton)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxButtonCtrl">
     <rx-button toggle-msg="Authenticating" default-msg="Login"
         toggle="status.loading" ng-click="login()">
     </rx-button>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>Button for handling async operations.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxButtonCtrl&quot;&gt;
     &lt;rx-button toggle-msg=&quot;Authenticating&quot; default-msg=&quot;Login&quot;
         toggle=&quot;status.loading&quot; ng-click=&quot;login()&quot;&gt;
     &lt;/rx-button&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 function rxButtonCtrl ($scope, $timeout) {
     $scope.status = {
         loading: false
@@ -451,11 +921,11 @@ function rxButtonCtrl ($scope, $timeout) {
         }, 4000);
     };
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 function rxButtonCtrl ($scope, $timeout) {
     $scope.status = {
         loading: false
@@ -469,64 +939,64 @@ function rxButtonCtrl ($scope, $timeout) {
         }, 4000);
     };
 }</script>
-                
-                    <section class="component">
-                        <a id="rxCapitalize"></a>
-                        <h2 class="section-title component-title">Rx Capitalize<small>
-                              (encore.ui.rxCapitalize)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxCapitalize"></a>
+                    <h2 class="section-title component-title">Rx Capitalize<small>
+                          (encore.ui.rxCapitalize)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxCapitalizeCtrl">
     {{hello | rxCapitalize}}
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/stable.svg" alt="stable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/stable.svg" alt="stable" title="" /></a></p>
 
 <p>Capitalizes the first word in a string.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxCapitalizeCtrl&quot;&gt;
     {{hello | rxCapitalize}}
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 
 function rxCapitalizeCtrl ($scope) {
     $scope.hello = &#x27;hello world. this is my text&#x27;;
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 
 function rxCapitalizeCtrl ($scope) {
     $scope.hello = 'hello world. this is my text';
 }</script>
-                
-                    <section class="component">
-                        <a id="rxDiskSize"></a>
-                        <h2 class="section-title component-title">Rx Disk Size<small>
-                              (encore.ui.rxDiskSize)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxDiskSize"></a>
+                    <h2 class="section-title component-title">Rx Disk Size<small>
+                          (encore.ui.rxDiskSize)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxDiskSizeCtrl">
     <ul>
         <li>{{sizeGB}} &rarr; {{sizeGB | rxDiskSize}}</li>
@@ -534,19 +1004,19 @@ function rxCapitalizeCtrl ($scope) {
         <li>{{sizePB}} &rarr; {{sizePB | rxDiskSize}}</li>
     </ul>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/stable.svg" alt="stable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/stable.svg" alt="stable" title="" /></a></p>
 
 <p>Converts GB disk size into a more readable format (e.g. GBs, TBs)</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxDiskSizeCtrl&quot;&gt;
     &lt;ul&gt;
         &lt;li&gt;{{sizeGB}} &amp;rarr; {{sizeGB | rxDiskSize}}&lt;/li&gt;
@@ -554,12 +1024,12 @@ function rxCapitalizeCtrl ($scope) {
         &lt;li&gt;{{sizePB}} &amp;rarr; {{sizePB | rxDiskSize}}&lt;/li&gt;
     &lt;/ul&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 
 // This file is used to help build the &#x27;demo&#x27; documentation page and should be updated with example code
 function rxDiskSizeCtrl ($scope) {
@@ -567,11 +1037,11 @@ function rxDiskSizeCtrl ($scope) {
     $scope.sizeTB = 125000;
     $scope.sizePB = 171337000;
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
 function rxDiskSizeCtrl ($scope) {
@@ -579,16 +1049,138 @@ function rxDiskSizeCtrl ($scope) {
     $scope.sizeTB = 125000;
     $scope.sizePB = 171337000;
 }</script>
-                
-                    <section class="component">
-                        <a id="rxForm"></a>
-                        <h2 class="section-title component-title">Rx Form<small>
-                              (encore.ui.rxForm)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div class="forms" ng-controller="rxFormDemoCtrl">
+            
+                <section class="component">
+                    <a id="rxDropdown"></a>
+                    <h2 class="section-title component-title">Rx Dropdown<small>
+                          (encore.ui.rxDropdown)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/deprecated.svg" alt="deprecated" title="" /></a></p>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        
+                    </div>
+                </section>
+                <script></script>
+            
+                <section class="component">
+                    <a id="rxEnvironment"></a>
+                    <h2 class="section-title component-title">Rx Environment<small>
+                          (encore.ui.rxEnvironment)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxEnvironmentCtrl">
+    <p>Current Environment: {{environment.name}}</p>
+
+    <p>
+        Switch to:
+        <button ng-click="switchTo('local')">Local</button>
+        <button ng-click="switchTo('staging')">Staging</button>
+        <button ng-click="switchTo('production')">Production</button>
+        <button ng-click="switchTo('ghPages')">GitHub Pages</button>
+    </p>
+
+    <p>Custom Environment Url: {{ { tld: 'cloudatlas', path: 'some/path' } | rxEnvironmentUrl }}</p>
+
+    <p>Content shows if staging:
+        <span rx-if-environment="staging">
+            You're on a staging environment
+        </span>
+    </p>
+
+    <p>Content shows if not production:
+        <span rx-if-environment="!production">
+            You are not on a production environment
+        </span>
+    </p>
+</div>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+
+<p>Component built to detect and provide the current environment (e.g. dev, staging, prod)</p>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxEnvironmentCtrl&quot;&gt;
+    &lt;p&gt;Current Environment: {{environment.name}}&lt;/p&gt;
+
+    &lt;p&gt;
+        Switch to:
+        &lt;button ng-click=&quot;switchTo(&#x27;local&#x27;)&quot;&gt;Local&lt;/button&gt;
+        &lt;button ng-click=&quot;switchTo(&#x27;staging&#x27;)&quot;&gt;Staging&lt;/button&gt;
+        &lt;button ng-click=&quot;switchTo(&#x27;production&#x27;)&quot;&gt;Production&lt;/button&gt;
+        &lt;button ng-click=&quot;switchTo(&#x27;ghPages&#x27;)&quot;&gt;GitHub Pages&lt;/button&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;Custom Environment Url: {{ { tld: &#x27;cloudatlas&#x27;, path: &#x27;some/path&#x27; } | rxEnvironmentUrl }}&lt;/p&gt;
+
+    &lt;p&gt;Content shows if staging:
+        &lt;span rx-if-environment=&quot;staging&quot;&gt;
+            You&#x27;re on a staging environment
+        &lt;/span&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;Content shows if not production:
+        &lt;span rx-if-environment=&quot;!production&quot;&gt;
+            You are not on a production environment
+        &lt;/span&gt;
+    &lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+function rxEnvironmentCtrl ($scope, Environment) {
+    Environment.add({
+        name: &#x27;ghPages&#x27;,
+        pattern: &#x27;//rackerlabs.github.io/encore-ui/&#x27;,
+        url: &#x27;//rackerlabs.github.io/encore-ui/{{path}}&#x27;
+    });
+
+    $scope.switchTo = function (envName) {
+        Environment.set(envName);
+    };
+}</code></pre>
+                        </div>
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
+function rxEnvironmentCtrl ($scope, Environment) {
+    Environment.add({
+        name: 'ghPages',
+        pattern: '//rackerlabs.github.io/encore-ui/',
+        url: '//rackerlabs.github.io/encore-ui/{{path}}'
+    });
+
+    $scope.switchTo = function (envName) {
+        Environment.set(envName);
+    };
+}</script>
+            
+                <section class="component">
+                    <a id="rxForm"></a>
+                    <h2 class="section-title component-title">Rx Form<small>
+                          (encore.ui.rxForm)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div class="forms" ng-controller="rxFormDemoCtrl">
     <h3>Example of simple text input</h3>
     <rx-form-item label="Display Name" description="<a href='#'>Here</a> is my <b>HTML</b>" prefix="$" suffix="GB">
         <input type="text" ng-model="volume.name" ng-required="true" />
@@ -645,21 +1237,21 @@ function rxDiskSizeCtrl ($scope) {
     <p>Item 1 Value: {{volume.checked[0]}}</p>
     <p>Item 2 Value: {{volume.checked[1]}}</p>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>RxForm is a set of directives used to create forms throughout Encore. These directives provide a common HTML layout and style for all form elements, which helps ensure form accessibility and makes creating new forms easier.</p>
 
 <p><strong>NOTE</strong>: rxFormInput, rxFormRadio and rxFormSelect are deprecated and will be removed in a future version. Please use rxFormItem for all your form input needs!</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div class=&quot;forms&quot; ng-controller=&quot;rxFormDemoCtrl&quot;&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div class=&quot;forms&quot; ng-controller=&quot;rxFormDemoCtrl&quot;&gt;
     &lt;h3&gt;Example of simple text input&lt;/h3&gt;
     &lt;rx-form-item label=&quot;Display Name&quot; description=&quot;&lt;a href=&#x27;#&#x27;&gt;Here&lt;/a&gt; is my &lt;b&gt;HTML&lt;/b&gt;&quot; prefix=&quot;$&quot; suffix=&quot;GB&quot;&gt;
         &lt;input type=&quot;text&quot; ng-model=&quot;volume.name&quot; ng-required=&quot;true&quot; /&gt;
@@ -716,12 +1308,12 @@ function rxDiskSizeCtrl ($scope) {
     &lt;p&gt;Item 1 Value: {{volume.checked[0]}}&lt;/p&gt;
     &lt;p&gt;Item 2 Value: {{volume.checked[1]}}&lt;/p&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">function rxFormDemoCtrl ($scope) {
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">function rxFormDemoCtrl ($scope) {
     $scope.types = [
         {
             &#x27;value&#x27;: &#x27;SATA&#x27;,
@@ -789,11 +1381,11 @@ function rxDiskSizeCtrl ($scope) {
         &#x27;falseValue&#x27;: &#x27;unchecked&#x27;
     }];
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>function rxFormDemoCtrl ($scope) {
+                        
+                    </div>
+                </section>
+                <script>function rxFormDemoCtrl ($scope) {
     $scope.types = [
         {
             'value': 'SATA',
@@ -861,16 +1453,16 @@ function rxDiskSizeCtrl ($scope) {
         'falseValue': 'unchecked'
     }];
 }</script>
-                
-                    <section class="component">
-                        <a id="rxIdentity"></a>
-                        <h2 class="section-title component-title">Rx Identity<small>
-                              (encore.ui.rxIdentity)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Example only works when running locally since rxIdentity requires a proxy -->
+            
+                <section class="component">
+                    <a id="rxIdentity"></a>
+                    <h2 class="section-title component-title">Rx Identity<small>
+                          (encore.ui.rxIdentity)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Example only works when running locally since rxIdentity requires a proxy -->
 <div ng-controller="rxIdentityCtrl">
     <form>
         <label>Username:</label>
@@ -882,19 +1474,19 @@ function rxDiskSizeCtrl ($scope) {
     </form>
 </div>
 
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>Service for authenticating with Rackspaces' Identity service</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Example only works when running locally since rxIdentity requires a proxy --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Example only works when running locally since rxIdentity requires a proxy --&gt;
 &lt;div ng-controller=&quot;rxIdentityCtrl&quot;&gt;
     &lt;form&gt;
         &lt;label&gt;Username:&lt;/label&gt;
@@ -906,12 +1498,12 @@ function rxDiskSizeCtrl ($scope) {
     &lt;/form&gt;
 &lt;/div&gt;
 </code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 function rxIdentityCtrl ($scope, Identity) {
     $scope.user = {};
     $scope.login = function () {
@@ -928,11 +1520,11 @@ function rxIdentityCtrl ($scope, Identity) {
     };
 }
 </code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 function rxIdentityCtrl ($scope, Identity) {
     $scope.user = {};
     $scope.login = function () {
@@ -949,45 +1541,45 @@ function rxIdentityCtrl ($scope, Identity) {
     };
 }
 </script>
-                
-                    <section class="component">
-                        <a id="rxLocalStorage"></a>
-                        <h2 class="section-title component-title">Rx Local Storage<small>
-                              (encore.ui.rxLocalStorage)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div ng-controller="rxLocalStorageCtrl">
+            
+                <section class="component">
+                    <a id="rxLocalStorage"></a>
+                    <h2 class="section-title component-title">Rx Local Storage<small>
+                          (encore.ui.rxLocalStorage)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxLocalStorageCtrl">
     <label>Who is the Joker's side kick?</label>
     <button ng-click="setSideKick()">Store Answer</button>
     <button ng-click="getSideKick()">Answer?</button>
 </div>
 
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>Simple wrapper of the global session localStorage object for interacting with local storage.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxLocalStorageCtrl&quot;&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxLocalStorageCtrl&quot;&gt;
     &lt;label&gt;Who is the Joker&#x27;s side kick?&lt;/label&gt;
     &lt;button ng-click=&quot;setSideKick()&quot;&gt;Store Answer&lt;/button&gt;
     &lt;button ng-click=&quot;getSideKick()&quot;&gt;Answer?&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">function rxLocalStorageCtrl ($scope, LocalStorage) {
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">function rxLocalStorageCtrl ($scope, LocalStorage) {
     $scope.setSideKick = function () {
         LocalStorage.setObject(&#x27;joker&#x27;, { name: &#x27;Harley Quinn&#x27; });
     };
@@ -998,11 +1590,11 @@ function rxIdentityCtrl ($scope, Identity) {
     };
 }
 </code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>function rxLocalStorageCtrl ($scope, LocalStorage) {
+                        
+                    </div>
+                </section>
+                <script>function rxLocalStorageCtrl ($scope, LocalStorage) {
     $scope.setSideKick = function () {
         LocalStorage.setObject('joker', { name: 'Harley Quinn' });
     };
@@ -1013,49 +1605,49 @@ function rxIdentityCtrl ($scope, Identity) {
     };
 }
 </script>
-                
-                    <section class="component">
-                        <a id="rxLogout"></a>
-                        <h2 class="section-title component-title">Rx Logout<small>
-                              (encore.ui.rxLogout)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div>
+            
+                <section class="component">
+                    <a id="rxLogout"></a>
+                    <h2 class="section-title component-title">Rx Logout<small>
+                          (encore.ui.rxLogout)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div>
     <a href="#" rx-logout>Logout</a>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-bages"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/deprecated.svg" alt="deprecated" title="" /></a></p>
 
 <p>Attribute directive to add logout functionality to a link.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div&gt;
     &lt;a href=&quot;#&quot; rx-logout&gt;Logout&lt;/a&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
                         </div>
-                    </section>
-                    <script></script>
-                
-                    <section class="component">
-                        <a id="rxModalAction"></a>
-                        <h2 class="section-title component-title">Rx Modal Action<small>
-                              (encore.ui.rxModalAction)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+                        
+                        
+                    </div>
+                </section>
+                <script></script>
+            
+                <section class="component">
+                    <a id="rxModalAction"></a>
+                    <h2 class="section-title component-title">Rx Modal Action<small>
+                          (encore.ui.rxModalAction)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxModalActionCtrl">
     <p>Password: {{password}}</p>
     <rx-modal-action
@@ -1076,21 +1668,21 @@ function rxIdentityCtrl ($scope, Identity) {
         </rx-modal-form>
     </script>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>Hook into Angular-UI Bootstrap's modal directive. Used as a link to open a modal window.</p>
 
 <p>This module has a dependency on <a href="http://angular-ui.github.io/bootstrap/">Angular-UI Bootstrap</a>, so if it's going to be used, bootstrap needs to be included in your webpage.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxModalActionCtrl&quot;&gt;
     &lt;p&gt;Password: {{password}}&lt;/p&gt;
     &lt;rx-modal-action
@@ -1111,12 +1703,12 @@ function rxIdentityCtrl ($scope, Identity) {
         &lt;/rx-modal-form&gt;
     &lt;/script&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 function rxModalActionCtrl ($scope) {
     $scope.password = &#x27;guest&#x27;;
 
@@ -1128,11 +1720,11 @@ function rxModalActionCtrl ($scope) {
         $scope.password = fields.password;
     };
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 function rxModalActionCtrl ($scope) {
     $scope.password = 'guest';
 
@@ -1144,16 +1736,16 @@ function rxModalActionCtrl ($scope) {
         $scope.password = fields.password;
     };
 }</script>
-                
-                    <section class="component">
-                        <a id="rxNotify"></a>
-                        <h2 class="section-title component-title">Rx Notify<small>
-                              (encore.ui.rxNotify)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxNotify"></a>
+                    <h2 class="section-title component-title">Rx Notify<small>
+                          (encore.ui.rxNotify)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxNotifyCtrl">
     <div class="form-item">
         <label>Message text: <input type="text" ng-model="message" /></label>
@@ -1223,10 +1815,10 @@ function rxModalActionCtrl ($scope) {
     <rx-notification type="warning">Hello, world!</rx-notification>    
     <rx-notification type="info">Hello, world!</rx-notification>    
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>Service (rxNotify) and Directives (rxNotification and rxNotifications) for displaying status messages on a page.</p>
 
@@ -1491,13 +2083,13 @@ function rxModalActionCtrl ($scope) {
 <h2>rxPromiseNotifications</h2>
 
 <p>It's a common pattern with API requests that you'll show a loading message, followed by either a success or failure message depending on the result of the call. rxPromiseNotifications is the service created for this pattern. See the API docs for more information on how to call/use rxPromiseNotifications.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxNotifyCtrl&quot;&gt;
     &lt;div class=&quot;form-item&quot;&gt;
         &lt;label&gt;Message text: &lt;input type=&quot;text&quot; ng-model=&quot;message&quot; /&gt;&lt;/label&gt;
@@ -1567,12 +2159,12 @@ function rxModalActionCtrl ($scope) {
     &lt;rx-notification type=&quot;warning&quot;&gt;Hello, world!&lt;/rx-notification&gt;    
     &lt;rx-notification type=&quot;info&quot;&gt;Hello, world!&lt;/rx-notification&gt;    
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 
 function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
     $scope.message = &#x27;My message&#x27;;
@@ -1623,11 +2215,11 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         });
     };
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 
 function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
     $scope.message = 'My message';
@@ -1678,45 +2270,45 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         });
     };
 }</script>
-                
-                    <section class="component">
-                        <a id="rxPageTitle"></a>
-                        <h2 class="section-title component-title">Rx Page Title<small>
-                              (encore.ui.rxPageTitle)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxPageTitle"></a>
+                    <h2 class="section-title component-title">Rx Page Title<small>
+                          (encore.ui.rxPageTitle)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxPageTitleCtrl">
     Current Title: {{pageTitle}} <button ng-click="refreshTitle()">Get Updated Title</button><br />
 
     <input type="text" ng-change="changeTitle()" ng-model="newTitle" placeholder="New Title" />
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>Service for managing the page titles.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxPageTitleCtrl&quot;&gt;
     Current Title: {{pageTitle}} &lt;button ng-click=&quot;refreshTitle()&quot;&gt;Get Updated Title&lt;/button&gt;&lt;br /&gt;
 
     &lt;input type=&quot;text&quot; ng-change=&quot;changeTitle()&quot; ng-model=&quot;newTitle&quot; placeholder=&quot;New Title&quot; /&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 
 // This file is used to help build the &#x27;demo&#x27; documentation page and should be updated with example code
 function rxPageTitleCtrl ($scope, rxPageTitle) {
@@ -1730,11 +2322,11 @@ function rxPageTitleCtrl ($scope, rxPageTitle) {
 
     $scope.refreshTitle();
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
 function rxPageTitleCtrl ($scope, rxPageTitle) {
@@ -1748,16 +2340,16 @@ function rxPageTitleCtrl ($scope, rxPageTitle) {
 
     $scope.refreshTitle();
 }</script>
-                
-                    <section class="component">
-                        <a id="rxPaginate"></a>
-                        <h2 class="section-title component-title">Rx Paginate<small>
-                              (encore.ui.rxPaginate)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxPaginate"></a>
+                    <h2 class="section-title component-title">Rx Paginate<small>
+                          (encore.ui.rxPaginate)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxPaginateCtrl">
     <table class="table-striped">
         <thead>
@@ -1784,19 +2376,19 @@ function rxPageTitleCtrl ($scope, rxPageTitle) {
     </table>
 </div>
 
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>Used for adding pagination around a data object</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxPaginateCtrl&quot;&gt;
     &lt;table class=&quot;table-striped&quot;&gt;
         &lt;thead&gt;
@@ -1823,12 +2415,12 @@ function rxPageTitleCtrl ($scope, rxPageTitle) {
     &lt;/table&gt;
 &lt;/div&gt;
 </code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 
 // This file is used to help build the &#x27;demo&#x27; documentation page and should be updated with example code
 function rxPaginateCtrl ($scope, PageTracking) {
@@ -1855,11 +2447,11 @@ function rxPaginateCtrl ($scope, PageTracking) {
     $scope.servers = makeServers(21);
 }
 </code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
 function rxPaginateCtrl ($scope, PageTracking) {
@@ -1886,16 +2478,16 @@ function rxPaginateCtrl ($scope, PageTracking) {
     $scope.servers = makeServers(21);
 }
 </script>
-                
-                    <section class="component">
-                        <a id="rxPermission"></a>
-                        <h2 class="section-title component-title">Rx Permission<small>
-                              (encore.ui.rxPermission)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <!-- Sample HTML goes here as a live example of how to the component can be used -->
+            
+                <section class="component">
+                    <a id="rxPermission"></a>
+                    <h2 class="section-title component-title">Rx Permission<small>
+                          (encore.ui.rxPermission)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxPermissionCtrl">
     <button class="storeToken" name="button" ng-click="storeToken()">Store Token</button>
     <button class="clearToken" name="button" ng-click="clearToken()">Clear Token</button>
@@ -1905,19 +2497,19 @@ function rxPaginateCtrl ($scope, PageTracking) {
     </rx-permission>
 </div>
 
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>Service and directive for mananging permissions in EncoreUI</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
 &lt;div ng-controller=&quot;rxPermissionCtrl&quot;&gt;
     &lt;button class=&quot;storeToken&quot; name=&quot;button&quot; ng-click=&quot;storeToken()&quot;&gt;Store Token&lt;/button&gt;
     &lt;button class=&quot;clearToken&quot; name=&quot;button&quot; ng-click=&quot;clearToken()&quot;&gt;Clear Token&lt;/button&gt;
@@ -1927,12 +2519,12 @@ function rxPaginateCtrl ($scope, PageTracking) {
     &lt;/rx-permission&gt;
 &lt;/div&gt;
 </code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">function rxPermissionCtrl ($scope, Session, rxNotify) {
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">function rxPermissionCtrl ($scope, Session, rxNotify) {
     rxNotify.add(&#x27;Respect My Authority!!&#x27;, {
         stack: &#x27;permission&#x27;,
         type: &#x27;warning&#x27;
@@ -1947,11 +2539,11 @@ function rxPaginateCtrl ($scope, PageTracking) {
     };
 }
 </code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>function rxPermissionCtrl ($scope, Session, rxNotify) {
+                        
+                    </div>
+                </section>
+                <script>function rxPermissionCtrl ($scope, Session, rxNotify) {
     rxNotify.add('Respect My Authority!!', {
         stack: 'permission',
         type: 'warning'
@@ -1966,99 +2558,135 @@ function rxPaginateCtrl ($scope, PageTracking) {
     };
 }
 </script>
-                
-                    <section class="component">
-                        <a id="rxSession"></a>
-                        <h2 class="section-title component-title">Rx Session<small>
-                              (encore.ui.rxSession)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div ng-controller="rxSessionCtrl">
+            
+                <section class="component">
+                    <a id="rxProductResources"></a>
+                    <h2 class="section-title component-title">Rx Product Resources<small>
+                          (encore.ui.rxProductResources)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/deprecated.svg" alt="deprecated" title="" /></a></p>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        
+                    </div>
+                </section>
+                <script></script>
+            
+                <section class="component">
+                    <a id="rxRelatedMenu"></a>
+                    <h2 class="section-title component-title">Rx Related Menu<small>
+                          (encore.ui.rxRelatedMenu)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/deprecated.svg" alt="deprecated" title="" /></a></p>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        
+                    </div>
+                </section>
+                <script></script>
+            
+                <section class="component">
+                    <a id="rxSession"></a>
+                    <h2 class="section-title component-title">Rx Session<small>
+                          (encore.ui.rxSession)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxSessionCtrl">
     <button ng-click="isAuthenticated()">Is Authenticated</button>
 </div>
 
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>Service for managing user session in encore-ui.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSessionCtrl&quot;&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSessionCtrl&quot;&gt;
     &lt;button ng-click=&quot;isAuthenticated()&quot;&gt;Is Authenticated&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">function rxSessionCtrl ($scope, Session) {
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">function rxSessionCtrl ($scope, Session) {
 
     $scope.isAuthenticated = function () {
         alert(Session.isAuthenticated());
     };
 }
 </code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>function rxSessionCtrl ($scope, Session) {
+                        
+                    </div>
+                </section>
+                <script>function rxSessionCtrl ($scope, Session) {
 
     $scope.isAuthenticated = function () {
         alert(Session.isAuthenticated());
     };
 }
 </script>
-                
-                    <section class="component">
-                        <a id="rxSessionStorage"></a>
-                        <h2 class="section-title component-title">Rx Session Storage<small>
-                              (encore.ui.rxSessionStorage)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div ng-controller="rxSessionStorageCtrl">
+            
+                <section class="component">
+                    <a id="rxSessionStorage"></a>
+                    <h2 class="section-title component-title">Rx Session Storage<small>
+                          (encore.ui.rxSessionStorage)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxSessionStorageCtrl">
     <label>Who is Batman's side kick?</label>
     <button ng-click="setSideKick()">Store Answer</button>
     <button ng-click="getSideKick()">Answer?</button>
 </div>
 
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
 
 <p>A simple wrapper of the global sessionStorage object for interacting with session storage.
 This service is similar to angular's $window and $document services.  The API is exactly the
 same as the W3C's specification provided at: http://dev.w3.org/html5/webstorage/#storage-0</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSessionStorageCtrl&quot;&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSessionStorageCtrl&quot;&gt;
     &lt;label&gt;Who is Batman&#x27;s side kick?&lt;/label&gt;
     &lt;button ng-click=&quot;setSideKick()&quot;&gt;Store Answer&lt;/button&gt;
     &lt;button ng-click=&quot;getSideKick()&quot;&gt;Answer?&lt;/button&gt;
 &lt;/div&gt;
 </code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">function rxSessionStorageCtrl ($scope, SessionStorage) {
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">function rxSessionStorageCtrl ($scope, SessionStorage) {
     $scope.setSideKick = function () {
         SessionStorage.setItem(&#x27;Batman&#x27;, &#x27;Robin&#x27;);
     };
@@ -2068,11 +2696,11 @@ same as the W3C's specification provided at: http://dev.w3.org/html5/webstorage/
     };
 }
 </code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>function rxSessionStorageCtrl ($scope, SessionStorage) {
+                        
+                    </div>
+                </section>
+                <script>function rxSessionStorageCtrl ($scope, SessionStorage) {
     $scope.setSideKick = function () {
         SessionStorage.setItem('Batman', 'Robin');
     };
@@ -2082,16 +2710,16 @@ same as the W3C's specification provided at: http://dev.w3.org/html5/webstorage/
     };
 }
 </script>
-                
-                    <section class="component">
-                        <a id="rxSortableColumn"></a>
-                        <h2 class="section-title component-title">Rx Sortable Column<small>
-                              (encore.ui.rxSortableColumn)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div ng-controller="rxSortableColumnCtrl">
+            
+                <section class="component">
+                    <a id="rxSortableColumn"></a>
+                    <h2 class="section-title component-title">Rx Sortable Column<small>
+                          (encore.ui.rxSortableColumn)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxSortableColumnCtrl">
     <table>
         <thead>
             <tr>
@@ -2127,19 +2755,19 @@ same as the W3C's specification provided at: http://dev.w3.org/html5/webstorage/
         </tbody>
     </table>
 </div>
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>A clickable link in a table heading which will sort the table by the referenced property in ascending or descending order.</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSortableColumnCtrl&quot;&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSortableColumnCtrl&quot;&gt;
     &lt;table&gt;
         &lt;thead&gt;
             &lt;tr&gt;
@@ -2175,12 +2803,12 @@ same as the W3C's specification provided at: http://dev.w3.org/html5/webstorage/
         &lt;/tbody&gt;
     &lt;/table&gt;
 &lt;/div&gt;</code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 
 // This file is used to help build the &#x27;demo&#x27; documentation page and should be updated with example code
 function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
@@ -2210,11 +2838,11 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
         },
     ];
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
 function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
@@ -2244,16 +2872,16 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
         },
     ];
 }</script>
-                
-                    <section class="component">
-                        <a id="rxSpinner"></a>
-                        <h2 class="section-title component-title">Rx Spinner<small>
-                              (encore.ui.rxSpinner)
-                          </small></h2>
-                        <div class="pure-g">
-                            
-                            <div class="pure-u-1-2 component-example">
-                                <div ng-controller="rxSpinnerCtrl">
+            
+                <section class="component">
+                    <a id="rxSpinner"></a>
+                    <h2 class="section-title component-title">Rx Spinner<small>
+                          (encore.ui.rxSpinner)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <div ng-controller="rxSpinnerCtrl">
     <div rx-spinner toggle="loading" class="rxSpinnerExample">Spinning = {{loading}}</div>
     <button ng-click="toggleLoading()">Toggle Loading</button>
 </div>
@@ -2266,19 +2894,19 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
 }
 </style>
 
-                            </div>
-                            
-                            <div class="pure-u-1-2 component-description" ng-non-bindable>
-                                <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
 
 <p>Add a spinner icon to any element</p>
-                            </div>
                         </div>
-                        <div class="pure-g component-code">
-                            
-                            <div class="pure-u-1-2">
-                                <h3>Markup</h3>
-                                <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSpinnerCtrl&quot;&gt;
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxSpinnerCtrl&quot;&gt;
     &lt;div rx-spinner toggle=&quot;loading&quot; class=&quot;rxSpinnerExample&quot;&gt;Spinning = {{loading}}&lt;/div&gt;
     &lt;button ng-click=&quot;toggleLoading()&quot;&gt;Toggle Loading&lt;/button&gt;
 &lt;/div&gt;
@@ -2291,12 +2919,12 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
 }
 &lt;/style&gt;
 </code></pre>
-                            </div>
-                            
-                            
-                            <div class="pure-u-1-2">
-                                <h3>JavaScript</h3>
-                                <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 function rxSpinnerCtrl ($scope) {
     $scope.loading = false;
 
@@ -2304,11 +2932,11 @@ function rxSpinnerCtrl ($scope) {
         $scope.loading = !$scope.loading;
     };
 }</code></pre>
-                            </div>
-                            
                         </div>
-                    </section>
-                    <script>/*jshint unused:false*/
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
 function rxSpinnerCtrl ($scope) {
     $scope.loading = false;
 
@@ -2316,27 +2944,9 @@ function rxSpinnerCtrl ($scope) {
         $scope.loading = !$scope.loading;
     };
 }</script>
-                
-
-            </div>
-        </div>
-    </div>
-
-    <script>
-        angular.module('demoApp', ['encore.ui'])
-        .run(function ($rootScope, $location, $anchorScroll) {
-            $rootScope.scrollTo = function (anchor, $event) {
-                // prevent the default jump to top
-                $event.preventDefault();
-
-                // update angular location
-                $location.hash(anchor);
-
-                // run angular scrollTo
-                $anchorScroll();
-            }
-        });
-    </script>
+            
+        </rx-page>
+    </rx-app>
 
     <script src="assets/prism.js"></script>
 </body>

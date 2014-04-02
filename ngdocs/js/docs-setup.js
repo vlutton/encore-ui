@@ -50,6 +50,42 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxApp:rxApp",
+      "shortName": "rxApp",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Responsible for creating the HTML necessary for a common Encore layout.",
+      "keywords": "api common corner creating custom directive encore hand html items layout left-hand menu navigation responsible rxapp site site-title title ui upper"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxApp:rxAppNav",
+      "shortName": "rxAppNav",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Creates a menu based on items passed in.",
+      "keywords": "api based creates deeper defaults definition directive display encore encorenav heirarchy higher items level menu menuitems nested number object passed rxapp ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxApp:rxAppNavItem",
+      "shortName": "rxAppNavItem",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Creates a menu item. Recursively creates rx-app-nav if &#39;children&#39; present.",
+      "keywords": "api avialable children creates directive encore item items menu ng-repeat recursively rx-app-nav rxapp scope ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxApp:rxPage",
+      "shortName": "rxPage",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Responsible for creating the HTML necessary for a page (including breadcrumbs and page title)",
+      "keywords": "api breadcrumbs creating directive encore html responsible rxapp subtitle title ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxAuth:Auth",
       "shortName": "Auth",
       "type": "service",
@@ -65,6 +101,33 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Renders a button which will disable when clicked and show a loading message",
       "keywords": "api button clicked complete default defaultmsg directive disable display displayed encore loading loadingmsg message operation progress renable renders rxbutton text toggle true ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxEnvironment:Environment",
+      "shortName": "Environment",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Allows defining environments and retrieving the current environment based on location",
+      "keywords": "allows api based current defining encore environment environments location matches object retrieving return rxenvironment service ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxEnvironment:rxEnvironment",
+      "shortName": "rxEnvironment",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Show or hide content based on environment name",
+      "keywords": "api based content directive encore environment hide prod rx-if-environment rxenvironment staging ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxEnvironment:rxEnvironmentUrl",
+      "shortName": "rxEnvironmentUrl",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "Builds a URL based on current environment",
+      "keywords": "api based builds cbs cloudatlas current encore environment filter path rackspace renders rxenvironment rxenvironmenturl tld ui url"
     },
     {
       "section": "api",
