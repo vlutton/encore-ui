@@ -1,0 +1,25 @@
+<div ng-controller="rxEnvironmentCtrl">
+    <p>Current Environment: {{environment.name}}</p>
+
+    <p>
+        Switch to:
+        <button ng-click="switchTo('local')">Local</button>
+        <button ng-click="switchTo('staging')">Staging</button>
+        <button ng-click="switchTo('production')">Production</button>
+        <button ng-click="switchTo('ghPages')">GitHub Pages</button>
+    </p>
+
+    <p>Custom Environment Url: {{ { tld: 'cloudatlas', path: 'some/path' } | rxEnvironmentUrl }}</p>
+
+    <p>Content shows if staging:
+        <span rx-if-environment="staging">
+            You're on a staging environment
+        </span>
+    </p>
+
+    <p>Content shows if not production:
+        <span rx-if-environment="!production">
+            You are not on a production environment
+        </span>
+    </p>
+</div>

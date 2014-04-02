@@ -1,14 +1,14 @@
 module.exports = {
     scripts: {
         files: ['src/**/*.js', '!src/*/*.spec.js'],
-        tasks: ['jshint:scripts', 'after-test', 'karma:watch:run'],
+        tasks: ['jshint:scripts', 'html2js', 'build', 'copy:demohtml', 'ngdocs', 'karma:watch:run', 'copy:coverage'],
         options: {
             livereload: 1337
         }
     },
     specs: {
         files: ['src/**/*.spec.js'],
-        tasks: ['jshint:specs', 'karma:watch:run'],
+        tasks: ['jshint:specs', 'karma:watch:run', 'copy:coverage'],
         options: {
             livereload: false
         }
@@ -29,7 +29,7 @@ module.exports = {
     },
     html: {
         files: ['demo/*', 'src/**/docs/*.html', 'src/**/*.md'],
-        tasks: ['after-test'],
+        tasks: ['html2js', 'build', 'copy'],
         options: {
             livereload: 1337
         }
