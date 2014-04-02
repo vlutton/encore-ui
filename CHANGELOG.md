@@ -1,3 +1,13 @@
+<a name="0.5.0"></a>
+## 0.5.0 (2014-04-02)
+
+
+#### Features
+
+* **rxApp:** new component that handles common page layout and menu ([2197d52f](git@github.com:rackerlabs/encore-ui/commit/2197d52ff21e2db66c04fb81f7d442273cd49d08))
+* **rxEnvironment:** environment based logic (e.g. prod, dev) ([c8693113](git@github.com:rackerlabs/encore-ui/commit/c8693113493d2a4ff9cdca6a195f318c72f022c2))
+
+
 <a name="0.4.1"></a>
 ### 0.4.1 (2014-04-01)
 
