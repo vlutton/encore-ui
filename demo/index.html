@@ -18,6 +18,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
@@ -32,30 +33,16 @@
         // this script is at the top of the HTML so that any modules
         // needing the demoApp module can use it
 
+        // NOTE: do not remove $anchorScroll, even though it's not called
+        // simply by including it, we get the left nav to navigate correctly
         angular.module('demoApp', ['encore.ui'])
-        .run(function ($rootScope, $location, $anchorScroll) {
-            // Hack to make anchor link navigation work
-            document.addEventListener('click', function (ev) {
-                var target = ev.target;
-
-                if (target.className.indexOf('item-link') > -1) {
-                    // prevent the default jump to top
-                    ev.preventDefault();
-
-                    // update angular location
-                    $location.hash(target.getAttribute('href'));
-
-                    // run angular scrollTo
-                    $anchorScroll();
-                }
-            });
-
+        .run(function ($anchorScroll, $rootScope) {
             $rootScope.components = [{
                 title: 'All Components',
                 children: [
                     <% config.demoModules.forEach(function (module) {  %>
                     {
-                        href: '<%= module.name %>',
+                        href: '##<%= module.name %>',
                         linkText: '<%= module.name %>'
                     },
                     <% }); %>
@@ -65,8 +52,13 @@
     </script>
 
     <rx-app site-title="Encore Demo App" menu="components">
-        <rx-page page-title="Encore-UI Components">
-            <p><strong><a href="ngdocs/index.html">ngdocs for Encore-UI</a></strong></p>
+        <rx-page title="'Encore-UI Components'">
+            <ul>
+                <li><a href="coverage/index.html">Unit test coverage for Encore-UI</a></li>
+                <li><a href="ngdocs/index.html">ngdocs for Encore-UI</a></li>
+            </ul>
+
+            <br>
 
             <% config.demoModules.forEach(function(module) { %>
                 <section class="component">

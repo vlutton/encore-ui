@@ -4,7 +4,7 @@ module.exports = {
     },
     scripts: {
         files: ['src/**/*.js', '!src/*/*.spec.js'],
-        tasks: ['jshint:scripts', 'html2js', 'build', 'copy:demohtml', 'ngdocs', 'karma:watch:run', 'copy:coverage']
+        tasks: ['jshint:scripts', 'jscs', 'karma:watch:run', 'after-test']
     },
     specs: {
         files: ['src/**/*.spec.js'],
