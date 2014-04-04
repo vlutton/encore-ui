@@ -2,7 +2,7 @@ angular.module('encore.ui.rxPaginate', [])
 /**
  *
  * @ngdoc directive
- * @name encore.components.paginate:rxPaginate
+ * @name encore.ui.rxPaginate:rxPaginate
  * @restrict E
  * @description
  * Directive that takes in the page tracking object and outputs a page
@@ -27,7 +27,7 @@ angular.module('encore.ui.rxPaginate', [])
 /**
 *
 * @ngdoc service
-* @name encore.components.paginate:PageTracking
+* @name encore.ui.rxPaginate:PageTracking
 * @description
 * This is the data service that can be used in conjunction with the pagination
 * objects to store/control page display of data tables and other items.
@@ -77,7 +77,7 @@ angular.module('encore.ui.rxPaginate', [])
 /**
 *
 * @ngdoc filter
-* @name encore.components.paginate:Paginate
+* @name encore.ui.rxPaginate:Paginate
 * @description
 * This is the pagination filter that is used to calculate the division in the
 * items list for the paging.
@@ -115,7 +115,7 @@ angular.module('encore.ui.rxPaginate', [])
 /**
 *
 * @ngdoc filter
-* @name encore.components.paginate:Page
+* @name encore.ui.rxPaginate:Page
 * @description
 * This is the pagination filter that is used to limit the number of pages
 * shown
