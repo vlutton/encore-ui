@@ -1,3 +1,12 @@
+<a name="0.5.1"></a>
+### 0.5.1 (2014-04-04)
+
+
+#### Features
+
+* **rxProductResources:** add dbaas link to non-prod ([b86ec9a1](git@github.com:rackerlabs/encore-ui/commit/b86ec9a1b292a6305804f6df079975611f844648))
+
+
 <a name="0.5.0"></a>
 ## 0.5.0 (2014-04-02)
 
