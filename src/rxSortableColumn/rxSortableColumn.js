@@ -1,7 +1,7 @@
 angular.module('encore.ui.rxSortableColumn', [])
 /**
 * @ngdoc directive
-* @name encore.ui.rxSortableColumn
+* @name encore.ui.rxSortableColumn:rxSortableColumn
 * @restrict E
 *
 * @description
@@ -29,7 +29,7 @@ angular.module('encore.ui.rxSortableColumn', [])
 })
 /**
 * @ngdoc service
-* @name encore.ui.rxSortUtil
+* @name encore.ui.rxSortableColumn:rxSortUtil
 * @description
 * Service which provided utility methods for sorting collections.
 *

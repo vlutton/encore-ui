@@ -1,10 +1,17 @@
-/*jshint undef:false*/
 angular.module('encore.ui.rxNotify', ['ngSanitize'])
-/*
- * Display a static message with styling taken from rx-notifications
- * @ngdoc directive
- * @example <rx-notification type="warning">This is a message!</rx-notification>
- */
+/**
+* @ngdoc directive
+* @name encore.ui.rxNotify:rxNotification
+* @restrict E
+* @scope
+* @description
+* Display a static message with styling taken from rx-notifications
+*
+* @param {string} type The type of notification (e.g. 'warning', 'error')
+*
+* @example
+* <rx-notification type="warning">This is a message!</rx-notification>
+*/
 .directive('rxNotification', function () {
     return {
         scope: {
@@ -15,11 +22,18 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         templateUrl: 'templates/rxNotification.html'
     };
 })
-/*
- * Displays all messages in a stack
+ /**
  * @ngdoc directive
- * @example <rx-notifications stack="myStack"></rx-notifications>
+ * @name encore.ui.rxNotify:rxNotifications
+ * @restrict E
  * @scope
+ * @description
+ * Displays all messages in a stack
+ *
+ * @param {string} [stack] The message stack to associate with
+ *
+ * @example
+ * <rx-notifications stack="myCustomStack"></rx-notifications>
  */
 .directive('rxNotifications', function (rxNotify) {
     return {
@@ -52,6 +66,12 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         }
     };
 })
+/**
+* @ngdoc service
+* @name encore.ui.rxNotify:rxNotify
+* @description
+* Manages page messages for an application
+*/
 .factory('rxNotify', function ($timeout, $rootScope) {
     var defaultStack = 'page';
     var stacks = {};
@@ -243,6 +263,19 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         stacks: stacks
     };
 })
+/**
+* @ngdoc service
+* @name encore.ui.rxNotify:rxPromiseNotifications
+* @description
+* Manages displaying messages for a promise
+*
+* @example
+* rxPromiseNotifications.add($scope.deferred.promise, {
+*     loading: 'Loading Message',
+*     success: 'Success Message',
+*     error: 'Error Message'
+* });
+*/
 .factory('rxPromiseNotifications', function (rxNotify, $rootScope, $q, $interpolate) {
     var scope = $rootScope.$new();
 
