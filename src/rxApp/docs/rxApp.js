@@ -33,62 +33,62 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         title: 'Example Menu',
         children: [
             {
-                href: '#1',
+                href: '1st-order',
                 linkText: '1st Order Item'
             },
             {
-                href: '#2',
+                href: '2nd-order',
                 linkText: '1st Order Item w/ Children',
                 // childHeader: 'Current Account {{ user }}',
                 directive: 'sample-nav-directive',
                 children: [
                     {
-                        href: '#2-1',
+                        href: '2nd-order-1',
                         linkText: '2nd Order Item',
                         children: [{
-                            href: '#2-1-1',
+                            href: '2nd-order-1-1',
                             linkText: '3rd Order Item'
                         }]
                     },
                     {
-                        href: '#2-2',
+                        href: '2nd-order-2',
                         linkText: '2nd Order Item w/ Children',
                         active: true,
                         children: [
                             {
-                                href: '#2-2-1',
+                                href: '2nd-order-2-1',
                                 linkText: '3rd Order Item'
                             },
                             {
-                                href: '#2-2-2',
+                                href: '2nd-order-2-2',
                                 linkText: '3rd Order Item w/ children',
                                 active: true,
                                 children: [
                                     {
-                                        href: '#2-2-2-1',
+                                        href: '2nd-order-2-2-1',
                                         linkText: '4th Order Item',
                                         active: true
                                     },
                                     {
-                                        href: '#2-2-2-2',
+                                        href: '2nd-order-2-2-2',
                                         linkText: '4th Order Item'
                                     }
                                 ]
                             },
                             {
-                                href: '#2-2-3',
+                                href: '2nd-order-2-3',
                                 linkText: '3rd Order Item'
                             }
                         ]
                     },
                     {
-                        href: '#2-3',
+                        href: '2nd-order-3',
                         linkText: '2nd Order Item'
                     }
                 ]
             },
             {
-                href: '#3',
+                href: '3rd-order',
                 linkText: '1st Order Item'
             }
         ]

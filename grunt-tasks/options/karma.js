@@ -4,6 +4,7 @@ var files = [
     'demo/bower_components/angular/angular.js',
     'demo/bower_components/angular-sanitize/angular-sanitize.js',
     'demo/bower_components/angular-resource/angular-resource.js',
+    'demo/bower_components/angular-route/angular-route.js',
     'demo/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
     'demo/bower_components/lodash/dist/lodash.compat.js',
     'demo/bower_components/momentjs/moment.js',

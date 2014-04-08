@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxApp', [])
+angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngRoute'])
 /*
  * This array defines the default navigation to use for all Encore sites and used by rxAppNap.
  * It can be overwritten if necessary via the 'menu' property of rxAppNap.
@@ -6,7 +6,7 @@ angular.module('encore.ui.rxApp', [])
  * @property {string} title Only used on the top level, defines the title to use for all sub-navigation
  *
  * Common Properties for all 'children' nav items:
- * @property {string} href The url to use for the menu item
+ * @property {string|object} href String url to use for the menu item or object to passed to rxEnvironmentUrl
  * @property {string} linkText The text displayed for the menu item
  * @property {array} children Child menu items for the navigation heirarchy
  * @property {string} directive Name of directive to build and show when item is active. For example:
@@ -15,53 +15,41 @@ angular.module('encore.ui.rxApp', [])
 .value('encoreNav', [{
     title: 'All Tools',
     children: [{
-        href: '/',
+        href: { tld: 'cloudatlas', path: '' },
         linkText: 'Account-level Tools',
-        directive: 'account-search',
+        directive: 'rx-global-search',
         children: [
             {
-                href: '/account-details',
-                linkText: 'Account Details'
-            }, {
-                href: '/billing',
-                linkText: 'Billing',
-                children: [
-                    {
-                        href: '/billing/overview',
-                        linkText: 'Overview'
-                    }, {
-                        href: '/billing/discounts',
-                        linkText: 'Discounts'
-                    }, {
-                        href: '/billing/payments',
-                        linkText: 'Payment Options'
-                    }, {
-                        href: '/billing/taxation',
-                        linkText: 'Taxation'
-                    }, {
-                        href: '/billing/options',
-                        linkText: 'Additional Options'
-                    }
-                ]
-            }, {
-                href: '/{{username}}/cbs/volumes',
+                href: '/{{user}}/cbs/volumes',
                 linkText: 'Block Storage',
                 children: [
                     {
-                        href: '/{{username}}/cbs/volumes',
-                        linkText: 'Volumes'
+                        href: '/{{user}}/cbs/volumes',
+                        linkText: 'Volumes',
+                        children: [
+                            {
+                                href: '/{{user}}/cbs/volumes/create',
+                                linkText: 'Create Volume'
+                            }
+                        ]
                     }, {
-                        href: '/{{username}}/cbs/snapshots',
+                        href: '/{{user}}/cbs/snapshots',
                         linkText: 'Snapshots'
                     }
                 ]
             }, {
-                href: '/{{username}}/servers',
-                linkText: 'Cloud Servers'
+                href: '/{{user}}/servers',
+                linkText: 'Cloud Servers',
+                children: [
+                    {
+                        href: '/{{user}}/servers/create',
+                        linkText: 'Create Server'
+                    }
+                ]
             }
         ]
     }, {
-        href: '/ticketqueues',
+        href: { tld: 'cloudatlas', path: 'ticketqueues' },
         linkText: 'Ticket Queues',
         children: [
             {
@@ -171,9 +159,33 @@ angular.module('encore.ui.rxApp', [])
 *     <rx-app-nav-item ng-repeat="item in items"></rx-app-nav-item>
 * </pre>
 */
-.directive('rxAppNavItem', function ($compile, $location) {
-    var isActive = function (pattern) {
-        return _.contains($location.path(), pattern);
+.directive('rxAppNavItem', function ($compile, $location, $route, $interpolate, rxEnvironmentUrlFilter) {
+    var isActive = function (url) {
+        return _.contains($location.absUrl(), url);
+    };
+
+    var hasActive = function (item) {
+        // check if current active
+        var pathMatches = isActive(item.href);
+
+        // if current item not active, check if any children are active
+        if (!pathMatches && item.children) {
+            pathMatches = _.any(item.children, hasActive);
+        }
+
+        return pathMatches;
+    };
+
+    var buildUrl = function (url) {
+        // run the href through rxEnvironmentUrl in case it's defined as such
+        url = rxEnvironmentUrlFilter(url);
+
+        if ($route.current) {
+            // convert any nested expressions to defined route params
+            url = $interpolate(url)($route.current.pathParams);
+        }
+
+        return url;
     };
 
     var linker = function (scope, element) {
@@ -186,6 +198,8 @@ angular.module('encore.ui.rxApp', [])
             });
         };
 
+        scope.item.href = buildUrl(scope.item.href);
+
         scope.level = _.isNumber(scope.level) ? scope.level : 1;
         var childLevel = scope.level + 1;
 
@@ -193,11 +207,13 @@ angular.module('encore.ui.rxApp', [])
             '</rx-app-nav>';
         var directiveHtml = '<directive></directive>';
 
-        // add active class if defined or matches current href
-        scope.item.active = scope.item.active || isActive(scope.item.href);
+        // add active class if matches current href
+        scope.item.active = hasActive(scope.item);
+
         // listen to location changes and update nav accordingly
         scope.$on('$locationChangeSuccess', function () {
-            scope.item.active = isActive(scope.item.href);
+            scope.item.href = buildUrl(scope.item.href);
+            scope.item.active = hasActive(scope.item);
         });
 
         // add navDirective if defined

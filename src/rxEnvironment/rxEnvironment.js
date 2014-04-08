@@ -27,8 +27,8 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
     var environments = [{
         // http://localhost:9000/
         name: 'local',
-        pattern: 'localhost',
-        url: '/{{path}}'
+        pattern: 'localhost:9000',
+        url: '//localhost:9000/{{path}}'
     }, {
         // https://staging.cloudatlas.encore.rackspace.com/
         name: 'staging',
@@ -139,20 +139,24 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
 * @ngdoc filter
 * @name encore.ui.rxEnvironment:rxEnvironmentUrl
 * @description
-* Builds a URL based on current environment
+* Builds a URL based on current environment.
+* Note: if value passed in isn't an object, it will simply return that value
 *
 * @example
 * <pre>
 * {{ { tld: 'cloudatlas', path: 'cbs/servers' } | rxEnvironmentUrl }}
-* Renders as '//staging.cloudatlas.encore.rackspace.com/cbs/servers'
+* Renders as '//staging.cloudatlas.encore.rackspace.com/cbs/servers' in staging
+*
+* {{ '/myPath' | rxEnvironmentUrl }}
+* Renders as '/myPath' regardless of environment, because value passed in was not an object
 * </pre>
 */
 .filter('rxEnvironmentUrl', function (Environment, $interpolate) {
     return function (details) {
         var environment = Environment.get();
 
-        // convert url template into full path based on details provided
-        var url = $interpolate(environment.url)(details);
+        // convert url template into full path based on details provided (if details is an object)
+        var url = _.isObject(details) ? $interpolate(environment.url)(details) : details;
 
         return url;
     };
