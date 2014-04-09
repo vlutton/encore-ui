@@ -245,15 +245,17 @@ describe('rxAppNavItem', function () {
         // check that first item is visible (since no 'visibility' property)
         expect(el.className).to.not.contain('ng-hide');
 
+        // NOTE: this retreives *all* the child nav items, including the sub-child ones
+        // This is why indexing is a little off
         var children = el[0].querySelectorAll('.item-children .rx-app-nav-item');
 
-        // check that first child item is visible (since 'visibility' function returns true)
+        // check that first level 2 item is visible (since 'visibility' function returns true)
         expect(children[0].className, 'first child, function').to.not.contain('ng-hide');
 
-        // check that second child item is visible (since 'visibility' expression == true)
+        // check that second level 2 item is visible (since 'visibility' expression == true)
         expect(children[2].className, 'middle child, expression').to.not.contain('ng-hide');
 
-        // check that last child item is not visible (since 'visibility' function currently returns false)
+        // check that third level 2 item is not visible (since 'visibility' function currently returns false)
         expect(children[3].className, 'last child').to.contain('ng-hide');
 
         // we need to set the property that the visibility function is checking to true

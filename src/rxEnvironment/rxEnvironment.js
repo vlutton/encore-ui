@@ -64,7 +64,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      */
     envSvc.get = function (href) {
         // default to current location if href not provided
-        href = href || $location.path();
+        href = href || $location.absUrl();
 
         var currentEnvironment = _.find(environments, function (environment) {
             var pattern = environment.pattern;
@@ -90,6 +90,8 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         if (isValidEnvironment(environment)) {
             // add environment
             environments.push(environment);
+            // reset current environment now that information has been added
+            envSvc.set();
         } else {
             throw new Error('Environment incorrectly defined');
         }
@@ -162,21 +164,23 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
     };
 })
 /**
-* @ngdoc directive
-* @name encore.ui.rxEnvironment:rxEnvironment
-* @restrict A
+*
+* @ngdoc filter
+* @name encore.ui.rxEnvironment:rxEnvironmentMatch
 * @description
-* Show or hide content based on environment name
-* @requires encore.ui.rxEnvironment:Environment
+* Checks if current environment matches target environment
 *
 * @example
 * <pre>
-*     <div rx-if-environment="staging">Show if staging</div>
-*     <div rx-if-environment="!production">Show if not prod</div>
+* {{ 'production' | rxEnvironmentMatch }}
+* returns true if current environment is 'production', false otherwise
+*
+* {{ '!production' | rxEnvironmentMatch }}
+* returns false if current environment is 'production', true otherwise
 * </pre>
 */
-.directive('rxIfEnvironment', function ($compile, Environment) {
-    var doesEnvironmentMatch = function (environment) {
+.filter('rxEnvironmentMatch', function (Environment) {
+    return function (environment) {
         // check to see if first character is negation indicator
         var isNegated = environment[0] === '!';
 
@@ -192,7 +196,22 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
             return currentEnvironmentName === targetEnvironmentName;
         }
     };
-
+})
+/**
+* @ngdoc directive
+* @name encore.ui.rxEnvironment:rxEnvironment
+* @restrict A
+* @description
+* Show or hide content based on environment name
+* @requires encore.ui.rxEnvironment:Environment
+*
+* @example
+* <pre>
+*     <div rx-if-environment="staging">Show if staging</div>
+*     <div rx-if-environment="!production">Show if not prod</div>
+* </pre>
+*/
+.directive('rxIfEnvironment', function ($compile) {
     return {
         restrict: 'A',
         terminal: true,
@@ -200,10 +219,8 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         compile: function () {
             return {
                 pre: function preLink (scope, element, attrs) {
-                    scope.doesEnvironmentMatch = doesEnvironmentMatch;
-
                     // add ng-show attr to element
-                    element.attr('ng-show', 'doesEnvironmentMatch("' + attrs.rxIfEnvironment + '")');
+                    element.attr('ng-show', '\'' + attrs.rxIfEnvironment + '\'| rxEnvironmentMatch');
 
                     //remove the attribute to avoid an indefinite loop
                     element.removeAttr('rx-if-environment');

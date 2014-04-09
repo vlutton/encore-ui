@@ -46,6 +46,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                         linkText: 'Create Server'
                     }
                 ]
+            }, {
+                href: '/{{user}}/databases/instances',
+                linkText: 'Databases',
+                visibility: '"!production" | rxEnvironmentMatch'
             }
         ]
     }, {

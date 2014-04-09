@@ -7,7 +7,7 @@ describe('rxEnvironment', function () {
         module('encore.ui.rxEnvironment');
 
         // Inject in angular constructs
-        inject(function ($location, $rootScope, $compile, Environment) {
+        inject(function ($location, $rootScope, Environment) {
             location = $location;
             rootScope = $rootScope;
             envSvc = Environment;
@@ -31,21 +31,26 @@ describe('rxEnvironment', function () {
         expect(envSvc.get('http://encore.rackspace.com').name).to.equal('production');
     });
 
-    it('should get current environment based on location.path', function () {
+    it('should get current environment based on location.absUrl', function () {
+        var fakeUrl;
+        location.absUrl = function () {
+            return fakeUrl;
+        };
+
         // test local
-        location.path('http://localhost:9001');
+        fakeUrl = 'http://localhost:9001';
         expect(envSvc.get().name).to.equal('local');
 
         // test staging
-        location.path('http://staging.encore.rackspace.com');
+        fakeUrl = 'http://staging.encore.rackspace.com';
         expect(envSvc.get().name).to.equal('staging');
 
         // test staging with custom TLD
-        location.path('http://staging.cloudatlas.encore.rackspace.com');
+        fakeUrl = 'http://staging.cloudatlas.encore.rackspace.com';
         expect(envSvc.get().name).to.equal('staging');
 
         // test prod
-        location.path('http://encore.rackspace.com');
+        fakeUrl = 'http://encore.rackspace.com';
         expect(envSvc.get().name).to.equal('production');
     });
 
@@ -119,6 +124,29 @@ describe('rxEnvironmentUrl', function () {
         envSvc.set('staging');
 
         expect(urlFilter(url)).to.equal('//staging.cloudatlas.encore.rackspace.com/cbs/servers');
+    });
+});
+
+describe('rxEnvironmentMatch', function () {
+    var urlMatch, envSvc;
+
+    beforeEach(function () {
+        module('encore.ui.rxEnvironment');
+
+        inject(function ($filter, Environment) {
+            urlMatch = $filter('rxEnvironmentMatch');
+            envSvc = Environment;
+        });
+    });
+
+    it('should match based on target environment', function () {
+        // set environment to staging
+        envSvc.set('staging');
+
+        expect(urlMatch('staging'), 'staging').to.be.true;
+        expect(urlMatch('!staging'), '!staging').to.be.false;
+        expect(urlMatch('production'), 'production').to.be.false;
+        expect(urlMatch('!production'), '!production').to.be.true;
     });
 });
 
