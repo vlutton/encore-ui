@@ -1,4 +1,4 @@
-<li class="rx-app-nav-item">
+<li class="rx-app-nav-item" ng-show="isVisible(item.visibility)">
     <a ng-href="{{ item.href }}" class="item-link" ng-class="{active: item.active}">{{item.linkText}}</a>
     <div class="item-content" ng-show="item.active && (item.directive || item.children)">
         <div class="item-directive" ng-show="item.directive">

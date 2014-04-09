@@ -123,6 +123,9 @@ describe('rxAppNavItem', function () {
         href: { tld: 'example', path: 'myPath' },
         linkText: '1st',
         directive: 'fake-directive',
+        visibility: function () {
+            return true;
+        },
         children: [
             {
                 href: '/1-1',
@@ -135,10 +138,14 @@ describe('rxAppNavItem', function () {
                 ]
             }, {
                 href: '/{{user}}/1-2',
+                visibility: '2 + 2 == 4',
                 linkText: '1st-2nd'
             }, {
                 href: '/1-3',
                 linkText: '1st-3rd',
+                visibility: function (scope) {
+                    return scope.someProp;
+                },
                 children: [
                     {
                         href: '/1-3-1',
@@ -232,6 +239,32 @@ describe('rxAppNavItem', function () {
         rootScope.$apply();
 
         expect(scope.item.active, 'item should no longer be active').to.be.false;
+    });
+
+    it('should hide if visibility property evaluates to false', function () {
+        // check that first item is visible (since no 'visibility' property)
+        expect(el.className).to.not.contain('ng-hide');
+
+        // NOTE: this retreives *all* the child nav items, including the sub-child ones
+        // This is why indexing is a little off
+        var children = el[0].querySelectorAll('.item-children .rx-app-nav-item');
+
+        // check that first level 2 item is visible (since 'visibility' function returns true)
+        expect(children[0].className, 'first child, function').to.not.contain('ng-hide');
+
+        // check that second level 2 item is visible (since 'visibility' expression == true)
+        expect(children[2].className, 'middle child, expression').to.not.contain('ng-hide');
+
+        // check that third level 2 item is not visible (since 'visibility' function currently returns false)
+        expect(children[3].className, 'last child').to.contain('ng-hide');
+
+        // we need to set the property that the visibility function is checking to true
+        var childScope = angular.element(children[3]).scope();
+        childScope.someProp = true;
+        scope.$digest();
+
+        // now that visibility = true, el should not be hidden
+        expect(children[3].className, 'last child, after someProp = true').to.not.contain('ng-hide');
     });
 
     it('should show/hide content depending on item active state', function () {

@@ -46,6 +46,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                         linkText: 'Create Server'
                     }
                 ]
+            }, {
+                href: '/{{user}}/databases/instances',
+                linkText: 'Databases',
+                visibility: '"!production" | rxEnvironmentMatch'
             }
         ]
     }, {
@@ -236,6 +240,15 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         restrict: 'E',
         replace: true,
         templateUrl: 'templates/rxAppNavItem.html',
-        link: linker
+        link: linker,
+        controller: function ($scope) {
+            $scope.isVisible = function (visibility) {
+                if (_.isUndefined(visibility)) {
+                    // if undefined, default to true
+                    return true;
+                }
+                return $scope.$eval(visibility);
+            };
+        }
     };
 });

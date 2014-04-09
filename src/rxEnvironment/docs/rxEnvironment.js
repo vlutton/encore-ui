@@ -2,7 +2,7 @@
 function rxEnvironmentCtrl ($scope, Environment) {
     Environment.add({
         name: 'ghPages',
-        pattern: '//rackerlabs.github.io/encore-ui/',
+        pattern: '//rackerlabs.github.io/encore-ui',
         url: '//rackerlabs.github.io/encore-ui/{{path}}'
     });
 
