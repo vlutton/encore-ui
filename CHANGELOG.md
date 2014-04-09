@@ -1,3 +1,20 @@
+<a name="0.5.2"></a>
+### 0.5.2 (2014-04-09)
+
+
+#### Bug Fixes
+
+* **rxEnvironment:** fix url bug; added rxEnvironmentMatch ([3cd8323c](git@github.com:rackerlabs/encore-ui/commit/3cd8323c5bd46bdf5d86f23efe7fc761b86e8355))
+
+
+#### Features
+
+* **rxApp:**
+  * allow setting visibility rules for nav items ([8272e1af](git@github.com:rackerlabs/encore-ui/commit/8272e1af2e757621cb9951234ca8bec05231047e))
+  * allows rxEnvironmentUrl w/paths ([51a65cc4](git@github.com:rackerlabs/encore-ui/commit/51a65cc47be923bb4cc3df90e0a1655aa0e7268b))
+* **rxCompile:** compile expressions inside expressions ([16df3e76](git@github.com:rackerlabs/encore-ui/commit/16df3e76f40fcde69aa53ba5511577d8a32ede08))
+
+
 <a name="0.5.1"></a>
 ### 0.5.1 (2014-04-04)
 
