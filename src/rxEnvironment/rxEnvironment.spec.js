@@ -1,6 +1,6 @@
 /* jshint node: true */
 describe('rxEnvironment', function () {
-    var rootScope, envSvc, location;
+    var rootScope, envSvc, location, fakeUrl;
 
     beforeEach(function () {
         // load module
@@ -12,10 +12,18 @@ describe('rxEnvironment', function () {
             rootScope = $rootScope;
             envSvc = Environment;
         });
+
+        location.absUrl = function () {
+            return fakeUrl;
+        };
+    });
+
+    afterEach(function () {
+        fakeUrl = null;
     });
 
     it('should default environment to local if no environment found', function () {
-        location.path('nonsense');
+        fakeUrl = 'http://nonsense';
 
         expect(envSvc.get().name).to.equal('local');
     });
@@ -32,11 +40,6 @@ describe('rxEnvironment', function () {
     });
 
     it('should get current environment based on location.absUrl', function () {
-        var fakeUrl;
-        location.absUrl = function () {
-            return fakeUrl;
-        };
-
         // test local
         fakeUrl = 'http://localhost:9001';
         expect(envSvc.get().name).to.equal('local');
@@ -58,10 +61,10 @@ describe('rxEnvironment', function () {
         // test w/ simple string
         envSvc.add({
             name: 'custom',
-            pattern: 'custom',
+            pattern: '//custom',
             url: 'custom'
         });
-        location.path('http://custom/some/path');
+        fakeUrl = 'http://custom';
         expect(envSvc.get().name).to.equal('custom');
 
         // test w/ regexp (matches http://craziness.*.com/)
@@ -70,7 +73,7 @@ describe('rxEnvironment', function () {
             pattern: /\/\/craziness\..*\.com\//,
             url: 'crazy'
         });
-        location.path('http://craziness.anything.yeah.com/some/path');
+        fakeUrl = 'http://craziness.anything.yeah.com/some/path';
         expect(envSvc.get().name).to.equal('crazy');
     });
 
@@ -85,22 +88,13 @@ describe('rxEnvironment', function () {
         expect(buildBadEnd).to.throw(Error);
     });
 
-    it('should provide current environment via rootscope', function () {
-        expect(rootScope.environment.name).to.equal('local');
-
-        // set environment to staging
-        envSvc.set('staging');
-
-        expect(rootScope.environment.name).to.equal('staging');
-    });
-
     it('should allow you to completely overwrite defined environments', function () {
         envSvc.setAll([{
             name: 'custom',
             pattern: 'custom'
         }]);
 
-        expect(rootScope.environment.name).to.equal('custom');
+        expect(envSvc.get().name).to.equal('custom');
     });
 });
 
@@ -120,8 +114,10 @@ describe('rxEnvironmentUrl', function () {
         // create url information to build on
         var url = { tld: 'cloudatlas', path: 'cbs/servers' };
 
-        // set environment to staging
-        envSvc.set('staging');
+        // set environment to build from
+        sinon.stub(envSvc, 'get').returns({
+            url: '//staging.{{tld}}.encore.rackspace.com/{{path}}'
+        });
 
         expect(urlFilter(url)).to.equal('//staging.cloudatlas.encore.rackspace.com/cbs/servers');
     });
@@ -140,8 +136,10 @@ describe('rxEnvironmentMatch', function () {
     });
 
     it('should match based on target environment', function () {
-        // set environment to staging
-        envSvc.set('staging');
+        // override current environment
+        sinon.stub(envSvc, 'get').returns({
+            name: 'staging'
+        });
 
         expect(urlMatch('staging'), 'staging').to.be.true;
         expect(urlMatch('!staging'), '!staging').to.be.false;
@@ -151,7 +149,7 @@ describe('rxEnvironmentMatch', function () {
 });
 
 describe('rxIfEnvironment', function () {
-    var rootScope, location, scope, compile, envSvc,
+    var rootScope, scope, compile, envSvc,
         stagingMsg = 'Show if staging',
         prodMsg = 'Show if not prod',
         stagingTemplate = '<div rx-if-environment="staging">' + stagingMsg + '</div>',
@@ -161,35 +159,45 @@ describe('rxIfEnvironment', function () {
         // load module
         module('encore.ui.rxEnvironment');
 
-        inject(function ($rootScope, $compile, $location, Environment) {
+        inject(function ($rootScope, $compile, Environment) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
-            location = $location;
             envSvc = Environment;
         });
+
+        // override get functionality so we can customize environment
+        sinon.stub(envSvc, 'get');
     });
 
     it('should show if environment matches', function () {
-        envSvc.set('staging');
+        envSvc.get.returns({
+            name: 'staging'
+        });
         var el = helpers.createDirective(stagingTemplate, compile, scope);
         expect(el.hasClass('ng-hide')).to.be.false;
     });
 
     it('should hide if environment does not match', function () {
-        envSvc.set('local');
+        envSvc.get.returns({
+            name: 'local'
+        });
         var el = helpers.createDirective(stagingTemplate, compile, scope);
         expect(el.hasClass('ng-hide')).to.be.true;
     });
 
     it('should hide if negated environment matches', function () {
-        envSvc.set('production');
+        envSvc.get.returns({
+            name: 'production'
+        });
         var el = helpers.createDirective(notProdTemplate, compile, scope);
         expect(el.hasClass('ng-hide')).to.be.true;
     });
 
     it('should show if negated environment does not match', function () {
-        envSvc.set('local');
+        envSvc.get.returns({
+            name: 'local'
+        });
         var el = helpers.createDirective(notProdTemplate, compile, scope);
         expect(el.hasClass('ng-hide')).to.be.false;
     });

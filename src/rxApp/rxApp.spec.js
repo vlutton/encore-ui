@@ -190,8 +190,12 @@ describe('rxAppNavItem', function () {
 
         scope.item = _.clone(menuItem, true);
 
-        // set environment
-        envSvc.set('staging');
+        // set environment to build from
+        sinon.stub(envSvc, 'get').returns({
+            name: 'staging',
+            pattern: /\/\/staging\.(?:.*\.)?com/,
+            url: '//staging.{{tld}}.encore.rackspace.com/{{path}}'
+        });
 
         el = helpers.createDirective(template, compile, scope);
     });
