@@ -4,7 +4,8 @@
 </div>
 </h1>
 <div><h2 id="description">Description</h2>
-<div class="description"><div class="encore-ui-rxenvironment-page encore-ui-rxenvironment-rxenvironmenturl-page"><p>Builds a URL based on current environment</p>
+<div class="description"><div class="encore-ui-rxenvironment-page encore-ui-rxenvironment-rxenvironmenturl-page"><p>Builds a URL based on current environment.
+Note: if value passed in isn&#39;t an object, it will simply return that value</p>
 </div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage"><h3 id="usage_in-html-template-binding">In HTML Template Binding</h3>
@@ -17,7 +18,10 @@
 <h2 id="example">Example</h2>
 <div class="example"><div class="encore-ui-rxenvironment-page encore-ui-rxenvironment-rxenvironmenturl-page"><pre class="prettyprint linenums">
 {{ { tld: 'cloudatlas', path: 'cbs/servers' } | rxEnvironmentUrl }}
-Renders as '//staging.cloudatlas.encore.rackspace.com/cbs/servers'
+Renders as '//staging.cloudatlas.encore.rackspace.com/cbs/servers' in staging
+
+{{ '/myPath' | rxEnvironmentUrl }}
+Renders as '/myPath' regardless of environment, because value passed in was not an object
 </pre>
 </div></div>
 </div>

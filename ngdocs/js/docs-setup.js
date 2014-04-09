@@ -5,42 +5,6 @@ NG_DOCS={
   "pages": [
     {
       "section": "api",
-      "id": "encore.components.paginate:Page",
-      "shortName": "Page",
-      "type": "filter",
-      "moduleName": "encore.components",
-      "shortDescription": "This is the pagination filter that is used to limit the number of pages",
-      "keywords": "api components created displayed encore filter instance limit list number numbers pager pagetracking paginate pagination service"
-    },
-    {
-      "section": "api",
-      "id": "encore.components.paginate:PageTracking",
-      "shortName": "PageTracking",
-      "type": "service",
-      "moduleName": "encore.components",
-      "shortDescription": "This is the data service that can be used in conjunction with the pagination",
-      "keywords": "ability api class components conjunction controls createinstance current data default determine display enables encore encore-components-paginate-page encore-components-paginate-pagetracking-page generate initialzed instance items itemsperpage number object objects override pageinit pagenumber pagestoshow pagetracking paginate pagination service set setting settings showall store stored tables total true"
-    },
-    {
-      "section": "api",
-      "id": "encore.components.paginate:Paginate",
-      "shortName": "Paginate",
-      "type": "filter",
-      "moduleName": "encore.components",
-      "shortDescription": "This is the pagination filter that is used to calculate the division in the",
-      "keywords": "api calculate components created current division encore filter instance items list object pager pagetracking paginate pagination paging service sliced"
-    },
-    {
-      "section": "api",
-      "id": "encore.components.paginate:rxPaginate",
-      "shortName": "rxPaginate",
-      "type": "directive",
-      "moduleName": "encore.components",
-      "shortDescription": "Directive that takes in the page tracking object and outputs a page",
-      "keywords": "api components controller directive display encore instance maximum number numberofpages object outputs pagetracking paginate service switching takes time tracking"
-    },
-    {
-      "section": "api",
       "id": "encore.ui.rxActiveUrl",
       "shortName": "encore.ui.rxActiveUrl",
       "type": "directive",
@@ -122,12 +86,21 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxEnvironment:rxEnvironmentMatch",
+      "shortName": "rxEnvironmentMatch",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "Checks if current environment matches target environment",
+      "keywords": "api checks current encore environment false filter matches production returns rxenvironment rxenvironmentmatch target true ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxEnvironment:rxEnvironmentUrl",
       "shortName": "rxEnvironmentUrl",
       "type": "filter",
       "moduleName": "encore.ui",
-      "shortDescription": "Builds a URL based on current environment",
-      "keywords": "api based builds cbs cloudatlas current encore environment filter path rackspace renders rxenvironment rxenvironmenturl tld ui url"
+      "shortDescription": "Builds a URL based on current environment.",
+      "keywords": "api based builds cbs cloudatlas current encore environment filter isn note object passed path rackspace renders return rxenvironment rxenvironmenturl simply staging tld ui url"
     },
     {
       "section": "api",
@@ -194,6 +167,78 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxNotify:rxNotification",
+      "shortName": "rxNotification",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Display a static message with styling taken from rx-notifications",
+      "keywords": "api directive display encore error message notification rx-notifications rxnotify static styling type ui warning"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxNotify:rxNotifications",
+      "shortName": "rxNotifications",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Displays all messages in a stack",
+      "keywords": "api associate directive displays encore message messages mycustomstack rxnotify stack ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxNotify:rxNotify",
+      "shortName": "rxNotify",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Manages page messages for an application",
+      "keywords": "api application encore manages messages rxnotify service ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxNotify:rxPromiseNotifications",
+      "shortName": "rxPromiseNotifications",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Manages displaying messages for a promise",
+      "keywords": "add api deferred displaying encore error loading manages message messages promise rxnotify rxpromisenotifications service success ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxPaginate:Page",
+      "shortName": "Page",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "This is the pagination filter that is used to limit the number of pages",
+      "keywords": "api created displayed encore filter instance limit list number numbers pager pagetracking pagination rxpaginate service ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxPaginate:PageTracking",
+      "shortName": "PageTracking",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "This is the data service that can be used in conjunction with the pagination",
+      "keywords": "ability api class conjunction controls createinstance current data default determine display enables encore encore-ui-rxpaginate-page encore-ui-rxpaginate-pagetracking-page generate initialzed instance items itemsperpage number object objects override pageinit pagenumber pagestoshow pagetracking pagination rxpaginate service set setting settings showall store stored tables total true ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxPaginate:Paginate",
+      "shortName": "Paginate",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "This is the pagination filter that is used to calculate the division in the",
+      "keywords": "api calculate created current division encore filter instance items list object pager pagetracking pagination paging rxpaginate service sliced ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxPaginate:rxPaginate",
+      "shortName": "rxPaginate",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Directive that takes in the page tracking object and outputs a page",
+      "keywords": "api controller directive display encore instance maximum number numberofpages object outputs pagetracking rxpaginate service switching takes time tracking ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxPermission:Permission",
       "shortName": "Permission",
       "type": "service",
@@ -248,8 +293,8 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxSortableColumn",
-      "shortName": "encore.ui.rxSortableColumn",
+      "id": "encore.ui.rxSortableColumn:rxSortableColumn",
+      "shortName": "rxSortableColumn",
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Renders a clickable link in a table heading which will sort the table by",
@@ -257,12 +302,12 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxSortUtil",
-      "shortName": "encore.ui.rxSortUtil",
+      "id": "encore.ui.rxSortableColumn:rxSortUtil",
+      "shortName": "rxSortUtil",
       "type": "service",
       "moduleName": "encore.ui",
       "shortDescription": "Service which provided utility methods for sorting collections.",
-      "keywords": "api based collection collections default encore getdefault methods object predicate provided returns rxsortutil service sort sortcol sorting sorts ui utility"
+      "keywords": "api based collection collections default encore getdefault methods object predicate provided returns rxsortablecolumn rxsortutil service sort sortcol sorting sorts ui utility"
     },
     {
       "section": "api",

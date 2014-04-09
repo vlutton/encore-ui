@@ -9,7 +9,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.5.1.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.5.2.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -18,12 +18,13 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.5.1.js"></script>
+    <script src="dist/encore-ui-tpls-0.5.2.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -32,160 +33,151 @@
         // this script is at the top of the HTML so that any modules
         // needing the demoApp module can use it
 
+        // NOTE: do not remove $anchorScroll, even though it's not called
+        // simply by including it, we get the left nav to navigate correctly
         angular.module('demoApp', ['encore.ui'])
-        .run(function ($rootScope, $location, $anchorScroll) {
-            // Hack to make anchor link navigation work
-            document.addEventListener('click', function (ev) {
-                var target = ev.target;
-
-                if (target.className.indexOf('item-link') > -1) {
-                    // prevent the default jump to top
-                    ev.preventDefault();
-
-                    // update angular location
-                    $location.hash(target.getAttribute('href'));
-
-                    // run angular scrollTo
-                    $anchorScroll();
-                }
-            });
-
+        .run(function ($anchorScroll, $rootScope) {
             $rootScope.components = [{
                 title: 'All Components',
                 children: [
                     
                     {
-                        href: 'configs',
+                        href: '##configs',
                         linkText: 'configs'
                     },
                     
                     {
-                        href: 'rxActiveUrl',
+                        href: '##rxActiveUrl',
                         linkText: 'rxActiveUrl'
                     },
                     
                     {
-                        href: 'rxAge',
+                        href: '##rxAge',
                         linkText: 'rxAge'
                     },
                     
                     {
-                        href: 'rxApp',
+                        href: '##rxApp',
                         linkText: 'rxApp'
                     },
                     
                     {
-                        href: 'rxAttributes',
+                        href: '##rxAttributes',
                         linkText: 'rxAttributes'
                     },
                     
                     {
-                        href: 'rxAuth',
+                        href: '##rxAuth',
                         linkText: 'rxAuth'
                     },
                     
                     {
-                        href: 'rxBreadcrumbs',
+                        href: '##rxBreadcrumbs',
                         linkText: 'rxBreadcrumbs'
                     },
                     
                     {
-                        href: 'rxButton',
+                        href: '##rxButton',
                         linkText: 'rxButton'
                     },
                     
                     {
-                        href: 'rxCapitalize',
+                        href: '##rxCapitalize',
                         linkText: 'rxCapitalize'
                     },
                     
                     {
-                        href: 'rxDiskSize',
+                        href: '##rxCompile',
+                        linkText: 'rxCompile'
+                    },
+                    
+                    {
+                        href: '##rxDiskSize',
                         linkText: 'rxDiskSize'
                     },
                     
                     {
-                        href: 'rxDropdown',
+                        href: '##rxDropdown',
                         linkText: 'rxDropdown'
                     },
                     
                     {
-                        href: 'rxEnvironment',
+                        href: '##rxEnvironment',
                         linkText: 'rxEnvironment'
                     },
                     
                     {
-                        href: 'rxForm',
+                        href: '##rxForm',
                         linkText: 'rxForm'
                     },
                     
                     {
-                        href: 'rxIdentity',
+                        href: '##rxIdentity',
                         linkText: 'rxIdentity'
                     },
                     
                     {
-                        href: 'rxLocalStorage',
+                        href: '##rxLocalStorage',
                         linkText: 'rxLocalStorage'
                     },
                     
                     {
-                        href: 'rxLogout',
+                        href: '##rxLogout',
                         linkText: 'rxLogout'
                     },
                     
                     {
-                        href: 'rxModalAction',
+                        href: '##rxModalAction',
                         linkText: 'rxModalAction'
                     },
                     
                     {
-                        href: 'rxNotify',
+                        href: '##rxNotify',
                         linkText: 'rxNotify'
                     },
                     
                     {
-                        href: 'rxPageTitle',
+                        href: '##rxPageTitle',
                         linkText: 'rxPageTitle'
                     },
                     
                     {
-                        href: 'rxPaginate',
+                        href: '##rxPaginate',
                         linkText: 'rxPaginate'
                     },
                     
                     {
-                        href: 'rxPermission',
+                        href: '##rxPermission',
                         linkText: 'rxPermission'
                     },
                     
                     {
-                        href: 'rxProductResources',
+                        href: '##rxProductResources',
                         linkText: 'rxProductResources'
                     },
                     
                     {
-                        href: 'rxRelatedMenu',
+                        href: '##rxRelatedMenu',
                         linkText: 'rxRelatedMenu'
                     },
                     
                     {
-                        href: 'rxSession',
+                        href: '##rxSession',
                         linkText: 'rxSession'
                     },
                     
                     {
-                        href: 'rxSessionStorage',
+                        href: '##rxSessionStorage',
                         linkText: 'rxSessionStorage'
                     },
                     
                     {
-                        href: 'rxSortableColumn',
+                        href: '##rxSortableColumn',
                         linkText: 'rxSortableColumn'
                     },
                     
                     {
-                        href: 'rxSpinner',
+                        href: '##rxSpinner',
                         linkText: 'rxSpinner'
                     },
                     
@@ -195,8 +187,13 @@
     </script>
 
     <rx-app site-title="Encore Demo App" menu="components">
-        <rx-page page-title="Encore-UI Components">
-            <p><strong><a href="ngdocs/index.html">ngdocs for Encore-UI</a></strong></p>
+        <rx-page title="'Encore-UI Components'">
+            <ul>
+                <li><a href="coverage/index.html">Unit test coverage for Encore-UI</a></li>
+                <li><a href="ngdocs/index.html">ngdocs for Encore-UI</a></li>
+            </ul>
+
+            <br>
 
             
                 <section class="component">
@@ -498,62 +495,62 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         title: &#x27;Example Menu&#x27;,
         children: [
             {
-                href: &#x27;#1&#x27;,
+                href: &#x27;1st-order&#x27;,
                 linkText: &#x27;1st Order Item&#x27;
             },
             {
-                href: &#x27;#2&#x27;,
+                href: &#x27;2nd-order&#x27;,
                 linkText: &#x27;1st Order Item w/ Children&#x27;,
                 // childHeader: &#x27;Current Account {{ user }}&#x27;,
                 directive: &#x27;sample-nav-directive&#x27;,
                 children: [
                     {
-                        href: &#x27;#2-1&#x27;,
+                        href: &#x27;2nd-order-1&#x27;,
                         linkText: &#x27;2nd Order Item&#x27;,
                         children: [{
-                            href: &#x27;#2-1-1&#x27;,
+                            href: &#x27;2nd-order-1-1&#x27;,
                             linkText: &#x27;3rd Order Item&#x27;
                         }]
                     },
                     {
-                        href: &#x27;#2-2&#x27;,
+                        href: &#x27;2nd-order-2&#x27;,
                         linkText: &#x27;2nd Order Item w/ Children&#x27;,
                         active: true,
                         children: [
                             {
-                                href: &#x27;#2-2-1&#x27;,
+                                href: &#x27;2nd-order-2-1&#x27;,
                                 linkText: &#x27;3rd Order Item&#x27;
                             },
                             {
-                                href: &#x27;#2-2-2&#x27;,
+                                href: &#x27;2nd-order-2-2&#x27;,
                                 linkText: &#x27;3rd Order Item w/ children&#x27;,
                                 active: true,
                                 children: [
                                     {
-                                        href: &#x27;#2-2-2-1&#x27;,
+                                        href: &#x27;2nd-order-2-2-1&#x27;,
                                         linkText: &#x27;4th Order Item&#x27;,
                                         active: true
                                     },
                                     {
-                                        href: &#x27;#2-2-2-2&#x27;,
+                                        href: &#x27;2nd-order-2-2-2&#x27;,
                                         linkText: &#x27;4th Order Item&#x27;
                                     }
                                 ]
                             },
                             {
-                                href: &#x27;#2-2-3&#x27;,
+                                href: &#x27;2nd-order-2-3&#x27;,
                                 linkText: &#x27;3rd Order Item&#x27;
                             }
                         ]
                     },
                     {
-                        href: &#x27;#2-3&#x27;,
+                        href: &#x27;2nd-order-3&#x27;,
                         linkText: &#x27;2nd Order Item&#x27;
                     }
                 ]
             },
             {
-                href: &#x27;#3&#x27;,
+                href: &#x27;3rd-order&#x27;,
                 linkText: &#x27;1st Order Item&#x27;
             }
         ]
@@ -598,62 +595,62 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         title: 'Example Menu',
         children: [
             {
-                href: '#1',
+                href: '1st-order',
                 linkText: '1st Order Item'
             },
             {
-                href: '#2',
+                href: '2nd-order',
                 linkText: '1st Order Item w/ Children',
                 // childHeader: 'Current Account {{ user }}',
                 directive: 'sample-nav-directive',
                 children: [
                     {
-                        href: '#2-1',
+                        href: '2nd-order-1',
                         linkText: '2nd Order Item',
                         children: [{
-                            href: '#2-1-1',
+                            href: '2nd-order-1-1',
                             linkText: '3rd Order Item'
                         }]
                     },
                     {
-                        href: '#2-2',
+                        href: '2nd-order-2',
                         linkText: '2nd Order Item w/ Children',
                         active: true,
                         children: [
                             {
-                                href: '#2-2-1',
+                                href: '2nd-order-2-1',
                                 linkText: '3rd Order Item'
                             },
                             {
-                                href: '#2-2-2',
+                                href: '2nd-order-2-2',
                                 linkText: '3rd Order Item w/ children',
                                 active: true,
                                 children: [
                                     {
-                                        href: '#2-2-2-1',
+                                        href: '2nd-order-2-2-1',
                                         linkText: '4th Order Item',
                                         active: true
                                     },
                                     {
-                                        href: '#2-2-2-2',
+                                        href: '2nd-order-2-2-2',
                                         linkText: '4th Order Item'
                                     }
                                 ]
                             },
                             {
-                                href: '#2-2-3',
+                                href: '2nd-order-2-3',
                                 linkText: '3rd Order Item'
                             }
                         ]
                     },
                     {
-                        href: '#2-3',
+                        href: '2nd-order-3',
                         linkText: '2nd Order Item'
                     }
                 ]
             },
             {
-                href: '#3',
+                href: '3rd-order',
                 linkText: '1st Order Item'
             }
         ]
@@ -989,6 +986,62 @@ function rxCapitalizeCtrl ($scope) {
 }</script>
             
                 <section class="component">
+                    <a id="rxCompile"></a>
+                    <h2 class="section-title component-title">Rx Compile<small>
+                          (encore.ui.rxCompile)
+                      </small></h2>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <!-- Sample HTML goes here as a live example of how to the component can be used -->
+<div ng-controller="rxCompileCtrl">
+    <input type="text" ng-model="world">
+    <div rx-compile="myExpression"></div>
+    <div>{{myExpression}}</div>
+</div>
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/experimental.svg" alt="experimental" title="" /></a></p>
+
+<p>Allows compilation of expressions inside of other expressions.</p>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;!-- Sample HTML goes here as a live example of how to the component can be used --&gt;
+&lt;div ng-controller=&quot;rxCompileCtrl&quot;&gt;
+    &lt;input type=&quot;text&quot; ng-model=&quot;world&quot;&gt;
+    &lt;div rx-compile=&quot;myExpression&quot;&gt;&lt;/div&gt;
+    &lt;div&gt;{{myExpression}}&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        
+                        <div class="pure-u-1-2">
+                            <h3>JavaScript</h3>
+                            <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
+
+// This file is used to help build the &#x27;demo&#x27; documentation page and should be updated with example code
+function rxCompileCtrl ($scope) {
+    $scope.world = &#x27;wrrrld&#x27;;
+    $scope.myExpression = &#x27;Hello {{world}}&#x27;;
+}</code></pre>
+                        </div>
+                        
+                    </div>
+                </section>
+                <script>/*jshint unused:false*/
+
+// This file is used to help build the 'demo' documentation page and should be updated with example code
+function rxCompileCtrl ($scope) {
+    $scope.world = 'wrrrld';
+    $scope.myExpression = 'Hello {{world}}';
+}</script>
+            
+                <section class="component">
                     <a id="rxDiskSize"></a>
                     <h2 class="section-title component-title">Rx Disk Size<small>
                           (encore.ui.rxDiskSize)
@@ -1147,7 +1200,7 @@ function rxDiskSizeCtrl ($scope) {
 function rxEnvironmentCtrl ($scope, Environment) {
     Environment.add({
         name: &#x27;ghPages&#x27;,
-        pattern: &#x27;//rackerlabs.github.io/encore-ui/&#x27;,
+        pattern: &#x27;//rackerlabs.github.io/encore-ui&#x27;,
         url: &#x27;//rackerlabs.github.io/encore-ui/{{path}}&#x27;
     });
 
@@ -1163,7 +1216,7 @@ function rxEnvironmentCtrl ($scope, Environment) {
 function rxEnvironmentCtrl ($scope, Environment) {
     Environment.add({
         name: 'ghPages',
-        pattern: '//rackerlabs.github.io/encore-ui/',
+        pattern: '//rackerlabs.github.io/encore-ui',
         url: '//rackerlabs.github.io/encore-ui/{{path}}'
     });
 
