@@ -63,10 +63,10 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
     };
 
     /*
-     * Retrieves current environment, defaulting to first defined
+     * Retrieves current environment
      * @public
-     * @param {string} [href] The path to check the environment on. Defaults to $location.path()
-     * @returns {object} The current environment
+     * @param {string} [href] The path to check the environment on. Defaults to $location.absUrl()
+     * @returns {*} The current environment (if found), else undefined.
      */
     envSvc.get = function (href) {
         // default to current location if href not provided
