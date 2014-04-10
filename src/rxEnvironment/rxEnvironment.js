@@ -24,11 +24,15 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * @property {string} url The url pattern used to build out urls for that environment.
      *                        See 'buildUrl' for more details
      */
+
     var environments = [{
+        // http://localhost:3000/
         // http://localhost:9000/
+        // http://localhost/
+        // http://server/
         name: 'local',
-        pattern: 'localhost:9000',
-        url: '//localhost:9000/{{path}}'
+        pattern: /\/\/(localhost|server)(:\d{1,4})?/,
+        url: '//localhost:' + $location.port() + '/{{path}}'
     }, {
         // https://staging.encore.rackspace.com/
         // https://staging.cloudatlas.encore.rackspace.com/
@@ -78,7 +82,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
             return _.contains(href, pattern);
         });
 
-        return currentEnvironment || environments[0];
+        return currentEnvironment;
     };
 
     /*

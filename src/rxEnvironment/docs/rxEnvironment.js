@@ -1,5 +1,5 @@
 /*jshint unused:false*/
-function rxEnvironmentCtrl ($scope, Environment, $location) {
+function rxEnvironmentCtrl ($scope, Environment) {
     $scope.Environment = Environment;
 
     Environment.add({

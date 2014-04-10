@@ -1,6 +1,6 @@
 /* jshint node: true */
 describe('rxEnvironment', function () {
-    var rootScope, envSvc, location, fakeUrl;
+    var rootScope, envSvc, location;
 
     beforeEach(function () {
         // load module
@@ -13,19 +13,17 @@ describe('rxEnvironment', function () {
             envSvc = Environment;
         });
 
-        location.absUrl = function () {
-            return fakeUrl;
-        };
+        sinon.stub(location, 'absUrl');
     });
 
     afterEach(function () {
-        fakeUrl = null;
+        location.absUrl.restore();
     });
 
-    it('should default environment to local if no environment found', function () {
-        fakeUrl = 'http://nonsense';
+    it('should return undefined if no environment found', function () {
+        location.absUrl.returns('http://nonsense');
 
-        expect(envSvc.get().name).to.equal('local');
+        expect(envSvc.get()).to.not.exist;
     });
 
     it('should get current environment based on location passed in', function () {
@@ -41,19 +39,19 @@ describe('rxEnvironment', function () {
 
     it('should get current environment based on location.absUrl', function () {
         // test local
-        fakeUrl = 'http://localhost:9001';
+        location.absUrl.returns('http://localhost:9001');
         expect(envSvc.get().name).to.equal('local');
 
         // test staging
-        fakeUrl = 'http://staging.encore.rackspace.com';
+        location.absUrl.returns('http://staging.encore.rackspace.com');
         expect(envSvc.get().name).to.equal('staging');
 
         // test staging with custom TLD
-        fakeUrl = 'http://staging.cloudatlas.encore.rackspace.com';
+        location.absUrl.returns('http://staging.cloudatlas.encore.rackspace.com');
         expect(envSvc.get().name).to.equal('staging');
 
         // test prod
-        fakeUrl = 'http://encore.rackspace.com';
+        location.absUrl.returns('http://encore.rackspace.com');
         expect(envSvc.get().name).to.equal('production');
     });
 
@@ -64,7 +62,7 @@ describe('rxEnvironment', function () {
             pattern: '//custom',
             url: 'custom'
         });
-        fakeUrl = 'http://custom';
+        location.absUrl.returns('http://custom');
         expect(envSvc.get().name).to.equal('custom');
 
         // test w/ regexp (matches http://craziness.*.com/)
@@ -73,7 +71,7 @@ describe('rxEnvironment', function () {
             pattern: /\/\/craziness\..*\.com\//,
             url: 'crazy'
         });
-        fakeUrl = 'http://craziness.anything.yeah.com/some/path';
+        location.absUrl.returns('http://craziness.anything.yeah.com/some/path');
         expect(envSvc.get().name).to.equal('crazy');
     });
 
@@ -91,7 +89,8 @@ describe('rxEnvironment', function () {
     it('should allow you to completely overwrite defined environments', function () {
         envSvc.setAll([{
             name: 'custom',
-            pattern: 'custom'
+            pattern: /./,
+            url: 'mycustomurl'
         }]);
 
         expect(envSvc.get().name).to.equal('custom');
