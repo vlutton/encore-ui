@@ -130,6 +130,9 @@ describe('rxAppNavItem', function () {
             {
                 href: '/1-1',
                 linkText: '1st-1st',
+                childVisibility: function () {
+                    return false;
+                },
                 children: [
                     {
                         href: '/1-1-1',
@@ -282,14 +285,12 @@ describe('rxAppNavItem', function () {
         expect(content.className).to.not.contain('ng-hide');
     });
 
-    it('should build children if available', function () {
+    it('should show/hide children based on childVisibility value', function () {
         // get children element
-        var children = el[0].querySelector('.item-children .rx-app-nav');
+        var children = el[0].querySelectorAll('.item-children');
 
-        expect(children).to.exist;
-
-        // should have 5 child items (including sub-sub-nav)
-        expect(children.querySelectorAll('.rx-app-nav-item')).to.have.length.of(5);
+        expect(children[0].className, 'All Children').to.not.contain('ng-hide');
+        expect(children[1].className, '1st Subnav Children').to.contain('ng-hide');
     });
 
     it('should build directive if available', function () {

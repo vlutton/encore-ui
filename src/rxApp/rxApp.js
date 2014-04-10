@@ -11,6 +11,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
  * @property {array} children Child menu items for the navigation heirarchy
  * @property {string} directive Name of directive to build and show when item is active. For example:
  *                              Value of 'my-directive' becomes '<my-directive></my-directive>'
+ * @property {expression|function} [childVisibility] Rule to determine visibility of child menu
  */
 .value('encoreNav', [{
     title: 'All Tools',
@@ -18,6 +19,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         href: { tld: 'cloudatlas', path: '' },
         linkText: 'Account-level Tools',
         directive: 'rx-global-search',
+        childVisibility: function (scope) {
+            // We only want to show this nav if user is already defined in the URL
+            // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
+            if (scope.route.current) {
+                return !_.isUndefined(scope.route.current.pathParams.user);
+            }
+            return false;
+        },
         children: [
             {
                 href: '/{{user}}/cbs/volumes',
@@ -247,7 +256,12 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                     // if undefined, default to true
                     return true;
                 }
-                return $scope.$eval(visibility);
+
+                $scope.route = $route;
+
+                return $scope.$eval(visibility, {
+                    location: $location
+                });
             };
         }
     };
