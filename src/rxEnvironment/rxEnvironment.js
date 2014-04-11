@@ -11,7 +11,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
 * Environment.get() // return environment object that matches current location
 * </pre>
 */
-.service('Environment', function ($location, $rootScope) {
+.service('Environment', function ($location) {
     var envSvc = {};
 
     /*
@@ -24,20 +24,26 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * @property {string} url The url pattern used to build out urls for that environment.
      *                        See 'buildUrl' for more details
      */
+
     var environments = [{
+        // http://localhost:3000/
         // http://localhost:9000/
+        // http://localhost/
+        // http://server/
         name: 'local',
-        pattern: 'localhost:9000',
-        url: '//localhost:9000/{{path}}'
+        pattern: /\/\/(localhost|server)(:\d{1,4})?/,
+        url: '//localhost:' + $location.port() + '/{{path}}'
     }, {
+        // https://staging.encore.rackspace.com/
         // https://staging.cloudatlas.encore.rackspace.com/
         name: 'staging',
-        pattern: /\/\/staging\.(?:.*\.)?com/,
+        pattern: /\/\/staging\.(?:.*\.)?encore.rackspace.com/,
         url: '//staging.{{tld}}.encore.rackspace.com/{{path}}'
     }, {
+        // https://encore.rackspace.com/
         // https://cloudatlas.encore.rackspace.com/
         name: 'production',
-        pattern: /\/\/.*\.?encore.rackspace.com/,
+        pattern: /\/\/(?!staging).*\.?encore.rackspace.com/,
         url: '//{{tld}}.encore.rackspace.com/{{path}}'
     }];
 
@@ -57,10 +63,10 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
     };
 
     /*
-     * Retrieves current environment, defaulting to first defined
+     * Retrieves current environment
      * @public
-     * @param {string} [href] The path to check the environment on. Defaults to $location.path()
-     * @returns {object} The current environment
+     * @param {string} [href] The path to check the environment on. Defaults to $location.absUrl()
+     * @returns {*} The current environment (if found), else undefined.
      */
     envSvc.get = function (href) {
         // default to current location if href not provided
@@ -76,7 +82,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
             return _.contains(href, pattern);
         });
 
-        return currentEnvironment || $rootScope.environment || environments[0];
+        return currentEnvironment;
     };
 
     /*
@@ -90,26 +96,9 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         if (isValidEnvironment(environment)) {
             // add environment
             environments.push(environment);
-            // reset current environment now that information has been added
-            envSvc.set();
         } else {
             throw new Error('Environment incorrectly defined');
         }
-    };
-
-    /*
-     * Sets the current environment
-     * @public
-     * @param {string} [environmentName] Environment to set as current
-     */
-    envSvc.set = function (environmentName) {
-        var environment;
-
-        if (_.isString(environmentName)) {
-            environment = _.find(environments, { 'name': environmentName });
-        }
-
-        $rootScope.environment = environment || envSvc.get();
     };
 
     /*
@@ -122,17 +111,8 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         if (newEnvironments.length > 0 && _.every(environments, isValidEnvironment)) {
             // overwrite old environemnts with new
             environments = newEnvironments;
-
-            // zero out current environment
-            $rootScope.environment = null;
-
-            // get new environment
-            envSvc.set();
         }
     };
-
-    // set current environment
-    envSvc.set();
 
     return envSvc;
 })
