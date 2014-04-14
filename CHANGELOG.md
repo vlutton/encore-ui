@@ -1,3 +1,21 @@
+<a name="0.5.3"></a>
+### 0.5.3 (2014-04-14)
+
+
+#### Bug Fixes
+
+* **rxApp:** Default Links for Ticket Queues were wrong ([7a047534](git@github.com:rackerlabs/encore-ui/commit/7a0475343dbd02645771f3d67126861d82f2dfc8))
+* **rxEnvironment:**
+  * remove more unused stuff ([dfbe29c1](git@github.com:rackerlabs/encore-ui/commit/dfbe29c1fb1e02282662a5d5825fb4dacee5d62c))
+  * removed some unused functionality ([7218d71f](git@github.com:rackerlabs/encore-ui/commit/7218d71fee4faf83d1f444e9f25028e0caad9049))
+
+
+#### Breaking Changes
+
+* Environment.set() and $rootScope.environment removed
+ ([7218d71f](git@github.com:rackerlabs/encore-ui/commit/7218d71fee4faf83d1f444e9f25028e0caad9049))
+
+
 <a name="0.5.2"></a>
 ### 0.5.2 (2014-04-09)
 
