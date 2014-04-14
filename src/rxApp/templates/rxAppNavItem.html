@@ -4,7 +4,7 @@
         <div class="item-directive" ng-show="item.directive">
             <!-- item.directive injected here -->
         </div>
-        <div class="item-children" ng-show="item.children">
+        <div class="item-children" ng-show="item.children && isVisible(item.childVisibility)">
             <!-- rx-app-nav injected here if 'children' is array -->
         </div>
     </div>
