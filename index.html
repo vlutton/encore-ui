@@ -9,7 +9,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.5.2.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.5.3.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -24,7 +24,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.5.2.js"></script>
+    <script src="dist/encore-ui-tpls-0.5.3.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -1130,27 +1130,19 @@ function rxDiskSizeCtrl ($scope) {
                         
                         <div class="pure-u-1-2 component-example">
                             <div ng-controller="rxEnvironmentCtrl">
-    <p>Current Environment: {{environment.name}}</p>
+    <p>Current Environment: {{Environment.get().name}}</p>
 
-    <p>
-        Switch to:
-        <button ng-click="switchTo('local')">Local</button>
-        <button ng-click="switchTo('staging')">Staging</button>
-        <button ng-click="switchTo('production')">Production</button>
-        <button ng-click="switchTo('ghPages')">GitHub Pages</button>
-    </p>
+    <p>Url built from Environment data: {{ { tld: 'cloudatlas', path: 'some/path' } | rxEnvironmentUrl }}</p>
 
-    <p>Custom Environment Url: {{ { tld: 'cloudatlas', path: 'some/path' } | rxEnvironmentUrl }}</p>
-
-    <p>Content shows if staging:
-        <span rx-if-environment="staging">
-            You're on a staging environment
+    <p>Content shows if on GitHub demo page:
+        <span rx-if-environment="ghPages">
+            You're on the GitHub demo page
         </span>
     </p>
 
-    <p>Content shows if not production:
-        <span rx-if-environment="!production">
-            You are not on a production environment
+    <p>Content shows if not on GitHub demo page:
+        <span rx-if-environment="!ghPages">
+            You're not on the GitHub demo page
         </span>
     </p>
 </div>
@@ -1167,27 +1159,19 @@ function rxDiskSizeCtrl ($scope) {
                         <div class="pure-u-1-2">
                             <h3>Markup</h3>
                             <pre ng-non-bindable><code class="language-markup">&lt;div ng-controller=&quot;rxEnvironmentCtrl&quot;&gt;
-    &lt;p&gt;Current Environment: {{environment.name}}&lt;/p&gt;
+    &lt;p&gt;Current Environment: {{Environment.get().name}}&lt;/p&gt;
 
-    &lt;p&gt;
-        Switch to:
-        &lt;button ng-click=&quot;switchTo(&#x27;local&#x27;)&quot;&gt;Local&lt;/button&gt;
-        &lt;button ng-click=&quot;switchTo(&#x27;staging&#x27;)&quot;&gt;Staging&lt;/button&gt;
-        &lt;button ng-click=&quot;switchTo(&#x27;production&#x27;)&quot;&gt;Production&lt;/button&gt;
-        &lt;button ng-click=&quot;switchTo(&#x27;ghPages&#x27;)&quot;&gt;GitHub Pages&lt;/button&gt;
-    &lt;/p&gt;
+    &lt;p&gt;Url built from Environment data: {{ { tld: &#x27;cloudatlas&#x27;, path: &#x27;some/path&#x27; } | rxEnvironmentUrl }}&lt;/p&gt;
 
-    &lt;p&gt;Custom Environment Url: {{ { tld: &#x27;cloudatlas&#x27;, path: &#x27;some/path&#x27; } | rxEnvironmentUrl }}&lt;/p&gt;
-
-    &lt;p&gt;Content shows if staging:
-        &lt;span rx-if-environment=&quot;staging&quot;&gt;
-            You&#x27;re on a staging environment
+    &lt;p&gt;Content shows if on GitHub demo page:
+        &lt;span rx-if-environment=&quot;ghPages&quot;&gt;
+            You&#x27;re on the GitHub demo page
         &lt;/span&gt;
     &lt;/p&gt;
 
-    &lt;p&gt;Content shows if not production:
-        &lt;span rx-if-environment=&quot;!production&quot;&gt;
-            You are not on a production environment
+    &lt;p&gt;Content shows if not on GitHub demo page:
+        &lt;span rx-if-environment=&quot;!ghPages&quot;&gt;
+            You&#x27;re not on the GitHub demo page
         &lt;/span&gt;
     &lt;/p&gt;
 &lt;/div&gt;</code></pre>
@@ -1198,15 +1182,13 @@ function rxDiskSizeCtrl ($scope) {
                             <h3>JavaScript</h3>
                             <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
 function rxEnvironmentCtrl ($scope, Environment) {
+    $scope.Environment = Environment;
+
     Environment.add({
         name: &#x27;ghPages&#x27;,
         pattern: &#x27;//rackerlabs.github.io/encore-ui&#x27;,
         url: &#x27;//rackerlabs.github.io/encore-ui/{{path}}&#x27;
     });
-
-    $scope.switchTo = function (envName) {
-        Environment.set(envName);
-    };
 }</code></pre>
                         </div>
                         
@@ -1214,15 +1196,13 @@ function rxEnvironmentCtrl ($scope, Environment) {
                 </section>
                 <script>/*jshint unused:false*/
 function rxEnvironmentCtrl ($scope, Environment) {
+    $scope.Environment = Environment;
+
     Environment.add({
         name: 'ghPages',
         pattern: '//rackerlabs.github.io/encore-ui',
         url: '//rackerlabs.github.io/encore-ui/{{path}}'
     });
-
-    $scope.switchTo = function (envName) {
-        Environment.set(envName);
-    };
 }</script>
             
                 <section class="component">
