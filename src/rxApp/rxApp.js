@@ -57,11 +57,11 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         linkText: 'Ticket Queues',
         children: [
             {
-                href: '/ticketqueues/queues',
-                linkText: 'My Queues'
-            }, {
-                href: '/ticketqueues/tickets',
+                href: '/ticketqueues/my',
                 linkText: 'My Tickets'
+            }, {
+                href: '/ticketqueues/queues',
+                linkText: 'Queue Admin'
             }
         ]
     }]
