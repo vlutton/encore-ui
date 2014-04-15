@@ -85,23 +85,34 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 *
 * @param {string} [siteTitle] Title of site to use in upper right hand corner
 * @param {object} [menu] Menu items used for left-hand navigation
+* @param {string} [collapsibleNav] Set to 'true' if the navigation menu should be collapsible
+* @param {string} [collapsedNav] Binding for the collapsed state of the menu.
 *
 * @example
 * <pre>
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (encoreNav) {
+.directive('rxApp', function ($rootScope, encoreNav) {
     return {
         restrict: 'E',
         transclude: true,
         templateUrl: 'templates/rxApp.html',
         scope: {
             siteTitle: '@?',
-            menu: '=?'
+            menu: '=?',
+            collapsibleNav: '@',
+            collapsedNav: '=?',
         },
         link: function (scope) {
             scope.menu = scope.menu || encoreNav;
+            if (!_.isBoolean(scope.collapsedNav)) {
+                scope.collapsedNav = false;
+            }
+
+            scope.collapseMenu = function  () {
+                scope.collapsedNav = !scope.collapsedNav;
+            };
         }
     };
 })

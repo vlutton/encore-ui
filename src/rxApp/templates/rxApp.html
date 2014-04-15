@@ -1,7 +1,11 @@
-<div class="rx-app">
+<div class="rx-app" ng-class="{collapsible: collapsibleNav === 'true', collapsed: collapsedNav}">
     <nav class="rx-app-menu">
         <header class="site-branding">
             <h1 class="site-title">{{ siteTitle || 'Encore' }}</h1>
+            <button class="collapsible-toggle" ng-if="collapsibleNav === 'true'" ng-click="collapseMenu()">
+                <span class="visually-hidden">{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu</span>
+                <div class="double-chevron" ng-class="{'double-chevron-left': !collapsedNav}"></div>
+            </button>
             <div class="site-options">
                 <!-- <a href="settings" class="site-settings">Settings</a> -->
                 <a href="#" rx-logout class="site-logout">Logout</a>
