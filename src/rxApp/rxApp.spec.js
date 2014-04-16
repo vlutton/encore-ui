@@ -1,8 +1,10 @@
 /* jshint node: true */
 
 describe('rxApp', function () {
-    var scope, compile, rootScope, el, elCustom, defaultNav;
+    var scope, compile, rootScope, el, elCustom, elCollapsible, elCollapsibleVar, defaultNav;
     var standardTemplate = '<rx-app></rx-app>';
+    var collapsibleTemplate = '<rx-app collapsible-nav="true"></rx-app>';
+    var collapsibleExternalVarTemplate = '<rx-app collapsible-nav="true" collapsed-nav="collapsed"></rx-app>';
     var customTemplate = '<rx-app site-title="My App" menu="customNav"></rx-app>';
 
     var customNav = [{
@@ -32,12 +34,16 @@ describe('rxApp', function () {
             scope = $rootScope.$new();
             compile = $compile;
             defaultNav = encoreNav;
+
+            scope.collapsed = false;
         });
 
         scope.customNav = customNav;
 
         el = helpers.createDirective(standardTemplate, compile, scope);
         elCustom = helpers.createDirective(customTemplate, compile, scope);
+        elCollapsible = helpers.createDirective(collapsibleTemplate, compile, scope);
+        elCollapsibleVar = helpers.createDirective(collapsibleExternalVarTemplate, compile, scope);
     });
 
     it('should have a default title', function () {
@@ -70,6 +76,48 @@ describe('rxApp', function () {
 
         // validate it matches custom nav title
         expect(navTitle.textContent).to.equal(customNav[0].title);
+    });
+
+    it('should not show the collapsible toggle if collapsible is not true', function () {
+        var collapsibleToggle = el[0].querySelector('.collapsible-toggle');
+
+        expect(collapsibleToggle).to.be.null;
+    });
+
+    it('should allow you to set the menu as collapsible', function () {
+        var collapsibleToggle = elCollapsible[0].querySelector('.collapsible-toggle');
+
+        expect(collapsibleToggle).to.be.ok;
+    });
+
+    it('should set the external collapsedNav value when you toggle the collapsed button', function () {
+        var elScope = elCollapsibleVar.isolateScope();
+
+        expect(scope.collapsed).to.be.not.ok;
+        elScope.collapseMenu();
+
+        // Have to run the digest cycle manually to get the var to propagate up
+        scope.$digest();
+        expect(scope.collapsed).to.be.ok;
+    });
+
+    it('should apply the classes to the menu for collapsible status', function () {
+        var collapsibleMenu = elCollapsible[0].querySelector('.collapsible');
+
+        expect(collapsibleMenu).to.be.not.null;
+    });
+
+    it('should apply the classes to the menu for collapsed status', function () {
+        var elScope = elCollapsible.isolateScope();
+        var collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
+
+        expect(collapsibleMenu).to.be.null;
+        elScope.collapseMenu();
+
+        // We need to run the digest to update the classes
+        scope.$digest();
+        collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
+        expect(collapsibleMenu).to.be.not.null;
     });
 });
 

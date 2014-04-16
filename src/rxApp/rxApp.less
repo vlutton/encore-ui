@@ -12,6 +12,35 @@
     font-size: @appFontSize;
     color: @appTextColor;
 
+    &.collapsible {
+        &.collapsed {
+            .rx-app-menu {
+                .flexbox(0 0 0px);
+            }
+
+            .collapsible-toggle {
+                top: -3px;
+                left: 4px;
+            }
+
+            .site-branding {
+                height: 15px;
+
+                .site-title, .site-options {
+                    display: none;
+                }
+            }
+
+            .rx-app-nav {
+                display: none;
+            }
+
+            .rx-app-content .page-header {
+                margin-left: 25px;
+            }
+        }
+    }
+
     .rx-app-menu {
         color: #fff;
         font-size: 15px;
@@ -23,6 +52,48 @@
         input {
             color: @inputColor;
         }
+
+        .collapsible-toggle {
+            position: relative;
+            left: 13px;
+            width: 25px;
+            float: right;
+            background: none;
+            border: 0px;
+            cursor: pointer;
+            text-align: center;
+            padding: 2px;
+        }
+
+        .double-chevron {
+            width: 15px;
+            height: 10px;
+            margin: 0px 0px 2px 2px;
+            font-size: 20px;
+
+            &:hover {
+                &::before {
+                    color: #FFF;
+                }
+            }
+
+            &::before {
+                color: #666;
+                display: block;
+                content: "\00bb";
+                position: relative;
+                top: -6px;
+                left: 1px;
+
+            }
+
+            &.double-chevron-left::before {
+                content: "\00ab";
+                top: -7px;
+                left: 0px;
+            }
+        }
+
     }
 
     .rx-app-content {
