@@ -1,3 +1,20 @@
+<a name="0.6.0"></a>
+## 0.6.0 (2014-04-16)
+
+
+#### Bug Fixes
+
+* **rxModalAction:** no longer destroys scope.fields on modal submit ([141f15b2](git@github.com:rackerlabs/encore-ui/commit/141f15b2d2d47ba3a94c92d3d6962eafc0e38eb9))
+
+
+#### Breaking Changes
+
+* 'fields' property no longer checks if scope.fields is already defined.
+If you're defining 'fields' information inside the modal pre-hook, everything should work as normal
+If you're defining it before the pre-hook (on page load), this will break. You will need to move that definition into a pre-hook function
+ ([141f15b2](git@github.com:rackerlabs/encore-ui/commit/141f15b2d2d47ba3a94c92d3d6962eafc0e38eb9))
+
+
 <a name="0.5.4"></a>
 ### 0.5.4 (2014-04-16)
 
