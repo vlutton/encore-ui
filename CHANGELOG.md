@@ -1,3 +1,12 @@
+<a name="0.5.4"></a>
+### 0.5.4 (2014-04-16)
+
+
+#### Features
+
+* **rxApp:** allow child nav to have visibility rules ([642f5d83](git@github.com:rackerlabs/encore-ui/commit/642f5d8341684df832a38dac9cf389de98a76198))
+
+
 <a name="0.5.3"></a>
 ### 0.5.3 (2014-04-14)
 
