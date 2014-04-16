@@ -16,7 +16,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 .value('encoreNav', [{
     title: 'All Tools',
     children: [{
-        href: { tld: 'cloudatlas', path: '' },
         linkText: 'Account-level Tools',
         directive: 'rx-global-search',
         childVisibility: function (scope) {
@@ -29,7 +28,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         },
         children: [
             {
-                href: '/{{user}}/cbs/volumes',
+                href: { tld: 'cloudatlas', path: '/{{user}}/cbs/volumes' },
                 linkText: 'Block Storage',
                 children: [
                     {
@@ -47,7 +46,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                     }
                 ]
             }, {
-                href: '/{{user}}/servers',
+                href: { tld: 'cloudatlas', path: '/{{user}}/servers' },
                 linkText: 'Cloud Servers',
                 children: [
                     {
@@ -56,7 +55,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                     }
                 ]
             }, {
-                href: '/{{user}}/databases/instances',
+                href: { tld: 'cloudatlas', path: '/{{user}}/databases/instances' },
                 linkText: 'Databases',
                 visibility: '"!production" | rxEnvironmentMatch'
             }
@@ -250,7 +249,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         replace: true,
         templateUrl: 'templates/rxAppNavItem.html',
         link: linker,
-        controller: function ($scope) {
+        controller: function ($scope, $location) {
             $scope.isVisible = function (visibility) {
                 if (_.isUndefined(visibility)) {
                     // if undefined, default to true
@@ -262,6 +261,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 return $scope.$eval(visibility, {
                     location: $location
                 });
+            };
+            $scope.toggleNav = function (ev, href) {
+                // if no href present, simply toggle active state
+                if (_.isEmpty(href)) {
+                    ev.preventDefault();
+                    $scope.item.active = !$scope.item.active;
+                }
+                // otherwise, let the default nav do it's thing
             };
         }
     };

@@ -5,6 +5,8 @@
  * rxApp
  */
 .rx-app {
+    @navTransitionDuration: .2s;
+
     min-height: 100%;
     .flexbox-display();
     .flexbox-direction(row);
@@ -62,42 +64,6 @@
 
         .nav-section {
             padding-left: 5px;
-
-            .item-link {
-                background: #1a1a1a;
-                border-top: 1px solid #333333;
-                border-bottom: 1px solid #000000;
-                padding: 10px 15px;
-                display: block;
-                color: #fff;
-                text-decoration: none;
-                &:hover,
-                &:focus {
-                    background: #262626;
-                    border-top: 1px solid #404040;
-                    border-bottom: 1px solid #0d0d0d;
-                }
-                &.active {
-                    position: relative;
-                    border-color: transparent !important;
-                    background: #0E7FFF !important;
-                    &:after {
-                        content: '';
-                        display: block;
-                        position: absolute;
-                        left: 100%;
-                        top: 0;
-                        border: transparent solid;
-                        border-width: calc(~"5px + 1em") 6px;
-                        border-left-color: #0E7FFF;
-                    }
-                }
-            }
-
-            .item-content {
-                background: #333333;
-                padding: 10px;
-            }
         }
 
         .nav-section-title {
@@ -110,78 +76,157 @@
             background: #407610;
             border-top: 1px solid #568c26;
         }
+    }
 
-        .item-directive {
-            margin-bottom: 10px;
-        }
+    .rx-app-nav-item {
+        clear: both;
 
-        .rx-app-nav-level-2 {
-            .item-link {
-                background: #4d4d4d;
-                border-top-color: #666666;
-                border-bottom-color: #333333;
-                &:hover,
-                &:focus {
-                    background: #595959;
-                    border-top: 1px solid #737373;
-                    border-bottom: 1px solid #404040;
-                }
-                &.active {
-                    margin-right: -10px;
-                }
+        // common nav styles (inactive nav, no children)
+        .item-link {
+            background: #1a1a1a;
+            border-top: 1px solid #333333;
+            border-bottom: 1px solid #000000;
+            padding: 10px 4em 10px 15px;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            -webkit-transition: background @navTransitionDuration;
+            transition: background @navTransitionDuration;
+            position: relative;
+            &:hover,
+            &:focus {
+                background: #262626;
+                border-top: 1px solid #404040;
+                border-bottom: 1px solid #0d0d0d;
             }
-
-            .item-content {
-                background: #4d4d4d;
-                padding: 10px;
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
             }
-        }
-
-        .rx-app-nav-level-3 {
-            .item-link {
-                background: #666666;
-                border-top-color: #808080;
-                border-bottom-color: #4d4d4d;
-                padding: 5px 15px;
-                font-size: 13px;
-                font-weight: 300;
-
-                &:hover,
-                &:focus {
-                    background: #595959;
-                    border-top: 1px solid #737373;
-                    border-bottom: 1px solid #404040;
-                }
-                &.active {
-                    &:after {
-                        border-width: 1em 6px;
-                    }
-                }
-            }
-
-            .item-content {
-                background: black;
-                padding: 0 0 5px 5px;
+            &:after {
+                -webkit-transition: all @navTransitionDuration;
+                transition: all @navTransitionDuration;
             }
         }
 
-        .rx-app-nav-level-4 {
-            .rx-app-nav-item:first-child {
-                border-top: 3px solid #333;
+        &:not(.has-children) > .item-link:after {
+            right: 0;
+            top: 0;
+            border: transparent solid;
+            border-width: calc(~"5px + 1em") 6px;
+            border-right: 0;
+        }
+
+        // active nav, no children (blue bg, arrow right)
+        &.active:not(.has-children) > .item-link {
+            border-color: transparent;
+            background: #0E7FFF;
+            &:after {
+                right: -6px;
+                border-left-color: #0E7FFF;
             }
-            .item-link {
+        }
+
+        // inactive nav, w/children (double arrow down)
+        &.has-children > .item-link:after {
+            font-size: 2em;
+            content: "\00bb"; // angle quotation mark, right (&raquo;)
+            -webkit-transform: rotate(90deg) scaleX(1);
+            transform: rotate(90deg) scaleX(1);
+            top: 50%;
+            line-height: 0;
+            right: .45em;
+        }
+
+        // active nav, w/children (double arrow up, gray bg)
+        &.active.has-children > .item-link {
+            border-top-color: #404040;
+            border-bottom-width: 0;
+            // used to show BG of arrow (because :after is rotated)
+            &:before {
+                width: 3em;
+                right: 0;
+                top: 0;
+                bottom: 0;
                 background: #333;
-                border: none;
-
-                &:hover,
-                &:focus {
-                    background: #404040;
-                    border: none;
-                }
-                &.active {
-                    margin-right: 0;
-                }
             }
+            &:after {
+                // flip arrow around
+                -webkit-transform: rotate(90deg) scaleX(-1);
+                transform: rotate(90deg) scaleX(-1);
+            }
+            .item-content {
+                border-bottom: 1px solid #000000;
+            }
+        }
+
+        .item-content {
+            background: #333;
+            padding: 10px;
+        }
+
+        .item-directive:not(.ng-hide) + .item-children {
+            margin-top: 10px;
+        }
+
+        .item-children {
+            padding: 10px;
+            background: #4d4d4c;
+        }
+
+    }
+
+    .rx-app-nav-level-2 {
+        .item-link {
+            background: #666766;
+            border-top-color: #787878;
+            border-bottom-color: #595959;
+            font-size: 13px;
+
+            &:hover,
+            &:focus {
+                background: #595959;
+                border-top: 1px solid #737373;
+                border-bottom: 1px solid #404040;
+            }
+        }
+        .active:not(.has-children) > .item-link {
+            margin-right: -10px;
+        }
+        .active.has-children > .item-link {
+            background: #1a1a1a;
+            border-color: transparent;
+        }
+
+        .item-content {
+            background: #1a1a1a;
+            padding: 0 0 4px 4px;
+        }
+
+        .item-children {
+            padding: 0;
+        }
+    }
+
+    .rx-app-nav-level-3 .item-link {
+        background: #333333;
+        border-color: transparent;
+        padding: 5px 15px;
+
+        &:hover,
+        &:focus {
+            background: #404040;
+            border-color: transparent;
+        }
+    }
+    .rx-app-nav-level-3 .rx-app-nav-item {
+        &:first-child {
+            border-top: 3px solid #333;
+        }
+        .item-link:after {
+            border-top-width: 1em;
+            border-bottom-width: 1em;
         }
     }
 

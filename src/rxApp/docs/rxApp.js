@@ -3,7 +3,7 @@ angular.module('demoApp')
 .directive('sampleNavDirective', function () {
     return {
         restrict: 'E',
-        template: '<input type="text" placeholder="Search">'
+        template: '<input type="text" placeholder="Enter User" ng-model="user">'
     };
 });
 
@@ -23,8 +23,12 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             // prevent the default jump to top
             ev.preventDefault();
 
-            // update angular location
-            $location.path(target.getAttribute('href'));
+            var href = target.getAttribute('href');
+
+            // update angular location (if href has a value)
+            if (!_.isEmpty(href)) {
+                $location.path(href);
+            }
             $rootScope.$apply();
         }
     });
@@ -33,63 +37,62 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         title: 'Example Menu',
         children: [
             {
-                href: '1st-order',
+                href: 'Lvl1-1',
                 linkText: '1st Order Item'
             },
             {
-                href: '2nd-order',
-                linkText: '1st Order Item w/ Children',
+                linkText: '1st Order Item (w/o href) w/ Children',
                 // childHeader: 'Current Account {{ user }}',
+                childVisibility: function isUserDefined (scope) {
+                    return !_.isEmpty(scope.user);
+                },
                 directive: 'sample-nav-directive',
                 children: [
                     {
-                        href: '2nd-order-1',
-                        linkText: '2nd Order Item',
+                        href: 'Lvl1-2-Lvl2-1',
+                        linkText: '2nd Order Item w/ Children',
                         children: [{
-                            href: '2nd-order-1-1',
+                            href: 'Lvl1-2/Lvl2-1/Lvl3-1',
                             linkText: '3rd Order Item'
                         }]
                     },
                     {
-                        href: '2nd-order-2',
+                        href: 'Lvl1-2-Lvl2-2',
                         linkText: '2nd Order Item w/ Children',
-                        active: true,
                         children: [
                             {
-                                href: '2nd-order-2-1',
+                                href: 'Lvl1-2-Lvl2-2-Lvl3-1',
                                 linkText: '3rd Order Item'
                             },
                             {
-                                href: '2nd-order-2-2',
-                                linkText: '3rd Order Item w/ children',
-                                active: true,
-                                children: [
-                                    {
-                                        href: '2nd-order-2-2-1',
-                                        linkText: '4th Order Item',
-                                        active: true
-                                    },
-                                    {
-                                        href: '2nd-order-2-2-2',
-                                        linkText: '4th Order Item'
-                                    }
-                                ]
+                                href: 'Lvl1-2-Lvl2-2-Lvl3-2',
+                                linkText: '3rd Order Item'
                             },
                             {
-                                href: '2nd-order-2-3',
+                                href: 'Lvl1-2-Lvl2-2-Lvl3-3',
+                                linkText: '3rd Order Item'
+                            },
+                            {
+                                href: 'Lvl1-2-Lvl2-2-Lvl3-4',
                                 linkText: '3rd Order Item'
                             }
                         ]
                     },
                     {
-                        href: '2nd-order-3',
+                        href: 'Lvl1-2-Lvl2-3',
                         linkText: '2nd Order Item'
                     }
                 ]
             },
             {
-                href: '3rd-order',
-                linkText: '1st Order Item'
+                href: 'Lvl1-3',
+                linkText: '1st Order Item w/ Children',
+                children: [
+                    {
+                        href: 'Lvl1-3-Lvl2-1',
+                        linkText: '2nd Order Item'
+                    }
+                ]
             }
         ]
     }];
