@@ -9,7 +9,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.6.0.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.6.3.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -24,7 +24,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.6.0.js"></script>
+    <script src="dist/encore-ui-tpls-0.6.3.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -368,6 +368,15 @@ function rxAgeCtrl ($scope) {
             <button ng-click="changeSubtitle()" class="changeSubtitle">Change Subtitle</button>
         </rx-page>
     </rx-app>
+
+    <h3>Collapsible rxApp</h3>
+    <rx-app collapsible-nav="true" id="collapsible-rxApp">
+        <rx-page>
+            <p>Click the toggle to hide the menu</p>
+        </rx-page>
+    </rx-app>
+
+
 </div>
 
 <!--
@@ -381,6 +390,7 @@ And the template for each view/page will be something like:
     Example content
 </rx-page>
 -->
+
                         </div>
                         
                         <div class="pure-u-1-2 component-description" ng-non-bindable>
@@ -442,6 +452,15 @@ And the template for each view/page will be something like:
             &lt;button ng-click=&quot;changeSubtitle()&quot; class=&quot;changeSubtitle&quot;&gt;Change Subtitle&lt;/button&gt;
         &lt;/rx-page&gt;
     &lt;/rx-app&gt;
+
+    &lt;h3&gt;Collapsible rxApp&lt;/h3&gt;
+    &lt;rx-app collapsible-nav=&quot;true&quot; id=&quot;collapsible-rxApp&quot;&gt;
+        &lt;rx-page&gt;
+            &lt;p&gt;Click the toggle to hide the menu&lt;/p&gt;
+        &lt;/rx-page&gt;
+    &lt;/rx-app&gt;
+
+
 &lt;/div&gt;
 
 &lt;!--
@@ -454,7 +473,8 @@ And the template for each view/page will be something like:
 &lt;rx-page title=&quot;&#x27;Example Page&#x27;&quot;&gt;
     Example content
 &lt;/rx-page&gt;
---&gt;</code></pre>
+--&gt;
+</code></pre>
                         </div>
                         
                         
