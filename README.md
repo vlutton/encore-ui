@@ -19,7 +19,7 @@ You can also view the entire history of the chatroom if you have a HipChat accou
 
 If you live and die by IRC, there is also a room available on freenode.net at #encore-ui.
 
-To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open).
+To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open). To get a better overview of what's currently being worked, check out the [Encore-UI Task Board](https://waffle.io/rackerlabs/encore-ui).
 
 # Installation (Using Encore-UI)
 
@@ -65,4 +65,4 @@ bower install encore-ui
  - [CSS Style Guide](./guides/css-styleguide.md)
  - [JS Style Guide](./guides/js-styleguide.md)
  - [Architecture](./guides/architecture.md)
- - [JIRA Task Board](https://jira.rax.io/secure/RapidBoard.jspa?rapidView=192&view=detail) (Restricted to Rackspace employees only)
+ - [Task Board](https://waffle.io/rackerlabs/encore-ui)
