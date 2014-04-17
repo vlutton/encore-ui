@@ -28,7 +28,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         },
         children: [
             {
-                href: { tld: 'cloudatlas', path: '/{{user}}/cbs/volumes' },
+                href: { tld: 'cloudatlas', path: '{{user}}/cbs/volumes' },
                 linkText: 'Block Storage',
                 children: [
                     {
@@ -46,7 +46,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                     }
                 ]
             }, {
-                href: { tld: 'cloudatlas', path: '/{{user}}/servers' },
+                href: { tld: 'cloudatlas', path: '{{user}}/servers' },
                 linkText: 'Cloud Servers',
                 children: [
                     {
@@ -55,7 +55,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                     }
                 ]
             }, {
-                href: { tld: 'cloudatlas', path: '/{{user}}/databases/instances' },
+                href: { tld: 'cloudatlas', path: '{{user}}/databases/instances' },
                 linkText: 'Databases',
                 visibility: '"!production" | rxEnvironmentMatch'
             }
