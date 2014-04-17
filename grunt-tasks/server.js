@@ -3,12 +3,14 @@ module.exports = function (grunt) {
         'Runs app in development mode.',
         function () {
             var commonTasks = [
-                'before-test',
-                'after-test',
+                'clean',
+                'html2js',
+                'build',
+                'less',
+                'copy',
                 'configureProxies',
                 'connect:dist',
-                'karma:watch',
-                'karma:watch:run',
+                'karma:watch:start',
                 'watch'
             ];
 
