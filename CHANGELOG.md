@@ -1,3 +1,12 @@
+<a name="0.6.1"></a>
+### 0.6.1 (2014-04-17)
+
+
+#### Features
+
+* **rxApp:** Add in Collapsible Flag for rxApp ([91d666d5](git@github.com:rackerlabs/encore-ui/commit/91d666d593c4af71224b75dff4215f2ca0aa8fe1))
+
+
 <a name="0.6.0"></a>
 ## 0.6.0 (2014-04-16)
 
