@@ -1,8 +1,8 @@
 /* jshint node: true */
 
 describe('rxModalAction', function () {
-    var el, scope, compile, rootScope, mockModal, modalApi, instanceApi, instanceMock, controller,
-        validTemplate = '<rx-modal-action ' +
+    var el, scope, compile, rootScope, mockModal, modalApi, instanceApi, instanceMock, controller;
+    var validTemplate = '<rx-modal-action ' +
                             'template-url="test.html" ' +
                             'post-hook="post()" ' +
                             'pre-hook="pre()" ' +
@@ -108,6 +108,22 @@ describe('rxModalAction', function () {
         setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
 
         scope.cancel();
+
+        instanceMock.verify();
+    });
+
+    it('should dismiss modal on routeChange', function () {
+        var link = el.find('a')[0];
+
+        helpers.clickElement(link);
+
+        instanceMock.expects('close').never();
+        instanceMock.expects('dismiss').once();
+
+        setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
+
+        // fake a route change
+        rootScope.$broadcast('$routeChangeSuccess');
 
         instanceMock.verify();
     });

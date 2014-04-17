@@ -13,13 +13,16 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
         }
     };
 })
-.controller('rxModalCtrl', function ($scope, $modalInstance) {
+.controller('rxModalCtrl', function ($scope, $modalInstance, $rootScope) {
     // define a controller for the modal to use
     $scope.submit = function () {
         $modalInstance.close($scope);
     };
 
     $scope.cancel = $modalInstance.dismiss;
+
+    // cancel out of the modal if the route is changed
+    $rootScope.$on('$routeChangeSuccess', $modalInstance.dismiss);
 })
 .directive('rxModalAction', function ($modal) {
     var createModal = function (config, scope) {
