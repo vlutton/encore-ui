@@ -200,6 +200,11 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     };
 
     var buildUrl = function (url) {
+        // sometimes links don't have URLs defined, so we need to exit before $interpolate throws an error
+        if (_.isUndefined(url)) {
+            return url;
+        }
+
         // run the href through rxEnvironmentUrl in case it's defined as such
         url = rxEnvironmentUrlFilter(url);
 
