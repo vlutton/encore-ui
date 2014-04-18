@@ -58,6 +58,7 @@ describe('rxPage', function () {
     it('should update page subtitle dynamically', function () {
         expect(rxPage.pageSubtitle.getText()).to.eventually.eq('With a subtitle');
 
+        ptor.actions().mouseMove(demoPage.rxPageSubtitleButton).perform();
         demoPage.rxPageSubtitleButton.click();
 
         expect(rxPage.pageSubtitle.getText()).to.eventually.contain('With a new subtitle at 1');
