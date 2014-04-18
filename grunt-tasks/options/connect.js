@@ -29,7 +29,7 @@ module.exports = {
                     config.mountFolder(cnct, config.docs)
                 ];
             },
-            livereload:1337
+            livereload: 1337
         }
     },
     keepalive: {

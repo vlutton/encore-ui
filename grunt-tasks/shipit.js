@@ -18,8 +18,7 @@ module.exports = function (grunt) {
             tasks.push('bump-commit');
 
             // build the code
-            tasks.push('before-test');
-            tasks.push('after-test');
+            tasks.push('default');
 
             // push files to prod
             tasks.push('cloudfiles:production');

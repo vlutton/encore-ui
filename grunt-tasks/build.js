@@ -132,15 +132,16 @@ module.exports = function (grunt) {
         var srcFiles = _.pluck(modules, 'srcFiles');
         var tplJsFiles = _.pluck(modules, 'tplJsFiles');
 
-        //Set the concat task to concatenate the given src modules
+        // Set the concat task to concatenate the given src modules
         grunt.config('concat.dist.src', grunt.config('concat.dist.src').concat(srcFiles));
 
-        //Set the concat-with-templates task to concat the given src & tpl modules
+        // Set the concat-with-templates task to concat the given src & tpl modules
         grunt.config('concat.distTpls.src', grunt.config('concat.distTpls.src').concat(srcFiles).concat(tplJsFiles));
 
-        //Set the copy task to process via grunt template
+        // Set the copy task to process via grunt template
         grunt.config('copy.demohtml.options.process', grunt.template.process);
 
-        grunt.task.run(['clean:build', 'less:encore', 'concat']);
+        grunt.task.run(['clean:build', 'concat:dist', 'concat:distTpls', 'less',
+            'copy:demohtml', 'copy:demoassets', 'copy:componentImages']);
     });
 };
