@@ -26,6 +26,17 @@ You'll likely want to use `rx-page` inside your template view. For example, insi
 
 Both the `title` and `subtitle` attributes accept an Angular expression, which can be a string (shown in the previous example) or a scope property. This string/property can accept other expressions, enabling you to build custom titles. The demo has an example of this usage.
 
+### .page-actions
+
+A `page-actions` class is provided by rx-app to easily add custom page actions to the top right of a page. For example:
+
+    <rx-page title="'Servers Overview'">
+        <div class="page-actions">
+            <a href="/create" class="link-action msg-action">Create New Server</a>
+        </div>
+        <img src="http://cdn.memegenerator.net/instances/500x/48669250.jpg" alt="Look at all these servers there are so many"
+    </rx-page>
+
 ### rx-app-nav and rx-app-nav-item
 
 These two directives are responsible for creating the menu in the left sidebar. They're not intended for use outside of the rx-app template code.
