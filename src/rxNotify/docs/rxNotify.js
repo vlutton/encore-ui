@@ -22,16 +22,21 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         rxNotify.add($scope.message, messageOptions);
     };
 
-    // add a default messages
-    rxNotify.add('Helpful Information');
+    // add a default messages (to custom stack so they don't show on the main page)
+    rxNotify.add('Helpful Information', {
+        stack: 'demo'
+    });
     rxNotify.add('Loading', {
-        loading: true
+        loading: true,
+        stack: 'demo'
     });
     rxNotify.add('You did it!', {
-        type: 'success'
+        type: 'success',
+        stack: 'demo'
     });
     rxNotify.add('Careful now...', {
-        type: 'warning'
+        type: 'warning',
+        stack: 'demo'
     });
     rxNotify.add('Under Attack by Aliens', {
         type: 'error',
@@ -46,6 +51,6 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
             loading: 'Loading Message',
             success: 'Success Message',
             error: 'Error Message'
-        });
+        }, 'demo');
     };
 }

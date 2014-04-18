@@ -29,7 +29,7 @@ To use the Encore-UI CDN in your app, do the following:
 
 1. Install and include the dependencies listed in [bower.json](./bower.json) (items listed in devDependencies are not required)
 
-2. Include the Encore CSS file in the `<head>` of your index.html:
+2. Include the Encore CSS file in the `<head>` of your index.html (before the CSS for your app):
 
     ```
     <link rel="stylesheet" href="https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/encore-ui-0.6.3.min.css">
