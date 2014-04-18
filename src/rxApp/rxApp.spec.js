@@ -192,7 +192,6 @@ describe('rxAppNavItem', function () {
                 visibility: '2 + 2 == 4',
                 linkText: '1st-2nd'
             }, {
-                href: '/1-3',
                 linkText: '1st-3rd',
                 visibility: function (scope) {
                     return scope.someProp;
@@ -377,6 +376,10 @@ describe('rxAppNavItem', function () {
     it('should build links using routeParams if defined', function () {
         // child item should have 'me' in place of '{{user}}'
         expect(scope.item.children[1].href).to.equal('/me/1-2');
+    });
+
+    it('should ignore links that are not defined', function () {
+        expect(scope.item.children[2].href).to.be.undefined;
     });
 
 //     TODO show header for children if present and active
