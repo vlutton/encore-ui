@@ -28,30 +28,19 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         },
         children: [
             {
+                href: { tld: 'cloudatlas', path: '{{user}}/servers' },
+                linkText: 'Cloud Servers'
+            },
+            {
                 href: { tld: 'cloudatlas', path: '{{user}}/cbs/volumes' },
                 linkText: 'Block Storage',
                 children: [
                     {
                         href: '/{{user}}/cbs/volumes',
-                        linkText: 'Volumes',
-                        children: [
-                            {
-                                href: '/{{user}}/cbs/volumes/create',
-                                linkText: 'Create Volume'
-                            }
-                        ]
+                        linkText: 'Volumes'
                     }, {
                         href: '/{{user}}/cbs/snapshots',
                         linkText: 'Snapshots'
-                    }
-                ]
-            }, {
-                href: { tld: 'cloudatlas', path: '{{user}}/servers' },
-                linkText: 'Cloud Servers',
-                children: [
-                    {
-                        href: '/{{user}}/servers/create',
-                        linkText: 'Create Server'
                     }
                 ]
             }, {
