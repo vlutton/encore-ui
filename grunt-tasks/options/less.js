@@ -5,7 +5,7 @@ module.exports = {
             // sourceMap: true,
             // sourceMapFilename: '<%= config.dist %>/encore-ui.map.css',
             // outputSourceFiles: 'true',
-            paths: 'src/styles/'
+            paths: ['src/styles/', 'node_modules/normalize.css/']
         },
         files: {
             '<%= config.dist %>/<%= config.fileName %>.css': ['src/rx*/*.less']

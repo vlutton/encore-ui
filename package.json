@@ -15,7 +15,9 @@
     "test": "grunt test",
     "postinstall": "grunt hooks"
   },
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^3.0.1"
+  },
   "devDependencies": {
     "astrolabe": "~0.3.3-alpha",
     "chai": "~1.9.0",

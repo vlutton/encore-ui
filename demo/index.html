@@ -5,7 +5,6 @@
 
     <!-- Content inside bower:css is auto-generated via `grunt bowerInstall` -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
@@ -53,12 +52,14 @@
 
     <rx-app site-title="Encore Demo App" menu="components">
         <rx-page title="'Encore-UI Components'">
-            <ul>
-                <li><a href="coverage/index.html">Unit test coverage for Encore-UI</a></li>
-                <li><a href="ngdocs/index.html">ngdocs for Encore-UI</a></li>
-            </ul>
+            <div class="page-actions">
+                <ul style="clear: both;">
+                    <li><a href="coverage/index.html">Unit test coverage for Encore-UI</a></li>
+                    <li><a href="ngdocs/index.html">ngdocs for Encore-UI</a></li>
+                </ul>
+            </div>
 
-            <br>
+            <div style="clear: both"></div>
 
             <% config.demoModules.forEach(function(module) { %>
                 <section class="component">

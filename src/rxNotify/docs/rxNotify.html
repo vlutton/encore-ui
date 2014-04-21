@@ -35,7 +35,7 @@
     </div>
 
     <div>
-        <button ng-click="add('page')">Add to Page Stack</button>
+        <button ng-click="add('demo')">Add to Demo Stack</button>
         <button ng-click="add('custom')">Add to Custom Stack</button>
     </div>
 
@@ -52,8 +52,8 @@
 
     <div class="pure-g">
         <div class="pure-u-1-2">
-            <h2>Page Stack</h2>
-            <rx-notifications></rx-notifications>
+            <h2>Demo Stack</h2>
+            <rx-notifications stack="demo"></rx-notifications>
         </div>
 
         <div class="pure-u-1-2">
@@ -65,6 +65,6 @@
     <p>Using rx-notification</p>
 
     <rx-notification type="error">Hello, world!</rx-notification>
-    <rx-notification type="warning">Hello, world!</rx-notification>    
-    <rx-notification type="info">Hello, world!</rx-notification>    
+    <rx-notification type="warning">Hello, world!</rx-notification>
+    <rx-notification type="info">Hello, world!</rx-notification>
 </div>

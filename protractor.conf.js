@@ -33,7 +33,8 @@ if (process.env.TRAVIS) {
     config.sauceKey = process.env.SAUCE_ACCESS_KEY,
     config.capabilities = {
         'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-        'build': process.env.TRAVIS_BUILD_NUMBER
+        'build': process.env.TRAVIS_BUILD_NUMBER,
+        'browserName': 'firefox'
     };
 } else {
     // otherwise use a local server
