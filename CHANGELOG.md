@@ -1,3 +1,24 @@
+<a name="0.7.0"></a>
+## 0.7.0 (2014-04-21)
+
+
+#### Bug Fixes
+
+* **rxApp:**
+  * fix some styling/nav in cloud atlas ([a2bd8c40](git@github.com:rackerlabs/encore-ui/commit/a2bd8c40a04af6008ea8f06f0d83819b1bb44ed3))
+  * fixed paths for cloud atlas ([e0205840](git@github.com:rackerlabs/encore-ui/commit/e02058403b021e9434b08cc0ad2ce5e5fa868dbe))
+* **rxAppNavItem:** catches links not defined in buildUrl ([196c515a](git@github.com:rackerlabs/encore-ui/commit/196c515a48861730c1b2341c9194ee6755fc7b7d))
+* **rxModalAction:** close modal on route change #157 ([db7e0fe2](git@github.com:rackerlabs/encore-ui/commit/db7e0fe2dfb39b7ef22bef06b80558b91af53b6f))
+
+
+#### Features
+
+* **rxApp:**
+  * bundle normalize.css in encore-ui.css; issue #165 ([465f00b1](git@github.com:rackerlabs/encore-ui/commit/465f00b16fceb1aeca9b1f75754e0591cb7773ff))
+  * added rxnotifications and page-actions ([f30bf430](git@github.com:rackerlabs/encore-ui/commit/f30bf4300786acfa0348a48781743245bc8be660))
+  * allow expand/collapse of child menus ([7b7c3502](git@github.com:rackerlabs/encore-ui/commit/7b7c35025351c1844486f6b12aed66014ab02141))
+
+
 <a name="0.6.3"></a>
 ### 0.6.3 (2014-04-17)
 
