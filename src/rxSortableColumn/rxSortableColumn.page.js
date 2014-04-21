@@ -15,6 +15,14 @@ var rxSortableColumn = {
         }
     },
 
+    name: {
+        value: function () {
+            return this.rootElement.$('.sort-action .ng-scope').getText().then(function (columnText) {
+                return columnText;
+            });
+        }
+    },
+
     sort: {
         // Will default to an ascending sort if no parameters are passed in.
         value: function (isAscending) {
