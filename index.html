@@ -5,11 +5,10 @@
 
     <!-- Content inside bower:css is auto-generated via `grunt bowerInstall` -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/normalize-css/normalize.css" />
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.6.3.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.7.0.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -24,7 +23,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.6.3.js"></script>
+    <script src="dist/encore-ui-tpls-0.7.0.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -188,12 +187,14 @@
 
     <rx-app site-title="Encore Demo App" menu="components">
         <rx-page title="'Encore-UI Components'">
-            <ul>
-                <li><a href="coverage/index.html">Unit test coverage for Encore-UI</a></li>
-                <li><a href="ngdocs/index.html">ngdocs for Encore-UI</a></li>
-            </ul>
+            <div class="page-actions">
+                <ul style="clear: both;">
+                    <li><a href="coverage/index.html">Unit test coverage for Encore-UI</a></li>
+                    <li><a href="ngdocs/index.html">ngdocs for Encore-UI</a></li>
+                </ul>
+            </div>
 
-            <br>
+            <div style="clear: both"></div>
 
             
                 <section class="component">
@@ -381,9 +382,9 @@ function rxAgeCtrl ($scope) {
 
 <!--
 You'll likely want to implement your HTML in your index.html file as:
-<body ng-app="sampleApp">
+<div ng-app="sampleApp">
     <rx-app ng-view></rx-app>
-</body>
+</div>
 
 And the template for each view/page will be something like:
 <rx-page title="'Example Page'">
@@ -423,6 +424,18 @@ And the template for each view/page will be something like:
 <p><code>rx-page</code> is used to create a common wrapper for specific page views. It automatically adds the breadcrumbs and page title/subtitle (if specified), along with the correct styling.</p>
 
 <p>Both the <code>title</code> and <code>subtitle</code> attributes accept an Angular expression, which can be a string (shown in the previous example) or a scope property. This string/property can accept other expressions, enabling you to build custom titles. The demo has an example of this usage.</p>
+
+<h3>.page-actions</h3>
+
+<p>A <code>page-actions</code> class is provided by rx-app to easily add custom page actions to the top right of a page. For example:</p>
+
+<pre><code>&lt;rx-page title="'Servers Overview'"&gt;
+    &lt;div class="page-actions"&gt;
+        &lt;a href="/create" class="link-action msg-action"&gt;Create New Server&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;img src="http://cdn.memegenerator.net/instances/500x/48669250.jpg" alt="Look at all these servers there are so many"
+&lt;/rx-page&gt;
+</code></pre>
 
 <h3>rx-app-nav and rx-app-nav-item</h3>
 
@@ -465,9 +478,9 @@ And the template for each view/page will be something like:
 
 &lt;!--
 You&#x27;ll likely want to implement your HTML in your index.html file as:
-&lt;body ng-app=&quot;sampleApp&quot;&gt;
+&lt;div ng-app=&quot;sampleApp&quot;&gt;
     &lt;rx-app ng-view&gt;&lt;/rx-app&gt;
-&lt;/body&gt;
+&lt;/div&gt;
 
 And the template for each view/page will be something like:
 &lt;rx-page title=&quot;&#x27;Example Page&#x27;&quot;&gt;
@@ -485,7 +498,7 @@ angular.module(&#x27;demoApp&#x27;)
 .directive(&#x27;sampleNavDirective&#x27;, function () {
     return {
         restrict: &#x27;E&#x27;,
-        template: &#x27;&lt;input type=&quot;text&quot; placeholder=&quot;Search&quot;&gt;&#x27;
+        template: &#x27;&lt;input type=&quot;text&quot; placeholder=&quot;Enter User&quot; ng-model=&quot;user&quot;&gt;&#x27;
     };
 });
 
@@ -505,8 +518,12 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             // prevent the default jump to top
             ev.preventDefault();
 
-            // update angular location
-            $location.path(target.getAttribute(&#x27;href&#x27;));
+            var href = target.getAttribute(&#x27;href&#x27;);
+
+            // update angular location (if href has a value)
+            if (!_.isEmpty(href)) {
+                $location.path(href);
+            }
             $rootScope.$apply();
         }
     });
@@ -515,63 +532,62 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         title: &#x27;Example Menu&#x27;,
         children: [
             {
-                href: &#x27;1st-order&#x27;,
+                href: &#x27;Lvl1-1&#x27;,
                 linkText: &#x27;1st Order Item&#x27;
             },
             {
-                href: &#x27;2nd-order&#x27;,
-                linkText: &#x27;1st Order Item w/ Children&#x27;,
+                linkText: &#x27;1st Order Item (w/o href) w/ Children&#x27;,
                 // childHeader: &#x27;Current Account {{ user }}&#x27;,
+                childVisibility: function isUserDefined (scope) {
+                    return !_.isEmpty(scope.user);
+                },
                 directive: &#x27;sample-nav-directive&#x27;,
                 children: [
                     {
-                        href: &#x27;2nd-order-1&#x27;,
-                        linkText: &#x27;2nd Order Item&#x27;,
+                        href: &#x27;Lvl1-2-Lvl2-1&#x27;,
+                        linkText: &#x27;2nd Order Item w/ Children&#x27;,
                         children: [{
-                            href: &#x27;2nd-order-1-1&#x27;,
+                            href: &#x27;Lvl1-2/Lvl2-1/Lvl3-1&#x27;,
                             linkText: &#x27;3rd Order Item&#x27;
                         }]
                     },
                     {
-                        href: &#x27;2nd-order-2&#x27;,
+                        href: &#x27;Lvl1-2-Lvl2-2&#x27;,
                         linkText: &#x27;2nd Order Item w/ Children&#x27;,
-                        active: true,
                         children: [
                             {
-                                href: &#x27;2nd-order-2-1&#x27;,
+                                href: &#x27;Lvl1-2-Lvl2-2-Lvl3-1&#x27;,
                                 linkText: &#x27;3rd Order Item&#x27;
                             },
                             {
-                                href: &#x27;2nd-order-2-2&#x27;,
-                                linkText: &#x27;3rd Order Item w/ children&#x27;,
-                                active: true,
-                                children: [
-                                    {
-                                        href: &#x27;2nd-order-2-2-1&#x27;,
-                                        linkText: &#x27;4th Order Item&#x27;,
-                                        active: true
-                                    },
-                                    {
-                                        href: &#x27;2nd-order-2-2-2&#x27;,
-                                        linkText: &#x27;4th Order Item&#x27;
-                                    }
-                                ]
+                                href: &#x27;Lvl1-2-Lvl2-2-Lvl3-2&#x27;,
+                                linkText: &#x27;3rd Order Item&#x27;
                             },
                             {
-                                href: &#x27;2nd-order-2-3&#x27;,
+                                href: &#x27;Lvl1-2-Lvl2-2-Lvl3-3&#x27;,
+                                linkText: &#x27;3rd Order Item&#x27;
+                            },
+                            {
+                                href: &#x27;Lvl1-2-Lvl2-2-Lvl3-4&#x27;,
                                 linkText: &#x27;3rd Order Item&#x27;
                             }
                         ]
                     },
                     {
-                        href: &#x27;2nd-order-3&#x27;,
+                        href: &#x27;Lvl1-2-Lvl2-3&#x27;,
                         linkText: &#x27;2nd Order Item&#x27;
                     }
                 ]
             },
             {
-                href: &#x27;3rd-order&#x27;,
-                linkText: &#x27;1st Order Item&#x27;
+                href: &#x27;Lvl1-3&#x27;,
+                linkText: &#x27;1st Order Item w/ Children&#x27;,
+                children: [
+                    {
+                        href: &#x27;Lvl1-3-Lvl2-1&#x27;,
+                        linkText: &#x27;2nd Order Item&#x27;
+                    }
+                ]
             }
         ]
     }];
@@ -585,7 +601,7 @@ angular.module('demoApp')
 .directive('sampleNavDirective', function () {
     return {
         restrict: 'E',
-        template: '<input type="text" placeholder="Search">'
+        template: '<input type="text" placeholder="Enter User" ng-model="user">'
     };
 });
 
@@ -605,8 +621,12 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             // prevent the default jump to top
             ev.preventDefault();
 
-            // update angular location
-            $location.path(target.getAttribute('href'));
+            var href = target.getAttribute('href');
+
+            // update angular location (if href has a value)
+            if (!_.isEmpty(href)) {
+                $location.path(href);
+            }
             $rootScope.$apply();
         }
     });
@@ -615,63 +635,62 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         title: 'Example Menu',
         children: [
             {
-                href: '1st-order',
+                href: 'Lvl1-1',
                 linkText: '1st Order Item'
             },
             {
-                href: '2nd-order',
-                linkText: '1st Order Item w/ Children',
+                linkText: '1st Order Item (w/o href) w/ Children',
                 // childHeader: 'Current Account {{ user }}',
+                childVisibility: function isUserDefined (scope) {
+                    return !_.isEmpty(scope.user);
+                },
                 directive: 'sample-nav-directive',
                 children: [
                     {
-                        href: '2nd-order-1',
-                        linkText: '2nd Order Item',
+                        href: 'Lvl1-2-Lvl2-1',
+                        linkText: '2nd Order Item w/ Children',
                         children: [{
-                            href: '2nd-order-1-1',
+                            href: 'Lvl1-2/Lvl2-1/Lvl3-1',
                             linkText: '3rd Order Item'
                         }]
                     },
                     {
-                        href: '2nd-order-2',
+                        href: 'Lvl1-2-Lvl2-2',
                         linkText: '2nd Order Item w/ Children',
-                        active: true,
                         children: [
                             {
-                                href: '2nd-order-2-1',
+                                href: 'Lvl1-2-Lvl2-2-Lvl3-1',
                                 linkText: '3rd Order Item'
                             },
                             {
-                                href: '2nd-order-2-2',
-                                linkText: '3rd Order Item w/ children',
-                                active: true,
-                                children: [
-                                    {
-                                        href: '2nd-order-2-2-1',
-                                        linkText: '4th Order Item',
-                                        active: true
-                                    },
-                                    {
-                                        href: '2nd-order-2-2-2',
-                                        linkText: '4th Order Item'
-                                    }
-                                ]
+                                href: 'Lvl1-2-Lvl2-2-Lvl3-2',
+                                linkText: '3rd Order Item'
                             },
                             {
-                                href: '2nd-order-2-3',
+                                href: 'Lvl1-2-Lvl2-2-Lvl3-3',
+                                linkText: '3rd Order Item'
+                            },
+                            {
+                                href: 'Lvl1-2-Lvl2-2-Lvl3-4',
                                 linkText: '3rd Order Item'
                             }
                         ]
                     },
                     {
-                        href: '2nd-order-3',
+                        href: 'Lvl1-2-Lvl2-3',
                         linkText: '2nd Order Item'
                     }
                 ]
             },
             {
-                href: '3rd-order',
-                linkText: '1st Order Item'
+                href: 'Lvl1-3',
+                linkText: '1st Order Item w/ Children',
+                children: [
+                    {
+                        href: 'Lvl1-3-Lvl2-1',
+                        linkText: '2nd Order Item'
+                    }
+                ]
             }
         ]
     }];
@@ -1835,7 +1854,7 @@ function rxModalActionCtrl ($scope) {
     </div>
 
     <div>
-        <button ng-click="add('page')">Add to Page Stack</button>
+        <button ng-click="add('demo')">Add to Demo Stack</button>
         <button ng-click="add('custom')">Add to Custom Stack</button>
     </div>
 
@@ -1852,8 +1871,8 @@ function rxModalActionCtrl ($scope) {
 
     <div class="pure-g">
         <div class="pure-u-1-2">
-            <h2>Page Stack</h2>
-            <rx-notifications></rx-notifications>
+            <h2>Demo Stack</h2>
+            <rx-notifications stack="demo"></rx-notifications>
         </div>
 
         <div class="pure-u-1-2">
@@ -1865,8 +1884,8 @@ function rxModalActionCtrl ($scope) {
     <p>Using rx-notification</p>
 
     <rx-notification type="error">Hello, world!</rx-notification>
-    <rx-notification type="warning">Hello, world!</rx-notification>    
-    <rx-notification type="info">Hello, world!</rx-notification>    
+    <rx-notification type="warning">Hello, world!</rx-notification>
+    <rx-notification type="info">Hello, world!</rx-notification>
 </div>
                         </div>
                         
@@ -2179,7 +2198,7 @@ function rxModalActionCtrl ($scope) {
     &lt;/div&gt;
 
     &lt;div&gt;
-        &lt;button ng-click=&quot;add(&#x27;page&#x27;)&quot;&gt;Add to Page Stack&lt;/button&gt;
+        &lt;button ng-click=&quot;add(&#x27;demo&#x27;)&quot;&gt;Add to Demo Stack&lt;/button&gt;
         &lt;button ng-click=&quot;add(&#x27;custom&#x27;)&quot;&gt;Add to Custom Stack&lt;/button&gt;
     &lt;/div&gt;
 
@@ -2196,8 +2215,8 @@ function rxModalActionCtrl ($scope) {
 
     &lt;div class=&quot;pure-g&quot;&gt;
         &lt;div class=&quot;pure-u-1-2&quot;&gt;
-            &lt;h2&gt;Page Stack&lt;/h2&gt;
-            &lt;rx-notifications&gt;&lt;/rx-notifications&gt;
+            &lt;h2&gt;Demo Stack&lt;/h2&gt;
+            &lt;rx-notifications stack=&quot;demo&quot;&gt;&lt;/rx-notifications&gt;
         &lt;/div&gt;
 
         &lt;div class=&quot;pure-u-1-2&quot;&gt;
@@ -2209,8 +2228,8 @@ function rxModalActionCtrl ($scope) {
     &lt;p&gt;Using rx-notification&lt;/p&gt;
 
     &lt;rx-notification type=&quot;error&quot;&gt;Hello, world!&lt;/rx-notification&gt;
-    &lt;rx-notification type=&quot;warning&quot;&gt;Hello, world!&lt;/rx-notification&gt;    
-    &lt;rx-notification type=&quot;info&quot;&gt;Hello, world!&lt;/rx-notification&gt;    
+    &lt;rx-notification type=&quot;warning&quot;&gt;Hello, world!&lt;/rx-notification&gt;
+    &lt;rx-notification type=&quot;info&quot;&gt;Hello, world!&lt;/rx-notification&gt;
 &lt;/div&gt;</code></pre>
                         </div>
                         
@@ -2241,16 +2260,21 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         rxNotify.add($scope.message, messageOptions);
     };
 
-    // add a default messages
-    rxNotify.add(&#x27;Helpful Information&#x27;);
+    // add a default messages (to custom stack so they don&#x27;t show on the main page)
+    rxNotify.add(&#x27;Helpful Information&#x27;, {
+        stack: &#x27;demo&#x27;
+    });
     rxNotify.add(&#x27;Loading&#x27;, {
-        loading: true
+        loading: true,
+        stack: &#x27;demo&#x27;
     });
     rxNotify.add(&#x27;You did it!&#x27;, {
-        type: &#x27;success&#x27;
+        type: &#x27;success&#x27;,
+        stack: &#x27;demo&#x27;
     });
     rxNotify.add(&#x27;Careful now...&#x27;, {
-        type: &#x27;warning&#x27;
+        type: &#x27;warning&#x27;,
+        stack: &#x27;demo&#x27;
     });
     rxNotify.add(&#x27;Under Attack by Aliens&#x27;, {
         type: &#x27;error&#x27;,
@@ -2265,7 +2289,7 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
             loading: &#x27;Loading Message&#x27;,
             success: &#x27;Success Message&#x27;,
             error: &#x27;Error Message&#x27;
-        });
+        }, &#x27;demo&#x27;);
     };
 }</code></pre>
                         </div>
@@ -2296,16 +2320,21 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         rxNotify.add($scope.message, messageOptions);
     };
 
-    // add a default messages
-    rxNotify.add('Helpful Information');
+    // add a default messages (to custom stack so they don't show on the main page)
+    rxNotify.add('Helpful Information', {
+        stack: 'demo'
+    });
     rxNotify.add('Loading', {
-        loading: true
+        loading: true,
+        stack: 'demo'
     });
     rxNotify.add('You did it!', {
-        type: 'success'
+        type: 'success',
+        stack: 'demo'
     });
     rxNotify.add('Careful now...', {
-        type: 'warning'
+        type: 'warning',
+        stack: 'demo'
     });
     rxNotify.add('Under Attack by Aliens', {
         type: 'error',
@@ -2320,7 +2349,7 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
             loading: 'Loading Message',
             success: 'Success Message',
             error: 'Error Message'
-        });
+        }, 'demo');
     };
 }</script>
             
