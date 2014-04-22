@@ -6,6 +6,7 @@
             <!-- item.directive injected here -->
         </div>
         <div class="item-children" ng-show="item.children && isVisible(item.childVisibility)">
+            <div class="child-header" ng-if="item.childHeader" rx-compile="item.childHeader"></div>
             <!-- rx-app-nav injected here if 'children' is array -->
         </div>
     </div>

@@ -12,6 +12,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
  * @property {string} directive Name of directive to build and show when item is active. For example:
  *                              Value of 'my-directive' becomes '<my-directive></my-directive>'
  * @property {expression|function} [childVisibility] Rule to determine visibility of child menu
+ * @property {expression} [childHeader] Expression which will be displayed above child menu. Access controller
+ * scope via: `route.current.scope` @see http://devdocs.io/angular/ngroute.$route#properties_current
+ *
  */
 .value('encoreNav', [{
     title: 'All Tools',
@@ -26,6 +29,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
             return false;
         },
+        childHeader: '<strong class="current-search">Current User:</strong>' +
+            '<span class="current-result">{{route.current.pathParams.user}}</span>',
         children: [
             {
                 href: { tld: 'cloudatlas', path: '{{user}}/servers' },
@@ -72,7 +77,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 * Responsible for creating the HTML necessary for a common Encore layout.
 *
 * @param {string} [siteTitle] Title of site to use in upper right hand corner
-* @param {object} [menu] Menu items used for left-hand navigation
+* @param {array} [menu] Menu items used for left-hand navigation
 * @param {string} [collapsibleNav] Set to 'true' if the navigation menu should be collapsible
 * @param {string} [collapsedNav] Binding for the collapsed state of the menu.
 *

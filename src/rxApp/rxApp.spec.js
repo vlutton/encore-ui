@@ -174,6 +174,7 @@ describe('rxAppNavItem', function () {
         visibility: function () {
             return true;
         },
+        childHeader: 'some value',
         children: [
             {
                 href: '/1-1',
@@ -219,6 +220,7 @@ describe('rxAppNavItem', function () {
         // load module
         module('encore.ui.rxApp');
         module('encore.ui.rxEnvironment');
+        module('encore.ui.rxCompile');
 
         // load templates
         module('templates/rxAppNav.html');
@@ -382,7 +384,12 @@ describe('rxAppNavItem', function () {
         expect(scope.item.children[2].href).to.be.undefined;
     });
 
-//     TODO show header for children if present and active
+    it('should show header for children if present', function () {
+        // get child header element
+        var childHeader = el[0].querySelector('.child-header');
+
+        expect(childHeader.textContent).to.equal(menuItem.childHeader);
+    });
 });
 
 describe('rxPage', function () {
