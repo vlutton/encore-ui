@@ -1,3 +1,12 @@
+<a name="0.7.1"></a>
+### 0.7.1 (2014-04-22)
+
+
+#### Features
+
+* **rxProductResources:** Add load balancers ([89fd26d4](git@github.com:rackerlabs/encore-ui/commit/89fd26d44516c7a0039a5a7a4881ad96056c488c))
+
+
 <a name="0.7.0"></a>
 ## 0.7.0 (2014-04-21)
 
