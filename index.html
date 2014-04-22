@@ -8,7 +8,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.7.1.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.7.2.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -23,7 +23,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.7.1.js"></script>
+    <script src="dist/encore-ui-tpls-0.7.2.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -503,7 +503,7 @@ angular.module(&#x27;demoApp&#x27;)
 .directive(&#x27;sampleNavDirective&#x27;, function () {
     return {
         restrict: &#x27;E&#x27;,
-        template: &#x27;&lt;input type=&quot;text&quot; placeholder=&quot;Enter User&quot; ng-model=&quot;user&quot;&gt;&#x27;
+        template: &#x27;&lt;input type=&quot;text&quot; placeholder=&quot;Enter User&quot; ng-model=&quot;$root.user&quot;&gt;&#x27;
     };
 });
 
@@ -542,10 +542,11 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             },
             {
                 linkText: &#x27;1st Order Item (w/o href) w/ Children&#x27;,
-                // childHeader: &#x27;Current Account {{ user }}&#x27;,
-                childVisibility: function isUserDefined (scope) {
-                    return !_.isEmpty(scope.user);
+                childVisibility: function isUserDefined () {
+                    return !_.isEmpty($rootScope.user);
                 },
+                childHeader: &#x27;&lt;strong class=&quot;current-search&quot;&gt;Current User:&lt;/strong&gt;&#x27; +
+                             &#x27;&lt;span class=&quot;current-result&quot;&gt;{{$root.user}}&lt;/span&gt;&#x27;,
                 directive: &#x27;sample-nav-directive&#x27;,
                 children: [
                     {
@@ -606,7 +607,7 @@ angular.module('demoApp')
 .directive('sampleNavDirective', function () {
     return {
         restrict: 'E',
-        template: '<input type="text" placeholder="Enter User" ng-model="user">'
+        template: '<input type="text" placeholder="Enter User" ng-model="$root.user">'
     };
 });
 
@@ -645,10 +646,11 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             },
             {
                 linkText: '1st Order Item (w/o href) w/ Children',
-                // childHeader: 'Current Account {{ user }}',
-                childVisibility: function isUserDefined (scope) {
-                    return !_.isEmpty(scope.user);
+                childVisibility: function isUserDefined () {
+                    return !_.isEmpty($rootScope.user);
                 },
+                childHeader: '<strong class="current-search">Current User:</strong>' +
+                             '<span class="current-result">{{$root.user}}</span>',
                 directive: 'sample-nav-directive',
                 children: [
                     {
