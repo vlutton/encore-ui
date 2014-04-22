@@ -49,7 +49,7 @@ angular.module('encore.ui.rxNav', ['encore.ui.rxDropdown'])
             $scope.internalTools = {
                 linkText: 'Internal Tools',
                 items: [
-                    { title: 'Ticket Queues', path: '/#/ticketqueues/', className: '' }
+                    { title: 'Ticket Queues', path: '/ticketqueues/', className: '' }
                 ]
             };
         }
