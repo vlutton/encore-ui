@@ -58,7 +58,7 @@ You should keep each commit as granular as possible. For instance, do not check 
 
 ### Commits Follow a Common Format
 
-We use [the same commit format that the Angular Team follows](https://docs.google.com/document/d/1rk04jEuGfk9kYzfqCuOlPTSJw3hEDZJTBN5E5f1SALo/edit). Any commits that don't follow this format will be rejected.
+We use [the same commit format that the Angular Team follows](https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#commit-message-format). Any commits that don't follow this format will be rejected.
 
 ## Testing
 
