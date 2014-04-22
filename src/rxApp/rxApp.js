@@ -69,7 +69,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     }]
 }])
 /**
-* @ngdoc factory
+* @ngdoc interface
 * @name encore.ui.rxApp:rxAppRoutes
 * @description
 * Manages page routes, building urls and marking them as active on route change
