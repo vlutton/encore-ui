@@ -8,7 +8,7 @@
     "indent": 4,
     "forin": true,
     "latedef": true,
-    "newcap": true,
+    "newcap": false,
     "noarg": true,
     "quotmark": "single",
     "regexp": true,

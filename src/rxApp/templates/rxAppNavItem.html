@@ -1,6 +1,6 @@
 <li class="rx-app-nav-item" ng-show="isVisible(item.visibility)"
-    ng-class="{'has-children': item.children.length > 0, active: item.active}">
-    <a href="{{ item.href }}" class="item-link" ng-click="toggleNav($event, item.href)" tabindex="0">{{item.linkText}}</a>
+    ng-class="{'has-children': item.children.length > 0, active: item.active }">
+    <a href="{{ item.url }}" class="item-link" ng-click="toggleNav($event, item.href)">{{item.linkText}}</a>
     <div class="item-content" ng-show="item.active && (item.directive || item.children)">
         <div class="item-directive" ng-show="item.directive">
             <!-- item.directive injected here -->
