@@ -3,7 +3,7 @@ angular.module('demoApp')
 .directive('sampleNavDirective', function () {
     return {
         restrict: 'E',
-        template: '<input type="text" placeholder="Enter User" ng-model="user">'
+        template: '<input type="text" placeholder="Enter User" ng-model="$root.user">'
     };
 });
 
@@ -42,10 +42,11 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             },
             {
                 linkText: '1st Order Item (w/o href) w/ Children',
-                // childHeader: 'Current Account {{ user }}',
-                childVisibility: function isUserDefined (scope) {
-                    return !_.isEmpty(scope.user);
+                childVisibility: function isUserDefined () {
+                    return !_.isEmpty($rootScope.user);
                 },
+                childHeader: '<strong class="current-search">Current User:</strong>' +
+                             '<span class="current-result">{{$root.user}}</span>',
                 directive: 'sample-nav-directive',
                 children: [
                     {
