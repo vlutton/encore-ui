@@ -1,3 +1,17 @@
+<a name="0.7.2"></a>
+### 0.7.2 (2014-04-22)
+
+
+#### Bug Fixes
+
+* **rxNav:** Ticket Queues Link was old Style ([5ccc3615](git@github.com:rackerlabs/encore-ui/commit/5ccc36153ca804419ffe725cadd7768fbab67ea0))
+
+
+#### Features
+
+* **rxApp:** added childHeader functionality to nav ([fec649ee](git@github.com:rackerlabs/encore-ui/commit/fec649ee5ef148673414514f4443931cf7ce73a3))
+
+
 <a name="0.7.1"></a>
 ### 0.7.1 (2014-04-22)
 
