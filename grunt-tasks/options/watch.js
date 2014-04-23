@@ -22,7 +22,7 @@ module.exports = {
         tasks: ['less']
     },
     demoSite: {
-        files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/*'],
+        files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/**/*'],
         tasks: ['build']
     }
 };
