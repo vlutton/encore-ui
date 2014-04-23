@@ -110,10 +110,19 @@ table {
 }
 
 // in case the buttons are created using the <a> tag
-.button:hover {
+.button:hover,
+.button:focus {
     text-decoration: none;
     color: @buttonText;
     background: @buttonBgHover;
+    cursor: pointer;
+}
+
+.button.button-tiny {
+    padding: 3px 7px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: .7em;
 }
 
 .button.button-small {
@@ -201,6 +210,24 @@ Colors the text red to warn people that something important will/did happen (plu
     }
 }
 
+.msg-info,
+.msg-info a {
+    color: @infoOrange;
+    &:hover,
+    &:focus {
+        color: @infoOrangeHover;
+    }
+}
+
+.msg-info-blue,
+.msg-info-blue a {
+    color: @infoBlue;
+    &:hover,
+    &:focus {
+        color: @infoBlueHover;
+    }
+}
+
 .list-link,
 .list-link a {
     font-size: 1.2em;
@@ -261,4 +288,18 @@ body:hover .visually-hidden button {
 
 .clearfix:after {
     clear: both;
+}
+
+
+/*
+ * Creates a 'well' effect (box with light gray background)
+ */
+.well {
+    background-color: #eee;
+    padding: 40px 50px;
+
+    p {
+        line-height: 1.5em;
+        color: #727272;
+    }
 }
