@@ -8,7 +8,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.7.3.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.7.4.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -23,7 +23,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.7.3.js"></script>
+    <script src="dist/encore-ui-tpls-0.7.4.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -540,8 +540,9 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             // update angular location (if href has a value)
             if (!_.isEmpty(href)) {
                 $location.path(href);
+
+                $rootScope.$apply();
             }
-            $rootScope.$apply();
         }
     });
 
@@ -644,8 +645,9 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             // update angular location (if href has a value)
             if (!_.isEmpty(href)) {
                 $location.path(href);
+
+                $rootScope.$apply();
             }
-            $rootScope.$apply();
         }
     });
 

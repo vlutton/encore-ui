@@ -28,7 +28,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Creates a menu based on items passed in.",
-      "keywords": "api based creates deeper defaults definition directive display encore encorenav heirarchy higher items level menu menuitems nested number object passed rxapp ui"
+      "keywords": "api based creates deeper definition directive display encore encorenav heirarchy higher items level menu menuitems nested number object passed rxapp ui"
     },
     {
       "section": "api",
@@ -38,6 +38,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Creates a menu item. Recursively creates rx-app-nav if &#39;children&#39; present.",
       "keywords": "api avialable children creates directive encore item items menu ng-repeat recursively rx-app-nav rxapp scope ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxApp:rxAppRoutes",
+      "shortName": "rxAppRoutes",
+      "type": "interface",
+      "moduleName": "encore.ui",
+      "shortDescription": "Manages page routes, building urls and marking them as active on route change",
+      "keywords": "active api building change encore interface manages marking route routes rxapp ui urls"
     },
     {
       "section": "api",
