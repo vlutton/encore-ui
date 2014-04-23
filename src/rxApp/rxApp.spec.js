@@ -1,5 +1,126 @@
 /* jshint node: true */
 
+describe('rxAppRoutes', function () {
+    var appRoutes, myAppRoutes, envSvc, generatedRoutes, location, rootScope;
+
+    var fakeRoutes = [{
+        href: { tld: 'example', path: 'myPath' },
+        children: [
+            {
+                href: '/{{user}}/1-1',
+                children: [
+                    {
+                        linkText: '1st-1st-1st'
+                    }
+                ]
+            },
+            {
+                href: '/1-2'
+            }
+        ]
+    }];
+
+    // mock out route to have param which will replace '{{user}}'
+    var route = {
+        current: {
+            pathParams: {
+                user: 'me'
+            }
+        }
+    };
+
+    beforeEach(function () {
+        // load module
+        module('encore.ui.rxApp');
+        module('encore.ui.rxEnvironment');
+
+        // Provide any mocks needed
+        module(function ($provide) {
+            $provide.value('$route', route);
+        });
+
+        // Inject in angular constructs
+        inject(function (rxAppRoutes, Environment, $location, $rootScope) {
+            appRoutes = rxAppRoutes;
+            envSvc = Environment;
+            location = $location;
+            rootScope = $rootScope;
+        });
+
+        // set environment to build from
+        sinon.stub(envSvc, 'get').returns({
+            name: 'staging',
+            pattern: /\/\/staging\.(?:.*\.)?com/,
+            url: '{{tld}}/{{path}}'
+        });
+
+        myAppRoutes = new appRoutes(fakeRoutes);
+        generatedRoutes = myAppRoutes.getAll();
+    });
+
+    it('should build url property from rxEnvironmentUrl', function () {
+        // first item should have generated URL based on staging href
+        expect(generatedRoutes[0].url).to.equal('example/myPath');
+
+        // child item should have default href, since it's just a string
+        expect(generatedRoutes[0].children[1].url).to.equal(fakeRoutes[0].children[1].href);
+    });
+
+    it('should build urls from route path params', function () {
+        // child item should have 'me' in place of '{{user}}'
+        expect(generatedRoutes[0].children[0].url).to.equal('/me/1-1');
+    });
+
+    it('should ignore links that are not defined', function () {
+        expect(generatedRoutes[0].children[0].children[0].url).to.be.undefined;
+    });
+
+    it('should determine active state based on URL match', function () {
+        expect(generatedRoutes[0].active, 'route should not be active by default').to.be.false;
+
+        // update location
+        location.path(generatedRoutes[0].url);
+        rootScope.$apply();
+
+        // sanity check that location actually changed
+        expect(location.path()).to.equal('/' + generatedRoutes[0].url);
+
+        expect(generatedRoutes[0].active, 'route should be active when path changes').to.be.true;
+
+        // update location again to somewhere else
+        location.path('somewhereElse');
+        rootScope.$apply();
+
+        expect(generatedRoutes[0].active, 'route should no longer be active').to.be.false;
+    });
+
+    it('should have active state if child element is active', function () {
+        expect(generatedRoutes[0].active, 'route should not be active by default').to.be.false;
+
+        // update location
+        location.path(generatedRoutes[0].children[0].url);
+        rootScope.$apply();
+
+        expect(generatedRoutes[0].active, 'route should be active when child activated').to.be.true;
+
+        // update location again to somewhere else
+        location.path('somewhereElse');
+        rootScope.$apply();
+
+        expect(generatedRoutes[0].active, 'route should no longer be active').to.be.false;
+    });
+
+    it('should allow overwritting all the nav items', function () {
+        var newRoutes = [{
+            href: '/r/BrokenGifs'
+        }];
+
+        myAppRoutes.setAll(newRoutes);
+
+        expect(myAppRoutes.getAll()[0].url).to.equal(newRoutes[0].href);
+    });
+});
+
 describe('rxApp', function () {
     var scope, compile, rootScope, el, elCustom, elCollapsible, elCollapsibleVar, defaultNav;
     var standardTemplate = '<rx-app></rx-app>';
@@ -164,8 +285,8 @@ describe('rxAppNav', function () {
 });
 
 describe('rxAppNavItem', function () {
-    var scope, compile, rootScope, el, location, envSvc;
-    var template = '<rx-app-nav-item></rx-app-nav-item>';
+    var scope, compile, rootScope, el, location, someProp;
+    var template = '<rx-app-nav-item item="item"></rx-app-nav-item>';
 
     var menuItem = {
         href: { tld: 'example', path: 'myPath' },
@@ -189,13 +310,13 @@ describe('rxAppNavItem', function () {
                     }
                 ]
             }, {
-                href: '/{{user}}/1-2',
+                href: '/1-2',
                 visibility: '2 + 2 == 4',
                 linkText: '1st-2nd'
             }, {
                 linkText: '1st-3rd',
-                visibility: function (scope) {
-                    return scope.someProp;
+                visibility: function () {
+                    return someProp;
                 },
                 children: [
                     {
@@ -207,47 +328,24 @@ describe('rxAppNavItem', function () {
         ]
     };
 
-    // mock out route to have param which will replace '{{user}}'
-    var route = {
-        current: {
-            pathParams: {
-                user: 'me'
-            }
-        }
-    };
-
     beforeEach(function () {
         // load module
         module('encore.ui.rxApp');
-        module('encore.ui.rxEnvironment');
         module('encore.ui.rxCompile');
 
         // load templates
         module('templates/rxAppNav.html');
         module('templates/rxAppNavItem.html');
 
-        // Provide any mocks needed
-        module(function ($provide) {
-            $provide.value('$route', route);
-        });
-
         // Inject in angular constructs
-        inject(function ($rootScope, $compile, $location, Environment) {
+        inject(function ($rootScope, $compile, $location) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
             location = $location;
-            envSvc = Environment;
         });
 
         scope.item = _.clone(menuItem, true);
-
-        // set environment to build from
-        sinon.stub(envSvc, 'get').returns({
-            name: 'staging',
-            pattern: /\/\/staging\.(?:.*\.)?com/,
-            url: '//staging.{{tld}}.encore.rackspace.com/{{path}}'
-        });
 
         el = helpers.createDirective(template, compile, scope);
     });
@@ -260,41 +358,6 @@ describe('rxAppNavItem', function () {
     it('should exist', function () {
         expect(el).to.have.length.of.at.least(1);
         expect(el.children()).to.have.length.of.at.least(2);
-    });
-
-    it('should determine active state based on URL match', function () {
-        expect(scope.item.active, 'item should not be active by default').to.be.false;
-
-        // update location
-        location.path(scope.item.href);
-        rootScope.$apply();
-
-        // sanity check that location actually changed
-        expect(location.path()).to.equal(scope.item.href);
-
-        expect(scope.item.active, 'item should be active when path changes').to.be.true;
-
-        // update location again to somewhere else
-        location.path('somewhereElse');
-        rootScope.$apply();
-
-        expect(scope.item.active, 'item should no longer be active').to.be.false;
-    });
-
-    it('should have active state if child element is active', function () {
-        expect(scope.item.active, 'item should not be active by default').to.be.false;
-
-        // update location
-        location.path(menuItem.children[0].href);
-        rootScope.$apply();
-
-        expect(scope.item.active, 'item should be active when child activated').to.be.true;
-
-        // update location again to somewhere else
-        location.path('somewhereElse');
-        rootScope.$apply();
-
-        expect(scope.item.active, 'item should no longer be active').to.be.false;
     });
 
     it('should hide if visibility property evaluates to false', function () {
@@ -315,27 +378,11 @@ describe('rxAppNavItem', function () {
         expect(children[3].className, 'last child').to.contain('ng-hide');
 
         // we need to set the property that the visibility function is checking to true
-        var childScope = angular.element(children[3]).scope();
-        childScope.someProp = true;
+        someProp = true;
         scope.$digest();
 
         // now that visibility = true, el should not be hidden
         expect(children[3].className, 'last child, after someProp = true').to.not.contain('ng-hide');
-    });
-
-    it('should show/hide content depending on item active state', function () {
-        // get children element
-        var content = el[0].querySelector('.item-content');
-
-        // validate that element is hidden
-        expect(content.className).to.contain('ng-hide');
-
-        // update location
-        location.path(scope.item.href);
-        rootScope.$apply();
-
-        // validate that element is visible
-        expect(content.className).to.not.contain('ng-hide');
     });
 
     it('should show/hide children based on childVisibility value', function () {
@@ -358,30 +405,11 @@ describe('rxAppNavItem', function () {
         expect(directive.innerHTML).to.contain('</' + menuItem.directive + '>');
     });
 
-    it('should increment the scope\'s level', function () {
-        expect(scope.level).to.equal(1);
-
+    it('should increment the child nav level', function () {
         // get children element
-        var children = el[0].querySelector('.item-children .rx-app-nav-group');
+        var children = el[0].querySelector('.item-children .rx-app-nav');
         children = angular.element(children);
-        expect(children.scope().level).to.equal(2);
-    });
-
-    it('should build links using rxEnvironmentUrl if href is object', function () {
-        // first item should have generated URL based on staging href
-        expect(scope.item.href).to.equal('//staging.example.encore.rackspace.com/myPath');
-
-        // child item should have default href, since it's just a string
-        expect(scope.item.children[0].href).to.equal(menuItem.children[0].href);
-    });
-
-    it('should build links using routeParams if defined', function () {
-        // child item should have 'me' in place of '{{user}}'
-        expect(scope.item.children[1].href).to.equal('/me/1-2');
-    });
-
-    it('should ignore links that are not defined', function () {
-        expect(scope.item.children[2].href).to.be.undefined;
+        expect(children.hasClass('rx-app-nav-level-2')).to.be.true;
     });
 
     it('should show header for children if present', function () {

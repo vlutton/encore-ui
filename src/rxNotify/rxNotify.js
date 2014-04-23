@@ -72,7 +72,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
 * @description
 * Manages page messages for an application
 */
-.factory('rxNotify', function ($timeout, $rootScope) {
+.service('rxNotify', function ($timeout, $rootScope) {
     var defaultStack = 'page';
     var stacks = {};
 

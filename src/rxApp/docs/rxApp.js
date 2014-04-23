@@ -28,8 +28,9 @@ function rxAppCtrl ($scope, $location, $rootScope) {
             // update angular location (if href has a value)
             if (!_.isEmpty(href)) {
                 $location.path(href);
+
+                $rootScope.$apply();
             }
-            $rootScope.$apply();
         }
     });
 
