@@ -1,15 +1,4 @@
 angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngRoute'])
-.directive('rxAccountSearch', function ($location) {
-    return {
-        template: '<rx-app-search placeholder="Search for user..." submit="searchAccounts"></rx-app-search>',
-        restrict: 'E',
-        link: function (scope) {
-            scope.searchAccounts = function (searchValue) {
-                $location.path(searchValue + '/servers/');
-            };
-        }
-    };
-})
 /*
  * This array defines the default navigation to use for all Encore sites and used by rxAppNap.
  * It can be overwritten if necessary via the 'menu' property of rxAppNap.
@@ -330,15 +319,46 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         }
     };
 })
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxAppSearch
+* @restrict E
+* @scope
+* @description
+* Creates a search input form for navigation
+*
+* @param {string} [placeholder] Title of page
+* @param {*} [model] Model to tie input form to (via ng-model)
+* @param {function} [submit] Function to run on submit (model is passed as only argument to function)
+*
+*/
 .directive('rxAppSearch', function () {
     return {
         restrict: 'E',
         replace: true,
         templateUrl: 'templates/rxAppSearch.html',
         scope: {
-            placeholder: '@',
+            placeholder: '@?',
             model: '=?',
-            submit: '='
+            submit: '=?'
+        }
+    };
+})
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxAccountSearch
+* @restrict E
+* @description
+* Used to search accounts for Account-Level Tools navigation
+*/
+.directive('rxAccountSearch', function ($location) {
+    return {
+        template: '<rx-app-search placeholder="Search for user..." submit="searchAccounts"></rx-app-search>',
+        restrict: 'E',
+        link: function (scope) {
+            scope.searchAccounts = function (searchValue) {
+                $location.path(searchValue + '/servers/');
+            };
         }
     };
 });
