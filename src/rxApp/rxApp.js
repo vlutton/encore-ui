@@ -105,34 +105,35 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             return url;
         };
 
-        var setDynamicStuff = function (routes) {
+        var setDynamicProperties = function (routes) {
             _.each(routes, function (route) {
                 // build out url for current route
                 route.url = buildUrl(route.href);
 
                 // check if any children exist, if so, build their URLs as well
                 if (route.children) {
-                    route.children = setDynamicStuff(route.children);
+                    route.children = setDynamicProperties(route.children);
                 }
 
-                // set active state
+                // set active state (this needs to go after the recursion,
+                // so that the URL is built for all the children)
                 route.active = isActive(route);
             });
             return routes;
         };
 
         $rootScope.$on('$locationChangeSuccess', function () {
-            routes = setDynamicStuff(routes);
+            routes = setDynamicProperties(routes);
         });
 
-        routes = setDynamicStuff(routes);
+        routes = setDynamicProperties(routes);
 
         return {
             getAll: function () {
                 return routes;
             },
             setAll: function (newRoutes) {
-                routes = setDynamicStuff(newRoutes);
+                routes = setDynamicProperties(newRoutes);
             }
         };
     };
