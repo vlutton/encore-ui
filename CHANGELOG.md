@@ -1,3 +1,12 @@
+<a name="0.7.4"></a>
+### 0.7.4 (2014-04-23)
+
+
+#### Bug Fixes
+
+* **rxApp:** #177 app routes not updating ([96af6a2d](git@github.com:rackerlabs/encore-ui/commit/96af6a2d94d7ef151ba3e52318c5560109464c32))
+
+
 <a name="0.7.3"></a>
 ### 0.7.3 (2014-04-23)
 
