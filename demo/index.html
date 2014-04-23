@@ -64,9 +64,12 @@
             <% config.demoModules.forEach(function(module) { %>
                 <section class="component">
                     <a id="<%= module.name %>"></a>
-                    <h2 class="section-title component-title"><%= module.displayName %><small>
+                    <div class="clearfix">
+                        <h2 class="section-title component-title"><%= module.displayName %><small>
                           (encore.ui.<%= module.name %>)
-                      </small></h2>
+                        </small></h2>
+                        <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/<%= module.name %>/" class="component-source button button-small primary">View Source</a>
+                    </div>
                     <div class="pure-g">
                         <% if(module.docs.html) { %>
                         <div class="pure-u-1-2 component-example">
