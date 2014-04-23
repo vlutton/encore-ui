@@ -1,12 +1,4 @@
 /*jshint unused:false*/
-angular.module('demoApp')
-.directive('sampleNavDirective', function () {
-    return {
-        restrict: 'E',
-        template: '<input type="text" placeholder="Enter User" ng-model="$root.user">'
-    };
-});
-
 function rxAppCtrl ($scope, $location, $rootScope) {
     $scope.subtitle = 'With a subtitle';
 
@@ -34,6 +26,8 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         }
     });
 
+    var searchDirective = 'rx-app-search placeholder="Enter User" model="$root.user"';
+
     $scope.menuItems = [{
         title: 'Example Menu',
         children: [
@@ -48,7 +42,7 @@ function rxAppCtrl ($scope, $location, $rootScope) {
                 },
                 childHeader: '<strong class="current-search">Current User:</strong>' +
                              '<span class="current-result">{{$root.user}}</span>',
-                directive: 'sample-nav-directive',
+                directive: searchDirective,
                 children: [
                     {
                         href: 'Lvl1-2-Lvl2-1',

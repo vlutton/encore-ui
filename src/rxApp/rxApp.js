@@ -1,4 +1,15 @@
 angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngRoute'])
+.directive('rxAccountSearch', function ($location) {
+    return {
+        template: '<rx-app-search placeholder="Search for user..." submit="searchAccounts"></rx-app-search>',
+        restrict: 'E',
+        link: function (scope) {
+            scope.searchAccounts = function (searchValue) {
+                $location.path(searchValue + '/servers/');
+            };
+        }
+    };
+})
 /*
  * This array defines the default navigation to use for all Encore sites and used by rxAppNap.
  * It can be overwritten if necessary via the 'menu' property of rxAppNap.
@@ -20,7 +31,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     title: 'All Tools',
     children: [{
         linkText: 'Account-level Tools',
-        directive: 'rx-global-search',
+        directive: 'rx-account-search',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
             // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
@@ -29,7 +40,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
             return false;
         },
-        childHeader: '<strong class="current-search">Current User:</strong>' +
+        childHeader: '<strong class="current-search">Current Account:</strong>' +
             '<span class="current-result">{{route.current.pathParams.user}}</span>',
         children: [
             {
@@ -316,6 +327,18 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 }
                 // otherwise, let the default nav do it's thing
             };
+        }
+    };
+})
+.directive('rxAppSearch', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'templates/rxAppSearch.html',
+        scope: {
+            placeholder: '@',
+            model: '=?',
+            submit: '='
         }
     };
 });
