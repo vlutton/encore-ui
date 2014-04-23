@@ -1,3 +1,12 @@
+<a name="0.7.5"></a>
+### 0.7.5 (2014-04-23)
+
+
+#### Features
+
+* **styles:** pulling over a couple of styles from cloud atlas ([34628102](git@github.com:rackerlabs/encore-ui/commit/3462810268a3d26ceb8a49af04f98b1a0188b053))
+
+
 <a name="0.7.4"></a>
 ### 0.7.4 (2014-04-23)
 
