@@ -20,7 +20,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     title: 'All Tools',
     children: [{
         linkText: 'Account-level Tools',
-        directive: 'rx-global-search',
+        directive: 'rx-atlas-search',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
             // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
@@ -29,7 +29,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
             return false;
         },
-        childHeader: '<strong class="current-search">Current User:</strong>' +
+        childHeader: '<strong class="current-search">Current Account:</strong>' +
             '<span class="current-result">{{route.current.pathParams.user}}</span>',
         children: [
             {
@@ -315,6 +315,49 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                     $scope.item.active = !$scope.item.active;
                 }
                 // otherwise, let the default nav do it's thing
+            };
+        }
+    };
+})
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxAppSearch
+* @restrict E
+* @scope
+* @description
+* Creates a search input form for navigation
+*
+* @param {string} [placeholder] Title of page
+* @param {*} [model] Model to tie input form to (via ng-model)
+* @param {function} [submit] Function to run on submit (model is passed as only argument to function)
+*
+*/
+.directive('rxAppSearch', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'templates/rxAppSearch.html',
+        scope: {
+            placeholder: '@?',
+            model: '=?',
+            submit: '=?'
+        }
+    };
+})
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxAtlasSearch
+* @restrict E
+* @description
+* Used to search accounts for Cloud Atlas
+*/
+.directive('rxAtlasSearch', function ($location) {
+    return {
+        template: '<rx-app-search placeholder="Search for user..." submit="searchAccounts"></rx-app-search>',
+        restrict: 'E',
+        link: function (scope) {
+            scope.searchAccounts = function (searchValue) {
+                $location.path(searchValue + '/servers/');
             };
         }
     };

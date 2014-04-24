@@ -1,5 +1,6 @@
 @import 'vars';
 @import 'flexbox';
+@import 'mixins';
 
 /*
  * rxApp
@@ -48,10 +49,6 @@
         .flexbox(0 0 300px);
         background: #1a1a1a;
         line-height: @appLineHeight;
-        // make sure text inputs get the color as well
-        input {
-            color: @inputColor;
-        }
 
         .collapsible-toggle {
             position: relative;
@@ -312,6 +309,49 @@
         .item-link:after {
             border-top-width: 1em;
             border-bottom-width: 1em;
+        }
+    }
+
+    .rx-app-search {
+        position: relative;
+        font-size: 14px;
+        color: #babab9;
+
+        // NOTE: We have to have this duplication because CSS doesn't like combining the placholder selectors
+        .placeholder() {
+           font-style: italic;
+           text-overflow: ellipsis;
+        }
+
+        ::-webkit-input-placeholder {
+            .placeholder();
+        }
+        ::-moz-placeholder {
+           .placeholder();
+        }
+        :-ms-input-placeholder {
+           .placeholder();
+        }
+
+        .search-input {
+            .box-sizing(border-box);
+            background: #4d4d4c;
+            border: 0;
+            width: 100%;
+            padding: 9px;
+            padding-right: 30px;
+            margin: 0;
+        }
+
+        .search-action {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 100%;
+            background: url(images/magnifying-glass.png) no-repeat 50% 50%;
+            border: 0;
+            opacity: 0.2;
         }
     }
 
