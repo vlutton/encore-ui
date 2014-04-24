@@ -20,7 +20,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     title: 'All Tools',
     children: [{
         linkText: 'Account-level Tools',
-        directive: 'rx-account-search',
+        directive: 'rx-atlas-search',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
             // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
@@ -346,12 +346,12 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 })
 /**
 * @ngdoc directive
-* @name encore.ui.rxApp:rxAccountSearch
+* @name encore.ui.rxApp:rxAtlasSearch
 * @restrict E
 * @description
-* Used to search accounts for Account-Level Tools navigation
+* Used to search accounts for Cloud Atlas
 */
-.directive('rxAccountSearch', function ($location) {
+.directive('rxAtlasSearch', function ($location) {
     return {
         template: '<rx-app-search placeholder="Search for user..." submit="searchAccounts"></rx-app-search>',
         restrict: 'E',
