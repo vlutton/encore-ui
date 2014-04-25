@@ -1,3 +1,17 @@
+<a name="0.7.6"></a>
+### 0.7.6 (2014-04-25)
+
+
+#### Bug Fixes
+
+* **rxApp:** changed rxAccountSearch to rxAtlasSearch ([a95733f2](git@github.com:rackerlabs/encore-ui/commit/a95733f28ad9c77591bc6af0e5c8d629efe80225))
+
+
+#### Features
+
+* **rxAppSearch:** new directive to add search to nav item ([e3612593](git@github.com:rackerlabs/encore-ui/commit/e3612593c1bba2ce4e38e822db4535d42601e251))
+
+
 <a name="0.7.5"></a>
 ### 0.7.5 (2014-04-23)
 
