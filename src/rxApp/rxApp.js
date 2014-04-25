@@ -369,10 +369,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 })
 /**
 * @ngdoc directive
-* @name encore.ui.rxApp:rxAtlasSearch
+* @name encore.ui.rxApp:rxTicketSearch
 * @restrict E
 * @description
-* Used to search accounts for Cloud Atlas
+* Used to search tickets for Ticket Queues
 */
 .directive('rxTicketSearch', function () {
     return {
