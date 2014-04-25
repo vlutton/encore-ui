@@ -8,7 +8,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.7.5.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.7.6.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -23,7 +23,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.7.5.js"></script>
+    <script src="dist/encore-ui-tpls-0.7.6.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -511,14 +511,6 @@ And the template for each view/page will be something like:
                         <div class="pure-u-1-2">
                             <h3>JavaScript</h3>
                             <pre ng-non-bindable><code class="language-clike">/*jshint unused:false*/
-angular.module(&#x27;demoApp&#x27;)
-.directive(&#x27;sampleNavDirective&#x27;, function () {
-    return {
-        restrict: &#x27;E&#x27;,
-        template: &#x27;&lt;input type=&quot;text&quot; placeholder=&quot;Enter User&quot; ng-model=&quot;$root.user&quot;&gt;&#x27;
-    };
-});
-
 function rxAppCtrl ($scope, $location, $rootScope) {
     $scope.subtitle = &#x27;With a subtitle&#x27;;
 
@@ -546,6 +538,8 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         }
     });
 
+    var searchDirective = &#x27;rx-app-search placeholder=&quot;Enter User&quot; model=&quot;$root.user&quot;&#x27;;
+
     $scope.menuItems = [{
         title: &#x27;Example Menu&#x27;,
         children: [
@@ -560,7 +554,7 @@ function rxAppCtrl ($scope, $location, $rootScope) {
                 },
                 childHeader: &#x27;&lt;strong class=&quot;current-search&quot;&gt;Current User:&lt;/strong&gt;&#x27; +
                              &#x27;&lt;span class=&quot;current-result&quot;&gt;{{$root.user}}&lt;/span&gt;&#x27;,
-                directive: &#x27;sample-nav-directive&#x27;,
+                directive: searchDirective,
                 children: [
                     {
                         href: &#x27;Lvl1-2-Lvl2-1&#x27;,
@@ -616,14 +610,6 @@ function rxAppCtrl ($scope, $location, $rootScope) {
                     </div>
                 </section>
                 <script>/*jshint unused:false*/
-angular.module('demoApp')
-.directive('sampleNavDirective', function () {
-    return {
-        restrict: 'E',
-        template: '<input type="text" placeholder="Enter User" ng-model="$root.user">'
-    };
-});
-
 function rxAppCtrl ($scope, $location, $rootScope) {
     $scope.subtitle = 'With a subtitle';
 
@@ -651,6 +637,8 @@ function rxAppCtrl ($scope, $location, $rootScope) {
         }
     });
 
+    var searchDirective = 'rx-app-search placeholder="Enter User" model="$root.user"';
+
     $scope.menuItems = [{
         title: 'Example Menu',
         children: [
@@ -665,7 +653,7 @@ function rxAppCtrl ($scope, $location, $rootScope) {
                 },
                 childHeader: '<strong class="current-search">Current User:</strong>' +
                              '<span class="current-result">{{$root.user}}</span>',
-                directive: 'sample-nav-directive',
+                directive: searchDirective,
                 children: [
                     {
                         href: 'Lvl1-2-Lvl2-1',

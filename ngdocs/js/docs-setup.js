@@ -50,6 +50,24 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxApp:rxAppSearch",
+      "shortName": "rxAppSearch",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Creates a search input form for navigation",
+      "keywords": "api argument creates directive encore form function input model navigation ng-model passed rxapp search submit tie title ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxApp:rxAtlasSearch",
+      "shortName": "rxAtlasSearch",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Used to search accounts for Cloud Atlas",
+      "keywords": "accounts api atlas cloud directive encore rxapp search ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxApp:rxPage",
       "shortName": "rxPage",
       "type": "directive",

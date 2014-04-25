@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">rxApp/rxApp.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">93.85% <small>(61 / 65)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">92.75% <small>(64 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">88.46% <small>(23 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">95.45% <small>(21 / 22)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">92.31% <small>(24 / 26)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">93.85% <small>(61 / 65)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">92.75% <small>(64 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -537,7 +537,49 @@
 319
 320
 321
-322</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -858,6 +900,48 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngRoute'])
 /*
  * This array defines the default navigation to use for all Encore sites and used by rxAppNap.
@@ -880,7 +964,7 @@
     title: 'All Tools',
     children: [{
         linkText: 'Account-level Tools',
-        directive: 'rx-global-search',
+        directive: 'rx-atlas-search',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
             // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
@@ -889,7 +973,7 @@
             }
             return false;
         },
-        childHeader: '&lt;strong class="current-search"&gt;Current User:&lt;/strong&gt;' +
+        childHeader: '&lt;strong class="current-search"&gt;Current Account:&lt;/strong&gt;' +
             '&lt;span class="current-result"&gt;{{route.current.pathParams.user}}&lt;/span&gt;',
         children: [
             {
@@ -1178,13 +1262,55 @@
             };
         }
     };
-});
-&nbsp;</pre></td></tr>
+})
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxAppSearch
+* @restrict E
+* @scope
+* @description
+* Creates a search input form for navigation
+*
+* @param {string} [placeholder] Title of page
+* @param {*} [model] Model to tie input form to (via ng-model)
+* @param {function} [submit] Function to run on submit (model is passed as only argument to function)
+*
+*/
+.directive('rxAppSearch', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        templateUrl: 'templates/rxAppSearch.html',
+        scope: {
+            placeholder: '@?',
+            model: '=?',
+            submit: '=?'
+        }
+    };
+})
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxAtlasSearch
+* @restrict E
+* @description
+* Used to search accounts for Cloud Atlas
+*/
+.directive('rxAtlasSearch', function ($location) {
+    return {
+        template: '&lt;rx-app-search placeholder="Search for user..." submit="searchAccounts"&gt;&lt;/rx-app-search&gt;',
+        restrict: 'E',
+        link: function (scope) {
+            scope.searchAccounts = <span class="fstat-no" title="function not covered" >function (searchValue) {</span>
+<span class="cstat-no" title="statement not covered" >                $location.path(searchValue + '/servers/');</span>
+            };
+        }
+    };
+});</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 23 2014 14:18:06 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Apr 25 2014 08:42:55 GMT-0500 (CDT)</div>
 </div>
 
 <script src="../prettify.js"></script>
