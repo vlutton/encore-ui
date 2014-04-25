@@ -5,12 +5,11 @@ var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('rxApp', function () {
-    var ptor = protractor.getInstance();
     var rxApp;
 
     before(function () {
         demoPage.go();
-        rxApp = rxAppPage.initialize(ptor.findElement(protractor.By.css('#custom-rxApp')));
+        rxApp = rxAppPage.initialize($('#custom-rxApp'));
     });
 
     it('should show element', function () {
@@ -19,7 +18,7 @@ describe('rxApp', function () {
 
     describe('Collapsible Navigation', function () {
         before(function () {
-            rxApp = rxAppPage.initialize(ptor.findElement(protractor.By.css('#collapsible-rxApp')));
+            rxApp = rxAppPage.initialize($('#collapsible-rxApp'));
         });
 
         it('should have a collapsible navigation menu', function () {
@@ -43,12 +42,11 @@ describe('rxApp', function () {
 });
 
 describe('rxPage', function () {
-    var ptor = protractor.getInstance();
     var rxPage;
 
     before(function () {
         demoPage.go();
-        rxPage = rxPagePage.initialize(ptor.findElement(protractor.By.css('#custom-rxApp .rx-page')));
+        rxPage = rxPagePage.initialize($('#custom-rxApp .rx-page'));
     });
 
     it('should show element', function () {
@@ -56,11 +54,8 @@ describe('rxPage', function () {
     });
 
     it('should update page subtitle dynamically', function () {
-        expect(rxPage.pageSubtitle.getText()).to.eventually.eq('With a subtitle');
-
-        ptor.actions().mouseMove(demoPage.rxPageSubtitleButton).perform();
+        expect(rxPage.subtitle).to.eventually.equal('With a subtitle');
         demoPage.rxPageSubtitleButton.click();
-
-        expect(rxPage.pageSubtitle.getText()).to.eventually.contain('With a new subtitle at 1');
+        expect(rxPage.subtitle).to.eventually.contain('With a new subtitle at 1');
     });
 });

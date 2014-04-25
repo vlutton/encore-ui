@@ -2,16 +2,17 @@
 var Page = require('astrolabe').Page;
 
 var rxApp = {
-    siteTitle: {
-        get: function () { return this.rootElement.findElement(this.by.css('.rx-app .site-title')); }
+
+    lblSiteTitle: {
+        get: function () { return this.rootElement.$('.rx-app .site-title'); }
     },
 
-    siteNav: {
-        get: function () { return this.rootElement.findElement(this.by.css('.rx-app-nav')); }
+    eleSiteNav: {
+        get: function () { return this.rootElement.$('.rx-app-nav'); }
     },
 
-    collapseToggleButton: {
-        get: function () { return this.rootElement.findElement(this.by.css('.collapsible-toggle')); }
+    btnCollapseToggle: {
+        get: function () { return this.rootElement.$('.collapsible-toggle'); }
     },
 
     toggleCollapse: {
@@ -20,7 +21,7 @@ var rxApp = {
                 this.NotCollapsibleException.thro();
             }
 
-            this.collapseToggleButton.click();
+            this.btnCollapseToggle.click();
         }
     },
 
@@ -69,7 +70,7 @@ var rxApp = {
     isCollapsible: {
         value: function () {
             try {
-                this.collapseToggleButton.isDisplayed();
+                this.btnCollapseToggle.isDisplayed();
             } catch (err) {
                 return false;
             }
@@ -98,13 +99,23 @@ exports.rxApp = {
 };
 
 var rxPage = {
-    pageTitle: {
-        get: function () { return this.rootElement.findElement(this.by.css('.rx-page .page-title')); }
+
+    lblTitle: {
+        get: function () { return this.rootElement.$('.rx-page .page-title'); }
     },
 
-    pageSubtitle: {
-        get: function () { return this.rootElement.findElement(this.by.css('.rx-page .page-subtitle')); }
+    lblSubtitle: {
+        get: function () { return this.rootElement.$('.rx-page .page-subtitle'); }
+    },
+
+    title: {
+        get: function () { return this.lblTitle.getText(); }
+    },
+
+    subtitle: {
+        get: function () { return this.lblSubtitle.getText(); }
     }
+
 };
 
 exports.rxPage = {
