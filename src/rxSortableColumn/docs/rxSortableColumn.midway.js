@@ -46,4 +46,9 @@ describe('rxSortableColumn', function () {
         expect(nameColumn.getCurrentSortDirection()).to.eventually.eq(-1);
     });
 
+    it('should have a name', function () {
+        expect(nameColumn.name()).to.eventually.eq('Name');
+        expect(roleColumn.name()).to.eventually.eq('Occupation');
+    });
+
 });
