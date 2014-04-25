@@ -24,6 +24,7 @@
     "devel": false,
     "globals": {
         "$": false,
+        "$$": false,
         "angular": false,
         "html2canvas": false,
         "moment": false,
