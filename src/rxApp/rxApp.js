@@ -59,15 +59,18 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        href: { tld: 'cloudatlas', path: 'ticketqueues' },
         linkText: 'Ticket Queues',
         // directive: 'rx-ticket-search',
         children: [
             {
-                href: '/ticketqueues/my',
+                href: { tld: 'cloudatlas', path: 'ticketqueues/list' },
+                linkText: 'My Selected Queues'
+            },
+            {
+                href: { tld: 'cloudatlas', path: 'ticketqueues/my' },
                 linkText: 'My Tickets'
             }, {
-                href: '/ticketqueues/queues',
+                href: { tld: 'cloudatlas', path: 'ticketqueues/queues' },
                 linkText: 'Queue Admin'
             }
         ]
