@@ -3,6 +3,12 @@ var Page = require('astrolabe').Page;
 
 var {%= name %} = {
 
+    isDisplayed: {
+        value: function () {
+            return rootElement.isDisplayed();
+        }
+    }
+
 };
 
 exports.{%= name %} = {
