@@ -43,6 +43,12 @@ describe('rxSession', function () {
             expect(storage.getObject.called);
         });
 
+        it('getTokenId: should return the token id from session storage', function () {
+            var tokenId = session.getTokenId();
+            expect(tokenId).to.eq('someid');
+            expect(storage.getObject.called);
+        });
+
         it('logoff: should remove token from session', function () {
             session.logoff('encoreToken');
             expect(storage.removeItem.called).to.be.true;

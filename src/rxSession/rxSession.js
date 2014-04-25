@@ -25,6 +25,12 @@ angular.module('encore.ui.rxSession', ['encore.ui.rxLocalStorage'])
             return LocalStorage.getObject(TOKEN_ID);
         };
 
+        session.getTokenId = function () {
+            var token = session.getToken();
+            return (token && token.access && token.access.token) ?
+                token.access.token.id : undefined;
+        };
+
         session.storeToken = function (token) {
             LocalStorage.setObject(TOKEN_ID, token);
         };
