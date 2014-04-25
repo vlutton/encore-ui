@@ -52,17 +52,25 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 href: { tld: 'cloudatlas', path: '{{user}}/databases/instances' },
                 linkText: 'Databases',
                 visibility: '"!production" | rxEnvironmentMatch'
+            }, {
+                href: { tld: 'cloudatlas', path: '{{user}}/loadbalancers' },
+                linkText: 'Load Balancers',
+                visibility: '"!production" | rxEnvironmentMatch'
             }
         ]
     }, {
-        href: { tld: 'cloudatlas', path: 'ticketqueues' },
         linkText: 'Ticket Queues',
+        // directive: 'rx-ticket-search',
         children: [
             {
-                href: '/ticketqueues/my',
+                href: { tld: 'cloudatlas', path: 'ticketqueues/list' },
+                linkText: 'My Selected Queues'
+            },
+            {
+                href: { tld: 'cloudatlas', path: 'ticketqueues/my' },
                 linkText: 'My Tickets'
             }, {
-                href: '/ticketqueues/queues',
+                href: { tld: 'cloudatlas', path: 'ticketqueues/queues' },
                 linkText: 'Queue Admin'
             }
         ]
@@ -358,6 +366,25 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         link: function (scope) {
             scope.searchAccounts = function (searchValue) {
                 $location.path(searchValue + '/servers/');
+            };
+        }
+    };
+})
+/**
+* @ngdoc directive
+* @name encore.ui.rxApp:rxTicketSearch
+* @restrict E
+* @description
+* Used to search tickets for Ticket Queues
+*/
+.directive('rxTicketSearch', function () {
+    return {
+        template: '<rx-app-search placeholder="Search for a Ticket..." submit="searchTickets"></rx-app-search>',
+        restrict: 'E',
+        link: function (scope) {
+            // TQTicketSelection.loadTicket.bind(TQTicketSelection)
+            scope.searchTickets = function () {
+                // TODO do something here
             };
         }
     };
