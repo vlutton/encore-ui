@@ -2,14 +2,14 @@
     <h3>Standard rxApp</h3>
     <rx-app>
         <rx-page title="'Standard Page Title'">
-            This is my page content
+            <p class="clear">This is my page content</p>
         </rx-page>
     </rx-app>
 
     <h3>Customized rxApp</h3>
     <rx-app site-title="My App" menu="menuItems" id="custom-rxApp">
         <rx-page title="'Customized Page Title'" subtitle="subtitle">
-            <p>Click a link in the menu to see the active state change</p>
+            <p class="clear">Click a link in the menu to see the active state change</p>
             <button ng-click="changeSubtitle()" class="changeSubtitle">Change Subtitle</button>
         </rx-page>
     </rx-app>
@@ -17,7 +17,7 @@
     <h3>Collapsible rxApp</h3>
     <rx-app collapsible-nav="true" id="collapsible-rxApp">
         <rx-page>
-            <p>Click the toggle to hide the menu</p>
+            <p class="clear">Click the toggle to hide the menu</p>
         </rx-page>
     </rx-app>
 
