@@ -8,7 +8,7 @@
     <!-- endbower -->
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/pure/0.3.0/pure-min.css" rel="stylesheet" />
-    <link href="dist/encore-ui-0.7.6.css" rel="stylesheet" />
+    <link href="dist/encore-ui-0.7.7.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
@@ -23,7 +23,7 @@
     <script src="bower_components/momentjs/moment.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-0.7.6.js"></script>
+    <script src="dist/encore-ui-tpls-0.7.7.js"></script>
 
     <title>Encore UI</title>
 </head>
@@ -185,6 +185,16 @@
                         linkText: 'rxSpinner'
                     },
                     
+                    {
+                        href: '##rxTokenInterceptor',
+                        linkText: 'rxTokenInterceptor'
+                    },
+                    
+                    {
+                        href: '##rxUnauthorizedInterceptor',
+                        linkText: 'rxUnauthorizedInterceptor'
+                    },
+                    
                 ]
             }];
         });
@@ -199,7 +209,7 @@
                 </ul>
             </div>
 
-            <div style="clear: both"></div>
+            <div class="clear"></div>
 
             
                 <section class="component">
@@ -375,14 +385,14 @@ function rxAgeCtrl ($scope) {
     <h3>Standard rxApp</h3>
     <rx-app>
         <rx-page title="'Standard Page Title'">
-            This is my page content
+            <p class="clear">This is my page content</p>
         </rx-page>
     </rx-app>
 
     <h3>Customized rxApp</h3>
     <rx-app site-title="My App" menu="menuItems" id="custom-rxApp">
         <rx-page title="'Customized Page Title'" subtitle="subtitle">
-            <p>Click a link in the menu to see the active state change</p>
+            <p class="clear">Click a link in the menu to see the active state change</p>
             <button ng-click="changeSubtitle()" class="changeSubtitle">Change Subtitle</button>
         </rx-page>
     </rx-app>
@@ -390,7 +400,7 @@ function rxAgeCtrl ($scope) {
     <h3>Collapsible rxApp</h3>
     <rx-app collapsible-nav="true" id="collapsible-rxApp">
         <rx-page>
-            <p>Click the toggle to hide the menu</p>
+            <p class="clear">Click the toggle to hide the menu</p>
         </rx-page>
     </rx-app>
 
@@ -471,14 +481,14 @@ And the template for each view/page will be something like:
     &lt;h3&gt;Standard rxApp&lt;/h3&gt;
     &lt;rx-app&gt;
         &lt;rx-page title=&quot;&#x27;Standard Page Title&#x27;&quot;&gt;
-            This is my page content
+            &lt;p class=&quot;clear&quot;&gt;This is my page content&lt;/p&gt;
         &lt;/rx-page&gt;
     &lt;/rx-app&gt;
 
     &lt;h3&gt;Customized rxApp&lt;/h3&gt;
     &lt;rx-app site-title=&quot;My App&quot; menu=&quot;menuItems&quot; id=&quot;custom-rxApp&quot;&gt;
         &lt;rx-page title=&quot;&#x27;Customized Page Title&#x27;&quot; subtitle=&quot;subtitle&quot;&gt;
-            &lt;p&gt;Click a link in the menu to see the active state change&lt;/p&gt;
+            &lt;p class=&quot;clear&quot;&gt;Click a link in the menu to see the active state change&lt;/p&gt;
             &lt;button ng-click=&quot;changeSubtitle()&quot; class=&quot;changeSubtitle&quot;&gt;Change Subtitle&lt;/button&gt;
         &lt;/rx-page&gt;
     &lt;/rx-app&gt;
@@ -486,7 +496,7 @@ And the template for each view/page will be something like:
     &lt;h3&gt;Collapsible rxApp&lt;/h3&gt;
     &lt;rx-app collapsible-nav=&quot;true&quot; id=&quot;collapsible-rxApp&quot;&gt;
         &lt;rx-page&gt;
-            &lt;p&gt;Click the toggle to hide the menu&lt;/p&gt;
+            &lt;p class=&quot;clear&quot;&gt;Click the toggle to hide the menu&lt;/p&gt;
         &lt;/rx-page&gt;
     &lt;/rx-app&gt;
 
@@ -3130,6 +3140,102 @@ function rxSpinnerCtrl ($scope) {
         $scope.loading = !$scope.loading;
     };
 }</script>
+            
+                <section class="component">
+                    <a id="rxTokenInterceptor"></a>
+                    <div class="clearfix">
+                        <h2 class="section-title component-title">Rx Token Interceptor<small>
+                          (encore.ui.rxTokenInterceptor)
+                        </small></h2>
+                        <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/rxTokenInterceptor/" class="component-source button button-small primary">View Source</a>
+                    </div>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <pre>
+    <code>
+        angular.module('encoreApp', ['encore.ui'])
+            .config(function ($httpProvider) {
+                $httpProvider.interceptors.push('TokenInterceptor');
+            });
+    </code>
+</pre>
+
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+
+<p>Simple $http interceptor which adds auth token id to http requests.</p>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;pre&gt;
+    &lt;code&gt;
+        angular.module(&#x27;encoreApp&#x27;, [&#x27;encore.ui&#x27;])
+            .config(function ($httpProvider) {
+                $httpProvider.interceptors.push(&#x27;TokenInterceptor&#x27;);
+            });
+    &lt;/code&gt;
+&lt;/pre&gt;
+</code></pre>
+                        </div>
+                        
+                        
+                    </div>
+                </section>
+                <script></script>
+            
+                <section class="component">
+                    <a id="rxUnauthorizedInterceptor"></a>
+                    <div class="clearfix">
+                        <h2 class="section-title component-title">Rx Unauthorized Interceptor<small>
+                          (encore.ui.rxUnauthorizedInterceptor)
+                        </small></h2>
+                        <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/rxUnauthorizedInterceptor/" class="component-source button button-small primary">View Source</a>
+                    </div>
+                    <div class="pure-g">
+                        
+                        <div class="pure-u-1-2 component-example">
+                            <pre>
+    <code>
+        angular.module('encoreApp', ['encore.ui'])
+            .config(function ($httpProvider) {
+                $httpProvider.interceptors.push('UnauthorizedInterceptor');
+            });
+    </code>
+</pre>
+
+                        </div>
+                        
+                        <div class="pure-u-1-2 component-description" ng-non-bindable>
+                            <p><a href="http://github.com/badges/stability-badges"><img src="http://badges.github.io/stability-badges/dist/unstable.svg" alt="unstable" title="" /></a></p>
+
+<p>Simple $http interceptor which will redirect users back to login on 401.</p>
+                        </div>
+                    </div>
+                    <div class="pure-g component-code">
+                        
+                        <div class="pure-u-1-2">
+                            <h3>Markup</h3>
+                            <pre ng-non-bindable><code class="language-markup">&lt;pre&gt;
+    &lt;code&gt;
+        angular.module(&#x27;encoreApp&#x27;, [&#x27;encore.ui&#x27;])
+            .config(function ($httpProvider) {
+                $httpProvider.interceptors.push(&#x27;UnauthorizedInterceptor&#x27;);
+            });
+    &lt;/code&gt;
+&lt;/pre&gt;
+</code></pre>
+                        </div>
+                        
+                        
+                    </div>
+                </section>
+                <script></script>
             
         </rx-page>
     </rx-app>

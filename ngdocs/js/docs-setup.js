@@ -77,6 +77,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxApp:rxTicketSearch",
+      "shortName": "rxTicketSearch",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Used to search tickets for Ticket Queues",
+      "keywords": "api directive encore queues rxapp search ticket tickets ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxAuth:Auth",
       "shortName": "Auth",
       "type": "service",
@@ -344,6 +353,24 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Renders a spinner animation on the provided element given the &#39;toggle&#39; attribute is truthy",
       "keywords": "animation api attribute controls default directive display element encore extra-large large mini options provided renders rxspinner size small spinner toggle true truthy ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxTokenInjector:TokenInjector",
+      "shortName": "TokenInjector",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Simple injector which will intercept http request and inject the",
+      "keywords": "$httpprovider angular api config encore encoreapp http identity inject injector intercept interceptors module push rackspace request rxsession rxtokeninjector service simple token tokeninterceptor ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxUnauthorizedInterceptor:UnauthorizedInterceptor",
+      "shortName": "UnauthorizedInterceptor",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Simple injector which will intercept http responses. If a 401 is returned,",
+      "keywords": "$httpprovider $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
     }
   ],
   "apis": {
