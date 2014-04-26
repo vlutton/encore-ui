@@ -1,3 +1,20 @@
+<a name="0.7.7"></a>
+### 0.7.7 (2014-04-25)
+
+
+#### Bug Fixes
+
+* **rxApp:**
+  * changed TQ nav ([9b3763b6](git@github.com:rackerlabs/encore-ui/commit/9b3763b6927763b4e413a6adbd82e36670765e10))
+  * added clear classes to demo pages ([f554dc05](git@github.com:rackerlabs/encore-ui/commit/f554dc05150558668820879a4444c2c2b5dd5e48))
+
+
+#### Features
+
+* **rxApp:** added rxTicketSearch; clear classes; LBaaS; ([6dd3f711](git@github.com:rackerlabs/encore-ui/commit/6dd3f7119f263e5b2a2c87e36fc6e048ba79df67))
+* **rxTokenInjector:** Simple $http injectors for auth and api calls. ([46b9d3c9](git@github.com:rackerlabs/encore-ui/commit/46b9d3c90fe199ded69f349494dedaf749f5de6e))
+
+
 <a name="0.7.6"></a>
 ### 0.7.6 (2014-04-25)
 
