@@ -1,3 +1,12 @@
+<a name="0.7.8"></a>
+### 0.7.8 (2014-04-28)
+
+
+#### Bug Fixes
+
+* **rxApp:** Made URL isActive work with Query Strings ([78eeaa7d](git@github.com:rackerlabs/encore-ui/commit/78eeaa7d7868d8ac827d61b159258922fa17de14))
+
+
 <a name="0.7.7"></a>
 ### 0.7.7 (2014-04-25)
 
