@@ -59,6 +59,60 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
+        path: '/billing',
+        linkText: 'Billing',
+        children: [
+            {
+                href: '/billing/overview/{{accountNumber}}',
+                linkText: 'Overview'
+            }, {
+                href: '/billing/transactions/{{accountNumber}}',
+                linkText: 'Transactions'
+            }, {
+                href: '/billing/usage/{{accountNumber}}',
+                linkText: 'Current Usage'
+            }, {
+                href: '/billing/discounts/{{accountNumber}}',
+                linkText: 'Discounts'
+            }, {
+                href: '/billing/payment/{{accountNumber}}/options',
+                linkText: 'Payment Options'
+            }, {
+                href: '/billing/preferences/{{accountNumber}}',
+                linkText: 'Preferences'
+            }
+        ]
+    }, {
+        path: '/supportservice',
+        linkText: 'Support Service',
+        children: [
+            {
+                href: '/supportservice/browse',
+                linkText: 'Browse Accounts'
+            }, {
+                href: '/supportservice/admin',
+                linkText: 'Admin'
+            }
+        ]
+    }, {
+        path: '/virt',
+        linkText: 'Virtualization Admin',
+        children: [
+            {
+                href: '/virt/vcenters',
+                linkText: 'vCenters'
+            }, {
+                href: '/virt/hypervisor-clusters',
+                linkText: 'Hypervisor Clusters'
+            }, {
+                href: '/virt/hypervisors',
+                linkText: 'Hypervisors'
+            }, {
+                href: '/virt/vms',
+                linkText: 'VMs'
+            }
+        ]
+    }, {
         linkText: 'Ticket Queues',
         href: { tld: 'cloudatlas', path: 'ticketqueues' },
         children: [
