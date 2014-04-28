@@ -1,7 +1,7 @@
 angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngRoute'])
 /*
- * This array defines the default navigation to use for all Encore sites and used by rxAppNap.
- * It can be overwritten if necessary via the 'menu' property of rxAppNap.
+ * This array defines the default navigation to use for all Encore sites and used by rxAppNav.
+ * It can be overwritten if necessary via the 'menu' property of rxAppNav.
  *
  * @property {string} title Only used on the top level, defines the title to use for all sub-navigation
  *
@@ -60,7 +60,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         ]
     }, {
         linkText: 'Ticket Queues',
-        // directive: 'rx-ticket-search',
+        href: { tld: 'cloudatlas', path: 'ticketqueues' },
         children: [
             {
                 href: { tld: 'cloudatlas', path: 'ticketqueues/list' },
@@ -86,7 +86,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     return function (routes) {
         var isActive = function (item) {
             // check if url matches absUrl
-            var pathMatches = _.contains($location.absUrl(), item.url);
+            // TODO: Add Unit Tests for URLs with Query Strings in them.
+            var baseUrl = $location.absUrl().split('?')[0];
+            var itemUrl = (_.isString(item.url)) ? item.url.split('?')[0] : undefined;
+            var pathMatches = _.contains(baseUrl, itemUrl);
 
             // if current item not active, check if any children are active
             if (!pathMatches && item.children) {
