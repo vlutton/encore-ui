@@ -21,6 +21,7 @@ angular.module('encore.ui.rxTokenInterceptor', ['encore.ui.rxSession'])
         return {
             request: function (config) {
                 config.headers['X-Auth-Token'] = Session.getTokenId();
+                return config;
             }
         };
     });
