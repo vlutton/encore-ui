@@ -3,8 +3,18 @@ var Page = require('astrolabe').Page;
 
 var rxApp = {
 
-    lblSiteTitle: {
-        get: function () { return this.rootElement.$('.rx-app .site-title'); }
+    cssCollapseButtonSelector: {
+        // Keep just the css string available for both the button element
+        // and the check made in `isCollapsible()`, which uses findAllBy.
+        get: function () { return '.collapsible-toggle'; }
+    },
+
+    lblNavTitle: {
+        get: function () { return this.rootElement.$('.site-title'); }
+    },
+
+    lblNavSectionTitle: {
+        get: function () { return this.rootElement.$('.nav-section-title'); }
     },
 
     eleSiteNav: {
@@ -12,17 +22,19 @@ var rxApp = {
     },
 
     btnCollapseToggle: {
-        get: function () { return this.rootElement.$('.collapsible-toggle'); }
+        get: function () { return this.rootElement.$(this.cssCollapseButtonSelector); }
     },
 
-    toggleCollapse: {
-        value: function () {
-            if (!this.isCollapsible()) {
-                this.NotCollapsibleException.thro();
-            }
+    lnkLogout: {
+        get: function () { return this.rootElement.$('.site-logout'); }
+    },
 
-            this.btnCollapseToggle.click();
-        }
+    title: {
+        get: function () { return this.lblNavTitle.getText(); }
+    },
+
+    sectionTitle: {
+        get: function () { return this.lblNavSectionTitle.getText(); }
     },
 
     expand: {
@@ -30,7 +42,7 @@ var rxApp = {
             var page = this;
             return this.isCollapsed().then(function (collapsed) {
                 if (collapsed) {
-                    page.toggleCollapse();
+                    page.btnCollapseToggle.click();
                 }
             });
         }
@@ -41,7 +53,7 @@ var rxApp = {
             var page = this;
             return this.isExpanded().then(function (expanded) {
                 if (expanded) {
-                    page.toggleCollapse();
+                    page.btnCollapseToggle.click();
                 }
             });
         }
@@ -49,12 +61,17 @@ var rxApp = {
 
     isCollapsed: {
         value: function () {
-            if (!this.isCollapsible()) {
-                this.NotCollapsibleException.thro();
-            }
+            var page = this;
+            return this.isCollapsible().then(function (isCollapsible) {
+                if (!isCollapsible) {
+                    return page.title.then(function (siteTitle) {
+                        page.NotCollapsibleException.thro(siteTitle);
+                    });
+                }
 
-            return this.rootElement.$('.rx-app').getAttribute('class').then(function (classNames) {
-                return (classNames.indexOf('collapsed') >= 0);
+                return page.rootElement.$('.rx-app').getAttribute('class').then(function (classNames) {
+                    return (classNames.indexOf('collapsed') >= 0);
+                });
             });
         }
     },
@@ -69,21 +86,18 @@ var rxApp = {
 
     isCollapsible: {
         value: function () {
-            try {
-                this.btnCollapseToggle.isDisplayed();
-            } catch (err) {
-                return false;
-            }
-
-            return true;
+            return this.rootElement.$$(this.cssCollapseButtonSelector).then(function (exists) {
+                return exists.length ? true : false;
+            });
         }
     },
 
     NotCollapsibleException: {
         get: function () {
-            return this.exception('The navigation menu is not collapsible');
+            return this.exception('Navigation menu not collapsible');
         }
     }
+
 };
 
 exports.rxApp = {

@@ -13,16 +13,48 @@ describe('rxApp', function () {
     });
 
     it('should show element', function () {
-        expect(rxApp.rootElement.isDisplayed()).to.eventually.eq.true;
+        expect(rxApp.rootElement.isDisplayed()).to.eventually.be.true;
     });
 
-    describe('Collapsible Navigation', function () {
+    it('should have a title', function () {
+        expect(rxApp.title).to.eventually.equal('My App');
+    });
+
+    it('should have a section title', function () {
+        expect(rxApp.sectionTitle).to.eventually.equal('Example Menu');
+    });
+
+    it('should have a logout link', function () {
+        expect(rxApp.lnkLogout.isDisplayed()).to.eventually.be.true;
+    });
+
+    it('should not support a toggle show/hide button', function () {
+        expect(rxApp.isCollapsible()).to.eventually.be.false;
+    });
+
+    it('should throw an error if you attempt to expand and unsupported', function () {
+        expect(rxApp.expand()).to.be.rejectedWith('My App');
+    });
+
+    describe('with collapsible navigation', function () {
         before(function () {
             rxApp = rxAppPage.initialize($('#collapsible-rxApp'));
         });
 
+        it('should have a title', function () {
+            expect(rxApp.title).to.eventually.equal('Encore');
+        });
+
+        it('should have a section title', function () {
+            expect(rxApp.sectionTitle).to.eventually.equal('All Tools');
+        });
+
+        it('should have a logout link', function () {
+            expect(rxApp.lnkLogout.isDisplayed()).to.eventually.be.true;
+        });
+
         it('should have a collapsible navigation menu', function () {
-            expect(rxApp.isCollapsible()).to.be.true;
+            expect(rxApp.isCollapsible()).to.eventually.be.true;
         });
 
         it('should be expanded by default', function () {
