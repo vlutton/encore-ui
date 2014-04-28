@@ -21,6 +21,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     children: [{
         linkText: 'Account-level Tools',
         directive: 'rx-atlas-search',
+        visibility: '"!unified" | rxEnvironmentMatch',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
             // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
@@ -59,8 +60,66 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        linkText: 'Ticket Queues',
+        href: '/billing',
+        linkText: 'Billing',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+        children: [
+            {
+                href: '/billing/overview/{{accountNumber}}',
+                linkText: 'Overview'
+            }, {
+                href: '/billing/transactions/{{accountNumber}}',
+                linkText: 'Transactions'
+            }, {
+                href: '/billing/usage/{{accountNumber}}',
+                linkText: 'Current Usage'
+            }, {
+                href: '/billing/discounts/{{accountNumber}}',
+                linkText: 'Discounts'
+            }, {
+                href: '/billing/payment/{{accountNumber}}/options',
+                linkText: 'Payment Options'
+            }, {
+                href: '/billing/preferences/{{accountNumber}}',
+                linkText: 'Preferences'
+            }
+        ]
+    }, {
+        href: '/supportservice',
+        linkText: 'Support Service',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+        children: [
+            {
+                href: '/supportservice/browse',
+                linkText: 'Browse Accounts'
+            }, {
+                href: '/supportservice/admin',
+                linkText: 'Admin'
+            }
+        ]
+    }, {
+        href: '/virt',
+        linkText: 'Virtualization Admin',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+        children: [
+            {
+                href: '/virt/vcenters',
+                linkText: 'vCenters'
+            }, {
+                href: '/virt/hypervisor-clusters',
+                linkText: 'Hypervisor Clusters'
+            }, {
+                href: '/virt/hypervisors',
+                linkText: 'Hypervisors'
+            }, {
+                href: '/virt/vms',
+                linkText: 'VMs'
+            }
+        ]
+    }, {
         href: { tld: 'cloudatlas', path: 'ticketqueues' },
+        linkText: 'Ticket Queues',
+        visibility: '"!unified" | rxEnvironmentMatch',
         children: [
             {
                 href: { tld: 'cloudatlas', path: 'ticketqueues/list' },
