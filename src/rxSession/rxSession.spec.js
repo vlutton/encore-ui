@@ -49,8 +49,8 @@ describe('rxSession', function () {
             expect(storage.getObject.called);
         });
 
-        it('logoff: should remove token from session', function () {
-            session.logoff('encoreToken');
+        it('logout: should remove token from session', function () {
+            session.logout('encoreToken');
             expect(storage.removeItem.called).to.be.true;
         });
 
