@@ -7,14 +7,14 @@ module.exports = {
     },
     proxies: [
         {
-            context: '/identity',
+            context: '/api/identity',
             host: 'identity.api.rackspacecloud.com',
             port: 443,
             https: true,
             xforward: true,
             changeOrigin: false,
             rewrite: {
-                '/identity': '/v2.0/'
+                '/api/identity': '/v2.0/'
             }
         }
     ],

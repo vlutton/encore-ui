@@ -15,11 +15,11 @@ angular.module('encore.ui.rxIdentity', ['ngResource'])
     * </pre>
     */
     .factory('Identity', function ($resource) {
-        var authSvc = $resource('/identity/:action',
+        var authSvc = $resource('/api/identity/:action',
             {},
             {
                 loginWithJSON: { method: 'POST', isArray: false, params: { action: 'tokens' }},
-                validate: { method: 'GET', url: '/identity/login/session/:id', isArray: false }
+                validate: { method: 'GET', url: '/api/identity/login/session/:id', isArray: false }
             });
 
         authSvc.login = function (credentials, success, error) {
