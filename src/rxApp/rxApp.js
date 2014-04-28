@@ -21,6 +21,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     children: [{
         linkText: 'Account-level Tools',
         directive: 'rx-atlas-search',
+        visibility: '"!unified" | rxEnvironmentMatch',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
             // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
@@ -59,8 +60,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        path: '/billing',
+        href: '/billing',
         linkText: 'Billing',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         children: [
             {
                 href: '/billing/overview/{{accountNumber}}',
@@ -83,8 +85,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        path: '/supportservice',
+        href: '/supportservice',
         linkText: 'Support Service',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         children: [
             {
                 href: '/supportservice/browse',
@@ -95,8 +98,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        path: '/virt',
+        href: '/virt',
         linkText: 'Virtualization Admin',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         children: [
             {
                 href: '/virt/vcenters',
@@ -113,8 +117,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        linkText: 'Ticket Queues',
         href: { tld: 'cloudatlas', path: 'ticketqueues' },
+        linkText: 'Ticket Queues',
+        visibility: '"!unified" | rxEnvironmentMatch',
         children: [
             {
                 href: { tld: 'cloudatlas', path: 'ticketqueues/list' },
