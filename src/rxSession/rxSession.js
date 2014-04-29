@@ -35,7 +35,7 @@ angular.module('encore.ui.rxSession', ['encore.ui.rxLocalStorage'])
             LocalStorage.setObject(TOKEN_ID, token);
         };
 
-        session.logoff = function () {
+        session.logout = function () {
             LocalStorage.removeItem(TOKEN_ID);
         };
 
