@@ -9,6 +9,6 @@ function rxPermissionCtrl ($scope, Session, rxNotify) {
     }
 
     $scope.clearToken = function () {
-        Session.logoff();
+        Session.logout();
     };
 }
