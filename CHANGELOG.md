@@ -1,3 +1,26 @@
+<a name="0.8.0"></a>
+## 0.8.0 (2014-04-29)
+
+
+#### Bug Fixes
+
+* **rxIdentity:** Updated proxy to point to /api/identity ([7cdd1d39](git@github.com:rackerlabs/encore-ui/commit/7cdd1d39a0e6e5b64cc791ef7a5631197fb1326e))
+* **rxPermission:** Fixed test which referenced refactored method ([0af5ee3b](git@github.com:rackerlabs/encore-ui/commit/0af5ee3b5f4dc9fffa6f2c6476fc849d528e3807))
+* **rxSession:** Renamed method to logout to work with rxApp ([e2d1dfd4](git@github.com:rackerlabs/encore-ui/commit/e2d1dfd49d63f7653c1a6041bb2d44cf63127b77))
+* **rxTokenInterceptor:** Adding return statement for the config ([fe2cea21](git@github.com:rackerlabs/encore-ui/commit/fe2cea21298df84f619c58cd546b44d088ca06e8))
+
+
+#### Features
+
+* **rxEnvironement:** added new "unified" environment ([17bed908](git@github.com:rackerlabs/encore-ui/commit/17bed908810e416bba883137769f4939c45ed986))
+
+
+#### Breaking Changes
+
+* Session.logoff() changed to Session.logout()
+ ([0af5ee3b](git@github.com:rackerlabs/encore-ui/commit/0af5ee3b5f4dc9fffa6f2c6476fc849d528e3807))
+
+
 <a name="0.7.8"></a>
 ### 0.7.8 (2014-04-28)
 
