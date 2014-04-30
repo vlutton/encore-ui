@@ -1,16 +1,17 @@
 /* jshint node: true */
 describe('rxEnvironment', function () {
-    var rootScope, envSvc, location;
+    var rootScope, envSvc, location, log;
 
     beforeEach(function () {
         // load module
         module('encore.ui.rxEnvironment');
 
         // Inject in angular constructs
-        inject(function ($location, $rootScope, Environment) {
+        inject(function ($location, $rootScope, Environment, $log) {
             location = $location;
             rootScope = $rootScope;
             envSvc = Environment;
+            log = $log;
         });
 
         sinon.stub(location, 'absUrl');
@@ -20,10 +21,13 @@ describe('rxEnvironment', function () {
         location.absUrl.restore();
     });
 
-    it('should return undefined if no environment found', function () {
+    it('should warn and return first environment if no environment found', function () {
         location.absUrl.returns('http://nonsense');
 
-        expect(envSvc.get()).to.not.exist;
+        sinon.spy(log, 'warn');
+
+        expect(envSvc.get().name).to.equal('local');
+        expect(log.warn.calledOnce).to.be.true;
     });
 
     it('should get current environment based on location passed in', function () {
@@ -76,14 +80,13 @@ describe('rxEnvironment', function () {
     });
 
     it('should throw error on bad environment', function () {
-        var buildBadEnd = function () {
-            // left off some values
-            envSvc.add({
-                name: 'custom'
-            });
-        };
+        sinon.spy(log, 'error');
+        // left off some values
+        envSvc.add({
+            name: 'custom'
+        });
 
-        expect(buildBadEnd).to.throw(Error);
+        expect(log.error.calledOnce).to.be.true;
     });
 
     it('should allow you to completely overwrite defined environments', function () {
