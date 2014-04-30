@@ -11,7 +11,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
 * Environment.get() // return environment object that matches current location
 * </pre>
 */
-.service('Environment', function ($location) {
+.service('Environment', function ($location, $rootScope, $log) {
     var envSvc = {};
 
     /*
@@ -72,7 +72,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * Retrieves current environment
      * @public
      * @param {string} [href] The path to check the environment on. Defaults to $location.absUrl()
-     * @returns {*} The current environment (if found), else undefined.
+     * @returns {Object} The current environment (if found), else 'localhost' environment.
      */
     envSvc.get = function (href) {
         // default to current location if href not provided
@@ -88,6 +88,12 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
             return _.contains(href, pattern);
         });
 
+        if (_.isUndefined(currentEnvironment)) {
+            $log.warn('No environments match URL: ' + $location.absUrl());
+            // set to default/first environment to avoid errors
+            currentEnvironment = environments[0];
+        }
+
         return currentEnvironment;
     };
 
@@ -95,7 +101,6 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * Adds an environment to the stack
      * @public
      * @param {object} environment The environment to add. See 'environments' array for required properties
-     * @throws Environment must match pattern defined in isValidEnvironment function
      */
     envSvc.add = function (environment) {
         // do some sanity checks here
@@ -103,7 +108,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
             // add environment
             environments.push(environment);
         } else {
-            throw new Error('Environment incorrectly defined');
+            $log.error('Unable to add Environment: defined incorrectly');
         }
     };
 
