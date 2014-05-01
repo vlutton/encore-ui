@@ -1,3 +1,12 @@
+<a name="0.8.1"></a>
+### 0.8.1 (2014-05-01)
+
+
+#### Bug Fixes
+
+* **rxEnvironment:** issue 185; gracefully fail environment undefined; ([643ba7da](git@github.com:rackerlabs/encore-ui/commit/643ba7dac7e7b2d7055fc097aa85324a99f1bd92))
+
+
 <a name="0.8.0"></a>
 ## 0.8.0 (2014-04-29)
 
