@@ -141,7 +141,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 * @description
 * Manages page routes, building urls and marking them as active on route change
 */
-.factory('rxAppRoutes', function ($rootScope, $location, $route, $interpolate, rxEnvironmentUrlFilter) {
+.factory('rxAppRoutes', function ($rootScope, $location, $route, $interpolate, rxEnvironmentUrlFilter, $log) {
     return function (routes) {
         var isActive = function (item) {
             // check if url matches absUrl
@@ -189,6 +189,42 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 // so that the URL is built for all the children)
                 route.active = isActive(route);
             });
+
+            return routes;
+        };
+
+        var getRouteIndex = function (key, routes) {
+            var routeIndex;
+
+            _.forEach(routes, function (route, index) {
+                if (route.key === key) {
+                    routeIndex = [index];
+                } else if ('children' in route) {
+                    // if there are children in the route, we need to search through them as well
+                    var childIndex = getRouteIndex(key, route.children);
+                    if (childIndex) {
+                        routeIndex = [index].concat(childIndex);
+                    }
+                }
+                if (routeIndex) {
+                    // return false to exit search
+                    return false;
+                }
+            });
+
+            return routeIndex;
+        };
+
+        var updateRouteByIndex = function (indexes, routeInfo, routes, level) {
+            var route = routes[indexes[0]];
+
+            if (level < indexes.length - 1) {
+                // if there's more than one index, we need to recurse down a level
+                route.children = updateRouteByIndex(indexes.slice(1), routeInfo, route.children, level + 1);
+            } else {
+                _.assign(route, routeInfo);
+            }
+
             return routes;
         };
 
@@ -199,6 +235,44 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         routes = setDynamicProperties(routes);
 
         return {
+            /**
+             * finds the indexes/path to a route
+             * @see setRouteByKey for actual use
+             * @param  {string} key Route Key
+             * @example
+             *     var myRouteIndex = rxAppRoutes.getIndexByKey('myKey'); // [0, 2, 0]
+             * @return {array|undefined} array of indexes describing path to route (or undefined if not found)
+             */
+            getIndexByKey: function (key) {
+                var routeIndex = getRouteIndex(key, routes);
+
+                if (_.isUndefined(routeIndex)) {
+                    $log.debug('Could not find route by key: ', key);
+                }
+
+                return routeIndex;
+            },
+            /**
+             * functionality to update routes based on their key
+             * @param {string} key Route key used to identify it in navigation
+             * @param {object} routeInfo Information used to overwrite original properties
+             * @return {boolean} true if successfully updated, false if key not found
+             */
+            setRouteByKey: function (key, routeInfo) {
+                var routeIndex = this.getIndexByKey(key);
+
+                // make sure the key was found
+                if (routeIndex) {
+                    routes = updateRouteByIndex(routeIndex, routeInfo, routes, 0);
+
+                    // now that we've updated the route info, we need to reset the dynamic properties
+                    routes = setDynamicProperties(routes);
+
+                    return true;
+                } else {
+                    return false;
+                }
+            },
             getAll: function () {
                 return routes;
             },
@@ -235,7 +309,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             siteTitle: '@?',
             menu: '=?',
             collapsibleNav: '@',
-            collapsedNav: '=?',
+            collapsedNav: '=?'
         },
         link: function (scope) {
             var menu = scope.menu || encoreNav;
