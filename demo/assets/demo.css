@@ -11,8 +11,9 @@
     padding-bottom: 2em;
 }
 
-.component-title {
+.rx-app .page-body .component-title {
     float: left;
+    margin: 0;
 }
 
 .component-source {

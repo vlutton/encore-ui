@@ -35,7 +35,7 @@
         // NOTE: do not remove $anchorScroll, even though it's not called
         // simply by including it, we get the left nav to navigate correctly
         angular.module('demoApp', ['encore.ui'])
-        .run(function ($anchorScroll, $rootScope) {
+        .run(function ($rootScope, $location) {
             $rootScope.components = [{
                 title: 'All Components',
                 children: [
@@ -47,6 +47,8 @@
                     <% }); %>
                 ]
             }];
+
+            $rootScope.location = $location;
         });
     </script>
 
@@ -62,15 +64,15 @@
             <div class="clear"></div>
 
             <% config.demoModules.forEach(function(module) { %>
-                <section class="component">
+                <section class="component" ng-show="location.hash().indexOf('<%= module.name %>') > -1">
                     <a id="<%= module.name %>"></a>
-                    <div class="clearfix">
+                    <div>
                         <h2 class="section-title component-title"><%= module.displayName %><small>
                           (encore.ui.<%= module.name %>)
                         </small></h2>
                         <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/<%= module.name %>/" class="component-source button button-small primary">View Source</a>
                     </div>
-                    <div class="pure-g">
+                    <div class="pure-g clear">
                         <% if(module.docs.html) { %>
                         <div class="pure-u-1-2 component-example">
                             <%= module.docs.html %>
