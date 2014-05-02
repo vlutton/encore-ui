@@ -1,3 +1,12 @@
+<a name="0.8.2"></a>
+### 0.8.2 (2014-05-02)
+
+
+#### Bug Fixes
+
+* **rxApp:** add Roboto font back in ([a5359632](git@github.com:rackerlabs/encore-ui/commit/a5359632d018e2f0548b789da247f390b57ee1e7))
+
+
 <a name="0.8.1"></a>
 ### 0.8.1 (2014-05-01)
 
