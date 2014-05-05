@@ -1,3 +1,18 @@
+<a name="0.8.3"></a>
+### 0.8.3 (2014-05-05)
+
+
+#### Bug Fixes
+
+* **rxLogout:** Added redirect to /login on logoff ([6833c1fb](git@github.com:rackerlabs/encore-ui/commit/6833c1fb3588577a2f872547ff7ac7282bdcc993))
+
+
+#### Features
+
+* **rxApp:** added getIndexByKey and setRouteByKey functions ([6c4ab327](git@github.com:rackerlabs/encore-ui/commit/6c4ab3276e25d047ac5efd0df8ff653e0deb4144))
+* **rxFormOptionTable:** Add required attribute ([646e8755](git@github.com:rackerlabs/encore-ui/commit/646e8755c4eb1922a3d09334a2d7a41477452022))
+
+
 <a name="0.8.2"></a>
 ### 0.8.2 (2014-05-02)
 
