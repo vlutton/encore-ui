@@ -23,18 +23,19 @@ angular.module('encore.ui.rxSession', ['encore.ui.rxLocalStorage'])
 
         session.getByKey = function (key) {
             var keys,
-                obj = session.getToken();
+                value,
+                token = session.getToken();
 
-            if (_.isEmpty(obj)) {
+            if (_.isEmpty(token)) {
                 return;
             }
 
             keys = key ? key.split('.') : undefined;
-            obj = _.reduce(keys, function (val, key) {
+            value = _.reduce(keys, function (val, key) {
                 return val[key] ? val[key] : undefined;
-            }, obj);
+            }, token);
 
-            return obj;
+            return value;
         };
 
         session.getToken = function () {
