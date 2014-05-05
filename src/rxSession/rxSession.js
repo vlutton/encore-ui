@@ -21,14 +21,36 @@ angular.module('encore.ui.rxSession', ['encore.ui.rxLocalStorage'])
         var TOKEN_ID = 'encoreSessionToken';
         var session = {};
 
+        session.getByKey = function (key) {
+            var keys,
+                obj = session.getToken();
+
+            if (_.isEmpty(obj)) {
+                return;
+            }
+
+            keys = key ? key.split('.') : undefined;
+            obj = _.reduce(keys, function (val, key) {
+                return val[key] ? val[key] : undefined;
+            }, obj);
+
+            return obj;
+        };
+
         session.getToken = function () {
             return LocalStorage.getObject(TOKEN_ID);
         };
 
         session.getTokenId = function () {
-            var token = session.getToken();
-            return (token && token.access && token.access.token) ?
-                token.access.token.id : undefined;
+            return session.getByKey('access.token.id');
+        };
+
+        session.getUserId = function () {
+            return session.getByKey('access.user.id');
+        };
+
+        session.getUserName = function () {
+            return session.getByKey('access.user.name');
         };
 
         session.storeToken = function (token) {
@@ -40,13 +62,10 @@ angular.module('encore.ui.rxSession', ['encore.ui.rxLocalStorage'])
         };
 
         session.isCurrent = function () {
-            var token = session.getToken();
+            var expireDate = session.getByKey('access.token.expires');
 
-            //Conditional to prevent null exceptions when validating the token
-            if (token && token.access && token.access.token &&
-                token.access.token.expires) {
-
-                return new Date(token.access.token.expires) > _.now();
+            if (expireDate) {
+                return new Date(expireDate) > _.now();
             }
 
             return false;

@@ -15,9 +15,10 @@ describe('rxSession', function () {
                     },
                     serviceCatalog: [],
                     user: {
-                        id: 'joe.customer',
+                        id: '12345',
                         'roles': [{ 'id': '9','name': 'Customer' }],
-                        'RAX-AUTH:defaultRegion': ''
+                        'RAX-AUTH:defaultRegion': '',
+                        name: 'joe.user'
                     }
                 }
             };
@@ -68,6 +69,16 @@ describe('rxSession', function () {
             expect(session.isAuthenticated()).to.be.false;
             storage.getObject = sinon.stub().returns({});
             expect(session.isAuthenticated()).to.be.false;
+        });
+
+        it('getUserId: should return the user id', function () {
+            expect(session.getUserId()).not.be.empty;
+            expect(session.getUserId()).to.eq('12345');
+        });
+
+        it('getUserName: should return the user name', function () {
+            expect(session.getUserName()).not.be.empty;
+            expect(session.getUserName()).to.eq('joe.user');
         });
     });
 });
