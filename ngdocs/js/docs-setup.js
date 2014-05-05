@@ -154,7 +154,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "This directive is used to build a table of radio/checkbox inputs",
-      "keywords": "api array attribute bind build columns data directive disabled encore example fieldid input inputs item key label match model ng-model objects option populate properties radio rxform selected table type ui values"
+      "keywords": "api array attribute bind build columns data directive disabled encore example fieldid input inputs item key label match model ng-model ng-required objects option passed populate properties radio required rxform selected table type ui values"
     },
     {
       "section": "api",
