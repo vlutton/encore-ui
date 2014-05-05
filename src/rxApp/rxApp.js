@@ -6,7 +6,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
  * @property {string} title Only used on the top level, defines the title to use for all sub-navigation
  *
  * Common Properties for all 'children' nav items:
- * @property {string|object} href String url to use for the menu item or object to passed to rxEnvironmentUrl
+ * @property {string} [key] ID to use for getter/setter methods by apps. Needs to be unique.
+ * @property {string|object} href Url to use for the menu item or object to passed to rxEnvironmentUrl
  * @property {string} linkText The text displayed for the menu item
  * @property {array} children Child menu items for the navigation heirarchy
  * @property {string} directive Name of directive to build and show when item is active. For example:
@@ -195,6 +196,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 
         var getRouteIndex = function (key, routes) {
             var routeIndex;
+            var routeFound = false;
 
             _.forEach(routes, function (route, index) {
                 if (route.key === key) {
@@ -206,9 +208,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                         routeIndex = [index].concat(childIndex);
                     }
                 }
-                if (routeIndex) {
-                    // return false to exit search
-                    return false;
+                if (routeIndex && !routeFound) {
+                    routeFound = true;
+                } else {
+                    $log.warn('Duplicate routes found for key: ' + key);
                 }
             });
 
@@ -236,7 +239,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 
         return {
             /**
-             * finds the indexes/path to a route
+             * Finds the indexes/path to a route. Will return last match if duplicate keys exist
              * @see setRouteByKey for actual use
              * @param  {string} key Route Key
              * @example

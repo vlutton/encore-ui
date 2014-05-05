@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 describe('rxAppRoutes', function () {
-    var appRoutes, myAppRoutes, envSvc, generatedRoutes, location, rootScope;
+    var appRoutes, myAppRoutes, envSvc, generatedRoutes, location, rootScope, log;
 
     var fakeRoutes = [{
         href: { tld: 'example', path: 'myPath' },
@@ -44,11 +44,12 @@ describe('rxAppRoutes', function () {
         });
 
         // Inject in angular constructs
-        inject(function (rxAppRoutes, Environment, $location, $rootScope) {
+        inject(function (rxAppRoutes, Environment, $location, $rootScope, $log) {
             appRoutes = rxAppRoutes;
             envSvc = Environment;
             location = $location;
             rootScope = $rootScope;
+            log = $log;
         });
 
         // set environment to build from
@@ -60,6 +61,10 @@ describe('rxAppRoutes', function () {
 
         myAppRoutes = new appRoutes(fakeRoutes);
         generatedRoutes = myAppRoutes.getAll();
+    });
+
+    afterEach(function () {
+        log.reset();
     });
 
     it('should build url property from rxEnvironmentUrl', function () {
@@ -139,6 +144,31 @@ describe('rxAppRoutes', function () {
 
         var secondChildIndex = myAppRoutes.getIndexByKey('secondChild');
         expect(secondChildIndex, 'second child index').to.eql([0, 1]);
+    });
+
+    it('should warn if duplicate keys found', function () {
+        var duplicateKeyRoutes = [{
+            href: '/r/BrokenGifs',
+            key: 'dupeKey'
+        }, {
+            href: '/r/wheredidthesodago',
+            key: 'nonDupeKey',
+            children: [{
+                href: '/r/funny',
+                key: 'dupeKey'
+            }]
+        }];
+
+        var routes = new appRoutes(duplicateKeyRoutes);
+
+        // find index w/duplicate key
+        var index = routes.getIndexByKey('dupeKey');
+
+        // should return last match
+        expect(index).to.eql([1, 0]);
+
+        // should log a message about duplicate keys
+        expect(log.warn.logs.length).to.equal(1);
     });
 
     describe('setRouteByKey', function () {
