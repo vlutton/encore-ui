@@ -17,12 +17,14 @@
                     value="{{row.value}}"
                     name="{{fieldId}}"
                     ng-disabled="isCurrent(row.value)"
+                    ng-required="{{required}}"
                 >
                 <input type="checkbox"
                     ng-switch-when="checkbox"
                     id="{{fieldId}}_{{$index}}"
                     ng-model="$parent.model[$index]"
                     rx-attributes="{'ng-true-value': row.value, 'ng-false-value': row.falseValue}"
+                    ng-required="{{required}}"
                 >
             </th>
             <td ng-repeat="column in columns">
