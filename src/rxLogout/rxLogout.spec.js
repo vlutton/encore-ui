@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 describe('rxLogout', function () {
-    var linkEl, scope, compile, rootScope, authMock,
+    var linkEl, scope, compile, rootScope, authMock, $window,
         validTemplate = '<a href="#myPath" rx-logout></a>';
 
     beforeEach(function () {
@@ -11,12 +11,13 @@ describe('rxLogout', function () {
         // Provide any mocks needed
         module(function ($provide) {
             // mock out Auth service
-            var authApi = {
-                logout: function () {}
-            };
+            var authApi = { logout: function () {}},
+                mockWindow = { location: '' };
 
             authMock = sinon.mock(authApi);
+            $window = sinon.mock(mockWindow);
             $provide.value('Auth', authApi);
+            $provide.value('$window', $window);
         });
 
         // Inject in angular constructs
