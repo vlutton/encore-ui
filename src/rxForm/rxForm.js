@@ -157,6 +157,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
  * @param {String} type - Type of input to be used
  * @param {Object} model - Value to bind input to using ng-model
  * @param {String} fieldId - Used for label and input 'id' attribute
+ * @param {String} required - Value passed to input's 'ng-required' attribute
  */
 .directive('rxFormOptionTable', function ($interpolate) {
     return {
@@ -168,7 +169,8 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             selected: '@',
             type: '@',
             model: '=',
-            fieldId: '@'
+            fieldId: '@',
+            required: '@'
         },
         controller: function ($scope) {
             var determineMatch = function (val1, val2) {
