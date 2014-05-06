@@ -21,20 +21,24 @@ angular.module('encore.ui.rxSession', ['encore.ui.rxLocalStorage'])
         var TOKEN_ID = 'encoreSessionToken';
         var session = {};
 
+        /**
+        * Dot walks the token without throwing an error.
+        * If key exists, returns value otherwise returns undefined.
+        */
         session.getByKey = function (key) {
-            var value,
+            var tokenValue,
                 token = session.getToken(),
                 keys = key ? key.split('.') : undefined;
 
-            if (_.isEmpty(token)) {
+            if (_.isEmpty(token) || !keys) {
                 return;
             }
 
-            value = _.reduce(keys, function (val, key) {
-                return val[key] ? val[key] : undefined;
+            tokenValue = _.reduce(keys, function (val, key) {
+                return val ? val[key] : undefined;
             }, token);
 
-            return value;
+            return tokenValue;
         };
 
         session.getToken = function () {

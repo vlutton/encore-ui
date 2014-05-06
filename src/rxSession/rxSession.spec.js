@@ -71,6 +71,10 @@ describe('rxSession', function () {
             expect(session.isAuthenticated()).to.be.false;
         });
 
+        it('getByKey: should return undefined if key does not exist', function () {
+            expect(session.getByKey('fake.key.that.does.not.exist')).to.be.undefined;
+        });
+
         it('getUserId: should return the user id', function () {
             expect(session.getUserId()).not.be.empty;
             expect(session.getUserId()).to.eq('12345');
