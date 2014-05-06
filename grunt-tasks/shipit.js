@@ -14,14 +14,14 @@ module.exports = function (grunt) {
             // increment version in readme
             tasks.push('replace:readme');
 
-            // commit version increment
-            tasks.push('bump-commit');
-
             // build the code
             tasks.push('default');
 
             // push files to prod
             tasks.push('cloudfiles:production');
+
+            // commit version increment
+            tasks.push('bump-commit');
 
             // update gh-pages branch
             tasks.push('gh-pages:ghPages');
