@@ -14,6 +14,16 @@ For apps that want to use the default Encore navigation, usage is pretty simple.
 
 By including `ng-view`, your view content will be added inside the directive. This makes setting up views for each page much simpler, since you don't have to include `rx-app` in each view.
 
+### Dynamically updating the menu
+
+If 'app-routes' isn't defined, rxApp will create a navigation menu based on the routes defined in the 'encoreNav' value. This menu is built using the rxAppRoutes service. To update this menu, rxApp will expose a property on $rootScope named 'appRoutes'. This is an instance of rxAppRoutes.
+
+To update a route, use the `setRouteByKey` function:
+
+    $rootScope.appRoutes.setRouteByKey('myKey', {
+        linkText: 'myUpdatedRoute'
+    })
+
 ### rx-page
 
 You'll likely want to use `rx-page` inside your template view. For example, inside a 'myView.html' file:
@@ -43,4 +53,6 @@ These two directives are responsible for creating the menu in the left sidebar. 
 
 ## Custom Menus
 
-If you'd like to create an entirely custom menu, you can pass that data in to the `rx-app` directive via the 'menu' attribute. View the demo for an example of this.
+If you'd like to create an entirely custom menu, you can pass that data in to the `rx-app` directive via the 'app-routes' attribute. View the demo for an example of this.
+
+Important: you must pass in an instance of rxAppRoutes, not just the menu array.

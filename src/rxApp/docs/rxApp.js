@@ -1,9 +1,23 @@
 /*jshint unused:false*/
-function rxAppCtrl ($scope, $location, $rootScope, $window) {
+function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
     $scope.subtitle = 'With a subtitle';
 
     $scope.changeSubtitle = function () {
         $scope.subtitle = 'With a new subtitle at ' + Date.now();
+    };
+
+    $scope.changeRoutes = function () {
+        var newRoute = {
+            linkText: 'Updated Route',
+            childVisibility: 'true',
+            children: [
+                {
+                    linkText: 'New child route'
+                }
+            ]
+        };
+
+        $rootScope.appRoutes.setRouteByKey('acctLvlTools', newRoute);
     };
 
     // Fake navigation
@@ -35,7 +49,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window) {
 
     var searchDirective = 'rx-app-search placeholder="Enter User" model="$root.user"';
 
-    $scope.menuItems = [{
+    $scope.menuItems = new rxAppRoutes([{
         title: 'Example Menu',
         children: [
             {
@@ -98,5 +112,5 @@ function rxAppCtrl ($scope, $location, $rootScope, $window) {
                 ]
             }
         ]
-    }];
+    }]);
 }

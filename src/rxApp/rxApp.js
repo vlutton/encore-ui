@@ -21,6 +21,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     title: 'All Tools',
     children: [{
         linkText: 'Account-level Tools',
+        key: 'acctLvlTools',
         directive: 'rx-atlas-search',
         visibility: '"!unified" | rxEnvironmentMatch',
         childVisibility: function (scope) {
@@ -196,22 +197,27 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 
         var getRouteIndex = function (key, routes) {
             var routeIndex;
-            var routeFound = false;
+            var routeAlreadyFound = false;
 
             _.forEach(routes, function (route, index) {
+                var foundThisTime = false;
                 if (route.key === key) {
                     routeIndex = [index];
+                    foundThisTime = true;
                 } else if ('children' in route) {
                     // if there are children in the route, we need to search through them as well
                     var childIndex = getRouteIndex(key, route.children);
                     if (childIndex) {
                         routeIndex = [index].concat(childIndex);
+                        foundThisTime = true;
                     }
                 }
-                if (routeIndex && !routeFound) {
-                    routeFound = true;
-                } else {
-                    $log.warn('Duplicate routes found for key: ' + key);
+                if (foundThisTime) {
+                    if (routeAlreadyFound) {
+                        $log.warn('Duplicate routes found for key: ' + key);
+                    } else {
+                        routeAlreadyFound = true;
+                    }
                 }
             });
 
@@ -303,21 +309,21 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (rxAppRoutes, encoreNav) {
+.directive('rxApp', function (rxAppRoutes, encoreNav, $rootScope) {
     return {
         restrict: 'E',
         transclude: true,
         templateUrl: 'templates/rxApp.html',
         scope: {
             siteTitle: '@?',
-            menu: '=?',
+            appRoutes: '=?',
             collapsibleNav: '@',
             collapsedNav: '=?'
         },
         link: function (scope) {
-            var menu = scope.menu || encoreNav;
-
-            scope.appRoutes = new rxAppRoutes(menu);
+            if (!scope.appRoutes) {
+                $rootScope.appRoutes = scope.appRoutes = new rxAppRoutes(encoreNav);
+            }
 
             if (!_.isBoolean(scope.collapsedNav)) {
                 scope.collapsedNav = false;

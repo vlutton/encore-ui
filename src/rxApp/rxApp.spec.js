@@ -156,10 +156,19 @@ describe('rxAppRoutes', function () {
             children: [{
                 href: '/r/funny',
                 key: 'dupeKey'
+            }, {
+                href: '/r/noKey'
             }]
+        }, {
+            href: '/r/rogecoin',
+            key: 'suchDupes'
         }];
 
         var routes = new appRoutes(duplicateKeyRoutes);
+
+        // shouldn't warn when searching non-dupe keys
+        routes.getIndexByKey('nonDupeKey');
+        expect(log.warn.logs.length).to.equal(0);
 
         // find index w/duplicate key
         var index = routes.getIndexByKey('dupeKey');
@@ -236,11 +245,11 @@ describe('rxAppRoutes', function () {
 });
 
 describe('rxApp', function () {
-    var scope, compile, rootScope, el, elCustom, elCollapsible, elCollapsibleVar, defaultNav;
+    var scope, compile, rootScope, el, elCustom, elCollapsible, elCollapsibleVar, defaultNav, appRoutes;
     var standardTemplate = '<rx-app></rx-app>';
     var collapsibleTemplate = '<rx-app collapsible-nav="true"></rx-app>';
     var collapsibleExternalVarTemplate = '<rx-app collapsible-nav="true" collapsed-nav="collapsed"></rx-app>';
-    var customTemplate = '<rx-app site-title="My App" menu="customNav"></rx-app>';
+    var customTemplate = '<rx-app site-title="My App" app-routes="customNav"></rx-app>';
 
     var customNav = [{
         title: 'Example Menu',
@@ -265,16 +274,17 @@ describe('rxApp', function () {
         module('templates/rxAppSearch.html');
 
         // Inject in angular constructs
-        inject(function ($rootScope, $compile, encoreNav) {
+        inject(function ($rootScope, $compile, encoreNav, rxAppRoutes) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
             defaultNav = encoreNav;
+            appRoutes = rxAppRoutes;
 
             scope.collapsed = false;
         });
 
-        scope.customNav = customNav;
+        scope.customNav = new appRoutes(customNav);
 
         el = helpers.createDirective(standardTemplate, compile, scope);
         elCustom = helpers.createDirective(customTemplate, compile, scope);

@@ -29,8 +29,8 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             }
         });
 })
-.run(function ($rootScope, components, $window) {
-    $rootScope.demoNav = [
+.run(function ($rootScope, components, $window, rxAppRoutes) {
+    var demoNav = [
         {
             type: 'highlight',
             title: 'Encore-UI',
@@ -65,12 +65,13 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     ];
 
     _.each(components, function (component) {
-        $rootScope.demoNav[1].children.push({
+        demoNav[1].children.push({
             href: '#/component/' + component.name,
             linkText: component.name
         });
     });
 
+    $rootScope.demoNav = new rxAppRoutes(demoNav);
 
     $rootScope.$on('$routeChangeSuccess', function() {
         $window.scrollTo(0,0);
