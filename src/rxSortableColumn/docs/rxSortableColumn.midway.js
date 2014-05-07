@@ -9,7 +9,7 @@ describe('rxSortableColumn', function () {
     var roleColumn = null;
 
     before(function () {
-        demoPage.go();
+        demoPage.go('#/component/rxSortableColumn');
         var nameSelector = ptor.findElement(protractor.By.css('rx-sortable-column[sort-property="name"]'));
         var roleSelector = ptor.findElement(protractor.By.css('rx-sortable-column[sort-property="jobTitle"]'));
         nameColumn = rxSortableColumn.initialize(nameSelector);

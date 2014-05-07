@@ -1,5 +1,5 @@
 /*jshint unused:false*/
-function rxAppCtrl ($scope, $location, $rootScope) {
+function rxAppCtrl ($scope, $location, $rootScope, $window) {
     $scope.subtitle = 'With a subtitle';
 
     $scope.changeSubtitle = function () {
@@ -19,9 +19,16 @@ function rxAppCtrl ($scope, $location, $rootScope) {
 
             // update angular location (if href has a value)
             if (!_.isEmpty(href)) {
-                $location.path(href);
+                // we need to prevent the window from scrolling (the demo does this)
+                // so we get the current scrollTop position
+                // and set it after the demo page has run '$routeChangeSuccess'
+                var currentScollTop = document.body.scrollTop;
+
+                $location.hash(href);
 
                 $rootScope.$apply();
+
+                $window.scrollTo(0, currentScollTop);
             }
         }
     });
@@ -48,7 +55,7 @@ function rxAppCtrl ($scope, $location, $rootScope) {
                         href: 'Lvl1-2-Lvl2-1',
                         linkText: '2nd Order Item w/ Children',
                         children: [{
-                            href: 'Lvl1-2/Lvl2-1/Lvl3-1',
+                            href: 'Lvl1-2-Lvl2-1-Lvl3-1',
                             linkText: '3rd Order Item'
                         }]
                     },

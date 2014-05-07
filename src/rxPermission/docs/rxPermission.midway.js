@@ -7,7 +7,7 @@ describe('rxPermission', function () {
     var ptor = protractor.driver;
 
     before(function () {
-        demoPage.go();
+        demoPage.go('#/component/rxPermission');
     });
 
     it('rxPermission should display and hide content when appropriate', function () {

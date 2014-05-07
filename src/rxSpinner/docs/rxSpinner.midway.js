@@ -6,7 +6,7 @@ describe('rxSpinner', function () {
     var ptor = rxSpinnerPage.driver;
 
     it('beforeAll', function () {
-        demoPage.go();
+        demoPage.go('#/component/rxSpinner');
     });
 
     // it.skip('should show element', function () {

@@ -9,7 +9,7 @@ module.exports = {
         },
         files: [{
             expand: true,
-            src: ['**/*.html'],
+            src: ['**/*.html', '*.js'],
             cwd: 'demo/',
             dest: '<%= config.docs %>'
         }]
@@ -18,7 +18,7 @@ module.exports = {
         files: [{
             expand: true,
             //Don't re-copy html files, we process those
-            src: ['**/**/*', '!**/*.html'],
+            src: ['**/**/*', '!**/*.html', '!*.js'],
             cwd: 'demo/',
             dest: '<%= config.docs %>'
         }]

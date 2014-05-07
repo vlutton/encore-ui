@@ -6,7 +6,7 @@ describe('rxForm', function () {
     var ptor = rxFormPage.driver;
 
     it('beforeAll', function () {
-        demoPage.go();
+        demoPage.go('#/component/rxForm');
     });
 
     // iit('should show input', function() {

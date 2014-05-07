@@ -6,7 +6,7 @@ describe('rxBreadcrumbs', function () {
     var breadcrumbs;
 
     before(function () {
-        demoPage.go();
+        demoPage.go('#/component/rxBreadcrumbs');
         var ptor = protractor.getInstance();
         breadcrumbs = rxBreadcrumbsPage.initialize(ptor.findElement(protractor.By.css('.site-breadcrumbs')));
     });

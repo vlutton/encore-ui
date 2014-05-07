@@ -12,6 +12,8 @@
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/demo.css" rel="stylesheet" />
 
+    <script src="assets/prism.js"></script>
+
     <!-- Content inside bower:js is auto-generated via `grunt bowerInstall` -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
@@ -24,82 +26,15 @@
     <!-- endbower -->
 
     <script src="dist/<%= config.fileNameTpl %>.js"></script>
+    <script src="demo.js"></script>
+    <script src="components.js"></script>
+    <script src="componentControllers.js"></script>
 
     <title>Encore UI</title>
 </head>
 <body ng-app="demoApp">
-    <script>
-        // this script is at the top of the HTML so that any modules
-        // needing the demoApp module can use it
-
-        // NOTE: do not remove $anchorScroll, even though it's not called
-        // simply by including it, we get the left nav to navigate correctly
-        angular.module('demoApp', ['encore.ui'])
-        .run(function ($anchorScroll, $rootScope) {
-            $rootScope.components = [{
-                title: 'All Components',
-                children: [
-                    <% config.demoModules.forEach(function (module) {  %>
-                    {
-                        href: '##<%= module.name %>',
-                        linkText: '<%= module.name %>'
-                    },
-                    <% }); %>
-                ]
-            }];
-        });
-    </script>
-
-    <rx-app site-title="Encore Demo App" menu="components">
-        <rx-page title="'Encore-UI Components'">
-            <div class="page-actions">
-                <ul style="clear: both;">
-                    <li><a href="coverage/index.html">Unit test coverage for Encore-UI</a></li>
-                    <li><a href="ngdocs/index.html">ngdocs for Encore-UI</a></li>
-                </ul>
-            </div>
-
-            <div class="clear"></div>
-
-            <% config.demoModules.forEach(function(module) { %>
-                <section class="component">
-                    <a id="<%= module.name %>"></a>
-                    <div class="clearfix">
-                        <h2 class="section-title component-title"><%= module.displayName %><small>
-                          (encore.ui.<%= module.name %>)
-                        </small></h2>
-                        <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/<%= module.name %>/" class="component-source button button-small primary">View Source</a>
-                    </div>
-                    <div class="pure-g">
-                        <% if(module.docs.html) { %>
-                        <div class="pure-u-1-2 component-example">
-                            <%= module.docs.html %>
-                        </div>
-                        <% } %>
-                        <div class="pure-u-1-2 component-description" ng-non-bindable>
-                            <%= module.docs.md %>
-                        </div>
-                    </div>
-                    <div class="pure-g component-code">
-                        <% if(module.docs.html) { %>
-                        <div class="pure-u-1-2">
-                            <h3>Markup</h3>
-                            <pre ng-non-bindable><code class="language-markup"><%- module.docs.html %></code></pre>
-                        </div>
-                        <% } %>
-                        <% if(module.docs.js) { %>
-                        <div class="pure-u-1-2">
-                            <h3>JavaScript</h3>
-                            <pre ng-non-bindable><code class="language-clike"><%- module.docs.js %></code></pre>
-                        </div>
-                        <% } %>
-                    </div>
-                </section>
-                <script><%= module.docs.js %></script>
-            <% }); %>
-        </rx-page>
+    <rx-app site-title="Encore Demo App" menu="demoNav">
+        <ng-view class="container"></ng-view>
     </rx-app>
-
-    <script src="assets/prism.js"></script>
 </body>
 </html>
