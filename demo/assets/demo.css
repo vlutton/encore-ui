@@ -4,18 +4,3 @@
     box-sizing: border-box;
     padding: 1em;
 }
-
-.component {
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 2em;
-    padding-bottom: 2em;
-}
-
-.rx-app .page-body .component-title {
-    float: left;
-    margin: 0;
-}
-
-.component-source {
-    float: right;
-}
