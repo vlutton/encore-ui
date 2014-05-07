@@ -6,7 +6,7 @@ describe('rxModalAction', function () {
     var ptor = rxModalActionPage.driver;
 
     it('beforeAll', function () {
-        demoPage.go();
+        demoPage.go('#/component/rxModalAction');
     });
 
     // it('should show element', function () {

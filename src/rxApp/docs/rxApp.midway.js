@@ -8,7 +8,7 @@ describe('rxApp', function () {
     var rxApp;
 
     before(function () {
-        demoPage.go();
+        demoPage.go('#/component/rxApp');
         rxApp = rxAppPage.initialize($('#custom-rxApp'));
     });
 
@@ -77,7 +77,7 @@ describe('rxPage', function () {
     var rxPage;
 
     before(function () {
-        demoPage.go();
+        demoPage.go('#/component/rxApp');
         rxPage = rxPagePage.initialize($('#custom-rxApp .rx-page'));
     });
 

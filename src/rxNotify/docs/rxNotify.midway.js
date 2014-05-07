@@ -7,7 +7,7 @@ describe('rxNotify', function () {
     var ptor = rxNotifyPage.driver;
 
     before(function () {
-        demoPage.go();
+        demoPage.go('#/component/rxNotify');
     });
 
     it('should show element', function () {

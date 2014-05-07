@@ -7,7 +7,7 @@ describe('rxButton', function () {
     var ptor = protractor.getInstance(), rxButton;
 
     before(function () {
-        demoPage.go();
+        demoPage.go('#/component/rxButton');
         rxButton = rxButtonPage.initialize(ptor.findElement(protractor.By.css('rx-button')));
     });
 

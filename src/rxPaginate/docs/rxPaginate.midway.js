@@ -6,7 +6,7 @@ var expect = require('chai').use(require('chai-as-promised')).expect;
 describe('rxPaginate', function () {
 
     before(function () {
-        demoPage.go();
+        demoPage.go('#/component/rxPaginate');
         var ptor = protractor.getInstance();
         pagination = pagination.initialize(ptor.findElement(protractor.By.css('div.rx-paginate')));
     });
