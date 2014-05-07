@@ -18,11 +18,18 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', [])
     *     });
     * </pre>
     */
-    .factory('UnauthorizedInterceptor', function ($q, $window) {
+    .factory('UnauthorizedInterceptor', function ($q, $window, $location) {
         return {
             responseError: function (response) {
+                var returnPath = $location.absUrl()
+                    .replace('://', '') // protocol seperator
+                    .replace(':', '') // port seperator
+                    .replace($location.protocol(), '')
+                    .replace($location.host(), '')
+                    .replace($location.port(), '');
+
                 if (response.status === 401) {
-                    $window.location = '/login';
+                    $window.location = '/login?redirect=' + returnPath;
                 }
 
                 return $q.reject(response);
