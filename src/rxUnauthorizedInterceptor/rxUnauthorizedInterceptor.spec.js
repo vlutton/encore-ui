@@ -3,8 +3,14 @@
 describe('rxUnauthorizedInterceptor', function () {
     var interceptor, mockWindow = {},
         q = { reject: sinon.spy() },
+        cases = {
+            'fullPath': '/app/path',
+            'login': '/', // /login is an actual app, so the interceptor never kicks in
+            'root': '/', // / may not need to be authorized, but in case it is, redirect will be /
+        },
+        currentCase = cases.fullPath,
         location = {
-            absUrl: function () { return 'https://localhost:9000/app/path'; },
+            absUrl: function () { return 'https://localhost:9000' + currentCase; },
             host: function () { return 'localhost'; },
             port: function () { return '9000'; },
             protocol: function () { return 'https'; },
@@ -44,5 +50,17 @@ describe('rxUnauthorizedInterceptor', function () {
     it('Interceptor sets proper redirect path', function () {
         interceptor.responseError({ status: 401 });
         expect(mockWindow.location).to.contain('redirect=/app/path');
+    });
+
+    it('Interceptor sets proper redirect path for /login', function () {
+        currentCase = cases.login;
+        interceptor.responseError({ status: 401 });
+        expect(mockWindow.location).to.contain('redirect=/');
+    });
+
+    it('Interceptor sets proper redirect path for /', function () {
+        currentCase = cases.root;
+        interceptor.responseError({ status: 401 });
+        expect(mockWindow.location).to.contain('redirect=/');
     });
 });

@@ -21,13 +21,16 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', [])
     .factory('UnauthorizedInterceptor', function ($q, $window, $location) {
         return {
             responseError: function (response) {
-                var returnPath = $location.absUrl()
-                    .replace('://', '') // protocol seperator
-                    .replace(':', '') // port seperator
-                    .replace($location.protocol(), '')
-                    .replace($location.host(), '')
-                    .replace($location.port(), '');
-
+                // If one uses the <base /> tag, $location's API is unable to
+                // give us a proper path(). Therefore, we have to grab the current
+                // browser URL and fetch the proper portion to return to after login.
+                //
+                // For Example:
+                // <base href="/app"></base>
+                // current URL: /app/path
+                // $location.path(): /path
+                // $location.absUrl(): https://localhost:9000/app/path
+                var returnPath = '/' + $location.absUrl().split('/').splice(3).join('/');
                 if (response.status === 401) {
                     $window.location = '/login?redirect=' + returnPath;
                 }
