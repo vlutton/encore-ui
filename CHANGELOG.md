@@ -1,3 +1,21 @@
+<a name="0.8.4"></a>
+### 0.8.4 (2014-05-07)
+
+
+#### Bug Fixes
+
+* **rxSession:**
+  * Updates per feedback and added unit test ([96d7ef9e](git@github.com:rackerlabs/encore-ui/commit/96d7ef9ea4091fcb222bfb51a340b30d99c8cb3d))
+  * Updated assignment per feedback on PR ([aa8bc09e](git@github.com:rackerlabs/encore-ui/commit/aa8bc09ee8a88f7aa3ca3813cb5107838f44c882))
+  * renamed variable per feedback ([51311b39](git@github.com:rackerlabs/encore-ui/commit/51311b3918f8e9ada8b036f8526eb08042ff47b0))
+
+
+#### Features
+
+* **demo:** move to single-component view ([f322da44](git@github.com:rackerlabs/encore-ui/commit/f322da44ada5b968b53a9e96abc1154dfa46e36a))
+* **rxSession:** Added features to get user info ([14707fc7](git@github.com:rackerlabs/encore-ui/commit/14707fc795c49a5c52f072e24dfea5dc489382a4))
+
+
 <a name="0.8.3"></a>
 ### 0.8.3 (2014-05-05)
 
