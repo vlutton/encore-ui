@@ -21,6 +21,10 @@ module.exports = {
         files: ['src/**/*.less'],
         tasks: ['less']
     },
+    componentImages: {
+        files: ['src/**/images/*'],
+        tasks: ['copy:componentImages']
+    },
     demoSite: {
         files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/**/*'],
         tasks: ['build']
