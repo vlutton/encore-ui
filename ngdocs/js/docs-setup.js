@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Responsible for creating the HTML necessary for a common Encore layout.",
-      "keywords": "api binding collapsed collapsible common corner creating custom directive encore hand html items layout left-hand menu navigation responsible rxapp set site site-title title true ui upper"
+      "keywords": "api binding collapsed collapsible common corner creating custom directive encore hand html instance items layout left-hand menu navigation responsible rxapp rxapproutes set site site-title title true ui upper"
     },
     {
       "section": "api",

@@ -10,12 +10,12 @@
         </div>
     </div>
     <div class="pure-g component-code">
-        <div class="pure-u-1-2" ng-if="component.docs.html">
-            <h3>Markup</h3>
+        <div class="pure-u-1" ng-if="component.docs.html">
+            <h3 class="component-example-title">Markup</h3>
             <rx-prism language="markup">{{ component.docs.html }}</rx-prism>
         </div>
-        <div class="pure-u-1-2" ng-if="component.docs.js">
-            <h3>JavaScript</h3>
+        <div class="pure-u-1" ng-if="component.docs.js">
+            <h3 class="component-example-title">JavaScript</h3>
             <rx-prism language="clike">{{ component.docs.js }}</rx-prism>
         </div>
     </div>

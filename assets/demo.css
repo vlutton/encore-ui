@@ -4,3 +4,8 @@
     box-sizing: border-box;
     padding: 1em;
 }
+
+.component-example-title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
