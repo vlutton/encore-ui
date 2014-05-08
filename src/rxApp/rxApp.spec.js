@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 describe('rxAppRoutes', function () {
-    var appRoutes, myAppRoutes, envSvc, generatedRoutes, location, rootScope, log;
+    var appRoutes, envSvc, generatedRoutes, location, rootScope, log;
 
     var fakeRoutes = [{
         href: { tld: 'example', path: 'myPath' },
@@ -59,8 +59,8 @@ describe('rxAppRoutes', function () {
             url: '{{tld}}/{{path}}'
         });
 
-        myAppRoutes = new appRoutes(fakeRoutes);
-        generatedRoutes = myAppRoutes.getAll();
+        appRoutes.setAll(fakeRoutes);
+        generatedRoutes = appRoutes.getAll();
     });
 
     afterEach(function () {
@@ -124,25 +124,25 @@ describe('rxAppRoutes', function () {
             href: '/r/BrokenGifs'
         }];
 
-        myAppRoutes.setAll(newRoutes);
+        appRoutes.setAll(newRoutes);
 
-        expect(myAppRoutes.getAll()[0].url).to.equal(newRoutes[0].href);
+        expect(appRoutes.getAll()[0].url).to.equal(newRoutes[0].href);
     });
 
     it('should allow getting route index by key', function () {
-        var rootRouteIndex = myAppRoutes.getIndexByKey('root');
+        var rootRouteIndex = appRoutes.getIndexByKey('root');
 
         expect(rootRouteIndex, 'root round index').to.eql([0]);
         expect(generatedRoutes[rootRouteIndex[0]].url).to.equal('example/myPath');
 
         // check recusive functionality
-        var childIndex = myAppRoutes.getIndexByKey('firstChild');
+        var childIndex = appRoutes.getIndexByKey('firstChild');
         expect(childIndex, 'child route index').to.eql([0, 0]);
 
-        var childChildIndex = myAppRoutes.getIndexByKey('firstChildChild');
+        var childChildIndex = appRoutes.getIndexByKey('firstChildChild');
         expect(childChildIndex, 'child child route index').to.eql([0, 0, 0]);
 
-        var secondChildIndex = myAppRoutes.getIndexByKey('secondChild');
+        var secondChildIndex = appRoutes.getIndexByKey('secondChild');
         expect(secondChildIndex, 'second child index').to.eql([0, 1]);
     });
 
@@ -164,14 +164,14 @@ describe('rxAppRoutes', function () {
             key: 'suchDupes'
         }];
 
-        var routes = new appRoutes(duplicateKeyRoutes);
+        appRoutes.setAll(duplicateKeyRoutes);
 
         // shouldn't warn when searching non-dupe keys
-        routes.getIndexByKey('nonDupeKey');
+        appRoutes.getIndexByKey('nonDupeKey');
         expect(log.warn.logs.length).to.equal(0);
 
         // find index w/duplicate key
-        var index = routes.getIndexByKey('dupeKey');
+        var index = appRoutes.getIndexByKey('dupeKey');
 
         // should return last match
         expect(index).to.eql([1, 0]);
@@ -187,9 +187,9 @@ describe('rxAppRoutes', function () {
             };
 
             // try updating the root element
-            myAppRoutes.setRouteByKey('root', newRouteData);
+            appRoutes.setRouteByKey('root', newRouteData);
 
-            var root = myAppRoutes.getAll()[0];
+            var root = appRoutes.getAll()[0];
 
             // check that it was updated
             expect(root.href).to.equal(newRouteData.href);
@@ -205,9 +205,9 @@ describe('rxAppRoutes', function () {
             var updatedFirstChild = {
                 href: 'anotherRoute'
             };
-            myAppRoutes.setRouteByKey('firstChild', updatedFirstChild);
+            appRoutes.setRouteByKey('firstChild', updatedFirstChild);
 
-            var root = myAppRoutes.getAll()[0];
+            var root = appRoutes.getAll()[0];
 
             // check that parent wasn't modified
             expect(root.href).to.equal(fakeRoutes[0].href);
@@ -231,13 +231,13 @@ describe('rxAppRoutes', function () {
                     href: 'yetAnotherRoute'
                 }]
             };
-            myAppRoutes.setRouteByKey('secondChild', updatedSecondChild);
+            appRoutes.setRouteByKey('secondChild', updatedSecondChild);
 
             // check that the second child was updated
-            expect(myAppRoutes.getAll()[0].children[1].href).to.equal(updatedSecondChild.href);
+            expect(appRoutes.getAll()[0].children[1].href).to.equal(updatedSecondChild.href);
 
             // check that the second child now has children
-            var newChild = myAppRoutes.getAll()[0].children[1].children[0];
+            var newChild = appRoutes.getAll()[0].children[1].children[0];
             expect(newChild.href).to.equal(updatedSecondChild.children[0].href);
             expect(newChild.url).to.equal(updatedSecondChild.children[0].href);
         });
@@ -249,7 +249,7 @@ describe('rxApp', function () {
     var standardTemplate = '<rx-app></rx-app>';
     var collapsibleTemplate = '<rx-app collapsible-nav="true"></rx-app>';
     var collapsibleExternalVarTemplate = '<rx-app collapsible-nav="true" collapsed-nav="collapsed"></rx-app>';
-    var customTemplate = '<rx-app site-title="My App" app-routes="customNav"></rx-app>';
+    var customTemplate = '<rx-app site-title="My App" menu="customNav" new-instance="true"></rx-app>';
 
     var customNav = [{
         title: 'Example Menu',
@@ -284,7 +284,7 @@ describe('rxApp', function () {
             scope.collapsed = false;
         });
 
-        scope.customNav = new appRoutes(customNav);
+        scope.customNav = customNav;
 
         el = helpers.createDirective(standardTemplate, compile, scope);
         elCustom = helpers.createDirective(customTemplate, compile, scope);
@@ -292,78 +292,82 @@ describe('rxApp', function () {
         elCollapsibleVar = helpers.createDirective(collapsibleExternalVarTemplate, compile, scope);
     });
 
-    it('should have a default title', function () {
-        // get page title element
-        var pageTitle = el[0].querySelector('.site-title');
+    describe('default menu', function () {
+        it('should have a default title', function () {
+            // get page title element
+            var pageTitle = el[0].querySelector('.site-title');
 
-        // validate it matches 'Encore'
-        expect(pageTitle.textContent).to.equal('Encore');
+            // validate it matches 'Encore'
+            expect(pageTitle.textContent).to.equal('Encore');
+        });
+
+        it('should have a default nav', function () {
+            // get first nav section
+            var navTitle = el[0].querySelector('.nav-section-title');
+
+            // validate it matches 'Encore'
+            expect(navTitle.textContent).to.equal(defaultNav[0].title);
+        });
+
+        it('should not show the collapsible toggle if collapsible is not true', function () {
+            var collapsibleToggle = el[0].querySelector('.collapsible-toggle');
+
+            expect(collapsibleToggle).to.be.null;
+        });
+
+        it('should allow you to set the menu as collapsible', function () {
+            var collapsibleToggle = elCollapsible[0].querySelector('.collapsible-toggle');
+
+            expect(collapsibleToggle).to.be.ok;
+        });
+
+        it('should set the external collapsedNav value when you toggle the collapsed button', function () {
+            var elScope = elCollapsibleVar.isolateScope();
+
+            expect(scope.collapsed).to.be.not.ok;
+            elScope.collapseMenu();
+
+            // Have to run the digest cycle manually to get the var to propagate up
+            scope.$digest();
+            expect(scope.collapsed).to.be.ok;
+        });
+
+        it('should apply the classes to the menu for collapsible status', function () {
+            var collapsibleMenu = elCollapsible[0].querySelector('.collapsible');
+
+            expect(collapsibleMenu).to.be.not.null;
+        });
+
+        it('should apply the classes to the menu for collapsed status', function () {
+            var elScope = elCollapsible.isolateScope();
+            var collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
+
+            expect(collapsibleMenu).to.be.null;
+            elScope.collapseMenu();
+
+            // We need to run the digest to update the classes
+            scope.$digest();
+            collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
+            expect(collapsibleMenu).to.be.not.null;
+        });
     });
 
-    it('should allow you to override the default title', function () {
-        // get page title element
-        var pageTitle = elCustom[0].querySelector('.site-title');
+    describe('custom menu', function () {
+        it('should allow you to override the default title', function () {
+            // get page title element
+            var pageTitle = elCustom[0].querySelector('.site-title');
 
-        // validate it matches custom app name
-        expect(pageTitle.textContent).to.equal('My App');
-    });
+            // validate it matches custom app name
+            expect(pageTitle.textContent).to.equal('My App');
+        });
 
-    it('should have a default nav', function () {
-        // get first nav section
-        var navTitle = el[0].querySelector('.nav-section-title');
+        it('should allow you to override the default nav', function () {
+            // get first nav section
+            var navTitle = elCustom[0].querySelector('.nav-section-title');
 
-        // validate it matches 'Encore'
-        expect(navTitle.textContent).to.equal(defaultNav[0].title);
-    });
-
-    it('should allow you to override the default nav', function () {
-        // get first nav section
-        var navTitle = elCustom[0].querySelector('.nav-section-title');
-
-        // validate it matches custom nav title
-        expect(navTitle.textContent).to.equal(customNav[0].title);
-    });
-
-    it('should not show the collapsible toggle if collapsible is not true', function () {
-        var collapsibleToggle = el[0].querySelector('.collapsible-toggle');
-
-        expect(collapsibleToggle).to.be.null;
-    });
-
-    it('should allow you to set the menu as collapsible', function () {
-        var collapsibleToggle = elCollapsible[0].querySelector('.collapsible-toggle');
-
-        expect(collapsibleToggle).to.be.ok;
-    });
-
-    it('should set the external collapsedNav value when you toggle the collapsed button', function () {
-        var elScope = elCollapsibleVar.isolateScope();
-
-        expect(scope.collapsed).to.be.not.ok;
-        elScope.collapseMenu();
-
-        // Have to run the digest cycle manually to get the var to propagate up
-        scope.$digest();
-        expect(scope.collapsed).to.be.ok;
-    });
-
-    it('should apply the classes to the menu for collapsible status', function () {
-        var collapsibleMenu = elCollapsible[0].querySelector('.collapsible');
-
-        expect(collapsibleMenu).to.be.not.null;
-    });
-
-    it('should apply the classes to the menu for collapsed status', function () {
-        var elScope = elCollapsible.isolateScope();
-        var collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
-
-        expect(collapsibleMenu).to.be.null;
-        elScope.collapseMenu();
-
-        // We need to run the digest to update the classes
-        scope.$digest();
-        collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
-        expect(collapsibleMenu).to.be.not.null;
+            // validate it matches custom nav title
+            expect(navTitle.textContent).to.equal(customNav[0].title);
+        });
     });
 });
 

@@ -17,7 +17,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
             ]
         };
 
-        $rootScope.appRoutes.setRouteByKey('acctLvlTools', newRoute);
+        rxAppRoutes.setRouteByKey('acctLvlTools', newRoute);
     };
 
     // Fake navigation
@@ -49,7 +49,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
 
     var searchDirective = 'rx-app-search placeholder="Enter User" model="$root.user"';
 
-    $scope.menuItems = new rxAppRoutes([{
+    $scope.customMenu = [{
         title: 'Example Menu',
         children: [
             {
@@ -112,5 +112,5 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
                 ]
             }
         ]
-    }]);
+    }];
 }

@@ -143,8 +143,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 * @description
 * Manages page routes, building urls and marking them as active on route change
 */
-.factory('rxAppRoutes', function ($rootScope, $location, $route, $interpolate, rxEnvironmentUrlFilter, $log) {
-    return function (routes) {
+.service('rxAppRoutes', function ($rootScope, $location, $route, $interpolate, rxEnvironmentUrlFilter, $log) {
+    var AppRoutes = function () {
+        var routes = [];
+
         var isActive = function (item) {
             // check if url matches absUrl
             // TODO: Add Unit Tests for URLs with Query Strings in them.
@@ -241,8 +243,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             routes = setDynamicProperties(routes);
         });
 
-        routes = setDynamicProperties(routes);
-
         return {
             /**
              * Finds the indexes/path to a route. Will return last match if duplicate keys exist
@@ -290,6 +290,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         };
     };
+
+    var appRoutesInstance = new AppRoutes();
+
+    appRoutesInstance.createInstance = function () {
+        return new AppRoutes();
+    };
+
+    return appRoutesInstance;
 })
 /**
 * @ngdoc directive
@@ -303,27 +311,29 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 * @param {array} [menu] Menu items used for left-hand navigation
 * @param {string} [collapsibleNav] Set to 'true' if the navigation menu should be collapsible
 * @param {string} [collapsedNav] Binding for the collapsed state of the menu.
+* @param {boolean} [newInstance] Whether the menu items should be a new instance of rxAppRoutes
 *
 * @example
 * <pre>
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (rxAppRoutes, encoreNav, $rootScope) {
+.directive('rxApp', function (rxAppRoutes, encoreNav) {
     return {
         restrict: 'E',
         transclude: true,
         templateUrl: 'templates/rxApp.html',
         scope: {
             siteTitle: '@?',
-            appRoutes: '=?',
+            menu: '=?',
             collapsibleNav: '@',
-            collapsedNav: '=?'
+            collapsedNav: '=?',
+            newInstance: '@?'
         },
         link: function (scope) {
-            if (!scope.appRoutes) {
-                $rootScope.appRoutes = scope.appRoutes = new rxAppRoutes(encoreNav);
-            }
+            scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;
+            scope.menu = scope.menu || encoreNav;
+            scope.appRoutes.setAll(scope.menu);
 
             if (!_.isBoolean(scope.collapsedNav)) {
                 scope.collapsedNav = false;

@@ -29,7 +29,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             }
         });
 })
-.run(function ($rootScope, components, $window, rxAppRoutes) {
+.run(function ($rootScope, components, $window) {
     var demoNav = [
         {
             type: 'highlight',
@@ -71,7 +71,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         });
     });
 
-    $rootScope.demoNav = new rxAppRoutes(demoNav);
+    $rootScope.demoNav = demoNav;
 
     $rootScope.$on('$routeChangeSuccess', function() {
         $window.scrollTo(0,0);
