@@ -28,31 +28,7 @@ describe('rxApp', function () {
         expect(rxApp.lnkLogout.isDisplayed()).to.eventually.be.true;
     });
 
-    it('should not support a toggle show/hide button', function () {
-        expect(rxApp.isCollapsible()).to.eventually.be.false;
-    });
-
-    it('should throw an error if you attempt to expand and unsupported', function () {
-        expect(rxApp.expand()).to.be.rejectedWith('My App');
-    });
-
     describe('with collapsible navigation', function () {
-        before(function () {
-            rxApp = rxAppPage.initialize($('#collapsible-rxApp'));
-        });
-
-        it('should have a title', function () {
-            expect(rxApp.title).to.eventually.equal('Encore');
-        });
-
-        it('should have a section title', function () {
-            expect(rxApp.sectionTitle).to.eventually.equal('All Tools');
-        });
-
-        it('should have a logout link', function () {
-            expect(rxApp.lnkLogout.isDisplayed()).to.eventually.be.true;
-        });
-
         it('should have a collapsible navigation menu', function () {
             expect(rxApp.isCollapsible()).to.eventually.be.true;
         });
@@ -69,6 +45,20 @@ describe('rxApp', function () {
         it('should expand the navigation', function () {
             rxApp.expand();
             expect(rxApp.isExpanded()).to.eventually.be.true;
+        });
+    });
+
+    describe('without collapsible navigation', function () {
+        before(function () {
+            rxApp = rxAppPage.initialize($('#standard-rxApp'));
+        });
+
+        it('should not support a toggle show/hide button', function () {
+            expect(rxApp.isCollapsible()).to.eventually.be.false;
+        });
+
+        it('should throw an error if you attempt to expand and unsupported', function () {
+            expect(rxApp.expand()).to.be.rejectedWith('Encore');
         });
     });
 });
