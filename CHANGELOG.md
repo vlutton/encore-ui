@@ -17,7 +17,7 @@
 
 #### Breaking Changes
 
-* The 'menu' property has been changed to 'app-routes' to be more descriptive
+* Creation and editing of menus for rxApp has undergone major changes. See [PR #223](https://github.com/rackerlabs/encore-ui/pull/233) for details
  ([800f225b](git@github.com:rackerlabs/encore-ui/commit/800f225b74bf479bfd68442a794b1aaf016c3e6f))
 
 
