@@ -1,3 +1,26 @@
+<a name="0.9.0"></a>
+## 0.9.0 (2014-05-08)
+
+
+#### Bug Fixes
+
+* **rxNotify:** change error icon to avoid UX issue ([11facc8f](git@github.com:rackerlabs/encore-ui/commit/11facc8f804b92f0752abf3dcd8a89728d31b8fa))
+* **rxUnauthorizedInterceptor:** Redirect back to originator ([61fe1a30](git@github.com:rackerlabs/encore-ui/commit/61fe1a30c29e967b30444f56ac8422c01d568b3a))
+
+
+#### Features
+
+* **rxApp:**
+  * switch rxAppRoutes to service ([1c29cf73](git@github.com:rackerlabs/encore-ui/commit/1c29cf735f63eb1880d457cf1d1861a41ef7a35a))
+  * expose appRoutes via rootScope ([800f225b](git@github.com:rackerlabs/encore-ui/commit/800f225b74bf479bfd68442a794b1aaf016c3e6f))
+
+
+#### Breaking Changes
+
+* The 'menu' property has been changed to 'app-routes' to be more descriptive
+ ([800f225b](git@github.com:rackerlabs/encore-ui/commit/800f225b74bf479bfd68442a794b1aaf016c3e6f))
+
+
 <a name="0.8.4"></a>
 ### 0.8.4 (2014-05-07)
 
