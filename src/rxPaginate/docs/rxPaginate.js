@@ -22,5 +22,16 @@ function rxPaginateCtrl ($scope, PageTracking) {
         }
         return servers;
     };
+
     $scope.servers = makeServers(21);
+
+    $scope.removeServers = function () {
+        if ($scope.servers.length > 2) {
+            $scope.servers = $scope.servers.splice(2);
+        }
+    };
+
+    $scope.addServers = function () {
+        $scope.servers = $scope.servers.concat(makeServers(2));
+    };
 }
