@@ -43,17 +43,30 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'External Links',
                     children: [
                         {
-                            href: 'https://github.com/rackerlabs/encore-ui',
-                            linkText: 'GitHub Repo'
+                            linkText: 'GitHub Repos',
+                            children: [
+                                {
+                                    href: 'https://github.com/rackerlabs/encore-ui',
+                                    linkText: 'Encore-UI'
+                                },
+                                {
+                                    href: 'https://github.com/rackerlabs/encore-ui-template',
+                                    linkText: 'App Template (Private Repo)'
+                                },
+                                {
+                                    href: 'https://github.com/rackerlabs/encore-ui-login',
+                                    linkText: 'Common Login (Private Repo)'
+                                }
+                            ]
                         },
                         {
                             href: 'coverage/index.html',
-                            linkText: 'Unit test coverage'
+                            linkText: 'Unit Test Coverage'
                         },
                         {
                             href: 'ngdocs/index.html',
-                            linkText: 'ng-docs'
-                        }
+                            linkText: 'Generated JS Docs'
+                        },
                     ]
                 }
             ]
