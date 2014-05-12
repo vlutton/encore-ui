@@ -1,3 +1,12 @@
+<a name="0.9.1"></a>
+### 0.9.1 (2014-05-12)
+
+
+#### Features
+
+* **rxAge:** Added the ability to adjust verbosity ([3264c877](git@github.com:rackerlabs/encore-ui/commit/3264c877e041d181c43f2d34d5e69f2260166b14))
+
+
 <a name="0.9.0"></a>
 ## 0.9.0 (2014-05-08)
 
