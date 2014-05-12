@@ -21,7 +21,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     title: 'All Tools',
     children: [{
         linkText: 'Account-level Tools',
-        directive: 'rx-atlas-search',
+        directive: 'rx-account-search',
         visibility: '"!unified" | rxEnvironmentMatch',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
@@ -487,7 +487,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         scope: {
             placeholder: '@?',
             model: '=?',
-            submit: '=?'
+            submit: '=?',
+            invalid: '=?'
         }
     };
 })
@@ -503,11 +504,23 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         template: '<rx-app-search placeholder="Search for user..." submit="searchAccounts"></rx-app-search>',
         restrict: 'E',
         link: function (scope) {
+            scope.pattern = /^\d{1,9}$/;
             scope.searchAccounts = function (searchValue) {
                 $location.path(searchValue + '/servers/');
             };
         }
     };
+})
+.directive('rxAccountSearch', function ($location) {
+    return {
+        templateUrl: 'templates/rxAccountSearch.html',
+        restrict: 'E',
+        link: function (scope) {
+            scope.fetchAccount = function (accountNumber) {
+                $location.path('/accounts/' + accountNumber);
+            }
+        }
+    }
 })
 /**
 * @ngdoc directive

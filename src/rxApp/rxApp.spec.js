@@ -263,6 +263,7 @@ describe('rxApp', function () {
         module('templates/rxAppNavItem.html');
         module('templates/rxPage.html');
         module('templates/rxAppSearch.html');
+        module('templates/rxAccountSearch.html');
 
         // Inject in angular constructs
         inject(function ($rootScope, $compile, encoreNav) {
