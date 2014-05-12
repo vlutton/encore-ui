@@ -517,7 +517,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         restrict: 'E',
         link: function (scope) {
             scope.fetchAccount = function (accountNumber) {
-                $location.path('/accounts/' + accountNumber);
+                if (accountNumber) {
+                    $location.path('/accounts/' + accountNumber);    
+                }
             };
         }
     };
