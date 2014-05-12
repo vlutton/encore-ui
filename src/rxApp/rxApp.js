@@ -135,25 +135,25 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-         href: '/virt',
-         linkText: 'Virtualization Admin',
-         visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
-         children: [
-             {
-                 href: '/virt/vcenters',
-                 linkText: 'vCenters'
-             }, {
-                 href: '/virt/hypervisor-clusters',
-                 linkText: 'Hypervisor Clusters'
-             }, {
-                 href: '/virt/hypervisors',
-                 linkText: 'Hypervisors'
-             }, {
-                 href: '/virt/vms',
-                 linkText: 'VMs'
-             }
-         ]
-     }]
+        href: '/virt',
+        linkText: 'Virtualization Admin',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+        children: [
+            {
+                href: '/virt/vcenters',
+                linkText: 'vCenters'
+            }, {
+                href: '/virt/hypervisor-clusters',
+                linkText: 'Hypervisor Clusters'
+            }, {
+                href: '/virt/hypervisors',
+                linkText: 'Hypervisors'
+            }, {
+                href: '/virt/vms',
+                linkText: 'VMs'
+            }
+        ]
+    }]
 }])
 /**
 * @ngdoc interface
