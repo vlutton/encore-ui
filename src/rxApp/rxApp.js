@@ -520,7 +520,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 $location.path('/accounts/' + accountNumber);
             };
         }
-    }
+    };
 })
 /**
 * @ngdoc directive
