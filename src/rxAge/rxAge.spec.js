@@ -72,4 +72,17 @@ describe('rxAge', function () {
         // test that override to 3 units works
         expect(age(date, 3)).to.equal('2d 3h 30m');
     });
+
+    it('should take verbosity', function () {
+        var date = new Date(1999, 11, 29, 20, 30, 0);
+
+        expect(age(date, true)).to.equal('2 days, 3 hours');
+    });
+
+    it('should take both maxUnits and verbosity', function () {
+        var date = new Date(1999, 11, 29, 20, 30, 0);
+
+        expect(age(date, 1, true)).to.equal('2 days');
+        expect(age(date, 3, true)).to.equal('2 days, 3 hours, 30 minutes');
+    });
 });
