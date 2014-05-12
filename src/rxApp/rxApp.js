@@ -20,8 +20,52 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 .value('encoreNav', [{
     title: 'All Tools',
     children: [{
-        linkText: 'Account-level Tools',
+        linkText: 'Account',
         directive: 'rx-account-search',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+        childVisibility: function (scope) {
+            if (scope.route.current) {
+                return !_.isUndefined(scope.route.current.pathParams.accountNumber);
+            }
+            
+            return false;
+        },
+        children: [
+            {
+                href: '/accounts/{{accountNumber}}',
+                linkText: 'Overview'
+            }
+        ]
+    },
+    {
+        href: '/billing',
+        linkText: 'Billing',
+        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+        children: [
+            {
+                href: '/billing/overview/{{accountNumber}}',
+                linkText: 'Overview'
+            }, {
+                href: '/billing/transactions/{{accountNumber}}',
+                linkText: 'Transactions'
+            }, {
+                href: '/billing/usage/{{accountNumber}}',
+                linkText: 'Current Usage'
+            }, {
+                href: '/billing/discounts/{{accountNumber}}',
+                linkText: 'Discounts'
+            }, {
+                href: '/billing/payment/{{accountNumber}}/options',
+                linkText: 'Payment Options'
+            }, {
+                href: '/billing/preferences/{{accountNumber}}',
+                linkText: 'Preferences'
+            }
+        ]
+    },
+    {
+        linkText: 'Cloud',
+        directive: 'rx-atlas-search',
         visibility: '"!unified" | rxEnvironmentMatch',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
@@ -61,31 +105,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        href: '/billing',
-        linkText: 'Billing',
-        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
-        children: [
-            {
-                href: '/billing/overview/{{accountNumber}}',
-                linkText: 'Overview'
-            }, {
-                href: '/billing/transactions/{{accountNumber}}',
-                linkText: 'Transactions'
-            }, {
-                href: '/billing/usage/{{accountNumber}}',
-                linkText: 'Current Usage'
-            }, {
-                href: '/billing/discounts/{{accountNumber}}',
-                linkText: 'Discounts'
-            }, {
-                href: '/billing/payment/{{accountNumber}}/options',
-                linkText: 'Payment Options'
-            }, {
-                href: '/billing/preferences/{{accountNumber}}',
-                linkText: 'Preferences'
-            }
-        ]
-    }, {
         href: '/supportservice',
         linkText: 'Support Service',
         visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
@@ -96,25 +115,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }, {
                 href: '/supportservice/admin',
                 linkText: 'Admin'
-            }
-        ]
-    }, {
-        href: '/virt',
-        linkText: 'Virtualization Admin',
-        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
-        children: [
-            {
-                href: '/virt/vcenters',
-                linkText: 'vCenters'
-            }, {
-                href: '/virt/hypervisor-clusters',
-                linkText: 'Hypervisor Clusters'
-            }, {
-                href: '/virt/hypervisors',
-                linkText: 'Hypervisors'
-            }, {
-                href: '/virt/vms',
-                linkText: 'VMs'
             }
         ]
     }, {
@@ -134,7 +134,26 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 linkText: 'Queue Admin'
             }
         ]
-    }]
+    }, {
+         href: '/virt',
+         linkText: 'Virtualization Admin',
+         visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+         children: [
+             {
+                 href: '/virt/vcenters',
+                 linkText: 'vCenters'
+             }, {
+                 href: '/virt/hypervisor-clusters',
+                 linkText: 'Hypervisor Clusters'
+             }, {
+                 href: '/virt/hypervisors',
+                 linkText: 'Hypervisors'
+             }, {
+                 href: '/virt/vms',
+                 linkText: 'VMs'
+             }
+         ]
+     }]
 }])
 /**
 * @ngdoc interface
