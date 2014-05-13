@@ -3,19 +3,22 @@
         <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/{{ component.name }}/" class="component-source button button-small primary">View Source</a>
     </div>
     <div class="pure-g clear">
-        <div class="pure-u-1-2 component-example" ng-if="component.docs.html" rx-compile="component.docs.html">
+        <div class="pure-u-1-2 component-example" ng-if="component.docs.html">
+            <h3 class="section-title">Live Demo</h3>
+            <div rx-compile="component.docs.html"></div>
         </div>
-        <div class="pure-u-1-2 component-description" ng-bind-html="component.docs.md">
-
+        <div class="pure-u-1-2 component-description">
+            <h3 class="section-title">README Documentation</h3>
+            <div ng-bind-html="component.docs.md"></div>
         </div>
     </div>
     <div class="pure-g component-code">
         <div class="pure-u-1" ng-if="component.docs.html">
-            <h3 class="component-example-title">Markup</h3>
+            <h3 class="section-title">Demo Markup</h3>
             <rx-prism language="markup">{{ component.docs.html }}</rx-prism>
         </div>
         <div class="pure-u-1" ng-if="component.docs.js">
-            <h3 class="component-example-title">JavaScript</h3>
+            <h3 class="section-title">Demo JavaScript</h3>
             <rx-prism language="clike">{{ component.docs.js }}</rx-prism>
         </div>
     </div>
