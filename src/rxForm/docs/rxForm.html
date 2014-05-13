@@ -5,23 +5,8 @@
     </rx-form-item>
     <p>Bound Value: {{volume.name}}</p>
 
-    <h3>Radio Buttons</h3>
-    <fieldset>
-        <legend>Restart?</legend>
-        <rx-form-item label="Yes" description="{{yesOptionDescription}}">
-            <input type="radio" name="volume-option" ng-model="volume.option" value="yes" />
-        </rx-form-item>
-        <rx-form-item label="Apartment" suffix="Sq. Ft.">
-            <input type="radio" name="volume-option" ng-model="volume.option" value="upstairs" />
-        </rx-form-item>
-        <rx-form-item label="Green">
-            <input type="radio" name="volume-option" ng-model="volume.option" value="purple" />
-        </rx-form-item>
-    </fieldset>
-    <p>Bound Value: {{volume.option}}</p>
-
     <h3>Select Box</h3>
-    <rx-form-item label="Type" prefix="$">
+    <rx-form-item label="Type" prefix="$" description="Bound Value: {{volume.type}}">
         <span class="field-select">
             <select ng-model="volume.type" ng-required="true">
                 <option
@@ -32,26 +17,28 @@
             </select>
         </span>
     </rx-form-item>
-    <p>Bound Value: {{volume.type}}</p>
 
-    <h3>Option Table</h3>
-    <rx-form-option-table
-        data="optionTableData"
-        columns="optionTableColumns"
-        type="radio"
-        model="volume.data"
-        field-id="optionTable"
-        selected="0"
-        ></rx-form-option-table>
-    <p>Bound Value: {{volume.data}}</p>
+    <rx-form-fieldset legend="Option Table (radio)">
+        <rx-form-option-table
+            data="optionTableData"
+            columns="optionTableColumns"
+            type="radio"
+            model="volume.data"
+            field-id="optionTable"
+            selected="0"
+            ></rx-form-option-table>
+        <p>Bound Value: {{volume.data}}</p>
+    </rx-form-fieldset>
 
-    <rx-form-option-table
-        columns="optionTableColumns"
-        type="checkbox"
-        model="volume.checked"
-        field-id="optionCheckboxTable"
-        data="optionTableCheckboxData"
-        ></rx-form-option-table>
-    <p>Item 1 Value: {{volume.checked[0]}}</p>
-    <p>Item 2 Value: {{volume.checked[1]}}</p>
+    <rx-form-fieldset legend="Option Table (checkboxes)">
+        <rx-form-option-table
+            columns="optionTableColumns"
+            type="checkbox"
+            model="volume.checked"
+            field-id="optionCheckboxTable"
+            data="optionTableCheckboxData"
+            ></rx-form-option-table>
+        <p>Item 1 Value: {{volume.checked[0]}}</p>
+        <p>Item 2 Value: {{volume.checked[1]}}</p>
+    </rx-form-fieldset>
 </div>

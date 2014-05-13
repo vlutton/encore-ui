@@ -13,7 +13,8 @@
     margin-bottom: 15px;
 }
 
-.field-label {
+.field-label,
+.field-legend, {
     width: 100px;
     text-align: left;
     float: left;
@@ -114,10 +115,7 @@
     width: auto;
     // we also want a semi-consistent width
     min-width: 40em;
-    .option-table-input {
-        // set a common width for input
-        width: 2em;
-    }
+
     td {
         // remove default padding from td's so that we can make the label take up the full room
         padding: 0;
@@ -126,20 +124,36 @@
         // add padding to labels so they take up the entire cell's space
         display: block;
         padding: @tableCellPadding;
-        cursor: pointer;
+        cursor: pointer;;
+    }
+    .option-table-input {
+        text-align: center;
+        line-height: 0;
     }
     .current td {
         color: #3AB661;
     }
     // @note KL: I'd like to stick with just adding the background to the <tr>, but
     // we need to make the selector more specific to override the table-stripe styles.
-    .selected th,
     .selected td {
         background: #c5e3c7;
         border-color: #bad4bb;
         // this 'double' makes it so that the border-color applies to the top border as well
         // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
         border-style: double;
+    }
+}
+.rx-form-fieldset {
+    .field-input {
+        top: 0;
+    }
+
+    .option-table {
+        min-width: 100%;
+    }
+
+    .form-item {
+        margin-top: 0;
     }
 }
 
