@@ -28,7 +28,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             if (scope.route.current) {
                 return !_.isUndefined(scope.route.current.pathParams.accountNumber);
             }
-            
+
             return false;
         },
         children: [
@@ -543,7 +543,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         template: '<rx-app-search placeholder="Search for user..." submit="searchAccounts"></rx-app-search>',
         restrict: 'E',
         link: function (scope) {
-            scope.pattern = /^\d{1,9}$/;
             scope.searchAccounts = function (searchValue) {
                 $location.path(searchValue + '/servers/');
             };
