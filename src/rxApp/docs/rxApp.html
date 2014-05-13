@@ -1,26 +1,20 @@
 <div ng-controller="rxAppCtrl">
     <h3>Standard rxApp</h3>
-    <rx-app>
+    <rx-app id="standard-rxApp">
         <rx-page title="'Standard Page Title'">
             <p class="clear">This is my page content</p>
+            <button ng-click="changeRoutes()">Change Routes</button>
         </rx-page>
     </rx-app>
 
-    <h3>Customized rxApp</h3>
-    <rx-app site-title="My App" menu="menuItems" id="custom-rxApp">
+    <h3>Customized rxApp (collapsible)</h3>
+    <rx-app collapsible-nav="true" site-title="My App" id="custom-rxApp" menu="customMenu" new-instance="true">
         <rx-page title="'Customized Page Title'" subtitle="subtitle">
             <p class="clear">Click a link in the menu to see the active state change</p>
+            <p>Click the toggle to hide the menu</p>
             <button ng-click="changeSubtitle()" class="changeSubtitle">Change Subtitle</button>
         </rx-page>
     </rx-app>
-
-    <h3>Collapsible rxApp</h3>
-    <rx-app collapsible-nav="true" id="collapsible-rxApp">
-        <rx-page>
-            <p class="clear">Click the toggle to hide the menu</p>
-        </rx-page>
-    </rx-app>
-
 
 </div>
 

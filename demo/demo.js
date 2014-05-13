@@ -30,7 +30,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         });
 })
 .run(function ($rootScope, components, $window) {
-    $rootScope.demoNav = [
+    var demoNav = [
         {
             type: 'highlight',
             title: 'Encore-UI',
@@ -43,17 +43,30 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'External Links',
                     children: [
                         {
-                            href: 'https://github.com/rackerlabs/encore-ui',
-                            linkText: 'GitHub Repo'
+                            linkText: 'GitHub Repos',
+                            children: [
+                                {
+                                    href: 'https://github.com/rackerlabs/encore-ui',
+                                    linkText: 'Encore-UI'
+                                },
+                                {
+                                    href: 'https://github.com/rackerlabs/encore-ui-template',
+                                    linkText: 'App Template (Private Repo)'
+                                },
+                                {
+                                    href: 'https://github.com/rackerlabs/encore-ui-login',
+                                    linkText: 'Common Login (Private Repo)'
+                                }
+                            ]
                         },
                         {
                             href: 'coverage/index.html',
-                            linkText: 'Unit test coverage'
+                            linkText: 'Unit Test Coverage'
                         },
                         {
                             href: 'ngdocs/index.html',
-                            linkText: 'ng-docs'
-                        }
+                            linkText: 'Generated JS Docs'
+                        },
                     ]
                 }
             ]
@@ -65,12 +78,13 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     ];
 
     _.each(components, function (component) {
-        $rootScope.demoNav[1].children.push({
+        demoNav[1].children.push({
             href: '#/component/' + component.name,
             linkText: component.name
         });
     });
 
+    $rootScope.demoNav = demoNav;
 
     $rootScope.$on('$routeChangeSuccess', function() {
         $window.scrollTo(0,0);

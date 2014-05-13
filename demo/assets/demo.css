@@ -5,7 +5,29 @@
     padding: 1em;
 }
 
-.component-example-title {
-    font-weight: bold;
+.section-title {
+    font-size: 1.6em;
+}
+
+.component-description h1 {
+    font-size: 1.6em;
+    border-bottom: 1px solid #333;
+    margin-top: 1.2em;
+}
+
+.component-description h2 {
+    font-size: 1.4em;
+    border-bottom: 1px solid #ccc;
+    margin-top: .5em;
+}
+
+.component-description h3 {
     font-size: 1.2em;
+    font-weight: bold;
+}
+
+.component-description h4 {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #777;
 }

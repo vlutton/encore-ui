@@ -21,6 +21,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     title: 'All Tools',
     children: [{
         linkText: 'Account',
+        key: 'accountLvlTools',
         directive: 'rx-account-search',
         visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         childVisibility: function (scope) {
@@ -40,6 +41,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     {
         href: '/billing',
         linkText: 'Billing',
+        key: 'billing',
         visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         children: [
             {
@@ -65,6 +67,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     },
     {
         linkText: 'Cloud',
+        key: 'cloud',
         directive: 'rx-atlas-search',
         visibility: '"!unified" | rxEnvironmentMatch',
         childVisibility: function (scope) {
@@ -107,6 +110,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     }, {
         href: '/supportservice',
         linkText: 'Support Service',
+        key: 'supportService',
         visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         children: [
             {
@@ -120,6 +124,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     }, {
         href: { tld: 'cloudatlas', path: 'ticketqueues' },
         linkText: 'Ticket Queues',
+        key: 'ticketQueues',
         visibility: '"!unified" | rxEnvironmentMatch',
         children: [
             {
@@ -137,6 +142,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     }, {
         href: '/virt',
         linkText: 'Virtualization Admin',
+        key: 'virtualization',
         visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         children: [
             {
@@ -161,8 +167,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 * @description
 * Manages page routes, building urls and marking them as active on route change
 */
-.factory('rxAppRoutes', function ($rootScope, $location, $route, $interpolate, rxEnvironmentUrlFilter, $log) {
-    return function (routes) {
+.service('rxAppRoutes', function ($rootScope, $location, $route, $interpolate, rxEnvironmentUrlFilter, $log) {
+    var AppRoutes = function () {
+        var routes = [];
+
         var isActive = function (item) {
             // check if url matches absUrl
             // TODO: Add Unit Tests for URLs with Query Strings in them.
@@ -215,22 +223,27 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 
         var getRouteIndex = function (key, routes) {
             var routeIndex;
-            var routeFound = false;
+            var routeAlreadyFound = false;
 
             _.forEach(routes, function (route, index) {
+                var foundThisTime = false;
                 if (route.key === key) {
                     routeIndex = [index];
+                    foundThisTime = true;
                 } else if ('children' in route) {
                     // if there are children in the route, we need to search through them as well
                     var childIndex = getRouteIndex(key, route.children);
                     if (childIndex) {
                         routeIndex = [index].concat(childIndex);
+                        foundThisTime = true;
                     }
                 }
-                if (routeIndex && !routeFound) {
-                    routeFound = true;
-                } else {
-                    $log.warn('Duplicate routes found for key: ' + key);
+                if (foundThisTime) {
+                    if (routeAlreadyFound) {
+                        $log.warn('Duplicate routes found for key: ' + key);
+                    } else {
+                        routeAlreadyFound = true;
+                    }
                 }
             });
 
@@ -253,8 +266,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         $rootScope.$on('$locationChangeSuccess', function () {
             routes = setDynamicProperties(routes);
         });
-
-        routes = setDynamicProperties(routes);
 
         return {
             /**
@@ -303,6 +314,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         };
     };
+
+    var appRoutesInstance = new AppRoutes();
+
+    appRoutesInstance.createInstance = function () {
+        return new AppRoutes();
+    };
+
+    return appRoutesInstance;
 })
 /**
 * @ngdoc directive
@@ -316,6 +335,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 * @param {array} [menu] Menu items used for left-hand navigation
 * @param {string} [collapsibleNav] Set to 'true' if the navigation menu should be collapsible
 * @param {string} [collapsedNav] Binding for the collapsed state of the menu.
+* @param {boolean} [newInstance] Whether the menu items should be a new instance of rxAppRoutes
 *
 * @example
 * <pre>
@@ -331,12 +351,13 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             siteTitle: '@?',
             menu: '=?',
             collapsibleNav: '@',
-            collapsedNav: '=?'
+            collapsedNav: '=?',
+            newInstance: '@?'
         },
         link: function (scope) {
-            var menu = scope.menu || encoreNav;
-
-            scope.appRoutes = new rxAppRoutes(menu);
+            scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;
+            scope.menu = scope.menu || encoreNav;
+            scope.appRoutes.setAll(scope.menu);
 
             if (!_.isBoolean(scope.collapsedNav)) {
                 scope.collapsedNav = false;
