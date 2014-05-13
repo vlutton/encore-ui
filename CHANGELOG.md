@@ -1,3 +1,27 @@
+<a name="0.9.2"></a>
+### 0.9.2 (2014-05-13)
+
+
+#### Bug Fixes
+
+* **rxApp:**
+  * Removed unused scope variable in rxAtlasSearch ([168f5d5c](git@github.com:rackerlabs/encore-ui/commit/168f5d5c302ffedacfa5c9e5a2353f923663afee))
+  * Fixed merge conflict in menu ([0cbb82d8](git@github.com:rackerlabs/encore-ui/commit/0cbb82d8a3c37d75cfe380b062f34062859307d4))
+  * Removed unused variable ([585224da](git@github.com:rackerlabs/encore-ui/commit/585224da376d573007bf9498c56809ce75722cc0))
+  * Fixed jshint errors with formatting ([ce9d80c4](git@github.com:rackerlabs/encore-ui/commit/ce9d80c4965da1052ac478c91e35d9081d11e062))
+  * Per discussion, updated menu to be more intuitive ([e3cf42a4](git@github.com:rackerlabs/encore-ui/commit/e3cf42a475b4302d28a7134c5de2b9742c78ebf4))
+  * Search field will not redirect without value ([ff87afff](git@github.com:rackerlabs/encore-ui/commit/ff87afff6677f75836d6b1d3316fe49491fab474))
+  * Search field will not redirect without value ([1fe9a78e](git@github.com:rackerlabs/encore-ui/commit/1fe9a78edf64f5a657a96538a366b696f45eb42a))
+  * Fixed jscs errors in rxApp ([09aa7114](git@github.com:rackerlabs/encore-ui/commit/09aa7114859f86a198b76b08e875681a5498e423))
+  * Fixed jscs errors in rxApp ([161dcd76](git@github.com:rackerlabs/encore-ui/commit/161dcd76d9344e5e5687f1334b9e83de03092e62))
+* **rxSortableColumn:** Typo in the visibility expression ([29715292](git@github.com:rackerlabs/encore-ui/commit/29715292355a3001291767510fab533ddfc87f9d))
+
+
+#### Features
+
+* **rxApp:** Added US only account search to rxApp. ([1cd7ff7f](git@github.com:rackerlabs/encore-ui/commit/1cd7ff7f25186c5d6259d0ab6554f17b272a9d2a))
+
+
 <a name="0.9.1"></a>
 ### 0.9.1 (2014-05-12)
 
