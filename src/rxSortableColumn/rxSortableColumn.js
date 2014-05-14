@@ -20,7 +20,7 @@ angular.module('encore.ui.rxSortableColumn', [])
         templateUrl: 'templates/rxSortableColumn.html',
         transclude: true,
         scope: {
-            sortMethod: '=',
+            sortMethod: '&',
             sortProperty: '@',
             predicate: '=',
             reverse: '='
