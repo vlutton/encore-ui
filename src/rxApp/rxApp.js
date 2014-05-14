@@ -390,6 +390,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         restrict: 'E',
         transclude: true,
         templateUrl: 'templates/rxPage.html',
+        replace: true,
         scope: {
             title: '=',
             subtitle: '=',
