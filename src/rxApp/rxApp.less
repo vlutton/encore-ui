@@ -13,89 +13,18 @@
     .flexbox-direction(row);
     background: @appBg;
 
-    &.collapsible {
-        &.collapsed {
-            .rx-app-menu {
-                .flexbox(0 0 0px);
-            }
-
-            .collapsible-toggle {
-                top: -3px;
-                left: 4px;
-            }
-
-            .site-branding {
-                height: 19px;
-
-                .site-title, .site-options {
-                    display: none;
-                }
-            }
-
-            .rx-app-nav {
-                display: none;
-            }
-
-            .rx-app-content .page-header {
-                margin-left: 25px;
-            }
-        }
+    .rx-app-content {
+        .flexbox(1 1 0);
     }
 
     .rx-app-menu {
+        .flexbox(0 0 300px);
         color: #fff;
         font-size: 15px;
         font-weight: 200;
-        .flexbox(0 0 300px);
-        background: #1a1a1a;
+        background: @appMenuBg;
         line-height: @appLineHeight;
         padding-bottom: 10em;
-
-        .collapsible-toggle {
-            position: relative;
-            left: 13px;
-            width: 25px;
-            float: right;
-            background: none;
-            border: 0px;
-            cursor: pointer;
-            text-align: center;
-            padding: 2px;
-        }
-
-        .double-chevron {
-            width: 15px;
-            height: 10px;
-            margin: 0px 0px 2px 2px;
-            font-size: 20px;
-
-            &:hover {
-                &::before {
-                    color: #FFF;
-                }
-            }
-
-            &::before {
-                color: #666;
-                display: block;
-                content: "\00bb";
-                position: relative;
-                top: -6px;
-                left: 1px;
-
-            }
-
-            &.double-chevron-left::before {
-                content: "\00ab";
-                top: -7px;
-                left: 0px;
-            }
-        }
-
-    }
-
-    .rx-app-content {
-        .flexbox(1 1 0);
     }
 
     .site-branding {
@@ -103,7 +32,8 @@
         border-bottom: 1px solid #052953;
         padding: 5px 20px;
         overflow: hidden;
-        background: #06356b;
+        background: @siteBrandingBg;
+        position: relative;
 
         .site-title {
             float: left;
@@ -115,14 +45,79 @@
             margin-top: 1px;
 
             a {
-                color: #97b1d0;
+                color: @menuLinkLightBlue;
                 display: inline-block;
                 margin-left: 1em;
                 &:hover,
                 &:focus {
-                    color: #fff;
+                    color: @white;
                 }
             }
+        }
+
+        .collapsible-toggle {
+            position: absolute;
+            text-align: center;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 2em;
+            border-left: 1px solid #052953;
+            &:hover {
+                background: lighten(@siteBrandingBg, 10%);
+            }
+        }
+
+        .double-chevron {
+            font-size: 20px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+
+            &::before {
+                color: @menuLinkLightBlue;
+                content: "\00bb";
+            }
+
+            &.double-chevron-left::before {
+                content: "\00ab";
+            }
+
+            &:hover &::before {
+                color: @white;
+            }
+        }
+    }
+
+    &.collapsible {
+        .site-branding {
+            padding-right: calc(~"2em + 20px");
+        }
+    }
+
+    &.collapsed {
+        .rx-app-menu {
+            .flexbox(0 0 25px);
+            padding-bottom: 0;
+            position: relative;
+        }
+
+        .site-branding,
+        .collapsible-toggle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .site-title,
+        .site-options,
+        .rx-app-nav {
+            display: none;
         }
     }
 
@@ -348,7 +343,7 @@
             padding-right: 30px;
             margin: 0;
         }
-        
+
         .search-input.ng-invalid:focus {
             outline-color: @menuRed;
         }
