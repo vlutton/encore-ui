@@ -2,7 +2,7 @@
     <nav class="rx-app-menu">
         <header class="site-branding">
             <h1 class="site-title">{{ siteTitle || 'Encore' }}</h1>
-            <button class="collapsible-toggle" ng-if="collapsibleNav === 'true'" ng-click="collapseMenu()">
+            <button class="collapsible-toggle btn-link" ng-if="collapsibleNav === 'true'" ng-click="collapseMenu()" title="{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu">
                 <span class="visually-hidden">{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu</span>
                 <div class="double-chevron" ng-class="{'double-chevron-left': !collapsedNav}"></div>
             </button>
