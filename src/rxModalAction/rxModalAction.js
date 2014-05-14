@@ -10,6 +10,11 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
             isLoading: '=',
             submitText: '@',
             cancelText: '@'
+        },
+        link: function (scope, element) {
+            // Remove the title attribute, as it will cause a popup to appear when hovering over page content
+            // @see https://github.com/rackerlabs/encore-ui/issues/256
+            element.removeAttr('title');
         }
     };
 })
