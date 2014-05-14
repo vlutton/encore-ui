@@ -1,5 +1,17 @@
 angular.module('encore.ui.rxForm', ['ngSanitize'])
-// used to wrap input fields and select boxes in the proper HTML
+/**
+ *
+ * @ngdoc directive
+ * @name encore.ui.rxForm:rxFormItem
+ * @restrict E
+ * @description
+ * This directive is used to wrap input fields and select boxes in the proper HTML
+ * @scope
+ * @param {String} label - Text to use for <label>
+ * @param {String} prefix - Text to include to the left of content
+ * @param {String} suffix - Text to include to the right of content
+ * @param {String} description - Text to place below input
+ */
 .directive('rxFormItem', function () {
     return {
         restrict: 'E',
@@ -9,6 +21,28 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             label: '@',
             suffix: '@',
             prefix: '@',
+            description: '@'
+        }
+    };
+})
+/**
+ *
+ * @ngdoc directive
+ * @name encore.ui.rxForm:rxFormFieldset
+ * @restrict E
+ * @description
+ * This directive is used to wrap a set of input fields in the proper HTML
+ * @scope
+ * @param {String} legend - Text to use for <legend>
+ * @param {String} description - Text to place below input
+ */
+.directive('rxFormFieldset', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxFormFieldset.html',
+        transclude: true,
+        scope: {
+            legend: '@',
             description: '@'
         }
     };

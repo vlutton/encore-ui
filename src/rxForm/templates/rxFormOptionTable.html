@@ -9,24 +9,24 @@
             </tr>
         </thead>
         <tr ng-repeat="row in data" ng-class="{current: isCurrent(row.value), selected: isSelected(row.value, $index)}">
-            <th scope="row" class="option-table-input" ng-switch="type">
-                <input type="radio"
-                    ng-switch-when="radio"
-                    id="{{fieldId}}_{{$index}}"
-                    ng-model="$parent.$parent.model"
-                    value="{{row.value}}"
-                    name="{{fieldId}}"
-                    ng-disabled="isCurrent(row.value)"
-                    ng-required="{{required}}"
-                >
-                <input type="checkbox"
-                    ng-switch-when="checkbox"
-                    id="{{fieldId}}_{{$index}}"
-                    ng-model="$parent.model[$index]"
-                    rx-attributes="{'ng-true-value': row.value, 'ng-false-value': row.falseValue}"
-                    ng-required="{{required}}"
-                >
-            </th>
+            <td class="option-table-input" ng-switch="type">
+                <label>
+                    <input type="radio"
+                        ng-switch-when="radio"
+                        id="{{fieldId}}_{{$index}}"
+                        ng-model="$parent.$parent.model"
+                        value="{{row.value}}"
+                        name="{{fieldId}}"
+                        ng-disabled="isCurrent(row.value)"
+                        ng-attributes="{'ng-required': required}">
+
+                    <input type="checkbox"
+                        ng-switch-when="checkbox"
+                        id="{{fieldId}}_{{$index}}"
+                        ng-model="$parent.model[$index]"
+                        rx-attributes="{'ng-true-value': row.value, 'ng-false-value': row.falseValue}">
+                </label>
+            </td>
             <td ng-repeat="column in columns">
                 <label for="{{fieldId}}_{{$parent.$index}}">
                     <span ng-bind-html="getContent(column, row)"></span>
