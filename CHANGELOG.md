@@ -1,3 +1,55 @@
+<a name="0.10.0"></a>
+## 0.10.0 (2014-05-14)
+
+
+#### Bug Fixes
+
+* **rxApp:**
+  * #251 page title popup ([4709f81e](git@github.com:rackerlabs/encore-ui/commit/4709f81e31f0a9ea3e8086870a3339c9bdf36f16))
+  * use replace so that title attribute is removed (#251) ([159de394](git@github.com:rackerlabs/encore-ui/commit/159de39401a4de193df4e72f0c51aed1196bdb40))
+* **rxModalForm:** #256 prevent title popup ([6208f339](git@github.com:rackerlabs/encore-ui/commit/6208f339112673beb570708fab21a7b817096266))
+* **rxSortableColumn:** user proper ID to pass function to scope ([894805c9](git@github.com:rackerlabs/encore-ui/commit/894805c9ec9be3af24e5d55399dede92aba111e8))
+
+
+#### Features
+
+* **addNetworks:** Add Networks item to Cloud menu ([62ce8a19](git@github.com:rackerlabs/encore-ui/commit/62ce8a19e34d0d085b557c70dc5b74a7464babea))
+* **rxApp:** updated design of collapse button ([99d4909f](git@github.com:rackerlabs/encore-ui/commit/99d4909fc0729a717ab109bef898183c630b39fc))
+* **rxForm:** added new rx-form-fieldset directive ([d87880be](git@github.com:rackerlabs/encore-ui/commit/d87880be47b2f01843486456255b4d185b86bcb8))
+
+
+#### Breaking Changes
+
+* The sortMethod of rxSortableColumn was not properly
+passing the method to the `scope` with a `&`, but was using a `=`, which
+should only be used for two-way bindings.
+
+To migrate the code, follow the example below:
+
+BEFORE:
+
+<rx-sortable-column
+    sort-method="sortCol"
+    sort-property="name"
+    predicate="sort.predicate"
+    reverse="sort.reverse">
+
+AFTER:
+
+<rx-sortable-column
+    sort-method="sortCol(property)"
+    sort-property="name"
+    predicate="sort.predicate"
+    reverse="sort.reverse">
+
+The method you pass will *always* take `property` as the argument
+when assigning it to `sort-method`.
+
+tl;dr: Change every `sort-method="foo"` assignment to
+`sort-method="foo(property)"`
+ ([894805c9](git@github.com:rackerlabs/encore-ui/commit/894805c9ec9be3af24e5d55399dede92aba111e8))
+
+
 <a name="0.9.2"></a>
 ### 0.9.2 (2014-05-13)
 
