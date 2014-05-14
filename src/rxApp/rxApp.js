@@ -390,10 +390,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         restrict: 'E',
         transclude: true,
         templateUrl: 'templates/rxPage.html',
-        replace: true,
         scope: {
             title: '=',
             subtitle: '=',
+        },
+        link: function (scope, element) {
+            // Remove the title attribute, as it will cause a popup to appear when hovering over page content
+            // @see https://github.com/rackerlabs/encore-ui/issues/251
+            element.removeAttr('title');
         }
     };
 })
