@@ -140,12 +140,30 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxForm:rxFormFieldset",
+      "shortName": "rxFormFieldset",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "This directive is used to wrap a set of input fields in the proper HTML",
+      "keywords": "api description directive encore fields html input legend place proper rxform set text ui wrap"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxForm:rxFormInput",
       "shortName": "rxFormInput",
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "This directive is used to create an &lt;input&gt; tag.",
       "keywords": "api attribute bind create description directive encore fieldid input label max maxlength min minlength model ng-model ng-required passed place required rxform suffix tag text type ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxForm:rxFormItem",
+      "shortName": "rxFormItem",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "This directive is used to wrap input fields and select boxes in the proper HTML",
+      "keywords": "api boxes content description directive encore fields html include input label left place prefix proper rxform select suffix text ui wrap"
     },
     {
       "section": "api",

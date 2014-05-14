@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">rxForm/rxForm.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">82.76% <small>(24 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">80% <small>(24 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Branches: <span class="metric">81.25% <small>(13 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">70% <small>(7 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">63.64% <small>(7 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">82.76% <small>(24 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">80% <small>(24 / 30)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -447,12 +447,80 @@
 229
 230
 231
-232</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -679,7 +747,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxForm', ['ngSanitize'])
-// used to wrap input fields and select boxes in the proper HTML
+/**
+ *
+ * @ngdoc directive
+ * @name encore.ui.rxForm:rxFormItem
+ * @restrict E
+ * @description
+ * This directive is used to wrap input fields and select boxes in the proper HTML
+ * @scope
+ * @param {String} label - Text to use for &lt;label&gt;
+ * @param {String} prefix - Text to include to the left of content
+ * @param {String} suffix - Text to include to the right of content
+ * @param {String} description - Text to place below input
+ */
 .directive('rxFormItem', function () {
     return {
         restrict: 'E',
@@ -689,6 +769,28 @@
             label: '@',
             suffix: '@',
             prefix: '@',
+            description: '@'
+        }
+    };
+})
+/**
+ *
+ * @ngdoc directive
+ * @name encore.ui.rxForm:rxFormFieldset
+ * @restrict E
+ * @description
+ * This directive is used to wrap a set of input fields in the proper HTML
+ * @scope
+ * @param {String} legend - Text to use for &lt;legend&gt;
+ * @param {String} description - Text to place below input
+ */
+.directive('rxFormFieldset', <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        restrict: 'E',
+        templateUrl: 'templates/rxFormFieldset.html',
+        transclude: true,
+        scope: {
+            legend: '@',
             description: '@'
         }
     };
@@ -914,7 +1016,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue May 13 2014 17:37:17 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed May 14 2014 16:29:42 GMT-0500 (CDT)</div>
 </div>
 
 <script src="../prettify.js"></script>
