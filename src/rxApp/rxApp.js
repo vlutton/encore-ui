@@ -105,6 +105,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 href: { tld: 'cloudatlas', path: '{{user}}/loadbalancers' },
                 linkText: 'Load Balancers',
                 visibility: '"!production" | rxEnvironmentMatch'
+            }, {
+                href: { tld: 'cloudatlas', path: '{{user}}/networks' },
+                linkText: 'Networks',
+                visibility: '"!production" | rxEnvironmentMatch'
             }
         ]
     }, {
