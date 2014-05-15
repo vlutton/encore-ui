@@ -351,7 +351,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (rxAppRoutes, encoreNav) {
+.directive('rxApp', function (rxAppRoutes) {
     return {
         restrict: 'E',
         transclude: true,
