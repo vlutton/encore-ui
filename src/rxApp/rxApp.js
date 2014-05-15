@@ -327,6 +327,11 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 
     return appRoutesInstance;
 })
+// We need to set the default rxAppRoutes navigation before the app's load so that they can update
+// it in their `run` statement if need be.
+.run(function (rxAppRoutes, encoreNav) {
+    rxAppRoutes.setAll(encoreNav);
+})
 /**
 * @ngdoc directive
 * @name encore.ui.rxApp:rxApp
@@ -360,8 +365,12 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         },
         link: function (scope) {
             scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;
-            scope.menu = scope.menu || encoreNav;
-            scope.appRoutes.setAll(scope.menu);
+
+            // we only want to set new menu data if a new instance of rxAppRoutes was created
+            // or if scope.menu was defined
+            if (scope.newInstance || scope.menu) {
+                scope.appRoutes.setAll(scope.menu);
+            }
 
             if (!_.isBoolean(scope.collapsedNav)) {
                 scope.collapsedNav = false;
