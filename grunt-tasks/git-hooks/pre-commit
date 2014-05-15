@@ -27,4 +27,7 @@ git diff --cached --name-only | \
     echo 'Please remove debugging statements before commiting.' && exit 1
 
 grunt jshint:all
+if [ $? -ne "0" ]; then
+    exit 1
+fi
 grunt jscs
