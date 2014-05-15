@@ -13,8 +13,9 @@
 @disabledBg: #999;
 
 // Borders
-@inputBorder: #e4e4e4;
-@tableBorder: #eee;
+@pageDivider: #e6e6e5;
+@inputBorder: @pageDivider;
+@tableBorder: @pageDivider;
 @tableHeaderBorder: #6e6e6e;
 
 // Text colors
@@ -34,7 +35,10 @@
 @infoBlueHover: saturate(@infoBlue, 15%);
 
 @subduedText: #bbb;
+@subduedTextHover: darken(@subduedText, 15%);
+@subduedTitle: #727272;
 @closeText: #e5e5e5;
+@closeTextHover: darken(@closeText, 10%);
 
 @productResourceLink: @white;
 @productResourceSubduedLink: #bebebe;

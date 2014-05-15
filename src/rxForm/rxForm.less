@@ -18,7 +18,7 @@
     width: 100px;
     text-align: left;
     float: left;
-    color: #727272;
+    color: @subduedTitle;
 }
 
 .field-input {
@@ -92,7 +92,7 @@
 .field-prefix,
 .field-suffix {
     font-size: 1.2em;
-    color: #727272;
+    color: @subduedTitle;
 }
 .field-prefix {
     margin: -5px 5px 0 0;
@@ -102,7 +102,7 @@
 }
 
 .field-description {
-    color: #727272;
+    color: @subduedTitle;
     font-size: 0.8em;
     font-style: italic;
     display: block;
@@ -124,7 +124,7 @@
         // add padding to labels so they take up the entire cell's space
         display: block;
         padding: @tableCellPadding;
-        cursor: pointer;;
+        cursor: pointer;
     }
     .option-table-input {
         text-align: center;
@@ -171,22 +171,22 @@
     font-size: 1.2em;
 
     &.submit {
-        color: #3ab661;
+        color: @actionGreen;
         margin-right: 1em;
         &:hover,
         &:focus {
-            color: lighten(#3ab661, 15%);
+            color: @actionGreenHover;
         }
         &[disabled="disabled"] {
-            color: #b8b8b8;
+            color: @subduedText;
             cursor: not-allowed;
         }
     }
     &.cancel {
-        color: #b8b8b8;
+        color: @subduedText;
         &:hover,
         &:focus {
-            color: darken(#b8b8b8, 15%);
+            color: @subduedTextHover;
         }
     }
 }
