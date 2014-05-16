@@ -34,7 +34,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
             ]
         };
 
-        rxAppRoutes.setRouteByKey('acctLvlTools', newRoute);
+        rxAppRoutes.setRouteByKey('accountLvlTools', newRoute);
     };
 
     // Fake navigation
