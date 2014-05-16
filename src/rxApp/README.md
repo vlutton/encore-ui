@@ -46,6 +46,8 @@ To update a route, use the `setRouteByKey` function on the rxAppRoutes service:
         linkText: 'myUpdatedRoute'
     })
 
+You would normally either set this in your app's `.run` function, or in a specific controller.
+
 ## Custom Menus
 
 If you'd like to create an entirely custom menu, you can pass that data in to the `rx-app` directive via the `menu` attribute. View the demo for an example of this.
