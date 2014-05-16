@@ -1,3 +1,20 @@
+<a name="0.10.1"></a>
+### 0.10.1 (2014-05-16)
+
+
+#### Bug Fixes
+
+* **rxApp:**
+  * set nav in run function ([1611dbf2](git@github.com:rackerlabs/encore-ui/commit/1611dbf2c94005dbe5892191304ec1904991e6b9))
+  * set nav in run function ([3f23bb0c](git@github.com:rackerlabs/encore-ui/commit/3f23bb0c1c5dfaa7b894d67cc609b5b8d8009c1a))
+
+
+#### Features
+
+* **rxModalAction:** added close `x` to top right ([762ec945](git@github.com:rackerlabs/encore-ui/commit/762ec9454e879519a15becfcfe1f25fffe1408a4))
+* **styles:** added modal transition; style cleanup; ([3e24c655](git@github.com:rackerlabs/encore-ui/commit/3e24c6550e7e696fa2762e90767e25e1be7ff46f))
+
+
 <a name="0.10.0"></a>
 ## 0.10.0 (2014-05-14)
 
