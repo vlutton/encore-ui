@@ -1,3 +1,12 @@
+<a name="0.10.2"></a>
+### 0.10.2 (2014-05-16)
+
+
+#### Features
+
+* **rxApp:** Updated account search to include names and ids ([0e0bdfe0](git@github.com:rackerlabs/encore-ui/commit/0e0bdfe09fde181e8e34e8f677956018d98ccf19))
+
+
 <a name="0.10.1"></a>
 ### 0.10.1 (2014-05-16)
 
