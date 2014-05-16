@@ -563,9 +563,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         templateUrl: 'templates/rxAccountSearch.html',
         restrict: 'E',
         link: function (scope) {
-            scope.fetchAccount = function (accountNumber) {
-                if (accountNumber) {
-                    $location.path('/accounts/' + accountNumber);
+            scope.fetchAccount = function (query) {
+                if (query) {
+                    $location.path('search');
+                    $location.search('term=' + query);
                 }
             };
         }
