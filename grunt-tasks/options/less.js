@@ -8,7 +8,7 @@ module.exports = {
             paths: ['src/styles/', 'node_modules/normalize.css/']
         },
         files: {
-            '<%= config.dist %>/<%= config.fileName %>.css': ['src/rx*/*.less']
+            '<%= config.dist %>/<%= config.fileName %>.css': ['src/*/*.less', '!src/styles/*.less']
         }
     }
 };
