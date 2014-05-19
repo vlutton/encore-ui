@@ -74,7 +74,12 @@ module.exports = {
             dest: '<%= config.bower %>/',
             // remove version number from file names
             rename: function (dest, src) {
-                var strippedVersion = src.replace(/\-(?:\d\.){2}\d/g, '');
+                // will catch the following
+                // -0.10.11.min.js
+                // -0.9.22.css
+                // -0.1.1.js
+                // -10.11.11.min.js
+                var strippedVersion = src.replace(/\-(?:\d+\.){2}\d+/g, '');
 
                 return dest + strippedVersion;
             }
