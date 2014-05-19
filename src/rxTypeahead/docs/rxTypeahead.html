@@ -1,0 +1,5 @@
+<div ng-controller="rxAutocompleteCtrl">
+    <rx-form-item label="States">
+        <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-input">
+    </rx-form-item>
+</div>
