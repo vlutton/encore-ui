@@ -1,7 +1,7 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
 
-var {%= name %} = {
+var typeahead = {
 
     isDisplayed: {
         value: function () {
@@ -11,18 +11,18 @@ var {%= name %} = {
 
 };
 
-exports.{%= name %} = {
+exports.typeahead = {
 
-    initialize: function ({%= name %}Element) {
-        {%= name %}.rootElement = {
-            get: function () { return {%= name %}Element; }
+    initialize: function (typeaheadElement) {
+        typeahead.rootElement = {
+            get: function () { return typeaheadElement; }
         };
-        return Page.create({%= name %});
+        return Page.create(typeahead);
     },
 
     // Displays a helpful, console.log-able version of the page object.
     // Astrolabe's objects will not contain the methods available.
     // Use this method instead to see what properties and functions exist.
-    help: function () { return Object.keys({%= name %}); }
+    help: function () { return Object.keys(typeahead); }
 
 };

@@ -89,7 +89,11 @@ module.exports = function (grunt) {
         }
 
         var modules = grunt.config('config.modules');
-        grunt.config('config.srcModules', _.pluck(modules, 'moduleName'));
+        // remove any modules that don't have javascript
+        var jsModules = _.filter(modules, function (module) {
+            return module.srcFiles.length > 0;
+        });
+        grunt.config('config.srcModules', _.pluck(jsModules, 'moduleName'));
 
         // remove any modules that don't have templates
         var tplModules = _.pluck(modules, 'tplJsFiles').filter(function (tpls) {
