@@ -1,7 +1,7 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
 
-var rxTypeahead = {
+var typeahead = {
 
     isDisplayed: {
         value: function () {
@@ -11,18 +11,18 @@ var rxTypeahead = {
 
 };
 
-exports.rxTypeahead = {
+exports.typeahead = {
 
-    initialize: function (rxTypeaheadElement) {
-        rxTypeahead.rootElement = {
-            get: function () { return rxTypeaheadElement; }
+    initialize: function (typeaheadElement) {
+        typeahead.rootElement = {
+            get: function () { return typeaheadElement; }
         };
-        return Page.create(rxTypeahead);
+        return Page.create(typeahead);
     },
 
     // Displays a helpful, console.log-able version of the page object.
     // Astrolabe's objects will not contain the methods available.
     // Use this method instead to see what properties and functions exist.
-    help: function () { return Object.keys(rxTypeahead); }
+    help: function () { return Object.keys(typeahead); }
 
 };

@@ -1,0 +1,5 @@
+<div ng-controller="typeaheadCtrl">
+    <rx-form-item label="States">
+        <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-input" id="typeahead">
+    </rx-form-item>
+</div>
