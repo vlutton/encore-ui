@@ -86,9 +86,7 @@ var rxApp = {
 
     isCollapsible: {
         value: function () {
-            return this.rootElement.$$(this.cssCollapseButtonSelector).then(function (exists) {
-                return exists.length ? true : false;
-            });
+            return this.btnCollapseToggle.isPresent();
         }
     },
 
