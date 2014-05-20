@@ -1,3 +1,18 @@
+<a name="0.10.4"></a>
+### 0.10.4 (2014-05-20)
+
+
+#### Bug Fixes
+
+* **test:** simplified rxApp isCollapsible ([979049c2](git@github.com:rackerlabs/encore-ui/commit/979049c29822e67f96e6630518e48987718dc560))
+
+
+#### Features
+
+* **rxNotify:** resolves #259; allow loading msg to be optional ([6eb25c1c](git@github.com:rackerlabs/encore-ui/commit/6eb25c1c80e2e8f136e79806b21b647c36f65ea7))
+* **rxTypeahead:** new component based on angular-ui ([b0d23592](git@github.com:rackerlabs/encore-ui/commit/b0d23592c061f371f4cfd3a999b36554020153da))
+
+
 <a name="0.10.3"></a>
 ### 0.10.3 (2014-05-19)
 
