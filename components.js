@@ -558,5 +558,19 @@ angular.module('demoApp')
             "js": "",
             "html": "<pre>\n    <code>\n        angular.module('encoreApp', ['encore.ui'])\n            .config(function ($httpProvider) {\n                $httpProvider.interceptors.push('UnauthorizedInterceptor');\n            });\n    </code>\n</pre>\n"
         }
+    },
+    {
+        "name": "typeahead",
+        "moduleName": "'encore.ui.typeahead'",
+        "displayName": "Typeahead",
+        "srcFiles": [],
+        "tplFiles": [],
+        "tplJsFiles": [],
+        "dependencies": [],
+        "docs": {
+            "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/experimental.svg\" alt=\"experimental\" title=\"\" /></a></p>\n\n<p>This component provides styles and a demo for the <a href=\"https://github.com/angular-ui/bootstrap/tree/master/src/typeahead\">the Angular-UI Bootstrap Typeahead plugin</a>, which is included as a dependency for Encore-UI.</p>\n\n<h2>Usage</h2>\n\n<p>Usage is the exact same as demoed on the Angular-UI Bootstrap site. See <a href=\"http://angular-ui.github.io/bootstrap/\">the Angular-UI Bootstrap Docs</a> for further guidance on usage and configuration of this component.</p>",
+            "js": "/*jshint unused:false*/\nfunction typeaheadCtrl ($scope) {\n    $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',\n        'Delaware', 'Dawood', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',\n        'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',\n        'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',\n        'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',\n        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',\n        'West Virginia', 'Wisconsin', 'Wyoming'];\n}",
+            "html": "<div ng-controller=\"typeaheadCtrl\">\n    <rx-form-item label=\"States\">\n        <input type=\"text\" ng-model=\"selected\" typeahead=\"state for state in states | filter:$viewValue | limitTo:8\" class=\"form-input\" id=\"typeahead\">\n    </rx-form-item>\n</div>"
+        }
     }
 ]);
