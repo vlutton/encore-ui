@@ -8,6 +8,13 @@ describe('rxModalAction', function () {
                             'pre-hook="pre()" ' +
                             '>Title</rx-modal-action>';
 
+    var overridingTemplate = '<rx-modal-action ' +
+                                 'controller="rxTestCtrl" ' +
+                                 'template-url="test.html" ' +
+                                 'post-hook="post()" ' +
+                                 'pre-hook="pre()" ' +
+                                 '>Title</rx-modal-action>';
+
     var setupModalCtrl = function (ctrl) {
         controller(ctrl, {
             $scope: scope,
@@ -178,5 +185,31 @@ describe('rxModalAction', function () {
         scope.submit();
 
         expect(scope.post.callCount).to.equal(1);
+    });
+
+    it('should not close and update callCounts', function () {
+        scope.rxTestCtrl = function ($scope) {
+            $scope.count = 0;
+            $scope.submit = sinon.spy();
+        };
+
+        controller('rxTestCtrl', {
+            $scope: scope,
+            $modalInstance: instanceApi
+        });
+
+        el = helpers.createDirective(overridingTemplate, compile, scope);
+
+        var link = el.find('a')[0];
+
+        helpers.clickElement(link);
+
+        instanceMock.expects('close').never();
+        instanceMock.expects('dismiss').never();
+
+        setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
+
+        scope.submit();
+        expect(scope.submit.callCount).to.equal(1);
     });
 });
