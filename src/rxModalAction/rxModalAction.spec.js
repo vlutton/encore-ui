@@ -8,13 +8,6 @@ describe('rxModalAction', function () {
                             'pre-hook="pre()" ' +
                             '>Title</rx-modal-action>';
 
-    var overridingTemplate = '<rx-modal-action ' +
-                                 'controller="rxTestCtrl" ' +
-                                 'template-url="test.html" ' +
-                                 'post-hook="post()" ' +
-                                 'pre-hook="pre()" ' +
-                                 '>Title</rx-modal-action>';
-
     var setupModalCtrl = function (ctrl) {
         controller(ctrl, {
             $scope: scope,
@@ -187,7 +180,14 @@ describe('rxModalAction', function () {
         expect(scope.post.callCount).to.equal(1);
     });
 
-    it('should not close and update callCounts', function () {
+    it('should update callCounts but not close the modal', function () {
+        var overridingTemplate = '<rx-modal-action ' +
+                                     'controller="rxTestCtrl" ' +
+                                     'template-url="test.html" ' +
+                                     'post-hook="post()" ' +
+                                     'pre-hook="pre()" ' +
+                                     '>Title</rx-modal-action>';
+
         scope.rxTestCtrl = function ($scope) {
             $scope.count = 0;
             $scope.submit = sinon.spy();
