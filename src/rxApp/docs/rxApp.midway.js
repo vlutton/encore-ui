@@ -5,60 +5,57 @@ var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('rxApp', function () {
-    var rxApp;
+    var rxAppCustom, rxAppStandard;
 
     before(function () {
         demoPage.go('#/component/rxApp');
-        rxApp = rxAppPage.initialize($('#custom-rxApp'));
+        rxAppCustom = rxAppPage.initialize($('#custom-rxApp'));
+        rxAppStandard = rxAppPage.initialize($('#standard-rxApp'));
     });
 
     it('should show element', function () {
-        expect(rxApp.rootElement.isDisplayed()).to.eventually.be.true;
+        expect(rxAppCustom.rootElement.isDisplayed()).to.eventually.be.true;
     });
 
     it('should have a title', function () {
-        expect(rxApp.title).to.eventually.equal('My App');
+        expect(rxAppCustom.title).to.eventually.equal('My App');
     });
 
     it('should have a section title', function () {
-        expect(rxApp.sectionTitle).to.eventually.equal('Example Menu');
+        expect(rxAppCustom.sectionTitle).to.eventually.equal('Example Menu');
     });
 
     it('should have a logout link', function () {
-        expect(rxApp.lnkLogout.isDisplayed()).to.eventually.be.true;
+        expect(rxAppCustom.lnkLogout.isDisplayed()).to.eventually.be.true;
     });
 
     describe('with collapsible navigation', function () {
         it('should have a collapsible navigation menu', function () {
-            expect(rxApp.isCollapsible()).to.eventually.be.true;
+            expect(rxAppCustom.isCollapsible()).to.eventually.be.true;
         });
 
         it('should be expanded by default', function () {
-            expect(rxApp.isExpanded()).to.eventually.be.true;
+            expect(rxAppCustom.isExpanded()).to.eventually.be.true;
         });
 
         it('should collapse the navigation', function () {
-            rxApp.collapse();
-            expect(rxApp.isCollapsed()).to.eventually.be.true;
+            rxAppCustom.collapse();
+            expect(rxAppCustom.isCollapsed()).to.eventually.be.true;
         });
 
         it('should expand the navigation', function () {
-            rxApp.expand();
-            expect(rxApp.isExpanded()).to.eventually.be.true;
+            rxAppCustom.expand();
+            expect(rxAppCustom.isExpanded()).to.eventually.be.true;
         });
     });
 
     describe('without collapsible navigation', function () {
-        before(function () {
-            rxApp = rxAppPage.initialize($('#standard-rxApp'));
-        });
-
         it('should not support a toggle show/hide button', function () {
-            expect(rxApp.isCollapsible()).to.eventually.be.false;
+            expect(rxAppStandard.isCollapsible()).to.eventually.be.false;
         });
 
         it('should throw an error if you attempt to expand and unsupported', function () {
-            expect(rxApp.expand()).to.be.rejectedWith('Encore');
+            expect(rxAppStandard.expand()).to.be.rejectedWith('Encore');
         });
     });
 });
