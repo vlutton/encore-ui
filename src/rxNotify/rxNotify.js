@@ -285,7 +285,9 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
      * @this Scope used for storing messages data
      */
     var dismissLoading = function () {
-        rxNotify.dismiss(this.loadingMsg);
+        if (this.loadingMsg) {
+            rxNotify.dismiss(this.loadingMsg);
+        }
     };
 
     /*
@@ -354,7 +356,9 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
             loadingOpts.stack = stack;
         }
 
-        scope[uid].loadingMsg = rxNotify.add(msgs.loading, loadingOpts);
+        if (msgs.loading) {
+            scope[uid].loadingMsg = rxNotify.add(msgs.loading, loadingOpts);
+        }
 
         // bind promise to show message actions
         deferred.promise

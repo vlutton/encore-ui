@@ -454,9 +454,17 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
         });
 
+        it('should allow for no loading message to be set', function () {
+            rpn.add(prom.promise, {
+                success: successMsg
+            });
+
+            // expect no messages to be in the stack
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+        });
+
         it('should show success message after promise is resolved successfully', function () {
             rpn.add(prom.promise, {
-                loading: loadingMsg,
                 success: successMsg
             });
 
@@ -471,7 +479,6 @@ describe('rxNotify', function () {
 
         it('should show error message after promise is rejected', function () {
             rpn.add(prom.promise, {
-                loading: loadingMsg,
                 error: errorMsg
             });
 
