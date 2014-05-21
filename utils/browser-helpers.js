@@ -30,6 +30,10 @@ helpers = {
                 false, false, false, false, /* modifier keys */
                 0 /*left*/, null
             );
+
+            if (!el.dispatchEvent && el[0].dispatchEvent) {
+                el = el[0];
+            }
             el.dispatchEvent(ev);
         }
     },
