@@ -31,11 +31,12 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 })
 .directive('rxModalAction', function ($modal) {
     var createModal = function (config, scope) {
-        var modal = $modal.open({
+        config = _.defaults(config, {
             templateUrl: config.templateUrl,
             controller: 'rxModalCtrl',
             scope: scope
         });
+        var modal = $modal.open(config);
 
         return modal;
     };
