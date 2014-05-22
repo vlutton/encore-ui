@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxUnauthorizedInterceptor', [])
+angular.module('encore.ui.rxUnauthorizedInterceptor', ['encore.ui.rxSession'])
     /**
     *
     * @ngdoc service
@@ -9,6 +9,8 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', [])
     *
     * @requires $q
     * @requires @window
+    * @requires $location
+    * @requires encore.ui.rxSession:Session
     *
     * @example
     * <pre>
@@ -18,7 +20,7 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', [])
     *     });
     * </pre>
     */
-    .factory('UnauthorizedInterceptor', function ($q, $window, $location) {
+    .factory('UnauthorizedInterceptor', function ($q, $window, $location, Session) {
         return {
             responseError: function (response) {
                 // If one uses the <base /> tag, $location's API is unable to
@@ -32,6 +34,7 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', [])
                 // $location.absUrl(): https://localhost:9000/app/path
                 var returnPath = '/' + $location.absUrl().split('/').splice(3).join('/');
                 if (response.status === 401) {
+                    Session.logout(); //Logs out user by removing token
                     $window.location = '/login?redirect=' + returnPath;
                 }
 
