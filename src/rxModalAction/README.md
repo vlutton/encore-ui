@@ -1,4 +1,4 @@
-[![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
+[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
 Hook into Angular-UI Bootstrap's modal directive. Used as a link to open a modal window.
 
