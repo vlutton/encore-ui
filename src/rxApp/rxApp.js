@@ -371,14 +371,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             if (scope.newInstance || scope.menu) {
                 scope.appRoutes.setAll(scope.menu);
             }
-
-            if (!_.isBoolean(scope.collapsedNav)) {
-                scope.collapsedNav = false;
-            }
-
-            scope.collapseMenu = function  () {
-                scope.collapsedNav = !scope.collapsedNav;
-            };
         }
     };
 })
