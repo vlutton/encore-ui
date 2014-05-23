@@ -1,3 +1,21 @@
+<a name="0.10.5"></a>
+### 0.10.5 (2014-05-23)
+
+
+#### Bug Fixes
+
+* **rxModalAction:** Moved template inside test, rephrased test msg ([f1aa9297](git@github.com:rackerlabs/encore-ui/commit/f1aa92978bace7fcec95e08c54785df6711f7bbb))
+* **rxUnauthorizedInterceptor:** Logout users on 401 ([84ea1ba9](git@github.com:rackerlabs/encore-ui/commit/84ea1ba9097e48c696624d1fd28854e50dc5780b))
+
+
+#### Features
+
+* **rxModalAction:**
+  * Unit Test for overriding controller ([13eff992](git@github.com:rackerlabs/encore-ui/commit/13eff992ce3795d3d05c642b09eb0635a784ceab))
+  * Ability to override ui.bootstrap modal config ([57d05261](git@github.com:rackerlabs/encore-ui/commit/57d05261244ed4bae83efa45997ebe2b34310907))
+* **rxToggle:** closes #160; component for property toggling ([5a3bf5aa](git@github.com:rackerlabs/encore-ui/commit/5a3bf5aa9726db87a7db703b3a71779457e8b258))
+
+
 <a name="0.10.4"></a>
 ### 0.10.4 (2014-05-20)
 
