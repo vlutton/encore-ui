@@ -86,6 +86,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxApp:rxToggle",
+      "shortName": "rxToggle",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Adds a &#39;click&#39; listener to an element that, when fired, toggles the boolean scope property defined",
+      "keywords": "adds api boolean click defined directive element encore fired listener property rxapp rxtoggle scope toggle toggles true ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxAuth:Auth",
       "shortName": "Auth",
       "type": "service",
@@ -388,7 +397,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "encore.ui",
       "shortDescription": "Simple injector which will intercept http responses. If a 401 is returned,",
-      "keywords": "$httpprovider $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
+      "keywords": "$httpprovider $location $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
     }
   ],
   "apis": {
