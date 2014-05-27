@@ -126,20 +126,20 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        href: { tld: 'cloudatlas', path: 'ticketqueues' },
-        linkText: 'Ticket Queues',
-        key: 'ticketQueues',
+        href: 'ticketing',
+        linkText: 'Ticketing',
+        key: 'ticketing',
         visibility: '"!unified" | rxEnvironmentMatch',
         children: [
             {
-                href: { tld: 'cloudatlas', path: 'ticketqueues/list' },
+                href: 'ticketing/list',
                 linkText: 'My Selected Queues'
             },
             {
-                href: { tld: 'cloudatlas', path: 'ticketqueues/my' },
+                href: 'ticketing/my',
                 linkText: 'My Tickets'
             }, {
-                href: { tld: 'cloudatlas', path: 'ticketqueues/queues' },
+                href: 'ticketing/queues',
                 linkText: 'Queue Admin'
             }
         ]
