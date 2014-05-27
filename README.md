@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/rackerlabs/encore-ui.png?label=ready&title=Ready)](https://waffle.io/rackerlabs/encore-ui)
 [![Build Status](https://travis-ci.org/rackerlabs/encore-ui.png?branch=master)](https://travis-ci.org/rackerlabs/encore-ui) [![Coverage Status](https://coveralls.io/repos/rackerlabs/encore-ui/badge.png?branch=master)](https://coveralls.io/r/rackerlabs/encore-ui?branch=master) [![devDependency Status](https://david-dm.org/rackerlabs/encore-ui/dev-status.png)](https://david-dm.org/rackerlabs/encore-ui#info=devDependencies)
 
 # What is Encore-UI?
