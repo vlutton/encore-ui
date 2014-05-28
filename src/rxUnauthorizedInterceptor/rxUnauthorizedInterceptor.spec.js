@@ -2,6 +2,7 @@
 
 describe('rxUnauthorizedInterceptor', function () {
     var interceptor, mockWindow = {},
+        session = { logout: sinon.spy() },
         q = { reject: sinon.spy() },
         cases = {
             'fullPath': '/app/path',
@@ -23,6 +24,7 @@ describe('rxUnauthorizedInterceptor', function () {
                 $provide.value('$window', mockWindow);
                 $provide.value('$q', q);
                 $provide.value('$location', location);
+                $provide.value('Session', session);
             });
 
         inject(function ($injector) {
@@ -45,6 +47,7 @@ describe('rxUnauthorizedInterceptor', function () {
         interceptor.responseError(response);
         expect(mockWindow.location).to.contain('/login');
         expect(q.reject.called).to.be.true;
+        expect(session.logout.called).to.be.true;
     });
 
     it('Interceptor sets proper redirect path', function () {

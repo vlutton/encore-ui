@@ -47,9 +47,19 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         url: '//{{tld}}.encore.rackspace.com/{{path}}'
     }, {
         // https://staging.en.core.rackspace.com/
+        name: 'unified-preprod',
+        pattern: /\/\/(\w+\.)en.core.rackspace.com/,
+        url: '{{path}}'
+    }, {
+        // https://staging.en.core.rackspace.com/
         // https://en.core.rackspace.com/
         name: 'unified',
         pattern: 'en.core.rackspace.com',
+        url: '{{path}}'
+    }, {
+        // https://en.core.rackspace.com/ only
+        name: 'unified-prod',
+        pattern: /\/\/(?=[\w.]+)en.core.rackspace.com/,
         url: '{{path}}'
     }];
 

@@ -322,17 +322,6 @@ describe('rxApp', function () {
             expect(collapsibleToggle).to.be.ok;
         });
 
-        it('should set the external collapsedNav value when you toggle the collapsed button', function () {
-            var elScope = elCollapsibleVar.isolateScope();
-
-            expect(scope.collapsed).to.be.not.ok;
-            elScope.collapseMenu();
-
-            // Have to run the digest cycle manually to get the var to propagate up
-            scope.$digest();
-            expect(scope.collapsed).to.be.ok;
-        });
-
         it('should apply the classes to the menu for collapsible status', function () {
             var collapsibleMenu = elCollapsible[0].querySelector('.collapsible');
 
@@ -344,7 +333,7 @@ describe('rxApp', function () {
             var collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
 
             expect(collapsibleMenu).to.be.null;
-            elScope.collapseMenu();
+            elScope.collapsedNav = true;
 
             // We need to run the digest to update the classes
             scope.$digest();
