@@ -42,28 +42,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         href: '/billing',
         linkText: 'Billing',
         key: 'billing',
-        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
-        children: [
-            {
-                href: '/billing/overview/{{accountNumber}}',
-                linkText: 'Overview'
-            }, {
-                href: '/billing/transactions/{{accountNumber}}',
-                linkText: 'Transactions'
-            }, {
-                href: '/billing/usage/{{accountNumber}}',
-                linkText: 'Current Usage'
-            }, {
-                href: '/billing/discounts/{{accountNumber}}',
-                linkText: 'Discounts'
-            }, {
-                href: '/billing/payment/{{accountNumber}}/options',
-                linkText: 'Payment Options'
-            }, {
-                href: '/billing/preferences/{{accountNumber}}',
-                linkText: 'Preferences'
-            }
-        ]
+        visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)'
     },
     {
         linkText: 'Cloud',
@@ -112,19 +91,11 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }
         ]
     }, {
-        href: '/supportservice',
+        href: '/support',
         linkText: 'Support Service',
         key: 'supportService',
         visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
-        children: [
-            {
-                href: '/supportservice/browse',
-                linkText: 'Browse Accounts'
-            }, {
-                href: '/supportservice/admin',
-                linkText: 'Admin'
-            }
-        ]
+        directive: 'rx-support-service-search',
     }, {
         href: 'ticketing',
         linkText: 'Ticketing',
@@ -147,22 +118,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         href: '/virt',
         linkText: 'Virtualization Admin',
         key: 'virtualization',
-        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
-        children: [
-            {
-                href: '/virt/vcenters',
-                linkText: 'vCenters'
-            }, {
-                href: '/virt/hypervisor-clusters',
-                linkText: 'Hypervisor Clusters'
-            }, {
-                href: '/virt/hypervisors',
-                linkText: 'Hypervisors'
-            }, {
-                href: '/virt/vms',
-                linkText: 'VMs'
-            }
-        ]
+        visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+        directive: 'rx-virt-search'
     }]
 }])
 /**

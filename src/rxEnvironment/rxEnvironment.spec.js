@@ -39,6 +39,12 @@ describe('rxEnvironment', function () {
 
         // test prod
         expect(envSvc.get('http://encore.rackspace.com').name).to.equal('production');
+
+        // test unified-preprod
+        expect(envSvc.get('http://randenv.en.core.rackspace.com').name).to.equal('unified-preprod');
+
+        // test unified
+        expect(envSvc.get('http://en.core.rackspace.com').name).to.equal('unified');
     });
 
     it('should get current environment based on location.absUrl', function () {
