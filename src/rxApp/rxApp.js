@@ -516,15 +516,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         }
     };
 })
-.directive('rxAccountSearch', function ($location) {
+.directive('rxAccountSearch', function ($window) {
     return {
         templateUrl: 'templates/rxAccountSearch.html',
         restrict: 'E',
         link: function (scope) {
             scope.fetchAccount = function (query) {
                 if (query) {
-                    $location.path('search');
-                    $location.search('term=' + query);
+                    $window.location = _.template('/search?term=${query}', query);
                 }
             };
         }
