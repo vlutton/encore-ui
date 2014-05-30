@@ -1,3 +1,13 @@
+<a name="0.10.6"></a>
+### 0.10.6 (2014-05-30)
+
+
+#### Bug Fixes
+
+* **rxAccountSearch:** Made account search work while in other apps ([d938a675](git@github.com:rackerlabs/encore-ui/commit/d938a6751e5a6a0410165f7d250b0e82ba2a30b3))
+* **ticketing:** Fixing URLs/Routes for new Ticketing Server ([f73887df](git@github.com:rackerlabs/encore-ui/commit/f73887df5246a9ee68209d28cdf532de5fb48239))
+
+
 <a name="0.10.5"></a>
 ### 0.10.5 (2014-05-23)
 
