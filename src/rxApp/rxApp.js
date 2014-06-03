@@ -100,7 +100,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         href: 'ticketing',
         linkText: 'Ticketing',
         key: 'ticketing',
-        visibility: '"!unified" | rxEnvironmentMatch',
         children: [
             {
                 href: 'ticketing/list',
