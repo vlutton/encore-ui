@@ -210,6 +210,11 @@ function rxEnvironmentCtrl ($scope, Environment) {
     });
 }
 
+/*jshint unused:false*/
+function rxFeedbackCtrl ($scope) {
+
+}
+
 function rxFormDemoCtrl ($scope) {
     $scope.types = [
         {
