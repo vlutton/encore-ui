@@ -2,7 +2,7 @@
  * EncoreUI
  * https://github.com/rackerlabs/encore-ui
 
- * Version: 0.10.10 - 2014-06-05
+ * Version: 0.10.7 - 2014-06-05
  * License: Apache License, Version 2.0
  */
 angular.module('encore.ui', [
