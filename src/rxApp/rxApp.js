@@ -497,7 +497,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         scope: {
             placeholder: '@?',
             model: '=?',
-            submit: '=?'
+            submit: '=?',
+            pattern: '@?'
         }
     };
 })

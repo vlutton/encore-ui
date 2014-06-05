@@ -47,7 +47,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
         }
     });
 
-    var searchDirective = 'rx-app-search placeholder="Enter User" model="$root.user"';
+    var searchDirective = 'rx-app-search placeholder="Enter User" model="$root.user" pattern="/^([0-9a-zA-Z._ -]{2,})$/"';
 
     $scope.customMenu = [{
         title: 'Example Menu',
