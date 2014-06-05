@@ -13,4 +13,5 @@ angular.module('encore.ui.configs', [])
     { value: '/dev/xvdn', label: '/dev/xvdn' },
     { value: '/dev/xvdo', label: '/dev/xvdo' },
     { value: '/dev/xvdp', label: '/dev/xvdp' }
-]);
+])
+.constant('feedbackApi', '/api/feedback');

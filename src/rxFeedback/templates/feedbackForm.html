@@ -1,0 +1,17 @@
+<rx-modal-form title="Submit Feedback" subtitle="for page: {{ currentUrl }}" submit-text="Send Feedback" class="rx-feedback-form">
+    <rx-form-item
+        label="Report Type">
+        <select
+            ng-model="fields.type"
+            ng-options="opt as opt.label for opt in feedbackTypes"
+            ng-init="fields.type = feedbackTypes[0]"
+            required="true"></select>
+    </rx-form-item>
+
+    <rx-form-item
+        label="{{fields.type.prompt}}"
+        ng-show="fields.type"
+        class="feedback-description">
+        <textarea placeholder="{{fields.type.placeholder}}" required="true" ng-model="fields.description" class="feedback-textarea"></textarea>
+    </rx-form-item>
+</rx-modal-form>

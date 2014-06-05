@@ -245,11 +245,13 @@ describe('rxAppRoutes', function () {
 });
 
 describe('rxApp', function () {
-    var scope, compile, rootScope, el, elCustom, elCollapsible, elCollapsibleVar, defaultNav, appRoutes;
+    var scope, scopeCustomNav, collapsibleScope, compile, rootScope, el, elCustom, elCollapsible,
+        elCollapsibleVar, defaultNav, appRoutes;
     var standardTemplate = '<rx-app></rx-app>';
     var collapsibleTemplate = '<rx-app collapsible-nav="true"></rx-app>';
     var collapsibleExternalVarTemplate = '<rx-app collapsible-nav="true" collapsed-nav="collapsed"></rx-app>';
-    var customTemplate = '<rx-app site-title="My App" menu="customNav" new-instance="true"></rx-app>';
+    var customTemplate = '<rx-app site-title="My App" menu="customNav" new-instance="true"' +
+        'hide-feedback="true"></rx-app>';
 
     var customNav = [{
         title: 'Example Menu',
@@ -277,20 +279,23 @@ describe('rxApp', function () {
         // Inject in angular constructs
         inject(function ($rootScope, $compile, encoreNav, rxAppRoutes) {
             rootScope = $rootScope;
-            scope = $rootScope.$new();
             compile = $compile;
             defaultNav = encoreNav;
             appRoutes = rxAppRoutes;
-
-            scope.collapsed = false;
         });
 
-        scope.customNav = customNav;
+        scope = rootScope.$new();
+
+        collapsibleScope = rootScope.$new();
+        collapsibleScope.collapsed = false;
+
+        scopeCustomNav = rootScope.$new();
+        scopeCustomNav.customNav = customNav;
 
         el = helpers.createDirective(standardTemplate, compile, scope);
-        elCustom = helpers.createDirective(customTemplate, compile, scope);
-        elCollapsible = helpers.createDirective(collapsibleTemplate, compile, scope);
-        elCollapsibleVar = helpers.createDirective(collapsibleExternalVarTemplate, compile, scope);
+        elCustom = helpers.createDirective(customTemplate, compile, scopeCustomNav);
+        elCollapsible = helpers.createDirective(collapsibleTemplate, compile, collapsibleScope);
+        elCollapsibleVar = helpers.createDirective(collapsibleExternalVarTemplate, compile, rootScope.$new());
     });
 
     describe('default menu', function () {
@@ -308,6 +313,17 @@ describe('rxApp', function () {
 
             // validate it matches 'Encore'
             expect(navTitle.textContent).to.equal(defaultNav[0].title);
+        });
+
+        it('should have a feedback link if not disabled', function () {
+            var feedbackLink = el[0].querySelector('rx-feedback');
+
+            // validate it matches 'Encore'
+            expect(feedbackLink).to.exist;
+
+            var notFeedbackLink = elCustom[0].querySelector('rx-feedback');
+
+            expect(notFeedbackLink).to.not.exist;
         });
 
         it('should not show the collapsible toggle if collapsible is not true', function () {
@@ -336,7 +352,7 @@ describe('rxApp', function () {
             elScope.collapsedNav = true;
 
             // We need to run the digest to update the classes
-            scope.$digest();
+            collapsibleScope.$digest();
             collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
             expect(collapsibleMenu).to.be.not.null;
         });
