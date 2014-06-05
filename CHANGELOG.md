@@ -1,3 +1,33 @@
+<a name="0.10.8"></a>
+### 0.10.8 (2014-06-05)
+
+
+#### Bug Fixes
+
+* **rxApp:** Ticketing Navigation now Visible Always ([e253dbf7](git@github.com:rackerlabs/encore-ui/commit/e253dbf7e4bf2446617bc489ecff06b0d0d002a1))
+
+
+#### Features
+
+* **rxDiskSize:** Allow the unit to be specified ([8331e5c3](git@github.com:rackerlabs/encore-ui/commit/8331e5c34204564812f6c3028544b592ff0a7edb))
+* **rxFeedback:** Build out rxFeedback component ([c5fd407a](git@github.com:rackerlabs/encore-ui/commit/c5fd407a9966d902a17499667c01767a9010848c))
+
+
+<a name="0.10.7"></a>
+### 0.10.7 (2014-06-05)
+
+
+#### Bug Fixes
+
+* **rxApp:** Ticketing Navigation now Visible Always ([e253dbf7](git@github.com:rackerlabs/encore-ui/commit/e253dbf7e4bf2446617bc489ecff06b0d0d002a1))
+
+
+#### Features
+
+* **rxDiskSize:** Allow the unit to be specified ([8331e5c3](git@github.com:rackerlabs/encore-ui/commit/8331e5c34204564812f6c3028544b592ff0a7edb))
+* **rxFeedback:** Build out rxFeedback component ([c5fd407a](git@github.com:rackerlabs/encore-ui/commit/c5fd407a9966d902a17499667c01767a9010848c))
+
+
 <a name="0.10.6"></a>
 ### 0.10.6 (2014-05-30)
 
