@@ -100,7 +100,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         href: 'ticketing',
         linkText: 'Ticketing',
         key: 'ticketing',
-        visibility: '"!unified" | rxEnvironmentMatch',
         children: [
             {
                 href: 'ticketing/list',
@@ -318,10 +317,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             menu: '=?',
             collapsibleNav: '@',
             collapsedNav: '=?',
-            newInstance: '@?'
+            newInstance: '@?',
+            hideFeedback: '@?'
         },
         link: function (scope) {
             scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;
+
+            // default hideFeedback to false
+            scope.hideFeedback = scope.hideFeedback ? true : false;
 
             // we only want to set new menu data if a new instance of rxAppRoutes was created
             // or if scope.menu was defined

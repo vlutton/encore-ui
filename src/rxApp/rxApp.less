@@ -7,6 +7,7 @@
  */
 .rx-app {
     @navTransitionDuration: .2s;
+    @appMenuWidth: 300px;
 
     min-height: 100%;
     .flexbox-display();
@@ -18,13 +19,14 @@
     }
 
     .rx-app-menu {
-        .flexbox(0 0 300px);
+        .flexbox(0 0 @appMenuWidth);
         color: #fff;
         font-size: 15px;
         font-weight: 200;
         background: @appMenuBg;
         line-height: @appLineHeight;
         padding-bottom: 10em;
+        position: relative;
     }
 
     .site-branding {
@@ -116,7 +118,8 @@
 
         .site-title,
         .site-options,
-        .rx-app-nav {
+        .rx-app-nav,
+        .rx-app-help {
             display: none;
         }
     }
@@ -359,6 +362,30 @@
             opacity: 0.2;
         }
     }
+
+    .rx-app-help {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: @appMenuWidth;
+        background: @appHelpBg;
+        border-top: 1px solid @appHelpBorder;
+        line-height: 3em;
+        padding-bottom: 1px;
+        font-size: .8em;
+        text-shadow: 1px 1px 0px rgba(26, 26, 26, 0.2);
+
+        .rx-feedback .modal-link {
+            background: url(images/icon-feedback.png) no-repeat 20px calc(~"50% + 1px");
+            vertical-align: middle;
+            color: @orangeText;
+            padding: 0 21px 0 41px;
+            float: right;
+        }
+    }
+
+
+    // Page Styles
 
     .page-header {
         background: linear-gradient(to bottom, #e7e7e7 0%, #d6d6d6 100%);

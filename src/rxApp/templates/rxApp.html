@@ -17,6 +17,9 @@
                 <rx-app-nav items="section.children" level="1"></rx-app-nav>
             </div>
         </nav>
+        <div class="rx-app-help clearfix">
+            <rx-feedback ng-if="!hideFeedback"></rx-feedback>
+        </div>
     </nav>
     <div class="rx-app-content" ng-transclude></div>
 </div>
