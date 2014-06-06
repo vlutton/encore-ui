@@ -35,16 +35,16 @@ describe('rxEnvironment', function () {
         expect(envSvc.get('http://localhost:9001').name).to.equal('local');
 
         // test staging
-        expect(envSvc.get('http://staging.encore.rackspace.com').name).to.equal('staging');
+        expect(envSvc.get('http://staging.encore.rackspace.com').name).to.equal('unified-preprod');
 
         // test prod
-        expect(envSvc.get('http://encore.rackspace.com').name).to.equal('production');
+        expect(envSvc.get('http://encore.rackspace.com').name).to.equal('unified');
 
         // test unified-preprod
-        expect(envSvc.get('http://randenv.en.core.rackspace.com').name).to.equal('unified-preprod');
+        expect(envSvc.get('http://randenv.encore.rackspace.com').name).to.equal('unified-preprod');
 
         // test unified
-        expect(envSvc.get('http://en.core.rackspace.com').name).to.equal('unified');
+        expect(envSvc.get('http://encore.rackspace.com').name).to.equal('unified');
     });
 
     it('should get current environment based on location.absUrl', function () {
@@ -54,15 +54,11 @@ describe('rxEnvironment', function () {
 
         // test staging
         location.absUrl.returns('http://staging.encore.rackspace.com');
-        expect(envSvc.get().name).to.equal('staging');
-
-        // test staging with custom TLD
-        location.absUrl.returns('http://staging.cloudatlas.encore.rackspace.com');
-        expect(envSvc.get().name).to.equal('staging');
+        expect(envSvc.get().name).to.equal('unified-preprod');
 
         // test prod
         location.absUrl.returns('http://encore.rackspace.com');
-        expect(envSvc.get().name).to.equal('production');
+        expect(envSvc.get().name).to.equal('unified');
     });
 
     it('should allow defining a new environment', function () {

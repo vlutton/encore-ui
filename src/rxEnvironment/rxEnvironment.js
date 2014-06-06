@@ -35,31 +35,19 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         url: '//localhost:' + $location.port() + '/{{path}}'
     }, {
         // https://staging.encore.rackspace.com/
-        // https://staging.cloudatlas.encore.rackspace.com/
-        name: 'staging',
-        pattern: /\/\/staging\.(?:.*\.)?encore.rackspace.com/,
-        url: '//staging.{{tld}}.encore.rackspace.com/{{path}}'
+        // https://preprod.encore.rackspace.com/
+        name: 'unified-preprod',
+        pattern: /\/\/(\w+\.)encore.rackspace.com/,
+        url: '{{path}}'
     }, {
         // https://encore.rackspace.com/
-        // https://cloudatlas.encore.rackspace.com/
-        name: 'production',
-        pattern: /\/\/(?!staging).*\.?encore.rackspace.com/,
-        url: '//{{tld}}.encore.rackspace.com/{{path}}'
-    }, {
-        // https://staging.en.core.rackspace.com/
-        name: 'unified-preprod',
-        pattern: /\/\/(\w+\.)en.core.rackspace.com/,
-        url: '{{path}}'
-    }, {
-        // https://staging.en.core.rackspace.com/
-        // https://en.core.rackspace.com/
         name: 'unified',
-        pattern: 'en.core.rackspace.com',
+        pattern: 'encore.rackspace.com',
         url: '{{path}}'
     }, {
-        // https://en.core.rackspace.com/ only
+        // https://encore.rackspace.com/ only
         name: 'unified-prod',
-        pattern: /\/\/(?=[\w.]+)en.core.rackspace.com/,
+        pattern: /\/\/(?=[\w.]+)encore.rackspace.com/,
         url: '{{path}}'
     }];
 
