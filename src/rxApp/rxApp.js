@@ -23,7 +23,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         linkText: 'Account',
         key: 'accountLvlTools',
         directive: 'rx-account-search',
-        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         childVisibility: function (scope) {
             if (scope.route.current) {
                 return !_.isUndefined(scope.route.current.pathParams.accountNumber);
@@ -48,7 +47,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         linkText: 'Cloud',
         key: 'cloud',
         directive: 'rx-atlas-search',
-        visibility: '"!unified" | rxEnvironmentMatch',
+        visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
             // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
@@ -61,33 +60,33 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             '<span class="current-result">{{route.current.pathParams.user}}</span>',
         children: [
             {
-                href: { tld: 'cloudatlas', path: '{{user}}/servers' },
+                href: '/cloud/{{user}}/servers',
                 linkText: 'Cloud Servers'
             },
             {
-                href: { tld: 'cloudatlas', path: '{{user}}/cbs/volumes' },
+                href: '/cloud/{{user}}/cbs/volumes',
                 linkText: 'Block Storage',
                 children: [
                     {
-                        href: '/{{user}}/cbs/volumes',
+                        href: '/cloud/{{user}}/cbs/volumes',
                         linkText: 'Volumes'
                     }, {
-                        href: '/{{user}}/cbs/snapshots',
+                        href: '/cloud/{{user}}/cbs/snapshots',
                         linkText: 'Snapshots'
                     }
                 ]
             }, {
-                href: { tld: 'cloudatlas', path: '{{user}}/databases/instances' },
+                href: '/cloud/{{user}}/databases/instances',
                 linkText: 'Databases',
-                visibility: '"!production" | rxEnvironmentMatch'
+                visibility: '"unified-preprod" | rxEnvironmentMatch'
             }, {
-                href: { tld: 'cloudatlas', path: '{{user}}/loadbalancers' },
+                href: '/cloud/{{user}}/loadbalancers',
                 linkText: 'Load Balancers',
-                visibility: '"!production" | rxEnvironmentMatch'
+                visibility: '"unified-preprod" | rxEnvironmentMatch'
             }, {
-                href: { tld: 'cloudatlas', path: '{{user}}/networks' },
+                href: '/cloud/{{user}}/networks',
                 linkText: 'Networks',
-                visibility: '"!production" | rxEnvironmentMatch'
+                visibility: '"unified-preprod" | rxEnvironmentMatch'
             }
         ]
     }, {
