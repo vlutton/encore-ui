@@ -11,6 +11,12 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         .when('/', {
             redirectTo: '/overview'
         })
+        .when('/login', {
+            templateUrl: 'login.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })
         .when('/overview', {
             templateUrl: 'overview.html',
             controller: function (rxBreadcrumbsSvc) {
