@@ -62,9 +62,8 @@ Alternatively, they can install the file using this command:
 
 Once installed, the page objects can be pulled in to any midway test via:
 
-```
-var rxPageObjects = require('rxPageObjects');
-var myComponentPage = rxPageObjects.myComponent;
+```js
+var myComponentPage = require('rx-page-objects').myComponent;
 ...
 expect(myComponentPage.rootElement.isDisplayed()).to.eventually.eq.true;
 ```
