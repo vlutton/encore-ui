@@ -526,7 +526,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         link: function (scope) {
             scope.fetchAccount = function (query) {
                 if (query) {
-                    $window.location = _.template('/search?term=${query}', query);
+                    $window.location = '/search?term=' + query;
                 }
             };
         }
