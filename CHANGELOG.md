@@ -1,3 +1,23 @@
+<a name="0.11.0"></a>
+## 0.11.0 (2014-06-09)
+
+
+#### Features
+
+* **rxApp:** Migrate from en.core to encore ([306afda3](git@github.com:rackerlabs/encore-ui/commit/306afda32be7e0187ce1e9ce2da6fb40e275fd2f))
+* **rxAppSearch:** Add ng-pattern support ([5cc6182d](git@github.com:rackerlabs/encore-ui/commit/5cc6182d17d250becb288172fcb9b67ddef2ca1a))
+
+
+#### Breaking Changes
+
+* URLs include TLDs will no longer match
+any rxEnvironments.
+
+AFTER:
+Only available environments are "unified", "unified-preprod",
+"unified-prod" and "local" ([306afda3](git@github.com:rackerlabs/encore-ui/commit/306afda32be7e0187ce1e9ce2da6fb40e275fd2f))
+
+
 <a name="0.10.7"></a>
 ### 0.10.7 (2014-06-05)
 
