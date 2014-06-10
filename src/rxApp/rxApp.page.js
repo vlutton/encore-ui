@@ -90,6 +90,12 @@ var rxApp = {
         }
     },
 
+    logout: {
+        value: function () {
+            this.lnkLogout.click();
+        }
+    },
+
     NotCollapsibleException: {
         get: function () {
             return this.exception('Navigation menu not collapsible');

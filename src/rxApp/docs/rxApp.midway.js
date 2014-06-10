@@ -29,6 +29,12 @@ describe('rxApp', function () {
         expect(rxAppCustom.lnkLogout.isDisplayed()).to.eventually.be.true;
     });
 
+    // TODO: Create a valid route for /logout
+    it.skip('should logout', function () {
+        rxAppCustom.logout();
+        expect(demoPage.currentUrl).to.eventually.contain('login');
+    });
+
     describe('with collapsible navigation', function () {
         it('should have a collapsible navigation menu', function () {
             expect(rxAppCustom.isCollapsible()).to.eventually.be.true;
