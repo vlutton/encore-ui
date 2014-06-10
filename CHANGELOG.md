@@ -1,3 +1,12 @@
+<a name="0.11.2"></a>
+### 0.11.2 (2014-06-10)
+
+
+#### Bug Fixes
+
+* **rxApp:** Fix hrefs and remove visibility. ([bb34c586](git@github.com:rackerlabs/encore-ui/commit/bb34c5864f940cdadacd7e2045ac573e25d916f1))
+
+
 <a name="0.11.1"></a>
 ### 0.11.1 (2014-06-10)
 
