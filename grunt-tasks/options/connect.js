@@ -23,7 +23,12 @@ module.exports = {
             middleware: function (cnct) {
                 return [
                     config.proxyRequest,
-                    config.modRewrite(['!\\.\\w+$ /']),
+                    config.modRewrite([
+                        'login.html /login.html [L]',
+                        '^/login#* /login.html',
+                        '^/index.html\/.* /index.html [L]',
+                        '!\\.[0-9a-zA-Z_-]+$ /index.html [L]'
+                    ]),
                     config.liveReloadPage,
                     config.mountFolder(cnct, '.tmp'),
                     config.mountFolder(cnct, config.docs)

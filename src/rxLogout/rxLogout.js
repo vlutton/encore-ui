@@ -1,5 +1,5 @@
 angular.module('encore.ui.rxLogout', [])
-.directive('rxLogout', function ($rootScope, Auth) {
+.directive('rxLogout', function ($rootScope, $location, Auth) {
     return {
         restrict: 'A',
         controller: function ($scope, $window) {
@@ -10,7 +10,11 @@ angular.module('encore.ui.rxLogout', [])
 
             $scope.logout = function () {
                 Auth.logout(success);
-                $window.location = '/login';
+                if ($location.$$html5) {
+                    $window.location = '/login';
+                } else {
+                    $window.location = '#/login';
+                }
             };
         },
         link: function (scope, element) {

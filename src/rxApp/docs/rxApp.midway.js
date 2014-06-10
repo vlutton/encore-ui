@@ -29,10 +29,10 @@ describe('rxApp', function () {
         expect(rxAppCustom.lnkLogout.isDisplayed()).to.eventually.be.true;
     });
 
-    // TODO: Create a valid route for /logout
-    it.skip('should logout', function () {
+    it('should logout', function () {
         rxAppCustom.logout();
         expect(demoPage.currentUrl).to.eventually.contain('login');
+        demoPage.go('#/component/rxApp');
     });
 
     describe('with collapsible navigation', function () {
