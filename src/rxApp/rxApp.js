@@ -93,22 +93,21 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         href: '/support',
         linkText: 'Support Service',
         key: 'supportService',
-        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         directive: 'rx-support-service-search',
     }, {
-        href: 'ticketing',
+        href: '/ticketing',
         linkText: 'Ticketing',
         key: 'ticketing',
         children: [
             {
-                href: 'ticketing/list',
+                href: '/ticketing/list',
                 linkText: 'My Selected Queues'
             },
             {
-                href: 'ticketing/my',
+                href: '/ticketing/my',
                 linkText: 'My Tickets'
             }, {
-                href: 'ticketing/queues',
+                href: '/ticketing/queues',
                 linkText: 'Queue Admin'
             }
         ]
