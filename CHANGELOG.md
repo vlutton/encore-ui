@@ -1,3 +1,12 @@
+<a name="0.11.1"></a>
+### 0.11.1 (2014-06-10)
+
+
+#### Bug Fixes
+
+* **rxAccountSearch:** Fixes weird lodash template bug ([5aea0078](git@github.com:rackerlabs/encore-ui/commit/5aea00785dc082230313f3810d3b21660ee9f90f))
+
+
 <a name="0.11.0"></a>
 ## 0.11.0 (2014-06-09)
 
