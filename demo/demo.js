@@ -29,7 +29,13 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             }
         });
 })
-.run(function ($rootScope, components, $window) {
+.run(function ($rootScope, components, $window, Environment) {
+    Environment.add({
+        name: 'ghPages',
+        pattern: '//rackerlabs.github.io',
+        url: '//rackerlabs.github.io/encore-ui/{{path}}'
+    });
+
     var demoNav = [
         {
             type: 'highlight',

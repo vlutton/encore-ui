@@ -118,7 +118,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
     envSvc.setAll = function (newEnvironments) {
         // validate that all new environments are valid
         if (newEnvironments.length > 0 && _.every(environments, isValidEnvironment)) {
-            // overwrite old environemnts with new
+            // overwrite old environments with new
             environments = newEnvironments;
         }
     };
