@@ -2,7 +2,7 @@
  * EncoreUI
  * https://github.com/rackerlabs/encore-ui
 
- * Version: 0.11.1 - 2014-06-10
+ * Version: 0.11.2 - 2014-06-10
  * License: Apache License, Version 2.0
  */
 angular.module('encore.ui', [
@@ -452,24 +452,23 @@ angular.module('encore.ui.rxApp', [
         href: '/support',
         linkText: 'Support Service',
         key: 'supportService',
-        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         directive: 'rx-support-service-search'
       },
       {
-        href: 'ticketing',
+        href: '/ticketing',
         linkText: 'Ticketing',
         key: 'ticketing',
         children: [
           {
-            href: 'ticketing/list',
+            href: '/ticketing/list',
             linkText: 'My Selected Queues'
           },
           {
-            href: 'ticketing/my',
+            href: '/ticketing/my',
             linkText: 'My Tickets'
           },
           {
-            href: 'ticketing/queues',
+            href: '/ticketing/queues',
             linkText: 'Queue Admin'
           }
         ]
@@ -1343,8 +1342,9 @@ angular.module('encore.ui.rxForm', ['ngSanitize']).directive('rxFormItem', funct
 ]);
 angular.module('encore.ui.rxLogout', []).directive('rxLogout', [
   '$rootScope',
+  '$location',
   'Auth',
-  function ($rootScope, Auth) {
+  function ($rootScope, $location, Auth) {
     return {
       restrict: 'A',
       controller: [
@@ -1357,7 +1357,11 @@ angular.module('encore.ui.rxLogout', []).directive('rxLogout', [
           };
           $scope.logout = function () {
             Auth.logout(success);
-            $window.location = '/login';
+            if ($location.$$html5) {
+              $window.location = '/login';
+            } else {
+              $window.location = '#/login';
+            }
           };
         }
       ],
@@ -2081,7 +2085,7 @@ angular.module('templates/rxAccountSearch.html', []).run([
 angular.module('templates/rxApp.html', []).run([
   '$templateCache',
   function ($templateCache) {
-    $templateCache.put('templates/rxApp.html', '<div class="rx-app" ng-class="{collapsible: collapsibleNav === \'true\', collapsed: collapsedNav}" ng-cloak><nav class="rx-app-menu"><header class="site-branding"><h1 class="site-title">{{ siteTitle || \'Encore\' }}</h1><button class="collapsible-toggle btn-link" ng-if="collapsibleNav === \'true\'" rx-toggle="$parent.collapsedNav" title="{{ (collapsedNav) ? \'Show\' : \'Hide\' }} Main Menu"><span class="visually-hidden">{{ (collapsedNav) ? \'Show\' : \'Hide\' }} Main Menu</span><div class="double-chevron" ng-class="{\'double-chevron-left\': !collapsedNav}"></div></button><div class="site-options"><a href="#" rx-logout class="site-logout">Logout</a></div></header><nav class="rx-app-nav"><div ng-repeat="section in appRoutes.getAll()" class="nav-section nav-section-{{ section.type || \'all\' }}"><h2 class="nav-section-title">{{ section.title }}</h2><rx-app-nav items="section.children" level="1"></rx-app-nav></div></nav><div class="rx-app-help clearfix"><rx-feedback ng-if="!hideFeedback"></rx-feedback></div></nav><div class="rx-app-content" ng-transclude></div></div>');
+    $templateCache.put('templates/rxApp.html', '<div class="rx-app" ng-class="{collapsible: collapsibleNav === \'true\', collapsed: collapsedNav}" ng-cloak><nav class="rx-app-menu"><header class="site-branding"><h1 class="site-title">{{ siteTitle || \'Encore\' }}</h1><button class="collapsible-toggle btn-link" ng-if="collapsibleNav === \'true\'" rx-toggle="$parent.collapsedNav" title="{{ (collapsedNav) ? \'Show\' : \'Hide\' }} Main Menu"><span class="visually-hidden">{{ (collapsedNav) ? \'Show\' : \'Hide\' }} Main Menu</span><div class="double-chevron" ng-class="{\'double-chevron-left\': !collapsedNav}"></div></button><div class="site-options"><a href="#/login" rx-logout class="site-logout">Logout</a></div></header><nav class="rx-app-nav"><div ng-repeat="section in appRoutes.getAll()" class="nav-section nav-section-{{ section.type || \'all\' }}"><h2 class="nav-section-title">{{ section.title }}</h2><rx-app-nav items="section.children" level="1"></rx-app-nav></div></nav><div class="rx-app-help clearfix"><rx-feedback ng-if="!hideFeedback"></rx-feedback></div></nav><div class="rx-app-content" ng-transclude></div></div>');
   }
 ]);
 angular.module('templates/rxAppNav.html', []).run([

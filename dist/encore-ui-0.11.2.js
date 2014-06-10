@@ -2,7 +2,7 @@
  * EncoreUI
  * https://github.com/rackerlabs/encore-ui
 
- * Version: 0.11.1 - 2014-06-10
+ * Version: 0.11.2 - 2014-06-10
  * License: Apache License, Version 2.0
  */
 angular.module('encore.ui', [
@@ -420,24 +420,23 @@ angular.module('encore.ui.rxApp', [
         href: '/support',
         linkText: 'Support Service',
         key: 'supportService',
-        visibility: '("unified" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         directive: 'rx-support-service-search'
       },
       {
-        href: 'ticketing',
+        href: '/ticketing',
         linkText: 'Ticketing',
         key: 'ticketing',
         children: [
           {
-            href: 'ticketing/list',
+            href: '/ticketing/list',
             linkText: 'My Selected Queues'
           },
           {
-            href: 'ticketing/my',
+            href: '/ticketing/my',
             linkText: 'My Tickets'
           },
           {
-            href: 'ticketing/queues',
+            href: '/ticketing/queues',
             linkText: 'Queue Admin'
           }
         ]
@@ -1311,8 +1310,9 @@ angular.module('encore.ui.rxForm', ['ngSanitize']).directive('rxFormItem', funct
 ]);
 angular.module('encore.ui.rxLogout', []).directive('rxLogout', [
   '$rootScope',
+  '$location',
   'Auth',
-  function ($rootScope, Auth) {
+  function ($rootScope, $location, Auth) {
     return {
       restrict: 'A',
       controller: [
@@ -1325,7 +1325,11 @@ angular.module('encore.ui.rxLogout', []).directive('rxLogout', [
           };
           $scope.logout = function () {
             Auth.logout(success);
-            $window.location = '/login';
+            if ($location.$$html5) {
+              $window.location = '/login';
+            } else {
+              $window.location = '#/login';
+            }
           };
         }
       ],
