@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 describe('rxLogout', function () {
-    var linkEl, scope, compile, rootScope, authMock, $window,
+    var linkEl, scope, compile, rootScope, authMock, $window, $location,
         validTemplate = '<a href="#myPath" rx-logout></a>';
 
     beforeEach(function () {
@@ -14,10 +14,15 @@ describe('rxLogout', function () {
             var authApi = { logout: function () {}},
                 mockWindow = { location: '' };
 
+            // mock out html5 mode
+            var mockLocation = { $$html5: false };
+
             authMock = sinon.mock(authApi);
             $window = sinon.mock(mockWindow);
+            $location = sinon.stub(mockLocation);
             $provide.value('Auth', authApi);
             $provide.value('$window', $window);
+            $provide.value('$location', $location);
         });
 
         // Inject in angular constructs
@@ -45,6 +50,27 @@ describe('rxLogout', function () {
 
         // validate scope.logout was called
         scope.logout.restore();
+    });
+
+    describe('html5mode', function () {
+
+        it('should route the user to #/login if html5 mode is disabled', function () {
+            sinon.spy(scope, 'logout');
+            scope.logout();
+            expect($window.location).to.equal('#/login');
+        });
+
+        it('should route the user to /login if html5 mode is enabled', function () {
+            $location.$$html5 = true;
+            sinon.spy(scope, 'logout');
+            scope.logout();
+            expect($window.location).to.equal('/login');
+        });
+
+        after(function () {
+            $location.$$html5 = false;
+        });
+
     });
 
     it.skip('should prevent the default action on click', function () {
