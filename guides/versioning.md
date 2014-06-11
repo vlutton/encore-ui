@@ -1,6 +1,6 @@
 # Encore UI Versioning
 
-In order to prevent regressions and allow applications time to incorporate any breaking changes, Encore UI uses a 'pull' model for versioning. In order to get the latest version of Encore UI, the application must update their version reference (versus Encore UI automatically pushing down the latest version).
+In order to help prevent regressions and allow applications time to incorporate any breaking changes, Encore UI uses a 'pull' model for versioning. In order to get the latest version of Encore UI, the application must update their version reference (versus Encore UI automatically pushing down the latest version).
 
 Encore follows the [Semanatic Versioning](http://semver.org/) model for releases.
 
@@ -12,7 +12,7 @@ This does mean that the master branch will contain updates not available in the 
 
 ## Releasing a version
 
-A new version is released everytime a push to production occurs. This will normally happen about once a week.
+A new version is released everytime a push to production (our CDN) occurs. This will normally happen at least once per week. There is no specific criteria for a version to be released, other than features being ready for deployment.
 
 Production deploys are done manually through the command line. To push to production, run `grunt shipit:[versionType]` (replacing [versionType] with 'major', 'minor' or 'patch').
 
@@ -20,7 +20,7 @@ So, if you wanted to increment from v0.1.0 to v0.1.1, you would run `grunt shipi
 
 **Note: This command is only intended to be used by core contributors. It will not work if you do not have the right permissions.**
 
-A git tag is automatically created for every new version and each version is pushed to the Bower repo.
+A git tag is automatically created for every new version and each version is pushed to the Bower repo automatically through the `shipit` command.
 
 ## Environments
 
