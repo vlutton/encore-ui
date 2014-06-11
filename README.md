@@ -2,7 +2,7 @@
 
 # What is Encore-UI?
 
-Encore-UI is a library of reusable AngularJS widgets for internal Rackspace projects. At this point, it may not usable for non-Rackspace projects. However, it is a great resource for learning our best practices.
+Encore-UI is a library of reusable AngularJS widgets for internal Rackspace projects. At this point, it may not be usable for non-Rackspace projects. However, it is a great resource for learning our best practices.
 
 # Demo App
 
