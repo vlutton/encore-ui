@@ -73,8 +73,12 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
         body = body.join('\n\n');
 
         // if the feedback service fails, this fallback function can be run as a last ditch effort
-        $window.location.href = encodeURI('mailto:encoreui@lists.rackspace.com?subject=' + subject +
-            '&body=' + body);
+        var uri = encodeURI('mailto:encoreui@lists.rackspace.com?subject=' + subject + '&body=' + body);
+        var windowOpen = $window.open(uri, '_blank');
+
+        if (!windowOpen) {
+            $window.location.href = uri;
+        }
     };
 
     return {

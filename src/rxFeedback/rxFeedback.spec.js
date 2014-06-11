@@ -194,7 +194,7 @@ describe('rxScreenshotSvc', function () {
 });
 
 describe('rxFeedbackSvc', function () {
-    var feedbackSvc, mockResource, mockWindow;
+    var feedbackSvc, mockResource, mockWindow, mockNotifySvc;
     var apiUrl = 'myurl';
 
     beforeEach(function () {
@@ -206,14 +206,19 @@ describe('rxFeedbackSvc', function () {
         });
 
         mockWindow = {
-            location: {
-            }
+            location: {},
+            open: sinon.stub()
+        };
+
+        mockNotifySvc = {
+            add: sinon.stub()
         };
 
         module(function ($provide) {
             $provide.value('feedbackApi', apiUrl);
             $provide.value('$resource', mockResource);
             $provide.value('$window', mockWindow);
+            $provide.value('rxNotify', mockNotifySvc);
         });
 
         // Inject in angular constructs
@@ -252,8 +257,23 @@ describe('rxFeedbackSvc', function () {
 
         feedbackSvc.fallback(fackFeedback);
 
-        expect(mockWindow.location.href).to.contain(fackFeedback.type.label);
-        expect(mockWindow.location.href).to.contain(fackFeedback.description);
+        expect(mockWindow.open.calledOnce).to.be.true;
+    });
 
+    it('should show e-mail feedback in current window if new window fails to load', function () {
+        var feedback = {
+            type: {
+                label: 'test'
+            },
+            description: 'test'
+        };
+
+        expect(feedbackSvc.fallback).to.be.a.function;
+
+        mockWindow.open.returns(undefined);
+        feedbackSvc.fallback(feedback);
+
+        expect(mockWindow.location.href).to.contain(feedback.type.label);
+        expect(mockWindow.location.href).to.contain(feedback.description);
     });
 });
