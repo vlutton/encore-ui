@@ -50,6 +50,119 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
 /**
  *
  * @ngdoc directive
+ * @name encore.ui.rxForm:rxFormOptionTable
+ * @restrict E
+ * @description
+ * This directive is used to build a table of radio/checkbox inputs
+ * @scope
+ * @param {Array} data - Array of objects used to populate table. Properties must match columns data
+ * key. Example:
+ * ```
+ * [
+ *     {
+ *         'name': 'Option 1',
+ *         'value': 0
+ *     }, {
+ *         'name': 'Option 2',
+ *         'value': 1
+ *     }, {
+ *         'name': 'Option 3',
+ *         'value': 2
+ *     }
+ * ]
+ * ```
+ * @param {array} columns - Array of objects with label/key values. Example:
+ * ```
+ * [{
+ *     'label': 'Name',
+ *     'key': 'name'
+ * }]
+ * ```
+ * @param {String=} selected - Key of item that's selected (and therefore will have input disabled)
+ * @param {String} type - Type of input to be used
+ * @param {Object} model - Value to bind input to using ng-model
+ * @param {String} fieldId - Used for label and input 'id' attribute
+ * @param {String} required - Value passed to input's 'ng-required' attribute
+ */
+.directive('rxFormOptionTable', function ($interpolate) {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxFormOptionTable.html',
+        scope: {
+            data: '=',
+            columns: '=',
+            selected: '@',
+            type: '@',
+            model: '=',
+            fieldId: '@',
+            required: '@'
+        },
+        controller: function ($scope) {
+            var determineMatch = function (val1, val2) {
+                if (_.isUndefined(val1) || _.isUndefined(val2)) {
+                    return false;
+                }
+
+                return (val1 == val2);
+            };
+
+            // Determines whether the row is the initial choice
+            $scope.isCurrent = function (val) {
+                return determineMatch(val, $scope.selected);
+            };
+
+            // Determines whether the row is selected
+            $scope.isSelected = function (val, idx) {
+                // row can only be 'selected' if it's not the 'current'' value
+                if (!$scope.isCurrent(val)) {
+                    if ($scope.type == 'radio') {
+                        return (val == $scope.model);
+                    } else if ($scope.type == 'checkbox') {
+                        if (!_.isUndefined(val)) {
+                            // if 'val' is defined, run it through our custom matcher
+                            return determineMatch(val, $scope.model[idx]);
+                        } else {
+                            // otherwise, just return the value of the model and angular can decide
+                            return $scope.model[idx];
+                        }
+                    }
+                }
+
+                return false;
+            };
+
+            /*
+             * Get the value out of a key from the row, or parse an expression
+             * @param {String} expr - Key or Angular Expression (or static text) to be compiled
+             * @param {Object} row - Data object with data to be used against the expression
+             */
+            $scope.getContent = function (column, row) {
+                var expr = column.key;
+                // If no expression exit out;
+                if (!expr) {
+                    return;
+                }
+
+                // if the expr is a property of row, then we expect the value of the key.
+                if (row.hasOwnProperty(expr)) {
+                    return row[expr];
+                }
+
+                // Compile expression & Run output template
+                var outputHTML = $interpolate(expr)(row);
+                return outputHTML;
+            };
+        }
+    };
+})
+
+/**
+ * Below are officially deprecated directives.
+ */
+
+/**
+ *
+ * @ngdoc directive
  * @name encore.ui.rxForm:rxFormInput
  * @restrict E
  * @description
@@ -153,114 +266,6 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             label: '@',
             model: '=',
             required: '@'
-        }
-    };
-})
-/**
- *
- * @ngdoc directive
- * @name encore.ui.rxForm:rxFormOptionTable
- * @restrict E
- * @description
- * This directive is used to build a table of radio/checkbox inputs
- * @scope
- * @param {Array} data - Array of objects used to populate table. Properties must match columns data
- * key. Example:
- * ```
- * [
- *     {
- *         'name': 'Option 1',
- *         'value': 0
- *     }, {
- *         'name': 'Option 2',
- *         'value': 1
- *     }, {
- *         'name': 'Option 3',
- *         'value': 2
- *     }
- * ]
- * ```
- * @param {array} columns - Array of objects with label/key values. Example:
- * ```
- * [{
- *     'label': 'Name',
- *     'key': 'name'
- * }]
- * ```
- * @param {String=} selected - Key of item that's selected (and therefore will have input disabled)
- * @param {String} type - Type of input to be used
- * @param {Object} model - Value to bind input to using ng-model
- * @param {String} fieldId - Used for label and input 'id' attribute
- * @param {String} required - Value passed to input's 'ng-required' attribute
- */
-.directive('rxFormOptionTable', function ($interpolate) {
-    return {
-        restrict: 'E',
-        templateUrl: 'templates/rxFormOptionTable.html',
-        scope: {
-            data: '=',
-            columns: '=',
-            selected: '@',
-            type: '@',
-            model: '=',
-            fieldId: '@',
-            required: '@'
-        },
-        controller: function ($scope) {
-            var determineMatch = function (val1, val2) {
-                if (_.isUndefined(val1) || _.isUndefined(val2)) {
-                    return false;
-                }
-
-                return (val1 == val2);
-            };
-
-            // Determines whether the row is the initial choice
-            $scope.isCurrent = function (val) {
-                return determineMatch(val, $scope.selected);
-            };
-
-            // Determines whether the row is selected
-            $scope.isSelected = function (val, idx) {
-                // row can only be 'selected' if it's not the 'current'' value
-                if (!$scope.isCurrent(val)) {
-                    if ($scope.type == 'radio') {
-                        return (val == $scope.model);
-                    } else if ($scope.type == 'checkbox') {
-                        if (!_.isUndefined(val)) {
-                            // if 'val' is defined, run it through our custom matcher
-                            return determineMatch(val, $scope.model[idx]);
-                        } else {
-                            // otherwise, just return the value of the model and angular can decide
-                            return $scope.model[idx];
-                        }
-                    }
-                }
-
-                return false;
-            };
-
-            /*
-             * Get the value out of a key from the row, or parse an expression
-             * @param {String} expr - Key or Angular Expression (or static text) to be compiled
-             * @param {Object} row - Data object with data to be used against the expression
-             */
-            $scope.getContent = function (column, row) {
-                var expr = column.key;
-                // If no expression exit out;
-                if (!expr) {
-                    return;
-                }
-
-                // if the expr is a property of row, then we expect the value of the key.
-                if (row.hasOwnProperty(expr)) {
-                    return row[expr];
-                }
-
-                // Compile expression & Run output template
-                var outputHTML = $interpolate(expr)(row);
-                return outputHTML;
-            };
         }
     };
 });
