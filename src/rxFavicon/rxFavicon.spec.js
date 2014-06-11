@@ -1,6 +1,6 @@
 /* jshint node: true */
 describe('rxFavicon', function () {
-    var scope, compile, rootScope, el, envSvc;
+    var scope, compile, rootScope, el, envSvc, log;
 
     var paths = {
         prod: 'prod.png',
@@ -31,16 +31,19 @@ describe('rxFavicon', function () {
         module('encore.ui.rxEnvironment');
 
         // Inject in angular constructs
-        inject(function ($location, $rootScope, $compile, Environment) {
+        inject(function ($location, $rootScope, $compile, Environment, $log) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
             envSvc = Environment;
+            log = $log;
         });
     });
 
     afterEach(function () {
-        envSvc.get.restore();
+        if (envSvc.get.restore) {
+            envSvc.get.restore();
+        }
         el = null;
     });
 
@@ -97,5 +100,16 @@ describe('rxFavicon', function () {
         el = helpers.createDirective(stagingTemplate, compile, scope);
 
         expect(el.attr('href')).to.equal(paths.staging);
+    });
+
+    it('should log warning if attribute not an object', function () {
+        var badTemplate = '<link rx-favicon="somePath.png">';
+
+        // set to local environment
+        sinon.spy(log, 'warn');
+
+        el = helpers.createDirective(badTemplate, compile, scope);
+
+        expect(log.warn.calledOnce).to.be.true;
     });
 });
