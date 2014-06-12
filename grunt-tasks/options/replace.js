@@ -1,6 +1,6 @@
 module.exports = {
     'readme': {
-        src: ['README.md', 'guides/testing.md'],
+        src: ['guides/getting-started.md', 'guides/testing.md'],
         overwrite: true,
         replacements: [{
             from: /\-(?:\d+\.){2}\d+/g,
