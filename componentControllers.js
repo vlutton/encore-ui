@@ -202,12 +202,13 @@ function rxDiskSizeCtrl ($scope) {
 /*jshint unused:false*/
 function rxEnvironmentCtrl ($scope, Environment) {
     $scope.Environment = Environment;
+}
 
-    Environment.add({
-        name: 'ghPages',
-        pattern: '//rackerlabs.github.io/encore-ui',
-        url: '//rackerlabs.github.io/encore-ui/{{path}}'
-    });
+/*jshint unused:false*/
+function rxFaviconCtrl ($scope, Environment) {
+    $scope.setEnvironment = function (environment) {
+        // TODO allow overriding the current environment to show how the favicon changes
+    };
 }
 
 /*jshint unused:false*/
@@ -525,10 +526,11 @@ function rxSpinnerCtrl ($scope) {
 /*jshint unused:false*/
 function typeaheadCtrl ($scope) {
     $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
-        'Delaware', 'Dawood', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',
+        'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',
         'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
         'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',
-        'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',
-        'West Virginia', 'Wisconsin', 'Wyoming'];
+        'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Republic of Dawood',
+        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
+        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
 }
+

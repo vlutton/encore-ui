@@ -228,8 +228,26 @@ angular.module('demoApp')
         "dependencies": [],
         "docs": {
             "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/unstable.svg\" alt=\"unstable\" title=\"\" /></a></p>\n\n<p>Component built to detect and provide the current environment (e.g. dev, staging, prod)</p>",
-            "js": "/*jshint unused:false*/\nfunction rxEnvironmentCtrl ($scope, Environment) {\n    $scope.Environment = Environment;\n\n    Environment.add({\n        name: 'ghPages',\n        pattern: '//rackerlabs.github.io/encore-ui',\n        url: '//rackerlabs.github.io/encore-ui/{{path}}'\n    });\n}",
+            "js": "/*jshint unused:false*/\nfunction rxEnvironmentCtrl ($scope, Environment) {\n    $scope.Environment = Environment;\n}",
             "html": "<div ng-controller=\"rxEnvironmentCtrl\">\n    <p>Current Environment: {{Environment.get().name}}</p>\n\n    <p>Url built from Environment data: {{ { tld: 'cloudatlas', path: 'some/path' } | rxEnvironmentUrl }}</p>\n\n    <p>Content shows if on GitHub demo page:\n        <span rx-if-environment=\"ghPages\">\n            You're on the GitHub demo page\n        </span>\n    </p>\n\n    <p>Content shows if not on GitHub demo page:\n        <span rx-if-environment=\"!ghPages\">\n            You're not on the GitHub demo page\n        </span>\n    </p>\n</div>"
+        }
+    },
+    {
+        "name": "rxFavicon",
+        "moduleName": "'encore.ui.rxFavicon'",
+        "displayName": "Rx Favicon",
+        "srcFiles": [
+            "src/rxFavicon/rxFavicon.js"
+        ],
+        "tplFiles": [],
+        "tplJsFiles": [],
+        "dependencies": [
+            "rxEnvironment"
+        ],
+        "docs": {
+            "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/experimental.svg\" alt=\"experimental\" title=\"\" /></a></p>\n\n<p>Allows custom favicons between local, staging and production environments.</p>\n\n<h2>Usage</h2>\n\n<p>rxFavicon is an attribute based directive. It accepts an object with the following optional parameters defined:</p>\n\n<ul>\n<li><strong>staging</strong>: Path to favicon to use for staging environments (falls back to 'production' icon)</li>\n<li><strong>local</strong>: Path to favicon to use for staging environments (falls back to 'staging' icon)</li>\n</ul>\n\n<p>See the demo examples for code examples.</p>",
+            "js": "/*jshint unused:false*/\nfunction rxFaviconCtrl ($scope, Environment) {\n    $scope.setEnvironment = function (environment) {\n        // TODO allow overriding the current environment to show how the favicon changes\n    };\n}",
+            "html": "<div ng-controller=\"rxFaviconCtrl\">\n    <p>See favicon of this site for an example of this. On <a href=\"http://rackerlabs.github.io/encore-ui/\">the live site</a>, the favicon will be a dark blue book. On <a href=\"http://localhost:9001\">the local site</a>, it will be a light blue book.</p>\n\n    <link rel=\"icon\" type=\"image/png\" href=\"favicon.png\" rx-favicon=\"{ staging: 'staging-favicon.png', local: 'local-favicon.png' }\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"favicon.png\" rx-favicon=\"{ local: 'local-favicon.png' }\" />\n    <link rel=\"icon\" type=\"image/png\" href=\"favicon.png\" rx-favicon=\"{ staging: 'staging-favicon.png' }\" />\n</div>"
         }
     },
     {
@@ -607,7 +625,7 @@ angular.module('demoApp')
         "dependencies": [],
         "docs": {
             "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/experimental.svg\" alt=\"experimental\" title=\"\" /></a></p>\n\n<p>This component provides styles and a demo for the <a href=\"https://github.com/angular-ui/bootstrap/tree/master/src/typeahead\">the Angular-UI Bootstrap Typeahead plugin</a>, which is included as a dependency for Encore-UI.</p>\n\n<h2>Usage</h2>\n\n<p>Usage is the exact same as demoed on the Angular-UI Bootstrap site. See <a href=\"http://angular-ui.github.io/bootstrap/\">the Angular-UI Bootstrap Docs</a> for further guidance on usage and configuration of this component.</p>",
-            "js": "/*jshint unused:false*/\nfunction typeaheadCtrl ($scope) {\n    $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',\n        'Delaware', 'Dawood', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',\n        'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',\n        'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',\n        'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',\n        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington',\n        'West Virginia', 'Wisconsin', 'Wyoming'];\n}",
+            "js": "/*jshint unused:false*/\nfunction typeaheadCtrl ($scope) {\n    $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',\n        'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',\n        'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',\n        'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York',\n        'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Republic of Dawood',\n        'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',\n        'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];\n}\n",
             "html": "<div ng-controller=\"typeaheadCtrl\">\n    <rx-form-item label=\"States\">\n        <input type=\"text\" ng-model=\"selected\" typeahead=\"state for state in states | filter:$viewValue | limitTo:8\" class=\"form-input\" id=\"typeahead\">\n    </rx-form-item>\n</div>"
         }
     }

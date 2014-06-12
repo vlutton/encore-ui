@@ -149,6 +149,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxFavicon:rxFavicon",
+      "shortName": "rxFavicon",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Updates href of element and replaces it with path to a different image based on environment",
+      "keywords": "api based directive element encore environment favicon href image local optional path properties replaces rxfavicon takes ui updates"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxForm:rxFormFieldset",
       "shortName": "rxFormFieldset",
       "type": "directive",
