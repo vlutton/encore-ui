@@ -1,13 +1,15 @@
+// preprocessor: '/usr/bin/less'
 var config = require('../util/config.js');
 
 module.exports = {
     config: config,
     options: {
-        _: ['build/dist'],
+        _: ['<%= config.dist %>'],
         name: 'Encore UI',
         out: '<%= config.docs %>/styleguide',
-        in : ['build/dist'],
-        include: [undefined],
-        basePath: 'build/dist'
+        in : ['<%= config.dist %>'],
+        include: [],
+        preprocessor: 'node_modules/grunt-contrib-less/node_modules/less',
+        basePath: '<%= config.dist %>'
     }
 };
