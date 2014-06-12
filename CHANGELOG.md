@@ -1,3 +1,12 @@
+<a name="0.11.3"></a>
+### 0.11.3 (2014-06-12)
+
+
+#### Features
+
+* **rxFavicon:** close #310; specify environment-based favicons ([6b7f5e7d](git@github.com:rackerlabs/encore-ui/commit/6b7f5e7daf8fa9bf1e0ed9a6fa55d58a972613a2))
+
+
 <a name="0.11.2"></a>
 ### 0.11.2 (2014-06-10)
 
