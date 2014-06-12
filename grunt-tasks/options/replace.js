@@ -4,7 +4,7 @@ module.exports = {
         overwrite: true,
         replacements: [{
             from: /\-(?:\d+\.){2}\d+/g,
-            to: '-<%= pkg.version %>.'
+            to: '-<%= pkg.version %>'
         }]
     },
     'bower': {
