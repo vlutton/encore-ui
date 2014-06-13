@@ -1,3 +1,20 @@
+<a name="0.11.4"></a>
+### 0.11.4 (2014-06-13)
+
+
+#### Bug Fixes
+
+* **docs:** Fixed a typo in the rxNotify docs ([99cd481a](git@github.com:rackerlabs/encore-ui/commit/99cd481a011a154ea2b38e6afbf663a4d6f2ae5b))
+* **styleguide:**
+  * have ngdocs and styleguide build on server start ([6eff880e](git@github.com:rackerlabs/encore-ui/commit/6eff880e93accce24b30c8808fcd37e5d0d953d3))
+  * fixes #337 #338 #339; builds from LESS files ([7d4c4a05](git@github.com:rackerlabs/encore-ui/commit/7d4c4a05ac71739007f04336986b9ceaee75619d))
+
+
+#### Features
+
+* **rxFeedbackSvc:** Fallback opens new window ([4603bdff](git@github.com:rackerlabs/encore-ui/commit/4603bdff62d7e61e2d77b51cb1ddbbb7b2f481ce))
+
+
 <a name="0.11.3"></a>
 ### 0.11.3 (2014-06-12)
 
