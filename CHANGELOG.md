@@ -10,7 +10,6 @@
 <a name="0.11.2"></a>
 ### 0.11.2 (2014-06-10)
 
-
 #### Bug Fixes
 
 * **rxApp:** Fix hrefs and remove visibility. ([bb34c586](git@github.com:rackerlabs/encore-ui/commit/bb34c5864f940cdadacd7e2045ac573e25d916f1))
@@ -19,15 +18,12 @@
 <a name="0.11.1"></a>
 ### 0.11.1 (2014-06-10)
 
-
 #### Bug Fixes
 
 * **rxAccountSearch:** Fixes weird lodash template bug ([5aea0078](git@github.com:rackerlabs/encore-ui/commit/5aea00785dc082230313f3810d3b21660ee9f90f))
 
-
 <a name="0.11.0"></a>
 ## 0.11.0 (2014-06-09)
-
 
 #### Features
 
@@ -43,7 +39,6 @@ any rxEnvironments.
 AFTER:
 Only available environments are "unified", "unified-preprod",
 "unified-prod" and "local" ([306afda3](git@github.com:rackerlabs/encore-ui/commit/306afda32be7e0187ce1e9ce2da6fb40e275fd2f))
-
 
 <a name="0.10.7"></a>
 ### 0.10.7 (2014-06-05)

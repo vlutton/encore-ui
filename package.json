@@ -49,6 +49,7 @@
     "grunt-ngdocs": "~0.2.1",
     "grunt-ngmin": "~0.0.2",
     "grunt-shell": "~0.7.0",
+    "grunt-styleguide": "^0.2.15",
     "grunt-text-replace": "~0.3.11",
     "karma": "~0.12.16",
     "karma-chai": "0.1.0",
