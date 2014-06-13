@@ -19,7 +19,7 @@ module.exports = {
     },
     componentLess: {
         files: ['src/**/*.less'],
-        tasks: ['less']
+        tasks: ['less', 'styleguide']
     },
     componentImages: {
         files: ['src/**/images/*'],
