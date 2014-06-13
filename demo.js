@@ -79,6 +79,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                             href: 'ngdocs/index.html',
                             linkText: 'Generated JS Docs'
                         },
+                        {
+                            href: 'styleguide/index.html',
+                            linkText: 'Generated CSS Docs'
+                        }
                     ]
                 }
             ]
