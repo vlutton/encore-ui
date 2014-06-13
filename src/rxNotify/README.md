@@ -87,7 +87,7 @@ This will add a new message to the default stack ('page') with all default optio
 
 - **`show`**: *When to have the message appear.*
 
-    > Default: `'immediately'`
+    > Default: `'immediate'`
 
     *Other values:*
 
