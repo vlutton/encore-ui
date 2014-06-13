@@ -11,7 +11,7 @@ module.exports = {
         },
 
         files: {
-            'build/styleguide': 'build/dist/*.css'
+            '<%= config.docs %>/styleguide': '<%= config.dist %>/*.css'
         }
     }
 };
