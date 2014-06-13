@@ -8,6 +8,8 @@ module.exports = function (grunt) {
                 'build',
                 'less',
                 'copy',
+                'ngdocs',
+                'styleguide',
                 'configureProxies',
                 'connect:dist',
                 'karma:watch:start',
