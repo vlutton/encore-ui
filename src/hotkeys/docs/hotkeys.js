@@ -31,7 +31,6 @@ function hotkeysCtrl ($scope, hotkeys) {
 
     hotkeys.add({
         combo: 'up+up+down+down+left+right+left+right+a+b',
-        // combo: 'up+up',
         callback: showHFSHE
     });
 }

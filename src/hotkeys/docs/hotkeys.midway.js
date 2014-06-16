@@ -1,17 +1,30 @@
 var demoPage = require('../../../utils/demo.page.js');
-var hotkeysPage = require('../hotkeys.page.js').hotkeys;
 var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('hotkeys', function () {
-    var hotkeys;
+    var volume, body;
 
     before(function () {
         demoPage.go('#/component/hotkeys');
-        hotkeys = hotkeysPage.initialize($('#hotkeys'));
+        volume = element(by.binding('volume'));
+        body = element(by.css('body'));
     });
 
-    it('should show element', function () {
-        expect(hotkeys.isDisplayed()).to.eventually.be.true;
+    it('should turn volume up and down using hotkeys', function () {
+        expect(volume.getText()).to.eventually.equal('5');
+
+        // turn it up
+        var ctrlUp = protractor.Key.chord(protractor.Key.CONTROL, protractor.Key.ARROW_UP);
+        body.sendKeys(ctrlUp);
+
+        expect(volume.getText()).to.eventually.equal('6');
+
+        // turn it down
+        var ctrlDown = protractor.Key.chord(protractor.Key.CONTROL, protractor.Key.ARROW_DOWN);
+        body.sendKeys(ctrlDown);
+        body.sendKeys(ctrlDown);
+
+        expect(volume.getText()).to.eventually.equal('4');
     });
 });
