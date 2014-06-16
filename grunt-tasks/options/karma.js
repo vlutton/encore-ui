@@ -9,6 +9,8 @@ var files = [
     'demo/bower_components/lodash/dist/lodash.compat.js',
     'demo/bower_components/momentjs/moment.js',
     'demo/bower_components/html2canvas/build/html2canvas.js',
+    'demo/bower_components/mousetrap/mousetrap.js',
+    'demo/bower_components/angular-hotkeys/build/hotkeys.min.js',
     'demo/bower_components/angular-mocks/angular-mocks.js',
     // endbower
     'utils/browser-helpers.js'

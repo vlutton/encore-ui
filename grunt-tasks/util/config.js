@@ -15,11 +15,14 @@ module.exports = {
     fileNameTpl: 'encore-ui-tpls-<%= pkg.version %>',
     moduleName: 'encore.ui',
     modules: [],
+    dependencies: ['cfp.hotkeys', 'ui.bootstrap'],
     meta: {
-        modules: 'angular.module(\'<%= config.moduleName %>\', [<%= config.srcModules %>]);',
+        modules: 'angular.module(\'<%= config.moduleName %>\', [<%= config.srcModules %>, ' +
+            '\'<%= config.dependencies.join("\',\'") %>\']);',
         tplmodules: 'angular.module(\'<%= config.moduleName %>.tpls\', [<%= config.tplModules %>]);',
         all: 'angular.module(\'<%= config.moduleName %>\', ' +
-            '[\'<%= config.moduleName %>.tpls\', <%= config.srcModules %>]);',
+            '[\'<%= config.moduleName %>.tpls\', <%= config.srcModules %>, ' +
+            '\'<%= config.dependencies.join("\',\'") %>\']);',
         banner: [
             '/*',
             ' * <%= pkg.name %>',
