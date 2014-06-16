@@ -3,7 +3,77 @@
 @import 'mixins';
 
 /*
- * rxApp
+
+ # rxApp
+
+This component is responsible for creating the HTML necessary for a common Encore layout. It builds out the main navigation, plus breadcrumbs and page titles.
+
+## Usage
+
+For apps that want to use the default Encore navigation, usage is pretty simple. In your index.html file, add the `rx-app` directive inside your app:
+
+```
+    <body>
+        <div class="rx-app">
+            <nav class="rx-app-menu">
+                <header class="site-branding">
+                    <h1 class="site-title">Encore</h1>
+                    <button class="collapsible-toggle btn-link">
+                        <div class="double-chevron"></div>
+                    </button>
+                    <div class="site-options">
+                        <a href="settings" class="site-settings">Settings</a>
+                        <a href="#" class="site-logout">Logout</a>
+                    </div>
+                </header>
+                <nav class="rx-app-nav">
+                    <div class="nav-section nav-section-1">
+                        <h2 class="nav-section-title">Section One</h2>
+                        <div class="rx-app-nav rx-app-nav-level-1">
+                            <ul class="rx-app-nav-group">
+                                <li class="rx-app-nav-item active">
+                                    <a href="#" class="item-link">Link one</a>
+                                </li>
+                                <li class="rx-app-nav-item">
+                                    <a href="#" class="item-link">Link two</a>
+                                </li>
+                                <li class="rx-app-nav-item has-children">
+                                    <a href="#" class="item-link">Link three</a>
+                                    <div class="item-content">
+                                        <div class="item-directive">[Things like a search go here]</div>
+                                        <div class="item-children">
+                                            <div class="child-header">Subgroup Header</div>
+                                                <div class="rx-app-nav rx-app-nav-level-2">
+                                                    <ul class="rx-app-nav-group">
+                                                        <li class="rx-app-nav-item active">
+                                                            <a href="#" class="item-link">Sub link 1</a>
+                                                        </li>
+                                                        <li class="rx-app-nav-item">
+                                                            <a href="#" class="item-link">Sub link 2</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <h2 class="nav-section-title">Section Two</h2>
+                        <div class="rx-app-nav rx-app-nav-level-2">
+                            <ul class="rx-app-nav-group">
+                                <rx-app-nav-item ng-repeat="item in items" item="item"></rx-app-nav-item>
+                            </ul>
+                        </div>                        
+                    </div>
+                </nav>
+            </nav>
+            <div class="rx-app-content"></div>
+        </div>
+    </body>
+```
+
+Inside your view, you'll likely want to use `rx-page` to wrap your content. See the `rx-page` docs for more information on this.
+
  */
 .rx-app {
     @navTransitionDuration: .2s;

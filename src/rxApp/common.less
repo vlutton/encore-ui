@@ -1,6 +1,10 @@
 @import 'vars';
 @import (inline) 'normalize.css';
 
+/*
+ # Common CSS modules
+ */
+
 html, body {
     height: 100%;
     font-size: @appFontSize;
@@ -168,6 +172,8 @@ thead th .btn-link {
 
 /*
 
+## Link statuses
+
 Colors the text red to warn people that something important will/did happen (plus icons)
 
 ```
@@ -244,15 +250,16 @@ Colors the text red to warn people that something important will/did happen (plu
 
 /*
 Basic color change to make text less prominant
+```
 <h1>My Items <span class="subdued">(10)</span></h1>
+```
  */
 .subdued {
     color: @subduedText;
 }
 
 /*
-This can be added to hide an element but not remove it from the spacing of the
-page
+This can be added to hide an element but not remove it from the spacing of the page
 */
 .hidden {
     visibility: hidden;
@@ -306,7 +313,15 @@ body:hover .visually-hidden button {
 
 
 /*
- * Creates a 'well' effect (box with light gray background)
+
+## Wells
+
+Creates a 'well' effect (box with light gray background)
+```
+<div class="well">
+<p>Well, here you go.</p>
+</div>
+```
  */
 .well {
     background-color: #eee;
