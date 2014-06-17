@@ -78,15 +78,15 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }, {
                 href: '/cloud/{{user}}/databases/instances',
                 linkText: 'Databases',
-                visibility: '"unified-preprod" | rxEnvironmentMatch'
+                visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)'
             }, {
                 href: '/cloud/{{user}}/loadbalancers',
                 linkText: 'Load Balancers',
-                visibility: '"unified-preprod" | rxEnvironmentMatch'
+                visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)'
             }, {
                 href: '/cloud/{{user}}/networks',
                 linkText: 'Networks',
-                visibility: '"unified-preprod" | rxEnvironmentMatch'
+                visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)'
             }
         ]
     }, {
