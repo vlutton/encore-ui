@@ -7,6 +7,7 @@
 
     <!-- Content inside bower:css is auto-generated via `grunt bowerInstall` -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-hotkeys/build/hotkeys.min.css" />
     <!-- endbower -->
 
     <link href="assets/pure-min.css" rel="stylesheet" />
@@ -26,6 +27,8 @@
     <script src="bower_components/lodash/dist/lodash.compat.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
     <script src="bower_components/html2canvas/build/html2canvas.js"></script>
+    <script src="bower_components/mousetrap/mousetrap.js"></script>
+    <script src="bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
     <!-- endbower -->
 
     <script src="dist/<%= config.fileNameTpl %>.js"></script>
@@ -36,7 +39,7 @@
     <title>Encore UI</title>
 </head>
 <body>
-    <rx-app site-title="Encore Demo App" menu="demoNav" new-instance="true">
+    <rx-app site-title="Encore Demo App" menu="demoNav" new-instance="true" collapsible-nav="true">
         <ng-view class="container"></ng-view>
     </rx-app>
 </body>

@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngRoute'])
+angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngRoute', 'cfp.hotkeys'])
 /*
  * This array defines the default navigation to use for all Encore sites and used by rxAppNav.
  * It can be overwritten if necessary via the 'menu' property of rxAppNav.
@@ -305,7 +305,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (rxAppRoutes) {
+.directive('rxApp', function (rxAppRoutes, hotkeys) {
     return {
         restrict: 'E',
         transclude: true,
@@ -328,6 +328,16 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             // or if scope.menu was defined
             if (scope.newInstance || scope.menu) {
                 scope.appRoutes.setAll(scope.menu);
+            }
+
+            if (scope.collapsibleNav) {
+                hotkeys.add({
+                    combo: 'ctrl+h',
+                    description: 'Show/hide the main menu',
+                    callback: function () {
+                        scope.collapsedNav = !scope.collapsedNav;
+                    }
+                });
             }
         }
     };
