@@ -10,7 +10,7 @@ This component is responsible for creating the HTML necessary for a common Encor
 
 ## Usage
 
-For apps that want to use the default Encore navigation, usage is pretty simple. In your index.html file, add the `rx-app` directive inside your app:
+For apps that want to use the default Encore navigation, use the following HTML class structures placed inside your index.html file:
 
 ```
     <body>
@@ -43,16 +43,16 @@ For apps that want to use the default Encore navigation, usage is pretty simple.
                                         <div class="item-directive">[Things like a search go here]</div>
                                         <div class="item-children">
                                             <div class="child-header">Subgroup Header</div>
-                                                <div class="rx-app-nav rx-app-nav-level-2">
-                                                    <ul class="rx-app-nav-group">
-                                                        <li class="rx-app-nav-item active">
-                                                            <a href="#" class="item-link">Sub link 1</a>
-                                                        </li>
-                                                        <li class="rx-app-nav-item">
-                                                            <a href="#" class="item-link">Sub link 2</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
+                                            <div class="rx-app-nav rx-app-nav-level-2">
+                                                <ul class="rx-app-nav-group">
+                                                    <li class="rx-app-nav-item active">
+                                                        <a href="#" class="item-link">Sub link 1</a>
+                                                    </li>
+                                                    <li class="rx-app-nav-item">
+                                                        <a href="#" class="item-link">Sub link 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -63,16 +63,40 @@ For apps that want to use the default Encore navigation, usage is pretty simple.
                             <ul class="rx-app-nav-group">
                                 <rx-app-nav-item ng-repeat="item in items" item="item"></rx-app-nav-item>
                             </ul>
-                        </div>                        
+                        </div>
                     </div>
                 </nav>
             </nav>
-            <div class="rx-app-content"></div>
+            <div class="rx-app-content">
+                <div class="rx-page">
+                    <header class="page-header clearfix">
+                        <!--
+                            This uses the rxBreadcrumbs angular.js directive. For non-angular
+                            implementations, please see the rxNotification template section in
+                            the CSS documentation.
+                        -->
+                        <rx-breadcrumbs></rx-breadcrumbs>
+                    </header>
+                    <div class="page-body">
+                        <!--
+                            This uses the rxNotification angular.js directive. For non-angular
+                            implementations, please see the rxNotification template section in
+                            the CSS documentation.
+                        -->
+                        <rx-notifications></rx-notifications>
+                        <div class="page-titles">
+                            <h2 class="page-title">Lorem Ipsum</h2>
+                            <h3 class="page-subtitle">Dolor Sit Amet</h3>
+                        </div>
+                        <div class="page-content clear">
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 ```
-
-Inside your view, you'll likely want to use `rx-page` to wrap your content. See the `rx-page` docs for more information on this.
 
  */
 .rx-app {
