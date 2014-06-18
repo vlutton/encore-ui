@@ -17,6 +17,20 @@ angular.module('demoApp')
         }
     },
     {
+        "name": "hotkeys",
+        "moduleName": "'encore.ui.hotkeys'",
+        "displayName": "Hotkeys",
+        "srcFiles": [],
+        "tplFiles": [],
+        "tplJsFiles": [],
+        "dependencies": [],
+        "docs": {
+            "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/experimental.svg\" alt=\"experimental\" title=\"\" /></a></p>\n\n<p>This component is simply a reference guide to using <a href=\"http://chieffancypants.github.io/angular-hotkeys/\">the angular-hotkeys plugin</a> from within Encore-UI.</p>\n\n<p>Angular-hotkeys was chosen as the solution for hotkeys from within Encore-UI apps, due to its integration into Angular, it's use of the very good 'mousetrap' library, and because it allows multiple ways to define hotkeys (through a directive, controller, route config, etc).</p>\n\n<h2>Global Shortcuts</h2>\n\n<p>Currently there is only one global shortcut key defined (<code>ctrl+h</code>). This will collapse/expand the main menu on any page. More keys can be added as need for them is identified (suggestions welcome!).</p>\n\n<h2>Identifying shortcut keys</h2>\n\n<p>If you provide a description, the shortcut will be defined in a helper list provided when the user presses the <code>?</code> key. Currently there is no official guidance on a design pattern to identify to end-users what particular shortcuts are outside of the standard help window.</p>",
+            "js": "/*jshint unused:false*/\nfunction hotkeysCtrl ($scope, hotkeys) {\n    $scope.volume = 5;\n\n    hotkeys.add({\n        combo: 'ctrl+up',\n        description: 'Turn up the volume!',\n        callback: function () {\n            $scope.volume += 1;\n        }\n    });\n\n    hotkeys.add({\n        combo: 'ctrl+down',\n        description: 'Turn it down!',\n        callback: function () {\n            $scope.volume -= 1;\n        }\n    });\n\n    var showHFSHE = function () {\n        var videoSrc = '//www.youtube.com/embed/Dach1nPbsY8?autoplay=1';\n\n        var iframe = document.createElement('iframe');\n        iframe.src = videoSrc;\n\n        var container = document.getElementById('hfshe');\n        container.appendChild(iframe);\n        container.style.display = 'block';\n    };\n\n    hotkeys.add({\n        combo: 'up+up+down+down+left+right+left+right+a+b',\n        callback: showHFSHE\n    });\n}",
+            "html": "<style type=\"text/css\">\n    #hfshe {\n        display: none;\n        position: fixed;\n        top: 0;\n        left: 0;\n        right: 0;\n        bottom: 0;\n        background: rgba(0, 0, 0, 0.9);\n    }\n    #hfshe iframe {\n        width: 560px;\n        height: 315px;\n        border: 0;\n        position: absolute;\n        top: 50%;\n        left: 50%;\n        margin-top: -158px;\n        margin-left: -280px;\n    }\n</style>\n\n<div ng-controller=\"hotkeysCtrl\">\n    <p>Press `?` to see the shortcut cheat-sheet.</p>\n\n    <p>Current Volume: <span ng-bind=\"volume\"></span></p>\n\n    <div id=\"hfshe\"></div>\n</div>"
+        }
+    },
+    {
         "name": "rxActiveUrl",
         "moduleName": "'encore.ui.rxActiveUrl'",
         "displayName": "Rx Active Url",
