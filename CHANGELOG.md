@@ -1,3 +1,26 @@
+<a name="0.12.0"></a>
+## 0.12.0 (2014-06-18)
+
+
+#### Bug Fixes
+
+* **docs:**
+  * copy edit ([b620f68a](git@github.com:rackerlabs/encore-ui/commit/b620f68a5d211d1b8335fb103b12f554611dd2d4))
+  * Integrated klamping feedback for rxApp ([f7b37c57](git@github.com:rackerlabs/encore-ui/commit/f7b37c57a18a63844492cafabebce298bbb2bdd4))
+* **rxApp:**
+  * up font weight from 200 -> 300; fix #344 ([688ac4c6](git@github.com:rackerlabs/encore-ui/commit/688ac4c666fc9dbdae0bee909473e83cf7fa758b))
+  * Incorrect visibility for EncoreCloud ([b3739822](git@github.com:rackerlabs/encore-ui/commit/b3739822585b6f620d1dd258f5a9cf336cdb9fde))
+* **styleguide:** include final CSS in examples ([73a2fce3](git@github.com:rackerlabs/encore-ui/commit/73a2fce356e04f9385823cbf17bc2204008485df))
+
+
+#### Features
+
+* **docs:**
+  * Add docs for rxBreadcrumbs ([873b19d9](git@github.com:rackerlabs/encore-ui/commit/873b19d9dc1ef9ea39af0e033665bced737a4634))
+  * First pass of common and rxApp CSS examples ([cf340a12](git@github.com:rackerlabs/encore-ui/commit/cf340a1287e12cd452543cbb45435360ca388265))
+* **hotkeys:** bring in angular-hotkeys ([ac0578fb](git@github.com:rackerlabs/encore-ui/commit/ac0578fb75d8b72eae468307e44bc482524cc6a5))
+
+
 <a name="0.11.4"></a>
 ### 0.11.4 (2014-06-13)
 
