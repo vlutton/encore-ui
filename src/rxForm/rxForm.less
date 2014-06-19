@@ -1,5 +1,9 @@
 @import 'vars';
 
+/*
+ # rxForm
+ */
+
 .rx-form {
     margin: 15px 0 0;
 }
@@ -20,6 +24,73 @@
     float: left;
     color: @subduedTitle;
 }
+
+/*
+## Input fields
+
+field-prefix, field-suffix and field-description are optional.
+
+```
+<div class="form-item">
+    <label>
+        <span class="field-label">
+            Display Name:
+        </span>
+
+        <span class="field-prefix">$</span>
+
+        <!-- Form input will be added here -->
+        <span class="field-input">
+            <input type="text"/>
+        </span>
+
+        <span class="field-suffix">GB</span>
+
+        <span class="field-description">Any description goes here</span>
+    </label>
+</div>
+```
+
+## Dropdowns
+
+```
+<div class="form-item">
+    <label>
+        <span class="field-label">
+            Type:
+        </span>
+
+        <span class="field-prefix">$</span>
+
+        <!-- Form input will be added here -->
+        <span class="field-input">
+            <span class="field-select">
+                <select>
+                    <option value="1">Option #1</option>
+                    <option value="2">Option #2</option>
+                    <option value="3">Option #3</option>
+                    <option value="4">Option #4</option>
+                </select>
+            </span>
+        </span>
+
+        <span class="field-description">Any description goes here</span>
+    </label>
+</div>
+
+## Submit buttons
+
+<button class="submit form-action" type="submit" disabled="disabled">
+    Submit Form (Disabled)
+</button>
+
+<button class="submit form-action" type="submit">
+    Submit Form
+</button>
+
+```
+
+ */
 
 .field-input {
     // Re-align so that the middle lines up with the form field
