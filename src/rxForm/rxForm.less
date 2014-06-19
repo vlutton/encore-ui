@@ -1,8 +1,15 @@
 @import 'vars';
 
+<<<<<<< HEAD
 /*
  # rxForm
  */
+=======
+.inputBorderPadding() {
+    border: 1px solid @inputBorder;
+    padding: 3px 5px;
+}
+>>>>>>> style(form): update border/spacing for input/select fields
 
 .rx-form {
     margin: 15px 0 0;
@@ -19,10 +26,13 @@
 
 .field-label,
 .field-legend, {
-    width: 100px;
+    width: @fieldLabelWidth;
     text-align: left;
     float: left;
     color: @subduedTitle;
+    font-size: 1.1em;
+    // Re-align so that the middle lines up with the form field
+    margin: 5px 0;
 }
 
 /*
@@ -95,29 +105,24 @@ field-prefix, field-suffix and field-description are optional.
  */
 
 .field-input {
-    // Re-align so that the middle lines up with the form field
-    position: relative;
-    top: -5px;
-
     input,
     select {
         color: @inputColor;
         background: transparent;
         font-size: 1.2em;
-        border: 0;
-        border-bottom: 1px solid @inputBorder;
-        padding: 3px 5px;
         margin: 0;
+        border-radius: 0;
 
         // leave some room for prefix/suffix if the field width is wider than the container width
         max-width: 65%;
     }
 
     input {
-        width: 394px;
+        width: @fieldInputWidth;
+        .inputBorderPadding;
 
         &[type="number"] {
-            width: 150px;
+            width: @fieldInputNumberWidth;
         }
 
         &[type="radio"],
@@ -128,12 +133,18 @@ field-prefix, field-suffix and field-description are optional.
     }
 
     .field-select {
-        width: @modalSelectWidth;
         position: relative;
 
         select {
-            width: @modalSelectWidth;
+            width: @fieldSelectWidth;
+            // Remove default arrow
             -webkit-appearance: none;
+            // @bugfix FF doesn't like 'none'
+            // @see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
+            -moz-appearance: window;
+            position: relative;
+            z-index: 2;
+            .inputBorderPadding;
         }
 
         &:before {
@@ -150,6 +161,17 @@ field-prefix, field-suffix and field-description are optional.
             margin-top: -4px;
             right: 9px;
         }
+    }
+}
+
+/*
+ * @bugfix Because of '-moz-appearance: window', the border/padding is removed from the select box.
+ * This adds it back
+ * @see http://stackoverflow.com/questions/5912791/how-to-remove-the-arrow-from-a-select-tag-in-firefox
+ */
+ @-moz-document url-prefix() {
+    .field-select {
+        .inputBorderPadding;
     }
 }
 
@@ -179,8 +201,9 @@ field-prefix, field-suffix and field-description are optional.
     font-size: 0.8em;
     font-style: italic;
     display: block;
-    color: #444;
-    margin: 5px 0 0 100px;
+    color: @inputColor;
+    margin: 5px 0 0 @fieldLabelWidth;
+    max-width: 50em;
 }
 
 .option-table {
@@ -209,13 +232,14 @@ field-prefix, field-suffix and field-description are optional.
     // @note KL: I'd like to stick with just adding the background to the <tr>, but
     // we need to make the selector more specific to override the table-stripe styles.
     .selected td {
-        background: #c5e3c7;
+        background: @tableRowSelected;
         border-color: #bad4bb;
         // this 'double' makes it so that the border-color applies to the top border as well
         // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
         border-style: double;
     }
 }
+
 .rx-form-fieldset {
     .field-input {
         top: 0;
