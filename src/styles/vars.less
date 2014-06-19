@@ -8,6 +8,7 @@
 @productResourceBg: #393939;
 @tableHeaderBg: #878787;
 @tableBgAlt: #f6f6f6;
+@tableRowSelected: #c6e4c8;
 @buttonBg: #0950a3;
 @buttonBgHover: #00ac31;
 @disabledBg: #999;
@@ -16,14 +17,14 @@
 
 // Borders
 @pageDivider: #e6e6e5;
-@inputBorder: @pageDivider;
+@inputBorder: #ccc;
 @tableBorder: @pageDivider;
 @tableHeaderBorder: #6e6e6e;
 @appHelpBorder: #424242;
 
 // Text colors
 @appTextColor: #404040;
-@inputColor: #444;
+@inputColor: @appTextColor;
 @linkColor: #4682c2;
 @linkColorHover  : saturate(@linkColor, 15%);
 @menuLinkLightBlue: #97b1d0;
@@ -57,8 +58,12 @@
 @appLineHeight: 1.2;
 @appFontSize: 13px;
 @tableCellPadding: 10px;
-@modalSelectWidth: 221px;
 @modalPadding: 30px;
+@fieldInputWidth: 250px;
+@fieldInputNumberWidth: 150px;
+@fieldSelectWidth: @fieldInputWidth;
+@fieldLabelWidth: 100px;
+
 
 // FlexBox Columns
 @maxFlexBoxColumnWidth: 15;
