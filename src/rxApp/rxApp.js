@@ -40,6 +40,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     {
         linkText: 'Billing',
         key: 'billing',
+        directive: 'rx-billing-search',
         visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         childVisibility: function (scope) {
             // We only want to show this nav if accountNumber is already defined in the URL
@@ -569,6 +570,18 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         }
     };
 })
+.directive('rxBillingSearch', function ($location) {
+    return {
+        template: '<rx-app-search placeholder="Fetch account by number..." submit="fetchAccounts"></rx-app-search>',
+        restrict: 'E',
+        link: function (scope) {
+            scope.fetchAccounts = function (searchValue) {
+                $location.path('/billing/overview/' + searchValue);
+            };
+        }
+    };
+})
+
 /**
 * @ngdoc directive
 * @name encore.ui.rxApp:rxTicketSearch
