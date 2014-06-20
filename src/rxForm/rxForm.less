@@ -108,13 +108,15 @@ field-prefix, field-suffix and field-description are optional.
     input,
     select {
         color: @inputColor;
-        background: transparent;
         font-size: 1.2em;
-        margin: 0;
         border-radius: 0;
+    }
 
+    input,
+    .field-select {
         // leave some room for prefix/suffix if the field width is wider than the container width
         max-width: 65%;
+        background: @white;
     }
 
     input {
@@ -133,10 +135,14 @@ field-prefix, field-suffix and field-description are optional.
     }
 
     .field-select {
+        display: inline-block;
         position: relative;
+        width: @fieldSelectWidth;
 
         select {
-            width: @fieldSelectWidth;
+            width: 100%;
+            // make sure arrow can show through
+            background: transparent;
             // Remove default arrow
             -webkit-appearance: none;
             // @bugfix FF doesn't like 'none'
