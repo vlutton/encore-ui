@@ -1,3 +1,20 @@
+<a name="0.12.1"></a>
+### 0.12.1 (2014-06-20)
+
+
+#### Bug Fixes
+
+* **docs:** Added example for rxButton, fixed code block for rxForm ([6a56d18e](git@github.com:rackerlabs/encore-ui/commit/6a56d18e6b40dc9b0fa2943a9145049965b7e7ad))
+* **grunt:** getting-started version was not being committed ([f7536e4c](git@github.com:rackerlabs/encore-ui/commit/f7536e4cbfb9e38de8dfb6e4daca95fdbcc73803))
+* **rxMenu:** updated billing menu to behave more like cloud menu ([2c209f31](git@github.com:rackerlabs/encore-ui/commit/2c209f31e8cdc85aefc21376162a1177b0be2e83))
+
+
+#### Features
+
+* **docs:** Added docs for rxButton, rxForm, deprecated rxNav in docs ([68ee56a7](git@github.com:rackerlabs/encore-ui/commit/68ee56a7e5853dcdf144da5692a93e8999b9528f))
+* **rxBillingSearch:** The beginnings ([ece77d2a](git@github.com:rackerlabs/encore-ui/commit/ece77d2a5b1e220ca89fec9d1083ae99ac838fa5))
+
+
 <a name="0.12.0"></a>
 ## 0.12.0 (2014-06-18)
 
