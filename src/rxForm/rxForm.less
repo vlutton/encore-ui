@@ -1,15 +1,12 @@
 @import 'vars';
 
-<<<<<<< HEAD
 /*
  # rxForm
  */
-=======
 .inputBorderPadding() {
     border: 1px solid @inputBorder;
     padding: 3px 5px;
 }
->>>>>>> style(form): update border/spacing for input/select fields
 
 .rx-form {
     margin: 15px 0 0;
@@ -130,6 +127,8 @@ field-prefix, field-suffix and field-description are optional.
         &[type="radio"],
         &[type="checkbox"] {
             width: auto;
+            max-width: none;
+            font-size: 1em;
             vertical-align: middle;
         }
     }
