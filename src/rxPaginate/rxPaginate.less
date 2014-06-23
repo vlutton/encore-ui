@@ -1,6 +1,68 @@
 /*
- * rxPaginate
+ # rxPaginate
+
+Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagination-next` and `pagination-last` to disable navigation links.
+
+```
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th class="column-title" style="width:10em;">Name</th>
+            <th class="column-title">OS</a>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Server 1</td>
+            <td>Red Hat Enterprise Linux 6.4</td>
+        </tr>
+        <tr>
+            <td>Server 2</td>
+            <td>CentOS 6.4</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr class="paginate-area">
+            <td colspan="12">
+                <div class="rx-paginate">
+                    <ul class="pagination">
+                        <li class="pagination-first disabled">
+                            <a class="ng-hide">First</a>
+                        </li>
+                        <li class="pagination-prev disabled">
+                            <a>« Prev</a>
+                        </li>
+                        <li class="pagination-page">
+                            <a>1</a>
+                        </li>
+                        <li class="pagination-page">
+                            <a>2</a>
+                        </li>
+                        <li class="pagination-page">
+                            <a>3</a>
+                        </li>
+                        <li class="pagination-page active">
+                            <a>4</a>
+                        </li>
+                        <li class="pagination-page page-number-last">
+                            <a>5</a>
+                        </li>
+                        <li class="pagination-next">
+                            <a>Next »</a>
+                        </li>
+                        <li class="pagination-last">
+                            <a>Last</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+```
+
  */
+
 .paginate-area {
     text-align: center;
     td {
