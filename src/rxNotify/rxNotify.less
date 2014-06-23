@@ -1,5 +1,43 @@
 @import 'mixins';
 
+/*
+# rxNotify
+
+Note: **Styledocco will not display the images associated with the notification bars.** Please reference the main Encore demo to view this. The class `rx-notifications` is a container div, and is required.
+
+In the second example we added `<button class="notification-dismiss btn-link">&times;</button>` to add a dismiss marker. If you are not using Encore UI's angular.js directives, it's up to you to flesh out this functionality.
+
+```
+<div class="rx-notifications">
+    <div class="rx-notification notification-error">
+        Error Message
+    </div>
+
+    <div class="rx-notification notification-error">
+        Error Message
+        <button class="notification-dismiss btn-link">&times;</button>
+    </div>
+
+    <div class="rx-notification notification-info">
+        Informational Message
+    </div>    
+
+    <div class="rx-notification notification-info notification-loading">
+        <div class="rx-spinner"></div>
+        Loading
+    </div>
+
+    <div class="rx-notification notification-success">
+        Success Message
+    </div>
+
+    <div class="rx-notification notification-warning">
+        Warning Message
+    </div>
+</div>
+```
+*/
+
 .rx-notifications {
     margin-bottom: 1.5em;
 
