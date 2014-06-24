@@ -11,7 +11,7 @@ function rxFormDemoCtrl ($scope) {
     ];
 
     $scope.volume = {
-        name: 'Volume-1',
+        isNameRequired: true,
         type: _.first($scope.types).value, // select the first type by default
         checked: [true, 'unchecked'] //example with first checkbox automatically checked
     };
