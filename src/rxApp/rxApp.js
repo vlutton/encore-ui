@@ -546,13 +546,15 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 * @description
 * Used to search accounts for Cloud Atlas
 */
-.directive('rxAtlasSearch', function ($location) {
+.directive('rxAtlasSearch', function ($window) {
     return {
         template: '<rx-app-search placeholder="Search for user..." submit="searchAccounts"></rx-app-search>',
         restrict: 'E',
         link: function (scope) {
             scope.searchAccounts = function (searchValue) {
-                $location.path(searchValue + '/servers/');
+                if (!_.isEmpty(searchValue)) {
+                    $window.location = '/cloud/' + searchValue + '/servers/';
+                }
             };
         }
     };
@@ -562,21 +564,23 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         templateUrl: 'templates/rxAccountSearch.html',
         restrict: 'E',
         link: function (scope) {
-            scope.fetchAccount = function (query) {
-                if (query) {
-                    $window.location = '/search?term=' + query;
+            scope.fetchAccount = function (searchValue) {
+                if (!_.isEmpty(searchValue)) {
+                    $window.location = '/search?term=' + searchValue;
                 }
             };
         }
     };
 })
-.directive('rxBillingSearch', function ($location) {
+.directive('rxBillingSearch', function ($window) {
     return {
         template: '<rx-app-search placeholder="Fetch account by number..." submit="fetchAccounts"></rx-app-search>',
         restrict: 'E',
         link: function (scope) {
             scope.fetchAccounts = function (searchValue) {
-                $location.path('/billing/overview/' + searchValue);
+                if (!_.isEmpty(searchValue)) {
+                    $window.location = '/billing/overview/' + searchValue;
+                }
             };
         }
     };
