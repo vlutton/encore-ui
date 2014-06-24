@@ -107,6 +107,14 @@ field-prefix, field-suffix and field-description are optional.
         color: @inputColor;
         font-size: 1.2em;
         border-radius: 0;
+
+        &.ng-valid.ng-dirty {
+            border-color: @inputBorderValid;
+        }
+
+        &.ng-invalid.ng-dirty {
+            border-color: @inputBorderInvalid;
+        }
     }
 
     input,
