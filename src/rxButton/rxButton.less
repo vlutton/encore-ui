@@ -1,52 +1,121 @@
+@import 'vars';
+
 /*
-# rxButton
+# Common button styles
+
+ ```
+ <button class="button button-tiny">Tiny Button</button>
+ <button class="button button-small">Small Button</button>
+ <button class="button">Default Button</button>
+ <button class="button button-large">Large Button</button>
+ <button class="button button-positive">"Positive" Button</button>
+ <button class="button button-negative">"Negative" Button</button>
+ <button class="button" disabled>Disabled Button</button>
+ <a href="#" class="button">My Link Button</a>
+ ```
+ */
+ .button {
+    display: inline-block;
+    background: @buttonDefaultBg;
+    color: @buttonText;
+    border: 0;
+    font-size: 1.1em;
+    font-weight: 200;
+    padding: 7px 13px;
+    margin-bottom: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+    &:hover,
+    &:focus {
+        background: @buttonDefaultBgHover;
+        cursor: pointer;
+        // in case the buttons are created using the <a> tag
+        color: @buttonText;
+        text-decoration: none;
+    }
+
+    // Size Variations
+    &.button-tiny {
+        padding: 3px 7px;
+        margin-bottom: 5px;
+        font-size: .9em;
+    }
+
+    &.button-small {
+        padding: 5px 10px;
+        font-size: 1em;
+    }
+
+    &.button-large {
+        font-size: 1.15em;
+        padding: 15px 26px;
+    }
+
+    // Color Variations
+    &[disabled] {
+        cursor: default;
+        color: @buttonDisabledText;
+        background: @buttonDisabledBg;
+    }
+
+    &.button-positive {
+        background: @buttonPositiveBg;
+        &:hover,
+        &:focus {
+            background: @buttonPositiveBgHover;
+        }
+    }
+
+    &.button-negative {
+        background: @buttonNegativeBg;
+        &:hover,
+        &:focus {
+            background: @buttonNegativeBgHover;
+        }
+    }
+
+
+/*
+# Spinner styles
 
 ```
-<button type="submit" class="button primary rx-button">
-    I'm a button!
-</button>
-
-<button type="submit" class="button primary rx-button">
-    With a spinner!
+<button class="button">
+    I have a spinner
     <div class="spinner">
         <i class="pos1"></i>
         <i class="pos2"></i>
         <i class="pos3"></i>
     </div>
 </button>
-
 ```
 */
-@spinnerColor: white;
-
-button.rx-button {
     .spinner {
         display: inline-block;
         position: relative;
-        left: 8px;
-    }
+        left: 3px;
 
-    .spinner > i {
-        width: 5px;
-        height: 5px;
-        background-color: @spinnerColor;
+        i {
+            width: 5px;
+            height: 5px;
+            background: @buttonSpinnerBg;
 
-        border-radius: 100%;
-        display: inline-block;
-        -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
-        animation: bouncedelay 1.4s infinite ease-in-out;
-        /* Prevent first frame from flickering when animation starts */
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+            animation: bouncedelay 1.4s infinite ease-in-out;
+            /* Prevent first frame from flickering when animation starts */
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
 
-        &.pos1 {
-            -webkit-animation-delay: -0.32s;
-            animation-delay: -0.32s;
-        }
+            &.pos1 {
+                -webkit-animation-delay: -0.32s;
+                animation-delay: -0.32s;
+            }
 
-        &.pos2 {
-            -webkit-animation-delay: -0.16s;
-            animation-delay: -0.16s;
+            &.pos2 {
+                -webkit-animation-delay: -0.16s;
+                animation-delay: -0.16s;
+            }
         }
     }
 
@@ -63,5 +132,32 @@ button.rx-button {
             transform: scale(1.0);
             -webkit-transform: scale(1.0);
         }
+    }
+}
+
+/*
+# Make buttons look like plain links
+
+```
+<button class="btn-link">Link</button>
+```
+*/
+.btn-link {
+    color: @linkColor;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+thead th .btn-link {
+    color: @tableHeaderText;
+    &:hover,
+    &:focus {
+        color: @tableHeaderText;
     }
 }
