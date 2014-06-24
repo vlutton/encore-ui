@@ -39,19 +39,19 @@
     </div>
 
     <div>
-        <button ng-click="add('demo')">Add to Demo Stack</button>
-        <button ng-click="add('custom')">Add to Custom Stack</button>
+        <button class="button" ng-click="add('demo')">Add to Demo Stack</button>
+        <button class="button" ng-click="add('custom')">Add to Custom Stack</button>
     </div>
 
     <div>
         <h3>rxPromiseNotifications</h3>
-        <button ng-click="addPromise()">Create messages</button>
-        <button ng-click="deferred.resolve();">Resolve Promise</button>
-        <button ng-click="deferred.reject();">Reject Promise</button>
+        <button class="button" ng-click="addPromise()">Create messages</button>
+        <button class="button button-positive" ng-click="deferred.resolve();">Resolve Promise</button>
+        <button class="button button-negative" ng-click="deferred.reject();">Reject Promise</button>
     </div>
 
     <div>
-        <button ng-click="routeChange()">Simulate Route Change</button>
+        <button class="button" ng-click="routeChange()">Simulate Route Change</button>
     </div>
 
     <div class="pure-g">
