@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">rxApp/rxApp.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">88.19% <small>(112 / 127)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">86.82% <small>(112 / 129)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">83.93% <small>(47 / 56)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">78.33% <small>(47 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Functions: <span class="metric">82.22% <small>(37 / 45)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">88.19% <small>(112 / 127)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">86.82% <small>(112 / 129)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -819,7 +819,11 @@
 601
 602
 603
-604</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+604
+605
+606
+607
+608</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1374,17 +1378,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">27</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1398,6 +1391,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1970,13 +1978,15 @@
 * @description
 * Used to search accounts for Cloud Atlas
 */
-.directive('rxAtlasSearch', function ($location) {
+.directive('rxAtlasSearch', function ($window) {
     return {
         template: '&lt;rx-app-search placeholder="Search for user..." submit="searchAccounts"&gt;&lt;/rx-app-search&gt;',
         restrict: 'E',
         link: function (scope) {
             scope.searchAccounts = <span class="fstat-no" title="function not covered" >function (searchValue) {</span>
-<span class="cstat-no" title="statement not covered" >                $location.path(searchValue + '/servers/');</span>
+<span class="cstat-no" title="statement not covered" >                if (!_.isEmpty(searchValue)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $window.location = '/cloud/' + searchValue + '/servers/';</span>
+                }
             };
         }
     };
@@ -1986,21 +1996,23 @@
         templateUrl: 'templates/rxAccountSearch.html',
         restrict: 'E',
         link: function (scope) {
-            scope.fetchAccount = <span class="fstat-no" title="function not covered" >function (query) {</span>
-<span class="cstat-no" title="statement not covered" >                if (query) {</span>
-<span class="cstat-no" title="statement not covered" >                    $window.location = '/search?term=' + query;</span>
+            scope.fetchAccount = <span class="fstat-no" title="function not covered" >function (searchValue) {</span>
+<span class="cstat-no" title="statement not covered" >                if (!_.isEmpty(searchValue)) {</span>
+<span class="cstat-no" title="statement not covered" >                    $window.location = '/search?term=' + searchValue;</span>
                 }
             };
         }
     };
 })
-.directive('rxBillingSearch', function ($location) {
+.directive('rxBillingSearch', function ($window) {
     return {
         template: '&lt;rx-app-search placeholder="Fetch account by number..." submit="fetchAccounts"&gt;&lt;/rx-app-search&gt;',
         restrict: 'E',
         link: function (scope) {
             scope.fetchAccounts = <span class="fstat-no" title="function not covered" >function (searchValue) {</span>
-                <span class="cstat-no" title="statement not covered" >$location.path('/billing/overview/' + searchValue);</span>
+<span class="cstat-no" title="statement not covered" >                if (!_.isEmpty(searchValue)) {</span>
+                    <span class="cstat-no" title="statement not covered" >$window.location = '/billing/overview/' + searchValue;</span>
+                }
             };
         }
     };
@@ -2030,7 +2042,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 20 2014 15:47:39 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 25 2014 14:55:37 GMT-0500 (CDT)</div>
 </div>
 
 <script src="../prettify.js"></script>
