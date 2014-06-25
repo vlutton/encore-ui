@@ -187,8 +187,10 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
      * @param {string} stack The name of the stack to clear
      */
     var clear = function (stack) {
-        // @see http://davidwalsh.name/empty-array
-        stacks[stack].length = 0;
+        if (stacks.hasOwnProperty(stack)) {
+            // @see http://davidwalsh.name/empty-array
+            stacks[stack].length = 0;
+        }
     };
 
     /*
