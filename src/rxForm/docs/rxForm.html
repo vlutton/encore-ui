@@ -10,6 +10,7 @@
     <h3>Example of required text input w/ validation pattern</h3>
     <rx-form-item label="Volume Name" description="Must be 2-5 letter palindrome (e.g. 'dewed')">
         <input type="text" ng-model="volume.name" ng-required="volume.isNameRequired" ng-pattern="/^\b(\w)?(\w)\w?\2\1$/" />
+    </rx-form-item>
 
     <rx-form-item label="Name Field Required?" class="clear">
         <input type="checkbox" ng-model="volume.isNameRequired" />
