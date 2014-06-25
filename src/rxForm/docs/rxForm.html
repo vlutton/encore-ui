@@ -41,4 +41,17 @@
         <p>Item 1 Value: {{volume.checked[0]}}</p>
         <p>Item 2 Value: {{volume.checked[1]}}</p>
     </rx-form-fieldset>
+    
+    <rx-form-fieldset legend="Option Table (empty)">
+        <rx-form-option-table
+            columns="optionTableColumns"
+            type="checkbox"
+            model="volume.checked"
+            field-id="optionCheckboxTable"
+            data="optionTableEmptyData"
+            empty-message="You don't have any data!"
+            ></rx-form-option-table>
+        <p>Item 1 Value: {{volume.checked[0]}}</p>
+        <p>Item 2 Value: {{volume.checked[1]}}</p>
+    </rx-form-fieldset>
 </div>

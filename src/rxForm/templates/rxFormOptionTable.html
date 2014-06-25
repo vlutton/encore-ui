@@ -1,5 +1,5 @@
 <div class="form-item">
-    <table class="table-striped option-table" ng-show="data.length > 0">
+    <table class="table-striped option-table" ng-show="data.length > 0 || emptyMessage ">
         <thead>
             <tr>
                 <th></th>
@@ -32,6 +32,11 @@
                     <span ng-bind-html="getContent(column, row)"></span>
                     <span ng-show="isCurrent(row.value)">{{column.selectedLabel}}</span>
                 </label>
+            </td>
+        </tr>
+        <tr ng-if="data.length === 0 && emptyMessage">
+            <td colspan="{{columns.length + 1}}">
+                <span class="msg-warn">{{emptyMessage}}</span>
             </td>
         </tr>
     </table>

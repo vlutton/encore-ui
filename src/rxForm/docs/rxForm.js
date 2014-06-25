@@ -65,4 +65,6 @@ function rxFormDemoCtrl ($scope) {
         'value': 'checked',
         'falseValue': 'unchecked'
     }];
+
+    $scope.optionTableEmptyData = [];
 }
