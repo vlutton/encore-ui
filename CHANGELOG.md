@@ -1,3 +1,15 @@
+<a name="0.12.2"></a>
+### 0.12.2 (2014-06-25)
+
+
+#### Bug Fixes
+
+* **docs:**
+  * Flesh out CSS/Markup documentation for rxNotify ([0a844216](git@github.com:rackerlabs/encore-ui/commit/0a844216f529953d22f194df9f982e6f1f530e46))
+  * Flesh out CSS/Markup documentation for rxPaginate ([1e739dc8](git@github.com:rackerlabs/encore-ui/commit/1e739dc81303a476c3026651d0bc7e8c5b58d164))
+* **rxAppSearch:** fixed redirect to use $window.location ([7702ba74](git@github.com:rackerlabs/encore-ui/commit/7702ba744265b5730f1749d04d0d45baa1bd96d9))
+
+
 <a name="0.12.1"></a>
 ### 0.12.1 (2014-06-20)
 
