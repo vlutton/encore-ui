@@ -22,6 +22,38 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             suffix: '@',
             prefix: '@',
             description: '@'
+        },
+        link: function (scope, el) {
+            var inputSelectors = '.field-input input, .field-input select, .field-input texarea';
+
+            // For accessibility reasons, we need to link the <label> to the <input>
+            // To do this, we use the 'for' and 'id' attributes on the <label> and <input> tags, respectively
+            // Since the field input is dynamically inserted, we don't know its ID (or if it has one)
+            // This code takes care of linking the two
+
+            var setFieldId = function () {
+                // default to scope's id
+                var fieldId = 'field-' + scope.$id;
+
+                var inputField = el[0].querySelector(inputSelectors);
+
+                // make sure an input field is found
+                if (!_.isObject(inputField)) {
+                    return;
+                }
+
+                var inputId = inputField.getAttribute('id');
+
+                if (_.isString(inputId)) {
+                    fieldId = inputId;
+                } else {
+                    inputField.setAttribute('id', fieldId);
+                }
+
+                el[0].querySelector('.field-label').setAttribute('for', fieldId);
+            };
+
+            setFieldId();
         }
     };
 })

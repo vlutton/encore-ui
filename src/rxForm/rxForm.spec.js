@@ -1,8 +1,16 @@
 /* jshint node: true */
-
 describe('rxFormItem', function () {
     var el, scope, compile, rootScope,
-        formItemTemplate = '<rx-form-item label="Name"><input type="text" /></rx-form-item>';
+        formInput = '<input type="text">',
+        formItemTemplate = '<rx-form-item label="Name"><%= input %></rx-form-item>';
+
+    var createDirective = function (inputTemplate) {
+        var html = _.template(formItemTemplate, {
+            input: inputTemplate
+        });
+
+        return helpers.createDirective(html, compile, scope);
+    };
 
     beforeEach(function () {
         module('encore.ui.rxForm');
@@ -14,7 +22,7 @@ describe('rxFormItem', function () {
             compile = $compile;
         });
 
-        el = helpers.createDirective(formItemTemplate, compile, scope);
+        el = createDirective(formInput);
     });
 
     afterEach(function () {
@@ -25,6 +33,47 @@ describe('rxFormItem', function () {
         expect(el).not.be.empty;
         expect(el.find('input')).not.be.empty;
         expect(el.find('label').text()).to.contain('Name');
+    });
+
+    it('should link label to form input using unique id', function () {
+        var uniqueId = el.find('label').eq(0).attr('for');
+
+        expect(uniqueId).to.have.length.above(0);
+        expect(el.find('input').eq(0).attr('id')).to.equal(uniqueId);
+    });
+
+    it('should gracefully fail if no input added', function () {
+        el = createDirective('Some non-input text');
+
+        var uniqueId = el.find('label').eq(0).attr('for');
+
+        expect(uniqueId).to.be.undefined;
+    });
+
+    it('should link label to form input using field id', function () {
+        el = createDirective('<input id="myId">');
+
+        var uniqueId = el.find('label').eq(0).attr('for');
+
+        expect(uniqueId).to.equal('myId');
+    });
+
+    it('should link to label to select box', function () {
+        el = createDirective('<select id="myId"></select>');
+
+        var uniqueId = el.find('label').eq(0).attr('for');
+
+        expect(uniqueId).to.equal('myId');
+    });
+
+    it('should link to first input if multiple found', function () {
+        el = createDirective('<select></select><input id="myId">');
+
+        var uniqueId = el.find('label').eq(0).attr('for');
+        var selectId = el.find('select').eq(0).attr('id');
+
+        expect(uniqueId).to.not.equal('myId');
+        expect(uniqueId).to.equal(selectId);
     });
 });
 
