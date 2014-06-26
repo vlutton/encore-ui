@@ -249,3 +249,67 @@ Creates a 'well' effect (box with light gray background)
         color: #727272;
     }
 }
+
+
+/*
+
+## Lists
+
+Add bullets/decimals to lists with the 'list' class
+
+### Decimals
+```
+<ol class="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ol>
+```
+
+### Bullets
+```
+<ul class="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+```
+
+### Non-semantic lists
+```
+<div class="list bulleted">
+    <p class="item">Item 1</p>
+    <p class="item">Item 2</p>
+    <p class="item">Item 3</p>
+</div>
+
+<div class="list decimal">
+    <p class="item">Item 1</p>
+    <p class="item">Item 2</p>
+    <p class="item">Item 3</p>
+</div>
+```
+ */
+.list {
+    li,
+    .item {
+        display: list-item;
+        margin: 5px 0 0 30px;
+    }
+
+    ul&,
+    &.bulleted {
+        li,
+        .item {
+            list-style: disc;
+        }
+    }
+
+    ol&,
+    &.decimal {
+        li,
+        .item {
+            list-style: decimal;
+        }
+    }
+}
