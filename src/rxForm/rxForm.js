@@ -95,7 +95,8 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             type: '@',
             model: '=',
             fieldId: '@',
-            required: '@'
+            required: '@',
+            emptyMessage: '@'
         },
         controller: function ($scope) {
             var determineMatch = function (val1, val2) {
