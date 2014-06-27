@@ -33,17 +33,16 @@
 }
 
 .component-example aside {
-    border:1px solid #aaa;
-    background-color: #fff;
-    position:relative;
-    padding:10px;
-    min-width:95%;
-    float:left;
+    border: 1px solid #aaa;
+    background: #fff;
+    position: relative;
+    padding: 10px;
 }
 
-.component-example aside h4 {
-    color:#aaa;
-    text-transform:uppercase;
-    font-size:0.85em;
-    margin-bottom:2em;
+.page-body .component-example h4.section-title {
+    color: #aaa;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    margin-top: 0;
+    margin-bottom: 2em;
 }
