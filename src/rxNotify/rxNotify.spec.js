@@ -125,16 +125,17 @@ describe('rxNotify', function () {
         it('should not throw errors when clearing non existent stacks', function () {
             // validate clear not throw error on non existent stack
             var clearNonexistent = function () {
-                    notifySvc.clear('nonexistent');
-                },
-                clearExistent = function () {
-                    notifySvc.clear(defaultStack);
-                };
+                notifySvc.clear('nonexistent');
+            };
+            
+            var clearExistent = function () {
+                notifySvc.clear(defaultStack);
+            };
 
             expect(notifySvc.stacks[defaultStack]).to.be.an.array;
             expect(notifySvc.stacks.nonexistent).to.be.undefined;
-            expect(clearNonexistent()).to.not.throw.error;
-            expect(clearExistent()).to.not.throw.error;
+            expect(clearNonexistent).to.not.throw(Error);
+            expect(clearExistent).to.not.throw(Error);
         });
 
         it('should be dismissable', function () {
