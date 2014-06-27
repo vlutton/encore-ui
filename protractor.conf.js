@@ -11,34 +11,24 @@ var config = {
 
     framework: 'mocha',
 
-    // Capabilities to be passed to the webdriver instance.
-    capabilities: {
-        'browserName': 'firefox'
-    },
+    multiCapabilities: [{
+        browserName: 'firefox',
+        shardTestFiles: true,
+        count: 3
+    }],
+
+    splitTestsBetweenCapabilities: true,
 
     allScriptsTimeout: 30000,
 
     // Options to be passed to mocha
     mochaOpts: {
         reporter: 'spec',
-        slow: 3000,
+        slow: 5000,
         ui: 'bdd'
-    }
+    },
 
+    seleniumAddress: 'http://localhost:4444/wd/hub'
 };
-
-// If we're on travis, use sauce for selenium
-if (process.env.TRAVIS) {
-    config.sauceUser = process.env.SAUCE_USERNAME,
-    config.sauceKey = process.env.SAUCE_ACCESS_KEY,
-    config.capabilities = {
-        'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
-        'build': process.env.TRAVIS_BUILD_NUMBER,
-        'browserName': 'firefox'
-    };
-} else {
-    // otherwise use a local server
-    config.seleniumAddress = 'http://localhost:4444/wd/hub';
-}
 
 exports.config = config;

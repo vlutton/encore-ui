@@ -1,16 +1,20 @@
 language: node_js
 node_js:
 - '0.10'
+
 before_install: npm install -g grunt-cli bower protractor mocha
 install:
 - npm install
 - bower install
+- webdriver-manager update --standalone
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - bower install
 - grunt bump-only:build
 - grunt connect:keepalive &
+- webdriver-manager start &
+
 script:
 - grunt
 - protractor protractor.conf.js
@@ -30,12 +34,12 @@ deploy:
   on:
     repo: rackerlabs/encore-ui
     branch: master
-addons:
-  sauce_connect: true
+
 env:
   global:
   - secure: lBNmtcRYcHepXJsVsrQ+pr8yyrgN/1be7cDoTltXIxMq9WsTbm75Ypc4/rHhwO7K8cRMVbqEcMYbv6wZDGnpjL9z/nxTv14dS8S6wcIrLxGRwUPQ3McUqwOOrs7k2c0LiLwkJsjBBzBo+g52WY7rjPcOCXBBluZ98lar7gzP56c=
   - secure: XvQ6cnwELTp1odgqXaLeF0n39Q9sOsVx6zICnBfayHkmQxPOmTNnvip83vA7MyhwhlTn+nFqr7PWkqLc0CIKAoWdwHhfwMAI77aJWeasPaeywvZ7L+eZ7x4JrDt7jRo7SwzmFivHgGh9RtCMltaJWwvqszRPWwMFxcj0zoetKUI=
+
 notifications:
   email: false
   hipchat:
