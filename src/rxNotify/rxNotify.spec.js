@@ -120,6 +120,13 @@ describe('rxNotify', function () {
 
             // validate other message still on other stack
             expect(notifySvc.stacks[otherStack][0].text).to.equal(messageText2);
+
+            // validate clear not throw error on non existent stack
+            var clearNonexistent = function () {
+                notifySvc.clear('nonexistent');
+            };
+
+            expect(clearNonexistent).to.not.throw.error;
         });
 
         it('should be dismissable', function () {
