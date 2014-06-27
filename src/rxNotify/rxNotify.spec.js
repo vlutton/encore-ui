@@ -120,13 +120,21 @@ describe('rxNotify', function () {
 
             // validate other message still on other stack
             expect(notifySvc.stacks[otherStack][0].text).to.equal(messageText2);
+        });
 
+        it('should not throw errors when clearing non existent stacks', function () {
             // validate clear not throw error on non existent stack
             var clearNonexistent = function () {
-                notifySvc.clear('nonexistent');
-            };
+                    notifySvc.clear('nonexistent');
+                },
+                clearExistent = function () {
+                    notifySvc.clear(defaultStack);
+                };
 
-            expect(clearNonexistent).to.not.throw.error;
+            expect(notifySvc.stacks[defaultStack]).to.be.an.array;
+            expect(notifySvc.stacks.nonexistent).to.be.undefined;
+            expect(clearNonexistent()).to.not.throw.error;
+            expect(clearExistent()).to.not.throw.error;
         });
 
         it('should be dismissable', function () {
