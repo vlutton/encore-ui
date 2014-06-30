@@ -39,7 +39,7 @@
     padding: 10px;
 }
 
-.page-body .component-example h4.section-title {
+.page-body .component-example .section-title {
     color: #aaa;
     text-transform: uppercase;
     font-size: 0.85em;
