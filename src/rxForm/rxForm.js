@@ -5,7 +5,10 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
  * @name encore.ui.rxForm:rxFormItem
  * @restrict E
  * @description
- * This directive is used to wrap input fields and select boxes in the proper HTML
+ * This directive is used to wrap input fields and select boxes in the proper HTML.
+ * It will attach the `<label>` to a transcluded input using the `id` attribute of the input.
+ * If no `id` attribute exists, it will create one.
+ *
  * @scope
  * @param {String} label - Text to use for <label>
  * @param {String} prefix - Text to include to the left of content
