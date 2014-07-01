@@ -320,7 +320,10 @@ function rxFormDemoCtrl ($scope) {
         'value': 'checked',
         'falseValue': 'unchecked'
     }];
+
+    $scope.optionTableEmptyData = [];
 }
+
 
 /*jshint unused:false*/
 function rxIdentityCtrl ($scope, Identity) {
