@@ -1,3 +1,26 @@
+<a name="0.12.3"></a>
+### 0.12.3 (2014-07-01)
+
+
+#### Bug Fixes
+
+* **docs:**
+  * Integrate code review by klamping ([62f3a88f](git@github.com:rackerlabs/encore-ui/commit/62f3a88f600f53909f4d548da772d7f0155fc67e))
+  * Integrate code review by klamping ([d2281b4f](git@github.com:rackerlabs/encore-ui/commit/d2281b4f9da11751c3fecf0bfc085069d528f858))
+  * Styled example CSS; Resolves #151 ([e8325a1a](git@github.com:rackerlabs/encore-ui/commit/e8325a1a63c3a1d1741a2e4b2342f3c4407d1765))
+* **rxNotify:** fix test to check for "to.not.throw(Error" ([2010475f](git@github.com:rackerlabs/encore-ui/commit/2010475f8b5da0fd39bb9b32c1c83be22b51bdac))
+* **travis:** switch travis to local selenium ([a453a22b](git@github.com:rackerlabs/encore-ui/commit/a453a22b379259fa4714e71307025ad765f75086))
+
+
+#### Features
+
+* **rxFormOptionTable:** Optional "empty" message for table ([96b60363](git@github.com:rackerlabs/encore-ui/commit/96b603638ec850fe5b3ef0d5b5d445512816e117))
+* **rxNotify:**
+  * Added more checks to test and separated it on its own ([0dad7555](git@github.com:rackerlabs/encore-ui/commit/0dad75554fa6fda29d99ebc81ceab0b2f8ea3405))
+  * Adding test for non existent stack clear ([fad310cc](git@github.com:rackerlabs/encore-ui/commit/fad310ccf36fc03dc117f53b22f2c94b483e26c0))
+  * check the stack exists before clearing it ([01cdb921](git@github.com:rackerlabs/encore-ui/commit/01cdb9213cca7fb9ae501348051e6431930960ff))
+
+
 <a name="0.12.2"></a>
 ### 0.12.2 (2014-06-25)
 
