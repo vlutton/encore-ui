@@ -17,9 +17,10 @@ var rxSortableColumn = {
 
     name: {
         value: function () {
-            return this.rootElement.$('.sort-action .ng-scope').getText().then(function (columnText) {
-                return columnText;
-            });
+            return this.rootElement.findElement(this.by.css('.sort-action .ng-scope'))
+                .getText().then(function (columnText) {
+                    return columnText;
+                });
         }
     },
 

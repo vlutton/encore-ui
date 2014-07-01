@@ -49,7 +49,7 @@ describe('rxApp', function () {
             expect(rxAppCustom.isCollapsed()).to.eventually.be.true;
         });
 
-        it('should expand the navigation', function () {
+        it.skip('should expand the navigation', function () {
             rxAppCustom.expand();
             expect(rxAppCustom.isExpanded()).to.eventually.be.true;
         });
