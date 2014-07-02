@@ -1,16 +1,21 @@
 // Common colors re-used in different instances
 @white: #fff;
 
-// Backgrounds
+// # Backgrounds
+
+// ## General
 @appBg: #f5f5f5;
 @appMenuBg: #1a1a1a;
 @siteBrandingBg: #06356b;
-@tableHeaderBg: #878787;
-@tableBgAlt: #f6f6f6;
-@tableRowSelected: #c6e4c8;
-@optionHighlightBg: #007bff;
 @appHelpBg: #333;
 
+// ## Tables
+@tableHeaderBg: #878787;
+@tableBgAlt: #f2f2f2;
+@tableRowSelected: #c6e4c8;
+
+// ## Forms
+@optionHighlightBg: #007bff;
 @buttonDefaultBg: #427fc4;
 @buttonDefaultBgHover: lighten(@buttonDefaultBg, 10%);
 @buttonPositiveBg: #16b667;
@@ -20,20 +25,28 @@
 @buttonDisabledBg: #cfd2d4;
 @buttonSpinnerBg: @buttonText;
 
-// Borders
+// # Borders
+
+// ## General
 @pageDivider: #e6e6e5;
+@appHelpBorder: #424242;
+
+// ## Tables
+@tableBorder: #e1e0df;
+@tableHeaderBorder: #6e6e6e;
+
+// ## Forms
 @inputBorder: #ccc;
 @inputBorderValid: #00afec;
 @inputBorderInvalid: #ff2400;
-@tableBorder: @pageDivider;
-@tableHeaderBorder: #6e6e6e;
-@appHelpBorder: #424242;
 
-// Text colors
+
+// # Text colors
+
+// ## General
 @appTextColor: #404040;
-@inputColor: @appTextColor;
 @linkColor: #4682c2;
-@linkColorHover  : saturate(@linkColor, 15%);
+@linkColorHover: saturate(@linkColor, 15%);
 @menuLinkLightBlue: #97b1d0;
 @menuRed: #F37A7C;
 @warnRed: #eb2124;
@@ -45,22 +58,25 @@
 @infoBlue: #4580C2;
 @infoBlueHover: saturate(@infoBlue, 15%);
 
+@orangeText: #ffa61b;
+
 @subduedText: #bbb;
 @subduedTextHover: darken(@subduedText, 15%);
 @subduedTitle: #727272;
+
 @closeText: #e5e5e5;
 @closeTextHover: darken(@closeText, 10%);
 
+// ## Tables
 @tableHeaderText: @white;
 @tableCellText: #555;
 
+// ## Forms
+@inputColor: @appTextColor;
 @buttonText: @white;
 @buttonDisabledText: #f0efef;
 
-@orangeText: #ffa61b;
-
-// Measurements
-@appLineHeight: 1.2;
+// # Measurements
 @appFontSize: 13px;
 @tableCellPadding: 10px;
 @modalPadding: 30px;
@@ -69,9 +85,6 @@
 @fieldSelectWidth: @fieldInputWidth;
 @fieldLabelWidth: 100px;
 
-
-// FlexBox Columns
-@maxFlexBoxColumnWidth: 15;
-
-// Fonts
+// # Fonts
 @appFont: "Roboto", sans-serif;
+@appLineHeight: 1.2;
