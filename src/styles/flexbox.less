@@ -2,8 +2,6 @@
 FlexBox Columns
 */
 
-@maxFlexBoxColumnWidth: 15;
-
 .flexbox-direction(@direction: row) {
     -webkit-flex-direction: @direction;
     -moz-flex-direction: @direction;
@@ -64,6 +62,8 @@ FlexBox Columns
 }
 
 // We're going to create a set list of columns for quick flexbox assignment.
+// @maxFlexBoxColumnWidth: 15;
+//
 // .flexbox-column-loop (@index) when (@index > 0) {
 //     // create the actual css selector
 //     .flex-columns-@{index} {
@@ -72,6 +72,4 @@ FlexBox Columns
 
 //     .flexbox-column-loop(@index - 1);
 // }
-
-// // This Max Values Variable in variables.less
 // .flexbox-column-loop(@maxFlexBoxColumnWidth);
