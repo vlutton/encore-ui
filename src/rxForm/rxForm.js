@@ -132,6 +132,26 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
                 return false;
             };
 
+            // This is an array if all form option table checkboxes were false - combines values of
+            // false with ng-false-value values for each row in object variable data.
+            // Example: [ false, 'unchecked' ], given data of: 
+            // [{ 'name': 'Item 1' }, { 'name': 'Item 2', 'value': 'checked', 'falseValue': 'unchecked' }];
+
+            var falseCheckboxArray = _.map(_.flatten($scope.data, 'falseValue'), function (el) {
+                return (el) ? el : false; 
+            });
+
+            /*
+             * @param {Object} arg1 - Data array of the checkbox model
+             */
+            $scope.checkRequired = function (arg1) {
+                if (_.isUndefined($scope.required)) { 
+                    return false;
+                }
+                var allBlanks = (_.union(arg1, falseCheckboxArray).length == falseCheckboxArray.length);
+                return allBlanks; 
+            };
+
             /*
              * Get the value out of a key from the row, or parse an expression
              * @param {String} expr - Key or Angular Expression (or static text) to be compiled

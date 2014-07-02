@@ -28,7 +28,56 @@ describe('rxFormItem', function () {
     });
 });
 
-describe('rxFormOptionTable', function () {
+describe('rxFormOptionTable (Checkbox)', function () {
+    var el, scope, compile, rootScope, elScope,
+        checkboxFormTemplate =
+            '<rx-form-option-table data="tableData" required="true" columns="tableColumns" ' +
+            'type="checkbox" model="myModel" field-id="optionTable" selected="0"></rx-form-option-table>';
+
+    beforeEach(function () {
+        module('encore.ui.rxForm');
+        module('templates/rxFormOptionTable.html');
+
+        inject(function ($rootScope, $compile) {
+            rootScope = $rootScope;
+            scope = $rootScope.$new();
+            compile = $compile;
+        });
+
+        // init myModel
+        scope.myModel;
+
+        scope.tableData = [
+            {
+                'name': 'Option #1',
+                'value': 0
+            }, {
+                'name': 'Option #2',
+                'value': 1
+            }, {
+                'name': 'Option #3',
+                'value': 2
+            }
+        ];
+
+        scope.tableColumns = [{
+            'label': 'Name',
+            'key': 'name',
+            'selectedLabel': '(Already saved data)'
+        }];
+
+        el = helpers.createDirective(checkboxFormTemplate, compile, scope);
+
+        elScope = el.isolateScope();
+    });
+
+    afterEach(function () {
+        el = null;
+        elScope = null;
+    });               
+});
+
+describe('rxFormOptionTable (Radio)', function () {
     var el, scope, compile, rootScope, elScope,
         radioFormTemplate =
             '<rx-form-option-table data="tableData" columns="tableColumns" ' +
