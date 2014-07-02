@@ -20,11 +20,7 @@ exports.config = {
     sauceUser: process.env.SAUCE_USERNAME,
     sauceKey: process.env.SAUCE_ACCESS_KEY,
 
-    multiCapabilities: [{
-        browserName: 'firefox',
-        shardTestFiles: true,
-        count: 3
-    }],
-
-    splitTestsBetweenCapabilities: true
+    capabilities: {
+        browserName: 'firefox'
+    }
 };
