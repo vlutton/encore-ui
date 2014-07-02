@@ -89,7 +89,8 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         loading: false,
         show: 'immediate',
         dismiss: 'next',
-        stack: 'page'
+        stack: 'page',
+        repeat: true
     };
 
     /*
@@ -98,6 +99,13 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
      * @param {object} message The message object to add.
      */
     var addToStack = function (message) {
+        // if repeat is false, check to see if the message is already in the stack
+        if (!message.repeat) {
+            if (_.find(stacks[message.stack], { text: message.text, type: message.type })) {
+                return;
+            }
+        }
+
         // if timeout is set, we should remove message after time expires
         if (message.timeout > -1) {
             dismissAfterTimeout(message);
