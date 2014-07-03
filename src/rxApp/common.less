@@ -2,9 +2,8 @@
 @import (inline) 'normalize.css';
 
 /*
- # Common CSS modules
- */
-
+# Resets for HTML elements
+*/
 html, body {
     height: 100%;
     font-size: @appFontSize;
@@ -43,16 +42,16 @@ p {
 }
 
 /*
- Global styling for links
+# Link Styles
 
- ```
- <a href="#">My Link</a>
- <a href="#" class=":visited">Visited Link</a>
- <a href="#" class=":hover">Hovered Link</a>
- <a href="#" class=":focus">Focused Link</a>
- <a href="#" class=":active">Active Link</a>
- ```
- */
+```
+<a href="#">My Link</a>
+<a href="#" class=":visited">Visited Link</a>
+<a href="#" class=":hover">Hovered Link</a>
+<a href="#" class=":focus">Focused Link</a>
+<a href="#" class=":active">Active Link</a>
+```
+*/
 a {
     text-decoration: none;
     color: @linkColor;
@@ -63,7 +62,30 @@ a:focus {
     color: @linkColorHover;
 }
 
-/* Table Styles */
+/*
+# Table Styles
+
+```
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Occupation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Patrick Deuley</td>
+            <td>Design Chaplain</td>
+        </tr>
+        <tr>
+            <td>Hussam Dawood</td>
+            <td>Evangelist of Roger Enriquez</td>
+        </tr>
+    </tbody>
+</table>
+```
+*/
 table {
     clear: both;
     width: 100%;
@@ -82,20 +104,88 @@ table {
         color: @tableHeaderText;
         border: 1px solid @tableHeaderBorder;
     }
-}
-.table-striped tr:nth-child(even) {
-    background: @tableBgAlt;
+
+    &.table-striped tr:nth-child(even) {
+        background: @tableBgAlt;
+    }
 }
 
 /*
 
-## Link statuses
+# Heading/Title Styles
 
-Colors the text red to warn people that something important will/did happen (plus icons)
+Headings are sized using 'xl', 'lg', 'sm' and 'xs'
+
+The size of the heading is not impacted by the heading level used (e.g. `<h1>`, `<h2>`).
+This is done to ensure that the heading levels are sequential.
+
+See https://github.com/rackerlabs/encore-ui/blob/master/guides/css-styleguide.md#basic-rules for further reasoning
 
 ```
-<a href="#" class="msg-warn link-warn">Delete</a>
-<span class="msg-warn">Something was deleted</span>
+<h1 class="xl title">Huge Header</h1>
+
+<h1 class="lg title">Large Header</h1>
+<h2 class="lg title subdued">Large Gray Header</h2>
+
+<h1 class="title">Regular Header</h1>
+
+<h2 class="sm title">Small Header</h2>
+<h3 class="sm title subdued">Small Gray Header</h3>
+
+<div class="xs title">Tiny Header</div>
+```
+ */
+.title {
+    font-size: 18px;
+    margin: 1em 0;
+
+    & + & {
+        // remove the top margin if two titles are placed right next to each other
+        margin-top: 0;
+    }
+
+    // Sizing
+    &.xl {
+        font-size: 28px;
+    }
+
+    &.lg {
+        font-size: 22px;
+    }
+
+    &.sm {
+        font-size: 16px;
+    }
+
+    &.xs {
+        font-size: 13px;
+    }
+
+    // Colors
+    &.subdued {
+        color: @subduedTitle;
+    }
+}
+
+/*
+
+# Statuses
+
+Styles text to provide a clearer status regarding a simple message.
+
+```
+<h1 class="title">Action Links (Horizontal)</h1>
+<p>
+    <a href="#" class="msg-action link-action">Create</a>
+    <span class="action-separator">\</span>
+    <a href="#" class="msg-warn link-warn">Delete</a>
+</p>
+
+<h1 class="title">Messages</h1>
+<p class="msg-action">Something was created</p>
+<p class="msg-warn">Something was deleted</p>
+<p class="msg-info">Informational Message</p>
+<p class="msg-info-blue">Blue Informational Message</p>
 ```
 */
 .link-action,
@@ -114,6 +204,11 @@ Colors the text red to warn people that something important will/did happen (plu
 .link-warn:before,
 .link-warn a:before {
     content: '- ';
+}
+
+.action-separator {
+    font-size: 1.1em;
+    color: @subduedText;
 }
 
 .msg-action,
@@ -152,108 +247,8 @@ Colors the text red to warn people that something important will/did happen (plu
     }
 }
 
-.list-link,
-.list-link a {
-    font-size: 1.2em;
-    padding-top: 10px;
-    display: block;
-}
-
-.action-separator {
-    font-size: 1.1em;
-    color: #ccc;
-}
-
-
 /*
-Basic color change to make text less prominant
-```
-<h1>My Items <span class="subdued">(10)</span></h1>
-```
- */
-.subdued {
-    color: @subduedText;
-}
-
-/*
-This can be added to hide an element but not remove it from the spacing of the page
-*/
-.hidden {
-    visibility: hidden;
-}
-
-/*
- * Hide content visually but let them still be read by screen readers
- * @see http://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html
- */
-.visually-hidden {
-    position: absolute !important;
-    clip: rect(1px, 1px, 1px, 1px);
-    padding: 0 !important;
-    border: 0 !important;
-    height: 1px !important;
-    width: 1px !important;
-    overflow: hidden;
-}
-body:hover .visually-hidden a,
-body:hover .visually-hidden input,
-body:hover .visually-hidden button {
-    display: none;
-}
-
-/*
- * Provide clearfix functionality
- * @see http://nicolasgallagher.com/micro-clearfix-hack/
- */
-.clearfix:before,
-.clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
-}
-
-.clearfix:after {
-    clear: both;
-}
-
-/*
- * Simple non-semantic classes to help with clearing previous sibling floats
- */
-.clear {
-    clear: both;
-}
-.clear-left {
-    clear: left;
-}
-.clear-right {
-    clear: right;
-}
-
-
-/*
-
-## Wells
-
-Creates a 'well' effect (box with light gray background)
-```
-<div class="well">
-<p>Well, here you go.</p>
-</div>
-```
- */
-.well {
-    background-color: #eee;
-    padding: 40px 50px;
-
-    p {
-        line-height: 1.5em;
-        color: #727272;
-    }
-}
-
-
-/*
-
-## Lists
+# Lists
 
 Add bullets/decimals to lists with the 'list' class
 
@@ -312,4 +307,142 @@ Add bullets/decimals to lists with the 'list' class
             list-style: decimal;
         }
     }
+}
+
+/*
+# Wells
+
+Creates a 'well' effect (box with light gray background)
+```
+<div class="well">
+    <p>Well, here you go.</p>
+</div>
+```
+*/
+.well {
+    background: #eee;
+    padding: 40px 50px;
+
+    p {
+        line-height: 1.5em;
+        color: @wellText;
+    }
+}
+
+// # Other Stuff
+
+/*
+## Subdued Text
+Basic color change to make text less prominant
+
+```
+<h1>My Items <span class="subdued">(10)</span></h1>
+<h1><a href="#">My Items <span class="subdued">(10)</span></a></h1>
+```
+ */
+.subdued {
+    color: @subduedText;
+}
+
+// Add hover style if a link or inside a link
+a.subdued:hover,
+a.subdued:focus,
+a:hover .subdued,
+a:focus .subdued {
+    color: @subduedTextHover;
+}
+
+/*
+## Hidden content
+
+### .hidden
+Add to hide an element but not remove it from the spacing of the page
+*/
+.hidden {
+    visibility: hidden;
+}
+
+/*
+### .visually-hidden
+Used to hide content visually but let them still be read by screen readers (removed from the page spacing)
+See http://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html
+*/
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+body:hover .visually-hidden a,
+body:hover .visually-hidden input,
+body:hover .visually-hidden button {
+    display: none;
+}
+
+/*
+## Clearing Floats
+
+### Clearfix
+Provide clearfix functionality
+See http://nicolasgallagher.com/micro-clearfix-hack/
+
+```
+<h1 class="title lg">No Clearfix</h1>
+<div style="background: #ddd; padding: 1em;">
+    <div style="float: left; background: #eee; padding: 1em;">Floated Content</div>
+</div>
+
+<h1 class="title lg clear">With Clearfix</h1>
+<div class="clearfix" style="background: #ddd; padding: 1em;">
+    <div style="float: left; background: #eee; padding: 1em;">Floated Content</div>
+</div>
+```
+*/
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+### Clearing siblings
+
+Simple classes to help with clearing previous sibling floats
+
+```
+
+<div class="clearfix padding: 1em;">
+    <div style="float: left;">Floated</div>
+    <div class="clear-right">Uncleared (wrong side)</div>
+    <div class="clear-left">Cleared</div>
+
+    <hr>
+
+    <div style="float: right;">Floated</div>
+    <div class="clear-left">Uncleared (wrong side)</div>
+    <div class="clear-right">Cleared</div>
+
+    <hr>
+
+    <div style="float: right;">Floated</div>
+    <div style="float: left;">Floated</div>
+    <div class="clear">Both cleared</div>
+</div>
+```
+*/
+.clear {
+    clear: both;
+}
+.clear-left {
+    clear: left;
+}
+.clear-right {
+    clear: right;
 }

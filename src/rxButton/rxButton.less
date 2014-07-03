@@ -3,13 +3,16 @@
 /*
 # Common button styles
 
+Buttons are sized using 'xl', 'lg', 'sm' and 'xs'
+
  ```
- <button class="button button-tiny">Tiny Button</button>
- <button class="button button-small">Small Button</button>
+ <button class="button xl">Extra-large Button</button>
+ <button class="button lg">Large Button</button>
  <button class="button">Default Button</button>
- <button class="button button-large">Large Button</button>
- <button class="button button-positive">"Positive" Button</button>
- <button class="button button-negative">"Negative" Button</button>
+ <button class="button sm">Small Button</button>
+ <button class="button xs">Tiny Button</button>
+ <button class="button positive">"Positive" Button</button>
+ <button class="button negative">"Negative" Button</button>
  <button class="button" disabled>Disabled Button</button>
  <a href="#" class="button">My Link Button</a>
  ```
@@ -35,20 +38,25 @@
     }
 
     // Size Variations
-    &.button-tiny {
-        padding: 3px 7px;
-        margin-bottom: 5px;
-        font-size: .9em;
+    &.xl {
+        font-size: 1.25em;
+        padding: 20px 30px;
     }
 
-    &.button-small {
+    &.lg {
+        font-size: 1.15em;
+        padding: 15px 26px;
+    }
+
+    &.sm {
         padding: 5px 10px;
         font-size: 1em;
     }
 
-    &.button-large {
-        font-size: 1.15em;
-        padding: 15px 26px;
+    &.xs {
+        padding: 3px 7px;
+        margin-bottom: 5px;
+        font-size: .9em;
     }
 
     // Color Variations
@@ -58,7 +66,7 @@
         background: @buttonDisabledBg;
     }
 
-    &.button-positive {
+    &.positive {
         background: @buttonPositiveBg;
         &:hover,
         &:focus {
@@ -66,7 +74,7 @@
         }
     }
 
-    &.button-negative {
+    &.negative {
         background: @buttonNegativeBg;
         &:hover,
         &:focus {
