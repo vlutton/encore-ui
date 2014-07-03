@@ -381,7 +381,8 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         type: 'info',
         timeout: -1,
         dismissable: true,
-        show: 'immediate'
+        show: 'immediate',
+        repeat: true
     };
 
     $scope.routeChange = function (stack) {
@@ -428,6 +429,7 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         }, 'demo');
     };
 }
+
 
 /*jshint unused:false*/
 
