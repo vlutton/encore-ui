@@ -1,3 +1,12 @@
+<a name="0.12.4"></a>
+### 0.12.4 (2014-07-03)
+
+
+#### Features
+
+* **rxNotify:** add ability to make notifications not duplicate ([a340b7e6](git@github.com:rackerlabs/encore-ui/commit/a340b7e69333104617a0847398713ccda235bcc8))
+
+
 <a name="0.12.3"></a>
 ### 0.12.3 (2014-07-01)
 
