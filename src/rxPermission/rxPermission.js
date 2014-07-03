@@ -14,7 +14,9 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     * </pre>
     */
     .factory('Permission', function (Session) {
-        var permissionSvc = {};
+        var permissionSvc = {},
+            trim = String.prototype.trim,
+            call = Function.prototype.call;
 
         permissionSvc.getRoles = function () {
             var token = Session.getToken();
@@ -23,9 +25,17 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
         };
 
         permissionSvc.hasRole = function (role) {
-            return _.some(permissionSvc.getRoles(), function (item) {
+            return _.some(this.getRoles(), function (item) {
                 return item.name === role;
             });
+        };
+
+        permissionSvc.hasRoles = function (roles) {
+            if (_.isString(roles)) {
+                roles = roles.split(',');
+                roles = roles.map(call, trim);
+            }
+            return !_(this.getRoles()).pluck('name').intersection(roles).isEmpty();
         };
 
         return permissionSvc;
@@ -46,12 +56,16 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
             restrict: 'E',
             transclude: true,
             scope: {
-                role: '@'
+                role: '@',
+                roles: '@'
             },
             templateUrl: 'templates/rxPermission.html',
             controller: function ($scope, Permission) {
-                $scope.hasRole = function () {
-                    return Permission.hasRole($scope.role);
+                $scope.hasRole = function (role) {
+                    return Permission.hasRole(role);
+                };
+                $scope.hasRoles = function (roles) {
+                    return Permission.hasRoles(roles);
                 };
             }
         };

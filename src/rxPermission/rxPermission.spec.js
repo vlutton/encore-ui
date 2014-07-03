@@ -1,8 +1,9 @@
 /* jshint node: true */
 describe('rxPermission', function () {
     describe('rxPermission Directive', function () {
-        var scope, compile, rootScope, el, elFail;
+        var scope, compile, rootScope, el, elRoles, elFail;
         var validTemplate = '<rx-permission role="pass">Hello</rx-permission>';
+        var validRolesTemplate = '<rx-permission roles="pass,also">Hello</rx-permission>';
         var invalidTemplate = '<rx-permission role="fail">Hello</rx-permission>';
 
         beforeEach(function () {
@@ -10,6 +11,10 @@ describe('rxPermission', function () {
                 $provide.decorator('Permission', function ($delegate) {
                     $delegate.hasRole = function (role) {
                         return role === 'pass';
+                    };
+
+                    $delegate.hasRoles = function (roles) {
+                        return _.contains(roles, 'also');
                     };
 
                     return $delegate;
@@ -25,11 +30,16 @@ describe('rxPermission', function () {
             });
 
             el = helpers.createDirective(validTemplate, compile, scope);
+            elRoles = helpers.createDirective(validRolesTemplate, compile, scope);
             elFail = helpers.createDirective(invalidTemplate, compile, scope);
         });
 
         it('rxPermission: should display text when user has role', function () {
             expect(el.text().trim()).to.be.eq('Hello');
+        });
+
+        it('rxPermission: should display text when user has any of multiple roles', function () {
+            expect(elRoles.text().trim()).to.be.eq('Hello');
         });
 
         it('rxPermission: should not display text when user does not have role', function () {
@@ -48,7 +58,8 @@ describe('rxPermission', function () {
                     },
                     user: {
                         id: 'joe.customer',
-                        'roles': [{ 'id': '9','name': 'Customer' }]
+                        'roles': [{ 'id': '9','name': 'Customer' },
+                                  { 'id': '9','name': 'Test' }]
                     }
                 }
             };
@@ -66,7 +77,7 @@ describe('rxPermission', function () {
 
         it('Permission service: should return list of roles on getRoles', function () {
             expect(permission.getRoles()).not.be.empty;
-            expect(permission.getRoles().length).to.be.eq(1);
+            expect(permission.getRoles().length).to.be.eq(2);
 
             session.getToken = sinon.stub().returns(null);
             expect(permission.getRoles()).to.be.empty;
@@ -78,5 +89,13 @@ describe('rxPermission', function () {
             expect(permission.hasRole('Invalid Role')).to.be.false;
             expect(session.getToken.called).to.be.true;
         });
+
+        it('Permission service: should validate if user has any of roles', function () {
+            expect(permission.hasRoles('Customer, Invalid Role')).to.be.true;
+            expect(permission.hasRoles('Custom, Er Role, Today')).to.be.false;
+            expect(permission.hasRoles('Test, Er Role, Today')).to.be.true;
+            expect(session.getToken.called).to.be.true;
+        });
+
     });
 });
