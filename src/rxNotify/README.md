@@ -54,6 +54,14 @@ This will add a new message to the default stack ('page') with all default optio
 
 ------
 
+- **`repeat`**: *Whether the message should be allowed to appear more than once in the stack.*
+
+    > Default: `true`
+
+    *Other values*: `false`
+
+------
+
 - **`loading`** *Replaces type icon with spinner. Removes option for use to dismiss message.*
 
     > Default: `false`

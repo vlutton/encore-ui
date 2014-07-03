@@ -57,6 +57,34 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack].length).to.equal(1);
         });
 
+        it ('should not add message if `repeat` is false and message already in stack', function () {
+            //create message w text
+            notifySvc.add(messageText1, { repeat: false });
+
+            // expect message to be first in page stack
+            expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText1);
+
+            // create another message w same text
+            notifySvc.add(messageText1, { repeat: false });
+
+            // expect stack to only have one message
+            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
+        });
+
+        it ('should treat messages with same text and different types as different', function () {
+            //create message w text
+            notifySvc.add(messageText1, { repeat: false, type: 'error' });
+
+            // expect message to be first in page stack
+            expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText1);
+
+            // create another message w same text
+            notifySvc.add(messageText1, { repeat: false });
+
+            // expect stack to only have one message
+            expect(notifySvc.stacks[defaultStack].length).to.equal(2);
+        });
+
         it('should add unique id to message and return it on add', function () {
             // create message
             var msg = notifySvc.add(messageText1);
