@@ -11,13 +11,9 @@ var config = {
 
     framework: 'mocha',
 
-    multiCapabilities: [{
-        browserName: 'firefox',
-        shardTestFiles: true,
-        count: 3
-    }],
-
-    splitTestsBetweenCapabilities: true,
+    capabilities: {
+        browserName: 'firefox'
+    },
 
     allScriptsTimeout: 30000,
 
