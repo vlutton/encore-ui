@@ -1,5 +1,5 @@
 <div ng-controller="rxAppCtrl">
-    <h3>Standard rxApp</h3>
+    <h1 class="title">Standard rxApp</h1>
     <rx-app id="standard-rxApp">
         <rx-page title="'Standard Page Title'">
             <p class="clear">This is my page content</p>
@@ -7,7 +7,7 @@
         </rx-page>
     </rx-app>
 
-    <h3>Customized rxApp (collapsible)</h3>
+    <h1 class="title">Customized rxApp (collapsible)</h1>
     <rx-app collapsible-nav="true" site-title="My App" id="custom-rxApp" menu="customMenu" new-instance="true" hide-feedback="true">
         <rx-page title="'Customized Page Title'" subtitle="subtitle">
             <p class="clear">Click a link in the menu to see the active state change</p>
@@ -15,7 +15,6 @@
             <button ng-click="changeSubtitle()" class="changeSubtitle button">Change Subtitle</button>
         </rx-page>
     </rx-app>
-
 </div>
 
 <!--
