@@ -24,7 +24,8 @@
                         ng-switch-when="checkbox"
                         id="{{fieldId}}_{{$index}}"
                         ng-model="$parent.model[$index]"
-                        ng-required="checkRequired($parent.model)"
+                        ng-click="updateCheckboxes($parent.model[$index], $index)"
+                        ng-required="{{required}} && values.length==0"
                         rx-attributes="{'ng-true-value': row.value, 'ng-false-value': row.falseValue}">
                 </label>
             </td>

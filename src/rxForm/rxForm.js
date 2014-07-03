@@ -132,24 +132,33 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
                 return false;
             };
 
-            // This is an array if all form option table checkboxes were false - combines values of
-            // false with ng-false-value values for each row in object variable data.
-            // Example: [ false, 'unchecked' ], given data of: 
-            // [{ 'name': 'Item 1' }, { 'name': 'Item 2', 'value': 'checked', 'falseValue': 'unchecked' }];
-
-            var falseCheckboxArray = _.map(_.flatten($scope.data, 'falseValue'), function (el) {
-                return (el) ? el : false; 
+            // If we are using checkboxes and the required attribute is set, then we
+            // need an array to store the indexes of checked boxes. ng-required is
+            // specifically set if required is true and the array is empty. 
+            $scope.values = [];
+            _.forEach($scope.model, function (el, index) {
+                if (el === true) {
+                    $scope.values.push(index);
+                } else {
+                    if ($scope.data[index] == el) {
+                        $scope.values.push(index);
+                    }
+                }
             });
 
             /*
-             * @param {Object} arg1 - Data array of the checkbox model
+             * @param {String|boolean} val - The checkbox value (Boolean, ng-true-value or ng-false-value per row)
+             * @param {Integer} index - Array index of the checkbox element marked true
              */
-            $scope.checkRequired = function (arg1) {
-                if (_.isUndefined($scope.required)) { 
-                    return false;
+            $scope.updateCheckboxes = function (val, index) {
+                $scope.values = $scope.values || [];
+                if ((val === true) || $scope.data[index].value == val) {
+                    // Branch to uncheck the checkbox
+                    $scope.values = _.without($scope.values, index);
+                } else {
+                    // Branch to check the checkbox
+                    $scope.values.push(index);
                 }
-                var allBlanks = (_.union(arg1, falseCheckboxArray).length == falseCheckboxArray.length);
-                return allBlanks; 
             };
 
             /*
