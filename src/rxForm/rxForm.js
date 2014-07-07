@@ -95,7 +95,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             type: '@',
             model: '=',
             fieldId: '@',
-            required: '@',
+            required: '=',
             emptyMessage: '@'
         },
         controller: function ($scope) {
@@ -132,6 +132,15 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
                 return false;
             };
 
+            /*
+             * checkRequired: Checks to see if we need to add an ng-required attribute for each checkbox.
+             * We need to pass a true value if required="true" and there is at least one checkbox checked,
+             * seen in the values scope variable.
+             */
+            $scope.checkRequired = function () {
+                return (_.isUndefined($scope.required)) ? false : $scope.required && $scope.values.length === 0;
+            };
+
             // If we are using checkboxes and the required attribute is set, then we
             // need an array to store the indexes of checked boxes. ng-required is
             // specifically set if required is true and the array is empty. 
@@ -147,6 +156,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             });
 
             /*
+             * Updates the above array with checkboxes when a checkbox is clicked.
              * @param {String|boolean} val - The checkbox value (Boolean, ng-true-value or ng-false-value per row)
              * @param {Integer} index - Array index of the checkbox element marked true
              */
