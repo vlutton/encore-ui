@@ -46,11 +46,11 @@ Each of the wrapper functions to the different rxNotify message types support re
             show: 'immediate'
         });
 
-Please note that the `options` are of the same type as one would provide to rxNotify.  This should allow for maximum flexibility when necessary.  However, as a bonus, some common behaviors expected to be overriden have been provided as their own wrapper functions.  For example:
+Please note that the `options` are of the same type as one would provide to rxNotify.  This should allow for maximum flexibility when necessary.  However, as a bonus, some common behaviours expected to be overriden have been provided as their own wrapper functions.  For example:
 
         Status.setSuccessImmediate('Please show immediately')
 
-is the equivalent of calling `Status.setSuccess()` with the `{ show: 'immediate' }` parameter.  Please note, there isn't much fault checking in place, so the following behavior although permitted, is not advised:
+is the equivalent of calling `Status.setSuccess()` with the `{ show: 'immediate' }` parameter.  Please note, there isn't much fault checking in place, so the following behaviour although permitted, is not advised:
 
         Status.setSuccessImmediate('Please show immediately', {
             show: 'next'
