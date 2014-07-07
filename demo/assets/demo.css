@@ -21,49 +21,18 @@
     color: #777;
 }
 
-
-/* TEMPORARY until Issue #8 completed. These styles should be moved to common.less */
-.nav-tabs {
-    display: flex;
-    border-bottom: 9px solid #4480c1;
-
-}
-.nav-tabs li {
-    flex: 0 0 auto;
-}
-
-.nav-tabs li a {
-    background: #3f6085;
-    color: #ccc;
-    display: block;
-    padding: 10px 20px;
-    font-size: 14px;
-}
-
-.nav-tabs li a:hover,
-.nav-tabs li a:focus {
-    cursor: pointer;
-    color: #fff;
-    text-decoration: none;
-}
-
-.nav-tabs li.active a {
-    background: #4480c1;
-    color: #fff;
-}
-
-.tab-pane {
-    clear: both;
-    display: none;
+.component-description {
     border: 1px solid #aaa;
     background: #fff;
     padding: 10px;
+    margin-bottom: 2em;
 }
 
-.tab-pane.active {
-    display: block;
+.component-description .readme-title {
+    margin-top: 0;
 }
 
+/* Remove background color from syntax highlighted code (prism.css) */
 pre[class*="language-"] {
     background: transparent;
 }

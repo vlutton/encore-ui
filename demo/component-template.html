@@ -3,12 +3,17 @@
         <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/{{ component.name }}/" class="component-source button">View Source</a>
     </div>
 
-    <tabset class="clearfix clear">
-        <tab heading="Readme" ng-if="component.docs.md">
-            <div class="component-description" ng-bind-html="component.docs.md"></div>
-        </tab>
+    <div class="clear component-description" ng-if="component.docs.md">
+        <h2 class="title lg readme-title">Readme</h2>
+        <div ng-bind-html="component.docs.md"></div>
+    </div>
+<!--
+    <div ng-if="component.docs.html" class="component-example clear">
+        <h2 class="title example-title">Example</h2>
+    </div> -->
 
-        <tab heading="Demo"  ng-if="component.docs.html">
+    <tabset class="clearfix clear">
+        <tab heading="Demo">
             <div rx-compile="component.docs.html"></div>
         </tab>
 
