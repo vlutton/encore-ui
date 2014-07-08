@@ -18,7 +18,7 @@ Creates a field row wrapped in a fieldset. Used for fields which include multipl
 
 Given an data object and an additional optional object for column labels, rxFormOptionTable creates a series of radio or checkbox buttons. 
 
-#### Attributes
+### Attributes
 
 - `type`: Values `radio` or `checkbox` are required.
 - `required`: For checkboxes, a `true` value means there must be at least one checkbox checked.
