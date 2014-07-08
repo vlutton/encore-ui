@@ -80,3 +80,17 @@ A `page-actions` class is provided by rx-app to easily add custom page actions t
 ## rx-app-nav and rx-app-nav-item
 
 These two directives are responsible for creating the menu in the left sidebar. They're not intended for use outside of the rx-app template code.
+
+# Common Styling
+
+The rxApp common.less file defines many base CSS rules and classes for app use. Included in this is [normalize.css](http://necolas.github.io/normalize.css/). This helps create a consistent starting point for styles across all browsers.
+
+As mentioned, several classes are included for utility use in common.less. The [Encore-UI styleguide](http://rackerlabs.github.io/encore-ui/styleguide/rxApp-common.html) is the best place to read documentation on these classes.
+
+## Fonts
+
+The Encore-UI default font is Roboto. This is used for all text on the page and is loaded via Google Fonts. Be sure you app includes the following line:
+
+```
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+```
