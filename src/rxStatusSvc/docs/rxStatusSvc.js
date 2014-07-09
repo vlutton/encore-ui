@@ -1,6 +1,5 @@
 function rxStatusCtrl ($scope, $rootScope, Status) {
     Status.setScope($scope);
-    $scope.notify = undefined;
 
     $scope.triggerRouteChangeSuccess = function () {
         $rootScope.$broadcast('$routeChangeSuccess');
