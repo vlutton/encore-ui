@@ -98,8 +98,7 @@ angular.module('encore.ui.rxStatusSvc', ['encore.ui.rxNotify'])
         };
 
         status.setLoading = function (msg, options) {
-            options = _.isUndefined(options) || _.isEmpty(options) ? {} : options;
-            options = _.merge(status.LOADING(), options);
+            options = _.merge(status.LOADING(), options ? options : {});
 
             // prop is the variable on scope that stores whether this loading is complete
             // By default is uses $scope.loaded, but individual messages should be able to
@@ -110,8 +109,7 @@ angular.module('encore.ui.rxStatusSvc', ['encore.ui.rxNotify'])
         };
 
         status.setSuccess = function (msg, options) {
-            options = _.isUndefined(options) || _.isEmpty(options) ? {} : options;
-            options = _.merge(status.SUCCESS(), options);
+            options = _.merge(status.SUCCESS(), options ? options : {});
             return status.setStatus(msg || '', options);
         };
 
@@ -128,12 +126,12 @@ angular.module('encore.ui.rxStatusSvc', ['encore.ui.rxNotify'])
         };
 
         status.setWarning = function (msg, options) {
-            options = _.merge(status.WARNING(), options);
+            options = _.merge(status.WARNING(), options ? options : {});
             return status.setStatus(msg, options);
         };
 
         status.setInfo = function (msg, options) {
-            options = _.merge(status.INFO(), options);
+            options = _.merge(status.INFO(), options ? options : {});
             return status.setStatus(msg, options);
         };
 
@@ -143,8 +141,7 @@ angular.module('encore.ui.rxStatusSvc', ['encore.ui.rxNotify'])
          * `options` - A usual options object
          */
         status.setError = function (msg, error, options) {
-            options = _.isUndefined(options) || _.isEmpty(options) ? {} : options;
-            options = _.merge(status.ERROR(), options);
+            options = _.merge(status.ERROR(), options ? options : {});
             msg = ErrorFormatter.buildErrorMsg(msg || '', error);
             return status.setStatus(msg, options);
         };
