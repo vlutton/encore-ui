@@ -22,7 +22,8 @@ This will call rxNotify in the following manner:
 
         rxNotify.add('Retrieving users', {
             stack: 'page',
-            dismiss: [scope, 'loaded']
+            dismiss: [scope, 'loaded'],
+            loading: true
         });
 
 Similarly, the following call using the Status service:
