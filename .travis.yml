@@ -1,7 +1,6 @@
 language: node_js
 node_js:
 - '0.10'
-
 before_install: npm install -g grunt-cli bower protractor mocha
 install:
 - npm install
@@ -14,7 +13,6 @@ before_script:
 - grunt bump-only:build
 - grunt connect:keepalive &
 - webdriver-manager start &
-
 script:
 - grunt
 - protractor protractor.conf.js
@@ -34,12 +32,10 @@ deploy:
   on:
     repo: rackerlabs/encore-ui
     branch: master
-
 env:
   global:
   - secure: lBNmtcRYcHepXJsVsrQ+pr8yyrgN/1be7cDoTltXIxMq9WsTbm75Ypc4/rHhwO7K8cRMVbqEcMYbv6wZDGnpjL9z/nxTv14dS8S6wcIrLxGRwUPQ3McUqwOOrs7k2c0LiLwkJsjBBzBo+g52WY7rjPcOCXBBluZ98lar7gzP56c=
   - secure: XvQ6cnwELTp1odgqXaLeF0n39Q9sOsVx6zICnBfayHkmQxPOmTNnvip83vA7MyhwhlTn+nFqr7PWkqLc0CIKAoWdwHhfwMAI77aJWeasPaeywvZ7L+eZ7x4JrDt7jRo7SwzmFivHgGh9RtCMltaJWwvqszRPWwMFxcj0zoetKUI=
-
 notifications:
   email: false
   hipchat:
@@ -48,3 +44,5 @@ notifications:
     format: html
     rooms:
       secure: Pi8hykadFihWPglnHkpcJY5JlWRZ4Skg1oSn6Iqlgp2vA2oHFjFewHbzW0jCw025cut7m1rPRqg2se/X3gKf2TRkpWZso5jovopiHw9ULUL/B13Ihd5XH8AK8Bby4NgKhUepxVMWTuPu7r+O5RwQ3RTDFJtT1oSQnk0NDI5KK/Q=
+  slack:
+    secure: IyMKdUkXFeSPf0oTgHuvXGhJjJfiZTUbe/WUDyoOHgCuN/sempE0zHphwF/dEOcnGNsi7quGTTlv2AUq9ADVe4yeVy9YuxJqnNBeNMXViA+pBVX4A8W7UxaQclM+gWFteoK52EtjUNZNuZ5XOKFo04QtGxhaN4Qddd6geSR+fPE=
