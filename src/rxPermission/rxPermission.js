@@ -15,17 +15,25 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     */
     .factory('Permission', function (Session) {
         var permissionSvc = {};
-
+        
         permissionSvc.getRoles = function () {
             var token = Session.getToken();
             return (token && token.access && token.access.user && token.access.user.roles) ?
                 token.access.user.roles : [];
         };
 
-        permissionSvc.hasRole = function (role) {
-            return _.some(permissionSvc.getRoles(), function (item) {
-                return item.name === role;
+        permissionSvc.hasRole = function (roles) {
+            // Replace any spaces surrounded the comma delimeter
+            roles = roles.split(',').map(function (r) {
+                return r.trim();
             });
+            
+            // Get all the role names from the session and retrieve their names
+            var userRoles = _.pluck(this.getRoles(), 'name');
+            // Find the common roles between what's been passed in, and the session
+            var commonRoles = _.intersection(userRoles, roles);
+            // if the common roles list is not empty, then we have the expected roles
+            return !_.isEmpty(commonRoles);
         };
 
         return permissionSvc;
@@ -50,8 +58,8 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
             },
             templateUrl: 'templates/rxPermission.html',
             controller: function ($scope, Permission) {
-                $scope.hasRole = function () {
-                    return Permission.hasRole($scope.role);
+                $scope.hasRole = function (roles) {
+                    return Permission.hasRole(roles);
                 };
             }
         };
