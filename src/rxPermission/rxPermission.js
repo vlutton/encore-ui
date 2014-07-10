@@ -14,10 +14,9 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     * </pre>
     */
     .factory('Permission', function (Session) {
-        var permissionSvc = {},
-            trim = String.prototype.trim,
-            call = Function.prototype.call;
-
+        var permissionSvc = {};
+        var delimiterRegex = /\s?,\s?/g;
+        
         permissionSvc.getRoles = function () {
             var token = Session.getToken();
             return (token && token.access && token.access.user && token.access.user.roles) ?
@@ -25,17 +24,14 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
         };
 
         permissionSvc.hasRole = function (role) {
-            return _.some(this.getRoles(), function (item) {
-                return item.name === role;
-            });
-        };
+            role = role.replace(delimiterRegex, ',');
+            role = role.split(',');
+            
+            // Get all the role names
+            var userRoles = _.pluck(this.getRoles(), 'name');
+            var commonRoles = _.intersection(userRoles, role);
 
-        permissionSvc.hasRoles = function (roles) {
-            if (_.isString(roles)) {
-                roles = roles.split(',');
-                roles = roles.map(call, trim);
-            }
-            return !_(this.getRoles()).pluck('name').intersection(roles).isEmpty();
+            return !_.isEmpty(commonRoles);
         };
 
         return permissionSvc;
@@ -56,16 +52,12 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
             restrict: 'E',
             transclude: true,
             scope: {
-                role: '@',
-                roles: '@'
+                role: '@'
             },
             templateUrl: 'templates/rxPermission.html',
             controller: function ($scope, Permission) {
                 $scope.hasRole = function (role) {
                     return Permission.hasRole(role);
-                };
-                $scope.hasRoles = function (roles) {
-                    return Permission.hasRoles(roles);
                 };
             }
         };

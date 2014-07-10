@@ -1,20 +1,17 @@
 /* jshint node: true */
 describe('rxPermission', function () {
     describe('rxPermission Directive', function () {
-        var scope, compile, rootScope, el, elRoles, elFail;
+        var scope, compile, rootScope, el, elRoles, elFail, elFailRoles;
         var validTemplate = '<rx-permission role="pass">Hello</rx-permission>';
-        var validRolesTemplate = '<rx-permission roles="pass,also">Hello</rx-permission>';
+        var validRolesTemplate = '<rx-permission role="pass,also">Hello</rx-permission>';
         var invalidTemplate = '<rx-permission role="fail">Hello</rx-permission>';
+        var invalidRolesTemplate = '<rx-permission role="fail,failure-role">Hello</rx-permission>';
 
         beforeEach(function () {
             module('encore.ui.rxPermission', function ($provide) {
                 $provide.decorator('Permission', function ($delegate) {
                     $delegate.hasRole = function (role) {
-                        return role === 'pass';
-                    };
-
-                    $delegate.hasRoles = function (roles) {
-                        return _.contains(roles, 'also');
+                        return _.contains(role, 'pass') || _.contains(role, 'also');
                     };
 
                     return $delegate;
@@ -32,6 +29,7 @@ describe('rxPermission', function () {
             el = helpers.createDirective(validTemplate, compile, scope);
             elRoles = helpers.createDirective(validRolesTemplate, compile, scope);
             elFail = helpers.createDirective(invalidTemplate, compile, scope);
+            elFailRoles = helpers.createDirective(invalidRolesTemplate, compile, scope);
         });
 
         it('rxPermission: should display text when user has role', function () {
@@ -45,6 +43,11 @@ describe('rxPermission', function () {
         it('rxPermission: should not display text when user does not have role', function () {
             expect(elFail.text().trim()).to.be.empty;
         });
+
+        it('rxPermission: should not display text when user has none of multiple roles', function () {
+            expect(elFailRoles.text().trim()).to.be.empty;
+        });
+
     });
 
     describe('Permission', function () {
@@ -91,9 +94,9 @@ describe('rxPermission', function () {
         });
 
         it('Permission service: should validate if user has any of roles', function () {
-            expect(permission.hasRoles('Customer, Invalid Role')).to.be.true;
-            expect(permission.hasRoles('Custom, Er Role, Today')).to.be.false;
-            expect(permission.hasRoles('Test, Er Role, Today')).to.be.true;
+            expect(permission.hasRole('Customer, Invalid Role')).to.be.true;
+            expect(permission.hasRole('Custom, Er Role, Today')).to.be.false;
+            expect(permission.hasRole('Test, Er Role, Today')).to.be.true;
             expect(session.getToken.called).to.be.true;
         });
 
