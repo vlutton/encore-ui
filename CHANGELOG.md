@@ -1,3 +1,18 @@
+<a name="0.12.5"></a>
+### 0.12.5 (2014-07-10)
+
+
+#### Bug Fixes
+
+* **rxForm:** Fixed a bug for rxFormOptionTable radio required attr ([4a890de1](git@github.com:rackerlabs/encore-ui/commit/4a890de1e17bf547acebc4ab27cd22cfc8036c5c))
+* **rxPermission:** using .map/.trim explicitly replacing the regex ([bf49fc5b](git@github.com:rackerlabs/encore-ui/commit/bf49fc5bcef014c402709928ef253be3714a8006))
+
+
+#### Features
+
+* **rxPermission:** add ability to match against multiple roles ([acf0acf5](git@github.com:rackerlabs/encore-ui/commit/acf0acf5e11379b789522b2a6003245776641ba0))
+
+
 <a name="0.12.4"></a>
 ### 0.12.4 (2014-07-03)
 
