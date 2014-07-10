@@ -43,7 +43,7 @@
     "grunt-conventional-changelog": "~1.1.0",
     "grunt-gh-pages": "^0.9.1",
     "grunt-html2js": "~0.2.4",
-    "grunt-jscs-checker": "~0.4.0",
+    "grunt-jscs": "~0.6.1",
     "grunt-karma": "~0.8.3",
     "grunt-karma-coveralls": "~2.5.0",
     "grunt-ngdocs": "~0.2.1",
