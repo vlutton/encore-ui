@@ -562,6 +562,7 @@ describe('rxPage', function () {
     beforeEach(function () {
         // load module
         module('encore.ui.rxApp');
+        module('encore.ui.rxPageTitle');
 
         // load templates
         module('templates/rxPage.html');
