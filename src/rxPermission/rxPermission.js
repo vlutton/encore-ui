@@ -15,7 +15,7 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     */
     .factory('Permission', function (Session) {
         var permissionSvc = {};
-        var delimiterRegex = /\s?,\s?/g;
+        var delimiterRegex = /\s?,\s?/g; //Finds optional spaces surrounding commas
         
         permissionSvc.getRoles = function () {
             var token = Session.getToken();
@@ -24,13 +24,15 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
         };
 
         permissionSvc.hasRole = function (role) {
+            // Replace any spaces surrounded the comma delimeter
             role = role.replace(delimiterRegex, ',');
             role = role.split(',');
             
-            // Get all the role names
+            // Get all the role names from the session and retrieve their names
             var userRoles = _.pluck(this.getRoles(), 'name');
+            // Find the common roles between what's been passed in, and the session
             var commonRoles = _.intersection(userRoles, role);
-
+            // if the common roles list is not empty, then we have the expected roles
             return !_.isEmpty(commonRoles);
         };
 
