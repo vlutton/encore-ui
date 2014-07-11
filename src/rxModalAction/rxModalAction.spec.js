@@ -1,5 +1,120 @@
 /* jshint node: true */
 
+describe('rxModalForm', function () {
+    var el, scope, compile, rootScope, timeout;
+
+    var rxModalForm = '<rx-modal-form>${ fields }</rx-modal-form>';
+    var hiddenInput = '<input type="hidden">';
+    var textInput = '<input type="text">';
+    var autofocusInput = '<input type="text" autofocus>';
+    var textarea = '<textarea></textarea>';
+    var selectBox = '<select><option>foo</option></select>';
+
+    beforeEach(function () {
+        module('encore.ui.rxModalAction');
+        module('templates/rxModalActionForm.html');
+
+        // Inject in angular constructs
+        inject(function ($rootScope, $compile, $timeout) {
+            rootScope = $rootScope;
+            scope = $rootScope.$new();
+            compile = $compile;
+            timeout = $timeout;
+        });
+    });
+
+    it('should focus on first tabbable element', function () {
+        var formHtml = _.template(rxModalForm, {
+            fields: textInput + textarea
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        var input = el.find('input')[0];
+        var secondFocusable = el.find('textarea')[0];
+
+        sinon.spy(input, 'focus');
+        sinon.spy(secondFocusable, 'focus');
+
+        timeout.flush();
+
+        expect(input.focus.calledOnce).to.be.true;
+
+        // should only focus the first element
+        expect(secondFocusable.focus.called).to.be.false;
+    });
+
+    it('should focus on select and textareas', function () {
+        // going to re-use this for our different elements
+        var focusable;
+
+        var formHtml = _.template(rxModalForm, {
+            fields: textarea
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        focusable = el.find('textarea')[0];
+
+        sinon.spy(focusable, 'focus');
+
+        timeout.flush();
+
+        expect(focusable.focus.calledOnce).to.be.true;
+
+        // now check the select box
+        formHtml = _.template(rxModalForm, {
+            fields: selectBox
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        focusable = el.find('select')[0];
+
+        sinon.spy(focusable, 'focus');
+
+        timeout.flush();
+
+        expect(focusable.focus.calledOnce).to.be.true;
+    });
+
+    it('should not focus on hidden input element', function () {
+        var formHtml = _.template(rxModalForm, {
+            fields: hiddenInput + textInput
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        var inputs = el.find('input');
+
+        sinon.spy(inputs[0], 'focus');
+        sinon.spy(inputs[1], 'focus');
+
+        timeout.flush();
+
+        expect(inputs[0].focus.called).to.be.false;
+        expect(inputs[1].focus.calledOnce).to.be.true;
+    });
+
+    it('should prioritize elements with an autofocus attribute', function () {
+        var formHtml = _.template(rxModalForm, {
+            fields: textInput + autofocusInput
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        var inputs = el.find('input');
+
+        sinon.spy(inputs[0], 'focus');
+        sinon.spy(inputs[1], 'focus');
+
+        timeout.flush();
+
+        expect(inputs[0].focus.called).to.be.false;
+        expect(inputs[1].focus.calledOnce).to.be.true;
+    });
+});
+
 describe('rxModalAction', function () {
     var el, scope, compile, rootScope, mockModal, modalApi, instanceApi, instanceMock, controller;
     var validTemplate = '<rx-modal-action ' +
