@@ -52,7 +52,15 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'Overview'
                 },
                 {
-                    linkText: 'External Links',
+                    href: 'ngdocs/index.html',
+                    linkText: 'JS Docs'
+                },
+                {
+                    href: 'styleguide/index.html',
+                    linkText: 'Design Styleguide'
+                },
+                {
+                    linkText: 'Other Links',
                     children: [
                         {
                             linkText: 'GitHub Repos',
@@ -74,14 +82,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: 'coverage/index.html',
                             linkText: 'Unit Test Coverage'
-                        },
-                        {
-                            href: 'ngdocs/index.html',
-                            linkText: 'Generated JS Docs'
-                        },
-                        {
-                            href: 'styleguide/index.html',
-                            linkText: 'Generated CSS Docs'
                         }
                     ]
                 }
