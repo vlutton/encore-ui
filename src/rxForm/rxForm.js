@@ -82,7 +82,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
  * @param {String} type - Type of input to be used
  * @param {Object} model - Value to bind input to using ng-model
  * @param {String} fieldId - Used for label and input 'id' attribute
- * @param {String} required - Value passed to input's 'ng-required' attribute
+ * @param {Object} required - Value passed to input's 'ng-required' attribute
  */
 .directive('rxFormOptionTable', function ($interpolate) {
     return {
@@ -133,41 +133,38 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             };
 
             /*
-             * checkRequired: Checks to see if we need to add an ng-required attribute for each checkbox.
-             * We need to pass a true value if required="true" and there is at least one checkbox checked,
-             * seen in the values scope variable.
+             * checkRequired: Returns true/false to the ng-required attribute for checkboxes.
+             * Returns a true value if required="true" and there is at least one checkbox
+             * checked (based on $scope.values).
              */
             $scope.checkRequired = function () {
-                return (_.isUndefined($scope.required)) ? false : $scope.required && $scope.values.length === 0;
+                if (_.isBoolean($scope.required)) {
+                    return $scope.required && boxesChecked === 0;
+                } else {
+                    return false;
+                }
             };
 
             // If we are using checkboxes and the required attribute is set, then we
             // need an array to store the indexes of checked boxes. ng-required is
             // specifically set if required is true and the array is empty. 
-            $scope.values = [];
+            var boxesChecked = 0;
             _.forEach($scope.model, function (el, index) {
-                if (el === true) {
-                    $scope.values.push(index);
-                } else {
-                    if ($scope.data[index] == el) {
-                        $scope.values.push(index);
-                    }
+                if (el === true || $scope.data[index] == el) {
+                    boxesChecked += 1;
                 }
             });
 
             /*
-             * Updates the above array with checkboxes when a checkbox is clicked.
+             * Updates $scope.values when a checkbox is clicked.
              * @param {String|boolean} val - The checkbox value (Boolean, ng-true-value or ng-false-value per row)
              * @param {Integer} index - Array index of the checkbox element marked true
              */
             $scope.updateCheckboxes = function (val, index) {
-                $scope.values = $scope.values || [];
                 if ((val === true) || $scope.data[index].value == val) {
-                    // Branch to uncheck the checkbox
-                    $scope.values = _.without($scope.values, index);
+                    boxesChecked -= 1;
                 } else {
-                    // Branch to check the checkbox
-                    $scope.values.push(index);
+                    boxesChecked += 1;
                 }
             };
 
