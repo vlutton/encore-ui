@@ -72,6 +72,12 @@ We use [the same commit format that the Angular Team follows](https://github.com
 
 Before submitting any changes, make sure the master branch is merged locally into your branch (using [Git rebase](http://git-scm.com/book/en/Git-Branching-Rebasing) is preferred). Once done, push your branch up to Github and [submit a Pull Request](https://help.github.com/articles/using-pull-requests).
 
+### Submitting Urgent Changes
+
+Normally, a review of all outstanding PRs is done every morning. This means that a PR submitted in the afternoon may not be reviewed until the next day. For non-urgent changes, this usually isn't an issue (although it isn't fun to wait for feedback).
+
+Sometimes changes are urgent, and in this case, the PR should be reviewed immediately. To mark a PR as urgent, use the 'PR:urgent' label. It's also helpful to note in the Pull Request comments the specifics behind the urgency.
+
 ### Pull Request Minimum Requirements
 
 - Complete documentation (a docs subfolder with working examples and [ngdocs](https://github.com/angular/angular.js/wiki/Writing-AngularJS-Documentation)), along with inline code comments as beneficial
