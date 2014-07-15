@@ -4,6 +4,14 @@
 
 #### Bug Fixes
 
+* **grunt:** allow -x prerelease versions in bower ([0fed7eda](git@github.com:rackerlabs/encore-ui/commit/0fed7eda7374efc81a4e86e7dc82d2e2019dc5b3))
+
+
+<a name="1.0.0-1"></a>
+### 1.0.0-1 (2014-07-15)
+
+#### Bug Fixes
+
 * **rxForm:** add dynamic label field id integration ([ddea4828](git@github.com:rackerlabs/encore-ui/commit/ddea482878db2310b73a63c8b9baeda1eb5b0e51))
 
 * **rxForm:**
