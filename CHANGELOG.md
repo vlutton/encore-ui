@@ -1,25 +1,72 @@
-<a name="0.13.2"></a>
-### 0.13.2 (2014-07-21)
+<a name="1.0.0-1"></a>
+### 1.0.0-1 (2014-07-15)
 
 
 #### Bug Fixes
 
-* **interceptor:** URL encode to maintain params ([c5d3dffc](git@github.com:rackerlabs/encore-ui/commit/c5d3dffc6cf9607c9bd1f134f6261afbb71249e6))
+* **rxForm:** add dynamic label field id integration ([ddea4828](git@github.com:rackerlabs/encore-ui/commit/ddea482878db2310b73a63c8b9baeda1eb5b0e51))
+
+* **rxForm:**
+  * Added test case, moved check to checkRequired method ([cba2476f](git@github.com:rackerlabs/encore-ui/commit/cba2476f3b005edec7289f03fbd3bb85c95dbb59))
+  * Changed strategy for required attr to checkboxes ([29025c1c](git@github.com:rackerlabs/encore-ui/commit/29025c1c3b9920be888713bf30be51bf384f82d9))
+  * First attempt to add required to checkboxes ([33e016a9](git@github.com:rackerlabs/encore-ui/commit/33e016a9604e98c286de2b3aa89974fd7b986786))
+* **rxModalForm:** focus on first input; fix #351 ([0b1a2d1f](git@github.com:rackerlabs/encore-ui/commit/0b1a2d1f9248c5f1ac4fa37481730618188e393c))
+* **rxPage:** Automatically set the document title using page title ([c356905e](git@github.com:rackerlabs/encore-ui/commit/c356905e942b6064ab47ebf8c266d16c8fc9426a))
+* **rxform:** Integrate code review by klamping ([55b84d27](git@github.com:rackerlabs/encore-ui/commit/55b84d278468375e8e29ca1f80acc529b0e5b5cb))
+* **tabs:** added styles/demo for angular-ui tabs; close #8 ([8e917163](git@github.com:rackerlabs/encore-ui/commit/8e9171636765e54486b94761b0ceea59909ed04f))
 
 
-#### Features
+#### Breaking Changes
 
-* **encoreNav:** Billing & Support Svc under account ([83af641d](git@github.com:rackerlabs/encore-ui/commit/83af641dcc3e74582dbb1978480acacf9b131b06))
+* This removes the default 'ol' styles for modal forms.
+To keep the decimal list look, add a 'list' class to the `<ol>`
+ ([ff2763b4](git@github.com:rackerlabs/encore-ui/commit/ff2763b49c748afbc8c2221999c1fe194e290db4))
+* This change includes an overhaul of the button styles.
+**Removes the 'primary', 'button-blue', and 'button-green' styles**
+- Default button color remains blue.
+- Added new 'button-positive' class for green button and 'button-negative' class for red button.
+- Moved all button styles into 'rxButton' directory for consistency
+ ([52b9cb0b](git@github.com:rackerlabs/encore-ui/commit/52b9cb0bb72a77f5a0e77452c18d685b7631a0d1))
+* While no visual style changes are intended, due to the
+nature of switching from floats to flexbox, it's likely that the visual
+style of form fields will be altered, especially if custom css has been
+added to the app.
+ ([ccba5014](git@github.com:rackerlabs/encore-ui/commit/ccba501484348c3114214b961cb594d28cb728b9))
+* The following deprecated components have been removed:
+- rxFormInput
+- rxFormSelect
+- rxFormRadio
+- rxNav
+- rxProductResources
+- rxDropdown
+- rxRelatedMenu
+- rxLogout
+ ([c4e1b4f6](git@github.com:rackerlabs/encore-ui/commit/c4e1b4f6224695897fbef7fde23512738bd4ae4c))
+* Because this impacts the layout/display of input and select fields,
+it is recommended that a quick sanity check of forms in apps is done to ensure the
+design still handles well.
+ ([d8dd8839](git@github.com:rackerlabs/encore-ui/commit/d8dd8839d5b9fad076214ef30b2c0dde57fd0ccd))
+
+ <a name="0.13.2"></a>
+ ### 0.13.2 (2014-07-21)
 
 
-<a name="0.13.1"></a>
-### 0.13.1 (2014-07-17)
+ #### Bug Fixes
+
+ * **interceptor:** URL encode to maintain params ([c5d3dffc](git@github.com:rackerlabs/encore-ui/commit/c5d3dffc6cf9607c9bd1f134f6261afbb71249e6))
 
 
-#### Features
+ #### Features
 
-* **Images:** EN-1051 Add Images to left nav for encore-cloud-ui ([b0febd71](git@github.com:rackerlabs/encore-ui/commit/b0febd71664a939739b35657782dbf5f9bd07f59))
+ * **encoreNav:** Billing & Support Svc under account ([83af641d](git@github.com:rackerlabs/encore-ui/commit/83af641dcc3e74582dbb1978480acacf9b131b06))
 
+ <a name="0.13.1"></a>
+ ### 0.13.1 (2014-07-17)
+
+
+ #### Features
+
+ * **Images:** EN-1051 Add Images to left nav for encore-cloud-ui ([b0febd71](git@github.com:rackerlabs/encore-ui/commit/b0febd71664a939739b35657782dbf5f9bd07f59))
 
 <a name="0.13.0"></a>
 ## 0.13.0 (2014-07-15)
@@ -28,7 +75,6 @@
 #### Features
 
 * **rxBillingSearch:** URL and placeholder update for account fetch. ([7073992e](git@github.com:rackerlabs/encore-ui/commit/7073992eac071167d3d5cab98ce5fb57769a4be3))
-
 
 <a name="0.12.5"></a>
 ### 0.12.5 (2014-07-10)
