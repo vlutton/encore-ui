@@ -11,7 +11,8 @@ module.exports = {
         src: ['bower/encore-ui.min.js', 'bower/encore-ui-tpls.min.js'],
         overwrite: true,
         replacements: [{
-            from: /\-(?:\d+\.){2}\d+/g,
+            // http://www.regexr.com/395kl
+            from: /-(?:\d+\.){2}\d+(?:-\d+)*/g,
             to: ''
         }]
     }
