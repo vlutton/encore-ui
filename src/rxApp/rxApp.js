@@ -577,12 +577,13 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 })
 .directive('rxBillingSearch', function ($window) {
     return {
-        template: '<rx-app-search placeholder="Fetch account by number..." submit="fetchAccounts"></rx-app-search>',
+        template: '<rx-app-search placeholder="Fetch account by transaction or auth ID..." submit="fetchAccounts">' +
+            '</rx-app-search>',
         restrict: 'E',
         link: function (scope) {
             scope.fetchAccounts = function (searchValue) {
                 if (!_.isEmpty(searchValue)) {
-                    $window.location = '/billing/overview/' + searchValue;
+                    $window.location = '/billing/search/' + searchValue;
                 }
             };
         }
