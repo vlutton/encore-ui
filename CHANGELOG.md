@@ -1,3 +1,12 @@
+<a name="0.13.0"></a>
+## 0.13.0 (2014-07-15)
+
+
+#### Features
+
+* **rxBillingSearch:** URL and placeholder update for account fetch. ([7073992e](git@github.com:rackerlabs/encore-ui/commit/7073992eac071167d3d5cab98ce5fb57769a4be3))
+
+
 <a name="0.12.5"></a>
 ### 0.12.5 (2014-07-10)
 
