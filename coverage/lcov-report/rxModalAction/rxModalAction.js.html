@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">rxModalAction/rxModalAction.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">91.67% <small>(22 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">100% <small>(35 / 35)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">100% <small>(2 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Functions: <span class="metric">80% <small>(8 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(12 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">91.67% <small>(22 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(35 / 35)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -297,9 +297,32 @@
 79
 80
 81
-82</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -312,8 +335,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -334,6 +377,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -379,8 +425,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
-.directive('rxModalForm', <span class="fstat-no" title="function not covered" >function () {</span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
+.directive('rxModalForm', function ($timeout) {
+    return {
         transclude: true,
         templateUrl: 'templates/rxModalActionForm.html',
         restrict: 'E',
@@ -391,10 +437,30 @@
             submitText: '@',
             cancelText: '@'
         },
-        link: <span class="fstat-no" title="function not covered" >function (scope, element) {</span>
+        link: function (scope, element) {
+            // this function will focus on the first tabbable element inside the form
+            var focusOnFirstTabbable = function () {
+                var autofocusElements = '[autofocus]';
+                var tabbableElements = 'input:not([type="hidden"]), textarea, select';
+                var modalForm = element[0].querySelector('.modal-form');
+&nbsp;
+                // first check for an element with an autofocus attribute
+                var firstTabbable = modalForm.querySelector(autofocusElements);
+                if (!firstTabbable) {
+                    firstTabbable = modalForm.querySelector(tabbableElements);
+                }
+&nbsp;
+                // we need to wait for $modalWindow to run so it doesn't steal focus
+                $timeout(function () {
+                    firstTabbable.focus();
+                }, 10);
+            };
+&nbsp;
+            focusOnFirstTabbable();
+&nbsp;
             // Remove the title attribute, as it will cause a popup to appear when hovering over page content
             // @see https://github.com/rackerlabs/encore-ui/issues/256
-<span class="cstat-no" title="statement not covered" >            element.removeAttr('title');</span>
+            element.removeAttr('title');
         }
     };
 })
@@ -416,6 +482,9 @@
             controller: 'rxModalCtrl',
             scope: scope
         });
+&nbsp;
+        config.windowClass = 'rxModal';
+&nbsp;
         var modal = $modal.open(config);
 &nbsp;
         return modal;
@@ -464,7 +533,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 10 2014 15:06:06 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jul 15 2014 17:01:09 GMT-0500 (CDT)</div>
 </div>
 
 <script src="../prettify.js"></script>
