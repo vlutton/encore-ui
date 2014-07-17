@@ -1,3 +1,12 @@
+<a name="0.13.1"></a>
+### 0.13.1 (2014-07-17)
+
+
+#### Features
+
+* **Images:** EN-1051 Add Images to left nav for encore-cloud-ui ([b0febd71](git@github.com:rackerlabs/encore-ui/commit/b0febd71664a939739b35657782dbf5f9bd07f59))
+
+
 <a name="0.13.0"></a>
 ## 0.13.0 (2014-07-15)
 
