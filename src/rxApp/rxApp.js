@@ -90,7 +90,16 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         children: [
             {
                 href: '/cloud/{{user}}/servers',
-                linkText: 'Cloud Servers'
+                linkText: 'Cloud Servers',
+                children: [
+                    {
+                        href: '/cloud/{{user}}/servers',
+                        linkText: 'Servers'
+                    }, {
+                        href: '/cloud/{{user}}/images',
+                        linkText: 'Images'
+                    }
+                ]
             },
             {
                 href: '/cloud/{{user}}/cbs/volumes',
