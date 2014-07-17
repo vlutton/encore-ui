@@ -2,7 +2,7 @@
  * EncoreUI
  * https://github.com/rackerlabs/encore-ui
 
- * Version: 0.13.0 - 2014-07-15
+ * Version: 0.13.1 - 2014-07-17
  * License: Apache License, Version 2.0
  */
 angular.module('encore.ui', [
@@ -453,7 +453,17 @@ angular.module('encore.ui.rxApp', [
         children: [
           {
             href: '/cloud/{{user}}/servers',
-            linkText: 'Cloud Servers'
+            linkText: 'Cloud Servers',
+            children: [
+              {
+                href: '/cloud/{{user}}/servers',
+                linkText: 'Servers'
+              },
+              {
+                href: '/cloud/{{user}}/images',
+                linkText: 'Images'
+              }
+            ]
           },
           {
             href: '/cloud/{{user}}/cbs/volumes',
@@ -517,6 +527,14 @@ angular.module('encore.ui.rxApp', [
         key: 'virtualization',
         visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         directive: 'rx-virt-search'
+      },
+      {
+        linkText: 'Support Automation',
+        key: 'supportAutomation',
+        children: [{
+            href: '/dcx/windows-cluster-build/validate',
+            linkText: 'Windows Cluster Build'
+          }]
       }
     ]
   }]).service('rxAppRoutes', [
