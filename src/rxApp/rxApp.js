@@ -155,6 +155,15 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         key: 'virtualization',
         visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         directive: 'rx-virt-search'
+    }, {
+        linkText: 'Support Automation',
+        key: 'supportAutomation',
+        children: [
+            {
+                href: '/dcx/windows-cluster-build/validate',
+                linkText: 'Windows Cluster Build'
+            }
+        ]
     }]
 }])
 /**
