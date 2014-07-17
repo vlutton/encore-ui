@@ -149,12 +149,12 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     },{
         linkText: 'Support Automation',
         key: 'supportAutomation',
-            children: [
-                {
-                    href: '/dcx/windows-cluster-build/validate',
-                    linkText: 'Windows Cluster Build'
-                }
-            ]
+        children: [
+            {
+                href: '/dcx/windows-cluster-build/validate',
+                linkText: 'Windows Cluster Build'
+            }
+        ]
     }]
 }])
 /**
