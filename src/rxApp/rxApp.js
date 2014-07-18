@@ -158,6 +158,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     }, {
         linkText: 'Support Automation',
         key: 'supportAutomation',
+        visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         children: [
             {
                 href: '/dcx/windows-cluster-build/validate',
