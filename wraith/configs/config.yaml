@@ -17,7 +17,8 @@ domains:
 screen_widths:
   - 1024
 
-# these paths are automatically generated during the build process
+# BEGIN DO NOT EDIT #
+# These paths are automatically generated during the build process
 paths:
   configs: "/#/component/configs"
   hotkeys: "/#/component/hotkeys"
@@ -31,22 +32,17 @@ paths:
   rxCapitalize: "/#/component/rxCapitalize"
   rxCompile: "/#/component/rxCompile"
   rxDiskSize: "/#/component/rxDiskSize"
-  rxDropdown: "/#/component/rxDropdown"
   rxEnvironment: "/#/component/rxEnvironment"
   rxFavicon: "/#/component/rxFavicon"
   rxFeedback: "/#/component/rxFeedback"
   rxForm: "/#/component/rxForm"
   rxIdentity: "/#/component/rxIdentity"
   rxLocalStorage: "/#/component/rxLocalStorage"
-  rxLogout: "/#/component/rxLogout"
   rxModalAction: "/#/component/rxModalAction"
-  rxNav: "/#/component/rxNav"
   rxNotify: "/#/component/rxNotify"
   rxPageTitle: "/#/component/rxPageTitle"
   rxPaginate: "/#/component/rxPaginate"
   rxPermission: "/#/component/rxPermission"
-  rxProductResources: "/#/component/rxProductResources"
-  rxRelatedMenu: "/#/component/rxRelatedMenu"
   rxSession: "/#/component/rxSession"
   rxSessionStorage: "/#/component/rxSessionStorage"
   rxSortableColumn: "/#/component/rxSortableColumn"
@@ -54,11 +50,9 @@ paths:
   rxToggle: "/#/component/rxToggle"
   rxTokenInterceptor: "/#/component/rxTokenInterceptor"
   rxUnauthorizedInterceptor: "/#/component/rxUnauthorizedInterceptor"
+  tabs: "/#/component/tabs"
   typeahead: "/#/component/typeahead"
-
-
-
-
+# END DO NOT EDIT #
 
 #Amount of fuzz ImageMagick will use
 fuzz: '20%'

@@ -25,12 +25,13 @@ module.exports = {
             // http://www.regexr.com/3962b
             from: /paths:(\n +[ ":'/#\w]+)+/gm,
             to: function () {
-                var paths = 'paths:\n';
-                var urlTemplate = _.template('  <%- name %>: "/#/component/<%- name %>"\n');
+                var paths = 'paths:';
+                var urlTemplate = _.template('\n  <%- name %>: "/#/component/<%- name %>"');
 
                 _.each(config.demoModules, function (module) {
                     paths += urlTemplate(module);
                 });
+
                 return paths;
             }
         }]
