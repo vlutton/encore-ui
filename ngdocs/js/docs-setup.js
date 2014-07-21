@@ -406,7 +406,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "encore.ui",
       "shortDescription": "Simple injector which will intercept http responses. If a 401 is returned,",
-      "keywords": "$httpprovider $location $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
+      "keywords": "$httpprovider $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
     }
   ],
   "apis": {
