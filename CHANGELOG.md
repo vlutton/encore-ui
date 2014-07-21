@@ -1,3 +1,17 @@
+<a name="0.13.2"></a>
+### 0.13.2 (2014-07-21)
+
+
+#### Bug Fixes
+
+* **interceptor:** URL encode to maintain params ([c5d3dffc](git@github.com:rackerlabs/encore-ui/commit/c5d3dffc6cf9607c9bd1f134f6261afbb71249e6))
+
+
+#### Features
+
+* **encoreNav:** Billing & Support Svc under account ([83af641d](git@github.com:rackerlabs/encore-ui/commit/83af641dcc3e74582dbb1978480acacf9b131b06))
+
+
 <a name="0.13.1"></a>
 ### 0.13.1 (2014-07-17)
 
