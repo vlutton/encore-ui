@@ -22,6 +22,11 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', ['encore.ui.rxSession'])
     .factory('UnauthorizedInterceptor', function ($q, $window, Session) {
         var svc = {
             redirectPath: function () {
+                // This brings in the entire relative URI (including the path
+                // specified in a <base /> tag), along with query params as a
+                // string.
+                // e.g https://www.google.com/search?q=woody+wood+pecker
+                // window.location.pathname = /search?q=woody+wood+pecker
                 return $window.location.pathname;
             },
             redirect: function (loginPath) {
