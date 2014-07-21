@@ -1,45 +1,36 @@
-<a name="1.0.0-1"></a>
-### 1.0.0-1 (2014-07-15)
+<a name="1.0.0"></a>
+## 1.0.0 (2014-07-21)
 
 
 #### Bug Fixes
 
-* **grunt:** allow -x prerelease versions in bower ([0fed7eda](git@github.com:rackerlabs/encore-ui/commit/0fed7eda7374efc81a4e86e7dc82d2e2019dc5b3))
+* **grunt:**
+  * now replaces prerelease versions ([481ce34d](git@github.com:rackerlabs/encore-ui/commit/481ce34deff7b436c3f839b9d6420297df4d074d))
+  * allow -x prerelease versions in bower ([f61c71d7](git@github.com:rackerlabs/encore-ui/commit/f61c71d78342c38f4901c59c0b72884373f1af17))
+* **rxForm:** add dynamic label field id integration ([53f4301b](git@github.com:rackerlabs/encore-ui/commit/53f4301bf056642dbaacf9633ca2bee0b0ed6790))
 
 
-<a name="1.0.0-1"></a>
-### 1.0.0-1 (2014-07-15)
+#### Features
 
-#### Bug Fixes
-
-* **rxForm:** add dynamic label field id integration ([ddea4828](git@github.com:rackerlabs/encore-ui/commit/ddea482878db2310b73a63c8b9baeda1eb5b0e51))
-
-* **rxForm:**
-  * Added test case, moved check to checkRequired method ([cba2476f](git@github.com:rackerlabs/encore-ui/commit/cba2476f3b005edec7289f03fbd3bb85c95dbb59))
-  * Changed strategy for required attr to checkboxes ([29025c1c](git@github.com:rackerlabs/encore-ui/commit/29025c1c3b9920be888713bf30be51bf384f82d9))
-  * First attempt to add required to checkboxes ([33e016a9](git@github.com:rackerlabs/encore-ui/commit/33e016a9604e98c286de2b3aa89974fd7b986786))
-* **rxModalForm:** focus on first input; fix #351 ([0b1a2d1f](git@github.com:rackerlabs/encore-ui/commit/0b1a2d1f9248c5f1ac4fa37481730618188e393c))
-* **rxPage:** Automatically set the document title using page title ([c356905e](git@github.com:rackerlabs/encore-ui/commit/c356905e942b6064ab47ebf8c266d16c8fc9426a))
-* **rxform:** Integrate code review by klamping ([55b84d27](git@github.com:rackerlabs/encore-ui/commit/55b84d278468375e8e29ca1f80acc529b0e5b5cb))
-* **tabs:** added styles/demo for angular-ui tabs; close #8 ([8e917163](git@github.com:rackerlabs/encore-ui/commit/8e9171636765e54486b94761b0ceea59909ed04f))
+* **tabs:** added styles/demo for angular-ui tabs; close #8 ([5ee97447](git@github.com:rackerlabs/encore-ui/commit/5ee97447d0ec5b6f5d33d62298d282c7c504fb7e))
 
 
 #### Breaking Changes
 
 * This removes the default 'ol' styles for modal forms.
 To keep the decimal list look, add a 'list' class to the `<ol>`
- ([ff2763b4](git@github.com:rackerlabs/encore-ui/commit/ff2763b49c748afbc8c2221999c1fe194e290db4))
+ ([df3cd452](git@github.com:rackerlabs/encore-ui/commit/df3cd452bffdf166ea684ac030f6639db716873b))
 * This change includes an overhaul of the button styles.
 **Removes the 'primary', 'button-blue', and 'button-green' styles**
 - Default button color remains blue.
 - Added new 'button-positive' class for green button and 'button-negative' class for red button.
 - Moved all button styles into 'rxButton' directory for consistency
- ([52b9cb0b](git@github.com:rackerlabs/encore-ui/commit/52b9cb0bb72a77f5a0e77452c18d685b7631a0d1))
+ ([d5fe2995](git@github.com:rackerlabs/encore-ui/commit/d5fe2995cf08fbbfd7d18357646755428e37eada))
 * While no visual style changes are intended, due to the
 nature of switching from floats to flexbox, it's likely that the visual
 style of form fields will be altered, especially if custom css has been
 added to the app.
- ([ccba5014](git@github.com:rackerlabs/encore-ui/commit/ccba501484348c3114214b961cb594d28cb728b9))
+ ([f288946b](git@github.com:rackerlabs/encore-ui/commit/f288946b8a4fe3a4fa5f06a9a8829a03238f0733))
 * The following deprecated components have been removed:
 - rxFormInput
 - rxFormSelect
@@ -49,11 +40,11 @@ added to the app.
 - rxDropdown
 - rxRelatedMenu
 - rxLogout
- ([c4e1b4f6](git@github.com:rackerlabs/encore-ui/commit/c4e1b4f6224695897fbef7fde23512738bd4ae4c))
+ ([d4a71875](git@github.com:rackerlabs/encore-ui/commit/d4a718755c77e673bc56eb3d2b044834938bb147))
 * Because this impacts the layout/display of input and select fields,
 it is recommended that a quick sanity check of forms in apps is done to ensure the
 design still handles well.
- ([d8dd8839](git@github.com:rackerlabs/encore-ui/commit/d8dd8839d5b9fad076214ef30b2c0dde57fd0ccd))
+ ([7a26a752](git@github.com:rackerlabs/encore-ui/commit/7a26a752eda07a5510c243b40db169f04c2944c7))
 
  <a name="0.13.2"></a>
  ### 0.13.2 (2014-07-21)
