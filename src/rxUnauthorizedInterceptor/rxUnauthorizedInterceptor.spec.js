@@ -1,29 +1,22 @@
 /* jshint node: true */
 
 describe('rxUnauthorizedInterceptor', function () {
-    var interceptor, mockWindow = {},
+    var interceptor,
+        mockWindow = { location: '/arbitrary/path' },
         session = { logout: sinon.spy() },
-        q = { reject: sinon.spy() },
         cases = {
             'fullPath': '/app/path',
+            'fullPathParams': '/app/path?search=term',
             'login': '/', // /login is an actual app, so the interceptor never kicks in
             'root': '/', // / may not need to be authorized, but in case it is, redirect will be /
         },
-        currentCase = cases.fullPath,
-        location = {
-            absUrl: function () { return 'https://localhost:9000' + currentCase; },
-            host: function () { return 'localhost'; },
-            port: function () { return '9000'; },
-            protocol: function () { return 'https'; },
-            path: function () { return '/path'; }
-        };
+        q = { reject: sinon.spy() };
 
     beforeEach(function () {
         module('encore.ui.rxUnauthorizedInterceptor',
             function ($provide) {
-                $provide.value('$window', mockWindow);
                 $provide.value('$q', q);
-                $provide.value('$location', location);
+                $provide.value('$window', mockWindow);
                 $provide.value('Session', session);
             });
 
@@ -37,33 +30,51 @@ describe('rxUnauthorizedInterceptor', function () {
     });
 
     it('Interceptor handles error responses', function () {
-        var response = { status: 500 };
-        interceptor.responseError(response);
+        interceptor.responseError({ status: 500 });
 
         expect(mockWindow.location).to.not.eq('/login');
         expect(q.reject.called).to.be.true;
 
-        response.status = 401;
-        interceptor.responseError(response);
-        expect(mockWindow.location).to.contain('/login');
+        sinon.stub(interceptor, 'redirectPath').returns(cases.fullPath);
+        interceptor.responseError({ status: 401 });
+
+        expect(mockWindow.location).to.contain('redirect=' + encodeURIComponent('/app/path'));
         expect(q.reject.called).to.be.true;
         expect(session.logout.called).to.be.true;
     });
 
     it('Interceptor sets proper redirect path', function () {
+        sinon.stub(interceptor, 'redirectPath').returns(cases.fullPath);
         interceptor.responseError({ status: 401 });
-        expect(mockWindow.location).to.contain('redirect=/app/path');
+
+        expect(mockWindow.location).to.contain('redirect=' + encodeURIComponent('/app/path'));
+    });
+
+    it('Interceptor sets proper redirect path with params', function () {
+        sinon.stub(interceptor, 'redirectPath').returns(cases.fullPathParams);
+        interceptor.responseError({ status: 401 });
+
+        expect(mockWindow.location).to.contain('redirect=' + encodeURIComponent('/app/path?search=term'));
     });
 
     it('Interceptor sets proper redirect path for /login', function () {
-        currentCase = cases.login;
+        sinon.stub(interceptor, 'redirectPath').returns(cases.login);
+
         interceptor.responseError({ status: 401 });
-        expect(mockWindow.location).to.contain('redirect=/');
+        expect(mockWindow.location).to.contain('redirect=' + encodeURIComponent('/'));
     });
 
     it('Interceptor sets proper redirect path for /', function () {
-        currentCase = cases.root;
+        sinon.stub(interceptor, 'redirectPath').returns(cases.root);
+
         interceptor.responseError({ status: 401 });
-        expect(mockWindow.location).to.contain('redirect=/');
+        expect(mockWindow.location).to.contain('redirect=' + encodeURIComponent('/'));
+    });
+
+    it('Interceptor should generate redirect with base path specified', function () {
+        sinon.stub(interceptor, 'redirectPath').returns(cases.fullPath);
+
+        interceptor.redirect('/mario');
+        expect(mockWindow.location).to.contain('/mario');
     });
 });
