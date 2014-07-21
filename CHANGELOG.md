@@ -32,14 +32,14 @@ style of form fields will be altered, especially if custom css has been
 added to the app.
  ([f288946b](git@github.com:rackerlabs/encore-ui/commit/f288946b8a4fe3a4fa5f06a9a8829a03238f0733))
 * The following deprecated components have been removed:
-- rxFormInput
-- rxFormSelect
-- rxFormRadio
-- rxNav
-- rxProductResources
-- rxDropdown
-- rxRelatedMenu
-- rxLogout
+ - rxFormInput
+ - rxFormSelect
+ - rxFormRadio
+ - rxNav
+ - rxProductResources
+ - rxDropdown
+ - rxRelatedMenu
+ - rxLogout
  ([d4a71875](git@github.com:rackerlabs/encore-ui/commit/d4a718755c77e673bc56eb3d2b044834938bb147))
 * Because this impacts the layout/display of input and select fields,
 it is recommended that a quick sanity check of forms in apps is done to ensure the
