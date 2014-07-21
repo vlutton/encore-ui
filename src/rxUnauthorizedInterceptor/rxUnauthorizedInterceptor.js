@@ -9,7 +9,6 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', ['encore.ui.rxSession'])
     *
     * @requires $q
     * @requires @window
-    * @requires $location
     * @requires encore.ui.rxSession:Session
     *
     * @example
@@ -20,25 +19,24 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', ['encore.ui.rxSession'])
     *     });
     * </pre>
     */
-    .factory('UnauthorizedInterceptor', function ($q, $window, $location, Session) {
-        return {
+    .factory('UnauthorizedInterceptor', function ($q, $window, Session) {
+        var svc = {
+            redirectPath: function () {
+                return $window.location.pathname;
+            },
+            redirect: function (loginPath) {
+                loginPath = loginPath ? loginPath : '/login?redirect=';
+                $window.location = loginPath + encodeURIComponent(svc.redirectPath());
+            },
             responseError: function (response) {
-                // If one uses the <base /> tag, $location's API is unable to
-                // give us a proper path(). Therefore, we have to grab the current
-                // browser URL and fetch the proper portion to return to after login.
-                //
-                // For Example:
-                // <base href="/app"></base>
-                // current URL: /app/path
-                // $location.path(): /path
-                // $location.absUrl(): https://localhost:9000/app/path
-                var returnPath = '/' + $location.absUrl().split('/').splice(3).join('/');
                 if (response.status === 401) {
-                    Session.logout(); //Logs out user by removing token
-                    $window.location = '/login?redirect=' + returnPath;
+                    Session.logout(); // Logs out user by removing token
+                    svc.redirect();
                 }
 
                 return $q.reject(response);
             }
         };
+
+        return svc;
     });
