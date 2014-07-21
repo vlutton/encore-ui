@@ -1,9 +1,9 @@
 <div class="form-item">
-    <label>
-        <span class="field-label">
-            {{label}}:
-        </span>
+    <label class="field-label">
+        {{label}}:
+    </label>
 
+    <div class="field-content">
         <span class="field-prefix" ng-if="prefix">{{prefix}}</span>
 
         <!-- Form input will be added here -->
@@ -11,6 +11,6 @@
 
         <span class="field-suffix" ng-if="suffix">{{suffix}}</span>
 
-        <span ng-if="description" class="field-description" ng-bind-html="description"></span>
-    </label>
+        <div ng-if="description" class="field-description" ng-bind-html="description"></div>
+    </div>
 </div>

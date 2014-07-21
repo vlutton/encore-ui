@@ -1,12 +1,34 @@
 <div class="forms" ng-controller="rxFormDemoCtrl">
-    <h3>Example of simple text input</h3>
-    <rx-form-item label="Display Name" description="<a href='#'>Here</a> is my <b>HTML</b>" prefix="$" suffix="GB">
-        <input type="text" ng-model="volume.name" ng-required="true" />
+    <h3>Plain text input</h3>
+
+    <rx-form-item label="Plain textbox">
+        <input type="text" />
     </rx-form-item>
-    <p>Bound Value: {{volume.name}}</p>
+
+    <hr>
+
+    <h3>Example of required text input w/ validation pattern</h3>
+    <rx-form-item label="Volume Name" description="Must be 2-5 letter palindrome (e.g. 'dewed')">
+        <input type="text" ng-model="volume.name" ng-required="volume.isNameRequired" ng-pattern="/^\b(\w)?(\w)\w?\2\1$/" />
+    </rx-form-item>
+
+    <rx-form-item label="Name Field Required?" class="clear">
+        <input type="checkbox" ng-model="volume.isNameRequired" />
+    </rx-form-item>
+
+    <p class="clear">Bound Value: {{volume.name}}</p>
+
+    <hr >
+
+    <h3>Example with prefix/suffix</h3>
+    <rx-form-item label="Monthly Cost" prefix="$" suffix="million">
+        <input type="number" ng-model="volume.cost" />
+    </rx-form-item>
+
+    <hr>
 
     <h3>Select Box</h3>
-    <rx-form-item label="Type" prefix="$" description="Bound Value: {{volume.type}}">
+    <rx-form-item label="Type" description="Bound Value: {{volume.type}}">
         <span class="field-select">
             <select ng-model="volume.type" ng-required="true">
                 <option

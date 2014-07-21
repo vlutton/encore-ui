@@ -3,13 +3,46 @@
 /*
  # rxForm
  */
+.inputBorderPadding() {
+    border: 1px solid @inputBorder;
+    padding: 3px 5px;
+}
 
+
+/*
+## Form Fields
+
+field-prefix, field-suffix and field-description are all optional.
+
+```
+<div class="form-item">
+    <label>
+        <span class="field-label">
+            Monthly Cost:
+        </span>
+
+        <span class="field-prefix">$</span>
+
+        <span class="field-input">
+            <!-- Form input will be added here -->
+        </span>
+
+        <span class="field-suffix">Million</span>
+
+        <span class="field-description">Any description goes here</span>
+    </label>
+</div>
+```
+ */
 .rx-form {
     margin: 15px 0 0;
 }
 
 .form-item {
     margin-top: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
 }
 
 .form-description,
@@ -19,39 +52,99 @@
 
 .field-label,
 .field-legend, {
-    width: 100px;
-    text-align: left;
-    float: left;
     color: @subduedTitle;
+    font-size: 1.1em;
+    flex: 0 0 @fieldLabelWidth;
+}
+
+.field-content {
+    display: flex;
+    flex: 1 auto;
+
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    .field-prefix,
+    .field-suffix {
+        font-size: 1.2em;
+    }
+    .field-prefix {
+        margin-right: 5px;
+    }
+    .field-suffix {
+        margin-left: 5px;
+    }
+
+    .field-description {
+        flex: 1 100%;
+        font-size: 0.8em;
+        font-style: italic;
+        margin-top: 5px;
+    }
 }
 
 /*
 ## Input fields
 
-field-prefix, field-suffix and field-description are optional.
+Any input field can be placed inside an element with a class of 'field-input'.
 
 ```
-<div class="form-item">
-    <label>
-        <span class="field-label">
-            Display Name:
-        </span>
-
-        <span class="field-prefix">$</span>
-
-        <!-- Form input will be added here -->
-        <span class="field-input">
-            <input type="text"/>
-        </span>
-
-        <span class="field-suffix">GB</span>
-
-        <span class="field-description">Any description goes here</span>
-    </label>
-</div>
+<span class="field-input">
+    <input type="text"/>
+</span>
 ```
 
+```
+<span class="field-input">
+    <input type="checkbox"/>
+</span>
+```
+ */
+.field-input {
+    input,
+    select {
+        color: @inputColor;
+        font-size: 1.2em;
+        border-radius: 0;
+
+        &.ng-valid.ng-dirty {
+            border-color: @inputBorderValid;
+        }
+
+        &.ng-invalid.ng-dirty {
+            border-color: @inputBorderInvalid;
+        }
+    }
+
+    input,
+    .field-select {
+        background: @white;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    input {
+        width: @fieldInputWidth;
+        .inputBorderPadding;
+
+        &[type="number"] {
+            width: @fieldInputNumberWidth;
+        }
+
+        &[type="radio"],
+        &[type="checkbox"] {
+            width: auto;
+            max-width: none;
+            font-size: 1em;
+            vertical-align: middle;
+        }
+    }
+
+/*
 ## Dropdowns
+Replace default UI of select fields and adds custom border/arrow
 
 ```
 <div class="form-item">
@@ -78,62 +171,24 @@ field-prefix, field-suffix and field-description are optional.
     </label>
 </div>
 ```
-
-## Submit buttons
-
-```
-<button class="submit form-action" type="submit" disabled="disabled">
-    Submit Form (Disabled)
-</button>
-
-<button class="submit form-action" type="submit">
-    Submit Form
-</button>
-
-```
-
- */
-
-.field-input {
-    // Re-align so that the middle lines up with the form field
-    position: relative;
-    top: -5px;
-
-    input,
-    select {
-        color: @inputColor;
-        background: transparent;
-        font-size: 1.2em;
-        border: 0;
-        border-bottom: 1px solid @inputBorder;
-        padding: 3px 5px;
-        margin: 0;
-
-        // leave some room for prefix/suffix if the field width is wider than the container width
-        max-width: 65%;
-    }
-
-    input {
-        width: 394px;
-
-        &[type="number"] {
-            width: 150px;
-        }
-
-        &[type="radio"],
-        &[type="checkbox"] {
-            width: auto;
-            vertical-align: middle;
-        }
-    }
-
+*/
     .field-select {
-        width: @modalSelectWidth;
+        display: inline-block;
         position: relative;
+        width: @fieldSelectWidth;
 
         select {
-            width: @modalSelectWidth;
+            width: 100%;
+            // make sure arrow can show through
+            background: transparent;
+            // Remove default arrow
             -webkit-appearance: none;
+            // @bugfix FF doesn't like 'none'
+            // @see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
+            -moz-appearance: window;
+            position: relative;
+            z-index: 2;
+            .inputBorderPadding;
         }
 
         &:before {
@@ -154,33 +209,23 @@ field-prefix, field-suffix and field-description are optional.
 }
 
 /*
+ * @bugfix Because of '-moz-appearance: window', the border/padding is removed from the select box.
+ * This adds it back
+ * @see http://stackoverflow.com/questions/5912791/how-to-remove-the-arrow-from-a-select-tag-in-firefox
+ */
+ @-moz-document url-prefix() {
+    .field-select {
+        .inputBorderPadding;
+    }
+}
+
+/*
  * @bugfix Input field is marked as invalid before a user has done anything on form
  * @browsers FF
  * @see http://stackoverflow.com/questions/17209057/firefox-draws-red-border-on-required-select-box
  */
 .ng-pristine .field-input .ng-invalid-required {
     box-shadow: none;
-}
-
-.field-prefix,
-.field-suffix {
-    font-size: 1.2em;
-    color: @subduedTitle;
-}
-.field-prefix {
-    margin: -5px 5px 0 0;
-}
-.field-suffix {
-    margin-left: 5px;
-}
-
-.field-description {
-    color: @subduedTitle;
-    font-size: 0.8em;
-    font-style: italic;
-    display: block;
-    color: #444;
-    margin: 5px 0 0 100px;
 }
 
 .option-table {
@@ -209,37 +254,47 @@ field-prefix, field-suffix and field-description are optional.
     // @note KL: I'd like to stick with just adding the background to the <tr>, but
     // we need to make the selector more specific to override the table-stripe styles.
     .selected td {
-        background: #c5e3c7;
+        background: @tableRowSelected;
         border-color: #bad4bb;
         // this 'double' makes it so that the border-color applies to the top border as well
         // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
         border-style: double;
     }
 }
-.rx-form-fieldset {
-    .field-input {
-        top: 0;
-    }
 
+.rx-form-fieldset {
     .option-table {
         min-width: 100%;
     }
-
-    .form-item {
-        margin-top: 0;
-    }
 }
+
+/*
+## Submit buttons
+
+```
+<div class="form-actions">
+    <button class="submit form-action" type="submit" disabled="disabled">
+        Submit Form (Disabled)
+    </button>
+
+    <button class="submit form-action" type="submit">
+        Submit Form
+    </button>
+</div>
+
+```
+*/
 
 .form-actions {
     padding: 20px 0;
 }
 
 .form-action {
+    // override default button styles
     background: transparent;
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: inherit;
     cursor: pointer;
     font-size: 1.2em;
 

@@ -1,9 +1,11 @@
+var config = require('../util/config');
+
 module.exports = {
     'readme': {
         src: ['guides/getting-started.md', 'guides/testing.md'],
         overwrite: true,
         replacements: [{
-            from: /\-(?:\d+\.){2}\d+/g,
+            from: config.versionRegEx,
             to: '-<%= pkg.version %>'
         }]
     },
@@ -11,7 +13,7 @@ module.exports = {
         src: ['bower/encore-ui.min.js', 'bower/encore-ui-tpls.min.js'],
         overwrite: true,
         replacements: [{
-            from: /\-(?:\d+\.){2}\d+/g,
+            from: config.versionRegEx,
             to: ''
         }]
     }

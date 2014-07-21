@@ -31,5 +31,7 @@ module.exports = {
             ' * License: <%= pkg.license %>',
             ' */\n'
         ].join('\n')
-    }
+    },
+    // http://www.regexr.com/395kl
+    versionRegEx: /-(?:\d+\.){2}\d+(?:-\d+)*/g
 };

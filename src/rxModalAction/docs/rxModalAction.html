@@ -8,10 +8,17 @@
         Change Password
     </rx-modal-action>
     <script type="text/ng-template" id="changePassword.html">
-        <rx-modal-form title="Change Admin Password">
-            <p>Change {{user}} password?</p>
-            <rx-form-item
-                label="New Password">
+        <rx-modal-form title="Change {{user}} Admin Password">
+            <h1>Password must:</h1>
+            <ul class="list">
+                <li>have at least one uppercase letter</li>
+                <li>have at least one number</li>
+                <li>be inspirational</li>
+                <li>be in haiku form</li>
+                <li>reference Star Wars</li>
+            </ul>
+
+            <rx-form-item label="New Password">
                 <input type="text" ng-model="fields.password" required="true">
             </rx-form-item>
         </rx-modal-form>

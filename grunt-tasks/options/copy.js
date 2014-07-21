@@ -1,4 +1,5 @@
 var path = require('path');
+var config = require('../util/config');
 
 module.exports = {
     demohtml: {
@@ -79,7 +80,7 @@ module.exports = {
                 // -0.9.22.css
                 // -0.1.1.js
                 // -10.11.11.min.js
-                var strippedVersion = src.replace(/\-(?:\d+\.){2}\d+/g, '');
+                var strippedVersion = src.replace(config.versionRegEx, '');
 
                 return dest + strippedVersion;
             }
