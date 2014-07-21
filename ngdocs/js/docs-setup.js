@@ -167,21 +167,12 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxForm:rxFormInput",
-      "shortName": "rxFormInput",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive is used to create an &lt;input&gt; tag.",
-      "keywords": "api attribute bind create description directive encore fieldid input label max maxlength min minlength model ng-model ng-required passed place required rxform suffix tag text type ui"
-    },
-    {
-      "section": "api",
       "id": "encore.ui.rxForm:rxFormItem",
       "shortName": "rxFormItem",
       "type": "directive",
       "moduleName": "encore.ui",
-      "shortDescription": "This directive is used to wrap input fields and select boxes in the proper HTML",
-      "keywords": "api boxes content description directive encore fields html include input label left place prefix proper rxform select suffix text ui wrap"
+      "shortDescription": "This directive is used to wrap input fields and select boxes in the proper HTML.",
+      "keywords": "api attach attribute boxes content create description directive encore exists fields html include input label left place prefix proper rxform select suffix text transcluded ui wrap"
     },
     {
       "section": "api",
@@ -191,24 +182,6 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "This directive is used to build a table of radio/checkbox inputs",
       "keywords": "api array attribute bind build columns data directive disabled encore example fieldid input inputs item key label match model ng-model ng-required objects option passed populate properties radio required rxform selected table type ui values"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxForm:rxFormRadio",
-      "shortName": "rxFormRadio",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive is used to create a set of &lt;input type=&quot;radio&quot;&gt; tags.",
-      "keywords": "api array attribute bind create directive encore example fieldid format generate input inputs label model ng-model options radio rxform set staging tags type ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxForm:rxFormSelect",
-      "shortName": "rxFormSelect",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive is used to create a &lt;select&gt; box w/options.",
-      "keywords": "api array attribute bind box create directive encore example fieldid format generate input label model ng-model ng-required options passed required rxform select staging text ui"
     },
     {
       "section": "api",
@@ -227,15 +200,6 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "A simple wrapper for injecting the global variable localStorage",
       "keywords": "$document $window angular api batman clear encore functions getitem getobject global helper hero http includes injecting key local localstorage objects org provided removeitem return returns robin rxlocalstorage service services setitem setobject setting simple specification storage storage-0 storing ui values variable w3 w3c works wrapper"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxNav",
-      "shortName": "encore.ui.rxNav",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "TBD",
-      "keywords": "api directive encore rxnav tbd ui"
     },
     {
       "section": "api",
@@ -326,24 +290,6 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Simple directive which will show or hide content if user specified role.",
       "keywords": "api content directive encore hide required role rxpermission simple ui user"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxProductResources",
-      "shortName": "encore.ui.rxProductResources",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "TBD",
-      "keywords": "api directive encore rxproductresources tbd ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxRelatedMenu",
-      "shortName": "encore.ui.rxRelatedMenu",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive is used to create a menu for a page. By default it shows",
-      "keywords": "api click closed collapsable configured create default default-state direction directive encore going hover left live menu open opened option position potential rxrelatedmenu side sidebar trigger true ui values"
     },
     {
       "section": "api",

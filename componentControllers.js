@@ -234,8 +234,6 @@ function rxDiskSizeCtrl ($scope) {
     $scope.sizePB = 171337000;
 }
 
-
-
 /*jshint unused:false*/
 function rxEnvironmentCtrl ($scope, Environment) {
     $scope.Environment = Environment;
@@ -266,7 +264,7 @@ function rxFormDemoCtrl ($scope) {
     ];
 
     $scope.volume = {
-        name: 'Volume-1',
+        isNameRequired: true,
         type: _.first($scope.types).value, // select the first type by default
         checked: [true, 'unchecked'] //example with first checkbox automatically checked
     };
@@ -355,8 +353,6 @@ function rxLocalStorageCtrl ($scope, LocalStorage) {
 }
 
 
-
-
 /*jshint unused:false*/
 function rxModalActionCtrl ($scope) {
     $scope.password = 'guest';
@@ -369,8 +365,6 @@ function rxModalActionCtrl ($scope) {
         $scope.password = fields.password;
     };
 }
-
-
 
 /*jshint unused:false*/
 
@@ -500,10 +494,6 @@ function rxPermissionCtrl ($scope, Session, rxNotify) {
 }
 
 
-
-
-
-
 function rxSessionCtrl ($scope, Session) {
 
     $scope.isAuthenticated = function () {
@@ -558,6 +548,8 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
 function rxSpinnerCtrl ($scope) {
     $scope.loading = true;
 }
+
+
 
 
 

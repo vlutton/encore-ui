@@ -1,26 +1,24 @@
 <rx-page title="component.name">
     <div class="page-actions">
-        <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/{{ component.name }}/" class="component-source button button-small primary">View Source</a>
+        <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/{{ component.name }}/" class="component-source button">View Source</a>
     </div>
-    <div class="pure-g clear">
-        <div class="pure-u-1-2 component-example" ng-if="component.docs.html">
-            <aside class="clearfix">
-                <h4 class="section-title">Example</h4>
-                <div rx-compile="component.docs.html"></div>
-            </aside>
-        </div>
-        <div class="pure-u-1-2 component-description">
-            <div ng-bind-html="component.docs.md"></div>
-        </div>
+
+    <div class="clear component-description" ng-if="component.docs.md">
+        <h2 class="title lg readme-title">Readme</h2>
+        <div ng-bind-html="component.docs.md"></div>
     </div>
-    <div class="pure-g component-code">
-        <div class="pure-u-1" ng-if="component.docs.html">
-            <h3 class="section-title">Markup</h3>
+
+    <tabset class="clearfix clear">
+        <tab heading="Demo">
+            <div rx-compile="component.docs.html"></div>
+        </tab>
+
+        <tab heading="Markup" ng-if="component.docs.html">
             <rx-prism language="markup">{{ component.docs.html }}</rx-prism>
-        </div>
-        <div class="pure-u-1" ng-if="component.docs.js">
-            <h3 class="section-title">JavaScript</h3>
+        </tab>
+
+        <tab heading="JavaScript" ng-if="component.docs.js">
             <rx-prism language="clike">{{ component.docs.js }}</rx-prism>
-        </div>
-    </div>
+        </tab>
+    </tabset>
 </rx-page>
