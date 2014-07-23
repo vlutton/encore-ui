@@ -33,10 +33,12 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         children: [
             {
                 href: '/accounts/{{accountNumber}}',
+                key: 'accountOverview',
                 linkText: 'Overview'
             },
             {
                 linkText: 'Billing',
+                key: 'accountBilling',
                 visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
                 childVisibility: function (scope) {
                     // We only want to show this nav if accountNumber is already defined in the URL
@@ -49,28 +51,34 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 children: [
                     {
                         href: '/billing/overview/{{accountNumber}}',
+                        key: 'accountBillingOverview',
                         linkText: 'Overview'
                     }, {
                         href: '/billing/transactions/{{accountNumber}}',
+                        key: 'accountBillingTransactions',
                         linkText: 'Transactions'
                     }, {
                         href: '/billing/usage/{{accountNumber}}',
+                        key: 'accountBillingCurrentUsage',
                         linkText: 'Current Usage'
                     }, {
                         href: '/billing/payment/{{accountNumber}}/options',
+                        key: 'accountBillingPaymentOptions',
                         linkText: 'Payment Options'
                     }, {
                         href: '/billing/purchase-orders/{{accountNumber}}',
+                        key: 'accountBillingPurchaseOrders',
                         linkText: 'Purchase Orders'
                     }, {
                         href: '/billing/preferences/{{accountNumber}}',
+                        key: 'accountBillingPreferences',
                         linkText: 'Preferences'
                     }
                 ]
             }, {
                 href: '/support/accounts/{{accountNumber}}',
                 linkText: 'Support Details',
-                key: 'supportService',
+                key: 'accountSupport',
                 directive: 'rx-support-service-search'
             }
         ]
