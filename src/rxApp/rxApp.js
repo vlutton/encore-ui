@@ -38,7 +38,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             },
             {
                 linkText: 'Billing',
-                key: 'billing',
+                key: 'accountBilling',
                 visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
                 childVisibility: function (scope) {
                     // We only want to show this nav if accountNumber is already defined in the URL
@@ -51,27 +51,27 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
                 children: [
                     {
                         href: '/billing/overview/{{accountNumber}}',
-                        key: 'billingOverview',
+                        key: 'accountBillingOverview',
                         linkText: 'Overview'
                     }, {
                         href: '/billing/transactions/{{accountNumber}}',
-                        key: 'billingTransactions',
+                        key: 'accountBillingTransactions',
                         linkText: 'Transactions'
                     }, {
                         href: '/billing/usage/{{accountNumber}}',
-                        key: 'billingCurrentUsage',
+                        key: 'accountBillingCurrentUsage',
                         linkText: 'Current Usage'
                     }, {
                         href: '/billing/payment/{{accountNumber}}/options',
-                        key: 'billingPaymentOptions',
+                        key: 'accountBillingPaymentOptions',
                         linkText: 'Payment Options'
                     }, {
                         href: '/billing/purchase-orders/{{accountNumber}}',
-                        key: 'billingPurchaseOrders',
+                        key: 'accountBillingPurchaseOrders',
                         linkText: 'Purchase Orders'
                     }, {
                         href: '/billing/preferences/{{accountNumber}}',
-                        key: 'billingPreferences',
+                        key: 'accountBillingPreferences',
                         linkText: 'Preferences'
                     }
                 ]
@@ -85,7 +85,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     },
     {
         linkText: 'Billing',
-        key: 'billingSearch',
+        key: 'billing',
         directive: 'rx-billing-search',
         visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)'
     },
