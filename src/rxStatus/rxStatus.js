@@ -98,7 +98,7 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
         };
 
         status.setLoading = function (msg, options) {
-            options = _.merge(status.LOADING(), options ? options : {});
+            options = _.defaults(options ? options : {}, status.LOADING());
 
             // prop is the variable on scope that stores whether this loading is complete
             // By default is uses $scope.loaded, but individual messages should be able to
@@ -109,29 +109,29 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
         };
 
         status.setSuccess = function (msg, options) {
-            options = _.merge(status.SUCCESS(), options ? options : {});
+            options = _.defaults(options ? options : {}, status.SUCCESS());
             return status.setStatus(msg || '', options);
         };
 
         status.setSuccessNext = function (msg, options) {
             var next = { 'show': 'next' };
-            options = _.merge(next, options);
+            options = _.defaults(options ? options : {}, next);
             return status.setSuccess(msg, options);
         };
 
         status.setSuccessImmediate = function (msg, options) {
             var immediate = { 'show': 'immediate' };
-            options = _.merge(immediate, options);
+            options = _.defaults(options ? options : {}, immediate);
             return status.setSuccess(msg, options);
         };
 
         status.setWarning = function (msg, options) {
-            options = _.merge(status.WARNING(), options ? options : {});
+            options = _.defaults(options ? options : {}, status.WARNING());
             return status.setStatus(msg, options);
         };
 
         status.setInfo = function (msg, options) {
-            options = _.merge(status.INFO(), options ? options : {});
+            options = _.merge(options ? options : {}, status.INFO());
             return status.setStatus(msg, options);
         };
 
@@ -141,14 +141,13 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
          * `options` - A usual options object
          */
         status.setError = function (msg, error, options) {
-            options = _.merge(status.ERROR(), options ? options : {});
+            options = _.defaults(options ? options : {}, status.ERROR());
             msg = ErrorFormatter.buildErrorMsg(msg || '', error);
             return status.setStatus(msg, options);
         };
 
         status.complete = function (options) {
-            options = options || {};
-            return status.setSuccessImmediate('', _.merge(status.SUCCESS(), options));
+            return status.setSuccessImmediate('', _.defaults(options ? options : {}, status.SUCCESS()));
         };
 
         status.dismiss = function (obj) {
