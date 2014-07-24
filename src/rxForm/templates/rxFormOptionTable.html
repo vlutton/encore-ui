@@ -18,12 +18,14 @@
                         value="{{row.value}}"
                         name="{{fieldId}}"
                         ng-disabled="isCurrent(row.value)"
-                        ng-attributes="{'ng-required': required}">
+                        rx-attributes="{'ng-required': required}">
 
                     <input type="checkbox"
                         ng-switch-when="checkbox"
                         id="{{fieldId}}_{{$index}}"
                         ng-model="$parent.model[$index]"
+                        ng-click="updateCheckboxes($parent.model[$index], $index)"
+                        ng-required="checkRequired()"
                         rx-attributes="{'ng-true-value': row.value, 'ng-false-value': row.falseValue}">
                 </label>
             </td>

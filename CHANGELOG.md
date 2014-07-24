@@ -1,3 +1,36 @@
+<a name="0.13.1"></a>
+### 0.13.1 (2014-07-17)
+
+
+#### Features
+
+* **Images:** EN-1051 Add Images to left nav for encore-cloud-ui ([b0febd71](git@github.com:rackerlabs/encore-ui/commit/b0febd71664a939739b35657782dbf5f9bd07f59))
+
+
+<a name="0.13.0"></a>
+## 0.13.0 (2014-07-15)
+
+
+#### Features
+
+* **rxBillingSearch:** URL and placeholder update for account fetch. ([7073992e](git@github.com:rackerlabs/encore-ui/commit/7073992eac071167d3d5cab98ce5fb57769a4be3))
+
+
+<a name="0.12.5"></a>
+### 0.12.5 (2014-07-10)
+
+
+#### Bug Fixes
+
+* **rxForm:** Fixed a bug for rxFormOptionTable radio required attr ([4a890de1](git@github.com:rackerlabs/encore-ui/commit/4a890de1e17bf547acebc4ab27cd22cfc8036c5c))
+* **rxPermission:** using .map/.trim explicitly replacing the regex ([bf49fc5b](git@github.com:rackerlabs/encore-ui/commit/bf49fc5bcef014c402709928ef253be3714a8006))
+
+
+#### Features
+
+* **rxPermission:** add ability to match against multiple roles ([acf0acf5](git@github.com:rackerlabs/encore-ui/commit/acf0acf5e11379b789522b2a6003245776641ba0))
+
+
 <a name="0.12.4"></a>
 ### 0.12.4 (2014-07-03)
 

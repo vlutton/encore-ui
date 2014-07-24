@@ -28,7 +28,88 @@ describe('rxFormItem', function () {
     });
 });
 
-describe('rxFormOptionTable', function () {
+describe('rxFormOptionTable (Checkbox)', function () {
+    var scope, compile, rootScope;
+
+    var checkboxFormTemplate =
+        '<rx-form-option-table data="tableData" required="true" columns="tableColumns" ' +
+        'type="checkbox" model="myModel"></rx-form-option-table>';
+
+    var tableDataTemplate = [
+        {
+            'name': 'Item 1'
+        },
+        {
+            'name': 'Item 2'
+        }];
+
+    beforeEach(function () {
+        module('encore.ui.rxForm');
+        module('templates/rxFormOptionTable.html');
+
+        inject(function ($rootScope, $compile) {
+            rootScope = $rootScope;
+            scope = $rootScope.$new();
+            compile = $compile;
+        });
+    });
+
+    it('should validate if there is an empty form but no required flag', function () {
+        var checkboxFormTemplate2 =
+            '<rx-form-option-table data="tableData" columns="tableColumns" ' +
+            'type="checkbox" model="myModel"></rx-form-option-table>';
+
+        var checkScope = rootScope.$new();
+        checkScope.tableData = _.clone(tableDataTemplate);
+        checkScope.myModel = [true, false];
+
+        var checkTable = helpers.createDirective(checkboxFormTemplate2, compile, checkScope);
+        var checkTableScope = checkTable.isolateScope();
+        expect(checkTableScope.checkRequired()).to.be.false;
+    });
+
+    it('should invalidate if there is an empty form and a required flag', function () {
+        var checkScope = rootScope.$new();
+        checkScope.tableData = _.clone(tableDataTemplate);
+        checkScope.myModel = [false, false];
+
+        var checkTable = helpers.createDirective(checkboxFormTemplate, compile, checkScope);
+        var checkTableScope = checkTable.isolateScope();
+        expect(checkTableScope.checkRequired()).to.be.true;
+    });
+
+    it('should validate if there is one checkbox and a required flag', function () {
+        var checkScope = rootScope.$new();
+        checkScope.tableData = _.clone(tableDataTemplate);
+        checkScope.myModel = [true, false];
+
+        var checkTable = helpers.createDirective(checkboxFormTemplate, compile, checkScope);
+        var checkTableScope = checkTable.isolateScope();
+        expect(checkTableScope.checkRequired()).to.be.false;
+    });
+
+    it('should invalidate if there is a form with falsey values and a required flag', function () {
+        var checkScope = rootScope.$new();
+        checkScope.tableData = [
+            {
+                'name': 'Item 1'
+            },
+            {
+                'name': 'Item 2',
+                'value': 'checked',
+                'falseValue': 'unchecked'
+            }
+        ];
+
+        checkScope.myModel = [false, 'unchecked'];
+
+        var checkTable = helpers.createDirective(checkboxFormTemplate, compile, checkScope);
+        var checkTableScope = checkTable.isolateScope();
+        expect(checkTableScope.checkRequired()).to.be.true;
+    });
+});
+
+describe('rxFormOptionTable (Radio)', function () {
     var el, scope, compile, rootScope, elScope,
         radioFormTemplate =
             '<rx-form-option-table data="tableData" columns="tableColumns" ' +

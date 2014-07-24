@@ -55,6 +55,19 @@ Run the following command:
 
 You can then open `http://localhost:9001` in a new browser and view the demo app. The page will automatically refresh when the code is updated.
 
+### Warning: EMFILE, too many open files 'src'
+
+If you see the following [error when running `grunt server`](https://github.com/gruntjs/grunt-contrib-copy/issues/21#issuecomment-46194402):
+
+```
+Running "watch" task
+Waiting...
+Warning: EMFILE, too many open files 'src'
+```
+
+Run `launchctl limit maxfiles 10480 10480` in your terminal. You might also want to add that to your .bash_profile script.
+
+
 ## Creating a New Component
 
 ### Component Scaffolding

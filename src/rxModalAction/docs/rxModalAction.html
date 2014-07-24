@@ -10,12 +10,10 @@
     <script type="text/ng-template" id="changePassword.html">
         <rx-modal-form title="Change Admin Password">
             <p>Change {{user}} password?</p>
-            <rx-form-input
-                type="text"
-                required="true"
-                label="New Password"
-                field-id="server_password"
-                model="fields.password"></rx-form-input>
+            <rx-form-item
+                label="New Password">
+                <input type="text" ng-model="fields.password" required="true">
+            </rx-form-item>
         </rx-modal-form>
     </script>
 </div>

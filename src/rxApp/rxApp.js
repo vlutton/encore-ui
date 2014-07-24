@@ -90,7 +90,16 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         children: [
             {
                 href: '/cloud/{{user}}/servers',
-                linkText: 'Cloud Servers'
+                linkText: 'Cloud Servers',
+                children: [
+                    {
+                        href: '/cloud/{{user}}/servers',
+                        linkText: 'Servers'
+                    }, {
+                        href: '/cloud/{{user}}/images',
+                        linkText: 'Images'
+                    }
+                ]
             },
             {
                 href: '/cloud/{{user}}/cbs/volumes',
@@ -146,6 +155,15 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         key: 'virtualization',
         visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         directive: 'rx-virt-search'
+    }, {
+        linkText: 'Support Automation',
+        key: 'supportAutomation',
+        children: [
+            {
+                href: '/dcx/windows-cluster-build/validate',
+                linkText: 'Windows Cluster Build'
+            }
+        ]
     }]
 }])
 /**
@@ -400,6 +418,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             // Remove the title attribute, as it will cause a popup to appear when hovering over page content
             // @see https://github.com/rackerlabs/encore-ui/issues/251
             element.removeAttr('title');
+        },
+        controller: function ($scope, rxPageTitle) {
+            rxPageTitle.setTitle($scope.title);
         }
     };
 })
@@ -574,12 +595,13 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 })
 .directive('rxBillingSearch', function ($window) {
     return {
-        template: '<rx-app-search placeholder="Fetch account by number..." submit="fetchAccounts"></rx-app-search>',
+        template: '<rx-app-search placeholder="Fetch account by transaction or auth ID..." submit="fetchAccounts">' +
+            '</rx-app-search>',
         restrict: 'E',
         link: function (scope) {
             scope.fetchAccounts = function (searchValue) {
                 if (!_.isEmpty(searchValue)) {
-                    $window.location = '/billing/overview/' + searchValue;
+                    $window.location = '/billing/search/' + searchValue;
                 }
             };
         }
