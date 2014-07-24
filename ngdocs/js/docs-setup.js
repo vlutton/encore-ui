@@ -338,6 +338,33 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxStatus:ErrorFormatter",
+      "shortName": "ErrorFormatter",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Provides a helper method to parse error objects for &#39;message&#39; and format them",
+      "keywords": "api encore error format helper message method objects parse rxstatus service seterror status ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxStatus:Status",
+      "shortName": "Status",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Manages notifications for rxNotify with an abstracted set of functions for ease of use",
+      "keywords": "abstracted api ease encore functions manages notifications rxnotify rxstatus service set ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxStatus:StatusUtil",
+      "shortName": "StatusUtil",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Manipulates references to needed $scope input for proper notification functionality",
+      "keywords": "$on $rootscope $routechangesuccess $scope api encore forcibly function functionality input manipulates needed notification proper references rxstatus scope service set setscope setutil status ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxTokenInjector:TokenInjector",
       "shortName": "TokenInjector",
       "type": "service",
