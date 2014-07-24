@@ -72,7 +72,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
 * @description
 * Manages page messages for an application
 */
-.service('rxNotify', function ($timeout, $rootScope) {
+.service('rxNotify', function ($interval, $rootScope) {
     var defaultStack = 'page';
     var stacks = {};
 
@@ -126,9 +126,9 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         // convert seconds to milliseconds
         var timeoutMs = message.timeout * 1000;
 
-        $timeout(function () {
+        $interval(function () {
             dismiss(message);
-        }, timeoutMs);
+        }, timeoutMs, 1);
     };
 
     /*

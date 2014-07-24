@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 describe('rxNotify', function () {
-    var scope, compile, rootScope, el, el2, notifySvc, timeout;
+    var scope, compile, rootScope, el, el2, notifySvc, interval;
     var validTemplate = '<rx-notifications></rx-notifications>';
     var messageText1 = 'My Message 1';
     var messageText2 = 'My Message 2';
@@ -18,12 +18,12 @@ describe('rxNotify', function () {
         module('templates/rxNotification.html');
 
         // Inject in angular constructs
-        inject(function ($rootScope, $compile, $timeout, rxNotify) {
+        inject(function ($rootScope, $compile, $interval, rxNotify) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
             notifySvc = rxNotify;
-            timeout = $timeout;
+            interval = $interval;
         });
 
         el = helpers.createDirective(validTemplate, compile, scope);
@@ -155,7 +155,7 @@ describe('rxNotify', function () {
             var clearNonexistent = function () {
                 notifySvc.clear('nonexistent');
             };
-            
+
             var clearExistent = function () {
                 notifySvc.clear(defaultStack);
             };
@@ -204,13 +204,13 @@ describe('rxNotify', function () {
             });
 
             // wait until before timeout
-            timeout.flush(800);
+            interval.flush(800);
 
             // validate still in stack
             expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText1);
 
             // wait until after timeout
-            timeout.flush(201);
+            interval.flush(201);
 
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
@@ -224,7 +224,7 @@ describe('rxNotify', function () {
             });
 
             // wait until timeout expires (if it were shown immediately)
-            timeout.flush(1500);
+            interval.flush(1500);
 
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
@@ -236,7 +236,7 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText1);
 
             // wait until after timeout
-            timeout.flush(1001);
+            interval.flush(1001);
 
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
@@ -247,7 +247,7 @@ describe('rxNotify', function () {
             notifySvc.add(messageText1);
 
             // flush timeouts crazy amount of time (can't pass in nothing otherwise it throws error)
-            timeout.flush(100000);
+            interval.flush(100000);
 
             // validate still in stack
             expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText1);
