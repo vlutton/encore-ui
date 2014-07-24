@@ -83,8 +83,13 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
         status.setStatus = function (msg, state) {
             state.stack = stack;
 
-            if (isDismissable(state)) {
+            if (!_.has(state, 'dismiss') && isDismissable(state)) {
                 // state.prop defaults to 'loaded', per status.LOADING
+                // However, if a promise is passed in, we use the $resolved
+                // property instead of the default loaded or passed in value
+                if (_.has(scope[state.prop], '$resolved')) {
+                    state.prop = state.prop + '.$resolved';
+                }
                 state.dismiss = [scope, state.prop];
             }
 
@@ -104,7 +109,9 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
             // By default is uses $scope.loaded, but individual messages should be able to
             // use their own property
             var prop = options.prop;
-            scope[prop] = false;
+            if (!_.has(scope, prop)) {
+                scope[prop] = false;
+            }
             return status.setStatus(msg || '', options);
         };
 
