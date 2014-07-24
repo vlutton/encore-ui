@@ -1,3 +1,29 @@
+<a name="1.0.1"></a>
+### 1.0.1 (2014-07-24)
+
+
+#### Bug Fixes
+
+* **docs:** Remove unnecessary initialization ([d2dbf442](git@github.com:rackerlabs/encore-ui/commit/d2dbf442306fe996ea741d13b9db5a999b9ddb04))
+* **encoreNav:**
+  * prepended account billing keys with account ([0307ca7d](git@github.com:rackerlabs/encore-ui/commit/0307ca7dc64aadfcba7ab0d5f979c5182480a8b8))
+  * Update to the keys in menu items ([920eb0a7](git@github.com:rackerlabs/encore-ui/commit/920eb0a7488705b9521fb91092a105d42d1eb187))
+* **readme:** setLoading() results in { loading: true } ([810e8fd5](git@github.com:rackerlabs/encore-ui/commit/810e8fd5a76ccb0a43beca532322ed933647ca57))
+* **rxFormOptionTable:** Fix checkboxes with `ngTrueValue` ([3df66e35](git@github.com:rackerlabs/encore-ui/commit/3df66e35b9d0c0764a2d87a0a6c5c395098d2c44), closes [#408](git@github.com:rackerlabs/encore-ui/issues/408))
+* **rxStatusSvc:**
+  * Correct spelling. ([7557d27e](git@github.com:rackerlabs/encore-ui/commit/7557d27e9b5417dde5c5144126610979fdb3e3a4))
+  * Remove copied dir. ([09a81627](git@github.com:rackerlabs/encore-ui/commit/09a81627239e2d1544f1564ed33a575c091f0e5e))
+* **style:** No need to check for emptiness using functions ([282a41d4](git@github.com:rackerlabs/encore-ui/commit/282a41d415bb1b8b0e389a707f083d6fcca5adb4))
+
+
+#### Features
+
+* **rxStatus:**
+  * Allow a $resource prop to auto dismiss on $resolved ([09f0a26b](git@github.com:rackerlabs/encore-ui/commit/09f0a26b4029549df4ff0ad13854e6bfb0e2b6ef))
+  * Switch from _merge to _defaults ([a525f6a2](git@github.com:rackerlabs/encore-ui/commit/a525f6a26c7d3fa3fef10994033e21f3e0ca0305))
+* **rxStatusSvc:** Wrapper for rxNotify. ([cbcfd9aa](git@github.com:rackerlabs/encore-ui/commit/cbcfd9aa63c15679a53ff281eb5c8bcebadb7b96))
+
+
 <a name="1.0.0"></a>
 ## 1.0.0 (2014-07-21)
 
