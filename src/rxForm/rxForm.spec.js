@@ -137,6 +137,44 @@ describe('rxFormOptionTable (Checkbox)', function () {
         expect(checkTableScope.checkRequired()).to.be.false;
     });
 
+    it('should validate if there is one checkbox with a ngTrueValue and a required flag', function () {
+        var checkScope = rootScope.$new();
+        checkScope.tableData = [
+            {
+                'name': 'Item 1'
+            },
+            {
+                'name': 'Item 2',
+                'value': 'checked',
+                'falseValue': 'unchecked'
+            }
+        ];
+        checkScope.myModel = [false, 'checked'];
+
+        var checkTable = helpers.createDirective(checkboxFormTemplate, compile, checkScope);
+        var checkTableScope = checkTable.isolateScope();
+        expect(checkTableScope.checkRequired()).to.be.false;
+    });
+    
+    it('should validate if there is one checkbox without an ngTrueValue a required flag', function () {
+        var checkScope = rootScope.$new();
+        checkScope.tableData = [
+            {
+                'name': 'Item 1'
+            },
+            {
+                'name': 'Item 2',
+                'value': 'checked',
+                'falseValue': 'unchecked'
+            }
+        ];
+        checkScope.myModel = [true, 'unchecked'];
+
+        var checkTable = helpers.createDirective(checkboxFormTemplate, compile, checkScope);
+        var checkTableScope = checkTable.isolateScope();
+        expect(checkTableScope.checkRequired()).to.be.false;
+    });
+
     it('should invalidate if there is a form with falsey values and a required flag', function () {
         var checkScope = rootScope.$new();
         checkScope.tableData = [
