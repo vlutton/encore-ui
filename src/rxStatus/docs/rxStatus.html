@@ -1,0 +1,49 @@
+<div ng-controller="rxStatusCtrl">
+    <div style="clear: left;">
+        <ol>
+            <li>
+                <input type="button" value="setLoading"
+                    ng-click="setLoading('This should set a spinner')"/>
+                        should set a spinner</li>
+            <li>&nbsp;</li>
+            <li>
+                <input type="button" value="setSuccess"
+                    ng-click="setSuccess('This should show a success on $routeChangeSuccess')"/>
+                        should show a success on <strong>$routeChangeSuccess</strong> -
+                        <input type="button" ng-click="triggerRouteChangeSuccess()" value="Trigger it!" /></li>
+            <li>&nbsp;</li>
+            <li>
+                <input type="button" value="setSuccessNext"
+                    ng-click="setSuccessNext('This should show a success on $routeChangeSuccess')"/>
+                        should show a success on <strong>$routeChangeSuccess</strong> -
+                        <input type="button" ng-click="triggerRouteChangeSuccess()" value="Trigger it!"/></li>
+            <li>&nbsp;</li>
+            <li>
+                <input type="button" value="setSuccessImmediate"
+                    ng-click="setSuccessImmediate('This should show a success immediately')"/>
+                        should show a <strong>success immediately</strong></li>
+            <li>&nbsp;</li>
+            <li>
+                <input type="button" value="setWarning"
+                    ng-click="setWarning('This should set a warning')"/>
+                        should set a <strong>warning</strong></li>
+            <li>&nbsp;</li>
+            <li>
+                <input type="button" value="setInfo"
+                    ng-click="setInfo('This should set an informational')"/>
+                        should set an <strong>informational</strong></li>
+            <li>&nbsp;</li>
+            <li>
+                <input type="button" value="setError"
+                    ng-click="setError('This should set an error')"/>
+                        should set an <strong>error</strong></li>
+        </ol>
+
+        <hr ng-show="!!notify" />
+        <p ng-show="!!notify">
+            <input type="button" value="Dismiss" ng-click="dismiss()" /> the message shown </p>
+
+        <p ng-show="notify">
+            <input type="button" value="Clear" ng-click="clear()" /> all shown messages </p>
+    </div>
+</div>
