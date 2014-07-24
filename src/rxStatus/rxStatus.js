@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxStatusSvc', ['encore.ui.rxNotify'])
+angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
 /**
 * @ngdoc service
-* @name encore.ui.rxStatusSvc:StatusUtil
+* @name encore.ui.rxStatus:StatusUtil
 * @description
 * Manipulates references to needed $scope input for proper notification functionality
 *
@@ -22,7 +22,7 @@ angular.module('encore.ui.rxStatusSvc', ['encore.ui.rxNotify'])
     })
 /**
 * @ngdoc service
-* @name encore.ui.rxStatusSvc:Status
+* @name encore.ui.rxStatus:Status
 * @description
 * Manages notifications for rxNotify with an abstracted set of functions for ease of use
 */
@@ -165,7 +165,7 @@ angular.module('encore.ui.rxStatusSvc', ['encore.ui.rxNotify'])
     })
 /**
 * @ngdoc service 
-* @name encore.ui.rxStatusSvc:ErrorFormatter
+* @name encore.ui.rxStatus:ErrorFormatter
 * @description
 * Provides a helper method to parse error objects for 'message' and format them
 * as necessary for Status.setError()

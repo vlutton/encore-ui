@@ -1,9 +1,9 @@
-describe('rxStatusSvc: Status', function () {
+describe('rxStatus: Status', function () {
     var status, scope, rootScope, rxNotify;
 
     beforeEach(function () {
         //module('encore');
-        module('encore.ui.rxStatusSvc');
+        module('encore.ui.rxStatus');
 
         inject(function ($rootScope, Status, _rxNotify_) {
             scope = $rootScope.$new();
@@ -83,7 +83,7 @@ describe('rxStatusSvc: Status', function () {
     });
 });
 
-describe('rxStatusSvc: StatusUtil', function () {
+describe('rxStatus: StatusUtil', function () {
     var util,
         rootScope,
         status = {
@@ -92,7 +92,7 @@ describe('rxStatusSvc: StatusUtil', function () {
 
     beforeEach(function () {
         module('ngRoute');
-        module('encore.ui.rxStatusSvc', function ($provide) {
+        module('encore.ui.rxStatus', function ($provide) {
             $provide.value('Status', status);
         });
 
@@ -119,11 +119,11 @@ describe('rxStatusSvc: StatusUtil', function () {
     });
 });
 
-describe('rxStatusSvc: ErrorFormatter', function () {
+describe('rxStatus: ErrorFormatter', function () {
     var errorFormatter;
 
     beforeEach(function () {
-        module('encore.ui.rxStatusSvc');
+        module('encore.ui.rxStatus');
 
         inject(function (ErrorFormatter) {
             errorFormatter = ErrorFormatter;
