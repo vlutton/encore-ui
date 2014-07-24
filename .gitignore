@@ -31,3 +31,6 @@ results
 /bower/
 /dist/
 /utils/rx-page-objects/index.js
+
+# wraith screenshots
+/wraith/shots/

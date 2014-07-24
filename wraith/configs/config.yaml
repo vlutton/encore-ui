@@ -1,0 +1,62 @@
+# Headless browser option
+browser:
+  webkit: "phantomjs"
+  # gecko: "slimerjs"
+
+snap_file: "javascript/snap.js"
+
+# Name of the directory that shots will be stored in
+directory:
+  - 'shots'
+
+# Add only 2 domains, key will act as a label
+domains:
+  local: "http://localhost:9001"
+  live: "http://rackerlabs.github.io/encore-ui"
+
+screen_widths:
+  - 1024
+
+# BEGIN DO NOT EDIT #
+# These paths are automatically generated during the build process
+paths:
+  configs: "/#/component/configs"
+  hotkeys: "/#/component/hotkeys"
+  rxActiveUrl: "/#/component/rxActiveUrl"
+  rxAge: "/#/component/rxAge"
+  rxApp: "/#/component/rxApp"
+  rxAttributes: "/#/component/rxAttributes"
+  rxAuth: "/#/component/rxAuth"
+  rxBreadcrumbs: "/#/component/rxBreadcrumbs"
+  rxButton: "/#/component/rxButton"
+  rxCapitalize: "/#/component/rxCapitalize"
+  rxCompile: "/#/component/rxCompile"
+  rxDiskSize: "/#/component/rxDiskSize"
+  rxEnvironment: "/#/component/rxEnvironment"
+  rxFavicon: "/#/component/rxFavicon"
+  rxFeedback: "/#/component/rxFeedback"
+  rxForm: "/#/component/rxForm"
+  rxIdentity: "/#/component/rxIdentity"
+  rxLocalStorage: "/#/component/rxLocalStorage"
+  rxModalAction: "/#/component/rxModalAction"
+  rxNotify: "/#/component/rxNotify"
+  rxPageTitle: "/#/component/rxPageTitle"
+  rxPaginate: "/#/component/rxPaginate"
+  rxPermission: "/#/component/rxPermission"
+  rxSession: "/#/component/rxSession"
+  rxSessionStorage: "/#/component/rxSessionStorage"
+  rxSortableColumn: "/#/component/rxSortableColumn"
+  rxSpinner: "/#/component/rxSpinner"
+  rxToggle: "/#/component/rxToggle"
+  rxTokenInterceptor: "/#/component/rxTokenInterceptor"
+  rxUnauthorizedInterceptor: "/#/component/rxUnauthorizedInterceptor"
+  tabs: "/#/component/tabs"
+  typeahead: "/#/component/typeahead"
+# END DO NOT EDIT #
+
+#Amount of fuzz ImageMagick will use
+fuzz: '20%'
+
+# Number of days to keep the site spider file
+spider_days:
+  - 10

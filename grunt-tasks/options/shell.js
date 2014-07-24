@@ -8,5 +8,14 @@ module.exports = {
                 cwd: 'utils/rx-page-objects'
             }
         }
+    },
+    wraith: {
+        command: 'wraith capture config',
+        options: {
+            stdout: true,
+            execOptions: {
+                cwd: 'wraith'
+            }
+        }
     }
 };
