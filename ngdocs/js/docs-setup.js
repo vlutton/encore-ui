@@ -334,7 +334,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Renders a spinner animation on the provided element given the &#39;toggle&#39; attribute is truthy",
-      "keywords": "animation api attribute controls default directive display element encore extra-large large mini options provided renders rxspinner size small spinner toggle true truthy ui"
+      "keywords": "adds animation api attribute class color controls default depicting directive display element encore extra extra-large large mini options provided renders rxspinner size small spinner toggle true truthy ui"
     },
     {
       "section": "api",
