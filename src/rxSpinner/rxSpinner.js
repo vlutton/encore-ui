@@ -11,6 +11,7 @@ angular.module('encore.ui.rxSpinner', [])
 * @param {String} size - Controls the size of the spinner.  The options are default (no size specified),
 * mini, small, large and extra-large
 * @param {Boolean} toggle - When true, the spinner will display
+* @param {Boolean} rxSpinner - When present, adds an extra class to the spinner depicting the color
 */
 .directive('rxSpinner', function () {
     return {

@@ -29,6 +29,7 @@ describe('rxSpinner', function () {
         scope.toggle = true;
         scope.$digest();
         expect(domEl.querySelector('.rx-spinner')).to.exist;
+        expect(helpers.getChildDiv(domEl, 'rx-spinner', 'class').hasClass('dark')).to.be.false;
 
         // should not have it when loading is set back to false
         scope.toggle = false;
