@@ -17,14 +17,15 @@ angular.module('encore.ui.rxSpinner', [])
         restrict: 'A',
         scope: {
             toggle: '=',
+            rxSpinner: '@',
             size: '@'
         },
         link: function (scope, element) {
             scope.$watch('toggle', function (value) {
                 var size = scope.size ? scope.size : '';
-
+                var type = scope.rxSpinner ? scope.rxSpinner : '';
                 if (value) {
-                    element.prepend('<div class="rx-spinner ' + size + '"></div> ');
+                    element.prepend('<div class="rx-spinner ' + type + ' ' + size + '"></div> ');
                 } else {
                     element.find('div').remove();
                 }
