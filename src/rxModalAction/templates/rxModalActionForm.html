@@ -4,9 +4,7 @@
     <button class="modal-close btn-link" ng-click="$parent.cancel()"><span class="visually-hidden">Close Window</span></button>
 </div>
 <div class="modal-body">
-    <div ng-show="$parent.isLoading" class="loading">
-        <i class="spinner gray"></i>
-    </div>
+    <div ng-show="$parent.isLoading" class="loading" rx-spinner="dark" toggle="$parent.isLoading"></div>
     <form ng-hide="$parent.isLoading" name="modalActionForm" class="modal-form rx-form" ng-transclude></form>
 </div>
 <div class="modal-footer">
