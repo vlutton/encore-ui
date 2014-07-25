@@ -1,3 +1,22 @@
+<a name="1.0.2"></a>
+### 1.0.2 (2014-07-25)
+
+
+#### Bug Fixes
+
+* **rxNotify:** Auto-dismiss with $interval. ([746b75d6](git@github.com:rackerlabs/encore-ui/commit/746b75d624ce87e19124a839ff6bd54006dd7205))
+* **rxSpinner:** added param docs, & test ([7e7f9118](git@github.com:rackerlabs/encore-ui/commit/7e7f9118da55384736c037257796b7957346acfd))
+
+
+#### Features
+
+* **rxModalActionForm:** Usage of rx-spinner for isLoading ([e50ff9f2](git@github.com:rackerlabs/encore-ui/commit/e50ff9f26eee2784d7519abf1119fc2c03d5fa94))
+* **rxSpinner:**
+  * Add test for color setting ([9ec8d8ca](git@github.com:rackerlabs/encore-ui/commit/9ec8d8ca9201696d80708bd500c5fe475f34645b))
+  * Allow definition of color via attribute of directive ([5d63fa48](git@github.com:rackerlabs/encore-ui/commit/5d63fa4880f7ee4fed93c2f0099422aa1f28775b))
+  * Dark color ([c49dc7d9](git@github.com:rackerlabs/encore-ui/commit/c49dc7d9f1deeb52f815b85365fad9fab70902d7))
+
+
 <a name="1.0.1"></a>
 ### 1.0.1 (2014-07-24)
 
