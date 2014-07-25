@@ -1,3 +1,5 @@
+@import 'vars';
+
 /*********************************************************
  *  CSS3 Animation spinner
  *
@@ -20,6 +22,10 @@
     -ms-animation: spin .8s infinite linear;
     -o-animation: spin .8s infinite linear;
     animation: spin .8s infinite linear;
+}
+.rx-spinner.dark {
+    border-bottom-color: @appTextColor;
+    border-right-color: @appTextColor;
 }
 .rx-spinner.mini {
     border-width: 2px;
