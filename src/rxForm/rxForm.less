@@ -1,8 +1,5 @@
 @import 'vars';
 
-/*
- # rxForm
- */
 .inputBorderPadding() {
     border: 1px solid @inputBorder;
     padding: 3px 5px;
@@ -16,15 +13,16 @@ field-prefix, field-suffix and field-description are all optional.
 
 ```
 <div class="form-item">
-    <label>
-        <span class="field-label">
-            Monthly Cost:
-        </span>
+    <label class="field-label">
+        Monthly Cost:
+    </label>
 
+    <div class="field-content">
         <span class="field-prefix">$</span>
 
         <span class="field-input">
-            <!-- Form input will be added here -->
+            <!-- Replace with desired form field -->
+            <input type="text">
         </span>
 
         <span class="field-suffix">Million</span>
@@ -33,6 +31,25 @@ field-prefix, field-suffix and field-description are all optional.
     </label>
 </div>
 ```
+
+### Fieldsets
+a
+```
+<div class="form-item rx-form-fieldset">
+    <fieldset>
+        <legend class="field-legend">
+            Field Legend:
+        </legend>
+
+        <div class="field-input">
+            <!-- Add form inputs here -->
+        </div>
+
+        <span class="field-description">Description of Fields</span>
+    </fieldset>
+</div>
+```
+
  */
 .rx-form {
     margin: 15px 0 0;
@@ -43,6 +60,13 @@ field-prefix, field-suffix and field-description are all optional.
     display: flex;
     flex-wrap: nowrap;
     align-items: baseline;
+}
+
+.rx-form-fieldset > fieldset {
+    width: 100%;
+    .full-width .option-table {
+        width: 100%;
+    }
 }
 
 .form-description,
@@ -92,13 +116,13 @@ Any input field can be placed inside an element with a class of 'field-input'.
 
 ```
 <span class="field-input">
-    <input type="text"/>
+    <input type="text">
 </span>
 ```
 
 ```
 <span class="field-input">
-    <input type="checkbox"/>
+    <input type="checkbox">
 </span>
 ```
  */
@@ -141,70 +165,64 @@ Any input field can be placed inside an element with a class of 'field-input'.
             vertical-align: middle;
         }
     }
+}
+
+/*
+ * @bugfix Input field is marked as invalid before a user has done anything on form
+ * @browsers FF
+ * @see http://stackoverflow.com/questions/17209057/firefox-draws-red-border-on-required-select-box
+ */
+.ng-pristine .field-input .ng-invalid-required {
+    box-shadow: none;
+}
 
 /*
 ## Dropdowns
 Replace default UI of select fields and adds custom border/arrow
 
 ```
-<div class="form-item">
-    <label>
-        <span class="field-label">
-            Type:
-        </span>
-
-        <span class="field-prefix">$</span>
-
-        <!-- Form input will be added here -->
-        <span class="field-input">
-            <span class="field-select">
-                <select>
-                    <option value="1">Option #1</option>
-                    <option value="2">Option #2</option>
-                    <option value="3">Option #3</option>
-                    <option value="4">Option #4</option>
-                </select>
-            </span>
-        </span>
-
-        <span class="field-description">Any description goes here</span>
-    </label>
-</div>
+<span class="field-select">
+    <select>
+        <option value="1">Option #1</option>
+        <option value="2">Option #2</option>
+        <option value="3">Option #3</option>
+        <option value="4">Option #4</option>
+    </select>
+</span>
 ```
 */
-    .field-select {
-        display: inline-block;
+.field-select {
+    display: inline-block;
+    position: relative;
+    width: @fieldSelectWidth;
+
+    select {
+        width: 100%;
+        // make sure arrow can show through
+        background: transparent;
+        // Remove default arrow
+        -webkit-appearance: none;
+        // @bugfix FF doesn't like 'none'
+        // @see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
+        -moz-appearance: window;
         position: relative;
-        width: @fieldSelectWidth;
+        z-index: 2;
+        .inputBorderPadding;
+    }
 
-        select {
-            width: 100%;
-            // make sure arrow can show through
-            background: transparent;
-            // Remove default arrow
-            -webkit-appearance: none;
-            // @bugfix FF doesn't like 'none'
-            // @see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
-            -moz-appearance: window;
-            position: relative;
-            z-index: 2;
-            .inputBorderPadding;
-        }
-
-        &:before {
-            content: ".";
-            width: 0;
-            height: 0;
-            font-size: 0;
-            display: block;
-            position: absolute;
-            border: 7px solid transparent;
-            border-top-color: @inputBorder;
-            border-bottom: none;
-            top: 50%;
-            margin-top: -4px;
-            right: 9px;
-        }
+    &:before {
+        content: ".";
+        width: 0;
+        height: 0;
+        font-size: 0;
+        display: block;
+        position: absolute;
+        border: 7px solid transparent;
+        border-top-color: @inputBorder;
+        border-bottom: none;
+        top: 50%;
+        margin-top: -4px;
+        right: 9px;
     }
 }
 
@@ -219,22 +237,13 @@ Replace default UI of select fields and adds custom border/arrow
     }
 }
 
-/*
- * @bugfix Input field is marked as invalid before a user has done anything on form
- * @browsers FF
- * @see http://stackoverflow.com/questions/17209057/firefox-draws-red-border-on-required-select-box
- */
-.ng-pristine .field-input .ng-invalid-required {
-    box-shadow: none;
-}
-
 .option-table {
     // we want the table to not look ugly when stretched across the screen
     width: auto;
     // we also want a semi-consistent width
     min-width: 40em;
 
-    td {
+    td:not(.empty-data) {
         // remove default padding from td's so that we can make the label take up the full room
         padding: 0;
     }
@@ -259,12 +268,6 @@ Replace default UI of select fields and adds custom border/arrow
         // this 'double' makes it so that the border-color applies to the top border as well
         // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
         border-style: double;
-    }
-}
-
-.rx-form-fieldset {
-    .option-table {
-        min-width: 100%;
     }
 }
 
