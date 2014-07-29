@@ -15,10 +15,9 @@ pids
 logs
 results
 
+/node_modules/
 /npm-debug.log
 
-# 3rd-party dependencies
-/node_modules/
 /demo/bower_components
 
 # config file with secrets
@@ -35,4 +34,3 @@ results
 
 # wraith screenshots
 /wraith/shots/
-/wraith/tmp/
