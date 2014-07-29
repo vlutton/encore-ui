@@ -47,6 +47,7 @@ paths:
   rxSessionStorage: "/#/component/rxSessionStorage"
   rxSortableColumn: "/#/component/rxSortableColumn"
   rxSpinner: "/#/component/rxSpinner"
+  rxStatus: "/#/component/rxStatus"
   rxToggle: "/#/component/rxToggle"
   rxTokenInterceptor: "/#/component/rxTokenInterceptor"
   rxUnauthorizedInterceptor: "/#/component/rxUnauthorizedInterceptor"

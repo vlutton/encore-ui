@@ -1,33 +1,29 @@
 <div class="forms" ng-controller="rxFormDemoCtrl">
-    <h3>Plain text input</h3>
+    <h3 class="title">Text inputs</h3>
 
     <rx-form-item label="Plain textbox">
         <input type="text" />
     </rx-form-item>
 
-    <hr>
-
-    <h3>Example of required text input w/ validation pattern</h3>
+    <h4 class="title sm">Example of required text input w/ validation pattern</h4>
     <rx-form-item label="Volume Name" description="Must be 2-5 letter palindrome (e.g. 'dewed')">
         <input type="text" ng-model="volume.name" ng-required="volume.isNameRequired" ng-pattern="/^\b(\w)?(\w)\w?\2\1$/" />
     </rx-form-item>
 
-    <rx-form-item label="Name Field Required?" class="clear">
+    <rx-form-item label="Require Name?" description="Check and uncheck with empty volume name to see border">
         <input type="checkbox" ng-model="volume.isNameRequired" />
     </rx-form-item>
 
     <p class="clear">Bound Value: {{volume.name}}</p>
 
-    <hr >
-
-    <h3>Example with prefix/suffix</h3>
+    <h4 class="title sm">Example with prefix/suffix</h4>
     <rx-form-item label="Monthly Cost" prefix="$" suffix="million">
         <input type="number" ng-model="volume.cost" />
     </rx-form-item>
 
     <hr>
 
-    <h3>Select Box</h3>
+    <h3 class="title">Select Boxes</h3>
     <rx-form-item label="Type" description="Bound Value: {{volume.type}}">
         <span class="field-select">
             <select ng-model="volume.type" ng-required="true">
@@ -40,7 +36,11 @@
         </span>
     </rx-form-item>
 
-    <rx-form-fieldset legend="Option Table (radio)">
+    <hr>
+
+    <h3 class="title">rxFormOptionTable</h3>
+
+    <rx-form-fieldset legend="Option Table (radio w/full-width class)">
         <rx-form-option-table
             data="optionTableData"
             columns="optionTableColumns"
@@ -48,9 +48,11 @@
             model="volume.data"
             field-id="optionTable"
             selected="0"
+            class="full-width"
             ></rx-form-option-table>
-        <p>Bound Value: {{volume.data}}</p>
     </rx-form-fieldset>
+
+    <p>Bound Value: {{volume.data}}</p>
 
     <rx-form-fieldset legend="Option Table (checkboxes)">
         <rx-form-option-table
@@ -61,10 +63,11 @@
             data="optionTableCheckboxData"
             required="true"
             ></rx-form-option-table>
-        <p>Item 1 Value: {{volume.checked[0]}}</p>
-        <p>Item 2 Value: {{volume.checked[1]}}</p>
     </rx-form-fieldset>
-    
+
+    <p>Item 1 Value: {{volume.checked[0]}}</p>
+    <p>Item 2 Value: {{volume.checked[1]}}</p>
+
     <rx-form-fieldset legend="Option Table (empty)">
         <rx-form-option-table
             columns="optionTableColumns"
@@ -74,7 +77,5 @@
             data="optionTableEmptyData"
             empty-message="You don't have any data!"
             ></rx-form-option-table>
-        <p>Item 1 Value: {{volume.checked[0]}}</p>
-        <p>Item 2 Value: {{volume.checked[1]}}</p>
     </rx-form-fieldset>
 </div>
