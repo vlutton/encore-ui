@@ -22,22 +22,9 @@ So, if you wanted to increment from v0.1.0 to v0.1.1, you would run `grunt shipi
 
 A git tag is automatically created for every new version and each version is pushed to the Bower repo automatically through the `shipit` command.
 
-## Environments
+### Production CDN
 
-Both staging and production are hosted on Rackspace's Cloud Files CDN in (separate containers). The only difference between the two is that staging has the latest builds, while production only gets official releases.
-
-### Staging
-
-The base URL for staging files is:
-https://21d623946965b8ac8d7e-30fbdb0f8462ba8c24fc36921885eab8.ssl.cf1.rackcdn.com/
-
-A release to staging is automatically done through the Travis deploy script, with a build number appended to the base version. For example, a staging release built off of version 0.10.0 would be available via:
-
-https://21d623946965b8ac8d7e-30fbdb0f8462ba8c24fc36921885eab8.ssl.cf1.rackcdn.com/encore-ui-0.10.0-1.js
-
-### Production
-
-The URL for production files is:
+Production releases are hosted on Rackspace's Cloud Files CDN. The URL for production files is:
 https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/encore-ui-[version.number].js
 
 See [the main readme](../README.md) for a link to the latest build.
