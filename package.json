@@ -62,7 +62,7 @@
     "karma-sinon-chai": "~0.1.0",
     "load-grunt-tasks": "~0.4.0",
     "lodash": "~2.4.1",
-    "mocha": "~1.19.0",
+    "mocha": "1.19.0",
     "node-markdown": "0.1.1",
     "protractor": "~0.24.2",
     "selenium-webdriver": "~2.42.1",

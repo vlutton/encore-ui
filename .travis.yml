@@ -6,7 +6,6 @@ install:
 - npm install
 - bower install
 - webdriver-manager update --standalone
-- gem install wraith
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
@@ -20,7 +19,7 @@ script:
 after_success:
 - grunt coveralls
 before_deploy:
-- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && grunt wraith && grunt copy:wraith --pr=${TRAVIS_PULL_REQUEST} || false'
+- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && gem install wraith && grunt wraith && grunt copy:wraith --pr=${TRAVIS_PULL_REQUEST} || false'
 - 'cd wraith/tmp/${TRAVIS_PULL_REQUEST}/'
 deploy:
   provider: cloudfiles
