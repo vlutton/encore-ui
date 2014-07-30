@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - '0.10'
-before_install: npm install -g grunt-cli bower protractor mocha gh
+before_install: npm install -g grunt-cli bower protractor@0.20.1 mocha@1.18.2 gh
 install:
 - npm install
 - bower install

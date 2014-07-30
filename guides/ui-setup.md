@@ -16,21 +16,31 @@ If this is your first time, you'll need to set up your coding environment to be 
 
     NPM is used to manage Node.js dependencies. If you don't already have it installed, follow [the NPM installation instructions](http://howtonode.org/introduction-to-npm) to get a copy.
 
-4. Install Bower
+4. Install NPM Dependencies
 
-    [Bower](http://bower.io) is used to manage UI dependencies for use within the Encore application. Run `npm install -g bower` to install Bower.
+    * Short version
 
-5. Install Grunt & Protractor
+        `npm install -g grunt-cli bower protractor@0.20.1 mocha@1.18.2`
 
-    [Grunt](http://gruntjs.com/) is used to automate the UI build and test tasks for Encore. Run `npm install -g grunt-cli` to install Grunt.
+    * Long version
 
-6. Install Protractor
+        * Install Bower
 
-    [Protractor](https://github.com/angular/protractor) is used to run end to end UI tests in an AngularJS project. Run `npm install -g protractor` to install Protractor.
+            [Bower](http://bower.io) is used to manage UI dependencies for use within the Encore application. Run `npm install -g bower` to install Bower.
 
-7. Install Mocha
+        * Install Grunt
 
-    [Mocha](http://visionmedia.github.io/mocha/) is used to provide feedback during protractor tests. Run `npm install -g mocha` to install Mocha.
+            [Grunt](http://gruntjs.com/) is used to automate the UI build and test tasks for Encore. Run `npm install -g grunt-cli` to install Grunt.
+
+        * Install Protractor
+
+            [Protractor](https://github.com/angular/protractor) is used to run midway UI tests in an AngularJS project. Run `npm install -g protractor@0.20.1` to install Protractor.
+
+        * Install Mocha
+
+            [Mocha](http://visionmedia.github.io/mocha/) is used to provide feedback during protractor tests. Run `npm install -g mocha@1.18.2` to install Mocha.
+
+    **Note:** in order to run the midway tests, you must pin your protractor & mocha installs to the versions above.
 
 ## Initial Encore Build
 
@@ -44,8 +54,7 @@ Once downloaded, go into the new directory:
 
 Finally, install the dependencies needed by Encore UI using NPM and bower:
 
-`npm install`
-`bower install`
+`npm install && bower install`
 
 ## Running Encore UI
 
@@ -85,11 +94,3 @@ Then create a new component folder and navigate into it, **with the name of your
 Once created, from that folder, run `grunt-init ../../grunt-tasks/component-template/`
 
 Answer the questions prompted, let the task complete, and your new component folder should be ready for you to start coding away at. That's it.
-
-### Stability Index
-
-Because we're focused on delivering fast and continually improving, some components may be less stable/polished than others. To help with this, we're following the pattern set forth by the [Node Stability Index](http://nodejs.org/api/documentation.html#documentation_stability_index). To quote:
-
-> Throughout the documentation, you will see indications of a section's stability. The Node.js API is still somewhat changing, and as it matures, certain parts are more reliable than others. Some are so proven, and so relied upon, that they are unlikely to ever change at all. Others are brand new and experimental, or known to be hazardous and in the process of being redesigned.
-
-Each component is marked with a stability value. This reflects where it is in its lifecycle. All components should start as experimental and then move towards stable as it's polished. You can always find the stability index of a component in the README.md doc in the component's directory.
