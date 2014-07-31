@@ -5,6 +5,7 @@ module.exports = {
     docs: 'build', // used for demo, coverage, jsdocs files to go to gh-pages (same a 'build' folder, but a
                    // different variable in case they're later changed)
     bower: 'bower',
+    wraith: 'wraith',
     liveReloadPage: require('connect-livereload')({ port: 1337 }),
     proxyRequest: require('grunt-connect-proxy/lib/utils').proxyRequest,
     modRewrite: require('connect-modrewrite'),

@@ -1,17 +1,15 @@
 language: node_js
 node_js:
 - '0.10'
-before_install: npm install -g grunt-cli bower protractor mocha
+before_install: npm install -g grunt-cli bower protractor@0.20.1 mocha@1.18.2 gh
 install:
 - npm install
 - bower install
 - webdriver-manager update --standalone
-- gem install wraith
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - bower install
-#- grunt bump-only:build
 - grunt connect:keepalive &
 - webdriver-manager start &
 script:
@@ -21,7 +19,8 @@ script:
 after_success:
 - grunt coveralls
 # before_deploy:
-# - cd build/dist
+# - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && gem install wraith && grunt wraith && grunt copy:wraith --pr=${TRAVIS_PULL_REQUEST} || false'
+# - 'cd wraith/tmp/${TRAVIS_PULL_REQUEST}/'
 # deploy:
 #   provider: cloudfiles
 #   username: encorecloudfiles
@@ -30,9 +29,8 @@ after_success:
 #   region: DFW
 #   container: encore-ui-staging
 #   skip_cleanup: true
-#   on:
-#     repo: rackerlabs/encore-ui
-#     branch: master
+# after_deploy:
+# - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && gh pr -n ${TRAVIS_PULL_REQUEST} -c "[Wraith UI diff](https://21d623946965b8ac8d7e-30fbdb0f8462ba8c24fc36921885eab8.ssl.cf1.rackcdn.com/${TRAVIS_PULL_REQUEST}/gallery.html)" || false'
 env:
   global:
   - secure: lBNmtcRYcHepXJsVsrQ+pr8yyrgN/1be7cDoTltXIxMq9WsTbm75Ypc4/rHhwO7K8cRMVbqEcMYbv6wZDGnpjL9z/nxTv14dS8S6wcIrLxGRwUPQ3McUqwOOrs7k2c0LiLwkJsjBBzBo+g52WY7rjPcOCXBBluZ98lar7gzP56c=

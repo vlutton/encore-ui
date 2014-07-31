@@ -22,22 +22,17 @@ So, if you wanted to increment from v0.1.0 to v0.1.1, you would run `grunt shipi
 
 A git tag is automatically created for every new version and each version is pushed to the Bower repo automatically through the `shipit` command.
 
-## Environments
+### Production CDN
 
-Both staging and production are hosted on Rackspace's Cloud Files CDN in (separate containers). The only difference between the two is that staging has the latest builds, while production only gets official releases.
-
-### Staging
-
-The base URL for staging files is:
-https://21d623946965b8ac8d7e-30fbdb0f8462ba8c24fc36921885eab8.ssl.cf1.rackcdn.com/
-
-A release to staging is automatically done through the Travis deploy script, with a build number appended to the base version. For example, a staging release built off of version 0.10.0 would be available via:
-
-https://21d623946965b8ac8d7e-30fbdb0f8462ba8c24fc36921885eab8.ssl.cf1.rackcdn.com/encore-ui-0.10.0-1.js
-
-### Production
-
-The URL for production files is:
+Production releases are hosted on Rackspace's Cloud Files CDN. The URL for production files is:
 https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com/encore-ui-[version.number].js
 
 See [the main readme](../README.md) for a link to the latest build.
+
+## Stability Index
+
+Because we're focused on delivering fast and continually improving, some components may be less stable/polished than others. To help with this, we're following the pattern set forth by the [Node Stability Index](http://nodejs.org/api/documentation.html#documentation_stability_index). To quote:
+
+> Throughout the documentation, you will see indications of a section's stability. The Node.js API is still somewhat changing, and as it matures, certain parts are more reliable than others. Some are so proven, and so relied upon, that they are unlikely to ever change at all. Others are brand new and experimental, or known to be hazardous and in the process of being redesigned.
+
+Each component is marked with a stability value. This reflects where it is in its lifecycle. All components should start as experimental and then move towards stable as it's polished. You can always find the stability index of a component in the README.md doc in the component's directory.

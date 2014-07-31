@@ -88,5 +88,13 @@ module.exports = {
             src: 'bower.json',
             dest: '<%= config.bower %>/bower.json'
         }]
+    },
+    // This task is only needed for TravisCI
+    wraith: {
+        expand: true,
+        flatten: false,
+        cwd: '<%= config.wraith %>',
+        src: 'shots/**/*',
+        dest: '<%= config.wraith %>/tmp/<%= grunt.option("pr") %>',
     }
 };
