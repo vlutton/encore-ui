@@ -1,3 +1,3 @@
 module.exports = function (grunt) {
-    grunt.registerTask('minify', ['cssmin', 'ngmin', 'uglify']);
+    grunt.registerTask('minify', ['cssmin', 'ngAnnotate', 'uglify']);
 };

@@ -47,7 +47,7 @@
     "grunt-karma": "~0.8.3",
     "grunt-karma-coveralls": "~2.5.0",
     "grunt-ngdocs": "~0.2.1",
-    "grunt-ngmin": "~0.0.2",
+    "grunt-ng-annotate": "~0.3.0",
     "grunt-shell": "~0.7.0",
     "grunt-styleguide": "^0.2.15",
     "grunt-text-replace": "~0.3.11",
