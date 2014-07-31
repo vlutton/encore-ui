@@ -25,36 +25,41 @@ describe('rxStatus: Status', function () {
         status.setLoading('Loading');
         expect(status.setStatus.calledWithMatch('Loading')).to.be.true;
         expect(status.setStatus.args[0][1]).to.include.keys('loaded', 'loading');
+        expect(status.setStatus.args[0][1]).to.include({ repeat: true, timeout: -1 });
     });
 
     it('Status: setSuccess returns a success message', function () {
         status.setSuccess('Yup');
         expect(status.setStatus.calledWithMatch('Yup')).to.be.true;
         expect(status.setStatus.args[0][1]).to.include.keys('success', 'type');
+        expect(status.setStatus.args[0][1]).to.include({ repeat: false, timeout: 5 });
     });
 
     it('Status: setSuccessNext returns a success message upon next route change', function () {
         status.setSuccessNext('Yup later');
         expect(status.setStatus.calledWithMatch('later')).to.be.true;
-        expect(status.setStatus.args[0][1]).to.include({ show: 'next' });
+        expect(status.setStatus.args[0][1]).to.include({ show: 'next', repeat: false, timeout: 5 });
     });
 
     it('Status: setError returns an error message', function () {
         status.setError('Err');
         expect(status.setStatus.calledWithMatch('Err')).to.be.true;
         expect(status.setStatus.args[0][1]).to.include.keys('success', 'type');
+        expect(status.setStatus.args[0][1]).to.include({ repeat: false, timeout: -1 });
     });
 
     it('Status: setWarning returns a warning message', function () {
         status.setWarning('Warn');
         expect(status.setStatus.calledWithMatch('Warn')).to.be.true;
         expect(status.setStatus.args[0][1]).to.include.keys('success', 'type');
+        expect(status.setStatus.args[0][1]).to.include({ repeat: true, timeout: -1 });
     });
 
     it('Status: setInfo returns an info message', function () {
         status.setInfo('Info');
         expect(status.setStatus.calledWithMatch('Info')).to.be.true;
         expect(status.setStatus.args[0][1]).to.include.keys('success', 'type');
+        expect(status.setStatus.args[0][1]).to.include({ repeat: true, timeout: -1 });
     });
 
     it('Status: clear returns no message', function () {

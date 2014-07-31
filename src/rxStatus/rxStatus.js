@@ -55,6 +55,15 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
             return _.has(state, 'loading') && !_.has(state, 'type');
         };
 
+        var isRepeatable = function (state) {
+            return !_.isEqual(state.type, 'success') &&
+                !_.isEqual(state.type, 'error');
+        };
+
+        var timeOutInterval = function (state) {
+            return (state.type === 'success') ? 5 : -1;
+        };
+
         // Given an options object, check if scope[options.prop] exists,
         // and set it to `val` if so. `val` defaults to true if not
         // supplied
@@ -92,6 +101,9 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
                 }
                 state.dismiss = [scope, state.prop];
             }
+
+            state.repeat = isRepeatable(state);
+            state.timeout = timeOutInterval(state);
 
             if (state.type === 'success') {
                 state.show = state.show || 'next';
