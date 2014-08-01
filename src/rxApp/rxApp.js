@@ -78,8 +78,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             }, {
                 href: '/support/accounts/{{accountNumber}}',
                 linkText: 'Support Details',
-                key: 'accountSupport',
-                directive: 'rx-support-service-search'
+                key: 'accountSupport'
             }
         ]
     },
