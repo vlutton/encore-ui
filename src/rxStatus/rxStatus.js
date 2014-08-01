@@ -56,11 +56,10 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
         };
 
         var isRepeatable = function (state) {
-            return !_.isEqual(state.type, 'success') &&
-                !_.isEqual(state.type, 'error');
+            return !_.any(['success', 'error'], state.type);
         };
 
-        var timeOutInterval = function (state) {
+        var getTimeoutInterval = function (state) {
             return (state.type === 'success') ? 5 : -1;
         };
 
@@ -103,7 +102,7 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
             }
 
             state.repeat = isRepeatable(state);
-            state.timeout = timeOutInterval(state);
+            state.timeout = getTimeoutInterval(state);
 
             if (state.type === 'success') {
                 state.show = state.show || 'next';

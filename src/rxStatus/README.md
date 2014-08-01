@@ -41,6 +41,8 @@ results in a call to rxNotify as such:
             }
         );
 
+Note: For `success` and `error` messages, the `repeat` attribute is set to false. Messages of `success` will also automatically timeout after 5 seconds. Both of these defaults were design decisions made at this level for usability and consistency across all Encore products. 
+
 Each of the wrapper functions to the different rxNotify message types support receiving an `options:{}` parameter that can override defaults for the respective wrapper. For example, instead of showing a success message on next route change, it can be shown immediately:
 
         Status.setSuccess('Please show immediately', {
