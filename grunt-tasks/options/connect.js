@@ -2,8 +2,8 @@ var config = require('../util/config');
 
 module.exports = {
     options: {
-        port: 9001,
-        hostname: 'localhost',
+        port: '<%= config.serverPort %>',
+        hostname: '<%= config.serverHostname %>'
     },
     proxies: [
         {

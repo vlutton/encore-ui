@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
     grunt.registerTask('server',
         'Runs app in development mode.',
-        function () {
+        function (testing) {
             var commonTasks = [
                 'clean',
                 'html2js',
@@ -10,11 +10,16 @@ module.exports = function (grunt) {
                 'copy',
                 'ngdocs',
                 'styleguide',
-                'configureProxies',
-                'connect:dist',
-                'karma:watch:start',
-                'watch'
             ];
+
+            if (!testing) {
+                commonTasks.push('configureProxies');
+                commonTasks.push('connect:dist');
+                commonTasks.push('karma:watch:start');
+                commonTasks.push('watch');
+            } else {
+                commonTasks.push('connect:dist');
+            }
 
             grunt.task.run(commonTasks);
         });

@@ -33,6 +33,8 @@ module.exports = {
             ' */\n'
         ].join('\n')
     },
+    serverHostname: 'localhost',
+    serverPort: 9001,
     // http://www.regexr.com/395kl
     versionRegEx: /-(?:\d+\.){2}\d+(?:-\d+)*/g
 };
