@@ -1,3 +1,20 @@
+<a name="1.0.3"></a>
+### 1.0.3 (2014-08-01)
+
+
+#### Bug Fixes
+
+* **menu:** Directive not needed for child element ([fc3799fb](git@github.com:rackerlabs/encore-ui/commit/fc3799fb66057a9e3b8d6d6769e409bdef1944af))
+* **travis:**
+  * pin down mocha/protractor versions ([f6b2737a](git@github.com:rackerlabs/encore-ui/commit/f6b2737a81134b11cec4a8abf9736435701afa80))
+  * temp commenting out CDN deploy for later replacement ([34f004a9](git@github.com:rackerlabs/encore-ui/commit/34f004a980f7e5950b089a82ce134d438f9d025a))
+
+
+#### Features
+
+* **rxNav:** Encore Cloud available in all environments ([685777b0](git@github.com:rackerlabs/encore-ui/commit/685777b0848662a192f2765287da5ea6df0b0ec9))
+
+
 <a name="1.0.2"></a>
 ### 1.0.2 (2014-07-25)
 
