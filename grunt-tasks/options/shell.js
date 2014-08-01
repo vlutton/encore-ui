@@ -14,7 +14,7 @@ module.exports = {
         options: {
             stdout: true,
             execOptions: {
-                cwd: 'wraith'
+                cwd: '<%= config.wraith %>'
             }
         }
     }
