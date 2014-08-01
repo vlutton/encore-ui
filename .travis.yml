@@ -16,6 +16,7 @@ before_script:
 - webdriver-manager start &
 script:
 - grunt
+- grunt phantomjs-check:standalone
 - protractor protractor.conf.js
 - grunt karma:minified
 after_success:
