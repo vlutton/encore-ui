@@ -56,7 +56,7 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
         };
 
         var isRepeatable = function (state) {
-            return !_.any(['success', 'error'], state.type);
+            return !_.contains(['success', 'error'], state.type);
         };
 
         var getTimeoutInterval = function (state) {
