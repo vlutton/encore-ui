@@ -61,3 +61,5 @@ fuzz: '20%'
 # Number of days to keep the site spider file
 spider_days:
   - 10
+
+mode: diffs_only
