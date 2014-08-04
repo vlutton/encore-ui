@@ -267,6 +267,7 @@ describe('rxApp', function () {
         // load module
         module('encore.ui.rxApp');
         module('encore.ui.rxEnvironment');
+        module('encore.ui.rxAuth');
 
         // load templates
         module('templates/rxApp.html');

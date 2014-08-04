@@ -359,6 +359,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 * @param {string} [collapsibleNav] Set to 'true' if the navigation menu should be collapsible
 * @param {string} [collapsedNav] Binding for the collapsed state of the menu.
 * @param {boolean} [newInstance] Whether the menu items should be a new instance of rxAppRoutes
+* @param {boolean} [hideFeeback] Whether to hide the 'feedback' link or not (defaults to show it)
+* @param {string} [logoutUrl] URL to pass to rx-logout
 *
 * @example
 * <pre>
@@ -376,7 +378,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             collapsibleNav: '@',
             collapsedNav: '=?',
             newInstance: '@?',
-            hideFeedback: '@?'
+            hideFeedback: '@?',
+            logoutUrl: '@?'
         },
         link: function (scope) {
             scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;

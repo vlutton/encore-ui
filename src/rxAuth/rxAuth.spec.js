@@ -19,8 +19,8 @@ describe('rxAuth', function () {
 
             identity.loginWithJSON = sinon.stub().returns(token);
             session.getToken = sinon.stub().returns(token);
-            session.storeToken = sinon.stub().returns();
-            session.logoff = sinon.stub().returns();
+            session.storeToken = sinon.stub();
+            session.logout = sinon.stub();
             session.isCurrent = sinon.stub().returns(true);
             session.isAuthenticated = sinon.stub().returns(true);
             permission.getRoles = sinon.stub().returns([{ 'name': 'admin' }]);
@@ -54,9 +54,9 @@ describe('rxAuth', function () {
             expect(session.storeToken.called).to.be.true;
         });
 
-        it('Auth.logoff() should log off user via session.logoff', function () {
-            auth.logoff();
-            expect(session.logoff.called).to.be.true;
+        it('Auth.logout() should log off user via session.logout', function () {
+            auth.logout();
+            expect(session.logout.called).to.be.true;
         });
 
         it('Auth.isCurrent() should check token via session.isCurrent', function () {

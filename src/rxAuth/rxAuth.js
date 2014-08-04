@@ -8,7 +8,7 @@ angular.module('encore.ui.rxAuth',
     * Service which provides an entire solution for authenticating, user session management
     * and permissions in the UI.  The Auth service is a wrapper for the Identity, Session and
     * Permission services.  These services were broken into smaller components to facilitate
-    * customization and re-use. 
+    * customization and re-use.
     *
     * @requires encore.ui.rxIdentity:Identity
     * @requires encore.ui.rxSession:Session
@@ -16,15 +16,15 @@ angular.module('encore.ui.rxAuth',
     *
     * @example
     * <pre>
-    * Auth.loginWithJSON(json); //Returns a promise
-    * Auth.login({username: '', password: '', successCallback, errorCallback}); // returns a promise
-    * Auth.getToken(); //Returns the stored token
-    * Auth.storeToken(token); //Stores token
-    * Auth.logoff(); //Logs user off
-    * Auth.isCurrent(); //Returns true/false if the token has expired.
-    * Auth.isAuthenticated(); //Returns true/false if the user token is valid.
-    * Auth.getRoles() //returns an array of roles for a user
-    * Auth.hasRole(role) //returns true/false if user has specified role
+    * Auth.loginWithJSON(json); // Returns a promise
+    * Auth.login({username: '', password: '', successCallback, errorCallback}); // Returns a promise
+    * Auth.getToken(); // Returns the stored token
+    * Auth.storeToken(token); // Stores token
+    * Auth.logout(); // Logs user off
+    * Auth.isCurrent(); // Returns true/false if the token has expired.
+    * Auth.isAuthenticated(); // Returns true/false if the user token is valid.
+    * Auth.getRoles() // Returns an array of roles for a user
+    * Auth.hasRole(role) // Returns true/false if user has specified role
     * </pre>
     */
     .factory('Auth', function (Identity, Session, Permission) {
