@@ -318,6 +318,30 @@ angular.module('demoApp')
         }
     },
     {
+        "name": "rxLogout",
+        "moduleName": "'encore.ui.rxLogout'",
+        "displayName": "Rx Logout",
+        "srcFiles": [
+            "src/rxLogout/rxLogout.js"
+        ],
+        "tplFiles": [],
+        "tplJsFiles": [],
+        "dependencies": [
+            "rxAuth",
+            "rxIdentity",
+            "rxSession",
+            "rxLocalStorage",
+            "rxPermission",
+            "rxSession",
+            "rxLocalStorage"
+        ],
+        "docs": {
+            "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/unstable.svg\" alt=\"unstable\" title=\"\" /></a></p>\n\n<p>Allows adding logout functionality to an element</p>",
+            "js": "",
+            "html": "<div>\n    <button rx-logout id=\"rxLogout\">Logout</button>\n    <button rx-logout=\"/overview\">Logout (with custom redirect)</button>\n</div>"
+        }
+    },
+    {
         "name": "rxModalAction",
         "moduleName": "'encore.ui.rxModalAction'",
         "displayName": "Rx Modal Action",

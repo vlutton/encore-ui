@@ -19,7 +19,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Responsible for creating the HTML necessary for a common Encore layout.",
-      "keywords": "api binding collapsed collapsible common corner creating custom directive encore hand html instance items layout left-hand menu navigation responsible rxapp rxapproutes set site site-title title true ui upper"
+      "keywords": "api binding collapsed collapsible common corner creating custom directive encore feedback hand hide html instance items layout left-hand link menu navigation pass responsible rx-logout rxapp rxapproutes set site site-title title true ui upper url"
     },
     {
       "section": "api",
@@ -100,7 +100,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "encore.ui",
       "shortDescription": "Service which provides an entire solution for authenticating, user session management",
-      "keywords": "api array authenticating broken components customization encore entire errorcallback expired facilitate getroles gettoken hasrole identity isauthenticated iscurrent login loginwithjson logoff management password permission permissions promise re-use returns role roles rxauth rxidentity rxpermission rxsession service services session smaller solution stored storetoken successcallback token true ui user valid wrapper"
+      "keywords": "api array authenticating broken components customization encore entire errorcallback expired facilitate getroles gettoken hasrole identity isauthenticated iscurrent login loginwithjson logout logs management password permission permissions promise re-use returns role roles rxauth rxidentity rxpermission rxsession service services session smaller solution stored stores storetoken successcallback token true ui user valid wrapper"
     },
     {
       "section": "api",
@@ -203,6 +203,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxLogout:rxLogout",
+      "shortName": "rxLogout",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Adds logout functionality to an element",
+      "keywords": "adds api custom directive element encore functionality location logging logout redirect rx-logout rxlogout ui url"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxNotify:rxNotification",
       "shortName": "rxNotification",
       "type": "directive",
@@ -298,7 +307,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "encore.ui",
       "shortDescription": "Service for managing user session in encore-ui.",
-      "keywords": "api encore encore-ui expired gettoken isauthenticated iscurrent logoff managing rxlocalstorage rxsession service session stored storetoken token true ui user valid"
+      "keywords": "api encore encore-ui expired gettoken isauthenticated iscurrent logout logs managing returns rxlocalstorage rxsession service session stored stores storetoken token true ui user valid"
     },
     {
       "section": "api",
