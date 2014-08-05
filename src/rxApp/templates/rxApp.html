@@ -7,8 +7,7 @@
                 <div class="double-chevron" ng-class="{'double-chevron-left': !collapsedNav}"></div>
             </button>
             <div class="site-options">
-                <!-- <a href="settings" class="site-settings">Settings</a> -->
-                <a href="#/login" rx-logout class="site-logout">Logout</a>
+                <button class="btn-link site-option site-logout" rx-logout="{{logoutUrl}}">Logout</button>
             </div>
         </header>
         <nav class="rx-app-nav">

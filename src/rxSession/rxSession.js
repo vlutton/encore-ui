@@ -10,11 +10,11 @@ angular.module('encore.ui.rxSession', ['encore.ui.rxLocalStorage'])
     *
     * @example
     * <pre>
-    * Session.getToken(); //Returns the stored token
-    * Session.storeToken(token); //Stores token
-    * Session.logoff(); //Logs user off
-    * Session.isCurrent(); //Returns true/false if the token has expired.
-    * Session.isAuthenticated(); //Returns true/false if the user token is valid.
+    * Session.getToken(); // Returns the stored token
+    * Session.storeToken(token); // Stores token
+    * Session.logout(); // Logs user off
+    * Session.isCurrent(); // Returns true/false if the token has expired.
+    * Session.isAuthenticated(); // Returns true/false if the user token is valid.
     * </pre>
     */
     .factory('Session', function (LocalStorage) {
