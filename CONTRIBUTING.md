@@ -12,13 +12,22 @@ When submiting a bug report, please **include a set of steps to reproduce the is
 
 If you haven't already, let the Racker Tools team know what your plans are. This is important so that time isn't spent by separate teams doing the same thing, and so that the team can get an initial round of feedback in before coding starts.
 
+### Criteria for New Additions
+
+New additions to the framework are always encouraged. Here are some loose guidelines that new components should meet:
+
+1. The component is re-usable. Multiple projects have a need for it.
+3. Requirements are well defined and documented.
+4. If code has been written, it meets our standards (or is close enough for an easy update).
+  - If code hasn’t been written, developers are available to write it (if not, make the suggestion via a Github Issue and we can pick up the work as time permits).
+5. It's specific to Encore-UI. It matches the Encore-UI style. It doesn't require a large new framework.
+6. There isn't already a design pattern for it. The functionality doesn't already exist.
+
+When in doubt about fit, ask in the Encore-UI chat room or open a new GitHub issue.
+
 ### Get feedback early and often
 
-An **API review** validates your initial approach
-
-A **design review** validates your high-level architecture
-
-A **code review** validates your implementation details
+It's much better to ask for feedback on an unfinished idea than to recieve feedback on a finished one. If you're developing a new component, or updating an old one, post code as you write it. Don't wait until the Pull Request for a code design review.
 
 ## Encore UI Developer Setup
 
