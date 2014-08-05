@@ -1,3 +1,22 @@
+<a name="1.0.4"></a>
+### 1.0.4 (2014-08-05)
+
+
+#### Bug Fixes
+
+* **travis:**
+  * clean up gh-pr-wraith ([a23b9ef6](git@github.com:rackerlabs/encore-ui/commit/a23b9ef69de9fd348000a96cd1985d0d7dcb4511))
+  * oops, should check that the PR is not false ([59844c62](git@github.com:rackerlabs/encore-ui/commit/59844c6286d464a4965c2212044b4c37eb654be5))
+
+
+#### Features
+
+* **rxLogout:** adding rxLogout component back in; Fix #416 ([e1f6683a](git@github.com:rackerlabs/encore-ui/commit/e1f6683a6041168a539b873ddaa75a364ae90fee))
+* **travis:**
+  * script to add wraith comment to PR ([a3cc5e10](git@github.com:rackerlabs/encore-ui/commit/a3cc5e104261525a2404b3a989edf9b3b3ea7cda))
+  * post wraith results to CDN ([13d4585a](git@github.com:rackerlabs/encore-ui/commit/13d4585af0eae956062436038a979d83754a4803))
+
+
 <a name="1.0.3"></a>
 ### 1.0.3 (2014-08-01)
 
