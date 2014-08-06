@@ -1,4 +1,21 @@
 angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
+/**
+* @ngdoc directive
+* @name encore.ui.rxModalAction:rxModalForm
+* @restrict E
+* @scope
+* @description
+* Responsible for creating the HTML necessary for modal form
+*
+* @param {string} title Title of modal window
+* @param {string} [subtitle] Subtitle of modal window
+* @param {boolean} [isLoading] True to show a spinner by default
+* @param {string} [submitText] 'Submit' button text to use. Defaults to 'Submit'
+* @param {string} [cancelText] 'Cancel' button text to use. Defaults to 'Cancel'
+*
+* @example
+* <rx-modal-form title="My Form" is-loading="true" submit-text="Yes!"></rx-modal-form>
+*/
 .directive('rxModalForm', function ($timeout) {
     return {
         transclude: true,
@@ -49,6 +66,26 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
     // cancel out of the modal if the route is changed
     $rootScope.$on('$routeChangeSuccess', $modalInstance.dismiss);
 })
+/**
+* @ngdoc directive
+* @name encore.ui.rxModalAction:rxModalAction
+* @restrict E
+* @scope
+* @description
+* Link which will show a modal window on click, and handle callbacks for pre/post modal actions
+*
+* @param {function} [preHook] Function to call when a modal is opened
+* @param {function} [postHook] Function to call when a modal is submitted (not called when cancelled out of)
+* @param {string} [templateUrl] URL of template to use for modal content
+*
+* @example
+* <rx-modal-action
+*     pre-hook="myPreHook(this)"
+*     post-hook="myPostHook(fields)"
+*     template-url="modalContent.html">
+*         My Link Text
+*  </rx-modal-action>
+*/
 .directive('rxModalAction', function ($modal) {
     var createModal = function (config, scope) {
         config = _.defaults(config, {
