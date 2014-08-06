@@ -62,6 +62,16 @@ describe('rxStatus: Status', function () {
         expect(status.setStatus.args[0][1]).to.include({ repeat: true, timeout: -1 });
     });
 
+    it('Status: setSuccess should be able to override a timeout attribute', function () {
+        status.setSuccess('YupOverride', { timeout: 2 });
+        expect(status.setStatus.args[0][1]).to.include({ timeout: 2 });
+    });
+
+    it('Status: setSuccess should be able to override a repeat attribute', function () {
+        status.setSuccess('YupOverride2', { repeat: true });
+        expect(status.setStatus.args[0][1]).to.include({ repeat: true });
+    });
+
     it('Status: clear returns no message', function () {
         status.clear();
         sinon.assert.notCalled(status.setStatus);

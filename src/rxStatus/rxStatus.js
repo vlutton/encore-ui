@@ -31,36 +31,45 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
         var scope;
         var status = {
             LOADING: function () {
-                return { loaded: false, loading: true, prop: 'loaded' };
+                return { 
+                    loaded: false, loading: true,
+                    prop: 'loaded', repeat: true, timeout: -1
+                };
             },
             SUCCESS: function () {
-                return { loaded: true, loading: false, success: true, type: 'success', prop: 'loaded' };
+                return { 
+                    loaded: true, loading: false, success: true, type: 'success',
+                    prop: 'loaded', repeat: false, timeout: 5 
+                };
             },
             ERROR: function () {
-                return { loaded: true, loading: false, success: false, type: 'error', prop: 'loaded' };
+                return { 
+                    loaded: true, loading: false, success: false, type: 'error',
+                    prop: 'loaded', repeat: false, timeout: -1
+                };
             },
             WARNING: function () {
-                return { loaded: true, loading: false, success: true, type: 'warning', prop: 'loaded' };
+                return { 
+                    loaded: true, loading: false, success: true, type: 'warning',
+                    prop: 'loaded', repeat: true, timeout: -1
+                };
             },
             INFO: function () {
-                return { loaded: true, loading: false, success: true, type: 'info', prop: 'loaded' };
+                return { 
+                    loaded: true, loading: false, success: true, type: 'info',
+                    prop: 'loaded', repeat: true, timeout: -1
+                };
             },
             CLEAR: function () {
-                return { loading: false, prop: 'loaded' };
+                return { 
+                    loading: false, prop: 'loaded'
+                };
             },
         };
 
         // States that specify a type cannot be dismissed (have to be approved by user)
         var isDismissable = function (state) {
             return _.has(state, 'loading') && !_.has(state, 'type');
-        };
-
-        var isRepeatable = function (state) {
-            return !_.contains(['success', 'error'], state.type);
-        };
-
-        var getTimeoutInterval = function (state) {
-            return (state.type === 'success') ? 5 : -1;
         };
 
         // Given an options object, check if scope[options.prop] exists,
@@ -100,9 +109,6 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
                 }
                 state.dismiss = [scope, state.prop];
             }
-
-            state.repeat = isRepeatable(state);
-            state.timeout = getTimeoutInterval(state);
 
             if (state.type === 'success') {
                 state.show = state.show || 'next';
