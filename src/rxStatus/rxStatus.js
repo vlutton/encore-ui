@@ -32,37 +32,54 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
         var status = {
             LOADING: function () {
                 return { 
-                    loaded: false, loading: true,
-                    prop: 'loaded', repeat: true, timeout: -1
+                    loaded: false,
+                    loading: true,
+                    prop: 'loaded'
                 };
             },
             SUCCESS: function () {
                 return { 
-                    loaded: true, loading: false, success: true, type: 'success',
-                    prop: 'loaded', repeat: false, timeout: 5 
+                    loaded: true,
+                    loading: false,
+                    success: true,
+                    type: 'success',
+                    prop: 'loaded',
+                    repeat: false,
+                    timeout: 5
                 };
             },
             ERROR: function () {
                 return { 
-                    loaded: true, loading: false, success: false, type: 'error',
-                    prop: 'loaded', repeat: false, timeout: -1
+                    loaded: true,
+                    loading: false,
+                    success: false,
+                    type: 'error',
+                    prop: 'loaded',
+                    repeat: false
                 };
             },
             WARNING: function () {
                 return { 
-                    loaded: true, loading: false, success: true, type: 'warning',
-                    prop: 'loaded', repeat: true, timeout: -1
+                    loaded: true,
+                    loading: false,
+                    success: true,
+                    type: 'warning',
+                    prop: 'loaded'
                 };
             },
             INFO: function () {
                 return { 
-                    loaded: true, loading: false, success: true, type: 'info',
-                    prop: 'loaded', repeat: true, timeout: -1
+                    loaded: true,
+                    loading: false,
+                    success: true,
+                    type: 'info',
+                    prop: 'loaded'
                 };
             },
             CLEAR: function () {
-                return { 
-                    loading: false, prop: 'loaded'
+                return {
+                    loading: false,
+                    prop: 'loaded'
                 };
             },
         };
