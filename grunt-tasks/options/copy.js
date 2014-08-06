@@ -24,6 +24,38 @@ module.exports = {
             dest: '<%= config.docs %>'
         }]
     },
+    demoreadme: {
+        files: [{
+            src: 'README.md',
+            dest: 'demo/readme.html'
+        }],
+        options: {
+            process: function (content) {
+                var markdown = require('node-markdown').Markdown;
+
+                // Replace the [![Build Status...]] line with an empty string
+                // (note that /m makes $ match newlines
+                content = content.replace(/\[\!\[Build Status(.*)$/m, '');
+
+                // The README contains a link to the demo app, which leads the user off
+                // this page and to the github demo app. Let's remove that. Strip out "# Demo App", 
+                // and everything that follows it until the next section header "#"
+                // (Note that .* won't work because . doesn't match newlines. [\s\S] is equivalent
+                content = content.replace(/# Demo App[\s\S]*?(#[\s\S]*)/mg, '$1');
+
+                // Our README.md has a bunch of relative URLs for use on github, for example,
+                // [Roadmap](./guides/roadmap.md)
+                // They all start with "(./", so replace all occurrences of that with the full path
+                // The \(\.\( matches (./
+                // The (.*?) then grabs 'guides/roadmap.md'
+                // The final \) matches the closing round bracket for the markdown link
+                var githubPath = 'https://github.com/rackerlabs/encore-ui/blob/master/$1';
+                content = content.replace(/\(\.\/(.*?)\)/g, '(' + githubPath + ')');
+                return markdown(content);
+            }
+
+        }
+    },
     coverage: {
         files: [{
             expand: true,
