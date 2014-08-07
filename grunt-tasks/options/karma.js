@@ -1,6 +1,7 @@
 // list of files / patterns to load in the browser
 var files = [
     // bower:js
+    'demo/bower_components/jquery/jquery.min.js',
     'demo/bower_components/angular/angular.js',
     'demo/bower_components/angular-sanitize/angular-sanitize.js',
     'demo/bower_components/angular-resource/angular-resource.js',

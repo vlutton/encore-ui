@@ -20,6 +20,7 @@ results
 # 3rd-party dependencies
 /node_modules/
 /demo/bower_components
+/demo/readme.html
 
 # config file with secrets
 /localConfig.js
