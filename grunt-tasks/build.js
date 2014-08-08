@@ -145,7 +145,7 @@ module.exports = function (grunt) {
         // Set the copy task to process via grunt template
         grunt.config('copy.demohtml.options.process', grunt.template.process);
 
-        grunt.task.run(['clean:build', 'concat:dist', 'concat:distTpls', 'less',
+        grunt.task.run(['clean:build', 'concat:dist', 'concat:distTpls', 'concat:tmpLess', 'less',
             'copy:demoreadme', 'copy:demohtml', 'copy:demoassets', 'copy:componentImages',
             'copy:font', 'replace:wraith']);
     });
