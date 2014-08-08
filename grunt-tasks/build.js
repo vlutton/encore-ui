@@ -146,6 +146,7 @@ module.exports = function (grunt) {
         grunt.config('copy.demohtml.options.process', grunt.template.process);
 
         grunt.task.run(['clean:build', 'concat:dist', 'concat:distTpls', 'less',
-            'copy:demoreadme', 'copy:demohtml', 'copy:demoassets', 'copy:componentImages', 'replace:wraith']);
+            'copy:demoreadme', 'copy:demohtml', 'copy:demoassets', 'copy:componentImages',
+            'copy:font', 'replace:wraith']);
     });
 };

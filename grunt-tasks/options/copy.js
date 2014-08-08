@@ -56,6 +56,14 @@ module.exports = {
 
         }
     },
+    font: {
+        files: [{
+            expand: true,
+            src: ['*'],
+            cwd: 'build/bower_components/font-awesome/fonts',
+            dest: '<%= config.font %>'
+        }]
+    },
     coverage: {
         files: [{
             expand: true,

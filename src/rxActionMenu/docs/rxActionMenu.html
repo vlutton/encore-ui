@@ -1,0 +1,77 @@
+<div>
+    <p>The cog in the first row is dismissable by clicking anywhere, but the second cog can only be dismissed
+    by clicking on the cog itself.
+    </p>
+
+    <h3 class="title">Typical Usage</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Globally dismissible</td>
+                <td>    
+                    <rx-action-menu>
+                        <ul class="actions-area">
+                            <li>
+                                <rx-modal-action
+                                    template-url="addActionTemplate.html"
+                                    classes="msg-action">
+                                    <i class="fa fa-plus fa-lg"></i> Add
+                                </rx-modal-action>
+                            </li>
+                            <li>
+                                <rx-modal-action
+                                    template-url="deleteActionTemplate.html"
+                                    classes="msg-warn">
+                                    <i class="fa fa-times fa-lg"></i> Delete
+                                </rx-modal-action>
+                            </li>
+                        </ul>
+                    </rx-action-menu>
+                </td>
+            </tr>
+            <tr>
+                <td>Only dismissible by clicking on cog</td>
+                <td>
+                    <rx-action-menu global-dismiss="false">
+                        <ul class="actions-area">
+                            <li>
+                                <rx-modal-action
+                                    template-url="addActionTemplate.html"
+                                    classes="msg-action">
+                                    <i class="fa fa-plus fa-lg"></i> Add
+                                </rx-modal-action>
+                            </li>
+                            <li>
+                                <rx-modal-action
+                                    template-url="deleteActionTemplate.html"
+                                    classes="msg-warn">
+                                    <i class="delete-network-action fa fa-times fa-lg"></i> Delete
+                                </rx-modal-action>
+                            </li>
+                        </ul>
+                    </rx-action-menu>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script type="text/ng-template" id="deleteActionTemplate.html">
+        <rx-modal-form title="Delete Action" submit-text="Delete">
+            <span>Do you want to delete something?</span>
+        </rx-modal-form>
+    </script>
+    <script type="text/ng-template" id="addActionTemplate.html">
+        <rx-modal-form title="Add Action" submit-text="Add">
+            <span>Do you want to add something?</span>
+        </rx-modal-form>
+    </script>
+</div>
