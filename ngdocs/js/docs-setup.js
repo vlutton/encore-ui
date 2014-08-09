@@ -212,6 +212,24 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxModalAction:rxModalAction",
+      "shortName": "rxModalAction",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Link which will show a modal window on click, and handle callbacks for pre/post modal actions",
+      "keywords": "actions api call callbacks called cancelled click content directive encore function handle html link modal modalcontent myposthook myprehook opened post-hook pre pre-hook rxmodalaction submitted template template-url text ui url window"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxModalAction:rxModalForm",
+      "shortName": "rxModalForm",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Responsible for creating the HTML necessary for modal form",
+      "keywords": "api button cancel creating default defaults directive encore form html is-loading modal responsible rxmodalaction spinner submit submit-text subtitle text title true ui window"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxNotify:rxNotification",
       "shortName": "rxNotification",
       "type": "directive",
