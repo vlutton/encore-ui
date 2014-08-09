@@ -1,3 +1,17 @@
+<a name="1.0.5"></a>
+### 1.0.5 (2014-08-08)
+
+
+#### Features
+
+* **rxActionMenu:** Action menu cog (originally from Cloud Atlas) ([0c634867](git@github.com:rackerlabs/encore-ui/commit/0c634867fa94e0f978a0853b49f9c8f187f9ba78), closes [#147](git@github.com:rackerlabs/encore-ui/issues/147))
+* **rxStatus:**
+  * Allow repeat and timeout attrs to be overwritten ([a889461a](git@github.com:rackerlabs/encore-ui/commit/a889461a7e8419f3d0f387cca24f8971239b08ee))
+  * Allow repeat and timeout attrs to be overwritten ([15842ba1](git@github.com:rackerlabs/encore-ui/commit/15842ba1abd47fb265fa17f4d60b40a343f7c95d))
+  * Integrated klamping feedback ([5a2ee71f](git@github.com:rackerlabs/encore-ui/commit/5a2ee71f0e8ed67c1692ed1aeb1ac8e15db05e59))
+  * attr edit for success/error banners; Resolves #420 ([bc7a1bc8](git@github.com:rackerlabs/encore-ui/commit/bc7a1bc8dadbd88dc4c375977b255e054731a285))
+
+
 <a name="1.0.4"></a>
 ### 1.0.4 (2014-08-05)
 
