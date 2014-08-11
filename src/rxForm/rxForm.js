@@ -231,12 +231,12 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
                 var expr = column.key;
                 // If no expression exit out;
                 if (!expr) {
-                    return;
+                    return '';
                 }
 
                 // if the expr is a property of row, then we expect the value of the key.
                 if (row.hasOwnProperty(expr)) {
-                    return row[expr];
+                    return String(row[expr]);
                 }
 
                 // Compile expression & Run output template
