@@ -189,26 +189,45 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     var AppRoutes = function () {
         var routes = [];
 
+        var stripHtml5 = function (str) {
+            if (str.substring(0, 1) === '#') {
+                str = str.substring(1);
+            }
+            return str;
+        };
+
         var getBaseUrl = function () {
             // remove query strings
             var baseUrl = $location.absUrl().split('?')[0];
 
-            // remove protocol
+            // remove protocol and domain
             baseUrl = baseUrl.split('/').splice(3).join('/');
 
             // remove html5Mode characters
-            if (!$location.$$html5) {
-                baseUrl = baseUrl.substring(1, baseUrl.length);
-            }
+            baseUrl = stripHtml5(baseUrl);
 
             return baseUrl;
+        };
+
+        var getItemUrl = function (item) {
+            if (!_.isString(item.url)) {
+                return undefined;
+            }
+
+            // remove query string
+            var itemUrl = item.url.split('?')[0];
+
+            // remove html5Mode characters
+            itemUrl = stripHtml5(itemUrl);
+
+            return itemUrl;
         };
 
         var isActive = function (item) {
             // check if url matches absUrl
             // TODO: Add Unit Tests for URLs with Query Strings in them.
             var baseUrl = getBaseUrl();
-            var itemUrl = (_.isString(item.url)) ? item.url.split('?')[0] : undefined;
+            var itemUrl = getItemUrl(item);
             var pathMatches = itemUrl &&
                 (baseUrl.substring(0, itemUrl.length) === itemUrl ||
                  baseUrl.substring(1).substring(0, itemUrl.length) === itemUrl);
