@@ -189,12 +189,29 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     var AppRoutes = function () {
         var routes = [];
 
+        var getBaseUrl = function () {
+            // remove query strings
+            var baseUrl = $location.absUrl().split('?')[0];
+
+            // remove protocol
+            baseUrl = baseUrl.split('/').splice(3).join('/');
+
+            // remove html5Mode characters
+            if (!$location.$$html5) {
+                baseUrl = baseUrl.substring(1, baseUrl.length);
+            }
+
+            return baseUrl;
+        };
+
         var isActive = function (item) {
             // check if url matches absUrl
             // TODO: Add Unit Tests for URLs with Query Strings in them.
-            var baseUrl = $location.absUrl().split('?')[0];
+            var baseUrl = getBaseUrl();
             var itemUrl = (_.isString(item.url)) ? item.url.split('?')[0] : undefined;
-            var pathMatches = _.contains(baseUrl, itemUrl);
+            var pathMatches = itemUrl &&
+                (baseUrl.substring(0, itemUrl.length) === itemUrl ||
+                 baseUrl.substring(1).substring(0, itemUrl.length) === itemUrl);
 
             // if current item not active, check if any children are active
             if (!pathMatches && item.children) {
