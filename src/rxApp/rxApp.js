@@ -189,22 +189,23 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     var AppRoutes = function () {
         var routes = [];
 
-        var stripHtml5 = function (str) {
-            if (str.substring(0, 1) === '#') {
-                str = str.substring(1);
-            }
+        var stripLeadingChars = function (str) {
+            _.forEach(['#', '/'], function (chr) {
+                if (str.substring(0, 1) === chr) {
+                    str = stripLeadingChars(str.substring(1));
+                }
+            });
+
             return str;
         };
 
         var getBaseUrl = function () {
-            // remove query strings
+            // remove query string
             var baseUrl = $location.absUrl().split('?')[0];
 
             // remove protocol and domain
             baseUrl = baseUrl.split('/').splice(3).join('/');
-
-            // remove html5Mode characters
-            baseUrl = stripHtml5(baseUrl);
+            baseUrl = stripLeadingChars(baseUrl);
 
             return baseUrl;
         };
@@ -216,9 +217,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 
             // remove query string
             var itemUrl = item.url.split('?')[0];
-
-            // remove html5Mode characters
-            itemUrl = stripHtml5(itemUrl);
+            itemUrl = stripLeadingChars(itemUrl);
 
             return itemUrl;
         };
