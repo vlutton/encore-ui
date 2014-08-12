@@ -92,6 +92,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         linkText: 'Cloud',
         key: 'cloud',
         directive: 'rx-atlas-search',
+        visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
         childVisibility: function (scope) {
             // We only want to show this nav if user is already defined in the URL
             // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
@@ -164,8 +165,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     }, {
         href: '/virt',
         linkText: 'Virtualization Admin',
-        key: 'virtualization',
-        visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
+        key: 'virt',
         directive: 'rx-virt-search'
     }, {
         linkText: 'Support Automation',
