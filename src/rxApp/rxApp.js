@@ -189,12 +189,47 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     var AppRoutes = function () {
         var routes = [];
 
+        var stripLeadingChars = function (str) {
+            _.forEach(['#', '/'], function (chr) {
+                if (str.substring(0, 1) === chr) {
+                    str = stripLeadingChars(str.substring(1));
+                }
+            });
+
+            return str;
+        };
+
+        var getBaseUrl = function () {
+            // remove query string
+            var baseUrl = $location.absUrl().split('?')[0];
+
+            // remove protocol and domain
+            baseUrl = baseUrl.split('/').splice(3).join('/');
+            baseUrl = stripLeadingChars(baseUrl);
+
+            return baseUrl;
+        };
+
+        var getItemUrl = function (item) {
+            if (!_.isString(item.url)) {
+                return undefined;
+            }
+
+            // remove query string
+            var itemUrl = item.url.split('?')[0];
+            itemUrl = stripLeadingChars(itemUrl);
+
+            return itemUrl;
+        };
+
         var isActive = function (item) {
             // check if url matches absUrl
             // TODO: Add Unit Tests for URLs with Query Strings in them.
-            var baseUrl = $location.absUrl().split('?')[0];
-            var itemUrl = (_.isString(item.url)) ? item.url.split('?')[0] : undefined;
-            var pathMatches = _.contains(baseUrl, itemUrl);
+            var baseUrl = getBaseUrl();
+            var itemUrl = getItemUrl(item);
+            var pathMatches = itemUrl &&
+                (baseUrl.substring(0, itemUrl.length) === itemUrl ||
+                 baseUrl.substring(1).substring(0, itemUrl.length) === itemUrl);
 
             // if current item not active, check if any children are active
             if (!pathMatches && item.children) {
