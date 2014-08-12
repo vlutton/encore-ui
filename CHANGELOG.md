@@ -1,3 +1,15 @@
+<a name="1.0.6"></a>
+### 1.0.6 (2014-08-12)
+
+
+#### Bug Fixes
+
+* **menu:**
+  * Fix logic to normalize all URLs further ([e48ec132](git@github.com:rackerlabs/encore-ui/commit/e48ec132e97f4f6d1503c3c03dd69f6138ce1643))
+  * Fix issues with PR based on comments ([727a0a43](git@github.com:rackerlabs/encore-ui/commit/727a0a430edadab0226b8c3c565a19ae6d79a154))
+  * Update active menu determination logic ([d3cfed99](git@github.com:rackerlabs/encore-ui/commit/d3cfed996893108cc2ad9d039ac67afd181fbe18))
+
+
 <a name="1.0.5"></a>
 ### 1.0.5 (2014-08-08)
 
