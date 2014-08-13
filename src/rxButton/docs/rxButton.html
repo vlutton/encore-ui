@@ -1,6 +1,20 @@
 <!-- Sample HTML goes here as a live example of how to the component can be used -->
+<h3 class="title">Typical Usage</h3>
 <div ng-controller="rxButtonCtrl">
     <rx-button toggle-msg="Authenticating" default-msg="Login"
         toggle="status.loading" ng-click="login()">
+    </rx-button>
+</div>
+
+<h3 class="title">Using the <code>disable</code> attribute<h3>
+<p>
+Normally the <code>ng-disabled</code> property of an <code>rxButton</code> is controlled by <code>toggle</code>. You can use the optional <code>disable</code> attribute to pass an expression that <code>rxButton</code> should use for <code>ng-disabled</code>
+</p>
+<div ng-controller="rxButtonCtrl">
+    <rx-button default-msg="Toggle enabled/disabled of 'Login'"
+        rx-toggle="status.disable">
+    </rx-button>
+    <rx-button toggle-msg="Authenticating" default-msg="Login"
+        toggle="status.loading" disable="status.disable" ng-click="login()">
     </rx-button>
 </div>

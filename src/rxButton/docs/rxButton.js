@@ -1,7 +1,8 @@
 /*jshint unused:false*/
 function rxButtonCtrl ($scope, $timeout) {
     $scope.status = {
-        loading: false
+        loading: false,
+        disable: true
     };
 
     $scope.login = function () {
