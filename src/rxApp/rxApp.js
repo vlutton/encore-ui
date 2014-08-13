@@ -471,7 +471,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             element.removeAttr('title');
         },
         controller: function ($scope, rxPageTitle) {
-            rxPageTitle.setTitle($scope.title);
+            $scope.$watch('title', function () {
+                rxPageTitle.setTitle($scope.title);
+            });
         }
     };
 })
