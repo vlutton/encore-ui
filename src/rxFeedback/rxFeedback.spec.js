@@ -239,10 +239,13 @@ describe('rxFeedbackSvc', function () {
     it('should allow overwriting that endpoint', function () {
         // set new api url
         var newUrl = 'newUrl';
+        var resource = 'newUrlResource';
 
+        mockResource.returns(resource);
         feedbackSvc.setEndpoint(newUrl);
 
         expect(mockResource.calledWith(newUrl)).to.be.true;
+        expect(feedbackSvc.api).to.equal(resource);
     });
 
     it('should have default fallback function to send e-mail', function () {
