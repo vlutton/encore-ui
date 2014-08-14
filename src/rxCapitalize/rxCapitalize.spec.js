@@ -16,4 +16,8 @@ describe('rxCapitalize', function () {
 
         expect(capitalize(sentence)).to.equal('Steve holt');
     });
+
+    it('should return an empty string if a non-string input is received', function () {
+        expect(capitalize(undefined)).to.equal('');
+    });
 });
