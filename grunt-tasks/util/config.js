@@ -15,6 +15,7 @@ module.exports = {
     },
     fileName: 'encore-ui-<%= pkg.version %>',
     fileNameTpl: 'encore-ui-tpls-<%= pkg.version %>',
+    cssMapName: '<%= config.fileName %>.css.map',
     moduleName: 'encore.ui',
     modules: [],
     dependencies: ['cfp.hotkeys', 'ui.bootstrap'],
@@ -36,6 +37,8 @@ module.exports = {
     },
     serverHostname: 'localhost',
     serverPort: 9001,
+    tmp: '<%= config.build %>/tmp',
+    tmpLess: '<%= config.tmp %>/encore-ui.less',
     // http://www.regexr.com/395kl
     versionRegEx: /-(?:\d+\.){2}\d+(?:-\d+)*/g
 };

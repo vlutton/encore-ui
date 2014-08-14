@@ -25,5 +25,13 @@ module.exports = {
         },
         src: ['src/*/*.page.js'],
         dest: 'utils/rx-page-objects/index.js'
+    },
+    tmpLess: {
+        // The `less` task can't properly create a source map when multiple input 
+        // files are present. We concat them all into a temp file here, and it
+        // can work from that instead
+        src: ['src/*/*.less', '!src/styles/*.less'],
+        dest: '<%= config.tmpLess %>'
     }
+    
 };
