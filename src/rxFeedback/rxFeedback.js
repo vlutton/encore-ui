@@ -53,16 +53,18 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
     };
 })
 .service('rxFeedbackSvc', function ($resource, feedbackApi, $location, $window) {
-    var apiEndpoint;
-
-    var setEndpoint = function (url) {
-        apiEndpoint = $resource(url);
+    var container = {
+        api: undefined,
     };
 
+    container.setEndpoint = function (url) {
+        container.api = $resource(url);
+    };
+    
     // set a default endpoint
-    setEndpoint(feedbackApi);
+    container.setEndpoint(feedbackApi);
 
-    var emailFeedback = function (feedback) {
+    container.fallback = function (feedback) {
         var subject = 'Encore Feedback: ' + feedback.type.label;
         var body = [
             'Current Page: ' + $location.absUrl(),
@@ -81,11 +83,7 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
         }
     };
 
-    return {
-        api: apiEndpoint,
-        setEndpoint: setEndpoint,
-        fallback: emailFeedback
-    };
+    return container;
 })
 .directive('rxFeedback', function (feedbackTypes, $location, rxFeedbackSvc, rxScreenshotSvc, rxNotify) {
     return {
