@@ -1,10 +1,15 @@
 /*jshint node:true */
 module.exports = function (grunt) {
-    grunt.registerTask('test', 'Run tests on karma server', function (full) {
+    // mode - Either leave it empty or set to 'full', i.e. `grunt test:full`. This will
+    // cause the phantomjs-check task to run against all of our EncoreUI modules.
+    // This requires a `grunt server` instance running somewhere else.
+    // I could have a `server:testing` task run beforehand to give us the server,
+    // but this gets in the way of our Travis configuration
+    grunt.registerTask('test', 'Run tests', function (mode) {
         grunt.task.run('karma:single');
-        if (full) {
-            grunt.task.run('server:testing');
-            grunt.task.run('phantomjs-check');
+        if (mode === 'full') {
+            grunt.task.run('modules');
+            grunt.task.run('phantomjs-check:allModules');
         }
     });
 };
