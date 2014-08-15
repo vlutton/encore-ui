@@ -1,0 +1,2243 @@
+@import 'vars';
+
+// containers for actionmenus that spawn modals
+.action-menu-container {
+    position: relative;
+    width: 5px;
+    & > i {
+        cursor: pointer;
+        color: @subduedText;
+        &:hover {
+            color: @subduedTextHover;
+        }
+    }
+}
+
+.actions-area {
+    font-size: 115%;
+    line-height: 2em;
+}
+
+.action-list-hideable {
+    float: left;
+    z-index: 99;
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    min-width: 12em;
+    font-size: .9em;
+    border: 4px solid @white;
+    border-radius: 4px;
+    background: @white;
+    text-shadow: rgba(0, 0, 0, 0.09) 1px 1px 1px;
+    box-shadow: rgba(0, 0, 0, 0.09) 1px 1px 4px 0px;
+    padding: 6px;
+
+    &:before {
+        content:  "\f0da";
+        font-family: FontAwesome;
+        text-decoration: inherit;
+        color: @white;
+        font-size: 24px;
+        display: block;
+        left: 149px;
+        position: absolute;
+        top: 0;
+        width: 0;
+        z-index: 1;
+    }
+
+    i {
+        margin-right: 5px;
+    }
+}
+
+.action-list {
+    float: right;
+}
+
+@import (less) 'demo/bower_components/font-awesome/less/font-awesome.less';
+@fa-font-path: 'font';
+@import 'vars';
+@import (inline) 'normalize.css';
+
+/*
+# Resets for HTML elements
+*/
+html, body {
+    height: 100%;
+    font-size: @appFontSize;
+    color: @appTextColor;
+    font-family: @appFont;
+}
+
+// Set default font
+button, input, select,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+    font-family: @appFont;
+}
+
+// Remove default margin/padding/etc
+header, nav,
+ol, ul, li,
+h1, h2, h3, h4, h5, h6,
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+// No list styles for lists
+ol, ul, li {
+    list-style: none;
+}
+
+// We want a little bit more line-spacing in paragraphs
+p {
+    line-height: @appLineHeight;
+}
+
+/*
+# Link Styles
+
+```
+<a href="#">My Link</a>
+<a href="#" class=":visited">Visited Link</a>
+<a href="#" class=":hover">Hovered Link</a>
+<a href="#" class=":focus">Focused Link</a>
+<a href="#" class=":active">Active Link</a>
+```
+*/
+a {
+    text-decoration: none;
+    color: @linkColor;
+}
+a:hover,
+a:focus {
+    text-decoration: underline;
+    color: @linkColorHover;
+}
+
+/*
+# Table Styles
+
+```
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Occupation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Patrick Deuley</td>
+            <td>Design Chaplain</td>
+        </tr>
+        <tr>
+            <td>Hussam Dawood</td>
+            <td>Evangelist of Roger Enriquez</td>
+        </tr>
+    </tbody>
+</table>
+```
+*/
+table {
+    clear: both;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    td,
+    th {
+        border: 1px solid @tableBorder;
+        padding: @tableCellPadding;
+        color: @tableCellText;
+    }
+    thead th {
+        text-align: left;
+        background: @tableHeaderBg;
+        color: @tableHeaderText;
+        border: 1px solid @tableHeaderBorder;
+    }
+
+    &.table-striped tr:nth-child(even) {
+        background: @tableBgAlt;
+    }
+}
+
+/*
+
+# Heading/Title Styles
+
+Headings are sized using 'xl', 'lg', 'sm' and 'xs'
+
+The size of the heading is not impacted by the heading level used (e.g. `<h1>`, `<h2>`).
+This is done to ensure that the heading levels are sequential.
+
+See https://github.com/rackerlabs/encore-ui/blob/master/guides/css-styleguide.md#basic-rules for further reasoning
+
+```
+<h1 class="xl title">Huge Header</h1>
+
+<h1 class="lg title">Large Header</h1>
+<h2 class="lg title subdued">Large Gray Header</h2>
+
+<h1 class="title">Regular Header</h1>
+
+<h2 class="sm title">Small Header</h2>
+<h3 class="sm title subdued">Small Gray Header</h3>
+
+<div class="xs title">Tiny Header</div>
+```
+ */
+.title {
+    font-size: 18px;
+    margin: 1em 0;
+
+    & + & {
+        // remove the top margin if two titles are placed right next to each other
+        margin-top: 0;
+    }
+
+    // Sizing
+    &.xl {
+        font-size: 28px;
+    }
+
+    &.lg {
+        font-size: 22px;
+    }
+
+    &.sm {
+        font-size: 16px;
+    }
+
+    &.xs {
+        font-size: 13px;
+    }
+
+    // Colors
+    &.subdued {
+        color: @subduedTitle;
+    }
+}
+
+/*
+
+# Statuses
+
+Styles text to provide a clearer status regarding a simple message.
+
+```
+<h1 class="title">Action Links (Horizontal)</h1>
+<p>
+    <a href="#" class="msg-action link-action">Create</a>
+    <span class="action-separator">\</span>
+    <a href="#" class="msg-warn link-warn">Delete</a>
+</p>
+
+<h1 class="title">Messages</h1>
+<p class="msg-action">Something was created</p>
+<p class="msg-warn">Something was deleted</p>
+<p class="msg-info">Informational Message</p>
+<p class="msg-info-blue">Blue Informational Message</p>
+```
+*/
+.link-action,
+.link-action a,
+.link-warn,
+.link-warn a {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.link-action:before,
+.link-action a:before {
+    content: '+ ';
+}
+
+.link-warn:before,
+.link-warn a:before {
+    content: '- ';
+}
+
+.action-separator {
+    font-size: 1.1em;
+    color: @subduedText;
+}
+
+.msg-action,
+.msg-action a {
+    color: @actionGreen;
+    &:hover,
+    &:focus {
+        color: @actionGreen;
+    }
+}
+
+.msg-warn,
+.msg-warn a {
+    color: @warnRed;
+    &:hover,
+    &:focus {
+        color: @warnRedHover;
+    }
+}
+
+.msg-info,
+.msg-info a {
+    color: @infoOrange;
+    &:hover,
+    &:focus {
+        color: @infoOrangeHover;
+    }
+}
+
+.msg-info-blue,
+.msg-info-blue a {
+    color: @infoBlue;
+    &:hover,
+    &:focus {
+        color: @infoBlueHover;
+    }
+}
+
+/*
+# Lists
+
+Add bullets/decimals to lists with the 'list' class
+
+### Decimals
+```
+<ol class="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ol>
+```
+
+### Bullets
+```
+<ul class="list">
+    <li>Item 1</li>
+    <li>Item 2</li>
+    <li>Item 3</li>
+</ul>
+```
+
+### Non-semantic lists
+```
+<div class="list bulleted">
+    <p class="item">Item 1</p>
+    <p class="item">Item 2</p>
+    <p class="item">Item 3</p>
+</div>
+
+<div class="list decimal">
+    <p class="item">Item 1</p>
+    <p class="item">Item 2</p>
+    <p class="item">Item 3</p>
+</div>
+```
+ */
+.list {
+    li,
+    .item {
+        display: list-item;
+        margin: 5px 0 0 30px;
+    }
+
+    ul&,
+    &.bulleted {
+        li,
+        .item {
+            list-style: disc;
+        }
+    }
+
+    ol&,
+    &.decimal {
+        li,
+        .item {
+            list-style: decimal;
+        }
+    }
+}
+
+/*
+# Wells
+
+Creates a 'well' effect (box with light gray background)
+```
+<div class="well">
+    <p>Well, here you go.</p>
+</div>
+```
+*/
+.well {
+    background: #eee;
+    padding: 40px 50px;
+
+    p {
+        line-height: 1.5em;
+        color: @wellText;
+    }
+}
+
+// # Other Stuff
+
+/*
+## Subdued Text
+Basic color change to make text less prominant
+
+```
+<h1>My Items <span class="subdued">(10)</span></h1>
+<h1><a href="#">My Items <span class="subdued">(10)</span></a></h1>
+```
+ */
+.subdued {
+    color: @subduedText;
+}
+
+// Add hover style if a link or inside a link
+a.subdued:hover,
+a.subdued:focus,
+a:hover .subdued,
+a:focus .subdued {
+    color: @subduedTextHover;
+}
+
+/*
+## Hidden content
+
+### .hidden
+Add to hide an element but not remove it from the spacing of the page
+*/
+.hidden {
+    visibility: hidden;
+}
+
+/*
+### .visually-hidden
+Used to hide content visually but let them still be read by screen readers (removed from the page spacing)
+See http://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html
+*/
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+body:hover .visually-hidden a,
+body:hover .visually-hidden input,
+body:hover .visually-hidden button {
+    display: none;
+}
+
+/*
+## Clearing Floats
+
+### Clearfix
+Provide clearfix functionality
+See http://nicolasgallagher.com/micro-clearfix-hack/
+
+```
+<h1 class="title lg">No Clearfix</h1>
+<div style="background: #ddd; padding: 1em;">
+    <div style="float: left; background: #eee; padding: 1em;">Floated Content</div>
+</div>
+
+<h1 class="title lg clear">With Clearfix</h1>
+<div class="clearfix" style="background: #ddd; padding: 1em;">
+    <div style="float: left; background: #eee; padding: 1em;">Floated Content</div>
+</div>
+```
+*/
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+### Clearing siblings
+
+Simple classes to help with clearing previous sibling floats
+
+```
+
+<div class="clearfix padding: 1em;">
+    <div style="float: left;">Floated</div>
+    <div class="clear-right">Uncleared (wrong side)</div>
+    <div class="clear-left">Cleared</div>
+
+    <hr>
+
+    <div style="float: right;">Floated</div>
+    <div class="clear-left">Uncleared (wrong side)</div>
+    <div class="clear-right">Cleared</div>
+
+    <hr>
+
+    <div style="float: right;">Floated</div>
+    <div style="float: left;">Floated</div>
+    <div class="clear">Both cleared</div>
+</div>
+```
+*/
+.clear {
+    clear: both;
+}
+.clear-left {
+    clear: left;
+}
+.clear-right {
+    clear: right;
+}
+
+/*
+### Full Width
+
+Class that marks content as full width (e.g. to give a button full width).
+
+Requires 'display' to be defined as `inline-block` or `block`
+
+```
+<button class="button sm negative">I'm just a sad regular button</button>
+<button class="button xl positive full-width">Not me, I'm a happy wide button</button>
+```
+
+*/
+.full-width {
+    width: 100%;
+}
+
+@import 'vars';
+@import 'flexbox';
+@import 'mixins';
+
+/*
+
+ # rxApp
+
+This component is responsible for creating the HTML necessary for a common Encore layout. It builds out the main navigation, plus breadcrumbs and page titles.
+
+## Usage
+
+For apps that want to use the default Encore navigation, use the following HTML class structures placed inside your index.html file:
+
+```
+    <body>
+        <div class="rx-app">
+            <nav class="rx-app-menu">
+                <header class="site-branding">
+                    <h1 class="site-title">Encore</h1>
+                    <button class="collapsible-toggle btn-link">
+                        <div class="double-chevron"></div>
+                    </button>
+                    <div class="site-options">
+                        <a href="#" class="site-option">Logout</a>
+                    </div>
+                </header>
+                <nav class="rx-app-nav">
+                    <div class="nav-section nav-section-1">
+                        <h2 class="nav-section-title">Section One</h2>
+                        <div class="rx-app-nav rx-app-nav-level-1">
+                            <ul class="rx-app-nav-group">
+                                <li class="rx-app-nav-item active">
+                                    <a href="#" class="item-link">Link one</a>
+                                </li>
+                                <li class="rx-app-nav-item">
+                                    <a href="#" class="item-link">Link two</a>
+                                </li>
+                                <li class="rx-app-nav-item has-children">
+                                    <a href="#" class="item-link">Link three</a>
+                                    <div class="item-content">
+                                        <div class="item-directive">[Things like a search go here]</div>
+                                        <div class="item-children">
+                                            <div class="child-header">Subgroup Header</div>
+                                            <div class="rx-app-nav rx-app-nav-level-2">
+                                                <ul class="rx-app-nav-group">
+                                                    <li class="rx-app-nav-item active">
+                                                        <a href="#" class="item-link">Sub link 1</a>
+                                                    </li>
+                                                    <li class="rx-app-nav-item">
+                                                        <a href="#" class="item-link">Sub link 2</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <h2 class="nav-section-title">Section Two</h2>
+                        <div class="rx-app-nav rx-app-nav-level-2">
+                            <ul class="rx-app-nav-group">
+                                <rx-app-nav-item ng-repeat="item in items" item="item"></rx-app-nav-item>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </nav>
+            <div class="rx-app-content">
+                <div class="rx-page">
+                    <header class="page-header clearfix">
+                        <!--
+                            This uses the rxBreadcrumbs angular.js directive. For non-angular
+                            implementations, please see the rxBreadcrumbs template section in
+                            the CSS documentation.
+                        -->
+                        <rx-breadcrumbs></rx-breadcrumbs>
+                    </header>
+                    <div class="page-body">
+                        <!--
+                            This uses the rxNotifications angular.js directive. For non-angular
+                            implementations, please see the rxNotifications template section in
+                            the CSS documentation.
+                        -->
+                        <rx-notifications></rx-notifications>
+                        <div class="page-titles">
+                            <h2 class="page-title">Lorem Ipsum</h2>
+                            <h3 class="page-subtitle">Dolor Sit Amet</h3>
+                        </div>
+                        <div class="page-content clear">
+                            <p>Lorem ipsum dolor sit amet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+```
+
+ */
+.rx-app {
+    @navTransitionDuration: .2s;
+    @appMenuWidth: 300px;
+
+    min-height: 100%;
+    .flexbox-display();
+    .flexbox-direction(row);
+    background: @appBg;
+
+    .rx-app-content {
+        .flexbox(1 1 0);
+    }
+
+    .rx-app-menu {
+        .flexbox(0 0 @appMenuWidth);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 300;
+        background: @appMenuBg;
+        line-height: @appLineHeight;
+        padding-bottom: 10em;
+        position: relative;
+    }
+
+    .site-branding {
+        border-top: 1px solid #074285;
+        border-bottom: 1px solid #052953;
+        padding: 5px 20px;
+        overflow: hidden;
+        background: @siteBrandingBg;
+        position: relative;
+
+        .site-title {
+            float: left;
+        }
+        .site-options {
+            float: right;
+            font-size: .8em;
+            margin-top: 1px;
+
+            .site-option {
+                color: @menuLinkLightBlue;
+                display: inline-block;
+                margin-left: 1em;
+                &:hover,
+                &:focus {
+                    color: @white;
+                }
+            }
+        }
+
+        .collapsible-toggle {
+            position: absolute;
+            text-align: center;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 2em;
+            border-left: 1px solid #052953;
+            &:hover {
+                background: lighten(@siteBrandingBg, 10%);
+            }
+        }
+
+        .double-chevron {
+            font-size: 20px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+
+            &::before {
+                color: @menuLinkLightBlue;
+                content: "\00bb";
+            }
+
+            &.double-chevron-left::before {
+                content: "\00ab";
+            }
+
+            &:hover &::before {
+                color: @white;
+            }
+        }
+    }
+
+    &.collapsible {
+        .site-branding {
+            padding-right: calc(~"2em + 20px");
+        }
+    }
+
+    &.collapsed {
+        .rx-app-menu {
+            .flexbox(0 0 25px);
+            padding-bottom: 0;
+            position: relative;
+        }
+
+        .site-branding,
+        .collapsible-toggle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .site-title,
+        .site-options,
+        .rx-app-nav,
+        .rx-app-help {
+            display: none;
+        }
+    }
+
+    .rx-app-nav {
+        clear: both;
+
+        .nav-section {
+            padding-left: 5px;
+        }
+
+        .nav-section-title {
+            padding: 5px 15px;
+            font-size: 13px;
+        }
+
+        .nav-section-all {
+            background: #407610;
+            border-top: 1px solid #568c26;
+        }
+
+        .nav-section-highlight {
+            background: #0951a3;
+            border-top: 1px solid #00408f;
+        }
+    }
+
+    .rx-app-nav-item {
+        clear: both;
+
+        // common nav styles (inactive nav, no children)
+        .item-link {
+            background: #1a1a1a;
+            border-top: 1px solid #333333;
+            border-bottom: 1px solid #000000;
+            padding: 10px 4em 10px 15px;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            -webkit-transition: background @navTransitionDuration;
+            transition: background @navTransitionDuration;
+            position: relative;
+            &:hover,
+            &:focus {
+                background: #262626;
+                border-top: 1px solid #404040;
+                border-bottom: 1px solid #0d0d0d;
+            }
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+            }
+            &:after {
+                -webkit-transition: all @navTransitionDuration;
+                transition: all @navTransitionDuration;
+            }
+        }
+
+        &:not(.has-children) > .item-link:after {
+            right: 0;
+            top: 0;
+            border: transparent solid;
+            border-width: calc(~"5px + 1em") 6px;
+            border-right: 0;
+        }
+
+        // active nav, no children (blue bg, arrow right)
+        &.active:not(.has-children) > .item-link {
+            border-color: transparent;
+            background: #0E7FFF;
+            &:after {
+                right: -6px;
+                border-left-color: #0E7FFF;
+            }
+        }
+
+        // inactive nav, w/children (double arrow down)
+        &.has-children > .item-link:after {
+            font-size: 2em;
+            content: "\00bb"; // angle quotation mark, right (&raquo;)
+            -webkit-transform: rotate(90deg) scaleX(1);
+            transform: rotate(90deg) scaleX(1);
+            top: 50%;
+            line-height: 0;
+            right: .45em;
+        }
+
+        // active nav, w/children (double arrow up, gray bg)
+        &.active.has-children > .item-link {
+            border-top-color: #404040;
+            border-bottom-width: 0;
+            // used to show BG of arrow (because :after is rotated)
+            &:before {
+                width: 3em;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: #333;
+            }
+            &:after {
+                // flip arrow around
+                -webkit-transform: rotate(90deg) scaleX(-1);
+                transform: rotate(90deg) scaleX(-1);
+            }
+            .item-content {
+                border-bottom: 1px solid #000000;
+            }
+        }
+
+        .item-content {
+            background: #333;
+            padding: 10px;
+        }
+
+        .item-directive:not(.ng-hide) + .item-children {
+            margin-top: 10px;
+        }
+
+        .item-children {
+            padding: 10px;
+            background: #4d4d4c;
+        }
+
+        .child-header {
+            margin-bottom: 1em;
+        }
+
+        .current-search {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #9c9c9c;
+            font-size: 10px;
+            display: block;
+        }
+        .current-result {
+            color: #d5d5d3;
+            font-size: 18px;
+        }
+
+    }
+
+    .rx-app-nav-level-2 {
+        .item-link {
+            background: #666766;
+            border-top-color: #787878;
+            border-bottom-color: #595959;
+            font-size: 13px;
+
+            &:hover,
+            &:focus {
+                background: #595959;
+                border-top: 1px solid #737373;
+                border-bottom: 1px solid #404040;
+            }
+        }
+        .active:not(.has-children) > .item-link {
+            margin-right: -10px;
+        }
+        .active.has-children > .item-link {
+            background: #1a1a1a;
+            border-color: transparent;
+        }
+
+        .item-content {
+            background: #1a1a1a;
+            padding: 0 0 4px 4px;
+        }
+
+        .item-children {
+            padding: 0;
+        }
+    }
+
+    .rx-app-nav-level-3 .item-link {
+        background: #333333;
+        border-color: transparent;
+        padding: 5px 15px;
+
+        &:hover,
+        &:focus {
+            background: #404040;
+            border-color: transparent;
+        }
+    }
+    .rx-app-nav-level-3 .rx-app-nav-item {
+        &:first-child {
+            border-top: 3px solid #333;
+        }
+        .item-link:after {
+            border-top-width: 1em;
+            border-bottom-width: 1em;
+        }
+    }
+
+    .rx-app-search {
+        position: relative;
+        font-size: 14px;
+        color: #babab9;
+
+        // NOTE: We have to have this duplication because CSS doesn't like combining the placholder selectors
+        .placeholder() {
+           font-style: italic;
+           text-overflow: ellipsis;
+        }
+
+        ::-webkit-input-placeholder {
+            .placeholder();
+        }
+        ::-moz-placeholder {
+           .placeholder();
+        }
+        :-ms-input-placeholder {
+           .placeholder();
+        }
+
+        .search-input {
+            .box-sizing(border-box);
+            background: #4d4d4c;
+            border: 0;
+            width: 100%;
+            padding: 9px;
+            padding-right: 30px;
+            margin: 0;
+        }
+
+        .search-input.ng-invalid:focus {
+            outline-color: @menuRed;
+        }
+
+        .search-action {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 100%;
+            background: url(images/magnifying-glass.png) no-repeat 50% 50%;
+            border: 0;
+            opacity: 0.2;
+        }
+    }
+
+    .rx-app-help {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: @appMenuWidth;
+        background: @appHelpBg;
+        border-top: 1px solid @appHelpBorder;
+        line-height: 3em;
+        padding-bottom: 1px;
+        font-size: .8em;
+        text-shadow: 1px 1px 0px rgba(26, 26, 26, 0.2);
+
+        .rx-feedback .modal-link {
+            background: url(images/icon-feedback.png) no-repeat 20px calc(~"50% + 1px");
+            vertical-align: middle;
+            color: @menuLinkOrange;
+            padding: 0 21px 0 41px;
+            float: right;
+        }
+    }
+
+
+    // Page Styles
+
+    .page-header {
+        background: linear-gradient(to bottom, #e7e7e7 0%, #d6d6d6 100%);
+        border-bottom: 1px solid #bbb;
+    }
+
+    .page-body {
+        padding: 20px 30px 50px;
+        clear: both;
+
+        .page-titles {
+            float: left;
+
+            .page-title {
+                margin: 0;
+            }
+
+            .page-subtitle {
+                margin-top: 0;
+            }
+        }
+
+        .page-actions {
+            float: right;
+            margin: 0 0 2em 2em;
+        }
+    }
+}
+
+/*
+# rxBreadcrumbs
+
+They show your position within the site heirarchy.
+
+```
+<ol class="rx-breadcrumbs">
+    <li class="breadcrumb">
+        <span>
+            <a href="#" class="breadcrumb-name first">First Breadcrumb</a>
+        </span>
+    </li>
+    <li class="breadcrumb">
+        <span>
+            <a href="#" class="breadcrumb-name">Middle Breadcrumb</a>
+        </span>
+    </li>
+    <li class="breadcrumb">
+        <span>
+            <a href="#" class="breadcrumb-name :hover">Hovered Breadcrumb</a>
+        </span>
+    </li>
+    <li class="breadcrumb">
+        <span class="breadcrumb-name last">Last Breadcrumb</span>
+    </li>
+</ol>
+```
+*/
+
+.rx-breadcrumbs {
+    overflow: hidden;
+    border-style: solid;
+    border-color: #ccc;
+    float: left;
+
+    .breadcrumb {
+        float: left;
+
+        @breadcrumbHeight: 1.2em;
+        @breadcrumbArrowWidth: 9px;
+
+        .breadcrumb-name {
+            padding: @breadcrumbHeight/2 1em @breadcrumbHeight/2 2em;
+            font-size: 0.9em;
+            display: block;
+            color: #555;
+            position: relative;
+            text-decoration: none;
+            text-shadow: 0 1px 0 rgba(255,255,255,.5);
+            background: #ddd;
+        }
+        .breadcrumb-name.last {
+            background: transparent;
+        }
+
+        a::after,
+        a::before{
+            content: "";
+            position: absolute;
+            top: 50%;
+            margin-top: -@breadcrumbHeight;
+            border: 0 solid transparent;
+            border-width: @breadcrumbHeight 0 @breadcrumbHeight @breadcrumbArrowWidth;
+            right: -@breadcrumbArrowWidth;
+        }
+
+        a::after{
+            /* TODO add in border gradient to match nav background */
+            border-left-color: #ddd;
+            z-index: 2;
+        }
+        a::before{
+            border-left-color: #ccc;
+            right: -(@breadcrumbArrowWidth + 1);
+            z-index: 1;
+        }
+
+        .first {
+            padding-left: 1em;
+            background: #c8c8c8;
+        }
+        .first::after {
+            border-left-color: #c8c8c8;
+        }
+
+        a:hover {
+            background: #fff;
+        }
+        a:hover::after {
+            border-left-color: #fff;
+        }
+    }
+}
+@import 'vars';
+
+/*
+# Common button styles
+
+Buttons are sized using 'xl', 'lg', 'sm' and 'xs'
+
+ ```
+ <button class="button xl">Extra-large Button</button>
+ <button class="button lg">Large Button</button>
+ <button class="button">Default Button</button>
+ <button class="button sm">Small Button</button>
+ <button class="button xs">Tiny Button</button>
+ <button class="button positive">"Positive" Button</button>
+ <button class="button negative">"Negative" Button</button>
+ <button class="button" disabled>Disabled Button</button>
+ <a href="#" class="button">My Link Button</a>
+ ```
+ */
+ .button {
+    display: inline-block;
+    background: @buttonDefaultBg;
+    color: @buttonText;
+    border: 0;
+    font-size: 1.1em;
+    font-weight: 200;
+    padding: 7px 13px;
+    margin-bottom: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+    &:hover,
+    &:focus {
+        background: @buttonDefaultBgHover;
+        cursor: pointer;
+        // in case the buttons are created using the <a> tag
+        color: @buttonText;
+        text-decoration: none;
+    }
+
+    // Size Variations
+    &.xl {
+        font-size: 1.25em;
+        padding: 20px 30px;
+    }
+
+    &.lg {
+        font-size: 1.15em;
+        padding: 15px 26px;
+    }
+
+    &.sm {
+        padding: 5px 10px;
+        font-size: 1em;
+    }
+
+    &.xs {
+        padding: 3px 7px;
+        margin-bottom: 5px;
+        font-size: .9em;
+    }
+
+    // Color Variations
+    &[disabled] {
+        cursor: not-allowed;
+        color: @buttonDisabledText;
+        background: @buttonDisabledBg;
+    }
+
+    &.positive {
+        background: @buttonPositiveBg;
+        &:hover,
+        &:focus {
+            background: @buttonPositiveBgHover;
+        }
+    }
+
+    &.negative {
+        background: @buttonNegativeBg;
+        &:hover,
+        &:focus {
+            background: @buttonNegativeBgHover;
+        }
+    }
+
+
+/*
+# Spinner styles
+
+```
+<button class="button">
+    I have a spinner
+    <div class="spinner">
+        <i class="pos1"></i>
+        <i class="pos2"></i>
+        <i class="pos3"></i>
+    </div>
+</button>
+```
+*/
+    .spinner {
+        display: inline-block;
+        position: relative;
+        left: 3px;
+
+        i {
+            width: 5px;
+            height: 5px;
+            background: @buttonSpinnerBg;
+
+            border-radius: 100%;
+            display: inline-block;
+            -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+            animation: bouncedelay 1.4s infinite ease-in-out;
+            /* Prevent first frame from flickering when animation starts */
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+
+            &.pos1 {
+                -webkit-animation-delay: -0.32s;
+                animation-delay: -0.32s;
+            }
+
+            &.pos2 {
+                -webkit-animation-delay: -0.16s;
+                animation-delay: -0.16s;
+            }
+        }
+    }
+
+    @-webkit-keyframes bouncedelay {
+        0%, 80%, 100% { -webkit-transform: scale(0.0) }
+        40% { -webkit-transform: scale(1.0) }
+    }
+
+    @keyframes bouncedelay {
+        0%, 80%, 100% {
+            transform: scale(0.0);
+            -webkit-transform: scale(0.0);
+        } 40% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+    }
+}
+
+/*
+# Make buttons look like plain links
+
+```
+<button class="btn-link">Link</button>
+```
+*/
+.btn-link {
+    color: @linkColor;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+}
+thead th .btn-link {
+    color: @tableHeaderText;
+    &:hover,
+    &:focus {
+        color: @tableHeaderText;
+    }
+}
+/*
+ * rxFeedback
+ */
+.rx-feedback-form .feedback-description {
+    .field-label,
+    .field-input,
+    .feedback-textarea {
+        display: block;
+        width: 100%;
+        float: none;
+    }
+
+    .field-input {
+        top: 0;
+        margin-top: 5px;
+    }
+
+    .feedback-textarea {
+        height: 10em;
+    }
+}
+@import 'vars';
+
+.inputBorderPadding() {
+    border: 1px solid @inputBorder;
+    padding: 3px 5px;
+}
+
+
+/*
+## Form Fields
+
+field-prefix, field-suffix and field-description are all optional.
+
+```
+<div class="form-item">
+    <label class="field-label">
+        Monthly Cost:
+    </label>
+
+    <div class="field-content">
+        <span class="field-prefix">$</span>
+
+        <span class="field-input">
+            <!-- Replace with desired form field -->
+            <input type="text">
+        </span>
+
+        <span class="field-suffix">Million</span>
+
+        <span class="field-description">Any description goes here</span>
+    </label>
+</div>
+```
+
+### Fieldsets
+
+```
+<div class="form-item rx-form-fieldset">
+    <fieldset>
+        <legend class="field-legend">
+            Field Legend:
+        </legend>
+
+        <div class="field-input">
+            <!-- Add form inputs here -->
+        </div>
+
+        <span class="field-description">Description of Fields</span>
+    </fieldset>
+</div>
+```
+
+ */
+.rx-form {
+    margin: 15px 0 0;
+}
+
+.form-item {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+}
+
+.rx-form-fieldset > fieldset {
+    width: 100%;
+    .full-width .option-table {
+        width: 100%;
+    }
+}
+
+.form-description,
+.form-item {
+    margin-bottom: 15px;
+}
+
+.field-label,
+.field-legend, {
+    color: @subduedTitle;
+    font-size: 1.1em;
+    flex: 0 0 @fieldLabelWidth;
+}
+
+.field-content {
+    display: flex;
+    flex: 1 auto;
+
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+
+    .field-prefix,
+    .field-suffix {
+        font-size: 1.2em;
+    }
+    .field-prefix {
+        margin-right: 5px;
+    }
+    .field-suffix {
+        margin-left: 5px;
+    }
+
+    .field-description {
+        flex: 1 100%;
+        font-size: 0.8em;
+        font-style: italic;
+        margin-top: 5px;
+    }
+}
+
+/*
+## Input fields
+
+Any input field can be placed inside an element with a class of 'field-input'.
+
+```
+<span class="field-input">
+    <input type="text">
+</span>
+```
+
+```
+<span class="field-input">
+    <input type="checkbox">
+</span>
+```
+ */
+.field-input {
+    input,
+    select {
+        color: @inputColor;
+        font-size: 1.2em;
+        border-radius: 0;
+
+        &.ng-valid.ng-dirty {
+            border-color: @inputBorderValid;
+        }
+
+        &.ng-invalid.ng-dirty {
+            border-color: @inputBorderInvalid;
+        }
+    }
+
+    input,
+    .field-select {
+        background: @white;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    input {
+        width: @fieldInputWidth;
+        .inputBorderPadding;
+
+        &[type="number"] {
+            width: @fieldInputNumberWidth;
+        }
+
+        &[type="radio"],
+        &[type="checkbox"] {
+            width: auto;
+            max-width: none;
+            font-size: 1em;
+            vertical-align: middle;
+        }
+    }
+}
+
+/*
+ * @bugfix Input field is marked as invalid before a user has done anything on form
+ * @browsers FF
+ * @see http://stackoverflow.com/questions/17209057/firefox-draws-red-border-on-required-select-box
+ */
+.ng-pristine .field-input .ng-invalid-required {
+    box-shadow: none;
+}
+
+/*
+## Dropdowns
+Replace default UI of select fields and adds custom border/arrow
+
+```
+<span class="field-select">
+    <select>
+        <option value="1">Option #1</option>
+        <option value="2">Option #2</option>
+        <option value="3">Option #3</option>
+        <option value="4">Option #4</option>
+    </select>
+</span>
+```
+*/
+.field-select {
+    display: inline-block;
+    position: relative;
+    width: @fieldSelectWidth;
+
+    select {
+        width: 100%;
+        // make sure arrow can show through
+        background: transparent;
+        // Remove default arrow
+        -webkit-appearance: none;
+        // @bugfix FF doesn't like 'none'
+        // @see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
+        -moz-appearance: window;
+        position: relative;
+        z-index: 2;
+        .inputBorderPadding;
+    }
+
+    &:before {
+        content: ".";
+        width: 0;
+        height: 0;
+        font-size: 0;
+        display: block;
+        position: absolute;
+        border: 7px solid transparent;
+        border-top-color: @inputBorder;
+        border-bottom: none;
+        top: 50%;
+        margin-top: -4px;
+        right: 9px;
+    }
+}
+
+/*
+ * @bugfix Because of '-moz-appearance: window', the border/padding is removed from the select box.
+ * This adds it back
+ * @see http://stackoverflow.com/questions/5912791/how-to-remove-the-arrow-from-a-select-tag-in-firefox
+ */
+ @-moz-document url-prefix() {
+    .field-select {
+        .inputBorderPadding;
+    }
+}
+
+.option-table {
+    // we want the table to not look ugly when stretched across the screen
+    width: auto;
+    // we also want a semi-consistent width
+    min-width: 40em;
+
+    td:not(.empty-data) {
+        // remove default padding from td's so that we can make the label take up the full room
+        padding: 0;
+    }
+    label {
+        // add padding to labels so they take up the entire cell's space
+        display: block;
+        padding: @tableCellPadding;
+        cursor: pointer;
+    }
+    .option-table-input {
+        text-align: center;
+        line-height: 0;
+    }
+    .current td {
+        color: #3AB661;
+    }
+    // @note KL: I'd like to stick with just adding the background to the <tr>, but
+    // we need to make the selector more specific to override the table-stripe styles.
+    .selected td {
+        background: @tableRowSelected;
+        border-color: #bad4bb;
+        // this 'double' makes it so that the border-color applies to the top border as well
+        // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
+        border-style: double;
+    }
+}
+
+/*
+## Submit buttons
+
+```
+<div class="form-actions">
+    <button class="submit form-action" type="submit" disabled="disabled">
+        Submit Form (Disabled)
+    </button>
+
+    <button class="submit form-action" type="submit">
+        Submit Form
+    </button>
+</div>
+
+```
+*/
+
+.form-actions {
+    padding: 20px 0;
+}
+
+.form-action {
+    // override default button styles
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    font-size: 1.2em;
+
+    &.submit {
+        color: @actionGreen;
+        margin-right: 1em;
+        &:hover,
+        &:focus {
+            color: @actionGreenHover;
+        }
+        &[disabled="disabled"] {
+            color: @subduedText;
+            cursor: not-allowed;
+        }
+    }
+    &.cancel {
+        color: @subduedText;
+        &:hover,
+        &:focus {
+            color: @subduedTextHover;
+        }
+    }
+}
+@import 'mixins';
+@import 'vars';
+
+/**
+ * rxModalAction.less
+ *
+ * Stylesheet for modals, repurposed from the modal component of http://angular-ui.github.io/bootstrap
+ *
+ * @version 1.0
+ * @author Ernie Hsiung
+ */
+
+.modal,
+.modal-backdrop {
+    .transition();
+    .opacity(0);
+    &.fade.in {
+        .opacity(1);
+    }
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background: #000;
+    &.fade.in {
+        .opacity(0.4);
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    z-index: 1050;
+    width: 560px;
+    margin-left: -295px;
+    padding-right: @modalPadding;
+    background: @white;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    .box-shadow(0 3px 7px rgba(0, 0, 0, 0.3));
+    .background-clip();
+    outline: none;
+}
+
+.modal-header {
+    padding: @modalPadding;
+    padding-right: 0;
+    border-bottom: 1px solid @pageDivider;
+    position: relative;
+
+    .modal-title {
+        line-height: 1;
+        font-size: 1.75em;
+        margin: 0;
+    }
+    .modal-subtitle {
+        line-height: 1.5;
+        font-size: 1em;
+        font-wieght: bold;
+        color: @subduedTitle;
+        margin: 0;
+    }
+    .modal-close {
+        position: absolute;
+        top: @modalPadding;
+        right: 0;
+        font-size: 2em;
+        width: 1em;
+        height: 1em;
+        text-align: center;
+        color: @closeText;
+        &:hover,
+        &:focus {
+            color: @closeTextHover;
+        }
+
+        &:before {
+            content: '\00D7';
+            position: absolute;
+            line-height: 0;
+            right: 0;
+            width: 1em;
+        }
+    }
+}
+.modal-body {
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: @modalBodyPadding @modalPadding;
+
+    .loading {
+        margin: 0 auto;
+        width: 1em;
+    }
+
+    .form-radio {
+        border: 0;
+    }
+
+    .rx-form.modal-form {
+        margin: 0;
+    }
+}
+
+.modal-footer {
+    padding: @modalPadding;
+    border-top: 1px solid @pageDivider;
+}
+
+@media (max-width:480px) {
+    @padding: 10px;
+    .modal {
+        position: absolute;
+        top: @padding;
+        left: @padding;
+        right: @padding;
+    }
+    .modal-header .close{
+        padding: @padding;
+        margin: -@padding;
+    }
+}
+@import 'mixins';
+
+/*
+# rxNotify
+
+Note: **Styledocco will not display the images associated with the notification bars.** Please reference the main Encore demo to view this. The class `rx-notifications` is a container div, and is required.
+
+In the second example we added `<button class="notification-dismiss btn-link">&times;</button>` to add a dismiss marker. If you are not using Encore UI's angular.js directives, it's up to you to flesh out this functionality.
+
+```
+<div class="rx-notifications">
+    <div class="rx-notification notification-error">
+        Error Message
+    </div>
+
+    <div class="rx-notification notification-error">
+        Error Message
+        <button class="notification-dismiss btn-link">&times;</button>
+    </div>
+
+    <div class="rx-notification notification-info">
+        Informational Message
+    </div>    
+
+    <div class="rx-notification notification-info notification-loading">
+        <div class="rx-spinner"></div>
+        Loading
+    </div>
+
+    <div class="rx-notification notification-success">
+        Success Message
+    </div>
+
+    <div class="rx-notification notification-warning">
+        Warning Message
+    </div>
+</div>
+```
+*/
+
+.rx-notifications {
+    margin-bottom: 1.5em;
+
+    .rx-notification {
+        clear: both;
+        font-weight: 800;
+        font-size: 1.2em;
+        padding: 10px 50px;
+        margin-bottom: 2px;
+        position: relative;
+        background: no-repeat 18px 50%;
+
+        &.notification-success {
+            background-color: #ddffd3;
+            background-image: url('images/green-checkmark-circled.png');
+            color: #45ad26;
+        }
+        &.notification-info {
+            background-color: #83c9fe;
+            background-image: url('images/info-circled.png');
+            color: #1672b9;
+        }
+        &.notification-warning {
+            background-color: #ffa61b;
+            background-image: url('images/warning-triangle.png');
+            color: #fff;
+        }
+        &.notification-error {
+            background-color: #f21a1a;
+            background-image: url('images/error-stop.png');
+            color: #fff;
+        }
+        &.notification-loading {
+            // Hide icon since it's replaced by spinner
+            background-image: none;
+            .rx-spinner {
+                position: absolute;
+                left: 19px;
+                top: 50%;
+                margin-top: -9px;
+            }
+        }
+    }
+
+    .notification-dismiss {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        padding: 0 15px;
+        content: '\00D7';
+        .opacity(.2);
+        color: #000;
+        &:hover,
+        &:focus {
+            .opacity(.5);
+            text-decoration: none;
+        }
+    }
+}
+/*
+ # rxPaginate
+
+Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagination-next` and `pagination-last` to disable navigation links.
+
+```
+<table class="table-striped">
+    <thead>
+        <tr>
+            <th class="column-title" style="width:10em;">Name</th>
+            <th class="column-title">OS</a>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Server 1</td>
+            <td>Red Hat Enterprise Linux 6.4</td>
+        </tr>
+        <tr>
+            <td>Server 2</td>
+            <td>CentOS 6.4</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr class="paginate-area">
+            <td colspan="12">
+                <div class="rx-paginate">
+                    <ul class="pagination">
+                        <li class="pagination-first disabled">
+                            <a class="ng-hide">First</a>
+                        </li>
+                        <li class="pagination-prev disabled">
+                            <a>« Prev</a>
+                        </li>
+                        <li class="pagination-page">
+                            <a>1</a>
+                        </li>
+                        <li class="pagination-page">
+                            <a>2</a>
+                        </li>
+                        <li class="pagination-page">
+                            <a>3</a>
+                        </li>
+                        <li class="pagination-page active">
+                            <a>4</a>
+                        </li>
+                        <li class="pagination-page page-number-last">
+                            <a>5</a>
+                        </li>
+                        <li class="pagination-next">
+                            <a>Next »</a>
+                        </li>
+                        <li class="pagination-last">
+                            <a>Last</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+```
+
+ */
+
+.paginate-area {
+    text-align: center;
+    td {
+        padding: 0;
+        background: #fff;
+    }
+}
+
+.rx-paginate {
+    .pagination {
+        display: inline-block;
+        padding-left: 0;
+    }
+
+    .pagination li {
+        display: inline;
+    }
+
+    .pagination li a {
+        cursor: pointer;
+    }
+
+    .pagination li a,
+    .pagination li span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        text-decoration: none;
+        background: #fff;
+        border-top: 2px solid transparent;
+        color: #ababab;
+    }
+
+    .pagination > li:first-child > a,
+    .pagination > li:first-child > span {
+        margin-left: 0;
+    }
+
+    .pagination > li:last-child > a,
+    .pagination > li:last-child > span {
+    }
+
+    .pagination > li > a:hover,
+    .pagination > li > span:hover,
+    .pagination > li > a:focus,
+    .pagination > li > span:focus {
+        background: #eee;
+    }
+
+    .pagination > .active > a,
+    .pagination > .active > span,
+    .pagination > .active > a:hover,
+    .pagination > .active > span:hover,
+    .pagination > .active > a:focus,
+    .pagination > .active > span:focus {
+        z-index: 2;
+        cursor: default;
+        border-top-color: #000;
+        color: #000;
+        background: #fff;
+    }
+
+    .pagination .disabled > span,
+    .pagination .disabled > span:hover,
+    .pagination .disabled > span:focus,
+    .pagination .disabled > a,
+    .pagination .disabled > a:hover,
+    .pagination .disabled > a:focus {
+        color: #999;
+        cursor: not-allowed;
+        background-color: #fff;
+    }
+
+    .pagination-lg > li > a,
+    .pagination-lg > li > span {
+        padding: 10px 16px;
+        font-size: 18px;
+    }
+
+    .pagination-sm > li > a,
+    .pagination-sm > li > span {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+/*
+ * rxSortableColumn
+ */
+.rx-sortable-column {
+    position: relative;
+
+    .sort-action {
+        display: block;
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        &:focus {
+            // since we underline on focus, we can remove the outline rectangle that sticks around
+            outline: none;
+        }
+    }
+
+    .sort-icon {
+        display: block;
+        height: 0;
+        width: 0;
+        border: solid transparent;
+        border-width: 6px 5px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+
+        &.asc {
+            margin-top: -9px;
+            border-bottom-color: #4a4a4a;
+        }
+        &.desc {
+            margin-top: -3px;
+            border-top-color: #4a4a4a;
+        }
+    }
+}
+@import 'vars';
+
+/*********************************************************
+ *  CSS3 Animation spinner
+ *
+ *  Based on: http://cssdeck.com/labs/css3-animation-spinner
+ *  Copyright 2013 - birkof.ro
+ *********************************************************/
+.rx-spinner {
+    background-color: transparent;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-radius: 150px;
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-bottom: 3px;
+    vertical-align: middle;
+    -webkit-animation: spin .8s infinite linear;
+    -moz-animation: spin .8s infinite linear;
+    -ms-animation: spin .8s infinite linear;
+    -o-animation: spin .8s infinite linear;
+    animation: spin .8s infinite linear;
+}
+.rx-spinner.dark {
+    border-bottom-color: @appTextColor;
+    border-right-color: @appTextColor;
+}
+.rx-spinner.mini {
+    border-width: 2px;
+    width: 4px;
+    height: 4px;
+}
+.rx-spinner.small {
+    border-width: 2px;
+    width: 8px;
+    height: 8px;
+}
+.rx-spinner.large {
+    border-width: 3px;
+    width: 22px;
+    height: 22px;
+}
+.rx-spinner.extra-large {
+    border-width: 4px;
+    width: 32px;
+    height: 32px;
+}
+@-webkit-keyframes spin { /* Safari and Chrome */
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes spin { /* Firefox */
+    0% { -moz-transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); }
+}
+@-ms-keyframes spin { /* IE */
+    0% { -ms-transform: rotate(0deg); }
+    100% { -ms-transform: rotate(360deg); }
+}
+@-o-keyframes spin { /* Opera */
+    0% { -o-transform: rotate(0deg); }
+    100% { -o-transform: rotate(360deg); }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@import 'vars';
+
+/*
+
+# Angular-UI Tabs
+
+Provides styling for the Angular-UI tab HTML
+
+```
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a>Bacon Ipsum</a>
+        </li>
+        <li>
+            <a>Veggie Ipsum</a>
+        </li>
+        <li>
+            <a>Cat Ipsum</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <p>First Tab Content. Bacon ipsum dolor sit amet salami jowl corned beef, andouille flank tongue ball tip kielbasa pastrami tri-tip meatloaf short loin beef biltong. Cow bresaola ground round strip steak fatback meatball shoulder leberkas pastrami sausage corned beef t-bone pork belly drumstick.</p>
+        </div>
+        <div class="tab-pane">
+            <p>Second tab content. Veggies sunt bona vobis, proinde vos postulo esse magis grape pea sprouts horseradish courgette maize spinach prairie turnip jícama coriander quandong gourd broccoli seakale gumbo. Parsley corn lentil zucchini radicchio maize burdock avocado sea lettuce. Garbanzo tigernut earthnut pea fennel.</p>
+        </div>
+        <div class="tab-pane">
+            <p>Cat ipsum dolor sit amet, hunt anything that moves or hopped up on goofballs hide when guests come over. Hide when guests come over intrigued by the shower, or stare at ceiling climb leg for stretch and use lap as chair. Hunt anything that moves flop over, leave dead animals as gifts for chase imaginary bugs, chase mice for stare at ceiling yet hopped up on goofballs.</p>
+        </div>
+    </div>
+</div>
+```
+*/
+.nav-tabs {
+    display: flex;
+    border-bottom: 9px solid #4480c1;
+
+    li {
+        flex: 0 0 auto;
+        font-size: 14px;
+    }
+
+    a {
+        display: block;
+        background: #3f6085;
+        color: #ccc;
+        padding: 10px 20px;
+
+        .subdued {
+            color: @subduedTextHover;
+        }
+
+        &:hover:not(.active),
+        &:focus:not(.active) {
+            cursor: pointer;
+            color: @white;
+            text-decoration: none;
+
+            .subdued {
+                color: @subduedText;
+            }
+        }
+    }
+
+    .active a {
+        background: #4480c1;
+        color: @white;
+
+        .subdued {
+            color: @subduedText;
+        }
+    }
+}
+
+.tab-pane {
+    clear: both;
+    display: none;
+    background: @white;
+    padding: 10px;
+
+    &.active {
+        display: block;
+    }
+
+    // If the title is the first part of the tab-pane, remove its top border so there isn't so much space
+    .title:first-child {
+        margin-top: 0;
+    }
+}
+@import 'vars';
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: -1px;
+    display: none;
+    list-style: none;
+    background: @white;
+    border: 1px solid #ccc;
+    padding: 6px 0;
+
+    a {
+        display: block;
+        margin: 0;
+        padding: 5px 10px;
+        color: @inputColor;
+    }
+    .active a {
+        background: @optionHighlightBg;
+        color: @white;
+    }
+}

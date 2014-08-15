@@ -467,7 +467,7 @@ angular.module('demoApp')
         ],
         "docs": {
             "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/unstable.svg\" alt=\"unstable\" title=\"\" /></a></p>\n\n<p>Service for managing user session in encore-ui.</p>",
-            "js": "function rxSessionCtrl ($scope, Session) {\n\n    $scope.isAuthenticated = function () {\n        alert(Session.isAuthenticated());\n    };\n}\n",
+            "js": "function rxSessionCtrl ($scope, Session) {\n    $scope.isAuthenticated = function () {\n        alert(Session.isAuthenticated());\n    };\n}\n",
             "html": "<div ng-controller=\"rxSessionCtrl\">\n    <button ng-click=\"isAuthenticated()\" class=\"button\">Is Authenticated</button>\n</div>\n"
         }
     },
