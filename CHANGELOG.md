@@ -1,3 +1,21 @@
+<a name="1.0.7"></a>
+### 1.0.7 (2014-08-15)
+
+
+#### Bug Fixes
+
+* **rxBreadCrumb:** removed unnecessary expression from template ([070f5b21](git@github.com:rackerlabs/encore-ui/commit/070f5b213290786fad4a43dfb7a7ee7f83a41029), closes [#448](git@github.com:rackerlabs/encore-ui/issues/448))
+* **rxCapitalize:** Don't fail on non-string inputs ([b14a2c7f](git@github.com:rackerlabs/encore-ui/commit/b14a2c7f835f96bcdeceaf9e9b1a5f683bf2926c), closes [#454](git@github.com:rackerlabs/encore-ui/issues/454))
+* **rxFeedbackSvc:** setEndpoint wasn't updating the api attribute ([6597a0d6](git@github.com:rackerlabs/encore-ui/commit/6597a0d6ebdb584b83c086256c7ef1d74cd8f750), closes [#308](git@github.com:rackerlabs/encore-ui/issues/308))
+* **rxForm:** Ensure strings come out of `getContent` ([f8b49bd4](git@github.com:rackerlabs/encore-ui/commit/f8b49bd40c27b370ed392fd6af6a2dffc0f7b372), closes [#294](git@github.com:rackerlabs/encore-ui/issues/294))
+* **rxPage:** Ensure document title updates if `scope.title` changes ([fbfcee00](git@github.com:rackerlabs/encore-ui/commit/fbfcee00b0e91416da60d65d81abba47daea4838), closes [#447](git@github.com:rackerlabs/encore-ui/issues/447))
+
+
+#### Features
+
+* **sourcemap:** Add a CSS source map for the demo page ([bbed39db](git@github.com:rackerlabs/encore-ui/commit/bbed39dbdea8d0de0526f9d2f1ebd257bf5382fb), closes [#158](git@github.com:rackerlabs/encore-ui/issues/158))
+
+
 <a name="1.0.6"></a>
 ### 1.0.6 (2014-08-12)
 
