@@ -1,6 +1,5 @@
 var demoPage = require('../../../utils/demo.page.js');
 var rxFormPage = require('../rxForm.page.js').rxForm;
-var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('rxForm', function () {
