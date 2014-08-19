@@ -4,14 +4,13 @@ var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('rxSortableColumn', function () {
-    var ptor = protractor.getInstance();
     var nameColumn = null;
     var roleColumn = null;
 
     before(function () {
         demoPage.go('#/component/rxSortableColumn');
-        var nameSelector = ptor.findElement(protractor.By.css('rx-sortable-column[sort-property="name"]'));
-        var roleSelector = ptor.findElement(protractor.By.css('rx-sortable-column[sort-property="jobTitle"]'));
+        var nameSelector = $('rx-sortable-column[sort-property="name"]');
+        var roleSelector = $('rx-sortable-column[sort-property="jobTitle"]');
         nameColumn = rxSortableColumn.initialize(nameSelector);
         roleColumn = rxSortableColumn.initialize(roleSelector);
     });

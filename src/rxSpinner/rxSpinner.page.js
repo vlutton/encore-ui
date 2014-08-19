@@ -5,7 +5,7 @@ exports.rxSpinner = Page.create({
     // Elements
     rxSpinnerElement: {
         get: function () {
-            return this.findElement(this.by.id('rxSpinnerElement'));
+            return element(by.id('rxSpinnerElement'));
         }
     }
 });

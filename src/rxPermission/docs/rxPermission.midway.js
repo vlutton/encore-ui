@@ -4,7 +4,6 @@ var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('rxPermission', function () {
-    var ptor = protractor.driver;
 
     before(function () {
         demoPage.go('#/component/rxPermission');

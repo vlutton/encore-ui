@@ -7,8 +7,7 @@ describe('rxPaginate', function () {
 
     before(function () {
         demoPage.go('#/component/rxPaginate');
-        var ptor = protractor.getInstance();
-        pagination = pagination.initialize(ptor.findElement(protractor.By.css('div.rx-paginate')));
+        pagination = pagination.initialize($('div.rx-paginate'));
     });
 
     it('should jump forward to page 7 using pagination', function () {
