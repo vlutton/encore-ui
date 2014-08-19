@@ -4,18 +4,15 @@ describe('Directive: rxButton', function () {
         '<rx-button ' +
             'toggle-msg="Authenticating" ' +
             'default-msg="Login" ' +
-            'toggle="status.loading">' +
+            'toggle="status.loading" ' +
+            'disable="status.disable">' +
         '</rx-button>';
 
     beforeEach(function () {
         module('encore.ui.rxButton');
         module('templates/rxButton.html');
 
-        inject(function ($rootScope, $compile, $templateCache) {
-            var template = $templateCache.get('templates/rx-button.html');
-
-            $templateCache.put('templates/rxButton.html', template);
-
+        inject(function ($rootScope, $compile) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
@@ -47,11 +44,24 @@ describe('Directive: rxButton', function () {
         var button = getButton(el);
         expect(button.hasClass('ng-hide')).to.be.false;
 
-        scope.status = { loading: true };
+        scope.status = { loading: true, disable: false };
         scope.$digest();
         
         expect(button.text().trim()).to.eq('Authenticating');
         expect(button.find('div').hasClass('ng-hide')).to.be.false;
         expect(button.attr('disabled')).to.eq('disabled');
+    });
+
+    it('should disable the button when `disable` changes', function () {
+        var button = getButton(el);
+        expect(button.hasClass('ng-hide')).to.be.false;
+
+        scope.status = { loading: false, disable: false };
+        scope.$digest();
+        expect(button.attr('disabled'), 'Before setting `disable`').to.be.undefined;
+        
+        scope.status.disable = true;
+        scope.$digest();
+        expect(button.attr('disabled'), 'After setting `disable`').to.eq('disabled');
     });
 });

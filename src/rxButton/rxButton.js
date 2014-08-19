@@ -11,6 +11,7 @@ angular.module('encore.ui.rxButton', [])
     * @param {String} loadingMsg - Text to be displayed when an operation is in progress.
     * @param {String} defaultMsg - Text to be displayed by default an no operation is in progress.
     * @param {Boolean} toggle - When true, the button will display the loading text.
+    * @param {Boolean} disable - When true, the button will be disabled.
     */
     .directive('rxButton', function () {
         return {
@@ -19,7 +20,8 @@ angular.module('encore.ui.rxButton', [])
             scope: {
                 toggleMsg: '@',
                 defaultMsg: '@',
-                toggle: '='
+                toggle: '=',
+                disable: '=?',
             }
         };
     });
