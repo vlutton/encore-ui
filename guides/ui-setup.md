@@ -44,6 +44,14 @@ Additionally, you could allow Protractor to manage this for you, using [Protract
 
 Additionally, you could allow Protractor to manage this for you, using [Protracto's built-in `webdriver-manager`](https://github.com/angular/protractor/blob/master/docs/server-setup.md#standalone-selenium-server).
 
+5. Get a local Selenium server running:
+
+    * Mac
+     - `brew install selenium-server-standalone`
+     - `selenium-server`
+
+Additionally, you could allow Protractor to manage this for you, using [Protracto's built-in `webdriver-manager`](https://github.com/angular/protractor/blob/master/docs/server-setup.md#standalone-selenium-server).
+
 ## Initial Encore Build
 
 If you haven't already, clone the Encore repo.
