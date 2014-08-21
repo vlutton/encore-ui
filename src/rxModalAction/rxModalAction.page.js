@@ -5,7 +5,7 @@ exports.rxModalAction = Page.create({
     // Elements
     rxModalActionElement: {
         get: function () {
-            return this.findElement(this.by.id('rxModalActionElement'));
+            return element(by.id('rxModalActionElement'));
         }
     }
 });

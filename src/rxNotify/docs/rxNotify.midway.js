@@ -4,7 +4,6 @@ var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('rxNotify', function () {
-    var ptor = rxNotifyPage.driver;
 
     before(function () {
         demoPage.go('#/component/rxNotify');

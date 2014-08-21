@@ -5,22 +5,19 @@ var rxSortableColumn = {
 
     btnSort: {
         get: function () {
-            return this.rootElement.findElement(this.by.css('.sort-action'));
+            return this.rootElement.$('.sort-action');
         }
     },
 
     imgSortIcon: {
         get: function () {
-            return this.rootElement.findElement(this.by.css('.sort-icon'));
+            return this.rootElement.$('.sort-icon');
         }
     },
 
     name: {
         value: function () {
-            return this.rootElement.findElement(this.by.css('.sort-action .ng-scope'))
-                .getText().then(function (columnText) {
-                    return columnText;
-                });
+            return this.rootElement.$('.sort-action .ng-scope').getText();
         }
     },
 

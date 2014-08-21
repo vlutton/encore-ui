@@ -5,7 +5,7 @@ exports.rxPermission = Page.create({
     // Elements
     rxPermission: {
         get: function () {
-            return this.findElement(this.by.css('rx-permission'));
+            return $('rx-permission');
         }
     }
 });

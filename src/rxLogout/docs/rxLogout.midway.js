@@ -17,7 +17,6 @@ describe('rxLogout', function () {
 
     it('should redirect to logout/login page on click', function () {
         rxLogout.logout();
-
         expect(demoPage.currentUrl).to.eventually.contain('login');
     });
 });

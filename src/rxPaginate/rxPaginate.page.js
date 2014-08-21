@@ -5,11 +5,11 @@ var _ = require('lodash');
 var rxPaginate = {
 
     lnkCurrentPage: {
-        get: function () { return this.rootElement.findElement(this.by.css('.pagination .active a')); }
+        get: function () { return this.rootElement.$('.pagination .active a'); }
     },
 
     tblPagination: {
-        get: function () { return this.rootElement.findElements(this.by.css('.pagination li a')); }
+        get: function () { return this.rootElement.$$('.pagination li a'); }
     },
 
     jumpToPage: {
@@ -37,12 +37,8 @@ var rxPaginate = {
                     }
                 } else {
                     // Our target page is somewhere in the available pages list.
-                    return page.tblPagination.then(function (pagination) {
-                        // pageIndex + 2 will offset the ["First", "Prev"] links.
-                        return pagination[pageIndex + 2].then(function (page) {
-                            page.click();
-                        });
-                    });
+                    // pageIndex + 2 will offset the ["First", "Prev"] links.
+                    return page.tblPagination.get(pageIndex + 2).click();
                 }
             });
         }
@@ -51,22 +47,14 @@ var rxPaginate = {
     firstPage: {
         value: function () {
             this.checkForInvalidFirstPage();
-            return this.tblPagination.then(function (pages) {
-                return pages[0].then(function (firstPage) {
-                    firstPage.click();
-                });
-            });
+            return this.tblPagination.first().click();
         }
     },
 
     previousPage: {
         value: function () {
             this.checkForInvalidFirstPage();
-            return this.tblPagination.then(function (pages) {
-                return pages[1].then(function (previousPage) {
-                    previousPage.click();
-                });
-            });
+            return this.tblPagination.get(1).click();
         }
     },
 
@@ -74,9 +62,7 @@ var rxPaginate = {
         value: function () {
             this.checkForInvalidLastPage();
             return this.tblPagination.then(function (pages) {
-                return pages[pages.length - 2].then(function (nextPage) {
-                    nextPage.click();
-                });
+                pages[pages.length - 2].click();
             });
         }
     },
@@ -84,20 +70,14 @@ var rxPaginate = {
     lastPage: {
         value: function () {
             this.checkForInvalidLastPage();
-            return this.tblPagination.then(function (pages) {
-                return _.last(pages).then(function (lastPage) {
-                    lastPage.click();
-                });
-            });
+            return this.tblPagination.get(-1).click();
         }
     },
 
     getCurrentPageNumber: {
         value: function () {
-            return this.lnkCurrentPage.then(function (currentPage) {
-                return currentPage.getText().then(function (text) {
-                    return parseInt(text, 10);
-                });
+            return this.lnkCurrentPage.getText().then(function (text) {
+                return parseInt(text, 10);
             });
         }
     },
@@ -105,37 +85,24 @@ var rxPaginate = {
     getPageNumbers: {
         value: function () {
             // Return a list of page numbers available to paginate to.
-            var pages = [];
-            var css = 'a[ng-click$="pageNumber = n"]';
-            return this.driver.findElements(this.by.css(css)).then(function (pageNumbers) {
-                _.forEach(pageNumbers, function (pageNumber) {
-                    return pageNumber.then(function (number) {
-                        return number.getText().then(function (n) {
-                            pages.push(parseInt(n, 10));
-                        });
-                    });
+            return $$('a[ng-click$="pageNumber = n"]').map(function (pageNumber) {
+                return pageNumber.getText().then(function (n) {
+                    return parseInt(n, 10);
                 });
-                return pages;
             });
         }
     },
 
     jumpToLowestAvailablePage: {
         value: function () {
-            return this.tblPagination.then(function (pagination) {
-                return pagination[2].then(function (lowestLink) {
-                    lowestLink.click();
-                });
-            });
+            return this.tblPagination.get(2).click();
         }
     },
 
     jumpToHighestAvailablePage: {
         value: function () {
             return this.tblPagination.then(function (pagination) {
-                return pagination[pagination.length - 3].then(function (highestLink) {
-                    highestLink.click();
-                });
+                return pagination[pagination.length - 3].click();
             });
         }
     },
@@ -161,7 +128,7 @@ var rxPaginate = {
                 pageNumber = pageNumber || 'any higher number';
                 return page.getPageNumbers().then(function (pageNumbers) {
                     if (_.last(pageNumbers) == currentPage) {
-                        // We are at the last page, and we still need to go higher.                        
+                        // We are at the last page, and we still need to go higher.
                         var message = pageNumber + ' exceeds max page of ' + _.last(pageNumbers);
                         page.NoSuchPageException.thro(message);
                     }

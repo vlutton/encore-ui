@@ -5,7 +5,7 @@ exports.rxForm = Page.create({
     // Elements
     rxFormInput: {
         get: function () {
-            return this.findElement(this.by.id('volumeName'));
+            return $('rx-form-item[label="Volume Name"]');
         }
     }
 });
