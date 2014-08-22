@@ -30,6 +30,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 
             return false;
         },
+        childHeader: '<strong class="current-search">Current Account:</strong>' +
+            '<span class="current-result">#{{route.current.pathParams.accountNumber}}</span>',
         children: [
             {
                 href: '/accounts/{{accountNumber}}',
