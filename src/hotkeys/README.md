@@ -6,7 +6,19 @@ Angular-hotkeys was chosen as the solution for hotkeys from within Encore-UI app
 
 ## Global Shortcuts
 
-Currently there is only one global shortcut key defined (`ctrl+h`). This will collapse/expand the main menu on any page. More keys can be added as need for them is identified (suggestions welcome!).
+Currently there is only one global shortcut key defined (`h`). This will collapse/expand the main menu on any page. More keys can be added as need for them is identified (suggestions welcome!).
+
+## Shortcut Keys
+
+Because browsers and operating systems have a long list of defined shortcut keys, it can be difficult to find a keybinding that isn't already taken. When choosing a shortcut key for your app, you can avoid most conflicts by simple leaving off the modifier key (e.g. `ctrl`).
+
+For Encore, the best practice is to use a single letter for your keystroke. For example, the global key to show/hide the rxApp menu is simply `h`.
+
+If you'll be defining multiple shortcuts related to a specific set of actions, consider a combination of two letters, where the first letter is the same for all keystrokes. For example, an account menu might have the following shortcuts:
+
+- `a` `n` Creates a new account
+- `a` `v` Views the selected account
+- `a` `d` Deletes the selected account
 
 ## Identifying shortcut keys
 

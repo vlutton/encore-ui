@@ -428,7 +428,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 
             if (scope.collapsibleNav) {
                 hotkeys.add({
-                    combo: 'ctrl+h',
+                    combo: 'h',
                     description: 'Show/hide the main menu',
                     callback: function () {
                         scope.collapsedNav = !scope.collapsedNav;
