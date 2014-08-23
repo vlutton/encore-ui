@@ -43,7 +43,7 @@
         "it": false,
         "jQuery": false,
         "module": false,
-        "moment": false,
+        "moment": true,
         "protractor": true,
         "require": false,
         "runs": true,
