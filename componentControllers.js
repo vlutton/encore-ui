@@ -201,7 +201,8 @@ function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
 /*jshint unused:false*/
 function rxButtonCtrl ($scope, $timeout) {
     $scope.status = {
-        loading: false
+        loading: false,
+        disable: true
     };
 
     $scope.login = function () {
@@ -212,6 +213,7 @@ function rxButtonCtrl ($scope, $timeout) {
         }, 4000);
     };
 }
+
 
 /*jshint unused:false*/
 
