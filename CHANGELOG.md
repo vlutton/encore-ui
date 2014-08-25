@@ -1,3 +1,21 @@
+<a name="1.1.0"></a>
+## 1.1.0 (2014-08-25)
+
+
+#### Bug Fixes
+
+* **hotkeys:** changed `ctrl+h` to `h` to avoid FF conflict; Fix #462 ([7f139344](git@github.com:rackerlabs/encore-ui/commit/7f139344d859065e2c6b96ee338aad62eff4fd55))
+* **rxApp:**
+  * Grammar fix :( ([dc6820f7](git@github.com:rackerlabs/encore-ui/commit/dc6820f7ae04b110e58afbfaec89fd3d0765771f))
+  * Addresses issue #464 / EN-1160 ([05ec363f](git@github.com:rackerlabs/encore-ui/commit/05ec363fb14dadeae78ecc2c566b06ab3f87af5c))
+
+
+#### Features
+
+* **accountNumber:** Add account number to Account nav listing ([7c7f679a](git@github.com:rackerlabs/encore-ui/commit/7c7f679a398fb15d760a8c4fd49670d612ae05f2), closes [#474](git@github.com:rackerlabs/encore-ui/issues/474))
+* **rxButton:** Add a `disable` attribute ([8dad3865](git@github.com:rackerlabs/encore-ui/commit/8dad386518007111a782d24936e3370f3f9e5d10), closes [#444](git@github.com:rackerlabs/encore-ui/issues/444))
+
+
 <a name="1.0.8"></a>
 ### 1.0.8 (2014-08-18)
 
