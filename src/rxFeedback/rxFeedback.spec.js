@@ -1,6 +1,6 @@
 /* jshint node: true */
 describe('rxFeedback', function () {
-    var scope, compile, rootScope, el, feedbackSvc, apiUrl, httpMock, notifySvcMock, screenshotSvcMock;
+    var scope, compile, rootScope, el, feedbackSvc, apiUrl, httpMock, notifySvcMock, screenshotSvcMock, elScope;
     var validTemplate = '<rx-feedback></rx-feedback>';
     var theScreenshot = 'the screenshot';
 
@@ -54,12 +54,14 @@ describe('rxFeedback', function () {
         feedbackSvc.fallback = sinon.stub();
 
         el = helpers.createDirective(validTemplate, compile, scope);
+        elScope = el.isolateScope();
+
     });
 
     it('should submit data to feedback api', function () {
         httpMock.expectPOST(apiUrl, feedbackWithScreenshot).respond(200);
 
-        scope.sendFeedback(feedback);
+        elScope.sendFeedback(feedback);
 
         httpMock.flush();
 
@@ -78,7 +80,7 @@ describe('rxFeedback', function () {
             then: sinon.stub().callsArgWith(1, failureReason)
         });
 
-        scope.sendFeedback(feedback);
+        elScope.sendFeedback(feedback);
 
         httpMock.flush();
 
@@ -92,7 +94,7 @@ describe('rxFeedback', function () {
             message: customSuccess
         });
 
-        scope.sendFeedback(feedback);
+        elScope.sendFeedback(feedback);
 
         httpMock.flush();
 
@@ -102,7 +104,7 @@ describe('rxFeedback', function () {
     it('should show error message on API failure', function () {
         httpMock.expectPOST(apiUrl, feedbackWithScreenshot).respond(404);
 
-        scope.sendFeedback(feedback);
+        elScope.sendFeedback(feedback);
 
         httpMock.flush();
 
@@ -112,7 +114,7 @@ describe('rxFeedback', function () {
     it('should call fallback on failure', function () {
         httpMock.expectPOST(apiUrl, feedbackWithScreenshot).respond(404);
 
-        scope.sendFeedback(feedback);
+        elScope.sendFeedback(feedback);
 
         httpMock.flush();
 
@@ -126,12 +128,32 @@ describe('rxFeedback', function () {
             message: customFailure
         });
 
-        scope.sendFeedback(feedback);
+        elScope.sendFeedback(feedback);
 
         httpMock.flush();
 
         expect(notifySvcMock.add.args[0][0]).to.contain(customFailure);
     });
+
+    describe('overwriting sendFeedback functionality', function () {
+        var kitchenSink = function () { return 'kitchen sink, please'; };
+        var customTemplate = '<rx-feedback on-submit="kitchenSink"></rx-feedback>';
+        var elCustomScope, elCustom;
+
+        beforeEach(function () {
+            scope.kitchenSink = kitchenSink;
+            sinon.spy(scope, 'kitchenSink');
+            elCustom = helpers.createDirective(customTemplate, compile, scope);
+            elCustomScope = elCustom.isolateScope();
+        });
+
+        it('should apply the custom feedback function for on-submit', function () {
+            elCustomScope.sendFeedback();
+            expect(scope.kitchenSink.calledOnce).to.be.true;
+        });
+
+    });
+
 });
 
 describe('rxScreenshotSvc', function () {
