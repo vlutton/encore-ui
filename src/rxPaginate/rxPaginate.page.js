@@ -19,7 +19,7 @@ var rxPaginate = {
                 page.NoSuchPageException.thro('Page number must be >= 1');
             }
 
-            return this.getPageNumbers().then(function (pageNumbers) {
+            return this.pages.then(function (pageNumbers) {
                 var pageIndex = _.indexOf(pageNumbers, pageNumber);
                 if (pageIndex === -1) {
                     // The page is not on the current page numbers list.
@@ -44,21 +44,21 @@ var rxPaginate = {
         }
     },
 
-    firstPage: {
+    first: {
         value: function () {
             this.checkForInvalidFirstPage();
             return this.tblPagination.first().click();
         }
     },
 
-    previousPage: {
+    previous: {
         value: function () {
             this.checkForInvalidFirstPage();
             return this.tblPagination.get(1).click();
         }
     },
 
-    nextPage: {
+    next: {
         value: function () {
             this.checkForInvalidLastPage();
             return this.tblPagination.then(function (pages) {
@@ -67,23 +67,27 @@ var rxPaginate = {
         }
     },
 
-    lastPage: {
+    last: {
         value: function () {
             this.checkForInvalidLastPage();
             return this.tblPagination.get(-1).click();
         }
     },
 
-    getCurrentPageNumber: {
-        value: function () {
+    page: {
+        // Return the current page number, or change page numbers.
+        get: function () {
             return this.lnkCurrentPage.getText().then(function (text) {
                 return parseInt(text, 10);
             });
+        },
+        set: function (pageNumber) {
+            return this.jumpToPage(pageNumber);
         }
     },
 
-    getPageNumbers: {
-        value: function () {
+    pages: {
+        get: function () {
             // Return a list of page numbers available to paginate to.
             return $$('a[ng-click$="pageNumber = n"]').map(function (pageNumber) {
                 return pageNumber.getText().then(function (n) {
@@ -110,7 +114,7 @@ var rxPaginate = {
     checkForInvalidFirstPage: {
         value: function () {
             var page = this;
-            return this.getCurrentPageNumber().then(function (currentPage) {
+            return this.page.then(function (currentPage) {
                 if (currentPage === 1) {
                     page.NoSuchPageException.thro('cannot navigate back past the first page.');
                 }
@@ -124,9 +128,9 @@ var rxPaginate = {
         // Otherwise, it defaults to a generic invalid page message.
         value: function (pageNumber) {
             var page = this;
-            return this.getCurrentPageNumber().then(function (currentPage) {
+            return this.page.then(function (currentPage) {
                 pageNumber = pageNumber || 'any higher number';
-                return page.getPageNumbers().then(function (pageNumbers) {
+                return page.pages.then(function (pageNumbers) {
                     if (_.last(pageNumbers) == currentPage) {
                         // We are at the last page, and we still need to go higher.
                         var message = pageNumber + ' exceeds max page of ' + _.last(pageNumbers);
