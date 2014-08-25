@@ -17,6 +17,10 @@ exports.config = {
         ui: 'bdd'
     },
 
+    onPrepare: function () {
+        expect = require('chai').use(require('chai-as-promised')).expect;
+    },
+
     sauceUser: process.env.SAUCE_USERNAME,
     sauceKey: process.env.SAUCE_ACCESS_KEY,
 

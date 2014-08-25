@@ -1,6 +1,5 @@
 var demoPage = require('../../../utils/demo.page.js');
 var tabsPage = require('../tabs.page.js').tabs;
-var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('tabs', function () {

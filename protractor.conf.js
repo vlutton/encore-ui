@@ -17,6 +17,10 @@ var config = {
 
     allScriptsTimeout: 30000,
 
+    onPrepare: function () {
+        expect = require('chai').use(require('chai-as-promised')).expect;
+    },
+
     // Options to be passed to mocha
     mochaOpts: {
         reporter: 'spec',

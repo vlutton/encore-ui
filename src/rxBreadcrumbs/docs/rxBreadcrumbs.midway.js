@@ -1,6 +1,5 @@
 var demoPage = require('../../../utils/demo.page.js');
 var rxBreadcrumbsPage = require('../rxBreadcrumbs.page.js').rxBreadcrumbs;
-var expect = require('chai').use(require('chai-as-promised')).expect;
 
 describe('rxBreadcrumbs', function () {
     var breadcrumbs;

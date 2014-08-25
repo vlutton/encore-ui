@@ -1,6 +1,5 @@
 var demoPage = require('../../../utils/demo.page.js');
 var rxPermissionPage = require('../rxPermission.page.js').rxPermission;
-var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('rxPermission', function () {

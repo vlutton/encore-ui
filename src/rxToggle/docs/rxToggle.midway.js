@@ -1,5 +1,4 @@
 var demoPage = require('../../../utils/demo.page.js');
-var expect = require('chai').use(require('chai-as-promised')).expect;
 
 // Add midway tests to run
 describe('rxToggle', function () {
