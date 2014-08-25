@@ -36,6 +36,7 @@
         "describe": false,
         "element": false,
         "expect": true,
+        "exports": false,
         "helpers": true,
         "html2canvas": false,
         "inject": false,
