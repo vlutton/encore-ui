@@ -60,7 +60,7 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
     container.setEndpoint = function (url) {
         container.api = $resource(url);
     };
-    
+
     // set a default endpoint
     container.setEndpoint(feedbackApi);
 
@@ -89,6 +89,9 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
     return {
         restrict: 'E',
         templateUrl: 'templates/rxFeedback.html',
+        scope: {
+            sendFeedback: '=?onSubmit'
+        },
         link: function (scope) {
             scope.currentUrl = $location.url();
             scope.feedbackTypes = feedbackTypes;
@@ -125,18 +128,20 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
                 });
             };
 
-            scope.sendFeedback = function (feedback) {
-                var root = document.querySelector('.rx-app');
+            if (!_.isFunction(scope.sendFeedback)) {
+                scope.sendFeedback = function (feedback) {
+                    var root = document.querySelector('.rx-app');
 
-                // capture screenshot
-                var screenshot = rxScreenshotSvc.capture(root);
+                    // capture screenshot
+                    var screenshot = rxScreenshotSvc.capture(root);
 
-                screenshot.then(function (dataUrl) {
-                    makeApiCall(feedback, dataUrl);
-                }, function (reason) {
-                    makeApiCall(feedback, reason);
-                });
-            };
+                    screenshot.then(function (dataUrl) {
+                        makeApiCall(feedback, dataUrl);
+                    }, function (reason) {
+                        makeApiCall(feedback, reason);
+                    });
+                };
+            }
         }
     };
 });
