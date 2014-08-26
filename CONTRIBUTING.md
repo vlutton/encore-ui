@@ -105,7 +105,7 @@ Occasionally a PR will receive comments and/or requests for changes before we me
 
 Once we are happy with the final state of the PR, we will write "LGTM" or "Looks good to me" as a comment, and ask that you squash all of your commits down into one or two. We normally do this as follows:
 
- 1. `git rebase -i HEAD~x` where x = number of commits you've made on the branch/PR
+ 1. `git rebase -i HEAD~x` where x = number of commits you've made on the branch/PR (The Conversation/Commits/Files Changed tab on the PR page will show you how many commits you've made)
  2. mark `f` or `s` for all commits 
  3. Update the latest master and do `git rebase master` on your branch, now that everything has been summed up into one or two commits
  4. `git push -f` to force push your branch up to Github
