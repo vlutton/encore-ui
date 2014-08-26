@@ -35,12 +35,17 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             }
         });
 })
-.run(function ($rootScope, components, $window, Environment) {
+.run(function ($rootScope, components, $window, Environment, rxBreadcrumbsSvc) {
+    var baseGithubUrl = '//rackerlabs.github.io/encore-ui/';
     Environment.add({
         name: 'ghPages',
         pattern: '//rackerlabs.github.io',
-        url: '//rackerlabs.github.io/encore-ui/{{path}}'
+        url: baseGithubUrl + '{{path}}'
     });
+
+    if (Environment.get().name === 'ghPages') {
+        rxBreadcrumbsSvc.setHome(baseGithubUrl);
+    }
 
     var demoNav = [
         {
