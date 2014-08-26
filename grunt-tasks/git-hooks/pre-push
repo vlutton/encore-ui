@@ -7,13 +7,18 @@
 class PrePushHandler
 
   def handle
-    reject if pushing_to_master? && forced_push?
+    reject_forcepush if pushing_to_master? && forced_push? 
+    reject_bad_default if bad_push_default?
   end
 
   private
 
   def pushing_to_master?
     current_branch == 'master'
+  end
+
+  def allowed_push_defaults
+    ["nothing", "upstream", "simple", "current"]
   end
 
   def current_branch
@@ -25,10 +30,22 @@ class PrePushHandler
     end
   end
 
-  def reject
+  def reject_forcepush
     messages = ["Your attempt to FORCE PUSH to MASTER has been rejected."]
     messages << "If you still want to FORCE PUSH then you need to ignore the pre_push git hook by executing following command."
     messages << "git push master --force --no-verify"
+    feedback messages
+  end
+
+  def reject_bad_default
+    current = push_default
+    allowed = allowed_push_defaults
+    url = "http://rakhesh.com/coding/git-push-default/"
+    messages = ["Your PUSH has been rejected because of your `push.default` value"]
+    messages << "It's currently `#{current}`"
+    messages << "Set it to one of #{allowed}"
+    messages << "See #{url} for an explanation of these values"
+    messages << "You can change this in your ~/.gitconfig file"
     feedback messages
   end
 
@@ -37,6 +54,15 @@ class PrePushHandler
     cmd = "ps -ocommand= -p #{ppid}"
     output = `#{cmd}`
     output.match(/--force|-f/)
+  end
+
+  def bad_push_default?
+    not allowed_push_defaults.include? push_default
+  end
+
+  def push_default
+    cmd = "git config --get push.default"
+    `#{cmd}`.strip
   end
 
   def feedback messages
