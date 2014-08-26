@@ -16,6 +16,11 @@ describe('Breadcrumbs', function () {
         name: 'Home'
     };
 
+    var newHome = {
+        path: '//foo/bar',
+        name: 'New Home'
+    };
+
     beforeEach(function () {
         // Load the service's module
         module('encore.ui.rxBreadcrumbs');
@@ -127,6 +132,35 @@ describe('Breadcrumbs', function () {
             freshBreadcrumbs.unshift(defaultBreadcrumb);
 
             expect(breadcrumbs.getAll()).to.eql(freshBreadcrumbs);
+        });
+
+        it('should allow a different default breadcrumb to be set', function () {
+            // update breadcrumbs service
+            breadcrumbs.set(freshBreadcrumbs);
+
+            // add new home page for comparison
+            freshBreadcrumbs.unshift(newHome);
+
+            breadcrumbs.setHome(newHome.path, newHome.name);
+
+            expect(breadcrumbs.getAll()).to.eql(freshBreadcrumbs);
+        });
+
+        it('should allow the new home name to reuse the default', function () {
+            // update breadcrumbs service
+            breadcrumbs.set(freshBreadcrumbs);
+
+            // add new home page for comparison
+            freshBreadcrumbs.unshift({
+                path: newHome.path,
+                name: defaultBreadcrumb.name
+            });
+
+            // Add a new home path, not name
+            breadcrumbs.setHome(newHome.path);
+
+            expect(breadcrumbs.getAll()).to.eql(freshBreadcrumbs);
+            
         });
     });
 });
