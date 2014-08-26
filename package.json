@@ -66,6 +66,7 @@
     "node-markdown": "0.1.1",
     "semver": "~2.3.0",
     "sinon": "~1.10.0",
-    "sinon-chai": "~2.5.0"
+    "sinon-chai": "~2.5.0",
+    "moment": "~2.8.2"
   }
 }
