@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+### 1.1.1 (2014-08-26)
+
+
+#### Features
+
+* **rxBreadcrumbsSvc:** Add a `setHome` method ([41981a66](git@github.com:rackerlabs/encore-ui/commit/41981a66b8a38124a67c81e2a94e893c98108eac), closes [#231](git@github.com:rackerlabs/encore-ui/issues/231))
+* **rxFeedback:** Custom sendFeedback functions. ([7fda7704](git@github.com:rackerlabs/encore-ui/commit/7fda7704b04875455ca4516a65c4b6b255491884))
+
+
 <a name="1.1.0"></a>
 ## 1.1.0 (2014-08-25)
 
