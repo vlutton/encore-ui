@@ -99,6 +99,19 @@ Once a pull request has been submitted, you simply need to wait for the Encore U
 
 We like to at least comment on, if not accept, pull requests within three business days (and, typically, one business day). We may suggest some changes or improvements or alternatives, so **make sure there is time for review in your release plan**.
 
+### Finalizing a Pull Request
+
+Occasionally a PR will receive comments and/or requests for changes before we merge it in. These changes should be submitted as new commits on the existing PR. 
+
+Once we are happy with the final state of the PR, we will write "LGTM" or "Looks good to me" as a comment, and ask that you squash all of your commits down into one or two. We normally do this as follows:
+
+ 1. `git rebase -i HEAD~x` where x = number of commits you've made on the branch/PR
+ 2. mark `f` or `s` for all commits 
+ 3. Update the latest master and do `git rebase master` on your branch, now that everything has been summed up into one or two commits
+ 4. `git push -f` to force push your branch up to Github
+
+Once Travis completes the tests on the rebased branch, we'll merge in the PR.
+
 ## Right to Revert
 
 Once the contribution has been merged into the repo, if any issues arise in the integration environment or upon subsequent feedback, the contribution may be reverted.
