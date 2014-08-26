@@ -19,6 +19,13 @@ angular.module('encore.ui.rxBreadcrumbs', [])
         return breadcrumbs.slice(0);
     };
 
+    breadcrumbsService.setHome = function (path, name) {
+        breadcrumbs[0] = {
+            path: path,
+            name: name || breadcrumbs[0].name
+        };
+    };
+
     return breadcrumbsService;
 })
 .directive('rxBreadcrumbs', function () {
