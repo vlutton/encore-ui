@@ -1,3 +1,12 @@
+<a name="1.1.2"></a>
+### 1.1.2 (2014-08-27)
+
+
+#### Bug Fixes
+
+* **rxApp:** Fix #446; demo app nav not highligting when active ([8b1913a1](git@github.com:rackerlabs/encore-ui/commit/8b1913a1245422c5c94c85b8bfaa2554a624c21e))
+
+
 <a name="1.1.1"></a>
 ### 1.1.1 (2014-08-26)
 
