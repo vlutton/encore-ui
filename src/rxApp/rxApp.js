@@ -188,28 +188,52 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 .service('rxAppRoutes', function ($rootScope, $location, $route, $interpolate, rxEnvironmentUrlFilter, $log) {
     var AppRoutes = function () {
         var routes = [];
+        var currentPath;
 
-        var stripLeadingChars = function (str) {
-            _.forEach(['#', '/'], function (chr) {
-                if (str.substring(0, 1) === chr) {
-                    str = stripLeadingChars(str.substring(1));
-                }
-            });
+        // remove any preceding # and / from the URL for cleaner comparison
+        var stripLeadingChars = function (url) {
+            // http://regexr.com/39coc
+            var leadingChars = /^((?:\/|#)+)/;
 
-            return str;
+            return url.replace(leadingChars, '');
         };
 
-        var getBaseUrl = function () {
-            // remove query string
-            var baseUrl = $location.absUrl().split('?')[0];
+        // remove any trailing /'s from the URL
+        var stripTrailingSlash = function (url) {
+            // Match a forward slash / at the end of the string ($)
+            var trailingSlash = /\/$/;
 
-            // remove protocol and domain
-            baseUrl = baseUrl.split('/').splice(3).join('/');
-            baseUrl = stripLeadingChars(baseUrl);
-
-            return baseUrl;
+            return url.replace(trailingSlash, '');
         };
 
+        // get the current path, adding the <base> path if neeeded
+        //
+        // @example
+        // if the current page url is 'http://localhost:9000/encore-ui/#/overviewPage#bookmark?book=harry%20potter'
+        // and the page contains a <base href="encore-ui"> tag
+        // getCurrentPath() would return '/encore-ui/overviewPage'
+        var getCurrentPath = function () {
+            var fullPath;
+            var base = document.getElementsByTagName('base');
+            var basePath = '';
+
+            if (base.length > 0) {
+                basePath = base[0].getAttribute('href');
+
+                // remove trailing '/' if present
+                basePath = stripTrailingSlash(basePath);
+            }
+
+            fullPath = basePath + $location.path();
+            fullPath = stripLeadingChars(fullPath);
+
+            return fullPath;
+        };
+        // we need to get the current path on page load
+        currentPath = getCurrentPath();
+
+        // get the url defined in the route by removing the hash tag, leading slashes and query string
+        // e.g. '/#/my/url?param=1' -> 'my/url'
         var getItemUrl = function (item) {
             if (!_.isString(item.url)) {
                 return undefined;
@@ -223,13 +247,11 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         };
 
         var isActive = function (item) {
-            // check if url matches absUrl
-            // TODO: Add Unit Tests for URLs with Query Strings in them.
-            var baseUrl = getBaseUrl();
             var itemUrl = getItemUrl(item);
-            var pathMatches = itemUrl &&
-                (baseUrl.substring(0, itemUrl.length) === itemUrl ||
-                 baseUrl.substring(1).substring(0, itemUrl.length) === itemUrl);
+
+            // check against the path and the hash
+            // (in case the difference is the 'hash' like on the encore-ui demo page)
+            var pathMatches = (currentPath == itemUrl || $location.hash() == itemUrl);
 
             // if current item not active, check if any children are active
             if (!pathMatches && item.children) {
@@ -317,6 +339,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         };
 
         $rootScope.$on('$locationChangeSuccess', function () {
+            // NOTE: currentPath MUST be updated before routes
+            currentPath = getCurrentPath();
+
             routes = setDynamicProperties(routes);
         });
 
@@ -647,18 +672,18 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
     };
 })
 .directive('rxBillingSearch', function ($window) {
-    return {
-        template: '<rx-app-search placeholder="Fetch account by transaction or auth ID..." submit="fetchAccounts">' +
+    return {
+        template: '<rx-app-search placeholder="Fetch account by transaction or auth ID..." submit="fetchAccounts">' +
             '</rx-app-search>',
-        restrict: 'E',
-        link: function (scope) {
-            scope.fetchAccounts = function (searchValue) {
+        restrict: 'E',
+        link: function (scope) {
+            scope.fetchAccounts = function (searchValue) {
                 if (!_.isEmpty(searchValue)) {
-                    $window.location = '/billing/search/' + searchValue;
+                    $window.location = '/billing/search/' + searchValue;
                 }
-            };
-        }
-    };
+            };
+        }
+    };
 })
 
 /**

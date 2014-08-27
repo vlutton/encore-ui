@@ -22,6 +22,8 @@ describe('rxAppRoutes', function () {
                 key: 'secondChild',
             }
         ]
+    }, {
+        href: '/base/path'
     }];
 
     // mock out route to have param which will replace '{{user}}'
@@ -84,39 +86,62 @@ describe('rxAppRoutes', function () {
         expect(generatedRoutes[0].children[0].children[0].url).to.be.undefined;
     });
 
-    it('should determine active state based on URL match', function () {
-        expect(generatedRoutes[0].active, 'route should not be active by default').to.be.false;
+    describe('active state', function () {
+        it('should match based on URL', function () {
+            expect(generatedRoutes[0].active, 'route should not be active by default').to.be.false;
 
-        // update location
-        location.path(generatedRoutes[0].url);
-        rootScope.$apply();
+            // update location
+            location.path(generatedRoutes[0].url);
+            rootScope.$apply();
 
-        // sanity check that location actually changed
-        expect(location.path()).to.equal('/' + generatedRoutes[0].url);
+            // sanity check that location actually changed
+            expect(location.path()).to.equal('/' + generatedRoutes[0].url);
 
-        expect(generatedRoutes[0].active, 'route should be active when path changes').to.be.true;
+            expect(generatedRoutes[0].active, 'route should be active when path changes').to.be.true;
 
-        // update location again to somewhere else
-        location.path('somewhereElse');
-        rootScope.$apply();
+            // update location again to somewhere else
+            location.path('somewhereElse');
+            rootScope.$apply();
 
-        expect(generatedRoutes[0].active, 'route should no longer be active').to.be.false;
-    });
+            expect(generatedRoutes[0].active, 'route should no longer be active').to.be.false;
+        });
 
-    it('should have active state if child element is active', function () {
-        expect(generatedRoutes[0].active, 'route should not be active by default').to.be.false;
+        it('should match with a base HTML tag', function () {
+            var routeParts = fakeRoutes[1].href.split('/');
+            var basePath = routeParts[1];
+            var subPath = routeParts[2];
 
-        // update location
-        location.path(generatedRoutes[0].children[0].url);
-        rootScope.$apply();
+            // add a base tag to the page
+            $(document.head).append($('<base href="/' + basePath + '/">'));
 
-        expect(generatedRoutes[0].active, 'route should be active when child activated').to.be.true;
+            // we have to mock out location.path because Angular doesn't pick up on the basePath update
+            sinon.stub(location, 'path').returns('/' + subPath);
 
-        // update location again to somewhere else
-        location.path('somewhereElse');
-        rootScope.$apply();
+            location.path(generatedRoutes[1].url);
+            rootScope.$apply();
 
-        expect(generatedRoutes[0].active, 'route should no longer be active').to.be.false;
+            expect(generatedRoutes[1].active, 'route should be active').to.be.true;
+
+            // restore test state
+            location.path.restore();
+            $('base').remove();
+        });
+
+        it('should match if child element is active', function () {
+            expect(generatedRoutes[0].active, 'route should not be active by default').to.be.false;
+
+            // update location
+            location.path(generatedRoutes[0].children[0].url);
+            rootScope.$apply();
+
+            expect(generatedRoutes[0].active, 'route should be active when child activated').to.be.true;
+
+            // update location again to somewhere else
+            location.path('somewhereElse');
+            rootScope.$apply();
+
+            expect(generatedRoutes[0].active, 'route should no longer be active').to.be.false;
+        });
     });
 
     it('should allow overwritting all the nav items', function () {
