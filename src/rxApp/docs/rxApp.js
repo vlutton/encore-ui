@@ -1,10 +1,17 @@
 /*jshint unused:false*/
-function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
+function rxAppCtrl ($scope, $location, $rootScope, $window, encoreRoutes, rxVisibility) {
     $scope.subtitle = 'With a subtitle';
 
     $scope.changeSubtitle = function () {
         $scope.subtitle = 'With a new subtitle at ' + Date.now();
     };
+
+    rxVisibility.addMethod(
+        'isUserDefined',
+        function (scope, locals) {
+            return !_.isEmpty($rootScope.user);
+        }
+    );
 
     $scope.changeRoutes = function () {
         var newRoute = {
@@ -17,7 +24,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
             ]
         };
 
-        rxAppRoutes.setRouteByKey('accountLvlTools', newRoute);
+        encoreRoutes.setRouteByKey('accountLvlTools', newRoute);
     };
 
     // Fake navigation
@@ -58,9 +65,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
             },
             {
                 linkText: '1st Order Item (w/o href) w/ Children',
-                childVisibility: function isUserDefined () {
-                    return !_.isEmpty($rootScope.user);
-                },
+                childVisibility: [ 'isUserDefined' ],
                 childHeader: '<strong class="current-search">Current User:</strong>' +
                              '<span class="current-result">{{$root.user}}</span>',
                 directive: searchDirective,

@@ -1,429 +1,43 @@
-angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngRoute', 'cfp.hotkeys'])
-/*
- * This array defines the default navigation to use for all Encore sites and used by rxAppNav.
- * It can be overwritten if necessary via the 'menu' property of rxAppNav.
- *
- * @property {string} title Only used on the top level, defines the title to use for all sub-navigation
- *
- * Common Properties for all 'children' nav items:
- * @property {string} [key] ID to use for getter/setter methods by apps. Needs to be unique.
- * @property {string|object} href Url to use for the menu item or object to passed to rxEnvironmentUrl
- * @property {string} linkText The text displayed for the menu item
- * @property {array} children Child menu items for the navigation heirarchy
- * @property {string} directive Name of directive to build and show when item is active. For example:
- *                              Value of 'my-directive' becomes '<my-directive></my-directive>'
- * @property {expression|function} [childVisibility] Rule to determine visibility of child menu
- * @property {expression} [childHeader] Expression which will be displayed above child menu. Access controller
- * scope via: `route.current.scope` @see http://devdocs.io/angular/ngroute.$route#properties_current
- *
- */
-.value('encoreNav', [{
-    title: 'All Tools',
-    children: [{
-        linkText: 'Account',
-        key: 'accountLvlTools',
-        directive: 'rx-account-search',
-        childVisibility: function (scope) {
-            if (scope.route.current) {
-                return !_.isUndefined(scope.route.current.pathParams.accountNumber);
-            }
-
-            return false;
-        },
-        childHeader: '<strong class="current-search">Current Account:</strong>' +
-            '<span class="current-result">#{{route.current.pathParams.accountNumber}}</span>',
-        children: [
-            {
-                href: '/accounts/{{accountNumber}}',
-                key: 'accountOverview',
-                linkText: 'Overview'
-            },
-            {
-                linkText: 'Billing',
-                key: 'accountBilling',
-                visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)',
-                childVisibility: function (scope) {
-                    // We only want to show this nav if accountNumber is already defined in the URL
-                    // (otherwise a accountNumber hasn't been chosen yet, so nav won't work, so we hide it)
-                    if (scope.route.current) {
-                        return !_.isUndefined(scope.route.current.pathParams.accountNumber);
-                    }
-                    return false;
-                },
-                children: [
-                    {
-                        href: '/billing/overview/{{accountNumber}}',
-                        key: 'accountBillingOverview',
-                        linkText: 'Overview'
-                    }, {
-                        href: '/billing/transactions/{{accountNumber}}',
-                        key: 'accountBillingTransactions',
-                        linkText: 'Transactions'
-                    }, {
-                        href: '/billing/usage/{{accountNumber}}',
-                        key: 'accountBillingCurrentUsage',
-                        linkText: 'Current Usage'
-                    }, {
-                        href: '/billing/payment/{{accountNumber}}/options',
-                        key: 'accountBillingPaymentOptions',
-                        linkText: 'Payment Options'
-                    }, {
-                        href: '/billing/purchase-orders/{{accountNumber}}',
-                        key: 'accountBillingPurchaseOrders',
-                        linkText: 'Purchase Orders'
-                    }, {
-                        href: '/billing/preferences/{{accountNumber}}',
-                        key: 'accountBillingPreferences',
-                        linkText: 'Preferences'
-                    }
-                ]
-            }, {
-                href: '/support/accounts/{{accountNumber}}',
-                linkText: 'Support Details',
-                key: 'accountSupport'
-            }
-        ]
-    },
-    {
-        linkText: 'Billing',
-        key: 'billing',
-        directive: 'rx-billing-search',
-        visibility: '("unified-preprod" | rxEnvironmentMatch) || ("local" | rxEnvironmentMatch)'
-    },
-    {
-        linkText: 'Cloud',
-        key: 'cloud',
-        directive: 'rx-atlas-search',
-        childVisibility: function (scope) {
-            // We only want to show this nav if user is already defined in the URL
-            // (otherwise a user hasn't been chosen yet, so nav won't work, so we hide it)
-            if (scope.route.current) {
-                return !_.isUndefined(scope.route.current.pathParams.user);
-            }
-            return false;
-        },
-        childHeader: '<strong class="current-search">Current Account:</strong>' +
-            '<span class="current-result">{{route.current.pathParams.user}}</span>',
-        children: [
-            {
-                href: '/cloud/{{user}}/servers',
-                linkText: 'Cloud Servers',
-                children: [
-                    {
-                        href: '/cloud/{{user}}/servers',
-                        linkText: 'Servers'
-                    }, {
-                        href: '/cloud/{{user}}/images',
-                        linkText: 'Images'
-                    }
-                ]
-            },
-            {
-                href: '/cloud/{{user}}/cbs/volumes',
-                linkText: 'Block Storage',
-                children: [
-                    {
-                        href: '/cloud/{{user}}/cbs/volumes',
-                        linkText: 'Volumes'
-                    }, {
-                        href: '/cloud/{{user}}/cbs/snapshots',
-                        linkText: 'Snapshots'
-                    }
-                ]
-            }, {
-                href: '/cloud/{{user}}/databases/instances',
-                linkText: 'Databases'
-            }, {
-                href: '/cloud/{{user}}/loadbalancers',
-                linkText: 'Load Balancers'
-            }, {
-                href: '/cloud/{{user}}/networks',
-                linkText: 'Networks'
-            }
-        ]
-    }, {
-        href: '/support',
-        linkText: 'Support Service',
-        key: 'supportService',
-        directive: 'rx-support-service-search',
-    }, {
-        href: '/ticketing',
-        linkText: 'Ticketing',
-        key: 'ticketing',
-        children: [
-            {
-                href: '/ticketing/list',
-                linkText: 'My Selected Queues'
-            },
-            {
-                href: '/ticketing/my',
-                linkText: 'My Tickets'
-            }, {
-                href: '/ticketing/queues',
-                linkText: 'Queue Admin'
-            }
-        ]
-    }, {
-        href: '/virt',
-        linkText: 'Virtualization Admin',
-        key: 'virt',
-        directive: 'rx-virt-search'
-    }, {
-        linkText: 'Support Automation',
-        key: 'supportAutomation',
-        children: [
-            {
-                href: '/dcx/windows-cluster-build/validate',
-                linkText: 'Windows Cluster Build'
-            }
-        ]
-    }]
-}])
+angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnvironment', 'ngSanitize',
+    'ngRoute', 'cfp.hotkeys'])
 /**
-* @ngdoc interface
-* @name encore.ui.rxApp:rxAppRoutes
+* @ngdoc service
+* @name encore.ui.rxApp:encoreRoutes
 * @description
-* Manages page routes, building urls and marking them as active on route change
+* Creates a shared instance of AppRoutes that is used for the Encore App nav.
+* This allows apps to make updates to the nav via `encoreRoutes`.
+*
+* @returns {object} Instance of rxAppRoutes with `fetchRoutes` method added
 */
-.service('rxAppRoutes', function ($rootScope, $location, $route, $interpolate, rxEnvironmentUrlFilter, $log) {
-    var AppRoutes = function () {
-        var routes = [];
-        var currentPathChunks;
+.factory('encoreRoutes', function (rxAppRoutes, routesCdnPath, rxNotify, $q, $http,
+                                     rxVisibilityPathParams, rxVisibility, Environment) {
 
-        // remove any preceding # and / from the URL for cleaner comparison
-        var stripLeadingChars = function (url) {
-            // http://regexr.com/39coc
-            var leadingChars = /^((?:\/|#)+)/;
+    // We use rxVisibility in the nav menu at routesCdnPath, so ensure it's ready
+    // before loading from the CDN
+    rxVisibility.addVisibilityObj(rxVisibilityPathParams);
 
-            return url.replace(leadingChars, '');
-        };
+    var encoreRoutes = new rxAppRoutes();
 
-        // remove any trailing /'s from the URL
-        var stripTrailingSlash = function (url) {
-            // Match a forward slash / at the end of the string ($)
-            var trailingSlash = /\/$/;
-
-            return url.replace(trailingSlash, '');
-        };
-
-        // Given a URL, split it on '/' and return all the non-empty components
-        var getChunks = function (url) {
-            if (!_.isString(url)) {
-                return [''];
-            }
-            return _.filter(url.split('/'), function (chunk) { return chunk !== '';});
-        };
-
-        // get the current path, adding the <base> path if neeeded
-        //
-        // @example
-        // if the current page url is 'http://localhost:9000/encore-ui/#/overviewPage#bookmark?book=harry%20potter'
-        // and the page contains a <base href="encore-ui"> tag
-        // getCurrentPath() would return '/encore-ui/overviewPage'
-        var getCurrentPathChunks = function () {
-            var fullPath;
-            var base = document.getElementsByTagName('base');
-            var basePath = '';
-
-            if (base.length > 0) {
-                basePath = base[0].getAttribute('href');
-
-                // remove trailing '/' if present
-                basePath = stripTrailingSlash(basePath);
-            }
-
-            fullPath = basePath + $location.path();
-            fullPath = stripLeadingChars(fullPath);
-
-            return getChunks(fullPath);
-        };
-        // we need to get the current path on page load
-        currentPathChunks = getCurrentPathChunks();
-
-        // get the url defined in the route by removing the hash tag, leading slashes and query string
-        // e.g. '/#/my/url?param=1' -> 'my/url'
-        var getItemUrl = function (item) {
-            if (!_.isString(item.url)) {
-                return undefined;
-            }
-
-            // remove query string
-            var itemUrl = item.url.split('?')[0];
-            itemUrl = stripLeadingChars(itemUrl);
-
-            return itemUrl;
-        };
-
-        // Given two sets of chunks, check if the first `numChunks` of `firstChunks`
-        // matches `subChunks`
-        var matchesSubChunks = function (firstChunks, subChunks, numChunks) {
-            return _.isEqual(firstChunks.slice(0, numChunks), subChunks);
-        };
-
-        // For a given route item, grab its defined URL, and see
-        // if it matches the currentPathChunks
-        var isActive = function (item) {
-            var itemUrlChunks = getChunks(getItemUrl(item));
-            var numChunks = itemUrlChunks.length;
-
-            // check against the path and the hash
-            // (in case the difference is the 'hash' like on the encore-ui demo page)
-            var pathMatches = matchesSubChunks(currentPathChunks, itemUrlChunks, numChunks);
-            pathMatches = pathMatches || matchesSubChunks(getChunks($location.hash()), itemUrlChunks, numChunks);
-
-            // if current item not active, check if any children are active
-            // This requires that `isActive` was called on all the children beforehand
-            if (!pathMatches && item.children) {
-                pathMatches = _.any(item.children, 'active');
-            }
-
-            return pathMatches;
-        };
-
-        var buildUrl = function (url) {
-            // sometimes links don't have URLs defined, so we need to exit before $interpolate throws an error
-            if (_.isUndefined(url)) {
-                return url;
-            }
-
-            // run the href through rxEnvironmentUrl in case it's defined as such
-            url = rxEnvironmentUrlFilter(url);
-
-            if ($route.current) {
-                // convert any nested expressions to defined route params
-                url = $interpolate(url)($route.current.pathParams);
-            }
-
-            return url;
-        };
-
-        var setDynamicProperties = function (routes) {
-            _.each(routes, function (route) {
-                // build out url for current route
-                route.url = buildUrl(route.href);
-
-                // check if any children exist, if so, build their URLs as well
-                if (route.children) {
-                    route.children = setDynamicProperties(route.children);
-                }
-
-                // set active state (this needs to go after the recursion,
-                // so that the URL is built for all the children)
-                route.active = isActive(route);
-            });
-
-            return routes;
-        };
-
-        var getRouteIndex = function (key, routes) {
-            var routeIndex;
-            var routeAlreadyFound = false;
-
-            _.forEach(routes, function (route, index) {
-                var foundThisTime = false;
-                if (route.key === key) {
-                    routeIndex = [index];
-                    foundThisTime = true;
-                } else if ('children' in route) {
-                    // if there are children in the route, we need to search through them as well
-                    var childIndex = getRouteIndex(key, route.children);
-                    if (childIndex) {
-                        routeIndex = [index].concat(childIndex);
-                        foundThisTime = true;
-                    }
-                }
-                if (foundThisTime) {
-                    if (routeAlreadyFound) {
-                        $log.warn('Duplicate routes found for key: ' + key);
-                    } else {
-                        routeAlreadyFound = true;
-                    }
-                }
-            });
-
-            return routeIndex;
-        };
-
-        var updateRouteByIndex = function (indexes, routeInfo, routes, level) {
-            var route = routes[indexes[0]];
-
-            if (level < indexes.length - 1) {
-                // if there's more than one index, we need to recurse down a level
-                route.children = updateRouteByIndex(indexes.slice(1), routeInfo, route.children, level + 1);
-            } else {
-                _.assign(route, routeInfo);
-            }
-
-            return routes;
-        };
-
-        $rootScope.$on('$locationChangeSuccess', function () {
-            // NOTE: currentPathChunks MUST be updated before routes
-            currentPathChunks = getCurrentPathChunks();
-
-            routes = setDynamicProperties(routes);
+    var setFailureMessage = function () {
+        rxNotify.add('Error loading site navigation', {
+            type: 'error'
         });
-
-        return {
-            /**
-             * Finds the indexes/path to a route. Will return last match if duplicate keys exist
-             * @see setRouteByKey for actual use
-             * @param  {string} key Route Key
-             * @example
-             *     var myRouteIndex = rxAppRoutes.getIndexByKey('myKey'); // [0, 2, 0]
-             * @return {array|undefined} array of indexes describing path to route (or undefined if not found)
-             */
-            getIndexByKey: function (key) {
-                var routeIndex = getRouteIndex(key, routes);
-
-                if (_.isUndefined(routeIndex)) {
-                    $log.debug('Could not find route by key: ', key);
-                }
-
-                return routeIndex;
-            },
-            /**
-             * functionality to update routes based on their key
-             * @param {string} key Route key used to identify it in navigation
-             * @param {object} routeInfo Information used to overwrite original properties
-             * @return {boolean} true if successfully updated, false if key not found
-             */
-            setRouteByKey: function (key, routeInfo) {
-                var routeIndex = this.getIndexByKey(key);
-
-                // make sure the key was found
-                if (routeIndex) {
-                    routes = updateRouteByIndex(routeIndex, routeInfo, routes, 0);
-
-                    // now that we've updated the route info, we need to reset the dynamic properties
-                    routes = setDynamicProperties(routes);
-
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            getAll: function () {
-                return routes;
-            },
-            setAll: function (newRoutes) {
-                routes = setDynamicProperties(newRoutes);
-            }
-        };
     };
 
-    var appRoutesInstance = new AppRoutes();
+    var url = routesCdnPath.staging;
+    if (Environment.isPreProd()) {
+        url = routesCdnPath.preprod;
+    } else if (Environment.isUnifiedProd()) {
+        url = routesCdnPath.production;
+    }
 
-    appRoutesInstance.createInstance = function () {
-        return new AppRoutes();
+    encoreRoutes.fetchRoutes = function () {
+        return $http.get(url)
+            .success(encoreRoutes.setAll)
+            .error(setFailureMessage);
     };
 
-    return appRoutesInstance;
-})
-// We need to set the default rxAppRoutes navigation before the app's load so that they can update
-// it in their `run` statement if need be.
-.run(function (rxAppRoutes, encoreNav) {
-    rxAppRoutes.setAll(encoreNav);
+    return encoreRoutes;
 })
 /**
 * @ngdoc directive
@@ -446,7 +60,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (rxAppRoutes, hotkeys, Environment) {
+.directive('rxApp', function (encoreRoutes, rxAppRoutes, hotkeys, Environment) {
     return {
         restrict: 'E',
         transclude: true,
@@ -463,16 +77,24 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         link: function (scope) {
             scope.isPreProd = Environment.isPreProd();
 
-            scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;
-
             // default hideFeedback to false
-            scope.hideFeedback = scope.hideFeedback ? true : false;
+            var appRoutes = scope.newInstance ? new rxAppRoutes() : encoreRoutes;
 
             // we only want to set new menu data if a new instance of rxAppRoutes was created
             // or if scope.menu was defined
             if (scope.newInstance || scope.menu) {
-                scope.appRoutes.setAll(scope.menu);
+                appRoutes.setAll(scope.menu);
+            } else {
+                // if the default menu is needed, load it from the CDN
+                appRoutes.fetchRoutes();
             }
+
+            appRoutes.getAll().then(function (routes) {
+                scope.routes = routes;
+            });
+
+            // default hideFeedback to false
+            scope.hideFeedback = scope.hideFeedback ? true : false;
 
             if (scope.collapsibleNav) {
                 hotkeys.add({
@@ -607,19 +229,35 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
         scope: {
             item: '='
         },
-        controller: function ($scope, $location) {
+        controller: function ($scope, $location, rxVisibility) {
             // provide `route` as a scope property so that links can tie into them
             $scope.route = $route;
 
             $scope.isVisible = function (visibility) {
+                var locals = {
+                    location: $location
+                };
                 if (_.isUndefined(visibility)) {
                     // if undefined, default to true
                     return true;
                 }
 
-                return $scope.$eval(visibility, {
-                    location: $location
-                });
+                if (_.isArray(visibility)) {
+                    // Expected format is
+                    // ["someMethodName", { param1: "abc", param2: "def" }]
+                    // The second element of the array is optional, used to pass extra
+                    // info to "someMethodName"
+                    var methodName = visibility[0];
+                    var configObj = visibility[1]; //optional
+
+                    _.merge(locals, configObj);
+
+                    // The string 'false' will evaluate to the "real" false
+                    // in $scope.$eval
+                    visibility = rxVisibility.getMethod(methodName) || 'false';
+                }
+
+                return $scope.$eval(visibility, locals);
             };
 
             $scope.toggleNav = function (ev, href) {
@@ -725,4 +363,70 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             };
         }
     };
+})
+
+/*
+ * @ngdoc service
+ * @name encore.ui.rxApp:rxVisibility
+ * @description
+ * Provides an interface for adding new `visibility` methods for nav menus.
+ * Methods added via `addMethod` should have a `function (scope, args)` interface
+ * When you do `visibility: [ "someMethodName", { foo: 1, bar: 2} ]` in
+ * a nav menu definition, the (optional) object will be passed to your method as the
+ * second argument `args`, i.e. function (scope, args) {}
+ */
+.factory('rxVisibility', function () {
+
+    var methods = {};
+
+    var addMethod = function (methodName, method) {
+        methods[methodName] = method;
+    };
+
+    var getMethod = function (methodName) {
+        return methods[methodName];
+    };
+
+    var hasMethod = function (methodName) {
+        return _.has(methods, methodName);
+    };
+
+    /* This is a convenience wrapper around `addMethod`, for
+     * objects that define both `name` and `method` properties
+     */
+    var addVisibilityObj = function (obj) {
+        addMethod(obj.name, obj.method);
+    };
+
+    return {
+        addMethod: addMethod,
+        getMethod: getMethod,
+        hasMethod: hasMethod,
+        addVisibilityObj: addVisibilityObj
+
+    };
+    
+})
+
+/*
+ * @ngdoc object
+ * name encore.ui.rxApp:rxVisibilityPathParams
+ * @description
+ * Returns an object with `name` and `method` params that can
+ * be passed to `rxVisibility.addMethod()`. We use register this by 
+ * default, as it's used by the nav menu we keep in routesCdnPath.
+ * The method is used to check if {param: 'someParamName'} is present
+ * in the current route
+ * Use it as `visibility: [ 'rxPathParams', { param: 'userName' } ]`
+ */
+.factory('rxVisibilityPathParams', function ($routeParams) {
+
+    var pathParams = {
+        name:'rxPathParams',
+        method: function (scope, args) {
+            return !_.isUndefined($routeParams[args.param]);
+        }
+    };
+
+    return pathParams;
 });
