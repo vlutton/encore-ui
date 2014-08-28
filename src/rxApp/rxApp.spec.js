@@ -142,6 +142,23 @@ describe('rxAppRoutes', function () {
 
             expect(generatedRoutes[0].active, 'route should no longer be active').to.be.false;
         });
+
+        it('should match when we navigate to subpaths of a child', function () {
+            expect(generatedRoutes[0].active, 'route should not be active by default').to.be.false;
+
+            // update location
+            location.path(generatedRoutes[0].children[0].url + '/some/details/view/');
+            rootScope.$apply();
+
+            expect(generatedRoutes[0].active, 'route should be active when child activated').to.be.true;
+
+            // update location again to somewhere else
+            location.path('somewhereElse');
+            rootScope.$apply();
+
+            expect(generatedRoutes[0].active, 'route should no longer be active').to.be.false;
+            
+        });
     });
 
     it('should allow overwritting all the nav items', function () {
