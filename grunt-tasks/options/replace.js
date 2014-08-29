@@ -11,7 +11,7 @@ module.exports = {
         }]
     },
     'bower': {
-        src: ['bower/encore-ui.min.js', 'bower/encore-ui-tpls.min.js'],
+        src: ['bower/*.css', 'bower/*.map', 'bower/*.js'],
         overwrite: true,
         replacements: [{
             from: config.versionRegEx,
