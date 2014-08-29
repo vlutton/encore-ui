@@ -1,3 +1,15 @@
+<a name="1.1.3"></a>
+### 1.1.3 (2014-08-29)
+
+
+#### Bug Fixes
+
+* **bower:** remove all versions from filepaths; Fix #494 ([71380378](git@github.com:rackerlabs/encore-ui/commit/71380378d83453f2690fe8139ca5acd293d473d1))
+* **rxApp:**
+  * Have `isActive` compare chunks of URL ([ae9d51e7](git@github.com:rackerlabs/encore-ui/commit/ae9d51e7dad18346ad8ed42326d6a4ca08f7faa3))
+  * hide page titles if not present; Fix #485 ([91d23def](git@github.com:rackerlabs/encore-ui/commit/91d23def391d0eda0c4353adbd15fa90a1139a10))
+
+
 <a name="1.1.2"></a>
 ### 1.1.2 (2014-08-27)
 
