@@ -39,7 +39,7 @@
 
 ### Regression Testing Tools
 
-- TBD
+- [Wraith](https://github.com/BBC-News/wraith)
 
 ### Pre-processor
 
@@ -51,7 +51,7 @@
 
 ### Documentation Tool
 
-- TBD
+- [StyleDocco](http://jacobrask.github.io/styledocco/)
 
 ### Reset
 
@@ -71,7 +71,6 @@
 
 - [Moment.js](http://momentjs.com/)
 - [LoDash](http://lodash.com/)
-- [Mousetrap](https://github.com/ccampbell/mousetrap)
 - See [bower.json](https://github.rackspace.com/valkyrie/chunky_bacon/blob/master/frontend/bower.json) for full list of UI dependencies
 
 ### Compiler
