@@ -16,7 +16,7 @@ function loadConfig (path) {
 
 module.exports = function (grunt) {
     // load all grunt tasks
-    require('load-grunt-tasks')(grunt);
+    require('load-grunt-tasks')(grunt, { pattern: ['grunt-*', '!grunt-lib-phantomjs'] });
     grunt.loadTasks('grunt-tasks');
 
     // make sure grunt doesn't fail if localConfig not there
