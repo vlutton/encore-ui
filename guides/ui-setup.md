@@ -30,11 +30,14 @@ If this is your first time, you'll need to set up your coding environment to be 
             [Mocha](http://visionmedia.github.io/mocha/) is used to provide feedback during protractor tests. Run `npm install -g mocha@1.18.2` to install Mocha.
     * **Note:** in order to run the midway tests, you must pin your protractor & mocha installs to the versions above.
 
-5. Get a local Selenium server running:
+5. Install Selenium Server:
     * Mac
      - `brew install selenium-server-standalone` to install, `selenium-server` to run it.
 
-Additionally, you could allow Protractor to manage this for you, using [Protractor's built-in `webdriver-manager`](https://github.com/angular/protractor/blob/master/docs/server-setup.md#standalone-selenium-server).
+    Additionally, you could allow Protractor to manage this for you, using [Protractor's built-in `webdriver-manager`](https://github.com/angular/protractor/blob/master/docs/server-setup.md#standalone-selenium-server).
+
+6. Install PhantomJS
+    * Follow [the install instructions for your OS](http://phantomjs.org/download.html).
 
 ## Initial Encore Build
 
