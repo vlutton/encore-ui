@@ -48,7 +48,7 @@ Encore UI is built for the folks implementing the framework, so it's crucial to 
 
 ### Creating new issues
 
-Anyone, at any point in time, may open an issue. It can be a bug report, a feature suggestion, or just a simple question. While [the chat room](http://www.hipchat.com/gb5dm7gzB) is always open for discussion, if it's easier to create an issue, go for it!
+Anyone, at any point in time, may open an issue. It can be a bug report, a feature suggestion, or just a simple question. While [the Encore-UI Slack channel](https://rx-encore.slack.com/messages/framework/) is always open for discussion, if it's easier to create an issue, go for it!
 
 ### Voting for existing issues
 
