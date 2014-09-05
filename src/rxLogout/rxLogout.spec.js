@@ -1,5 +1,4 @@
 /* jshint node: true */
-
 describe('rxLogout', function () {
     var el, compile, scope, elScope, ngWindow, ngLocation;
 
@@ -40,7 +39,7 @@ describe('rxLogout', function () {
     it('should log you out', function () {
         helpers.clickElement(el);
 
-        expect(authMock.logout.calledOnce).to.be.true;
+        expect(authMock.logout).to.be.calledOnce;
 
         // test that location is properly set (and '#' added for non-HTML5 mode)
         expect(ngWindow.location).to.equal('#' + scope.logoutUrl);
@@ -51,7 +50,7 @@ describe('rxLogout', function () {
 
         helpers.clickElement(el);
 
-        expect(authMock.logout.calledOnce).to.be.true;
+        expect(authMock.logout).to.be.calledOnce;
 
         // test HTML5 routing mode
         expect(ngWindow.location).to.equal(scope.logoutUrl);

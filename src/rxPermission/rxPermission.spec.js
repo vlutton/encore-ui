@@ -84,20 +84,20 @@ describe('rxPermission', function () {
 
             session.getToken = sinon.stub().returns(null);
             expect(permission.getRoles()).to.be.empty;
-            expect(session.getToken.called).to.be.true;
+            expect(session.getToken).to.be.called;
         });
 
         it('Permission service: should validate if user has role', function () {
             expect(permission.hasRole('Customer')).to.be.true;
             expect(permission.hasRole('Invalid Role')).to.be.false;
-            expect(session.getToken.called).to.be.true;
+            expect(session.getToken).to.be.called;
         });
 
         it('Permission service: should validate if user has any of roles', function () {
             expect(permission.hasRole('Customer, Invalid Role')).to.be.true;
             expect(permission.hasRole('Custom, Er Role, Today')).to.be.false;
             expect(permission.hasRole('Test, Er Role, Today')).to.be.true;
-            expect(session.getToken.called).to.be.true;
+            expect(session.getToken).to.be.called;
         });
 
     });

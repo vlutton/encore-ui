@@ -38,10 +38,10 @@ describe('rxModalForm', function () {
 
         timeout.flush();
 
-        expect(input.focus.calledOnce).to.be.true;
+        expect(input.focus).to.be.calledOnce;
 
         // should only focus the first element
-        expect(secondFocusable.focus.called).to.be.false;
+        expect(secondFocusable.focus).to.not.be.called;
     });
 
     it('should focus on select and textareas', function () {
@@ -60,7 +60,7 @@ describe('rxModalForm', function () {
 
         timeout.flush();
 
-        expect(focusable.focus.calledOnce).to.be.true;
+        expect(focusable.focus).to.be.calledOnce;
 
         // now check the select box
         formHtml = _.template(rxModalForm, {
@@ -75,7 +75,7 @@ describe('rxModalForm', function () {
 
         timeout.flush();
 
-        expect(focusable.focus.calledOnce).to.be.true;
+        expect(focusable.focus).to.be.calledOnce;
     });
 
     it('should not focus on hidden input element', function () {
@@ -92,8 +92,8 @@ describe('rxModalForm', function () {
 
         timeout.flush();
 
-        expect(inputs[0].focus.called).to.be.false;
-        expect(inputs[1].focus.calledOnce).to.be.true;
+        expect(inputs[0].focus).to.not.be.called;
+        expect(inputs[1].focus).to.be.calledOnce;
     });
 
     it('should prioritize elements with an autofocus attribute', function () {
@@ -110,8 +110,8 @@ describe('rxModalForm', function () {
 
         timeout.flush();
 
-        expect(inputs[0].focus.called).to.be.false;
-        expect(inputs[1].focus.calledOnce).to.be.true;
+        expect(inputs[0].focus).to.not.be.called;
+        expect(inputs[1].focus).to.be.calledOnce;
     });
 });
 

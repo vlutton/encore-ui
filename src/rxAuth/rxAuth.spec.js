@@ -33,51 +33,51 @@ describe('rxAuth', function () {
         it('Auth.login() should get a token', function () {
             var result = auth.login({ username: 'bruce.wayne', password: 'batmanRulez' });
             expect(result.access).not.be.empty;
-            expect(identity.loginWithJSON.called).to.be.true;
+            expect(identity.loginWithJSON).to.be.called;
         });
 
         it('Auth.loginWithJSON() should get a token', function () {
             var result = auth.loginWithJSON({ username: 'bruce.wayne', apiToken: '1-800-BAT-MANN' });
             expect(result.access).not.be.empty;
-            expect(identity.loginWithJSON.called).to.be.true;
+            expect(identity.loginWithJSON).to.be.called;
         });
 
         it('Auth.getToken() should return a token', function () {
             var result = auth.getToken();
             expect(result).not.be.empty;
             expect(result.access).not.be.empty;
-            expect(session.getToken.called).to.be.true;
+            expect(session.getToken).to.be.called;
         });
 
         it('Auth.storeToken() should store a token', function () {
             auth.storeToken(token);
-            expect(session.storeToken.called).to.be.true;
+            expect(session.storeToken).to.be.called;
         });
 
         it('Auth.logout() should log off user via session.logout', function () {
             auth.logout();
-            expect(session.logout.called).to.be.true;
+            expect(session.logout).to.be.called;
         });
 
         it('Auth.isCurrent() should check token via session.isCurrent', function () {
             expect(auth.isCurrent()).to.be.true;
-            expect(session.isCurrent.called).to.be.true;
+            expect(session.isCurrent).to.be.called;
         });
 
         it('Auth.isAuthenticated() should check token via session.isAuthenticated', function () {
             expect(auth.isAuthenticated()).to.be.true;
-            expect(session.isAuthenticated.called).to.be.true;
+            expect(session.isAuthenticated).to.be.called;
         });
 
         it('Auth.getRoles() should retrieve user roles via permission.getRoles', function () {
             expect(auth.getRoles().length).to.eq(1);
-            expect(permission.getRoles.called).to.be.true;
+            expect(permission.getRoles).to.be.called;
         });
 
         it('Auth.hasRole() should validate user has role via permission.hasRole', function () {
             expect(auth.hasRole('admin')).to.be.true;
             expect(auth.hasRole('fakeRole')).to.be.false;
-            expect(permission.getRoles.called).to.be.true;
+            expect(permission.getRoles).to.be.called;
         });
     });
 

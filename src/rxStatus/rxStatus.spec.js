@@ -23,41 +23,41 @@ describe('rxStatus: Status', function () {
 
     it('Status: setLoading returns a loading message', function () {
         status.setLoading('Loading');
-        expect(status.setStatus.calledWithMatch('Loading')).to.be.true;
+        expect(status.setStatus).to.be.calledWithMatch('Loading');
         expect(status.setStatus.args[0][1]).to.include.keys('loaded', 'loading');
         expect(status.setStatus.args[0][1]).to.include({ repeat: true, timeout: -1 });
     });
 
     it('Status: setSuccess returns a success message', function () {
         status.setSuccess('Yup');
-        expect(status.setStatus.calledWithMatch('Yup')).to.be.true;
+        expect(status.setStatus).to.be.calledWithMatch('Yup');
         expect(status.setStatus.args[0][1]).to.include.keys('success', 'type');
         expect(status.setStatus.args[0][1]).to.include({ repeat: false, timeout: 5 });
     });
 
     it('Status: setSuccessNext returns a success message upon next route change', function () {
         status.setSuccessNext('Yup later');
-        expect(status.setStatus.calledWithMatch('later')).to.be.true;
+        expect(status.setStatus).to.be.calledWithMatch('later');
         expect(status.setStatus.args[0][1]).to.include({ show: 'next', repeat: false, timeout: 5 });
     });
 
     it('Status: setError returns an error message', function () {
         status.setError('Err');
-        expect(status.setStatus.calledWithMatch('Err')).to.be.true;
+        expect(status.setStatus).to.be.calledWithMatch('Err');
         expect(status.setStatus.args[0][1]).to.include.keys('success', 'type');
         expect(status.setStatus.args[0][1]).to.include({ repeat: false, timeout: -1 });
     });
 
     it('Status: setWarning returns a warning message', function () {
         status.setWarning('Warn');
-        expect(status.setStatus.calledWithMatch('Warn')).to.be.true;
+        expect(status.setStatus).to.be.calledWithMatch('Warn');
         expect(status.setStatus.args[0][1]).to.include.keys('success', 'type');
         expect(status.setStatus.args[0][1]).to.include({ repeat: true, timeout: -1 });
     });
 
     it('Status: setInfo returns an info message', function () {
         status.setInfo('Info');
-        expect(status.setStatus.calledWithMatch('Info')).to.be.true;
+        expect(status.setStatus).to.be.calledWithMatch('Info');
         expect(status.setStatus.args[0][1]).to.include.keys('success', 'type');
         expect(status.setStatus.args[0][1]).to.include({ repeat: true, timeout: -1 });
     });
@@ -74,25 +74,25 @@ describe('rxStatus: Status', function () {
 
     it('Status: clear returns no message', function () {
         status.clear();
-        sinon.assert.notCalled(status.setStatus);
+        expect(status.setStatus).to.not.have.been.called;
     });
 
     it('Status: complete results in an immediate success', function () {
         status.complete();
-        expect(scope.status.show).to.be.equal('immediate');
+        expect(scope.status.show).to.equal('immediate');
     });
 
     it('Status: dismiss results in removal of an existing message', function () {
         var info = status.setInfo('Info');
         status.dismiss(info);
-        expect(scope.status.loading).to.be.equal(false);
+        expect(scope.status.loading).to.be.false;
     });
 
     it('Status: should reset stack to "page" upon beginning of route reload', function () {
         inject(function (Status) {
             var spy = sinon.spy(Status, 'setStack');
             rootScope.$broadcast('$routeChangeStart');
-            expect(Status.setStack.args[0][0]).to.be.equal('page');
+            expect(Status.setStack.args[0][0]).to.equal('page');
             spy.restore();
         });
     });
@@ -125,12 +125,12 @@ describe('rxStatus: StatusUtil', function () {
 
     it('StatusUtil: should allow storing of rootScope reference', function () {
         util.setupScope();
-        expect(status.setScope.args[0][0]).to.be.deep.equal(rootScope);
+        expect(status.setScope.args[0][0]).to.deep.equal(rootScope);
     });
 
     it('StatusUtil: should allow storing of provided scope reference', function () {
         util.setupScope({ fake: 'object' });
-        expect(status.setScope.args[0][0]).to.be.deep.equal({ fake: 'object' });
+        expect(status.setScope.args[0][0]).to.deep.equal({ fake: 'object' });
     });
 });
 
@@ -147,21 +147,25 @@ describe('rxStatus: ErrorFormatter', function () {
 
     it('should use an error object with a message property', function () {
         var error = { message: 'foobar' };
-        expect(errorFormatter.buildErrorMsg('Hi ${message}', error)).to.equal('Hi foobar');
+        var errorMsg = errorFormatter.buildErrorMsg('Hi ${message}', error);
+        expect(errorMsg).to.equal('Hi foobar');
     });
 
     it('should use statusText for ${message} if there is no message property', function () {
         var error = { statusText: 'baz' };
-        expect(errorFormatter.buildErrorMsg('Hi ${message}', error)).to.equal('Hi baz');
+        var errorMsg = errorFormatter.buildErrorMsg('Hi ${message}', error);
+        expect(errorMsg).to.equal('Hi baz');
     });
 
     it('should replace ${message} with "Unknown error" if it cannot find message or statusText', function () {
         var error = {};
-        expect(errorFormatter.buildErrorMsg('Hi ${message}', error)).to.equal('Hi Unknown error');
+        var errorMsg = errorFormatter.buildErrorMsg('Hi ${message}', error);
+        expect(errorMsg).to.equal('Hi Unknown error');
     });
 
     it('should accept arbitrary template variables', function () {
         var error = { firstVar: 'foo', secondVar: 'bar' };
-        expect(errorFormatter.buildErrorMsg('${firstVar} ${secondVar}', error)).to.equal('foo bar');
+        var errorMsg = errorFormatter.buildErrorMsg('${firstVar} ${secondVar}', error);
+        expect(errorMsg).to.equal('foo bar');
     });
 });

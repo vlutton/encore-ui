@@ -110,6 +110,6 @@ describe('rxFavicon', function () {
 
         el = helpers.createDirective(badTemplate, compile, scope);
 
-        expect(log.warn.calledOnce).to.be.true;
+        expect(log.warn).to.be.calledOnce;
     });
 });

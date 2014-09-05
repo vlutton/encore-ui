@@ -27,7 +27,7 @@ describe('rxEnvironment', function () {
         sinon.spy(log, 'warn');
 
         expect(envSvc.get().name).to.equal('local');
-        expect(log.warn.calledOnce).to.be.true;
+        expect(log.warn).to.be.calledOnce;
     });
 
     it('should get current environment based on location passed in', function () {
@@ -88,7 +88,7 @@ describe('rxEnvironment', function () {
             name: 'custom'
         });
 
-        expect(log.error.calledOnce).to.be.true;
+        expect(log.error).to.be.calledOnce;
     });
 
     it('should allow you to completely overwrite defined environments', function () {
