@@ -71,7 +71,7 @@ Waiting...
 Warning: EMFILE, too many open files 'src'
 ```
 
-Run `launchctl limit maxfiles 10480 10480` in your terminal. You might also want to add that to your .bash_profile script.
+Run `launchctl limit maxfiles 10480 10480` in your terminal. Depending on your operating system, sometimes `launchctl limit maxfiles 2048 2048 && ulimit -n 2048` will work instead. You might also want to add that to your .bash_profile script.
 
 
 ## Creating a New Component
