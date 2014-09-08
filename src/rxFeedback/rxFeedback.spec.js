@@ -118,7 +118,7 @@ describe('rxFeedback', function () {
 
         httpMock.flush();
 
-        expect(feedbackSvc.fallback.calledOnce).to.be.true;
+        expect(feedbackSvc.fallback).to.be.calledOnce;
     });
 
     it('should show custom failure message', function () {
@@ -149,7 +149,7 @@ describe('rxFeedback', function () {
 
         it('should apply the custom feedback function for on-submit', function () {
             elCustomScope.sendFeedback();
-            expect(scope.kitchenSink.calledOnce).to.be.true;
+            expect(scope.kitchenSink).to.be.calledOnce;
         });
 
     });
@@ -254,7 +254,7 @@ describe('rxFeedbackSvc', function () {
     });
 
     it('should have a default apiEndpoint', function () {
-        expect(mockResource.calledWith(apiUrl)).to.be.true;
+        expect(mockResource).to.be.calledWith(apiUrl);
         expect(feedbackSvc.api.save).to.exist;
     });
 
@@ -266,7 +266,7 @@ describe('rxFeedbackSvc', function () {
         mockResource.returns(resource);
         feedbackSvc.setEndpoint(newUrl);
 
-        expect(mockResource.calledWith(newUrl)).to.be.true;
+        expect(mockResource).to.be.calledWith(newUrl);
         expect(feedbackSvc.api).to.equal(resource);
     });
 
@@ -282,7 +282,7 @@ describe('rxFeedbackSvc', function () {
 
         feedbackSvc.fallback(fackFeedback);
 
-        expect(mockWindow.open.calledOnce).to.be.true;
+        expect(mockWindow.open).to.be.calledOnce;
     });
 
     it('should show e-mail feedback in current window if new window fails to load', function () {

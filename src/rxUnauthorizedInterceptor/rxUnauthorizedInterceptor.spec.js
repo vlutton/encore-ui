@@ -33,14 +33,14 @@ describe('rxUnauthorizedInterceptor', function () {
         interceptor.responseError({ status: 500 });
 
         expect(mockWindow.location).to.not.eq('/login');
-        expect(q.reject.called).to.be.true;
+        expect(q.reject).to.be.called;
 
         sinon.stub(interceptor, 'redirectPath').returns(cases.fullPath);
         interceptor.responseError({ status: 401 });
 
         expect(mockWindow.location).to.contain('redirect=' + encodeURIComponent('/app/path'));
-        expect(q.reject.called).to.be.true;
-        expect(session.logout.called).to.be.true;
+        expect(q.reject).to.be.called;
+        expect(session.logout).to.be.called;
     });
 
     it('Interceptor sets proper redirect path', function () {

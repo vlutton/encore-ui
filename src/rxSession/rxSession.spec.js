@@ -35,24 +35,24 @@ describe('rxSession', function () {
     describe('Session Service', function () {
         it('storeToken: should store token in session storage', function () {
             session.storeToken(mockToken);
-            expect(storage.setObject.called).to.be.true;
+            expect(storage.setObject).to.be.called;
         });
 
         it('getToken: should return token from session storage', function () {
             var token = session.getToken();
             expect(token).not.be.empty;
-            expect(storage.getObject.called);
+            expect(storage.getObject).to.be.called;
         });
 
         it('getTokenId: should return the token id from session storage', function () {
             var tokenId = session.getTokenId();
             expect(tokenId).to.eq('someid');
-            expect(storage.getObject.called);
+            expect(storage.getObject).to.be.called;
         });
 
         it('logout: should remove token from session', function () {
             session.logout('encoreToken');
-            expect(storage.removeItem.called).to.be.true;
+            expect(storage.removeItem).to.be.called;
         });
 
         it('isCurrent: should evaluate the expiration date of the token', function () {
