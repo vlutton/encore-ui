@@ -30,12 +30,6 @@ var breadcrumb = function (rootElement) {
             }
         },
 
-        hover: {
-            value: function () {
-                return browser.actions().mouseMove(rootElement).perform();
-            }
-        },
-
         isFirst: {
             value: function () {
                 return rootElement.element(by.className('first')).isPresent();
@@ -52,21 +46,7 @@ var breadcrumb = function (rootElement) {
             value: function () {
                 return rootElement.$('a').isPresent();
             }
-        },
-
-        isHovered: {
-            value: function () {
-                return this.isLink().then(function (isLink) {
-                    if (isLink) {
-                        return rootElement.$('a').getCssValue('background-color').then(function (color) {
-                            return color === 'rgba(255, 255, 255, 1)';
-                        });
-                    } else {
-                        return false;
-                    }
-                });
-            }
-        },
+        }
 
     });
 };
