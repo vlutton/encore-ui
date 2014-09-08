@@ -57,6 +57,15 @@ Any libraries added to the project must be pre-approved with the UI team.
 
 ## Tips on Committing Your Code
 
+### Update your .gitconfig to only push the current branch
+
+Ensure that you have the following in your `.gitconfig`.
+```
+[push]
+    default = current
+```
+You can add the above lines to your `.gitconfig` if they aren't there already, or do this via the command line: `git config --global push.default current`
+
 ### Diff Before Every Commit
 
 Get into the habit of running git diff or git diff --cached before every commit. This helps ensure no unwanted changes sneak in. Also, check for unnecessary whitespace with `git diff --check`.
