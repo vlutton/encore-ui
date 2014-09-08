@@ -91,6 +91,13 @@ var myComponentPage = require('rx-page-objects').myComponent;
 expect(myComponentPage.rootElement.isDisplayed()).to.eventually.eq.true;
 ```
 
+In some of the page object source code, you may notice something like the following line
+
+```js
+var helperComponent = exports.rxHelper || require('../rxHelper/rxHelper.page.js').rxHelper;
+```
+
+Since the publish step of the page objects concatenates all pages together into one large zipped file, there isn't a reliable way to know if the import is happening in the "one large file", or in the `src/` directory (where UI smoke tests are run on Travis). This simply catches both cases, so that importing components can happen in either situation.
 
 UI Regression Tests
 -------------
