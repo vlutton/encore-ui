@@ -40,11 +40,6 @@ describe('rxBreadcrumbs', function () {
             expect(first.href).to.eventually.equal(browser.baseUrl + '/');
         });
 
-        it('should change colors when hovered over', function () {
-            first.hover();
-            expect(first.isHovered()).to.eventually.be.true;
-        });
-
     });
 
     describe('last breadcrumb', function () {
@@ -73,11 +68,6 @@ describe('rxBreadcrumbs', function () {
         it('should have no href property', function () {
             expect(last.isLink()).to.eventually.be.false;
             expect(last.href).to.eventually.be.null;
-        });
-
-        it('should not change color when hovered over', function () {
-            last.hover();
-            expect(last.isHovered()).to.eventually.be.false;
         });
 
     });
@@ -129,11 +119,6 @@ describe('rxBreadcrumbs', function () {
         it('should have an href property', function () {
             expect(middle.isLink()).to.eventually.be.true;
             expect(middle.href).to.eventually.equal(browser.baseUrl + '/');
-        });
-
-        it('should change color when hovered over', function () {
-            middle.hover();
-            expect(middle.isHovered()).to.eventually.be.true;
         });
 
     });
