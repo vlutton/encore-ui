@@ -1,6 +1,3 @@
-var demoPage = require('../../../utils/demo.page.js');
-
-// Add midway tests to run
 describe('rxToggle', function () {
     var rxToggle, rxToggleContent;
 

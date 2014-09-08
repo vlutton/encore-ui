@@ -1,6 +1,5 @@
 var _ = require('lodash');
 
-var demoPage = require('../../../utils/demo.page.js');
 var diskSize = require('../rxDiskSize.page.js').rxDiskSize;
 
 describe('rxDiskSize', function () {

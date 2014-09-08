@@ -1,6 +1,5 @@
 var _ = require('lodash');
 
-var demoPage = require('../../../utils/demo.page.js');
 var feedback = require('../rxFeedback.page.js').rxFeedback;
 
 describe('rxFeedback', function () {

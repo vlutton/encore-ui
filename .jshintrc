@@ -34,6 +34,7 @@
         "beforeEach": false,
         "browser": false,
         "by": false,
+        "demoPage": true,
         "describe": false,
         "element": false,
         "expect": true,

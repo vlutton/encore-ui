@@ -1,8 +1,6 @@
-var demoPage = require('../../../utils/demo.page.js');
 var rxAppPage = require('../rxApp.page.js').rxApp;
 var rxPagePage = require('../rxApp.page.js').rxPage;
 
-// Add midway tests to run
 describe('rxApp', function () {
     var rxAppCustom, rxAppStandard;
 

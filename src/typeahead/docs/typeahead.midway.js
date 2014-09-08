@@ -1,7 +1,5 @@
-var demoPage = require('../../../utils/demo.page.js');
 var typeaheadPage = require('../typeahead.page.js').typeahead;
 
-// Add midway tests to run
 describe('typeahead', function () {
     var typeahead;
 
