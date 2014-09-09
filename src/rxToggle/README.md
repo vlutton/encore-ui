@@ -1,4 +1,4 @@
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+[![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
 This component provides and attribute to handle toggling a boolean scope property for hide/show purposes. Normally used in conjunction with ng-show to toggle hidden content. See the collapse functionality in 'rxApp' for a real-world use.
 
