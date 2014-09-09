@@ -1,7 +1,5 @@
-var demoPage = require('../../../utils/demo.page.js');
 var rxLogoutPage = require('../rxLogout.page.js').rxLogout;
 
-// Add midway tests to run
 describe('rxLogout', function () {
     var rxLogout;
 

@@ -142,8 +142,5 @@ exports.rxPage = {
             get: function () { return rxPageElement; }
         };
         return Page.create(rxPage);
-    },
-
-    help: function () { return Object.keys(rxPage); }
-
+    }
 };

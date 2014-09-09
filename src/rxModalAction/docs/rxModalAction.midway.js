@@ -1,7 +1,5 @@
-var demoPage = require('../../../utils/demo.page.js');
 var modal = require('../rxModalAction.page.js').rxModalAction;
 
-// Add midway tests to run
 describe('rxModalAction', function () {
     var changePasswordModal, triggerModal;
 

@@ -1,7 +1,5 @@
-var demoPage = require('../../../utils/demo.page.js');
 var rxPermissionPage = require('../rxPermission.page.js').rxPermission;
 
-// Add midway tests to run
 describe('rxPermission', function () {
 
     before(function () {

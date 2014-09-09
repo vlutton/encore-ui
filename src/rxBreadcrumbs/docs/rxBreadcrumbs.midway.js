@@ -1,4 +1,3 @@
-var demoPage = require('../../../utils/demo.page.js');
 var rxBreadcrumbsPage = require('../rxBreadcrumbs.page.js').rxBreadcrumbs;
 
 describe('rxBreadcrumbs', function () {

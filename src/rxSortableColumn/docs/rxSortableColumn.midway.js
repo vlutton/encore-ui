@@ -1,7 +1,5 @@
-var demoPage = require('../../../utils/demo.page.js');
 var rxSortableColumn = require('../rxSortableColumn.page.js').rxSortableColumn;
 
-// Add midway tests to run
 describe('rxSortableColumn', function () {
     var nameColumn = null;
     var roleColumn = null;

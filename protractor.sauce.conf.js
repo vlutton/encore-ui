@@ -19,6 +19,7 @@ exports.config = {
 
     onPrepare: function () {
         expect = require('chai').use(require('chai-as-promised')).expect;
+        demoPage = require('./utils/demo.page.js');
     },
 
     sauceUser: process.env.SAUCE_USERNAME,

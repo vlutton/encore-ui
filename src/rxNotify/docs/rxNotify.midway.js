@@ -1,6 +1,5 @@
 var _ = require('lodash');
 
-var demoPage = require('../../../utils/demo.page.js');
 var notifications = require('../rxNotify.page.js').rxNotify;
 
 describe('rxNotify', function () {

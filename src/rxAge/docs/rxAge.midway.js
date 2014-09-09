@@ -1,7 +1,6 @@
 var _ = require('lodash');
 var moment = require('moment');
 
-var demoPage = require('../../../utils/demo.page.js');
 var age = require('../rxAge.page.js').rxAge;
 
 describe('rxAge', function () {

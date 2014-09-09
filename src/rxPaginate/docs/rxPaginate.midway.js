@@ -1,7 +1,5 @@
-var demoPage = require('../../../utils/demo.page.js');
 var pagination = require('../rxPaginate.page.js').rxPaginate;
 
-// Add midway tests to run
 describe('rxPaginate', function () {
 
     before(function () {

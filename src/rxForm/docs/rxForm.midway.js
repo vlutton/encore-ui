@@ -1,7 +1,5 @@
-var demoPage = require('../../../utils/demo.page.js');
 var rxFormPage = require('../rxForm.page.js').rxForm;
 
-// Add midway tests to run
 describe('rxForm', function () {
 
     it('beforeAll', function () {

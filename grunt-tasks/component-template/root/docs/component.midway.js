@@ -1,8 +1,6 @@
-var demoPage = require('../../../utils/demo.page.js');
 var {%= name %}Page = require('../{%= name %}.page.js').{%=name %};
 var expect = require('chai').use(require('chai-as-promised')).expect;
 
-// Add midway tests to run
 describe('{%= name %}', function () {
     var {%= name %};
 
