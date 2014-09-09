@@ -1,3 +1,12 @@
+<a name="1.1.4"></a>
+### 1.1.4 (2014-09-09)
+
+
+#### Bug Fixes
+
+* **bower:** add reference to CSS for bower; Fix #502 ([d3aaf66e](git@github.com:rackerlabs/encore-ui/commit/d3aaf66ef9197513fc8a218a0b8f4e9ea6070461))
+
+
 <a name="1.1.3"></a>
 ### 1.1.3 (2014-08-29)
 
