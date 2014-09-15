@@ -1,3 +1,12 @@
+<a name="1.1.5"></a>
+### 1.1.5 (2014-09-15)
+
+
+#### Bug Fixes
+
+* **watch:** Fix less watch task ([5237e7a5](git@github.com:rackerlabs/encore-ui/commit/5237e7a5a6e86b79209a5afa5a06a01aff8a5b31))
+
+
 <a name="1.1.4"></a>
 ### 1.1.4 (2014-09-09)
 
