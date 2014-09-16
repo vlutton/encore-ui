@@ -1,3 +1,12 @@
+<a name="1.1.6"></a>
+### 1.1.6 (2014-09-16)
+
+
+#### Bug Fixes
+
+* **tests:** Top-level root element <html> ([d1fbcc67](git@github.com:rackerlabs/encore-ui/commit/d1fbcc67d97c337d3c0463651de10c24689be4b0))
+
+
 <a name="1.1.5"></a>
 ### 1.1.5 (2014-09-15)
 
