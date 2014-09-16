@@ -135,7 +135,7 @@ exports.rxNotify = {
     all: (function () {
         rxNotify.rootElement = {
             get: function () {
-                return element;
+                return $('html');
             }
         };
 
