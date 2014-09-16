@@ -92,4 +92,16 @@ describe('rxPage', function () {
         $('button.changeSubtitle').click();
         expect(customPage.subtitle).to.eventually.contain('With a new subtitle at 1');
     });
+
+    describe('main title', function () {
+
+        before(function () {
+            demoPage.go('#/component/configs');
+        });
+
+        it('should grab the main title', function () {
+            expect(rxPage.main.title).to.eventually.equal('configs');
+        });
+
+    });
 });

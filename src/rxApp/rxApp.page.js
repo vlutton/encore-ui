@@ -166,15 +166,11 @@ exports.rxPage = {
         return Page.create(rxPage);
     },
 
-    title: {
-        get: function () {
-            return this.initialize().title;
-        }
-    },
+    main: (function () {
+        rxPage.rootElement = {
+            get: function () { return $('html'); }
+        };
+        return Page.create(rxPage);
+    })()
 
-    subtitle: {
-        get: function () {
-            return this.initialize().subtitle;
-        }
-    }
 };
