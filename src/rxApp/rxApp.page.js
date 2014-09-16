@@ -155,9 +155,10 @@ var rxPage = {
 };
 
 exports.rxPage = {
+
     initialize: function (rxPageElement) {
         if (rxPageElement === undefined) {
-            rxPageElement = element;
+            rxPageElement = $('html');
         }
         rxPage.rootElement = {
             get: function () { return rxPageElement; }
