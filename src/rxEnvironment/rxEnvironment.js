@@ -34,20 +34,29 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         pattern: /\/\/(localhost|server)(:\d{1,4})?/,
         url: '//localhost:' + $location.port() + '/{{path}}'
     }, {
+        // Matches only https://preprod.encore.rackspace.com
+        name: 'preprod',
+        pattern: /\/\/preprod.encore.rackspace.com/,
+        url: '{{path}}'
+    }, {
+        // This is anything with a host preceeding encore.rackspace.com
         // https://staging.encore.rackspace.com/
         // https://preprod.encore.rackspace.com/
         name: 'unified-preprod',
         pattern: /\/\/(\w+\.)encore.rackspace.com/,
         url: '{{path}}'
     }, {
+        // This is *all* environments
         // https://encore.rackspace.com/
+        // https://staging.encore.rackspace.com/
+        // https://preprod.encore.rackspace.com/
         name: 'unified',
         pattern: 'encore.rackspace.com',
         url: '{{path}}'
     }, {
-        // https://encore.rackspace.com/ only
+        // This is only https://encore.rackspace.com/
         name: 'unified-prod',
-        pattern: /\/\/(?=[\w.]+)encore.rackspace.com/,
+        pattern: /\/\/encore.rackspace.com/,
         url: '{{path}}'
     }];
 
