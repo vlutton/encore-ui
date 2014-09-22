@@ -16,9 +16,7 @@ var breadcrumb = function (rootElement) {
                     if (isLink) {
                         return rootElement.$('a').getAttribute('href');
                     } else {
-                        var deferred = protractor.promise.defer();
-                        deferred.fulfill(null);
-                        return deferred.promise;
+                        return protractor.promise.fulfilled(null);
                     }
                 });
             }
@@ -85,6 +83,20 @@ var rxBreadcrumbs = {
         value: function (position) {
             return breadcrumb(this.tblBreadcrumbs.get(position));
         }
+    },
+
+    count: {
+        value: function () {
+            return this.tblBreadcrumbs.count();
+        }
+    },
+
+    names: {
+        get: function () {
+            return this.tblBreadcrumbs.map(function (breadcrumbElement) {
+                return breadcrumbElement.getText();
+            });
+        }
     }
 
 };
@@ -95,5 +107,12 @@ exports.rxBreadcrumbs = {
             get: function () { return rootElement; }
         };
         return Page.create(rxBreadcrumbs);
-    }
+    },
+
+    main: (function () {
+        rxBreadcrumbs.rootElement = {
+            get: function () { return $('rx-breadcrumbs'); }
+        };
+        return Page.create(rxBreadcrumbs);
+    })()
 };

@@ -1,11 +1,11 @@
-var rxBreadcrumbsPage = require('../rxBreadcrumbs.page.js').rxBreadcrumbs;
+var rxBreadcrumbs = require('../rxBreadcrumbs.page.js').rxBreadcrumbs;
 
 describe('rxBreadcrumbs', function () {
     var breadcrumbs;
 
     before(function () {
         demoPage.go('#/component/rxBreadcrumbs');
-        breadcrumbs = rxBreadcrumbsPage.initialize($('.component-demo .rx-breadcrumbs'));
+        breadcrumbs = rxBreadcrumbs.initialize($('.component-demo rx-breadcrumbs'));
     });
 
     it('should show the element', function () {
@@ -118,6 +118,24 @@ describe('rxBreadcrumbs', function () {
         it('should have an href property', function () {
             expect(middle.isLink()).to.eventually.be.true;
             expect(middle.href).to.eventually.equal(browser.baseUrl + '/');
+        });
+
+    });
+
+    describe('default breadcrumbs', function () {
+        var defaultBreadcrumbs;
+
+        before(function () {
+            demoPage.go('#/component/configs');
+            defaultBreadcrumbs = rxBreadcrumbs.main;
+        });
+
+        it('should find the default breadcrumbs', function () {
+            expect(defaultBreadcrumbs.count()).to.eventually.equal(2);
+        });
+
+        it('should have the correct names', function () {
+            expect(defaultBreadcrumbs.names).to.eventually.eql(['Home', 'configs']);
         });
 
     });
