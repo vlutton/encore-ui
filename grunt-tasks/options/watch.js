@@ -26,7 +26,7 @@ module.exports = {
         tasks: ['copy:componentImages']
     },
     demoSite: {
-        files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/**/*'],
+        files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/**/*', '!demo/bower_components/**/*'],
         tasks: ['build']
     }
 };
