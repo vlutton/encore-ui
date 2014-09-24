@@ -52,9 +52,10 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
         }
     };
 })
-.service('rxFeedbackSvc', function ($resource, feedbackApi, $location, $window) {
+.factory('rxFeedbackSvc', function ($resource, feedbackApi, $location, $window) {
     var container = {
         api: undefined,
+        email: 'encoreui@lists.rackspace.com'
     };
 
     container.setEndpoint = function (url) {
@@ -75,7 +76,7 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
         body = body.join('\n\n');
 
         // if the feedback service fails, this fallback function can be run as a last ditch effort
-        var uri = encodeURI('mailto:encoreui@lists.rackspace.com?subject=' + subject + '&body=' + body);
+        var uri = encodeURI('mailto:' + container.email + '?subject=' + subject + '&body=' + body);
         var windowOpen = $window.open(uri, '_blank');
 
         if (!windowOpen) {

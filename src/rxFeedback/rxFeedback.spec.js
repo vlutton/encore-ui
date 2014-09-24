@@ -301,4 +301,22 @@ describe('rxFeedbackSvc', function () {
         expect(mockWindow.location.href).to.contain(feedback.type.label);
         expect(mockWindow.location.href).to.contain(feedback.description);
     });
+
+    it('should allow setting a custom e-mail address', function () {
+        var feedback = {
+            type: {
+                label: 'test'
+            },
+            description: 'test'
+        };
+
+        var ninetiesEmail = '_x_masta-ram_x_@aol.com';
+
+        feedbackSvc.email = ninetiesEmail;
+
+        mockWindow.open.returns(undefined);
+        feedbackSvc.fallback(feedback);
+
+        expect(mockWindow.location.href).to.contain(ninetiesEmail);
+    });
 });
