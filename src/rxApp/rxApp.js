@@ -461,7 +461,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             logoutUrl: '@?'
         },
         link: function (scope) {
-            scope.isPreProd = function () { return Environment.get().name === 'preprod';};
+            scope.isPreProd = Environment.isPreProd();
 
             scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;
 

@@ -12,8 +12,6 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
 * </pre>
 */
 .service('Environment', function ($location, $rootScope, $log) {
-    var envSvc = {};
-
     /*
      * This array defined different environments to check against.
      * It is prefilled with 'Encore' based environments
@@ -75,24 +73,26 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         return isValid;
     };
 
+    var environmentPatternMatch = function (href, pattern) {
+        if (_.isRegExp(pattern)) {
+            return pattern.test(href);
+        }
+
+        return _.contains(href, pattern);
+    };
+
     /*
      * Retrieves current environment
      * @public
      * @param {string} [href] The path to check the environment on. Defaults to $location.absUrl()
      * @returns {Object} The current environment (if found), else 'localhost' environment.
      */
-    envSvc.get = function (href) {
+    this.get = function (href) {
         // default to current location if href not provided
         href = href || $location.absUrl();
 
         var currentEnvironment = _.find(environments, function (environment) {
-            var pattern = environment.pattern;
-
-            if (_.isRegExp(pattern)) {
-                return pattern.test(href);
-            }
-
-            return _.contains(href, pattern);
+            return environmentPatternMatch(href, environment.pattern);
         });
 
         if (_.isUndefined(currentEnvironment)) {
@@ -109,7 +109,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * @public
      * @param {object} environment The environment to add. See 'environments' array for required properties
      */
-    envSvc.add = function (environment) {
+    this.add = function (environment) {
         // do some sanity checks here
         if (isValidEnvironment(environment)) {
             // add environment
@@ -124,7 +124,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * @public
      * @param {array} newEnvironments New environments to use
      */
-    envSvc.setAll = function (newEnvironments) {
+    this.setAll = function (newEnvironments) {
         // validate that all new environments are valid
         if (newEnvironments.length > 0 && _.every(environments, isValidEnvironment)) {
             // overwrite old environments with new
@@ -132,7 +132,50 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         }
     };
 
-    return envSvc;
+    /*
+     * Given an environment name, check if any of our registered environments 
+     * match it
+     * @public
+     * @param {string} [name] Environment name to check
+     * @param {string} [href] Optional href to check against. Defaults to $location.absUrl()
+     */
+    this.envCheck = function (name, href) {
+        href = href || $location.absUrl();
+        var matchingEnvironments = _.filter(environments, function (environment) {
+            return environmentPatternMatch(href, environment.pattern);
+        });
+        return _.contains(_.pluck(matchingEnvironments, 'name'), name);
+    };
+
+    var makeEnvCheck = function (name) {
+        return function (href) { return this.envCheck(name, href); };
+    };
+
+    /* Whether or not we're in the `preprod` environment
+     * @public
+     */
+    this.isPreProd = makeEnvCheck('preprod');
+
+    /* Whether or not we're in `local` environment
+     * @public
+     */
+    this.isLocal = makeEnvCheck('local');
+
+    /* Whether or not we're in the `unified-preprod` environment
+     * @public
+     */
+    this.isUnifiedPreProd = makeEnvCheck('unified-preprod');
+
+    /* Whether or not we're in the `unified` environment
+     * @public
+     */
+    this.isUnified = makeEnvCheck('unified');
+
+    /* Whether or not we're in the `unified-prod` environment
+     * @public
+     */
+    this.isUnifiedProd = makeEnvCheck('unified-prod');
+
 })
 /**
 *

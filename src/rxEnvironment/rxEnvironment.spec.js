@@ -51,14 +51,27 @@ describe('rxEnvironment', function () {
         // test local
         location.absUrl.returns('http://localhost:9001');
         expect(envSvc.get().name).to.equal('local');
+        expect(envSvc.isLocal(), 'isLocal localhost:9001').to.be.true;
+        expect(envSvc.isPreProd(), 'test for preprod when environment is local').to.be.false;
+
+        // test preprod
+        location.absUrl.returns('http://preprod.encore.rackspace.com');
+        expect(envSvc.get().name).to.equal('preprod');
+        expect(envSvc.isPreProd(), 'isPreProd for preprod.encore.rackspace.com').to.be.true;
+        expect(envSvc.isUnifiedPreProd(), 'test for unified-preprod when environment is preprod').to.be.true;
 
         // test staging
         location.absUrl.returns('http://staging.encore.rackspace.com');
         expect(envSvc.get().name).to.equal('unified-preprod');
+        expect(envSvc.isUnifiedPreProd(), 'isUnifiedPreProd for staging.encore.rackspace.com').to.be.true;
+        expect(envSvc.isUnified(), 'test for unified when environment is unified-preprod').to.be.true;
 
-        // test prod
+        // test unified
         location.absUrl.returns('http://encore.rackspace.com');
         expect(envSvc.get().name).to.equal('unified');
+        expect(envSvc.isUnified(), 'isUnified for encore.rackspace.com').to.be.true;
+        expect(envSvc.isUnifiedProd(), 'isUnifiedProd for encore.rackspace.com').to.be.true;
+        expect(envSvc.isLocal(), 'test for local when environment is unified').to.be.false;
     });
 
     it('should allow defining a new environment', function () {
