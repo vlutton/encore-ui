@@ -446,7 +446,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (rxAppRoutes, hotkeys) {
+.directive('rxApp', function (rxAppRoutes, hotkeys, Environment) {
     return {
         restrict: 'E',
         transclude: true,
@@ -461,6 +461,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             logoutUrl: '@?'
         },
         link: function (scope) {
+            scope.isPreProd = Environment.isPreProd();
+
             scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;
 
             // default hideFeedback to false
