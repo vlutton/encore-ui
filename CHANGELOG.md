@@ -1,3 +1,18 @@
+<a name="1.2.0"></a>
+## 1.2.0 (2014-09-29)
+
+
+#### Bug Fixes
+
+* **rxPage:** removed errant space from <h3> ([e00b149d](git@github.com:rackerlabs/encore-ui/commit/e00b149d01a67ff33c72c1ef25ddbf9c5154a528))
+
+
+#### Features
+
+* **Environment:** Better ways to check for a valid environment ([cef18c47](git@github.com:rackerlabs/encore-ui/commit/cef18c47216d832f7d8a3f115ba3f3585900f55f))
+* **rxFeedbackSvc:** added ability to customize e-mail; Fix #546 ([16bcfa7e](git@github.com:rackerlabs/encore-ui/commit/16bcfa7e322bed529340f167aebd86130597a7af))
+
+
 <a name="1.1.6"></a>
 ### 1.1.6 (2014-09-16)
 
