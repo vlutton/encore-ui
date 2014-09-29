@@ -59,6 +59,14 @@ describe('rxModalAction', function () {
         expect(changePasswordModal.subtitle).to.eventually.equal('Please read instructions below');
     });
 
+    it('should have a custom submit button', function () {
+        expect(changePasswordModal.btnSubmit.getText()).to.eventually.equal('Submit Password');
+    });
+
+    it('should have a custom cancel button', function () {
+        expect(changePasswordModal.btnCancel.getText()).to.eventually.equal('Cancel Request');
+    });
+
     it('should not let me submit the modal by default', function () {
         expect(changePasswordModal.canSubmit()).to.eventually.be.false;
     });

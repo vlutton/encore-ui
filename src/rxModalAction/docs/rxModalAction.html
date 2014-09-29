@@ -8,7 +8,10 @@
         Change Password
     </rx-modal-action>
     <script type="text/ng-template" id="changePassword.html">
-        <rx-modal-form title="Change {{user}} Admin Password" subtitle="Please read instructions below">
+        <rx-modal-form title="Change {{user}} Admin Password" 
+        submit-text="Submit Password" 
+        cancel-text="Cancel Request"
+        subtitle="Please read instructions below">
             <h1>Password must:</h1>
             <ul class="list">
                 <li>have at least one uppercase letter</li>

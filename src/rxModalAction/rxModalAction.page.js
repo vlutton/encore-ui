@@ -16,6 +16,12 @@ var rxModalAction = {
         }
     },
 
+    btnCancel: {
+        get: function () {
+            return this.rootElement.$('.cancel');
+        }
+    },
+
     isDisplayed: {
         value: function () {
             return this.rootElement.isPresent();
@@ -56,7 +62,7 @@ var rxModalAction = {
 
     cancel: {
         value: function () {
-            this.rootElement.$('.cancel').click();
+            this.btnCancel.click();
         }
     }
 
