@@ -742,6 +742,49 @@ For apps that want to use the default Encore navigation, use the following HTML 
         }
     }
 
+    &.preprod {
+
+        position: absolute;
+        margin-top: 3em;
+        width: 100%;
+
+        .rx-app-menu {
+            background: @preprodBackground;
+        }
+        .rx-app-nav-item {
+            &.active:not(.has-children) > .item-link {
+                border-top-color: @preprodBorderTop;
+            }
+            .item-link {
+                background: @preprodBackground;
+                border-top: 1px solid @preprodBorderTop;
+                border-bottom: 1px solid @preprodBorderBottom;
+                &:hover,
+                &:focus {
+                    background: @preprodBackgroundFocus;
+                    border-top: 1px solid @preprodBorderBottom;
+                    border-bottom: 1px solid @preprodBorderBottom;
+                }
+            }
+
+            // active nav, w/children (double arrow up, gray bg)
+            &.active.has-children > .item-link {
+                border-top-color: @preprodBorderTop;
+                // used to show BG of arrow (because :after is rotated)
+                &:before {
+                    background: @preprodActiveBackground;
+                }
+                .item-content {
+                    border-bottom: 1px solid #000000;
+                }
+            }
+
+            .item-content {
+                background: @preprodActiveBackground;
+            }
+        }
+    }
+
     .rx-app-nav {
         clear: both;
 
@@ -1031,6 +1074,14 @@ For apps that want to use the default Encore navigation, use the following HTML 
         }
     }
 }
+
+.preprod.rx-notifications {
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    margin-bottom: 0;
+}
+
 
 /*
 # rxBreadcrumbs

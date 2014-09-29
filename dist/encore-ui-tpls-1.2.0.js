@@ -2,10 +2,11 @@
  * EncoreUI
  * https://github.com/rackerlabs/encore-ui
 
- * Version: 1.1.6 - 2014-09-16
+ * Version: 1.2.0 - 2014-09-29
  * License: Apache License, Version 2.0
  */
-angular.module('encore.ui', ['encore.ui.configs','encore.ui.rxActionMenu','encore.ui.rxActiveUrl','encore.ui.rxAge','encore.ui.rxEnvironment','encore.ui.rxApp','encore.ui.rxAttributes','encore.ui.rxIdentity','encore.ui.rxLocalStorage','encore.ui.rxSession','encore.ui.rxPermission','encore.ui.rxAuth','encore.ui.rxBreadcrumbs','encore.ui.rxButton','encore.ui.rxCapitalize','encore.ui.rxCompile','encore.ui.rxDiskSize','encore.ui.rxFavicon','encore.ui.rxFeedback','encore.ui.rxForm','encore.ui.rxLogout','encore.ui.rxModalAction','encore.ui.rxNotify','encore.ui.rxPageTitle','encore.ui.rxPaginate','encore.ui.rxSessionStorage','encore.ui.rxSortableColumn','encore.ui.rxSpinner','encore.ui.rxStatus','encore.ui.rxToggle','encore.ui.rxTokenInterceptor','encore.ui.rxUnauthorizedInterceptor', 'cfp.hotkeys','ui.bootstrap']);
+angular.module('encore.ui', ['encore.ui.tpls', 'encore.ui.configs','encore.ui.rxActionMenu','encore.ui.rxActiveUrl','encore.ui.rxAge','encore.ui.rxEnvironment','encore.ui.rxApp','encore.ui.rxAttributes','encore.ui.rxIdentity','encore.ui.rxLocalStorage','encore.ui.rxSession','encore.ui.rxPermission','encore.ui.rxAuth','encore.ui.rxBreadcrumbs','encore.ui.rxButton','encore.ui.rxCapitalize','encore.ui.rxCompile','encore.ui.rxDiskSize','encore.ui.rxFavicon','encore.ui.rxFeedback','encore.ui.rxForm','encore.ui.rxLogout','encore.ui.rxModalAction','encore.ui.rxNotify','encore.ui.rxPageTitle','encore.ui.rxPaginate','encore.ui.rxSessionStorage','encore.ui.rxSortableColumn','encore.ui.rxSpinner','encore.ui.rxStatus','encore.ui.rxToggle','encore.ui.rxTokenInterceptor','encore.ui.rxUnauthorizedInterceptor', 'cfp.hotkeys','ui.bootstrap']);
+angular.module('encore.ui.tpls', ['templates/rxActionMenu.html','templates/rxActiveUrl.html','templates/rxAccountSearch.html','templates/rxApp.html','templates/rxAppNav.html','templates/rxAppNavItem.html','templates/rxAppSearch.html','templates/rxPage.html','templates/rxPermission.html','templates/rxBreadcrumbs.html','templates/rxButton.html','templates/feedbackForm.html','templates/rxFeedback.html','templates/rxFormFieldset.html','templates/rxFormItem.html','templates/rxFormOptionTable.html','templates/rxModalAction.html','templates/rxModalActionForm.html','templates/rxNotification.html','templates/rxNotifications.html','templates/rxItemsPerPage.html','templates/rxPaginate.html','templates/rxSortableColumn.html']);
 angular.module('encore.ui.configs', [])
 .value('devicePaths', [
     { value: '/dev/xvdb', label: '/dev/xvdb' },
@@ -185,8 +186,6 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
 * </pre>
 */
 .service('Environment', ["$location", "$rootScope", "$log", function ($location, $rootScope, $log) {
-    var envSvc = {};
-
     /*
      * This array defined different environments to check against.
      * It is prefilled with 'Encore' based environments
@@ -207,20 +206,29 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         pattern: /\/\/(localhost|server)(:\d{1,4})?/,
         url: '//localhost:' + $location.port() + '/{{path}}'
     }, {
+        // Matches only https://preprod.encore.rackspace.com
+        name: 'preprod',
+        pattern: /\/\/preprod.encore.rackspace.com/,
+        url: '{{path}}'
+    }, {
+        // This is anything with a host preceeding encore.rackspace.com
         // https://staging.encore.rackspace.com/
         // https://preprod.encore.rackspace.com/
         name: 'unified-preprod',
         pattern: /\/\/(\w+\.)encore.rackspace.com/,
         url: '{{path}}'
     }, {
+        // This is *all* environments
         // https://encore.rackspace.com/
+        // https://staging.encore.rackspace.com/
+        // https://preprod.encore.rackspace.com/
         name: 'unified',
         pattern: 'encore.rackspace.com',
         url: '{{path}}'
     }, {
-        // https://encore.rackspace.com/ only
+        // This is only https://encore.rackspace.com/
         name: 'unified-prod',
-        pattern: /\/\/(?=[\w.]+)encore.rackspace.com/,
+        pattern: /\/\/encore.rackspace.com/,
         url: '{{path}}'
     }];
 
@@ -239,24 +247,26 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         return isValid;
     };
 
+    var environmentPatternMatch = function (href, pattern) {
+        if (_.isRegExp(pattern)) {
+            return pattern.test(href);
+        }
+
+        return _.contains(href, pattern);
+    };
+
     /*
      * Retrieves current environment
      * @public
      * @param {string} [href] The path to check the environment on. Defaults to $location.absUrl()
      * @returns {Object} The current environment (if found), else 'localhost' environment.
      */
-    envSvc.get = function (href) {
+    this.get = function (href) {
         // default to current location if href not provided
         href = href || $location.absUrl();
 
         var currentEnvironment = _.find(environments, function (environment) {
-            var pattern = environment.pattern;
-
-            if (_.isRegExp(pattern)) {
-                return pattern.test(href);
-            }
-
-            return _.contains(href, pattern);
+            return environmentPatternMatch(href, environment.pattern);
         });
 
         if (_.isUndefined(currentEnvironment)) {
@@ -273,7 +283,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * @public
      * @param {object} environment The environment to add. See 'environments' array for required properties
      */
-    envSvc.add = function (environment) {
+    this.add = function (environment) {
         // do some sanity checks here
         if (isValidEnvironment(environment)) {
             // add environment
@@ -288,7 +298,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * @public
      * @param {array} newEnvironments New environments to use
      */
-    envSvc.setAll = function (newEnvironments) {
+    this.setAll = function (newEnvironments) {
         // validate that all new environments are valid
         if (newEnvironments.length > 0 && _.every(environments, isValidEnvironment)) {
             // overwrite old environments with new
@@ -296,7 +306,50 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         }
     };
 
-    return envSvc;
+    /*
+     * Given an environment name, check if any of our registered environments 
+     * match it
+     * @public
+     * @param {string} [name] Environment name to check
+     * @param {string} [href] Optional href to check against. Defaults to $location.absUrl()
+     */
+    this.envCheck = function (name, href) {
+        href = href || $location.absUrl();
+        var matchingEnvironments = _.filter(environments, function (environment) {
+            return environmentPatternMatch(href, environment.pattern);
+        });
+        return _.contains(_.pluck(matchingEnvironments, 'name'), name);
+    };
+
+    var makeEnvCheck = function (name) {
+        return function (href) { return this.envCheck(name, href); };
+    };
+
+    /* Whether or not we're in the `preprod` environment
+     * @public
+     */
+    this.isPreProd = makeEnvCheck('preprod');
+
+    /* Whether or not we're in `local` environment
+     * @public
+     */
+    this.isLocal = makeEnvCheck('local');
+
+    /* Whether or not we're in the `unified-preprod` environment
+     * @public
+     */
+    this.isUnifiedPreProd = makeEnvCheck('unified-preprod');
+
+    /* Whether or not we're in the `unified` environment
+     * @public
+     */
+    this.isUnified = makeEnvCheck('unified');
+
+    /* Whether or not we're in the `unified-prod` environment
+     * @public
+     */
+    this.isUnifiedProd = makeEnvCheck('unified-prod');
+
 }])
 /**
 *
@@ -844,7 +897,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', ["rxAppRoutes", "hotkeys", function (rxAppRoutes, hotkeys) {
+.directive('rxApp', ["rxAppRoutes", "hotkeys", "Environment", function (rxAppRoutes, hotkeys, Environment) {
     return {
         restrict: 'E',
         transclude: true,
@@ -859,6 +912,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxEnvironment', 'ngSanitize', 'ngR
             logoutUrl: '@?'
         },
         link: function (scope) {
+            scope.isPreProd = Environment.isPreProd();
+
             scope.appRoutes = scope.newInstance ? rxAppRoutes.createInstance() : rxAppRoutes;
 
             // default hideFeedback to false
@@ -1680,9 +1735,10 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
         }
     };
 }])
-.service('rxFeedbackSvc', ["$resource", "feedbackApi", "$location", "$window", function ($resource, feedbackApi, $location, $window) {
+.factory('rxFeedbackSvc', ["$resource", "feedbackApi", "$location", "$window", function ($resource, feedbackApi, $location, $window) {
     var container = {
         api: undefined,
+        email: 'encoreui@lists.rackspace.com'
     };
 
     container.setEndpoint = function (url) {
@@ -1703,7 +1759,7 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
         body = body.join('\n\n');
 
         // if the feedback service fails, this fallback function can be run as a last ditch effort
-        var uri = encodeURI('mailto:encoreui@lists.rackspace.com?subject=' + subject + '&body=' + body);
+        var uri = encodeURI('mailto:' + container.email + '?subject=' + subject + '&body=' + body);
         var windowOpen = $window.open(uri, '_blank');
 
         if (!windowOpen) {
@@ -3286,3 +3342,118 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', ['encore.ui.rxSession'])
 
         return svc;
     }]);
+
+angular.module("templates/rxActionMenu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxActionMenu.html",
+    "<div class=\"action-menu-container\"><i ng-click=\"toggle()\" class=\"fa fa-cog fa-lg\"></i><div ng-show=\"displayed\" ng-click=\"modalToggle()\" class=\"action-list action-list-hideable\" ng-transclude></div></div>");
+}]);
+
+angular.module("templates/rxActiveUrl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxActiveUrl.html",
+    "<li ng-class=\"{ selected: navActive }\" ng-transclude></li>");
+}]);
+
+angular.module("templates/rxAccountSearch.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAccountSearch.html",
+    "<div class=\"rx-app-search\"><form name=\"search\" role=\"search\" ng-submit=\"fetchAccount(model)\"><input type=\"text\" placeholder=\"Search by Account Number or Name...\" ng-model=\"model\" class=\"form-item search-input\" ng-required ng-pattern=\"/^([0-9a-zA-Z._ -]{2,})$/\"> <button type=\"submit\" class=\"search-action\" ng-disabled=\"!search.$valid\"><span class=\"visually-hidden\">Search</span></button></form></div>");
+}]);
+
+angular.module("templates/rxApp.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxApp.html",
+    "<div class=\"preprod rx-notifications\" rx-if-environment=\"preprod\"><div class=\"rx-notification notification-warning\"><span class=\"notification-text\">You are using a pre-production environment that has real, live production data!</span></div></div><div class=\"rx-app\" ng-class=\"{collapsible: collapsibleNav === 'true', collapsed: collapsedNav, preprod: isPreProd}\" ng-cloak><nav class=\"rx-app-menu\"><header class=\"site-branding\"><h1 class=\"site-title\">{{ siteTitle || 'Encore' }}</h1><button class=\"collapsible-toggle btn-link\" ng-if=\"collapsibleNav === 'true'\" rx-toggle=\"$parent.collapsedNav\" title=\"{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu\"><span class=\"visually-hidden\">{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu</span><div class=\"double-chevron\" ng-class=\"{'double-chevron-left': !collapsedNav}\"></div></button><div class=\"site-options\"><button class=\"btn-link site-option site-logout\" rx-logout=\"{{logoutUrl}}\">Logout</button></div></header><nav class=\"rx-app-nav\"><div ng-repeat=\"section in appRoutes.getAll()\" class=\"nav-section nav-section-{{ section.type || 'all' }}\"><h2 class=\"nav-section-title\">{{ section.title }}</h2><rx-app-nav items=\"section.children\" level=\"1\"></rx-app-nav></div></nav><div class=\"rx-app-help clearfix\"><rx-feedback ng-if=\"!hideFeedback\"></rx-feedback></div></nav><div class=\"rx-app-content\" ng-transclude></div></div>");
+}]);
+
+angular.module("templates/rxAppNav.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAppNav.html",
+    "<div class=\"rx-app-nav rx-app-nav-level-{{level}}\"><ul class=\"rx-app-nav-group\"><rx-app-nav-item ng-repeat=\"item in items\" item=\"item\"></rx-app-nav-item></ul></div>");
+}]);
+
+angular.module("templates/rxAppNavItem.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAppNavItem.html",
+    "<li class=\"rx-app-nav-item\" ng-show=\"isVisible(item.visibility)\" ng-class=\"{'has-children': item.children.length > 0, active: item.active, 'rx-app-key-{{ item.key }}': item.key }\"><a href=\"{{ item.url }}\" class=\"item-link\" ng-click=\"toggleNav($event, item.href)\">{{item.linkText}}</a><div class=\"item-content\" ng-show=\"item.active && (item.directive || item.children)\"><div class=\"item-directive\" ng-show=\"item.directive\"></div><div class=\"item-children\" ng-show=\"item.children && isVisible(item.childVisibility)\"><div class=\"child-header\" ng-if=\"item.childHeader\" rx-compile=\"item.childHeader\"></div></div></div></li>");
+}]);
+
+angular.module("templates/rxAppSearch.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAppSearch.html",
+    "<div class=\"rx-app-search\"><form role=\"search\" ng-submit=\"submit(model)\"><input type=\"text\" placeholder=\"{{ placeholder }}\" ng-model=\"model\" class=\"form-item search-input\" ng-required rx-attributes=\"{'ng-pattern': pattern}\"> <button type=\"submit\" class=\"search-action\"><span class=\"visually-hidden\">Search</span></button></form></div>");
+}]);
+
+angular.module("templates/rxPage.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxPage.html",
+    "<div class=\"rx-page\"><header class=\"page-header clearfix\"><rx-breadcrumbs></rx-breadcrumbs></header><div class=\"page-body\"><rx-notifications></rx-notifications><div class=\"page-titles\" ng-if=\"title.length > 0 || subtitle.length > 0\"><h2 class=\"page-title title lg\" ng-bind-html=\"title\" ng-if=\"title.length > 0\"></h2><h3 class=\"page-subtitle title subdued\" ng-bind-html=\"subtitle\" ng-if=\"subtitle.length > 0\"></h3></div><div class=\"page-content\" ng-transclude></div></div></div>");
+}]);
+
+angular.module("templates/rxPermission.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxPermission.html",
+    "<div class=\"rxPermission\" ng-if=\"hasRole(role)\" ng-transclude></div>");
+}]);
+
+angular.module("templates/rxBreadcrumbs.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxBreadcrumbs.html",
+    "<ol class=\"rx-breadcrumbs\"><li ng-repeat=\"breadcrumb in breadcrumbs.getAll()\" class=\"breadcrumb\"><ng-switch on=\"$last\"><span ng-switch-when=\"true\" class=\"breadcrumb-name last\" ng-bind=\"breadcrumb.name\"></span> <span ng-switch-default><a href=\"{{breadcrumb.path}}\" ng-class=\"{first: $first}\" class=\"breadcrumb-name\" ng-bind=\"breadcrumb.name\"></a></span></ng-switch></li></ol>");
+}]);
+
+angular.module("templates/rxButton.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxButton.html",
+    "<button type=\"submit\" class=\"button rx-button\" ng-disabled=\"toggle || disable\">{{ toggle ? toggleMsg : defaultMsg }}<div class=\"spinner\" ng-show=\"toggle\"><i class=\"pos1\"></i> <i class=\"pos2\"></i> <i class=\"pos3\"></i></div></button>");
+}]);
+
+angular.module("templates/feedbackForm.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/feedbackForm.html",
+    "<rx-modal-form title=\"Submit Feedback\" subtitle=\"for page: {{ currentUrl }}\" submit-text=\"Send Feedback\" class=\"rx-feedback-form\"><rx-form-item label=\"Report Type\"><select ng-model=\"fields.type\" ng-options=\"opt as opt.label for opt in feedbackTypes\" ng-init=\"fields.type = feedbackTypes[0]\" required></select></rx-form-item><rx-form-item label=\"{{fields.type.prompt}}\" ng-show=\"fields.type\" class=\"feedback-description\"><textarea placeholder=\"{{fields.type.placeholder}}\" required ng-model=\"fields.description\" class=\"feedback-textarea\"></textarea></rx-form-item></rx-modal-form>");
+}]);
+
+angular.module("templates/rxFeedback.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxFeedback.html",
+    "<div class=\"rx-feedback\"><rx-modal-action post-hook=\"sendFeedback(fields)\" template-url=\"templates/feedbackForm.html\">Submit Feedback</rx-modal-action></div>");
+}]);
+
+angular.module("templates/rxFormFieldset.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxFormFieldset.html",
+    "<div class=\"form-item rx-form-fieldset\"><fieldset><legend class=\"field-legend\">{{legend}}:</legend><div class=\"field-input\" ng-transclude></div><span ng-if=\"description\" class=\"field-description\" ng-bind-html=\"description\"></span></fieldset></div>");
+}]);
+
+angular.module("templates/rxFormItem.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxFormItem.html",
+    "<div class=\"form-item\"><label class=\"field-label\">{{label}}:</label><div class=\"field-content\"><span class=\"field-prefix\" ng-if=\"prefix\">{{prefix}}</span>  <span class=\"field-input\" ng-transclude></span> <span class=\"field-suffix\" ng-if=\"suffix\">{{suffix}}</span><div ng-if=\"description\" class=\"field-description\" ng-bind-html=\"description\"></div></div></div>");
+}]);
+
+angular.module("templates/rxFormOptionTable.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxFormOptionTable.html",
+    "<div class=\"form-item\"><table class=\"table-striped option-table\" ng-show=\"data.length > 0 || emptyMessage \"><thead><tr><th></th><th ng-repeat=\"column in columns\" scope=\"col\">{{column.label}}</th></tr></thead><tr ng-repeat=\"row in data\" ng-class=\"{current: isCurrent(row.value), selected: isSelected(row.value, $index)}\"><td class=\"option-table-input\" ng-switch=\"type\"><label><input type=\"radio\" ng-switch-when=\"radio\" id=\"{{fieldId}}_{{$index}}\" ng-model=\"$parent.$parent.model\" value=\"{{row.value}}\" name=\"{{fieldId}}\" ng-disabled=\"isCurrent(row.value)\" rx-attributes=\"{'ng-required': required}\"> <input type=\"checkbox\" ng-switch-when=\"checkbox\" id=\"{{fieldId}}_{{$index}}\" ng-model=\"$parent.modelProxy[$index]\" ng-change=\"updateCheckboxes($parent.modelProxy[$index], $index)\" ng-required=\"checkRequired()\"></label></td><td ng-repeat=\"column in columns\"><label for=\"{{fieldId}}_{{$parent.$index}}\"><span ng-bind-html=\"getContent(column, row)\"></span> <span ng-show=\"isCurrent(row.value)\">{{column.selectedLabel}}</span></label></td></tr><tr ng-if=\"data.length === 0 && emptyMessage\"><td colspan=\"{{columns.length + 1}}\" class=\"empty-data\"><span class=\"msg-warn\">{{emptyMessage}}</span></td></tr></table></div>");
+}]);
+
+angular.module("templates/rxModalAction.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxModalAction.html",
+    "<span class=\"modal-link-container rx-modal-action\"><a href=\"#\" class=\"modal-link {{classes}}\" ng-click=\"showModal($event)\" ng-transclude></a></span>");
+}]);
+
+angular.module("templates/rxModalActionForm.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxModalActionForm.html",
+    "<div class=\"modal-header\"><h3 class=\"modal-title\">{{title}}</h3><h4 class=\"modal-subtitle\" ng-if=\"subtitle\">{{subtitle}}</h4><button class=\"modal-close btn-link\" ng-click=\"$parent.cancel()\"><span class=\"visually-hidden\">Close Window</span></button></div><div class=\"modal-body\"><div ng-show=\"$parent.isLoading\" class=\"loading\" rx-spinner=\"dark\" toggle=\"$parent.isLoading\"></div><form ng-hide=\"$parent.isLoading\" name=\"modalActionForm\" class=\"modal-form rx-form\" ng-transclude></form></div><div class=\"modal-footer\"><button class=\"submit form-action\" ng-click=\"$parent.submit()\" type=\"submit\" ng-disabled=\"modalActionForm.$invalid\">{{submitText || \"Submit\"}}</button> <button class=\"cancel form-action\" ng-click=\"$parent.cancel()\">{{cancelText || \"Cancel\"}}</button></div>");
+}]);
+
+angular.module("templates/rxNotification.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxNotification.html",
+    "<div class=\"rx-notifications\"><div class=\"rx-notification notification-{{type}}\"><span class=\"notification-text\" ng-transclude></span></div></div>");
+}]);
+
+angular.module("templates/rxNotifications.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxNotifications.html",
+    "<div class=\"rx-notifications\" ng-show=\"messages.length > 0\"><div ng-repeat=\"message in messages\" class=\"rx-notification notification-{{message.type}}\" ng-class=\"{'notification-loading': message.loading}\" rx-spinner toggle=\"message.loading\" ng-init=\"loading = message.loading\"><span class=\"notification-text\" ng-bind-html=\"message.text\"></span> <button ng-click=\"dismiss(message)\" class=\"notification-dismiss btn-link\" ng-if=\"message.dismissable && !message.loading\">&times; <span class=\"visually-hidden\">Dismiss Message</span></button></div></div>");
+}]);
+
+angular.module("templates/rxItemsPerPage.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxItemsPerPage.html",
+    "<form id=\"itemsPerPageForm\" class=\"itemsPerPage\"><label for=\"itemsPerPageSelector\">{{ label }}</label><select name=\"itemsPerPageSelector\" id=\"itemsPerPageSelector\" ng-model=\"pager.itemsPerPage\" ng-change=\"updatePaging()\"><option ng-repeat=\"i in pager.itemSizeList\">{{ i }}</option></select></form>");
+}]);
+
+angular.module("templates/rxPaginate.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxPaginate.html",
+    "<div class=\"rx-paginate\"><ul class=\"pagination\"><li ng-class=\"{disabled: pageTracking.pageNumber == 0}\" class=\"pagination-first\"><a ng-click=\"pageTracking.pageNumber = 0\" ng-hide=\"pageTracking.pageNumber == 0\">First</a> <span ng-show=\"pageTracking.pageNumber == 0\">First</span></li><li ng-class=\"{disabled: pageTracking.pageNumber == 0}\" class=\"pagination-prev\"><a ng-click=\"pageTracking.pageNumber = (pageTracking.pageNumber - 1)\" ng-hide=\"pageTracking.pageNumber == 0\">« Prev</a> <span ng-show=\"pageTracking.pageNumber == 0\">« Prev</span></li><li ng-repeat=\"n in pageTracking | Page\" ng-class=\"{active: n == pageTracking.pageNumber, 'page-number-last': n == pageTracking.totalPages - 1}\" class=\"pagination-page\"><a ng-click=\"pageTracking.pageNumber = n\">{{n + 1}}</a></li><li ng-class=\"{disabled: pageTracking.pageNumber == pageTracking.totalPages - 1 || pageTracking.total == 0}\" class=\"pagination-next\"><a ng-click=\"pageTracking.pageNumber = (pageTracking.pageNumber + 1)\" ng-hide=\"pageTracking.pageNumber == pageTracking.totalPages - 1 || pageTracking.total == 0\">Next »</a> <span ng-show=\"pageTracking.pageNumber == pageTracking.totalPages - 1\">Next »</span></li><li ng-class=\"{disabled: pageTracking.pageNumber == pageTracking.totalPages - 1}\" class=\"pagination-last\"><a ng-click=\"pageTracking.pageNumber = pageTracking.totalPages - 1\" ng-hide=\"pageTracking.pageNumber == pageTracking.totalPages - 1\">Last</a> <span ng-show=\"pageTracking.pageNumber == pageTracking.totalPages - 1\">Last</span></li></ul></div>");
+}]);
+
+angular.module("templates/rxSortableColumn.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxSortableColumn.html",
+    "<div class=\"rx-sortable-column\"><button class=\"sort-action btn-link\" ng-click=\"sortMethod({property:sortProperty})\"><span class=\"visually-hidden\">Sort by&nbsp;</span> <span ng-transclude></span></button> <i class=\"sort-icon\" ng-style=\"{visibility: predicate === '{{sortProperty}}' && 'visible' || 'hidden'}\" ng-class=\"{'desc': !reverse, 'asc': reverse}\"><span class=\"visually-hidden\">Sorted {{reverse ? 'ascending' : 'descending'}}</span></i></div>");
+}]);
