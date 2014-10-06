@@ -18,33 +18,33 @@ describe('rxSortableColumn', function () {
     });
 
     it('should have a descending sort shown by default for the name column', function () {
-        expect(nameColumn.getCurrentSortDirection()).to.eventually.eq(0);
+        expect(nameColumn.currentSortDirection).to.eventually.eq(0);
     });
 
     it('should have no sort shown by default for the job title column', function () {
-        expect(roleColumn.getCurrentSortDirection()).to.eventually.eq(-1);
+        expect(roleColumn.currentSortDirection).to.eventually.eq(-1);
     });
 
     it('should support sorting columns ascending', function () {
         var isAscending = true;
         nameColumn.sort(isAscending);
-        expect(nameColumn.getCurrentSortDirection()).to.eventually.eq(1);
+        expect(nameColumn.currentSortDirection).to.eventually.eq(1);
     });
 
     it('should support sorting columns descending', function () {
         var isAscending = false;
         nameColumn.sort(isAscending);
-        expect(nameColumn.getCurrentSortDirection()).to.eventually.eq(0);
+        expect(nameColumn.currentSortDirection).to.eventually.eq(0);
     });
 
     it('should remove all other sorts when sorting an unsorted column', function () {
         roleColumn.sort();
-        expect(nameColumn.getCurrentSortDirection()).to.eventually.eq(-1);
+        expect(nameColumn.currentSortDirection).to.eventually.eq(-1);
     });
 
     it('should have a name', function () {
-        expect(nameColumn.name()).to.eventually.eq('Name');
-        expect(roleColumn.name()).to.eventually.eq('Occupation');
+        expect(nameColumn.name).to.eventually.eq('Name');
+        expect(roleColumn.name).to.eventually.eq('Occupation');
     });
 
 });

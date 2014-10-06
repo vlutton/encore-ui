@@ -16,7 +16,7 @@ var rxSortableColumn = {
     },
 
     name: {
-        value: function () {
+        get: function () {
             return this.rootElement.$('.sort-action .ng-scope').getText();
         }
     },
@@ -29,7 +29,7 @@ var rxSortableColumn = {
             }
 
             var page = this;
-            return this.getCurrentSortDirection().then(function (sortDirection) {
+            return this.currentSortDirection.then(function (sortDirection) {
                 /*jshint eqeqeq: false*/
                 // Coercing -1 to Boolean results in -1 === true. We don't want that.
                 // It's easier to leave as is since -1 != true and -1 != false.
@@ -42,11 +42,11 @@ var rxSortableColumn = {
         }
     },
 
-    getCurrentSortDirection: {
+    currentSortDirection: {
         // Ascending sort:  (1)  means the arrow is pointed down. [0-9, a-z]
         // Descending sort: (0)  means the arrow is pointed up.   [z-a, 9-0]
         // Not sorted:     (-1)  means there is no arrow for this column.
-        value: function () {
+        get: function () {
             var page = this;
             return this.imgSortIcon.getAttribute('style').then(function (style) {
                 if (style.indexOf('hidden') > -1) {
