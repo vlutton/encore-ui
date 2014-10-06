@@ -1,3 +1,12 @@
+<a name="1.2.1"></a>
+### 1.2.1 (2014-10-06)
+
+
+#### Bug Fixes
+
+* **rxActionMenu:** Fix arrow positions and demo colours ([e6992614](git@github.com:rackerlabs/encore-ui/commit/e6992614bd417e42689daf9a3e75370313886ec8), closes [#544](git@github.com:rackerlabs/encore-ui/issues/544), [#543](git@github.com:rackerlabs/encore-ui/issues/543))
+
+
 <a name="1.2.0"></a>
 ## 1.2.0 (2014-09-29)
 
