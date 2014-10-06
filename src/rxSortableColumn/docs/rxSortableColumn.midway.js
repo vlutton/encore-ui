@@ -8,7 +8,7 @@ describe('rxSortableColumn', function () {
         demoPage.go('#/component/rxSortableColumn');
         var nameSelector = $('rx-sortable-column[sort-property="name"]');
         var roleSelector = $('rx-sortable-column[sort-property="jobTitle"]');
-        nameColumn = rxSortableColumn.initialize(nameSelector);
+        nameColumn = rxSortableColumn.initialize(nameSelector, 'resource in talentPool');
         roleColumn = rxSortableColumn.initialize(roleSelector);
     });
 
@@ -45,6 +45,46 @@ describe('rxSortableColumn', function () {
     it('should have a name', function () {
         expect(nameColumn.name).to.eventually.eq('Name');
         expect(roleColumn.name).to.eventually.eq('Occupation');
+    });
+
+    describe('column data', function () {
+
+        it('should throw an error if attempting to access cell data without a repeater string', function () {
+            expect(roleColumn.data).to.eventually.be.rejectedWith(roleColumn.CellUndiscoverableError);
+        });
+
+        it('should return all names as data', function () {
+            var names = ['Andrew Yurisich', 'Hussam Dawood', 'Kerry Bowley', 'Patrick Deuley'];
+            expect(nameColumn.data).to.eventually.eql(names);
+        });
+
+        it('should apply a custom map function to cells', function () {
+            var mapFn = function sortsMail (cellElements) {
+                return cellElements.map(function (cellElement) {
+                    return cellElement.getText().then(function (name) {
+                        return name === 'Andrew Yurisich';
+                    });
+                });
+            };
+
+            expect(nameColumn.getDataUsing(mapFn)).to.eventually.eql([true, false, false, false]);
+        });
+
+        it('should apply a custom reduce function to cells', function () {
+            var reduceFn = function hasNamedState (cellElements) {
+                return cellElements.reduce(function (acc, cellElement) {
+                    return cellElement.getText().then(function (text) {
+                        if (text === 'Hussam Dawood') {
+                            acc[text] = 'Republic of Dawood';
+                        }
+                        return acc;
+                    });
+                }, {});
+            };
+
+            expect(nameColumn.getDataUsing(reduceFn)).to.eventually.eql({ 'Hussam Dawood': 'Republic of Dawood' });
+        });
+
     });
 
 });
