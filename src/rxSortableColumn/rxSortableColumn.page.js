@@ -42,6 +42,43 @@ var rxSortableColumn = {
         }
     },
 
+    sortProperty: {
+        get: function () {
+            return this.rootElement.getAttribute('sort-property');
+        }
+    },
+
+    data: {
+        get: function () {
+            var defaultFn = function (cellElements) {
+                return cellElements.map(function (cellElement) {
+                    return cellElement.getText();
+                });
+            };
+
+            return this.getDataUsing(defaultFn);
+        }
+    },
+
+    getDataUsing: {
+        // Return a list of all cell contents in this column.
+        // Passes all cell elements to `customFn`.
+        value: function (customFn) {
+            if (customFn === undefined) {
+                return this.data;
+            }
+
+            var page = this;
+            return this.sortProperty.then(function (sortProperty) {
+                if (page.repeaterString === undefined) {
+                    page.CellUndiscoverableError('data');
+                }
+
+                return customFn(element.all(by.repeater(page.repeaterString).column(sortProperty)));
+            });
+        }
+    },
+
     currentSortDirection: {
         // Ascending sort:  (1)  means the arrow is pointed down. [0-9, a-z]
         // Descending sort: (0)  means the arrow is pointed up.   [z-a, 9-0]
@@ -59,16 +96,25 @@ var rxSortableColumn = {
                 }
             });
         }
+    },
+
+    CellUndiscoverableError: {
+        get: function () { return this.exception('repeaterString required at initialization to use'); }
     }
 
 };
 
 exports.rxSortableColumn = {
 
-    initialize: function (rxSortableColumnElement) {
+    initialize: function (rxSortableColumnElement, repeaterString) {
         rxSortableColumn.rootElement = {
             get: function () { return rxSortableColumnElement; }
         };
+
+        rxSortableColumn.repeaterString = {
+            get: function () { return repeaterString; }
+        };
+
         return Page.create(rxSortableColumn);
     }
 
