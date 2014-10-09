@@ -1,0 +1,26 @@
+<!-- Sample HTML goes here as a live example of how to the component can be used -->
+
+<h3>Working Account Info</h3>
+<div class="demo-working-account">
+    <rx-account-info account-number="12345"></rx-account-info>
+</div>
+
+<hr />
+
+<div>
+    <h3>Can't Load Badges</h3>
+    <rx-notifications stack="badgeError"></rx-notifications>
+    <div class="demo-badge-error">
+        <rx-account-info account-number="6789" notify-stack="badgeError"></rx-account-info>
+    </div>
+</div>
+
+<hr />
+
+<div>
+    <h3>Can't Load Account Name</h3>
+    <rx-notifications stack="nameError"></rx-notifications>
+    <div class="demo-name-error">
+        <rx-account-info account-number="9876" notify-stack="nameError"></rx-account-info>
+    </div>
+</div>
