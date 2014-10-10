@@ -13,6 +13,7 @@ Buttons are sized using 'xl', 'lg', 'sm' and 'xs'
  <button class="button xs">Tiny Button</button>
  <button class="button positive">"Positive" Button</button>
  <button class="button negative">"Negative" Button</button>
+ <button class="button cancel">"Cancel" Button</button>
  <button class="button" disabled>Disabled Button</button>
  <a href="#" class="button">My Link Button</a>
  ```
@@ -79,6 +80,14 @@ Buttons are sized using 'xl', 'lg', 'sm' and 'xs'
         &:hover,
         &:focus {
             background: @buttonNegativeBgHover;
+        }
+    }
+
+    &.cancel {
+        background: @buttonCancelBg;
+        &:hover,
+        &:focus {
+            background: @buttonCancelBgHover;
         }
     }
 
