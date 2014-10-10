@@ -110,16 +110,42 @@ We like to at least comment on, if not accept, pull requests within three busine
 
 ### Finalizing a Pull Request
 
-Occasionally a PR will receive comments and/or requests for changes before we merge it in. These changes should be submitted as new commits on the existing PR. 
+Occasionally a PR will receive comments and/or requests for changes before we merge it in. These changes should be submitted as new commits on the existing PR.
 
 Once we are happy with the final state of the PR, we will write "LGTM" or "Looks good to me" as a comment, and ask that you squash all of your commits down into one or two. We normally do this as follows:
 
  1. `git rebase -i HEAD~x` where x = number of commits you've made on the branch/PR (The Conversation/Commits/Files Changed tab on the PR page will show you how many commits you've made)
- 2. mark `f` or `s` for all commits 
+ 2. Not including your original commit, mark `f` or `s` for all commits after it ([see example that follows](#example-of-step-2))
  3. Update the latest master and do `git rebase master` on your branch, now that everything has been summed up into one or two commits
  4. `git push -f` to force push your branch up to Github
 
 Once Travis completes the tests on the rebased branch, we'll merge in the PR.
+
+#### Example of Step 2
+
+```
+pick 3564c3f feat(rxApp): the first of your PR commits with a good commit message
+f 6d1216f fix(rxApp): typo
+f 989861d fix(rxApp): another typo
+
+# Rebase 422f14b..f6318bb onto 422f14b
+#
+# Commands:
+#  p, pick = use commit
+#  r, reword = use commit, but edit the commit message
+#  e, edit = use commit, but stop for amending
+#  s, squash = use commit, but meld into previous commit
+#  f, fixup = like "squash", but discard this commit's log message
+#  x, exec = run command (the rest of the line) using shell
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+# Note that empty commits are commented out
+```
 
 ## Right to Revert
 
