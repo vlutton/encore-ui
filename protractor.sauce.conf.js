@@ -12,6 +12,7 @@ exports.config = {
 
     // Options to be passed to mocha
     mochaOpts: {
+        enableTimeouts: false,
         reporter: 'spec',
         slow: 4000,
         ui: 'bdd'

@@ -59,15 +59,18 @@ Midway Tests
 
 ### Running Tests
 
-In order to run the midway test suite, you will need a selenium server running. To install and run selenium, see [Selenium setup with remote drivers](http://docs.seleniumhq.org/docs/03_webdriver.jsp#running-standalone-selenium-server-for-use-with-remotedrivers).
+In order to run the midway test suite, you will need a selenium server running. To install and run selenium, execute the webdriver-manager. For Example:
 
-To run tests, enter `protractor protractor.conf.js` in a terminal. You need to ensure that you already have a development server running. If you haven't already, run `grunt server` in a separate tab. You will need to keep this running in the background through the entirety of the midway tests.
+`./node_modules/protractor/bin/webdriver-manager update # First time only`
+`./node_modules/protractor/bin/webdriver-manager start`
+
+To run tests, enter `./node_modules/protractor/bin/protractor protractor.conf.js` in a terminal. You need to ensure that you already have a development server running. If you haven't already, run `grunt server` in a separate tab. You will need to keep this running in the background through the entirety of the midway tests.
 
 #### Testing Individual Components
 
 When developing a specific components, it's much quicker to run tests only for that component (rather than run through the entire suite every time). To do this, pass in path to the file as a 'specs' option in your protractor command. For example:
 
-`protractor protractor.conf.js --specs path/to/myFile.js`
+`./node_modules/protractor/bin/protractor protractor.conf.js --specs path/to/myFile.js`
 
 ### Convienience Page Objects
 

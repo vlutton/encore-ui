@@ -24,6 +24,7 @@ var config = {
 
     // Options to be passed to mocha
     mochaOpts: {
+        enableTimeouts: false,
         reporter: 'spec',
         slow: 5000,
         ui: 'bdd'
