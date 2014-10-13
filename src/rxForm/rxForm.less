@@ -349,7 +349,6 @@ Replace default UI of select fields and adds custom border/arrow
         flex-wrap: nowrap;
         flex: 1 auto;
 
-        rx-form-item,
         .form-item {
             padding: 0px 3px;
             flex: 1;
@@ -380,6 +379,17 @@ Replace default UI of select fields and adds custom border/arrow
         .field-legend, {
             font-size: 0.8em;
             display: block;
+        }
+    }
+
+    // This is selecting based off of the element so that we can be sure to set
+    // this if there is a prefix OR a suffix set. We can't assume they'll both
+    // always be there.
+    rx-form-item[suffix],
+    rx-form-item[prefix] {
+        .field-input {
+            display: inline-block;
+            width: auto;
         }
     }
 }
