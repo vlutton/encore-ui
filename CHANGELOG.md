@@ -1,3 +1,22 @@
+<a name="1.3.0"></a>
+## 1.3.0 (2014-10-15)
+
+
+#### Bug Fixes
+
+* **rxForm:** Fix Prefix/Suffix CSS with Compressed Layout ([62a65eda](git@github.com:rackerlabs/encore-ui/commit/62a65eda77356196633abb50b2f34e5626366ab6))
+* **travis:** Wait for selenium to start ([9f42aeb7](git@github.com:rackerlabs/encore-ui/commit/9f42aeb7f40fd1cee11a2b2047841d26b73fa27d))
+
+
+#### Features
+
+* **rxAccountInfo:** Add rxAccountInfo component ([edbabb29](git@github.com:rackerlabs/encore-ui/commit/edbabb29853bdfd4043abf8717de69ccca180708))
+* **rxAppRoutes:** Load nav menu from CDN ([2eda7f40](git@github.com:rackerlabs/encore-ui/commit/2eda7f40db0be32fc73e2e7e60ab98c64ff9a289), closes [#470](git@github.com:rackerlabs/encore-ui/issues/470), [#522](git@github.com:rackerlabs/encore-ui/issues/522), [#520](git@github.com:rackerlabs/encore-ui/issues/520), [#557](git@github.com:rackerlabs/encore-ui/issues/557))
+* **rxForm:** Adding in ability to compressed form layout ([c832b725](git@github.com:rackerlabs/encore-ui/commit/c832b7251124ca148488b73a1cc35fe64dc36ba5))
+* **rxInfoPanel:** Add a generic info panel component ([9d8b592d](git@github.com:rackerlabs/encore-ui/commit/9d8b592d473a552e09c7a5514569fa76e8a97dae))
+* **tooltips:** Add tooltip directive ([989861d0](git@github.com:rackerlabs/encore-ui/commit/989861d0ec55f7999e7687274106e94f298150e9), closes [#552](git@github.com:rackerlabs/encore-ui/issues/552))
+
+
 <a name="1.2.2"></a>
 ### 1.2.2 (2014-10-07)
 
