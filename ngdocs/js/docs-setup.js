@@ -14,6 +14,24 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxApp:AppRoutes",
+      "shortName": "AppRoutes",
+      "type": "interface",
+      "moduleName": "encore.ui",
+      "shortDescription": "Manages page routes, building urls and marking them as active on route change",
+      "keywords": "active api building change encore interface manages marking route routes rxapp ui urls"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxApp:encoreRoutes",
+      "shortName": "encoreRoutes",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Creates a shared instance of AppRoutes that is used for the Encore App nav.",
+      "keywords": "allows api app approutes apps creates encore encoreroutes fetchroutes instance method nav rxapp rxapproutes service shared ui updates"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxApp:rxApp",
       "shortName": "rxApp",
       "type": "directive",
@@ -38,15 +56,6 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Creates a menu item. Recursively creates rx-app-nav if &#39;children&#39; present.",
       "keywords": "api avialable children creates directive encore item items menu ng-repeat recursively rx-app-nav rxapp scope ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxApp:rxAppRoutes",
-      "shortName": "rxAppRoutes",
-      "type": "interface",
-      "moduleName": "encore.ui",
-      "shortDescription": "Manages page routes, building urls and marking them as active on route change",
-      "keywords": "active api building change encore interface manages marking route routes rxapp ui urls"
     },
     {
       "section": "api",
@@ -92,6 +101,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Adds a &#39;click&#39; listener to an element that, when fired, toggles the boolean scope property defined",
       "keywords": "adds api boolean click defined directive element encore fired listener property rxapp rxtoggle scope toggle toggles true ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxAppRoutes:urlUtils",
+      "shortName": "urlUtils",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Set of utility functions used by rxAppRoutes to break apart/compare URLs",
+      "keywords": "apart api break encore functions rxapproutes service set ui urls utility"
     },
     {
       "section": "api",
@@ -191,6 +209,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Service which is designed to authenticate with Rackspace&#39;s Identity service.",
       "keywords": "$resource api authenticate designed encore errorcallback identity login loginwithjson password promise rackspace returns rxidentity service successcallback ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxInfoPanel:rxInfoPanel",
+      "shortName": "rxInfoPanel",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Renders a generic, pre-styled, info panel, with an optional title.",
+      "keywords": "api area directive displayed encore generic info optional panel pre-styled renders rxinfopanel text title ui"
     },
     {
       "section": "api",

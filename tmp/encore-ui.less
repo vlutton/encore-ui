@@ -1,3 +1,28 @@
+/*
+ * rxAccountInfo
+ */
+.rx-account-info {
+    .info-panel {
+        overflow: hidden;
+    }
+    .account-info-wrapper {
+        float: left;
+        margin-right: 5em;
+    }
+    .account-info-label {
+        color: #777;
+    }
+    .account-info-data {
+        color: #777;
+        font-size: 26px;
+        img {
+            height: 35px;
+            margin-right: 5px;
+        }
+    }
+
+}
+
 @import 'vars';
 
 // containers for actionmenus that spawn modals
@@ -1192,6 +1217,7 @@ Buttons are sized using 'xl', 'lg', 'sm' and 'xs'
  <button class="button xs">Tiny Button</button>
  <button class="button positive">"Positive" Button</button>
  <button class="button negative">"Negative" Button</button>
+ <button class="button cancel">"Cancel" Button</button>
  <button class="button" disabled>Disabled Button</button>
  <a href="#" class="button">My Link Button</a>
  ```
@@ -1258,6 +1284,14 @@ Buttons are sized using 'xl', 'lg', 'sm' and 'xs'
         &:hover,
         &:focus {
             background: @buttonNegativeBgHover;
+        }
+    }
+
+    &.cancel {
+        background: @buttonCancelBg;
+        &:hover,
+        &:focus {
+            background: @buttonCancelBgHover;
         }
     }
 
@@ -1520,6 +1554,14 @@ Any input field can be placed inside an element with a class of 'field-input'.
         box-sizing: border-box;
     }
 
+    textarea {
+        .inputBorderPadding;
+        background-color: transparent;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+    }
+
     input {
         width: @fieldInputWidth;
         .inputBorderPadding;
@@ -1692,6 +1734,92 @@ Replace default UI of select fields and adds custom border/arrow
         }
     }
 }
+
+
+/*
+## Compressed Layout
+
+```
+<div class="rx-form layout-compressed">
+    <label class="field-label">
+        Monthly Cost:
+    </label>
+</div>
+```
+*/
+
+.rx-form.layout-compressed {
+    .rx-form-row {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1 auto;
+
+        .form-item {
+            padding: 0px 3px;
+            flex: 1;
+        }
+    }
+
+    .form-item {
+        display: block;
+
+        .field-input {
+            width: 100%;
+            display: block;
+
+            select,
+            textarea {
+                width: 100%;
+            }
+
+            input {
+                &:not([type="checkbox"]),
+                &:not([type="radio"]) {
+                    width: 100%;
+                }
+            }
+        }
+
+        .field-label,
+        .field-legend, {
+            font-size: 0.8em;
+            display: block;
+        }
+    }
+
+    // This is selecting based off of the element so that we can be sure to set
+    // this if there is a prefix OR a suffix set. We can't assume they'll both
+    // always be there.
+    rx-form-item[suffix],
+    rx-form-item[prefix] {
+        .field-input {
+            display: inline-block;
+            width: auto;
+        }
+    }
+}
+
+/*
+ * rxInfoPanel
+ */
+.info-panel {
+    clear: both;
+    background: #fff;
+    border-color: @tabBorder;
+    border-width: 0 5px 5px 5px;
+    border-style: solid;
+    padding: 0 10px 10px 10px;
+    overflow: hidden;
+
+    .info-title {
+        background: @tabBorder;
+        color: #fff;
+        width: 100%;
+        padding: 8px 10px;
+        margin: 0 0 10px -10px;
+    }
+}
+
 @import 'mixins';
 @import 'vars';
 
@@ -2213,7 +2341,7 @@ Provides styling for the Angular-UI tab HTML
 */
 .nav-tabs {
     display: flex;
-    border-bottom: 9px solid #4480c1;
+    border-bottom: 9px solid @tabBorder;
 
     li {
         flex: 0 0 auto;
@@ -2243,7 +2371,7 @@ Provides styling for the Angular-UI tab HTML
     }
 
     .active a {
-        background: #4480c1;
+        background: @tabBorder;
         color: @white;
 
         .subdued {
@@ -2267,6 +2395,143 @@ Provides styling for the Angular-UI tab HTML
         margin-top: 0;
     }
 }
+
+@import 'vars';
+//
+// Tooltips
+// --------------------------------------------------
+
+@zindexTooltip: 1070;
+@tooltipMaxWidth: 200px;
+@tooltipHeaderColor: #fff;
+@tooltipColor: #f1f1f1;
+@tooltipBg: #878787;
+@tooltipOpacity: 1;
+
+//** Tooltip arrow width
+@tooltipArrowWidth: 5px;
+//** Tooltip arrow color
+@tooltipArrowColor: @tooltipBg;
+
+// Base class
+.tooltip {
+    position: absolute;
+    z-index: @zindexTooltip;
+    display: block;
+    visibility: visible;
+    font-size: @appFontSize;
+    line-height: @appLineHeight;
+    .opacity(0);
+
+    &.in {
+        .opacity(@tooltipOpacity);
+    }
+
+    &.top {
+        margin-top: -3px;
+        padding: @tooltipArrowWidth 0;
+    }
+
+    &.right {
+        margin-left: 3px;
+        padding: 0 @tooltipArrowWidth;
+    }
+
+    &.bottom {
+        margin-top: 3px;
+        padding: @tooltipArrowWidth 0;
+    }
+
+    &.left {
+        margin-left: -3px;
+        padding: 0 @tooltipArrowWidth;
+    }
+}
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+    max-width: @tooltipMaxWidth;
+    padding: 3px 8px;
+    color: @tooltipColor;
+    text-align: center;
+    text-decoration: none;
+    background-color: @tooltipBg;
+    border-radius: 4px;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 4px 0px;
+    padding: 1em;
+    .tooltip-header {
+        color: @tooltipHeaderColor;
+        text-align: left;
+        font-size: 15px;
+        padding-bottom: 5px;
+        font-weight: 600;
+  }
+}
+
+// Arrows
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    text-shadow: rgba(0, 0, 0, 0.09) 1px 1px 1px;
+}
+.tooltip {
+    &.top .tooltip-arrow {
+        bottom: 0;
+        left: 50%;
+        margin-left: -@tooltipArrowWidth;
+        border-width: @tooltipArrowWidth @tooltipArrowWidth 0;
+        border-top-color: @tooltipArrowColor;
+    }
+    &.top-left .tooltip-arrow {
+        bottom: 0;
+        left: @tooltipArrowWidth;
+        border-width: @tooltipArrowWidth @tooltipArrowWidth 0;
+        border-top-color: @tooltipArrowColor;
+    }
+    &.top-right .tooltip-arrow {
+        bottom: 0;
+        right: @tooltipArrowWidth;
+        border-width: @tooltipArrowWidth @tooltipArrowWidth 0;
+        border-top-color: @tooltipArrowColor;
+    }
+    &.right .tooltip-arrow {
+        top: 50%;
+        left: 0;
+        margin-top: -@tooltipArrowWidth;
+        border-width: @tooltipArrowWidth @tooltipArrowWidth @tooltipArrowWidth 0;
+        border-right-color: @tooltipArrowColor;
+    }
+    &.left .tooltip-arrow {
+        top: 50%;
+        right: 0;
+        margin-top: -@tooltipArrowWidth;
+        border-width: @tooltipArrowWidth 0 @tooltipArrowWidth @tooltipArrowWidth;
+        border-left-color: @tooltipArrowColor;
+    }
+    &.bottom .tooltip-arrow {
+        top: 0;
+        left: 50%;
+        margin-left: -@tooltipArrowWidth;
+        border-width: 0 @tooltipArrowWidth @tooltipArrowWidth;
+        border-bottom-color: @tooltipArrowColor;
+    }
+    &.bottom-left .tooltip-arrow {
+        top: 0;
+        left: @tooltipArrowWidth;
+        border-width: 0 @tooltipArrowWidth @tooltipArrowWidth;
+        border-bottom-color: @tooltipArrowColor;
+    }
+    &.bottom-right .tooltip-arrow {
+        top: 0;
+        right: @tooltipArrowWidth;
+        border-width: 0 @tooltipArrowWidth @tooltipArrowWidth;
+        border-bottom-color: @tooltipArrowColor;
+    }
+}
+
 @import 'vars';
 
 .dropdown-menu {

@@ -39,6 +39,63 @@ function hotkeysCtrl ($scope, hotkeys) {
     });
 }
 
+// Note that these two factories are only present for the purposes of this demo. In a real application,
+// both SupportAccount and Encore will have to be provided from elsewhere, outside of encore-ui
+
+angular.module('encore.ui.rxAccountInfo')
+.value('Badges',
+    [
+        {
+            url: 'http://mirrors.creativecommons.org/presskit/icons/cc.large.png',
+            description: 'CC'
+        }, {
+            url: 'http://mirrors.creativecommons.org/presskit/icons/by.large.png',
+            description: 'BY'
+        }, {
+            url: 'http://mirrors.creativecommons.org/presskit/icons/nc.large.png',
+            description: 'NC',
+        }, {
+            url: 'http://mirrors.creativecommons.org/presskit/icons/zero.large.png',
+            description: 'ZERO',
+        }
+    ]
+)
+.factory('SupportAccount', function ($q, Badges) {
+    return {
+        getBadges: function (config, success, failure) {
+            var deferred = $q.defer();
+
+            if (config.accountNumber === '6789') {
+                deferred.reject();
+            } else {
+                deferred.resolve(Badges);
+            }
+
+            deferred.promise.then(success, failure);
+
+            return deferred.promise;
+        }
+    };
+})
+.factory('Encore', function ($q) {
+    return {
+        getAccount: function (config, success, failure) {
+            var deferred = $q.defer();
+
+            if (config.id === '9876') {
+                deferred.reject();
+            } else {
+                deferred.resolve({ name: 'Mosso' });
+            }
+
+            deferred.promise.then(success, failure);
+
+            return deferred.promise;
+        }
+    };
+});
+
+
 /*jshint unused:false*/
 function rxActionMenuCtrl ($scope, rxNotify) {
 
@@ -76,12 +133,19 @@ function rxAgeCtrl ($scope) {
 
 
 /*jshint unused:false*/
-function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
+function rxAppCtrl ($scope, $location, $rootScope, $window, encoreRoutes, rxVisibility) {
     $scope.subtitle = 'With a subtitle';
 
     $scope.changeSubtitle = function () {
         $scope.subtitle = 'With a new subtitle at ' + Date.now();
     };
+
+    rxVisibility.addMethod(
+        'isUserDefined',
+        function (scope, locals) {
+            return !_.isEmpty($rootScope.user);
+        }
+    );
 
     $scope.changeRoutes = function () {
         var newRoute = {
@@ -94,7 +158,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
             ]
         };
 
-        rxAppRoutes.setRouteByKey('accountLvlTools', newRoute);
+        encoreRoutes.setRouteByKey('accountLvlTools', newRoute);
     };
 
     // Fake navigation
@@ -135,9 +199,7 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
             },
             {
                 linkText: '1st Order Item (w/o href) w/ Children',
-                childVisibility: function isUserDefined () {
-                    return !_.isEmpty($rootScope.user);
-                },
+                childVisibility: [ 'isUserDefined' ],
                 childHeader: '<strong class="current-search">Current User:</strong>' +
                              '<span class="current-result">{{$root.user}}</span>',
                 directive: searchDirective,
@@ -191,6 +253,9 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, rxAppRoutes) {
         ]
     }];
 }
+
+
+
 
 /*jshint unused:false*/
 function rxAttributesCtrl ($scope) {
@@ -358,6 +423,8 @@ function rxFormDemoCtrl ($scope) {
     }];
 
     $scope.optionTableEmptyData = [];
+
+    $scope.compressedLayout = { value: false };
 }
 
 
@@ -377,6 +444,8 @@ function rxIdentityCtrl ($scope, Identity) {
             });
     };
 }
+
+
 
 
 function rxLocalStorageCtrl ($scope, LocalStorage) {
@@ -648,6 +717,12 @@ function rxStatusCtrl ($scope, $rootScope, Status) {
 
 
 
+
+
+/* jshint unused:false */
+function tooltipsCtrl ($scope) {
+    $scope.dynamicTooltip = 'I was defined in the controller!';
+}
 
 
 /*jshint unused:false*/
