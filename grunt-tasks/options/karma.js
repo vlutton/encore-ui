@@ -14,7 +14,8 @@ var files = [
     'demo/bower_components/angular-hotkeys/build/hotkeys.min.js',
     'demo/bower_components/angular-mocks/angular-mocks.js',
     // endbower
-    'utils/browser-helpers.js'
+    'utils/browser-helpers.js',
+    'utils/resource-helpers.js'
 ];
 
 module.exports = {
