@@ -30,7 +30,7 @@ describe('rxAccountInfo', function () {
             });
         });
 
-        it('should have eight badges on the demo page', function () {
+        it('should have four badges on the first Account Info box', function () {
             expect(rxAccountInfo.badgeCount()).to.eventually.equal(4);
         });
 
