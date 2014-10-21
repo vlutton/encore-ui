@@ -1,9 +1,9 @@
-<div class="preprod rx-notifications" rx-if-environment="preprod">
+<div class="warning-bar rx-notifications" ng-class="{preprod: isPreProd}" ng-if="isWarning">
     <div class="rx-notification notification-warning">
-        <span class="notification-text">You are using a pre-production environment that has real, live production data!</span>
+        <span class="notification-text">{{ warningMessage }}</span>
     </div>
 </div>
-<div class="rx-app" ng-class="{collapsible: collapsibleNav === 'true', collapsed: collapsedNav, preprod: isPreProd}" ng-cloak>
+<div class="rx-app" ng-class="{collapsible: collapsibleNav === 'true', collapsed: collapsedNav, 'warning-bar': isWarning, preprod: isPreProd}" ng-cloak>
     <nav class="rx-app-menu">
         <header class="site-branding">
             <h1 class="site-title">{{ siteTitle || 'Encore' }}</h1>

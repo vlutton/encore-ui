@@ -13,11 +13,11 @@ describe('rxApp', function () {
         title: 'All Tools',
         children: [
             {
-               'href': '/support',
-               'linkText': 'Support Service',
-               'key': 'supportService',
-               'directive': 'rx-support-service-search'
-           }
+                'href': '/support',
+                'linkText': 'Support Service',
+                'key': 'supportService',
+                'directive': 'rx-support-service-search'
+            }
         ]
     }];
 
@@ -59,10 +59,10 @@ describe('rxApp', function () {
             compile = $compile;
             appRoutes = encoreRoutes;
             httpMock = $httpBackend;
-            cdnPath = routesCdnPath.staging;
+            cdnPath = routesCdnPath;
         });
 
-        cdnGet = httpMock.whenGET(cdnPath);
+        cdnGet = httpMock.whenGET(cdnPath.staging);
         cdnGet.respond(defaultNav);
 
         scope = rootScope.$new();
@@ -151,6 +151,14 @@ describe('rxApp', function () {
             collapsibleMenu = elCollapsible[0].querySelector('.collapsed');
             expect(collapsibleMenu).to.be.not.null;
         });
+
+        it('should not have a custom URL', function () {
+            expect(cdnPath.hasCustomURL).to.be.false;
+        });
+
+        it('should not set isWarning', function () {
+            expect(el.isolateScope().isWarning).to.be.false;
+        });
     });
 
     describe('custom menu', function () {
@@ -169,6 +177,170 @@ describe('rxApp', function () {
             // validate it matches custom nav title
             expect(navTitle.textContent).to.equal(customNav[0].title);
         });
+    });
+});
+
+describe('rxApp - customURL', function () {
+    var scope, isolateScope, compile, rootScope, el, httpMock, cdnGet, cdnPath;
+    var standardTemplate = '<rx-app></rx-app>';
+
+    var localNav = [{
+        title: 'Local Nav',
+        children: [
+            {
+                'href': '/local',
+                'linkText': 'Local Nav test',
+                'key': 'localNav',
+                'directive': 'localNav'
+            }
+        ]
+    }];
+
+    beforeEach(function () {
+        
+        var customURL = 'foo.json';
+
+        // load module
+        module('encore.ui.configs');
+        module('encore.ui.rxNotify');
+
+        // load templates
+        module('templates/rxApp.html');
+        module('templates/rxAppNav.html');
+        module('templates/rxAppNavItem.html');
+
+        // Initialize a fake module to get at its config block
+        // This is the main purpose of this whole `describe` block,
+        // to test that this can be set in a `.config` and will be used
+        // when running against local/staging
+        angular.module('testApp', function () {})
+            .config(function (routesCdnPathProvider) {
+                routesCdnPathProvider.customURL = customURL;
+            });
+        module('encore.ui.rxApp', 'testApp');
+
+        // Inject in angular constructs
+        inject(function ($rootScope, $compile, encoreRoutes, $httpBackend, routesCdnPath) {
+            rootScope = $rootScope;
+            compile = $compile;
+            httpMock = $httpBackend;
+            cdnPath = routesCdnPath;
+        });
+
+        cdnGet = httpMock.whenGET(customURL);
+        cdnGet.respond(localNav);
+
+        scope = rootScope.$new();
+
+        el = helpers.createDirective(standardTemplate, compile, scope);
+
+        // Because we want to test things on the scope that were defined 
+        // outside of the scope: {} object, we need to use the isolateScope
+        // function
+        isolateScope = el.isolateScope();
+    });
+
+    it('should load data from customURL', function () {
+        // get the nav data from the URL pointed to by .customURL
+        httpMock.flush();
+
+        // get first nav section
+        var navTitle = el[0].querySelector('.nav-section-title');
+
+        // validate it matches 'Local Nav'
+        expect($(navTitle).text()).to.equal(localNav[0].title);
+    });
+
+    it('hasCustomURL should be set to true', function () {
+        expect(cdnPath.hasCustomURL).to.be.true;
+    });
+
+    it('should have set isWarning on the scope', function () {
+        expect(isolateScope.isWarning).to.be.true;
+    });
+
+    it('should set the local nav file warning message', function () {
+        expect(isolateScope.warningMessage).to.contain('You are using a local nav file');
+    });
+
+});
+
+describe('rxApp - preprod environment', function () {
+    var scope, compile, rootScope, el,
+        appRoutes, httpMock, cdnPath, cdnGet, isolateScope;
+    var standardTemplate = '<rx-app></rx-app>';
+
+    // Fake default nav that gets passed as the mock cdn response
+    var defaultNav = [{
+        title: 'All Tools',
+        children: [
+            {
+                'href': '/support',
+                'linkText': 'Support Service',
+                'key': 'supportService',
+                'directive': 'rx-support-service-search'
+            }
+        ]
+    }];
+
+    var mockEnvironment = {
+        isPreProd: function () { return true; },
+        isLocal: function () { return false; },
+        isUnifiedProd: function () { return false; }
+    };
+
+    beforeEach(function () {
+        // load module
+        module('encore.ui.rxApp');
+        module('encore.ui.configs');
+        module('encore.ui.rxNotify');
+
+        // load templates
+        module('templates/rxApp.html');
+        module('templates/rxAppNav.html');
+        module('templates/rxAppNavItem.html');
+
+        module(function ($provide) {
+            $provide.constant('Environment', mockEnvironment);
+        });
+
+        // Inject in angular constructs
+        inject(function ($rootScope, $compile, encoreRoutes, $httpBackend, routesCdnPath) {
+            rootScope = $rootScope;
+            compile = $compile;
+            appRoutes = encoreRoutes;
+            httpMock = $httpBackend;
+            cdnPath = routesCdnPath;
+        });
+        
+
+        cdnGet = httpMock.whenGET(cdnPath.preprod);
+        cdnGet.respond(defaultNav);
+
+        scope = rootScope.$new();
+
+        el = helpers.createDirective(standardTemplate, compile, scope);
+        isolateScope = el.isolateScope();
+    });
+
+    describe('stuff', function () {
+        it('hasCustomURL should be set to false', function () {
+            expect(cdnPath.hasCustomURL).to.be.false;
+        });
+
+        it('should have set isPreProd on the scope', function () {
+            expect(isolateScope.isPreProd).to.be.true;
+        });
+        
+        it('should have set isWarning on the scope', function () {
+            expect(isolateScope.isWarning).to.be.true;
+        });
+
+        it('should set the preprod warning message', function () {
+            expect(isolateScope.warningMessage)
+                .to.contain('You are using a pre-production environment that has real, live production data!');
+        });
+        
     });
 });
 
