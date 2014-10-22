@@ -62,6 +62,14 @@ field-prefix, field-suffix and field-description are all optional.
     align-items: baseline;
 }
 
+.text-area-label {
+    &.form-item {
+        align-items: flex-start;
+        -webkit-align-items: flex-start;
+        -moz-align-items: flex-start;
+    }
+}
+
 .rx-form-fieldset > fieldset {
     width: 100%;
     .full-width .option-table {
@@ -385,6 +393,7 @@ Replace default UI of select fields and adds custom border/arrow
             font-size: 0.8em;
             display: block;
         }
+
     }
 
     // This is selecting based off of the element so that we can be sure to set
