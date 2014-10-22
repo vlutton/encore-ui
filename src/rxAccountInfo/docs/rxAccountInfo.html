@@ -7,11 +7,28 @@
 
 <hr />
 
+<h3>Working Account Info with Team Badges</h3>
+<div class="demo-working-teams">
+    <rx-account-info account-number="12345" team-id="123"></rx-account-info>
+</div>
+
+<hr />
+
 <div>
     <h3>Can't Load Badges</h3>
     <rx-notifications stack="badgeError"></rx-notifications>
     <div class="demo-badge-error">
         <rx-account-info account-number="6789" notify-stack="badgeError"></rx-account-info>
+    </div>
+</div>
+
+<hr />
+
+<div>
+    <h3>Can't Load Team Badges</h3>
+    <rx-notifications stack="teamBadgeError"></rx-notifications>
+    <div class="demo-team-badge-error">
+        <rx-account-info account-number="12345" team-id="9876" notify-stack="teamBadgeError"></rx-account-info>
     </div>
 </div>
 
