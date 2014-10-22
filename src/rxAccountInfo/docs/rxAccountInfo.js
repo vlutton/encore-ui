@@ -19,6 +19,17 @@ angular.module('encore.ui.rxAccountInfo')
         }
     ]
 )
+.value('TeamBadges',
+    [
+        {
+            url: 'http://mirrors.creativecommons.org/presskit/icons/share.large.png',
+            description: 'SHARE'
+        }, {
+            url: 'http://mirrors.creativecommons.org/presskit/icons/nd.large.png',
+            description: 'ND',
+        }
+    ]
+)
 .factory('SupportAccount', function ($q, Badges) {
     return {
         getBadges: function (config, success, failure) {
@@ -33,6 +44,23 @@ angular.module('encore.ui.rxAccountInfo')
             deferred.promise.then(success, failure);
 
             return deferred.promise;
+        }
+    };
+})
+.factory('Teams', function ($q, TeamBadges) {
+    return {
+        badges: function (config) {
+            var deferred = $q.defer();
+
+            if (config.id === '9876') {
+                deferred.reject();
+            } else {
+                deferred.resolve(TeamBadges);
+            }
+
+            deferred.$promise = deferred.promise;
+
+            return deferred;
         }
     };
 })
