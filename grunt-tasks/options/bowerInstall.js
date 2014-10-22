@@ -1,6 +1,7 @@
 module.exports = {
     demoHtml: {
-        src: 'demo/index.html'
+        src: 'demo/index.html',
+        exclude: [ 'pure' ]
     },
     karmaConfig: {
         src: ['grunt-tasks/options/karma.js'],

@@ -30,7 +30,7 @@ module.exports = {
         // The `less` task can't properly create a source map when multiple input 
         // files are present. We concat them all into a temp file here, and it
         // can work from that instead
-        src: ['src/*/*.less', '!src/styles/*.less'],
+        src: ['src/*/*.less', '!src/styles/*.less', 'demo/bower_components/pure/grids-min.css'],
         dest: '<%= config.tmpLess %>'
     }
     
