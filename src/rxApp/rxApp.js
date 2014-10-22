@@ -60,7 +60,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (encoreRoutes, rxAppRoutes, hotkeys, Environment) {
+.directive('rxApp', function (encoreRoutes, rxAppRoutes, hotkeys, Environment, routesCdnPath) {
     return {
         restrict: 'E',
         transclude: true,
@@ -76,6 +76,18 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         },
         link: function (scope) {
             scope.isPreProd = Environment.isPreProd();
+
+            scope.isLocalNav = routesCdnPath.hasCustomURL && (Environment.isLocal());
+
+            scope.isWarning = scope.isPreProd || scope.isLocalNav;
+
+            if (scope.isPreProd) {
+                scope.warningMessage =
+                    'You are using a pre-production environment that has real, live production data!';
+            } else if (scope.isLocalNav) {
+                scope.warningMessage =
+                    'You are using a local nav file. Remove it from your config before committing!';
+            }
 
             // default hideFeedback to false
             var appRoutes = scope.newInstance ? new rxAppRoutes() : encoreRoutes;

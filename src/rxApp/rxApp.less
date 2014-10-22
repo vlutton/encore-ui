@@ -216,12 +216,13 @@ For apps that want to use the default Encore navigation, use the following HTML 
         }
     }
 
-    &.preprod {
-
+    &.warning-bar {
         position: absolute;
         margin-top: 3em;
         width: 100%;
+    }
 
+    &.warning-bar.preprod {
         .rx-app-menu {
             background: @preprodBackground;
         }
@@ -549,7 +550,7 @@ For apps that want to use the default Encore navigation, use the following HTML 
     }
 }
 
-.preprod.rx-notifications {
+.warning-bar.rx-notifications {
     position: fixed;
     z-index: 3;
     width: 100%;
