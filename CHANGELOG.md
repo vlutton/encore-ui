@@ -1,3 +1,14 @@
+<a name="1.3.1"></a>
+### 1.3.1 (2014-10-23)
+
+
+#### Features
+
+* **accountInfo:** Add Team Badges to rxAccountInfo ([091dedaf](git@github.com:rackerlabs/encore-ui/commit/091dedafc47e85b3265069cccde3db7737e2a966))
+* **grids:** #564 Build out grids component on encore-ui docs ([3db95ef9](git@github.com:rackerlabs/encore-ui/commit/3db95ef91fd76081b8f7a0435e5679bba69f13d2))
+* **routesCdnPath:** Allow users to specify a custom nav URL ([15d3377c](git@github.com:rackerlabs/encore-ui/commit/15d3377c677804f902751a503d7232692c0c6ba8), closes [#581](git@github.com:rackerlabs/encore-ui/issues/581))
+
+
 <a name="1.3.0"></a>
 ## 1.3.0 (2014-10-15)
 
