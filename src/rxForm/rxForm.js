@@ -27,7 +27,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
             description: '@'
         },
         link: function (scope, el) {
-            var inputSelectors = '.field-input input, .field-input select, .field-input texarea';
+            var inputSelectors = '.field-input input, .field-input select, .field-input textarea';
 
             // For accessibility reasons, we need to link the <label> to the <input>
             // To do this, we use the 'for' and 'id' attributes on the <label> and <input> tags, respectively
@@ -39,6 +39,8 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
                 var fieldId = 'field-' + scope.$id;
 
                 var inputField = el[0].querySelector(inputSelectors);
+
+                scope.isTextArea = _.has(inputField, 'type') && inputField.type === 'textarea';
 
                 // make sure an input field is found
                 if (!_.isObject(inputField)) {

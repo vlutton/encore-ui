@@ -35,6 +35,10 @@ describe('rxFormItem', function () {
         expect(el.find('label').text()).to.contain('Name');
     });
 
+    it('should not put text-area-label class on the element', function () {
+        expect(el.find('div').hasClass('text-area-label')).to.be.false;
+    });
+
     it('should link label to form input using unique id', function () {
         var uniqueId = el.find('label').eq(0).attr('for');
 
@@ -75,6 +79,23 @@ describe('rxFormItem', function () {
         expect(uniqueId).to.not.equal('myId');
         expect(uniqueId).to.equal(selectId);
     });
+
+    describe('textarea special case', function () {
+        var oldFormInput;
+
+        beforeEach(function () {
+            oldFormInput = formInput;
+            formInput = '<textarea>';
+            el = createDirective(formInput);
+        });
+
+        afterEach(function () {
+            formInput = oldFormInput;
+        });
+        it('should put text-area-label class on the main div', function () {
+            expect(el.find('div').hasClass('text-area-label')).to.be.true;
+        });
+    });
 });
 
 describe('rxFormOptionTable (Checkbox)', function () {
@@ -90,7 +111,8 @@ describe('rxFormOptionTable (Checkbox)', function () {
         },
         {
             'name': 'Item 2'
-        }];
+        }
+    ];
 
     beforeEach(function () {
         module('encore.ui.rxForm');
