@@ -228,14 +228,8 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         // get name of environment to look for
         var targetEnvironmentName = isNegated ? environment.substr(1) : environment;
 
-        // get name of current environment
-        var currentEnvironmentName = Environment.get().name;
-
-        if (isNegated) {
-            return currentEnvironmentName !== targetEnvironmentName;
-        } else {
-            return currentEnvironmentName === targetEnvironmentName;
-        }
+        var environmentMatches = Environment.envCheck(targetEnvironmentName);
+        return isNegated ? !environmentMatches : environmentMatches;
     };
 })
 /**

@@ -141,46 +141,180 @@ describe('rxEnvironmentUrl', function () {
 });
 
 describe('rxEnvironmentMatch', function () {
-    var urlMatch, envSvc;
+    var urlMatch, envSvc, _location, setUrl;
 
     beforeEach(function () {
         module('encore.ui.rxEnvironment');
 
-        inject(function ($filter, Environment) {
+        inject(function ($filter, Environment, $location) {
             urlMatch = $filter('rxEnvironmentMatch');
             envSvc = Environment;
+            _location = $location;
+
+            setUrl = function (url) {
+                sinon.stub(_location, 'absUrl').returns(url);
+            };
         });
     });
 
-    it('should match based on target environment', function () {
-        // override current environment
-        sinon.stub(envSvc, 'get').returns({
-            name: 'staging'
+    describe('unified-preprod', function () {
+        it('should match for staging.encore', function () {
+            // override current environment
+            setUrl('https://staging.encore.rackspace.com');
+            expect(urlMatch('unified-preprod'), 'staging.encore.rackspace.com').to.be.true;
+            expect(urlMatch('!unified-preprod'), 'negate staging.encore.rackspace.com').to.be.false;
         });
 
-        expect(urlMatch('staging'), 'staging').to.be.true;
-        expect(urlMatch('!staging'), '!staging').to.be.false;
-        expect(urlMatch('production'), 'production').to.be.false;
-        expect(urlMatch('!production'), '!production').to.be.true;
+        it('should match for preprod.encore', function () {
+            setUrl('https://preprod.encore.rackspace.com');
+            expect(urlMatch('unified-preprod'), 'preprod.encore.rackspace.com').to.be.true;
+            expect(urlMatch('!unified-preprod'), 'negate preprod.encore.rackspace.com').to.be.false;
+        });
+
+        it('should not match for encore.rackspace.com', function () {
+            setUrl('https://encore.rackspace.com');
+            expect(urlMatch('unified-preprod'), 'encore.rackspace.com').to.be.false;
+            expect(urlMatch('!unified-preprod'), 'negate encore.rackspace.com').to.be.true;
+        });
+        
+        it('should not match for localhost', function () {
+            setUrl('https://localhost:9000/foo/bar');
+            expect(urlMatch('unified-preprod'), 'localhost').to.be.false;
+            expect(urlMatch('!unified-preprod'), 'negate localhost').to.be.true;
+        });
     });
+
+    describe('preprod', function () {
+        it('should match for preprod.encore', function () {
+            setUrl('https://preprod.encore.rackspace.com');
+            expect(urlMatch('preprod'), 'preprod.encore.rackspace.com').to.be.true;
+            expect(urlMatch('!preprod'), 'negate preprod.encore.rackspace.com').to.be.false;
+        });
+        
+        it('should not match for staging.encore', function () {
+            // override current environment
+            setUrl('https://staging.encore.rackspace.com');
+            expect(urlMatch('preprod'), 'staging.encore.rackspace.com').to.be.false;
+            expect(urlMatch('!preprod'), 'negate staging.encore.rackspace.com').to.be.true;
+        });
+
+        it('should not match for encore.rackspace.com', function () {
+            setUrl('https://encore.rackspace.com');
+            expect(urlMatch('preprod'), 'encore.rackspace.com').to.be.false;
+            expect(urlMatch('!preprod'), 'encore.rackspace.com').to.be.true;
+        });
+        
+        it('should not match for localhost', function () {
+            setUrl('https://localhost:9000/foo/bar');
+            expect(urlMatch('preprod'), 'localhost').to.be.false;
+            expect(urlMatch('!preprod'), 'localhost').to.be.true;
+        });
+    });
+
+    describe('local', function () {
+        it('should not match for preprod.encore', function () {
+            setUrl('https://preprod.encore.rackspace.com');
+            expect(urlMatch('local'), 'preprod.encore.rackspace.com').to.be.false;
+            expect(urlMatch('!local'), 'negate preprod.encore.rackspace.com').to.be.true;
+        });
+        
+        it('should not match for staging.encore', function () {
+            // override current environment
+            setUrl('https://staging.encore.rackspace.com');
+            expect(urlMatch('local'), 'staging.encore.rackspace.com').to.be.false;
+            expect(urlMatch('!local'), 'negate staging.encore.rackspace.com').to.be.true;
+        });
+
+        it('should not match for encore.rackspace.com', function () {
+            setUrl('https://encore.rackspace.com');
+            expect(urlMatch('local'), 'encore.rackspace.com').to.be.false;
+            expect(urlMatch('!local'), 'negate encore.rackspace.com').to.be.true;
+        });
+        
+        it('should match for localhost', function () {
+            setUrl('https://localhost:9000/foo/bar');
+            expect(urlMatch('local'), 'localhost').to.be.true;
+            expect(urlMatch('!local'), 'negate localhost').to.be.false;
+        });
+    });
+    
+    describe('production', function () {
+        it('should not match for preprod.encore', function () {
+            setUrl('https://preprod.encore.rackspace.com');
+            expect(urlMatch('unified-prod'), 'preprod.encore.rackspace.com').to.be.false;
+            expect(urlMatch('!unified-prod'), 'negate preprod.encore.rackspace.com').to.be.true;
+        });
+        
+        it('should not match for staging.encore', function () {
+            // override current environment
+            setUrl('https://staging.encore.rackspace.com');
+            expect(urlMatch('unified-prod'), 'staging.encore.rackspace.com').to.be.false;
+            expect(urlMatch('!unified-prod'), 'negate staging.encore.rackspace.com').to.be.true;
+        });
+
+        it('should match for encore.rackspace.com', function () {
+            setUrl('https://encore.rackspace.com');
+            expect(urlMatch('unified-prod'), 'encore.rackspace.com').to.be.true;
+            expect(urlMatch('!unified-prod'), 'negate encore.rackspace.com').to.be.false;
+        });
+        
+        it('should not match for localhost', function () {
+            setUrl('https://localhost:9000/foo/bar');
+            expect(urlMatch('unified-prod'), 'localhost').to.be.false;
+            expect(urlMatch('!unified-prod'), 'negate localhost').to.be.true;
+        });
+    });
+    
+    describe('unified', function () {
+        it('should match for preprod.encore', function () {
+            setUrl('https://preprod.encore.rackspace.com');
+            expect(urlMatch('unified'), 'preprod.encore.rackspace.com').to.be.true;
+            expect(urlMatch('!unified'), 'negate preprod.encore.rackspace.com').to.be.false;
+        });
+        
+        it('should match for staging.encore', function () {
+            // override current environment
+            setUrl('https://staging.encore.rackspace.com');
+            expect(urlMatch('unified'), 'staging.encore.rackspace.com').to.be.true;
+            expect(urlMatch('!unified'), 'negate staging.encore.rackspace.com').to.be.false;
+        });
+
+        it('should match for encore.rackspace.com', function () {
+            setUrl('https://encore.rackspace.com');
+            expect(urlMatch('unified'), 'encore.rackspace.com').to.be.true;
+            expect(urlMatch('!unified'), 'negate encore.rackspace.com').to.be.false;
+        });
+        
+        it('should not match for localhost', function () {
+            setUrl('https://localhost:9000/foo/bar');
+            expect(urlMatch('unified'), 'localhost').to.be.false;
+            expect(urlMatch('!unified'), 'negate localhost').to.be.true;
+        });
+    });
+
 });
 
 describe('rxIfEnvironment', function () {
-    var rootScope, scope, compile, envSvc,
+    var rootScope, scope, compile, envSvc, _location, setUrl,
         stagingMsg = 'Show if staging',
         prodMsg = 'Show if not prod',
-        stagingTemplate = '<div rx-if-environment="staging">' + stagingMsg + '</div>',
-        notProdTemplate = '<div rx-if-environment="!production">' + prodMsg + '</div>';
+        stagingTemplate = '<div rx-if-environment="unified-preprod">' + stagingMsg + '</div>',
+        notProdTemplate = '<div rx-if-environment="!unified-preprod">' + prodMsg + '</div>';
 
     beforeEach(function () {
         // load module
         module('encore.ui.rxEnvironment');
 
-        inject(function ($rootScope, $compile, Environment) {
+        inject(function ($rootScope, $compile, $location, Environment) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
             envSvc = Environment;
+            _location = $location;
+            
+            setUrl = function (url) {
+                sinon.stub(_location, 'absUrl').returns(url);
+            };
         });
 
         // override get functionality so we can customize environment
@@ -188,33 +322,25 @@ describe('rxIfEnvironment', function () {
     });
 
     it('should show if environment matches', function () {
-        envSvc.get.returns({
-            name: 'staging'
-        });
+        setUrl('https://staging.encore.rackspace.com');
         var el = helpers.createDirective(stagingTemplate, compile, scope);
         expect(el.hasClass('ng-hide')).to.be.false;
     });
 
     it('should hide if environment does not match', function () {
-        envSvc.get.returns({
-            name: 'local'
-        });
+        setUrl('https://localhost:9000');
         var el = helpers.createDirective(stagingTemplate, compile, scope);
         expect(el.hasClass('ng-hide')).to.be.true;
     });
 
     it('should hide if negated environment matches', function () {
-        envSvc.get.returns({
-            name: 'production'
-        });
+        setUrl('https://staging.encore.rackspace.com');
         var el = helpers.createDirective(notProdTemplate, compile, scope);
         expect(el.hasClass('ng-hide')).to.be.true;
     });
 
     it('should show if negated environment does not match', function () {
-        envSvc.get.returns({
-            name: 'local'
-        });
+        setUrl('https://localhost:9000');
         var el = helpers.createDirective(notProdTemplate, compile, scope);
         expect(el.hasClass('ng-hide')).to.be.false;
     });
