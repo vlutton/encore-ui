@@ -7,6 +7,17 @@
         template-url="changePassword.html">
         Change Password
     </rx-modal-action>
+
+    <p>
+        <rx-modal-action
+            pre-hook="populate(this)"
+            post-hook="changePass(fields)"
+            classes="button"
+            template-url="changePassword.html">
+            Change Password
+        </rx-modal-action>
+    </p>
+
     <script type="text/ng-template" id="changePassword.html">
         <rx-modal-form title="Change {{user}} Admin Password" 
         submit-text="Submit Password" 
