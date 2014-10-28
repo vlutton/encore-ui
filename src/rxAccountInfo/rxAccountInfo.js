@@ -3,6 +3,7 @@ angular.module('encore.ui.rxAccountInfo', [])
     return {
         templateUrl: 'templates/rxAccountInfo.html',
         restrict: 'E',
+        transclude: true,
         scope: {
             accountNumber: '@',
             teamId: '@',
