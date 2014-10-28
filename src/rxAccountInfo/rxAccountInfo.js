@@ -12,6 +12,10 @@ angular.module('encore.ui.rxAccountInfo', [])
         link: function (scope) {
             var notifyStack = scope.notifyStack || 'page';
             scope.badges = [];
+            scope.tooltipHtml = function (badge) {
+                return ['<span class="tooltip-header">', badge.name,
+                        '</span><p>', badge.description, '</p>'].join('');
+            };
 
             SupportAccount.getBadges({ accountNumber: scope.accountNumber }, function (badges) {
                 scope.badges = scope.badges.concat(badges);
@@ -41,7 +45,7 @@ angular.module('encore.ui.rxAccountInfo', [])
                     stack: notifyStack
                 });
             });
-            
+
         }
     };
 });

@@ -16,13 +16,15 @@ describe('rxAccountInfo', function () {
         badges = [
             {
                 url: 'http://foo.com/bar.jpg',
+                name: 'Plain Badge',
                 description: 'A badge!'
             }
         ];
 
         teamBadges = [
             {
-                url: 'http://foo.com/team-bar.jpg',
+                url: 'http://goo.gl/xj1ivh',
+                name: 'A-Team Badge',
                 description: 'A team badge!'
             }
         ];
@@ -45,7 +47,7 @@ describe('rxAccountInfo', function () {
                     badges: function () {}
                 };
             });
-        
+
         // load module
         module('encore.ui.rxNotify');
         module('encore.ui.rxInfoPanel');
@@ -70,7 +72,7 @@ describe('rxAccountInfo', function () {
 
         el = helpers.createDirective(validTemplate, compile, scope);
     });
-    
+
     it('should render template correctly', function () {
         scope.$digest();
         expect(el).not.be.empty;
@@ -93,7 +95,8 @@ describe('rxAccountInfo', function () {
         badges.$deferred.resolve(badges);
         scope.$digest();
         expect(el.find('img').attr('src'), 'badge image source').to.equal('http://foo.com/bar.jpg');
-        expect(el.find('img').attr('tooltip'), 'badge tooltip description').to.equal('A badge!');
+        expect(el.find('img').attr('data-name'), 'badge tooltip name').to.equal('Plain Badge');
+        expect(el.find('img').attr('data-description'), 'badge tooltip description').to.equal('A badge!');
     });
 
     it('should display an error notification when it cannot load badges', function () {
@@ -122,8 +125,9 @@ describe('rxAccountInfo', function () {
         it('should populate the team badges', function () {
             teamBadges.$deferred.resolve(teamBadges);
             scope.$digest();
-            expect(el.find('img').attr('src'), 'badge image source').to.equal('http://foo.com/team-bar.jpg');
-            expect(el.find('img').attr('tooltip'), 'badge tooltip description').to.equal('A team badge!');
+            expect(el.find('img').attr('src'), 'badge image source').to.equal('http://goo.gl/xj1ivh');
+            expect(el.find('img').attr('data-name'), 'badge name').to.equal('A-Team Badge');
+            expect(el.find('img').attr('data-description'), 'badge description').to.equal('A team badge!');
         });
 
         it('should display an error notification when it cannot load badges', function () {
@@ -131,6 +135,6 @@ describe('rxAccountInfo', function () {
             scope.$digest();
             expect(rxnotify.stacks[defaultStack][0].text).to.equal('Error retrieving badges for this team');
         });
-    
+
     });
 });
