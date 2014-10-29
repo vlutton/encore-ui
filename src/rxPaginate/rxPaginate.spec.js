@@ -10,7 +10,8 @@ describe('Pagination', function () {
             pagesToShow: 6,
             showAll: false,
             pageInit: false
-        };
+        },
+        pageTracking;
 
     describe('Directive: rxPaginate', function () {
         // TODO redo these tests to use class names for finding first, prev, next, last, etc items
@@ -24,13 +25,14 @@ describe('Pagination', function () {
             module('templates/rxPaginate.html');
 
             // Inject in angular constructs
-            inject(function ($rootScope, $compile) {
+            inject(function ($rootScope, $compile, PageTracking) {
                 scope = $rootScope.$new();
-                scope.pager = angular.copy(mockPageTracking);
+                pageTracking = PageTracking;
+                scope.pager = PageTracking.createInstance(angular.copy(mockPageTracking));
                 compile = $compile;
             });
 
-            el = helpers.createDirective(angular.element(validTemplate), compile, scope);
+            el = $(helpers.createDirective(angular.element(validTemplate), compile, scope));
 
             items = el.find('li');
         });
@@ -42,7 +44,7 @@ describe('Pagination', function () {
         });
 
         it('should link to "first" link non-first page', function () {
-            var item = items.eq(0);
+            var item = items.filter('.pagination-first');
             var link = item.find('a').eq(0);
             var span = item.find('span').eq(0);
 
@@ -50,9 +52,9 @@ describe('Pagination', function () {
 
             scope.$digest();
 
-            expect(item.hasClass('disabled')).to.be.false;
-            expect(link.hasClass('ng-hide')).to.be.false;
-            expect(span.hasClass('ng-hide')).to.be.true;
+            expect(item.hasClass('disabled'), 'disabled').to.be.false;
+            expect(link.hasClass('ng-hide'), 'link ng-hide').to.be.false;
+            expect(span.hasClass('ng-hide'), 'span ng-hide').to.be.true;
 
             // clicking link should move to first page
             helpers.clickElement(link[0]);
@@ -61,7 +63,7 @@ describe('Pagination', function () {
         });
 
         it('should disable "first" link on first page', function () {
-            var item = items.eq(0);
+            var item = items.filter('.pagination-first');
             var link = item.find('a').eq(0);
             var span = item.find('span').eq(0);
 
@@ -71,7 +73,7 @@ describe('Pagination', function () {
         });
 
         it('should link to "prev" link when previous page available', function () {
-            var item = items.eq(1);
+            var item = items.filter('.pagination-prev');
             var link = item.find('a').eq(0);
             var span = item.find('span').eq(0);
 
@@ -90,17 +92,17 @@ describe('Pagination', function () {
         });
 
         it('should disable "prev" link on first page', function () {
-            var item = items.eq(1);
+            var item = items.filter('.pagination-prev');
             var link = item.find('a').eq(0);
             var span = item.find('span').eq(0);
 
-            expect(item.hasClass('disabled')).to.be.true;
-            expect(link.hasClass('ng-hide')).to.be.true;
-            expect(span.hasClass('ng-hide')).to.be.false;
+            expect(item.hasClass('disabled'), 'disabled').to.be.true;
+            expect(link.hasClass('ng-hide'), 'link ng-hide').to.be.true;
+            expect(span.hasClass('ng-hide'), 'span ng-hide').to.be.false;
         });
 
         it('should link to individual page numbers', function () {
-            var item = items.eq(2);
+            var item = items.filter('.pagination-page').eq(0);
             var link = item.find('a').eq(0);
 
             expect(item.hasClass('pagination-page'), 'should be on pagination-page link').to.be.true;
@@ -109,7 +111,7 @@ describe('Pagination', function () {
             expect(link.text()).to.equal('1');
 
             // now try with second page link
-            item = items.eq(3);
+            item = items.filter('.pagination-page').eq(1);
             link = item.find('a').eq(0);
 
             expect(item.hasClass('pagination-page'), 'should be on pagination-page link').to.be.true;
@@ -130,13 +132,13 @@ describe('Pagination', function () {
         });
 
         it('should link to "next" link when next page available', function () {
-            var item = items.eq(items.length - 2);
+            var item = items.filter('.pagination-next');
             var link = item.find('a').eq(0);
             var span = item.find('span').eq(0);
 
-            expect(item.hasClass('disabled')).to.be.false;
-            expect(link.hasClass('ng-hide')).to.be.false;
-            expect(span.hasClass('ng-hide')).to.be.true;
+            expect(item.hasClass('disabled'), 'disabled').to.be.false;
+            expect(link.hasClass('ng-hide'), 'link ng-hide').to.be.false;
+            expect(span.hasClass('ng-hide'), 'span ng-hide').to.be.true;
 
             // clicking link should move to first page
             helpers.clickElement(link[0]);
@@ -149,7 +151,7 @@ describe('Pagination', function () {
 
             scope.$digest();
 
-            var item = items.eq(items.length - 2);
+            var item = items.filter('.pagination-next');
             var link = item.find('a').eq(0);
             var span = item.find('span').eq(0);
 
@@ -159,7 +161,7 @@ describe('Pagination', function () {
         });
 
         it('should link to "last" link non-last page', function () {
-            var item = items.eq(items.length - 1);
+            var item = items.filter('.pagination-last');
             var link = item.find('a').eq(0);
             var span = item.find('span').eq(0);
 
@@ -181,16 +183,47 @@ describe('Pagination', function () {
 
             scope.$digest();
 
-            var item = items.eq(items.length - 1);
+            var item = items.filter('.pagination-last');
             var link = item.find('a').eq(0);
             var span = item.find('span').eq(0);
-
-            // make sure we're on the "last" item
-            expect(item.hasClass('pagination-last'));
 
             expect(item.hasClass('disabled')).to.be.true;
             expect(link.hasClass('ng-hide')).to.be.true;
             expect(span.hasClass('ng-hide')).to.be.false;
+        });
+
+        it('should disable the selected itemsPerPage button', function () {
+            var buttons = items.find('.pagination-per-page-button');
+
+            var firstButton = buttons.eq(0);
+            var secondButton = buttons.eq(1);
+
+            expect(firstButton.prop('disabled'), 'first button disabled').to.be.true;
+            expect(secondButton.prop('disabled'), 'second button disabled').to.be.false;
+
+            // clicking link should move to first page
+            helpers.clickElement(secondButton[0]);
+            expect(firstButton.prop('disabled'), 'first button disabled').to.be.false;
+            expect(secondButton.prop('disabled'), 'second button disabled').to.be.true;
+
+        });
+
+        it('should update the global itemsPerPage when a user selects an itemsPerPage', function () {
+            var buttons = items.find('.pagination-per-page-button');
+
+            var firstButton = buttons.eq(0);
+            var thirdButton = buttons.eq(2);
+            expect(firstButton.prop('disabled'), 'first button disabled').to.be.true;
+            expect(thirdButton.prop('disabled'), 'second button not disabled').to.be.false;
+
+            var thirdButtonValue = _.parseInt(thirdButton.text());
+
+            helpers.clickElement(thirdButton[0]);
+
+            var newPagination = pageTracking.createInstance();
+
+            expect(newPagination.itemsPerPage).to.equal(thirdButtonValue);
+                 
         });
     });
 
@@ -279,6 +312,54 @@ describe('Pagination', function () {
             expect(paginate(items, pager)).to.eql([15,16]);
         });
     });
+    
+    describe('Filter: PaginatedItemsSummary', function () {
+        var summary;
+
+        beforeEach(function () {
+            module('encore.ui.rxPaginate');
+
+            inject(function ($filter) {
+                summary = $filter('PaginatedItemsSummary');
+            });
+        });
+
+        it('should show first-last if number of items is less than itemsPerPage', function () {
+            var pager = {
+                showAll: false,
+                itemsPerPage: 10,
+                total: 100,
+                first: 1,
+                last: 10
+            };
+
+            expect(summary(pager)).to.equal('1-10 of 100');
+        });
+        
+        it('should show the total number of items when itemsPerPage > total', function () {
+            var pager = {
+                showAll: false,
+                itemsPerPage: 50,
+                total: 10,
+                first: 1,
+                last: 10
+            };
+
+            expect(summary(pager)).to.equal('10');
+        });
+        
+        it('should show the total number of items when showAll is true', function () {
+            var pager = {
+                showAll: true,
+                itemsPerPage: 1,
+                total: 10,
+                first: 1,
+                last: 10
+            };
+
+            expect(summary(pager)).to.equal('10');
+        });
+    });
 
     describe('Factory: PageTracking', function () {
         var tracking;
@@ -297,9 +378,41 @@ describe('Pagination', function () {
         });
 
         it('Should override default itemsPerPage', function () {
-            expect(tracking.createInstance().itemsPerPage).to.be.eq(10);
+            expect(tracking.createInstance().itemsPerPage).to.be.eq(50);
             expect(tracking.createInstance({ itemsPerPage: 15 }).itemsPerPage).to.be.eq(15);
             expect(tracking.createInstance({ itemsPerPage: 55 }).itemsPerPage).to.be.eq(55);
+        });
+
+        it('should add itemsPerPage to the itemSizeList if it is not present', function () {
+            expect(tracking.createInstance().itemSizeList).to.not.contain(45);
+            expect(tracking.createInstance({ itemsPerPage: 45 }).itemSizeList).to.contain(45);
+        });
+
+        it('should allow for global stickiness of the user selected itemsPerPage', function () {
+            var firstTable = tracking.createInstance();
+            expect(firstTable.itemsPerPage, 'default check').to.be.eq(50);
+            tracking.userSelectedItemsPerPage(200);
+
+            var secondTable = tracking.createInstance();
+            expect(secondTable.itemsPerPage, 'checking second table').to.be.eq(200);
+            
+            tracking.userSelectedItemsPerPage(500);
+            var thirdTable = tracking.createInstance();
+            expect(thirdTable.itemsPerPage, 'checking third table').to.be.eq(500);
+        });
+
+        it('should ignore the user selected itemsPerPage if it is not in itemSizeList', function () {
+            var firstTable = tracking.createInstance({ itemsPerPage: 73 });
+            expect(firstTable.itemsPerPage, 'default check').to.be.eq(73);
+
+            // switch to 200 and then immediately back to 73
+            tracking.userSelectedItemsPerPage(200);
+            tracking.userSelectedItemsPerPage(73);
+
+            // 73 isn't an option in this new pagination, so it should go back
+            // to the default value of 50
+            expect(tracking.createInstance().itemsPerPage, 'new pagination instance').to.equal(50);
+            
         });
     });
 });

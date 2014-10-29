@@ -6,8 +6,7 @@ function rxPaginateCtrl ($scope, PageTracking) {
         predicate: 'id',
         reverse: false
     };
-    $scope.pager = PageTracking.createInstance();
-    $scope.pager.itemsPerPage = 3;
+    $scope.pager = PageTracking.createInstance({ itemsPerPage: 3 });
 
     var makeServers = function (serverCount) {
         var servers = [];
