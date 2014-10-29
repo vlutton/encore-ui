@@ -86,22 +86,12 @@ var rxNotify = {
 
     byType: {
         value: function (notificationType) {
-            // TODO: delete this code when protractor 1.2.0 comes out
-            return this.tblNotifications.filter(function (message) {
-                return notification(message).type.then(function (type) {
-                    return notificationType === type.toLowerCase();
-                });
-            }).then(function (matchingElements) {
-                return matchingElements.map(function (element) {
-                    return notification(element);
-                });
-            });
-
-            // TODO: uncomment this code when protractor 1.2.0 comes out
-            // var css = '.notification-' + notificationType.toLowerCase();
-            // return this.rootElement.$$(css).map(function (notificationElement) {
-            //     return notification(notificationElement);
-            // });
+            // Using reduce instead of map because protractor was crashing.
+            var css = '.notification-' + notificationType.toLowerCase();
+            return this.rootElement.$$(css).reduce(function (acc, notificationElement) {
+                acc.push(notification(notificationElement));
+                return acc;
+            }, []);
         }
     },
 

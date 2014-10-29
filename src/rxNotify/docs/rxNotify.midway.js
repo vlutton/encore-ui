@@ -186,7 +186,7 @@ describe('rxNotify', function () {
         });
     });
 
-    describe.only('notifications exist', function () {
+    describe('notifications exist', function () {
 
         it('should find a notification with no class and a string (all)', function () {
             expect(notifications.all.exists('Under Attack by Aliens')).to.eventually.be.true;
