@@ -112,6 +112,19 @@ var rxNotify = {
                 notification(page.tblNotifications.get(-1)).dismiss();
             });
         }
+    },
+
+    exists: {
+        value: function (string, type) {
+            var elementsOfType;
+
+            type = type ? '.notification-'.concat(type) : '*';
+            elementsOfType = this.rootElement.all(by.cssContainingText(type, string));
+
+            return elementsOfType.count().then(function (count) {
+                return count > 0;
+            });
+        }
     }
 
 };

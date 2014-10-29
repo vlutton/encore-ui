@@ -186,6 +186,38 @@ describe('rxNotify', function () {
         });
     });
 
+    describe.only('notifications exist', function () {
+
+        it('should find a notification with no class and a string (all)', function () {
+            expect(notifications.all.exists('Under Attack by Aliens')).to.eventually.be.true;
+        });
+
+        it('should find a notification with no class and a string (custom stack)', function () {
+            expect(notifications.byStack('custom').exists('Under Attack by Aliens')).to.eventually.be.true;
+        });
+
+        it('should find a notification with a class and a string', function () {
+            expect(notifications.all.exists('Under Attack by Aliens','error')).to.eventually.be.true;
+        });
+
+        it('should find a notification with a class and no string', function () {
+            expect(notifications.all.exists('','error')).to.eventually.be.true;
+        });
+
+        it('should not find a notification with the wrong class and a string', function () {
+            expect(notifications.all.exists('Under Attack by Aliens','success')).to.eventually.be.false;
+        });
+
+        it('should not find a notification with the wrong class and no string', function () {
+            expect(notifications.all.exists('','abject_failure')).to.eventually.be.false;
+        });
+
+        it('should not find a notification with no class and a wrong string', function () {
+            expect(notifications.all.exists('Under Attack by Alienists')).to.eventually.be.false;
+        });
+
+    });
+
     describe('dismissing notifications', function () {
         var allMessages;
 
