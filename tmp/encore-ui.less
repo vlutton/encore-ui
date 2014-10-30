@@ -1270,13 +1270,7 @@ When is a submit button blue and when is the submit button green?  If the form y
     }
 
     // Color Variations
-    &[disabled] {
-        cursor: not-allowed;
-        color: @buttonDisabledText;
-        background: @buttonDisabledBg;
-    }
-
-    &.positive {
+    &.positive, &.submit {
         background: @buttonPositiveBg;
         &:hover,
         &:focus {
@@ -1290,6 +1284,12 @@ When is a submit button blue and when is the submit button green?  If the form y
         &:focus {
             background: @buttonNegativeBgHover;
         }
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        color: @buttonDisabledText;
+        background: @buttonDisabledBg;
     }
 
     &.cancel {

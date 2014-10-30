@@ -393,6 +393,42 @@ function rxFormDemoCtrl ($scope) {
         {
             'value': 'SSD',
             'label': 'SSD'
+        },
+        {
+            'value': 'CD',
+            'label': 'CD'
+        },
+        {
+            'value': 'DVD',
+            'label': 'DVD'
+        },
+        {
+            'value': 'BLURAY',
+            'label': 'BLURAY'
+        },
+        {
+            'value': 'TAPE',
+            'label': 'TAPE'
+        },
+        {
+            'value': 'FLOPPY',
+            'label': 'FLOPPY'
+        },
+        {
+            'value': 'LASERDISC',
+            'label': 'LASERDISC'
+        },
+        {
+            'value': 'JAZDRIVE',
+            'label': 'JAZDRIVE'
+        },
+        {
+            'value': 'PUNCHCARDS',
+            'label': 'PUNCHCARDS'
+        },
+        {
+            'value': 'RNA',
+            'label': 'RNA'
         }
     ];
 
