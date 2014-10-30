@@ -1,3 +1,18 @@
+<a name="1.3.2"></a>
+### 1.3.2 (2014-10-30)
+
+
+#### Bug Fixes
+
+* **rxEnvironmentMatch:** More correctly match environments ([7fa40ba9](git@github.com:rackerlabs/encore-ui/commit/7fa40ba9dd5fbd8c86de42658ab05fbc82b8214b), closes [#595](git@github.com:rackerlabs/encore-ui/issues/595))
+* **rxModalAction:** fix #594, modal actions to be buttons, not links ([8c745df3](git@github.com:rackerlabs/encore-ui/commit/8c745df3e015136ad91f24ad7a44bb96d90cf688))
+
+
+#### Features
+
+* **accountInfo:** Add in Extra Info Transclusion to rxAccountInfo ([295c91f3](git@github.com:rackerlabs/encore-ui/commit/295c91f3af0812ac3700868b6de71d541689cc5e))
+
+
 <a name="1.3.1"></a>
 ### 1.3.1 (2014-10-23)
 
