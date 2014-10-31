@@ -657,3 +657,65 @@ describe('rxVisibilityPathParams', function () {
 
     });
 });
+
+describe('rxAccountUsers', function () {
+    var rootScope, scope, compile, q, userSelect, users;
+    var validTemplate = '<rx-account-users></rx-account-users>';
+
+    beforeEach(function () {
+
+        angular.module('testDirective', function () {})
+            .factory('Encore', function () {
+                return {
+                    getAccount: function () {
+                        return {
+                            users: [
+                                { username: 'testaccountuser' },
+                                { username: 'hub_cap' }
+                            ]
+                        };
+                    }
+                };
+            });
+
+        module('encore.ui.rxApp', 'testDirective');
+        module('templates/rxAccountUsers.html');
+
+        inject(function ($rootScope, $compile, $templateCache, $location, $route, $q) {
+            rootScope = $rootScope;
+            compile = $compile;
+            scope = $rootScope.$new();
+            q = $q;
+
+            $location.url('http:/server/cloud/');
+            $route.current = {};
+            $route.current.params = {
+                accountNumber: 323676,
+                user: 'hub_cap'
+            };
+
+            scope.currentUser = 'hub_cap';
+            scope.users = [
+                { username: 'testaccountuser' },
+                { username: 'hub_cap' }
+            ];
+
+            var accountUsersHtml = $templateCache.get('templates/rxAccountUsers.html');
+            $templateCache.put('/templates/rxAccountUsers.html', accountUsersHtml);
+        });
+
+        userSelect = helpers.createDirective(angular.element(validTemplate), compile, scope);
+        users = userSelect.find('option');
+    });
+
+    it('should have two account users', function () {
+        expect(users).to.have.length(2);
+        expect(users[0].text).to.equal('testaccountuser');
+        expect(users[1].text).to.equal('hub_cap');
+    });
+
+    it('should select current user', function () {
+        expect(users[1]).to.be.selected;
+    });
+
+});

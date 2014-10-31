@@ -1,0 +1,8 @@
+<span class="account-users field-select">
+    <select
+        ng-if="isCloudProduct()"
+        ng-model="currentUser"
+        ng-options="user.username as user.username for user in users"
+        ng-change="switchUser(currentUser)">
+    </select>
+</span>

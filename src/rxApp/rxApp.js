@@ -310,6 +310,54 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
     };
 })
 /**
+ * @ngdoc directive
+ * @name encore.ui.rxApp:rxAccountUsers
+ * @restrict E
+ * @description
+ * Provides the ability to switch between account users.
+ */
+.directive('rxAccountUsers', function ($location, $route, $window, Encore) {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxAccountUsers.html',
+        controller: function ($scope) {
+            var routeParams = $route.current.params;
+
+            $scope.isCloudProduct = function () {
+                return _.contains($location.absUrl(), '/cloud/');
+            };
+
+            var loadUsers = function () {
+                var success = function (account) {
+                    $scope.users = account.users;
+                    $scope.currentUser = routeParams.user;
+                };
+
+                Encore.getAccount({ id: routeParams.accountNumber }, success);
+            };
+
+            if ($scope.isCloudProduct()) {
+                loadUsers();
+            }
+
+            $scope.switchUser = function (user) {
+                // TODO: Replace with updateParams in Angular 1.3
+                //$route.updateParams({ user: user });
+
+                // Update the :user route param
+                var params = $route.current.originalPath.split('/');
+                var userIndex = _.indexOf(params, ':user');
+
+                if (userIndex !== -1) {
+                    var path = $location.path().split('/');
+                    path[userIndex] = user;
+                    $window.location = '/cloud' + path.join('/');
+                }
+            };
+        }
+    };
+})
+/**
 * @ngdoc directive
 * @name encore.ui.rxApp:rxAtlasSearch
 * @restrict E
