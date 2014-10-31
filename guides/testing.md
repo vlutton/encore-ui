@@ -93,10 +93,23 @@ Alternatively, they can install the file using this command:
 Once installed, the page objects can be pulled in to any midway test via:
 
 ```js
-var myComponentPage = require('rx-page-objects').myComponent;
-...
-expect(myComponentPage.rootElement.isDisplayed()).to.eventually.eq.true;
+var myComponent = require('rx-page-objects').myComponent;
+// ...
+expect(myComponent.main.rootElement.isDisplayed()).to.eventually.be.true;
 ```
+
+Alternatively, you could place this helper library in the global scope of all tests. This is the recommended way. In your project's protractor config file, add this to your `onPrepare` section.
+
+
+```js
+onPrepare: function () {
+    encore = require('rx-page-objects');
+}
+```
+
+Keep in mind you'll need to register a global variable declaration in your linting file (`.jshintrc`, etc.).
+
+### Some odd patterns in the page object source code...
 
 In some of the page object source code, you may notice something like the following line
 
