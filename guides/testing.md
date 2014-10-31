@@ -61,8 +61,10 @@ Midway Tests
 
 In order to run the midway test suite, you will need a selenium server running. To install and run selenium, execute the webdriver-manager. For Example:
 
-`./node_modules/protractor/bin/webdriver-manager update # First time only`
-`./node_modules/protractor/bin/webdriver-manager start`
+```
+./node_modules/protractor/bin/webdriver-manager update # First time only
+./node_modules/protractor/bin/webdriver-manager start
+```
 
 To run tests, enter `./node_modules/protractor/bin/protractor protractor.conf.js` in a terminal. You need to ensure that you already have a development server running. If you haven't already, run `grunt server` in a separate tab. You will need to keep this running in the background through the entirety of the midway tests.
 
@@ -70,7 +72,9 @@ To run tests, enter `./node_modules/protractor/bin/protractor protractor.conf.js
 
 When developing a specific components, it's much quicker to run tests only for that component (rather than run through the entire suite every time). To do this, pass in path to the file as a 'specs' option in your protractor command. For example:
 
-`./node_modules/protractor/bin/protractor protractor.conf.js --specs path/to/myFile.js`
+```
+./node_modules/protractor/bin/protractor protractor.conf.js --specs src/rxComponent/docs/rxComponent.midway.js
+``
 
 ### Convienience Page Objects
 
@@ -89,10 +93,23 @@ Alternatively, they can install the file using this command:
 Once installed, the page objects can be pulled in to any midway test via:
 
 ```js
-var myComponentPage = require('rx-page-objects').myComponent;
-...
-expect(myComponentPage.rootElement.isDisplayed()).to.eventually.eq.true;
+var myComponent = require('rx-page-objects').myComponent;
+// ...
+expect(myComponent.main.rootElement.isDisplayed()).to.eventually.be.true;
 ```
+
+Alternatively, you could place this helper library in the global scope of all tests. This is the recommended way. In your project's protractor config file, add this to your `onPrepare` section.
+
+
+```js
+onPrepare: function () {
+    encore = require('rx-page-objects');
+}
+```
+
+Keep in mind you'll need to register a global variable declaration in your linting file (`.jshintrc`, etc.).
+
+### Some odd patterns in the page object source code...
 
 In some of the page object source code, you may notice something like the following line
 

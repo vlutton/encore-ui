@@ -18,23 +18,19 @@ If this is your first time, you'll need to set up your coding environment to be 
 
 4. Install NPM Dependencies
     * Short version
-        `npm install -g grunt-cli bower protractor@1.0.0 mocha@1.18.2`
+        `npm install -g grunt-cli bower
     * Long version
         * Install Bower
             [Bower](http://bower.io) is used to manage UI dependencies for use within the Encore application. Run `npm install -g bower` to install Bower.
         * Install Grunt
             [Grunt](http://gruntjs.com/) is used to automate the UI build and test tasks for Encore. Run `npm install -g grunt-cli` to install Grunt.
-        * Install Protractor
-            [Protractor](https://github.com/angular/protractor) is used to run midway UI tests in an AngularJS project. Run `npm install -g protractor@1.0.0` to install Protractor.
-        * Install Mocha
-            [Mocha](http://visionmedia.github.io/mocha/) is used to provide feedback during protractor tests. Run `npm install -g mocha@1.18.2` to install Mocha.
     * **Note:** in order to run the midway tests, you must pin your protractor & mocha installs to the versions above.
 
 5. Install Selenium Server:
     * Mac
      - `brew install selenium-server-standalone` to install, `selenium-server` to run it.
 
-    Additionally, you could allow Protractor to manage this for you, using [Protractor's built-in `webdriver-manager`](https://github.com/angular/protractor/blob/master/docs/server-setup.md#standalone-selenium-server).
+    Additionally, you could allow Protractor to manage this for you, using [Protractor's built-in `webdriver-manager`](https://github.com/angular/protractor/blob/master/docs/server-setup.md#standalone-selenium-server). This is the preferred option.
 
 6. Install PhantomJS
     * Follow [the install instructions for your OS](http://phantomjs.org/download.html).
