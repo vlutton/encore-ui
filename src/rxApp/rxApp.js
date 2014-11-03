@@ -181,7 +181,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         scope: {
             items: '=',
             level: '='
-        }
+        },
     };
 })
 /**
@@ -316,31 +316,36 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
  * @description
  * Provides the ability to switch between account users.
  */
-.directive('rxAccountUsers', function ($location, $route, $window, Encore) {
+.directive('rxAccountUsers', function ($location, $route, $window, Encore, $rootScope, encoreRoutes) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxAccountUsers.html',
-        controller: function ($scope) {
+        link: function (scope) {
             var routeParams = $route.current.params;
 
-            $scope.isCloudProduct = function () {
-                return _.contains($location.absUrl(), '/cloud/');
+            scope.isCloudProduct = false;
+
+            var checkCloud = function () {
+                encoreRoutes.isActiveByKey('cloud').then(function (isCloud) {
+                    scope.isCloudProduct = isCloud;
+                    if (isCloud) {
+                        loadUsers();
+                    }
+                });
             };
 
             var loadUsers = function () {
                 var success = function (account) {
-                    $scope.users = account.users;
-                    $scope.currentUser = routeParams.user;
+                    scope.users = account.users;
+                    scope.currentUser = routeParams.user;
                 };
 
                 Encore.getAccount({ id: routeParams.accountNumber }, success);
             };
+            
+            checkCloud();
 
-            if ($scope.isCloudProduct()) {
-                loadUsers();
-            }
-
-            $scope.switchUser = function (user) {
+            scope.switchUser = function (user) {
                 // TODO: Replace with updateParams in Angular 1.3
                 //$route.updateParams({ user: user });
 
@@ -354,6 +359,10 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                     $window.location = '/cloud' + path.join('/');
                 }
             };
+
+            $rootScope.$on('$routeChangeSuccess', function () {
+                checkCloud();
+            });
         }
     };
 })
