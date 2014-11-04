@@ -109,7 +109,7 @@ var rxNotify = {
         value: function (string, type) {
             var elementsOfType;
 
-            type = type ? '.notification-'.concat(type) : '[class*="notification-"]';
+            type = type ? '.notification-'.concat(type) : '[class^="notification-"]';
             elementsOfType = this.rootElement.all(by.cssContainingText(type, string));
 
             return elementsOfType.count().then(function (count) {
