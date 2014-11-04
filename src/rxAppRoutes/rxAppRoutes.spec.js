@@ -94,21 +94,24 @@ describe('rxAppRoutes', function () {
         log.reset();
     });
 
-    it('should build url property from rxEnvironmentUrl', function () {
-        // first item should have generated URL based on staging href
-        expect(generatedRoutes[0].url).to.equal('example/myPath');
+    describe('urls and links', function () {
+        
+        it('should build url property from rxEnvironmentUrl', function () {
+            // first item should have generated URL based on staging href
+            expect(generatedRoutes[0].url).to.equal('example/myPath');
 
-        // child item should have default href, since it's just a string
-        expect(generatedRoutes[0].children[1].url).to.equal(fakeRoutes[0].children[1].href);
-    });
+            // child item should have default href, since it's just a string
+            expect(generatedRoutes[0].children[1].url).to.equal(fakeRoutes[0].children[1].href);
+        });
 
-    it('should build urls from route path params', function () {
-        // child item should have 'me' in place of '{{user}}'
-        expect(generatedRoutes[0].children[0].url).to.equal('/me/1-1');
-    });
+        it('should build urls from route path params', function () {
+            // child item should have 'me' in place of '{{user}}'
+            expect(generatedRoutes[0].children[0].url).to.equal('/me/1-1');
+        });
 
-    it('should ignore links that are not defined', function () {
-        expect(generatedRoutes[0].children[0].children[0].url).to.be.undefined;
+        it('should ignore links that are not defined', function () {
+            expect(generatedRoutes[0].children[0].children[0].url).to.be.undefined;
+        });
     });
 
     describe('active state', function () {
@@ -193,6 +196,7 @@ describe('rxAppRoutes', function () {
         });
     });
 
+        
     it('should allow overwritting all the nav items', function () {
         var newRoutes = [{
             href: '/r/BrokenGifs'
@@ -200,7 +204,7 @@ describe('rxAppRoutes', function () {
 
         appRoutes.setAll(newRoutes);
 
-        return appRoutes.getAll().then(function (routes) {
+        appRoutes.getAll().then(function (routes) {
             expect(routes[0].url).to.equal(newRoutes[0].href);
         });
     });
@@ -214,15 +218,20 @@ describe('rxAppRoutes', function () {
         });
     });
 
-    it('should allow getting nested route index by key', function () {
+    it('should allow getting firstChild nested route index by key', function () {
         var firstChild = appRoutes.getIndexByKey('firstChild');
-        expect(firstChild, 'child route index').to.eventually.eql([0, 0]);
+        return expect(firstChild, 'child route index').to.eventually.eql([0, 0]);
+    });
 
+    it('should allow getting firstChildChild nested route index by key', function () {
         var firstChildChild = appRoutes.getIndexByKey('firstChildChild');
-        expect(firstChildChild, 'child child route index').to.eventually.eql([0, 0, 0]);
+        return expect(firstChildChild, 'child child route index').to.eventually.eql([0, 0, 0]);
+        
+    });
 
+    it('should allow getting secondChild nested route index by key', function () {
         var secondChild = appRoutes.getIndexByKey('secondChild');
-        expect(secondChild, 'child route index').to.eventually.eql([0, 1]);
+        return expect(secondChild, 'child route index').to.eventually.eql([0, 1]);
     });
 
     it('should not warn if no duplicate keys found', function () {
@@ -241,11 +250,63 @@ describe('rxAppRoutes', function () {
         var index = appRoutes.getIndexByKey('dupeKey');
 
         // should return last match
-        expect(index).to.eventually.eql([1, 0]);
 
         // should log a message about duplicate keys
         return index.then(function () {
+            expect(index).to.eventually.eql([1, 0]);
             expect(log.warn.logs.length).to.equal(1);
+        });
+    });
+
+    describe('getRouteByKey', function () {
+        it('should return the correct route for firstChildChild', function () {
+
+            appRoutes.getRouteByKey('firstChild').then(function (childRoute) {
+                expect(childRoute.key).to.equal(fakeRoutes[0].children[0].key);
+            });
+            rootScope.$digest();
+        });
+
+        it('should reject when it cannot find the key', function () {
+            appRoutes.getRouteByKey('noSuchKey').then(function () {
+                expect(1, 'if you see this it means that noSuchKey did not reject').to.equal(2);
+            }, function () {
+                expect(1).to.equal(1);
+            });
+            rootScope.$digest();
+        });
+
+    });
+
+    describe('isActiveByKey', function () {
+        it('should be inactive on the root key', function () {
+            appRoutes.isActiveByKey('root').then(function (active) {
+                expect(active).to.be.false;
+            });
+            rootScope.$digest();
+        });
+        
+        it('should be active on the root key after navigating to root', function () {
+            appRoutes.getRouteByKey('root').then(function (rootRoute) {
+                location.path(rootRoute.url);
+            });
+            rootScope.$apply();
+            appRoutes.isActiveByKey('root').then(function (active) {
+                expect(active).to.be.true;
+            });
+            rootScope.$digest();
+        });
+
+        it('should have an active parent route when navigating to a child route', function () {
+            appRoutes.getRouteByKey('firstChild').then(function (childRoute) {
+                location.path(childRoute.url);
+            });
+            rootScope.$apply();
+            appRoutes.isActiveByKey('root').then(function (active) {
+                expect(active).to.be.true;
+            });
+            rootScope.$digest();
+            
         });
     });
 

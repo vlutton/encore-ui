@@ -659,7 +659,7 @@ describe('rxVisibilityPathParams', function () {
 });
 
 describe('rxAccountUsers', function () {
-    var rootScope, scope, compile, q, userSelect, users;
+    var rootScope, scope, compile, q, userSelect, users, encoreRoutesMock;
     var validTemplate = '<rx-account-users></rx-account-users>';
 
     beforeEach(function () {
@@ -676,18 +676,33 @@ describe('rxAccountUsers', function () {
                         };
                     }
                 };
+            })
+            .factory('encoreRoutes', function ($q) {
+                var mockReturn = true;
+                return {
+                    isActiveByKey: function () {
+                        var deferred = $q.defer();
+                        deferred.resolve(mockReturn);
+                        return deferred.promise;
+                    },
+
+                    setMock: function (mockValue) {
+                        mockReturn = mockValue;
+                    }
+                };
             });
 
         module('encore.ui.rxApp', 'testDirective');
         module('templates/rxAccountUsers.html');
 
-        inject(function ($rootScope, $compile, $templateCache, $location, $route, $q) {
+        inject(function ($rootScope, $compile, $templateCache, $location, $route, $q, encoreRoutes) {
             rootScope = $rootScope;
             compile = $compile;
             scope = $rootScope.$new();
             q = $q;
+            encoreRoutesMock = encoreRoutes;
 
-            $location.url('http:/server/cloud/');
+            $location.url('http://server/cloud/');
             $route.current = {};
             $route.current.params = {
                 accountNumber: 323676,
@@ -716,6 +731,12 @@ describe('rxAccountUsers', function () {
 
     it('should select current user', function () {
         expect(users[1]).to.be.selected;
+    });
+
+    it('should not render when encoreRoutes.isActiveByKey() returns false', function () {
+        encoreRoutesMock.setMock(false);
+        userSelect = helpers.createDirective(angular.element(validTemplate), compile, scope);
+        expect(userSelect.find('select')).to.have.length(0);
     });
 
 });

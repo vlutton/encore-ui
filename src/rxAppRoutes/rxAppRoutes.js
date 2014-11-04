@@ -196,6 +196,17 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
             return routes;
         };
 
+        // Get the route for a given index
+        var getRouteByIndex = function (indexes, subRoutes) {
+            var i, route,
+                depth = indexes.length;
+            for (i = 0; i < depth; i++) {
+                route = subRoutes[indexes[i]];
+                subRoutes = route.children;
+            }
+            return route;
+        };
+
         $rootScope.$on('$locationChangeSuccess', function () {
             // NOTE: currentPath MUST be updated before routes
             currentPathChunks = urlUtils.getCurrentPathChunks();
@@ -215,7 +226,6 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
             getIndexByKey: function (key) {
                 return loadingDeferred.promise.then(function () {
                     var routeIndex = getRouteIndex(key, routes);
-
                     if (_.isUndefined(routeIndex)) {
                         $log.debug('Could not find route by key: ', key);
                         return $q.reject();
@@ -223,6 +233,23 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
 
                     return routeIndex;
                 });
+            },
+
+            getRouteByKey: function (key) {
+                return this.getIndexByKey(key).then(function (index) {
+                    return getRouteByIndex(index, routes);
+                }, function () {
+                    return $q.reject();
+                });
+            },
+
+            isActiveByKey:  function (key) {
+                return this.getRouteByKey(key).then(function (route) {
+                    return urlUtils.isActive(route, urlUtils.getCurrentPathChunks());
+                }, function () {
+                    return $q.reject();
+                });
+                
             },
             /**
              * functionality to update routes based on their key
