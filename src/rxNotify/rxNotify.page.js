@@ -78,9 +78,10 @@ var rxNotify = {
 
     messages: {
         get: function () {
-            return this.tblNotifications.map(function (notificationElement) {
-                return notification(notificationElement);
-            });
+            return this.tblNotifications.reduce(function (acc, notificationElement) {
+                acc.push(notification(notificationElement));
+                return acc;
+            }, []);
         }
     },
 
@@ -108,7 +109,7 @@ var rxNotify = {
         value: function (string, type) {
             var elementsOfType;
 
-            type = type ? '.notification-'.concat(type) : '*';
+            type = type ? '.notification-'.concat(type) : '[class*="notification-"]';
             elementsOfType = this.rootElement.all(by.cssContainingText(type, string));
 
             return elementsOfType.count().then(function (count) {

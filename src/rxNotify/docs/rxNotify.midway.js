@@ -23,14 +23,14 @@ describe('rxNotify', function () {
         });
 
         it('should add a new success message that dismisses itself', function () {
-            addToCustomStack('success', '1.75');
+            addToCustomStack('success', '.5');
             notifications.byStack('custom').byType('success').then(function (successes) {
                 expect(successes.length).to.equal(1);
             });
         });
 
         it('should remove itself after a little while', function () {
-            browser.sleep(1500);
+            browser.sleep(1000);
             notifications.byStack('custom').byType('success').then(function (successes) {
                 expect(successes.length).to.equal(0);
             });
