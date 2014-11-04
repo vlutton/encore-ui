@@ -3,16 +3,25 @@ var Page = require('astrolabe').Page;
 
 var badge = function (rootElement) {
     return Page.create({
-        tooltip: {
-            get: function () {
-                return rootElement.getAttribute('tooltip');
-            }
-        },
+
         src: {
             get: function () {
                 return rootElement.getAttribute('ng-src');
             }
+        },
+
+        name: {
+            get: function () {
+                return rootElement.getAttribute('data-name');
+            }
+        },
+
+        description: {
+            get: function () {
+                return rootElement.getAttribute('data-description');
+            }
         }
+
     });
 };
 
@@ -43,22 +52,65 @@ var rxAccountInfo = {
     },
 
     badge: {
-        value: function (index) {
-            return badge(this.tblBadges.get(index));
+        get: function () {
+            var page = this;
+            return Page.create({
+                byIndex: {
+                    value: function (index) {
+                        return badge(page.tblBadges.get(index));
+                    }
+                },
+
+                exists: {
+                    value: function (badgeName) {
+                        return page.rootElement.$('img[data-name="' + badgeName + '"]').isPresent();
+                    }
+                },
+
+                byName: {
+                    // Accepts strings for a fast, exact match only.
+                    // For a more flexible match, see `badges.matchingName`, which uses regular expressions.
+                    value: function (badgeName) {
+                        return badge(page.rootElement.$('img[data-name="' + badgeName + '"]'));
+                    }
+                },
+
+                count: {
+                    value: function () {
+                        return page.tblBadges.count();
+                    }
+                }
+
+            });
         }
     },
 
     badges: {
         get: function () {
-            return this.tblBadges.map(function (badgeElement) {
-                return badge(badgeElement);
-            });
-        }
-    },
+            var page = this;
+            return Page.create({
+                all: {
+                    get: function () {
+                        return page.tblBadges.map(function (badgeElement) {
+                            return badge(badgeElement);
+                        });
+                    }
+                },
 
-    badgeCount: {
-        value: function () {
-            return this.tblBadges.count();
+                matchingName: {
+                    value: function (badgeRegExp) {
+                        return page.tblBadges.filter(function (badgeElement) {
+                            return badgeElement.getAttribute('data-name').then(function (name) {
+                                return badgeRegExp.test(name) === true;
+                            });
+                        }).then(function (matchingElements) {
+                            return matchingElements.map(function (matchingElement) {
+                                return badge(matchingElement);
+                            });
+                        });
+                    }
+                }
+            });
         }
     }
 

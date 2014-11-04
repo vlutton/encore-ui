@@ -6,16 +6,21 @@ angular.module('encore.ui.rxAccountInfo')
     [
         {
             url: 'http://mirrors.creativecommons.org/presskit/icons/cc.large.png',
-            description: 'CC'
+            description: 'Enables the free distribution of an otherwise copyrighted work.',
+            name: 'Creative Commons'
         }, {
             url: 'http://mirrors.creativecommons.org/presskit/icons/by.large.png',
-            description: 'BY'
+            description: ['You must give appropriate credit, provide a link to the',
+                          'license, and indicate if changes were made.'].join(' '),
+            name: 'Attribution'
         }, {
             url: 'http://mirrors.creativecommons.org/presskit/icons/nc.large.png',
-            description: 'NC',
+            description: 'You may not use the material for commercial purposes.',
+            name: 'Non-Commercial'
         }, {
             url: 'http://mirrors.creativecommons.org/presskit/icons/zero.large.png',
-            description: 'ZERO',
+            description: 'Waives as many rights as legally possible, worldwide.',
+            name: 'Public Domain'
         }
     ]
 )
@@ -23,10 +28,14 @@ angular.module('encore.ui.rxAccountInfo')
     [
         {
             url: 'http://mirrors.creativecommons.org/presskit/icons/share.large.png',
-            description: 'SHARE'
+            description: ['Licensees may distribute derivative works only under a license',
+                          'identical to the license that governs the original work.'].join(' '),
+            name: 'ShareAlike'
         }, {
             url: 'http://mirrors.creativecommons.org/presskit/icons/nd.large.png',
-            description: 'ND',
+            description: ['Licensees may copy, distribute, display and perform only verbatim',
+                          'copies of the work, not derivative works based on it.'].join(' '),
+            name: 'No-Derivs'
         }
     ]
 )
