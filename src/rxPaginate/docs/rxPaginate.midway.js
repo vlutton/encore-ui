@@ -40,8 +40,11 @@ describe('rxPaginate', function () {
         expect(pagination.next).to.throw(pagination.NoSuchPageException);
     });
 
-    it('should not allow navigating using `last` past the last page', function () {
-        expect(pagination.last).to.throw(pagination.NoSuchPageException);
+    it('should allow attempting to navigate to the last page when already on the last page', function () {
+        pagination.page.then(function (page) {
+            pagination.last();
+            expect(pagination.page).to.eventually.equal(page);
+        });
     });
 
     it('should navigate to the first page', function () {
@@ -53,8 +56,29 @@ describe('rxPaginate', function () {
         expect(pagination.previous).to.throw(pagination.NoSuchPageException);
     });
 
-    it('should not allow navigating using `first` before the first page', function () {
-        expect(pagination.first).to.throw(pagination.NoSuchPageException);
+    it('should allow attempting to navigate to the first page when already on the first page', function () {
+        pagination.first();
+        expect(pagination.page).to.eventually.equal(1);
+    });
+
+    it('should have all available page sizes', function () {
+        expect(pagination.pageSizes).to.eventually.eql([3, 50, 200, 350, 500]);
+    });
+
+    it('should highlight the current items per page selection', function () {
+        expect(pagination.pageSize).to.eventually.equal(3);
+    });
+
+    it('should switch to a different items per page', function () {
+        pagination.pageSize = 50;
+        expect(pagination.pageSize).to.eventually.equal(50);
+    });
+
+    it('should not allow selecting an unavailable items per page', function () {
+        var fn = function () {
+            return protractor.promise.fulfilled(pagination.__lookupSetter__('pageSize').call(pagination, 45));
+        };
+        expect(fn()).to.be.rejectedWith(pagination.NoSuchItemsPerPage);
     });
 
 });

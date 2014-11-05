@@ -8,8 +8,14 @@ var rxPaginate = {
         get: function () { return this.rootElement.$('.pagination .active a'); }
     },
 
-    tblPagination: {
-        get: function () { return this.rootElement.$$('.pagination li a'); }
+    tblPages: {
+        get: function () { return this.rootElement.$$('.pagination .pagination-page a'); }
+    },
+
+    tblPageSizes: {
+        get: function () {
+            return this.rootElement.all(by.repeater('i in pageTracking.itemSizeList'));
+        }
     },
 
     jumpToPage: {
@@ -37,40 +43,48 @@ var rxPaginate = {
                     }
                 } else {
                     // Our target page is somewhere in the available pages list.
-                    // pageIndex + 2 will offset the ["First", "Prev"] links.
-                    return page.tblPagination.get(pageIndex + 2).click();
+                    return page.tblPages.get(pageIndex).click();
                 }
             });
         }
     },
 
     first: {
+        // Does nothing if already at the first page.
         value: function () {
-            this.checkForInvalidFirstPage();
-            return this.tblPagination.first().click();
+            var page = this;
+            return this.page.then(function (pageNumber) {
+                if (pageNumber > 1) {
+                    page.rootElement.$('.pagination-first a').click();
+                }
+            });
         }
     },
 
     previous: {
         value: function () {
             this.checkForInvalidFirstPage();
-            return this.tblPagination.get(1).click();
+            this.rootElement.$('.pagination-prev a').click();
         }
     },
 
     next: {
         value: function () {
             this.checkForInvalidLastPage();
-            return this.tblPagination.then(function (pages) {
-                pages[pages.length - 2].click();
-            });
+            this.rootElement.$('.pagination-next a').click();
         }
     },
 
     last: {
+        // Does nothing if already at the last page.
         value: function () {
-            this.checkForInvalidLastPage();
-            return this.tblPagination.get(-1).click();
+            var page = this;
+            var css = '.pagination-last a';
+            return this.rootElement.$(css).isDisplayed().then(function (isDisplayed) {
+                if (isDisplayed) {
+                    page.rootElement.$(css).click();
+                }
+            });
         }
     },
 
@@ -89,7 +103,7 @@ var rxPaginate = {
     pages: {
         get: function () {
             // Return a list of page numbers available to paginate to.
-            return $$('a[ng-click$="pageNumber = n"]').map(function (pageNumber) {
+            return this.tblPages.map(function (pageNumber) {
                 return pageNumber.getText().then(function (n) {
                     return parseInt(n, 10);
                 });
@@ -97,17 +111,53 @@ var rxPaginate = {
         }
     },
 
+    pageSizes: {
+        get: function () {
+            return this.tblPageSizes.map(function (pageSizeElement) {
+                return pageSizeElement.getText().then(function (pageSize) {
+                    return parseInt(pageSize, 10);
+                });
+            });
+        }
+    },
+
+    pageSize: {
+        get: function () {
+            var css = '.pagination-per-page-button[disabled="disabled"]';
+            return this.rootElement.$(css).getText().then(function (pageSize) {
+                return parseInt(pageSize, 10);
+            });
+        },
+        // Will throw an exception if no matching `itemsPerPage` entry is found.
+        set: function (itemsPerPage) {
+            var page = this;
+            var css = '.pagination-per-page-button';
+            return this.pageSizes.then(function (pageSizes) {
+                if (_.indexOf(pageSizes, itemsPerPage) === -1) {
+                    page.NoSuchItemsPerPage(itemsPerPage);
+                }
+
+                return page.rootElement.$$(css).each(function (pageSizeElement) {
+                    return pageSizeElement.getText().then(function (pageSize) {
+                        if (parseInt(pageSize, 10) === itemsPerPage) {
+                            pageSizeElement.click();
+                            return false;
+                        }
+                    });
+                });
+            });
+        }
+    },
+
     jumpToLowestAvailablePage: {
         value: function () {
-            return this.tblPagination.get(2).click();
+            this.tblPages.first().click();
         }
     },
 
     jumpToHighestAvailablePage: {
         value: function () {
-            return this.tblPagination.then(function (pagination) {
-                return pagination[pagination.length - 3].click();
-            });
+            this.tblPages.last().click();
         }
     },
 
@@ -143,6 +193,10 @@ var rxPaginate = {
 
     NoSuchPageException: {
         get: function () { return this.exception('No such page'); }
+    },
+
+    NoSuchItemsPerPageException: {
+        get: function () { return this.exception('No such itemsPerPage'); }
     }
 
 };
