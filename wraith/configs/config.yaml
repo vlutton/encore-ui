@@ -23,6 +23,7 @@ paths:
   configs: "/#/component/configs"
   grid: "/#/component/grid"
   hotkeys: "/#/component/hotkeys"
+  metadata: "/#/component/metadata"
   rxAccountInfo: "/#/component/rxAccountInfo"
   rxActionMenu: "/#/component/rxActionMenu"
   rxActiveUrl: "/#/component/rxActiveUrl"

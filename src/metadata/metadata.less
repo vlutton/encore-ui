@@ -1,0 +1,37 @@
+/*
+ * metadata
+ */
+.list-definition {
+    font-size: 16px;
+    dt {
+        line-height: 1.6em;
+        float: left;
+        min-width: 9em;
+        font-weight: 700;
+        text-align: right;
+        clear: left;
+    }
+    dd {
+        line-height: 1.6em;
+        float: left;
+        font-weight: 400;
+        text-align: left;
+        margin: 0;
+        padding-left: 1em;
+        clear: right;
+    }
+}
+
+.metadata {
+    &:extend(.list-definition all);
+    overflow: hidden;
+    font-size: 16px;
+    color: #727272;
+    dl {
+        margin: 0;
+        clear: both;
+    }
+    dt {
+        min-width: 10em;
+    }
+}
