@@ -24,6 +24,7 @@ results
 
 # config file with secrets
 /localConfig.js
+/protractor.local.conf.js
 
 # generated files/folders on build
 /coverage/

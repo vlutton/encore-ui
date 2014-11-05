@@ -59,9 +59,10 @@ var rxBreadcrumbs = {
 
     toArray: {
         value: function () {
-            return this.tblBreadcrumbs.map(function (breadcrumbElement, index) {
-                return breadcrumb(breadcrumbElement, index);
-            });
+            return this.tblBreadcrumbs.reduce(function (acc, breadcrumbElement) {
+                acc.push(breadcrumb(breadcrumbElement));
+                return acc;
+            }, []);
         }
     },
 

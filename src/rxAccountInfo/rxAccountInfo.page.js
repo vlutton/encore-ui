@@ -91,9 +91,10 @@ var rxAccountInfo = {
             return Page.create({
                 all: {
                     get: function () {
-                        return page.tblBadges.map(function (badgeElement) {
-                            return badge(badgeElement);
-                        });
+                        return page.tblBadges.reduce(function (acc, badgeElement) {
+                            acc.push(badge(badgeElement));
+                            return acc;
+                        }, []);
                     }
                 },
 
