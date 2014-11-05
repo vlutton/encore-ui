@@ -552,5 +552,23 @@ describe('urlUtils', function () {
             expect(urlutils.matchesSubChunks(first, second, second.length - 1)).to.be.false;
         });
     });
-    
+
+    describe('buildUrl', function () {
+        it('should populate the `user` parameter from the route', function () {
+            expect(urlutils.buildUrl('/foo/{{user}}/bar')).to.equal('/foo/me/bar');
+        });
+
+        it('should populate with `user` and extra context', function () {
+            var extraContext = { stuff: 'morestuff' };
+            expect(urlutils.buildUrl('/foo/{{user}}/{{stuff}}', extraContext)).to.equal('/foo/me/morestuff');
+        });
+
+        it('should override `user` with `user` from extra context', function () {
+            var extraContext = { user: 'extrauser' };
+            expect(urlutils.buildUrl('/foo/{{user}}', extraContext)).to.equal('/foo/extrauser');
+        });
+        it('should return undefined if the url is undefined', function () {
+            expect(urlutils.buildUrl(undefined)).to.be.undefined;
+        });
+    });
 });
