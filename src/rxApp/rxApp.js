@@ -360,9 +360,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                 }
             };
 
-            $rootScope.$on('$routeChangeSuccess', function () {
-                checkCloud();
-            });
+            $rootScope.$on('$routeChangeSuccess', checkCloud);
         }
     };
 })
