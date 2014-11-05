@@ -1,3 +1,18 @@
+<a name="1.3.4"></a>
+### 1.3.4 (2014-11-05)
+
+
+#### Bug Fixes
+
+* **protractor:** peg protractor version ([77084d23](git@github.com:rackerlabs/encore-ui/commit/77084d23ada10b9636343216161e85e631438761))
+
+
+#### Features
+
+* **rxPaginate:** Updated design ([67781533](git@github.com:rackerlabs/encore-ui/commit/67781533de6655f289b5e59e14091fb0eb197f50), closes [#587](git@github.com:rackerlabs/encore-ui/issues/587))
+* **testing:** Add a debug mode for testing ([8948163e](git@github.com:rackerlabs/encore-ui/commit/8948163e2c6e07233f724b75211e51de6913c814))
+
+
 <a name="1.3.3"></a>
 ### 1.3.3 (2014-10-31)
 
