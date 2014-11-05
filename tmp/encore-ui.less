@@ -1,4 +1,42 @@
 /*
+ * metadata
+ */
+.list-definition {
+    font-size: 16px;
+    dt {
+        line-height: 1.6em;
+        float: left;
+        min-width: 9em;
+        font-weight: 700;
+        text-align: right;
+        clear: left;
+    }
+    dd {
+        line-height: 1.6em;
+        float: left;
+        font-weight: 400;
+        text-align: left;
+        margin: 0;
+        padding-left: 1em;
+        clear: right;
+    }
+}
+
+.metadata {
+    &:extend(.list-definition all);
+    overflow: hidden;
+    font-size: 16px;
+    color: #727272;
+    dl {
+        margin: 0;
+        clear: both;
+    }
+    dt {
+        min-width: 10em;
+    }
+}
+
+/*
  * rxAccountInfo
  */
 .rx-account-info {
@@ -2133,6 +2171,8 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
 
  */
 
+ @paginationColor: #ababab;
+
 .paginate-area {
     text-align: center;
     td {
@@ -2143,8 +2183,11 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
 
 .rx-paginate {
     .pagination {
-        display: inline-block;
+        display: flex;
+        flex-direction: row;
+        flex-flow: row;
         padding-left: 0;
+        width: 100%;
     }
 
     .pagination li {
@@ -2164,31 +2207,93 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
         text-decoration: none;
         background: #fff;
         border-top: 2px solid transparent;
-        color: #ababab;
+        color: @paginationColor;
+    }
+
+    .pagination > li:first-child {
+        order: 1;
     }
 
     .pagination > li:first-child > a,
     .pagination > li:first-child > span {
-        margin-left: 0;
+        padding-left: 30px;
+        color: @infoBlue;
+        background: transparent;
+        &:before {
+            content: ".";
+            width: 0;
+            height: 0;
+            font-size: 0;
+            display: block;
+            position: absolute;
+            border: 6px solid transparent;
+            border-bottom-color: @infoBlue;
+            border-top: none;
+            left: 10px;
+            top: 55%;
+            margin-top: -4px;
+        }
+    }
+
+    .pagination > li:nth-child(2) {
+        order: 2;
+        padding: 6px 12px;
+        border-top: 2px solid transparent;
+        color: @paginationColor;
+    }
+
+    .pagination > .page-links {
+        order: 3;
+        margin: auto;
+        align-self: center;
+    }
+
+    .pagination > li:last-child {
+        order: 4;
+        border-top: 2px solid transparent;
+        padding: 6px 12px;
+        color: @paginationColor;
+        button[disabled] {
+            color: @paginationColor;
+        }
+    }
+
+    .pagination > li > div > ul {
+        float: right;
+        padding-left: 5px;
+        button {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: @infoBlue;
+        }
+        span {
+            float: none;
+            background: transparent;
+        }
+        & li + li::before {
+           content: " | ";
+           margin: 0 1em;
+        }
     }
 
     .pagination > li:last-child > a,
     .pagination > li:last-child > span {
     }
 
-    .pagination > li > a:hover,
-    .pagination > li > span:hover,
-    .pagination > li > a:focus,
-    .pagination > li > span:focus {
+    .pagination > .page-links > li > a:hover,
+    .pagination > .page-links > li > span:hover,
+    .pagination > .page-links > li > a:focus,
+    .pagination > .page-links > li > span:focus {
         background: #eee;
     }
 
-    .pagination > .active > a,
-    .pagination > .active > span,
-    .pagination > .active > a:hover,
-    .pagination > .active > span:hover,
-    .pagination > .active > a:focus,
-    .pagination > .active > span:focus {
+    .pagination > .page-links > .active > a,
+    .pagination > .page-links > .active > span,
+    .pagination > .page-links > .active > a:hover,
+    .pagination > .page-links > .active > span:hover,
+    .pagination > .page-links > .active > a:focus,
+    .pagination > .page-links > .active > span:focus {
         z-index: 2;
         cursor: default;
         border-top-color: #000;
@@ -2217,6 +2322,7 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
         font-size: 12px;
     }
 }
+
 /*
  * rxSortableColumn
  */

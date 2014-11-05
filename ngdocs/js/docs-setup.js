@@ -307,7 +307,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "encore.ui",
       "shortDescription": "This is the data service that can be used in conjunction with the pagination",
-      "keywords": "ability api class conjunction controls createinstance current data default determine display enables encore encore-ui-rxpaginate-page encore-ui-rxpaginate-pagetracking-page generate initialzed instance items itemsperpage number object objects override pageinit pagenumber pagestoshow pagetracking pagination rxpaginate service set setting settings showall store stored tables total true ui"
+      "keywords": "ability api assuming automatically call choose chooses class conjunction controls createinstance current data default determine display enables encore encore-ui-rxpaginate-page encore-ui-rxpaginate-pagetracking-page exists future generate initialzed instance instances isn items itemsizelist itemsperpage number object objects override pageinit pagenumber pagestoshow pagetracking pagination rxpaginate service set setting settings showall spot store stored tables total true ui user userselecteditemsperpage"
     },
     {
       "section": "api",
@@ -317,6 +317,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "This is the pagination filter that is used to calculate the division in the",
       "keywords": "api calculate created current division encore filter instance items list object pager pagetracking pagination paging rxpaginate service sliced ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxPaginate:PaginatedItemsSummary",
+      "shortName": "PaginatedItemsSummary",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "Given an active pager (i.e. the result of PageTracking.createInstance()),",
+      "keywords": "active api createinstance displayed displaying encore filter instance items list numbers pager pagetracking result return rxpaginate second service string ui"
     },
     {
       "section": "api",

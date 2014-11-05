@@ -41,6 +41,8 @@ function hotkeysCtrl ($scope, hotkeys) {
     });
 }
 
+
+
 // Note that these two factories are only present for the purposes of this demo. In a real application,
 // both SupportAccount and Encore will have to be provided from elsewhere, outside of encore-ui
 
@@ -49,16 +51,21 @@ angular.module('encore.ui.rxAccountInfo')
     [
         {
             url: 'http://mirrors.creativecommons.org/presskit/icons/cc.large.png',
-            description: 'CC'
+            description: 'Enables the free distribution of an otherwise copyrighted work.',
+            name: 'Creative Commons'
         }, {
             url: 'http://mirrors.creativecommons.org/presskit/icons/by.large.png',
-            description: 'BY'
+            description: ['You must give appropriate credit, provide a link to the',
+                          'license, and indicate if changes were made.'].join(' '),
+            name: 'Attribution'
         }, {
             url: 'http://mirrors.creativecommons.org/presskit/icons/nc.large.png',
-            description: 'NC',
+            description: 'You may not use the material for commercial purposes.',
+            name: 'Non-Commercial'
         }, {
             url: 'http://mirrors.creativecommons.org/presskit/icons/zero.large.png',
-            description: 'ZERO',
+            description: 'Waives as many rights as legally possible, worldwide.',
+            name: 'Public Domain'
         }
     ]
 )
@@ -66,10 +73,14 @@ angular.module('encore.ui.rxAccountInfo')
     [
         {
             url: 'http://mirrors.creativecommons.org/presskit/icons/share.large.png',
-            description: 'SHARE'
+            description: ['Licensees may distribute derivative works only under a license',
+                          'identical to the license that governs the original work.'].join(' '),
+            name: 'ShareAlike'
         }, {
             url: 'http://mirrors.creativecommons.org/presskit/icons/nd.large.png',
-            description: 'ND',
+            description: ['Licensees may copy, distribute, display and perform only verbatim',
+                          'copies of the work, not derivative works based on it.'].join(' '),
+            name: 'No-Derivs'
         }
     ]
 )
@@ -623,8 +634,7 @@ function rxPaginateCtrl ($scope, PageTracking) {
         predicate: 'id',
         reverse: false
     };
-    $scope.pager = PageTracking.createInstance();
-    $scope.pager.itemsPerPage = 3;
+    $scope.pager = PageTracking.createInstance({ itemsPerPage: 3 });
 
     var makeServers = function (serverCount) {
         var servers = [];
@@ -652,6 +662,7 @@ function rxPaginateCtrl ($scope, PageTracking) {
         $scope.servers = $scope.servers.concat(makeServers(2));
     };
 }
+
 
 function rxPermissionCtrl ($scope, Session, rxNotify) {
     rxNotify.add('Respect My Authority!!', {
