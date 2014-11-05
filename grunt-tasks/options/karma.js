@@ -32,6 +32,13 @@ module.exports = {
     single: {
         singleRun: true
     },
+    debug: {
+        singleRun: false,
+        browsers: ['Chrome'],
+        preprocessors: {
+            'src/**/*.html': 'ng-html2js',
+        },
+    },
     minified: {
         options: {
             files: files.concat([
