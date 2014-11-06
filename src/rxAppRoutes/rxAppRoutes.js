@@ -108,7 +108,7 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
 
         if ($route.current) {
             // convert any nested expressions to defined route params
-            var finalContext = _.assign(_.clone($route.current.pathParams), extraContext || {});
+            var finalContext = _.defaults(extraContext || {}, $route.current.pathParams);
             url = $interpolate(url)(finalContext);
         }
 
