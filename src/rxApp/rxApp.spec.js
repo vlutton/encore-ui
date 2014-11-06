@@ -667,7 +667,7 @@ describe('rxAccountUsers', function () {
         angular.module('testDirective', function () {})
             .factory('Encore', function () {
                 return {
-                    getAccount: function () {
+                    getAccountUsers: function () {
                         return {
                             users: [
                                 { username: 'testaccountuser' },
