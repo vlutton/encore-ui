@@ -353,7 +353,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                     }
                 };
 
-                Encore.getAccount({ id: routeParams.accountNumber }, success);
+                Encore.getAccountUsers({ id: routeParams.accountNumber }, success);
             };
             
             checkCloud();
