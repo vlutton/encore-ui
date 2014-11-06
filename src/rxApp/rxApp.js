@@ -326,10 +326,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
             scope.isCloudProduct = false;
 
             var checkCloud = function () {
-                encoreRoutes.isActiveByKey('cloud').then(function (isCloud) {
-                    scope.isCloudProduct = isCloud;
-                    if (isCloud) {
+                encoreRoutes.isActiveByKey('accountLvlTools').then(function (isAccounts) {
+                    if (isAccounts) {
                         loadUsers();
+                        encoreRoutes.isActiveByKey('cloud').then(function (isCloud) {
+                            scope.isCloudProduct = isCloud;
+                        });
+                    } else {
+                        scope.isCloudProduct = false;
                     }
                 });
             };
@@ -338,9 +342,18 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                 var success = function (account) {
                     scope.users = account.users;
                     scope.currentUser = routeParams.user;
+                    if (!scope.currentUser) {
+                        // We're not in Cloud, but instead in Billing, or Events, or 
+                        // one of the other Accounts menu items that doesn't use a username as
+                        // part of the route params.
+                        // But we need the URLs for the Cloud items to be valid, so grab a 
+                        // default username for this account, and rebuild the Cloud URLs with
+                        // it
+                        encoreRoutes.rebuildUrls({ user: account.users[0].username });
+                    }
                 };
 
-                Encore.getAccount({ id: routeParams.accountNumber }, success);
+                Encore.getAccountUsers({ id: routeParams.accountNumber }, success);
             };
             
             checkCloud();
