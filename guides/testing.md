@@ -74,7 +74,7 @@ When developing a specific components, it's much quicker to run tests only for t
 
 ```
 ./node_modules/protractor/bin/protractor protractor.conf.js --specs src/rxComponent/docs/rxComponent.midway.js
-``
+```
 
 ### Convienience Page Objects
 
