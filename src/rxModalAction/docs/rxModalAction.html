@@ -34,7 +34,7 @@
 
             <rx-form-item label="New Password">
                 <input type="text" name="password" ng-model="fields.password" required="true">
-                <div ng-show="modalActionForm.password.$error.required">This field is required.</div>
+                <div class="error-message" ng-show="modalActionForm.password.$error.required">This field is required.</div>
             </rx-form-item>
         </rx-modal-form>
     </script>
