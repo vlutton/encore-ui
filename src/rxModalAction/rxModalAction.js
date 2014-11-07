@@ -42,9 +42,11 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
                 }
 
                 // we need to wait for $modalWindow to run so it doesn't steal focus
-                $timeout(function () {
-                    firstTabbable.focus();
-                }, 10);
+                if (firstTabbable) {
+                    $timeout(function () {
+                        firstTabbable.focus();
+                    }, 10);
+                }
             };
 
             focusOnFirstTabbable();

@@ -113,6 +113,19 @@ describe('rxModalForm', function () {
         expect(inputs[0].focus).to.not.be.called;
         expect(inputs[1].focus).to.be.calledOnce;
     });
+
+    it('should not throw errors if no focusable elements are found', function () {
+        var formHtml = _.template(rxModalForm, {
+            fields: ''
+        });
+
+        var test = function () {
+            helpers.createDirective(formHtml, compile, scope);
+            timeout.flush();
+        };
+
+        expect(test).to.not.throw('focus');
+    });
 });
 
 describe('rxModalAction', function () {
