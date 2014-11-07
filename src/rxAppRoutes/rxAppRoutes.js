@@ -94,7 +94,10 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
         return pathMatches;
     };
 
-    this.buildUrl = function (url) {
+    // Given a URL string, interpolate it with $route.current.pathParams
+    // If the optional `extraContext` is passed in, then the URL will be interpolated
+    // with those values as well, with `extraContext` values taking precedence
+    this.buildUrl = function (url, extraContext) {
         // sometimes links don't have URLs defined, so we need to exit before $interpolate throws an error
         if (_.isUndefined(url)) {
             return url;
@@ -105,7 +108,8 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
 
         if ($route.current) {
             // convert any nested expressions to defined route params
-            url = $interpolate(url)($route.current.pathParams);
+            var finalContext = _.defaults(extraContext || {}, $route.current.pathParams);
+            url = $interpolate(url)(finalContext);
         }
 
         return url;
@@ -136,14 +140,14 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
             loadingDeferred.resolve(routes);
         }
 
-        var setDynamicProperties = function (routes) {
+        var setDynamicProperties = function (routes, extraUrlContext) {
             _.each(routes, function (route) {
                 // build out url for current route
-                route.url = urlUtils.buildUrl(route.href);
+                route.url = urlUtils.buildUrl(route.href, extraUrlContext);
 
                 // check if any children exist, if so, build their URLs as well
                 if (route.children) {
-                    route.children = setDynamicProperties(route.children);
+                    route.children = setDynamicProperties(route.children, extraUrlContext);
                 }
 
                 // set active state (this needs to go after the recursion,
@@ -196,6 +200,17 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
             return routes;
         };
 
+        // Get the route for a given index
+        var getRouteByIndex = function (indexes, subRoutes) {
+            var i, route,
+                depth = indexes.length;
+            for (i = 0; i < depth; i++) {
+                route = subRoutes[indexes[i]];
+                subRoutes = route.children;
+            }
+            return route;
+        };
+
         $rootScope.$on('$locationChangeSuccess', function () {
             // NOTE: currentPath MUST be updated before routes
             currentPathChunks = urlUtils.getCurrentPathChunks();
@@ -215,7 +230,6 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
             getIndexByKey: function (key) {
                 return loadingDeferred.promise.then(function () {
                     var routeIndex = getRouteIndex(key, routes);
-
                     if (_.isUndefined(routeIndex)) {
                         $log.debug('Could not find route by key: ', key);
                         return $q.reject();
@@ -223,6 +237,23 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
 
                     return routeIndex;
                 });
+            },
+
+            getRouteByKey: function (key) {
+                return this.getIndexByKey(key).then(function (index) {
+                    return getRouteByIndex(index, routes);
+                }, function () {
+                    return $q.reject();
+                });
+            },
+
+            isActiveByKey:  function (key) {
+                return this.getRouteByKey(key).then(function (route) {
+                    return urlUtils.isActive(route, urlUtils.getCurrentPathChunks());
+                }, function () {
+                    return $q.reject();
+                });
+                
             },
             /**
              * functionality to update routes based on their key
@@ -253,6 +284,9 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
 
                 routes = setDynamicProperties(routesToBe);
                 loadingDeferred.resolve();
+            },
+            rebuildUrls: function (extraUrlContext) {
+                setDynamicProperties(routes, extraUrlContext);
             }
         };
     };

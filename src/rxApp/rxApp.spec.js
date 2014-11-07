@@ -657,3 +657,86 @@ describe('rxVisibilityPathParams', function () {
 
     });
 });
+
+describe('rxAccountUsers', function () {
+    var rootScope, scope, compile, q, userSelect, users, encoreRoutesMock;
+    var validTemplate = '<rx-account-users></rx-account-users>';
+
+    beforeEach(function () {
+
+        angular.module('testDirective', function () {})
+            .factory('Encore', function () {
+                return {
+                    getAccountUsers: function () {
+                        return {
+                            users: [
+                                { username: 'testaccountuser' },
+                                { username: 'hub_cap' }
+                            ]
+                        };
+                    }
+                };
+            })
+            .factory('encoreRoutes', function ($q) {
+                var mockReturn = true;
+                return {
+                    isActiveByKey: function () {
+                        var deferred = $q.defer();
+                        deferred.resolve(mockReturn);
+                        return deferred.promise;
+                    },
+
+                    setMock: function (mockValue) {
+                        mockReturn = mockValue;
+                    }
+                };
+            });
+
+        module('encore.ui.rxApp', 'testDirective');
+        module('templates/rxAccountUsers.html');
+
+        inject(function ($rootScope, $compile, $templateCache, $location, $route, $q, encoreRoutes) {
+            rootScope = $rootScope;
+            compile = $compile;
+            scope = $rootScope.$new();
+            q = $q;
+            encoreRoutesMock = encoreRoutes;
+
+            $location.url('http://server/cloud/');
+            $route.current = {};
+            $route.current.params = {
+                accountNumber: 323676,
+                user: 'hub_cap'
+            };
+
+            scope.currentUser = 'hub_cap';
+            scope.users = [
+                { username: 'testaccountuser' },
+                { username: 'hub_cap' }
+            ];
+
+            var accountUsersHtml = $templateCache.get('templates/rxAccountUsers.html');
+            $templateCache.put('/templates/rxAccountUsers.html', accountUsersHtml);
+        });
+
+        userSelect = helpers.createDirective(angular.element(validTemplate), compile, scope);
+        users = userSelect.find('option');
+    });
+
+    it('should have two account users', function () {
+        expect(users).to.have.length(2);
+        expect(users[0].text).to.equal('testaccountuser');
+        expect(users[1].text).to.equal('hub_cap');
+    });
+
+    it('should select current user', function () {
+        expect(users[1]).to.be.selected;
+    });
+
+    it('should not render when encoreRoutes.isActiveByKey() returns false', function () {
+        encoreRoutesMock.setMock(false);
+        userSelect = helpers.createDirective(angular.element(validTemplate), compile, scope);
+        expect(userSelect.find('select')).to.have.length(0);
+    });
+
+});
