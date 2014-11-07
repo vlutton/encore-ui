@@ -207,5 +207,12 @@ exports.rxPaginate = {
             get: function () { return rxPaginationElement; }
         };
         return Page.create(rxPaginate);
-    }
+    },
+
+    main: (function () {
+        rxPaginate.rootElement = {
+            get: function () { return $('.rx-paginate'); }
+        };
+        return Page.create(rxPaginate);
+    })()
 };
