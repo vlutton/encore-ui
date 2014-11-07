@@ -310,6 +310,74 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
     };
 })
 /**
+ * @ngdoc directive
+ * @name encore.ui.rxApp:rxAccountUsers
+ * @restrict E
+ * @description
+ * Provides the ability to switch between account users. This directive is specific to Rackspace
+ */
+.directive('rxAccountUsers', function ($location, $route, Encore, $rootScope, encoreRoutes) {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxAccountUsers.html',
+        link: function (scope) {
+            var routeParams = $route.current.params;
+
+            scope.isCloudProduct = false;
+
+            var checkCloud = function () {
+                encoreRoutes.isActiveByKey('accountLvlTools').then(function (isAccounts) {
+                    if (isAccounts) {
+                        loadUsers();
+                        encoreRoutes.isActiveByKey('cloud').then(function (isCloud) {
+                            scope.isCloudProduct = isCloud;
+                        });
+                    } else {
+                        scope.isCloudProduct = false;
+                    }
+                });
+            };
+
+            var loadUsers = function () {
+                var success = function (account) {
+                    scope.users = account.users;
+                    scope.currentUser = routeParams.user;
+                    if (!scope.currentUser) {
+                        // We're not in Cloud, but instead in Billing, or Events, or 
+                        // one of the other Accounts menu items that doesn't use a username as
+                        // part of the route params.
+                        // But we need the URLs for the Cloud items to be valid, so grab a 
+                        // default username for this account, and rebuild the Cloud URLs with
+                        // it
+                        encoreRoutes.rebuildUrls({ user: account.users[0].username });
+                    }
+                };
+
+                Encore.getAccountUsers({ id: routeParams.accountNumber }, success);
+            };
+            
+            checkCloud();
+
+            scope.switchUser = function (user) {
+                // TODO: Replace with updateParams in Angular 1.3
+                //$route.updateParams({ user: user });
+
+                // Update the :user route param
+                var params = $route.current.originalPath.split('/');
+                var userIndex = _.indexOf(params, ':user');
+
+                if (userIndex !== -1) {
+                    var path = $location.url().split('/');
+                    path[userIndex] = user;
+                    $location.url(path.join('/'));
+                }
+            };
+
+            $rootScope.$on('$routeChangeSuccess', checkCloud);
+        }
+    };
+})
+/**
 * @ngdoc directive
 * @name encore.ui.rxApp:rxAtlasSearch
 * @restrict E
