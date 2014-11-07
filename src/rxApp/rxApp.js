@@ -316,7 +316,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
  * @description
  * Provides the ability to switch between account users. This directive is specific to Rackspace
  */
-.directive('rxAccountUsers', function ($location, $route, $window, Encore, $rootScope, encoreRoutes) {
+.directive('rxAccountUsers', function ($location, $route, Encore, $rootScope, encoreRoutes) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxAccountUsers.html',
@@ -367,9 +367,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                 var userIndex = _.indexOf(params, ':user');
 
                 if (userIndex !== -1) {
-                    var path = $location.path().split('/');
+                    var path = $location.url().split('/');
                     path[userIndex] = user;
-                    $window.location = '/cloud' + path.join('/');
+                    $location.url(path.join('/'));
                 }
             };
 
