@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxNotify', ['ngSanitize'])
+angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
 /**
 * @ngdoc directive
 * @name encore.ui.rxNotify:rxNotification
@@ -129,6 +129,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         $interval(function () {
             dismiss(message);
         }, timeoutMs, 1);
+
     };
 
     /*
@@ -208,17 +209,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
      */
     var dismiss = function (msg) {
         // remove message by id
-        // adds a class to the message to start the fadeout process
-        msg.fadeout = true;
-        var timeoutMs = 550;
-
-        // FIX ME: find a better way to finish the fadeout CSS animation class 
-        // before invoking the _.reject method
-        // I know webkitAnimationEnd oanimationend msAnimationEnd animationend events
-        // are fired - maybe if there's a way to listen for them?
-        $interval(function () {
-            stacks[msg.stack] = _.reject(stacks[msg.stack], { 'id': msg.id });
-        }, timeoutMs, 1);
+        stacks[msg.stack] = _.reject(stacks[msg.stack], { 'id': msg.id });
     };
 
     /*

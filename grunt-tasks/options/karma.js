@@ -3,6 +3,7 @@ var files = [
     // bower:js
     'demo/bower_components/jquery/jquery.js',
     'demo/bower_components/angular/angular.js',
+    'demo/bower_components/angular-animate/angular-animate.js',
     'demo/bower_components/angular-sanitize/angular-sanitize.js',
     'demo/bower_components/angular-resource/angular-resource.js',
     'demo/bower_components/angular-route/angular-route.js',
