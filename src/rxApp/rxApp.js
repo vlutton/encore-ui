@@ -316,13 +316,11 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
  * @description
  * Provides the ability to switch between account users. This directive is specific to Rackspace
  */
-.directive('rxAccountUsers', function ($location, $route, Encore, $rootScope, encoreRoutes) {
+.directive('rxAccountUsers', function ($location, $route, $routeParams, Encore, $rootScope, encoreRoutes) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxAccountUsers.html',
         link: function (scope) {
-            var routeParams = $route.current.params;
-
             scope.isCloudProduct = false;
 
             var checkCloud = function () {
@@ -341,21 +339,20 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
             var loadUsers = function () {
                 var success = function (account) {
                     scope.users = account.users;
-                    scope.currentUser = routeParams.user;
+                    scope.currentUser = $routeParams.user;
                     if (!scope.currentUser) {
-                        // We're not in Cloud, but instead in Billing, or Events, or 
+                        // We're not in Cloud, but instead in Billing, or Events, or
                         // one of the other Accounts menu items that doesn't use a username as
                         // part of the route params.
-                        // But we need the URLs for the Cloud items to be valid, so grab a 
+                        // But we need the URLs for the Cloud items to be valid, so grab a
                         // default username for this account, and rebuild the Cloud URLs with
                         // it
                         encoreRoutes.rebuildUrls({ user: account.users[0].username });
                     }
                 };
-
-                Encore.getAccountUsers({ id: routeParams.accountNumber }, success);
+                Encore.getAccountUsers({ id: $routeParams.accountNumber }, success);
             };
-            
+
             checkCloud();
 
             scope.switchUser = function (user) {
@@ -485,7 +482,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         addVisibilityObj: addVisibilityObj
 
     };
-    
+
 })
 
 /*
@@ -493,7 +490,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
  * name encore.ui.rxApp:rxVisibilityPathParams
  * @description
  * Returns an object with `name` and `method` params that can
- * be passed to `rxVisibility.addMethod()`. We use register this by 
+ * be passed to `rxVisibility.addMethod()`. We use register this by
  * default, as it's used by the nav menu we keep in routesCdnPath.
  * The method is used to check if {param: 'someParamName'} is present
  * in the current route
