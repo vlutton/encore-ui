@@ -32,6 +32,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxApp:rxAccountUsers",
+      "shortName": "rxAccountUsers",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Provides the ability to switch between account users. This directive is specific to Rackspace",
+      "keywords": "ability account api directive encore rackspace rxapp specific switch ui users"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxApp:rxApp",
       "shortName": "rxApp",
       "type": "directive",

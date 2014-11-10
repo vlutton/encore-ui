@@ -2,11 +2,11 @@
  * EncoreUI
  * https://github.com/rackerlabs/encore-ui
 
- * Version: 1.3.4 - 2014-11-05
+ * Version: 1.4.0 - 2014-11-10
  * License: Apache License, Version 2.0
  */
 angular.module('encore.ui', ['encore.ui.tpls', 'encore.ui.configs','encore.ui.rxAccountInfo','encore.ui.rxActionMenu','encore.ui.rxActiveUrl','encore.ui.rxAge','encore.ui.rxEnvironment','encore.ui.rxAppRoutes','encore.ui.rxApp','encore.ui.rxAttributes','encore.ui.rxIdentity','encore.ui.rxLocalStorage','encore.ui.rxSession','encore.ui.rxPermission','encore.ui.rxAuth','encore.ui.rxBreadcrumbs','encore.ui.rxButton','encore.ui.rxCapitalize','encore.ui.rxCompile','encore.ui.rxDiskSize','encore.ui.rxFavicon','encore.ui.rxFeedback','encore.ui.rxForm','encore.ui.rxInfoPanel','encore.ui.rxLogout','encore.ui.rxModalAction','encore.ui.rxNotify','encore.ui.rxPageTitle','encore.ui.rxPaginate','encore.ui.rxSessionStorage','encore.ui.rxSortableColumn','encore.ui.rxSpinner','encore.ui.rxStatus','encore.ui.rxToggle','encore.ui.rxTokenInterceptor','encore.ui.rxUnauthorizedInterceptor', 'cfp.hotkeys','ui.bootstrap']);
-angular.module('encore.ui.tpls', ['templates/rxAccountInfo.html','templates/rxActionMenu.html','templates/rxActiveUrl.html','templates/rxAccountSearch.html','templates/rxApp.html','templates/rxAppNav.html','templates/rxAppNavItem.html','templates/rxAppSearch.html','templates/rxPage.html','templates/rxPermission.html','templates/rxBreadcrumbs.html','templates/rxButton.html','templates/feedbackForm.html','templates/rxFeedback.html','templates/rxFormFieldset.html','templates/rxFormItem.html','templates/rxFormOptionTable.html','templates/rxInfoPanel.html','templates/rxModalAction.html','templates/rxModalActionForm.html','templates/rxNotification.html','templates/rxNotifications.html','templates/rxPaginate.html','templates/rxSortableColumn.html']);
+angular.module('encore.ui.tpls', ['templates/rxAccountInfo.html','templates/rxActionMenu.html','templates/rxActiveUrl.html','templates/rxAccountSearch.html','templates/rxAccountUsers.html','templates/rxApp.html','templates/rxAppNav.html','templates/rxAppNavItem.html','templates/rxAppSearch.html','templates/rxPage.html','templates/rxPermission.html','templates/rxBreadcrumbs.html','templates/rxButton.html','templates/feedbackForm.html','templates/rxFeedback.html','templates/rxFormFieldset.html','templates/rxFormItem.html','templates/rxFormOptionTable.html','templates/rxInfoPanel.html','templates/rxModalAction.html','templates/rxModalActionForm.html','templates/rxNotification.html','templates/rxNotifications.html','templates/rxPaginate.html','templates/rxSortableColumn.html']);
 angular.module('encore.ui.configs', [])
 .value('devicePaths', [
     { value: '/dev/xvdb', label: '/dev/xvdb' },
@@ -615,7 +615,10 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
         return pathMatches;
     };
 
-    this.buildUrl = function (url) {
+    // Given a URL string, interpolate it with $route.current.pathParams
+    // If the optional `extraContext` is passed in, then the URL will be interpolated
+    // with those values as well, with `extraContext` values taking precedence
+    this.buildUrl = function (url, extraContext) {
         // sometimes links don't have URLs defined, so we need to exit before $interpolate throws an error
         if (_.isUndefined(url)) {
             return url;
@@ -626,7 +629,8 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
 
         if ($route.current) {
             // convert any nested expressions to defined route params
-            url = $interpolate(url)($route.current.pathParams);
+            var finalContext = _.defaults(extraContext || {}, $route.current.pathParams);
+            url = $interpolate(url)(finalContext);
         }
 
         return url;
@@ -657,14 +661,14 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
             loadingDeferred.resolve(routes);
         }
 
-        var setDynamicProperties = function (routes) {
+        var setDynamicProperties = function (routes, extraUrlContext) {
             _.each(routes, function (route) {
                 // build out url for current route
-                route.url = urlUtils.buildUrl(route.href);
+                route.url = urlUtils.buildUrl(route.href, extraUrlContext);
 
                 // check if any children exist, if so, build their URLs as well
                 if (route.children) {
-                    route.children = setDynamicProperties(route.children);
+                    route.children = setDynamicProperties(route.children, extraUrlContext);
                 }
 
                 // set active state (this needs to go after the recursion,
@@ -717,6 +721,17 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
             return routes;
         };
 
+        // Get the route for a given index
+        var getRouteByIndex = function (indexes, subRoutes) {
+            var i, route,
+                depth = indexes.length;
+            for (i = 0; i < depth; i++) {
+                route = subRoutes[indexes[i]];
+                subRoutes = route.children;
+            }
+            return route;
+        };
+
         $rootScope.$on('$locationChangeSuccess', function () {
             // NOTE: currentPath MUST be updated before routes
             currentPathChunks = urlUtils.getCurrentPathChunks();
@@ -736,7 +751,6 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
             getIndexByKey: function (key) {
                 return loadingDeferred.promise.then(function () {
                     var routeIndex = getRouteIndex(key, routes);
-
                     if (_.isUndefined(routeIndex)) {
                         $log.debug('Could not find route by key: ', key);
                         return $q.reject();
@@ -744,6 +758,23 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
 
                     return routeIndex;
                 });
+            },
+
+            getRouteByKey: function (key) {
+                return this.getIndexByKey(key).then(function (index) {
+                    return getRouteByIndex(index, routes);
+                }, function () {
+                    return $q.reject();
+                });
+            },
+
+            isActiveByKey:  function (key) {
+                return this.getRouteByKey(key).then(function (route) {
+                    return urlUtils.isActive(route, urlUtils.getCurrentPathChunks());
+                }, function () {
+                    return $q.reject();
+                });
+                
             },
             /**
              * functionality to update routes based on their key
@@ -774,6 +805,9 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
 
                 routes = setDynamicProperties(routesToBe);
                 loadingDeferred.resolve();
+            },
+            rebuildUrls: function (extraUrlContext) {
+                setDynamicProperties(routes, extraUrlContext);
             }
         };
     };
@@ -1093,6 +1127,71 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
     };
 })
 /**
+ * @ngdoc directive
+ * @name encore.ui.rxApp:rxAccountUsers
+ * @restrict E
+ * @description
+ * Provides the ability to switch between account users. This directive is specific to Rackspace
+ */
+.directive('rxAccountUsers', ["$location", "$route", "$routeParams", "Encore", "$rootScope", "encoreRoutes", function ($location, $route, $routeParams, Encore, $rootScope, encoreRoutes) {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxAccountUsers.html',
+        link: function (scope) {
+            scope.isCloudProduct = false;
+
+            var checkCloud = function () {
+                encoreRoutes.isActiveByKey('accountLvlTools').then(function (isAccounts) {
+                    if (isAccounts) {
+                        loadUsers();
+                        encoreRoutes.isActiveByKey('cloud').then(function (isCloud) {
+                            scope.isCloudProduct = isCloud;
+                        });
+                    } else {
+                        scope.isCloudProduct = false;
+                    }
+                });
+            };
+
+            var loadUsers = function () {
+                var success = function (account) {
+                    scope.users = account.users;
+                    scope.currentUser = $routeParams.user;
+                    if (!scope.currentUser) {
+                        // We're not in Cloud, but instead in Billing, or Events, or
+                        // one of the other Accounts menu items that doesn't use a username as
+                        // part of the route params.
+                        // But we need the URLs for the Cloud items to be valid, so grab a
+                        // default username for this account, and rebuild the Cloud URLs with
+                        // it
+                        encoreRoutes.rebuildUrls({ user: account.users[0].username });
+                    }
+                };
+                Encore.getAccountUsers({ id: $routeParams.accountNumber }, success);
+            };
+
+            checkCloud();
+
+            scope.switchUser = function (user) {
+                // TODO: Replace with updateParams in Angular 1.3
+                //$route.updateParams({ user: user });
+
+                // Update the :user route param
+                var params = $route.current.originalPath.split('/');
+                var userIndex = _.indexOf(params, ':user');
+
+                if (userIndex !== -1) {
+                    var path = $location.url().split('/');
+                    path[userIndex] = user;
+                    $location.url(path.join('/'));
+                }
+            };
+
+            $rootScope.$on('$routeChangeSuccess', checkCloud);
+        }
+    };
+}])
+/**
 * @ngdoc directive
 * @name encore.ui.rxApp:rxAtlasSearch
 * @restrict E
@@ -1200,7 +1299,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         addVisibilityObj: addVisibilityObj
 
     };
-    
+
 })
 
 /*
@@ -1208,7 +1307,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
  * name encore.ui.rxApp:rxVisibilityPathParams
  * @description
  * Returns an object with `name` and `method` params that can
- * be passed to `rxVisibility.addMethod()`. We use register this by 
+ * be passed to `rxVisibility.addMethod()`. We use register this by
  * default, as it's used by the nav menu we keep in routesCdnPath.
  * The method is used to check if {param: 'someParamName'} is present
  * in the current route
@@ -2235,9 +2334,11 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
                 }
 
                 // we need to wait for $modalWindow to run so it doesn't steal focus
-                $timeout(function () {
-                    firstTabbable.focus();
-                }, 10);
+                if (firstTabbable) {
+                    $timeout(function () {
+                        firstTabbable.focus();
+                    }, 10);
+                }
             };
 
             focusOnFirstTabbable();
@@ -2333,7 +2434,8 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
         }
     };
 }]);
-angular.module('encore.ui.rxNotify', ['ngSanitize'])
+
+angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
 /**
 * @ngdoc directive
 * @name encore.ui.rxNotify:rxNotification
@@ -2464,6 +2566,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         $interval(function () {
             dismiss(message);
         }, timeoutMs, 1);
+
     };
 
     /*
@@ -3531,6 +3634,11 @@ angular.module("templates/rxAccountSearch.html", []).run(["$templateCache", func
     "<div class=\"rx-app-search\"><form name=\"search\" role=\"search\" ng-submit=\"fetchAccount(model)\"><input type=\"text\" placeholder=\"Search by Account Number or Username...\" ng-model=\"model\" class=\"form-item search-input\" ng-required ng-pattern=\"/^([0-9a-zA-Z._ -]{2,})$/\"> <button type=\"submit\" class=\"search-action\" ng-disabled=\"!search.$valid\"><span class=\"visually-hidden\">Search</span></button></form></div>");
 }]);
 
+angular.module("templates/rxAccountUsers.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAccountUsers.html",
+    "<span ng-if=\"isCloudProduct\" class=\"account-users field-select\"><select ng-model=\"currentUser\" ng-options=\"user.username as user.username for user in users\" ng-change=\"switchUser(currentUser)\"></select></span>");
+}]);
+
 angular.module("templates/rxApp.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/rxApp.html",
     "<div class=\"warning-bar rx-notifications\" ng-class=\"{preprod: isPreProd}\" ng-if=\"isWarning\"><div class=\"rx-notification notification-warning\"><span class=\"notification-text\">{{ warningMessage }}</span></div></div><div class=\"rx-app\" ng-class=\"{collapsible: collapsibleNav === 'true', collapsed: collapsedNav, 'warning-bar': isWarning, preprod: isPreProd}\" ng-cloak><nav class=\"rx-app-menu\"><header class=\"site-branding\"><h1 class=\"site-title\">{{ siteTitle || 'Encore' }}</h1><button class=\"collapsible-toggle btn-link\" ng-if=\"collapsibleNav === 'true'\" rx-toggle=\"$parent.collapsedNav\" title=\"{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu\"><span class=\"visually-hidden\">{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu</span><div class=\"double-chevron\" ng-class=\"{'double-chevron-left': !collapsedNav}\"></div></button><div class=\"site-options\"><button class=\"btn-link site-option site-logout\" rx-logout=\"{{logoutUrl}}\">Logout</button></div></header><nav class=\"rx-app-nav\"><div ng-repeat=\"section in routes\" class=\"nav-section nav-section-{{ section.type || 'all' }}\"><h2 class=\"nav-section-title\">{{ section.title }}</h2><rx-app-nav items=\"section.children\" level=\"1\"></rx-app-nav></div></nav><div class=\"rx-app-help clearfix\"><rx-feedback ng-if=\"!hideFeedback\"></rx-feedback></div></nav><div class=\"rx-app-content\" ng-transclude></div></div>");
@@ -3608,7 +3716,7 @@ angular.module("templates/rxModalAction.html", []).run(["$templateCache", functi
 
 angular.module("templates/rxModalActionForm.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/rxModalActionForm.html",
-    "<div class=\"modal-header\"><h3 class=\"modal-title\">{{title}}</h3><h4 class=\"modal-subtitle\" ng-if=\"subtitle\">{{subtitle}}</h4><button class=\"modal-close btn-link\" ng-click=\"$parent.cancel()\"><span class=\"visually-hidden\">Close Window</span></button></div><div class=\"modal-body\"><div ng-show=\"$parent.isLoading\" class=\"loading\" rx-spinner=\"dark\" toggle=\"$parent.isLoading\"></div><form ng-hide=\"$parent.isLoading\" name=\"modalActionForm\" class=\"modal-form rx-form\" ng-transclude></form></div><div class=\"modal-footer\"><button class=\"button submit\" ng-click=\"$parent.submit()\" type=\"submit\" ng-disabled=\"modalActionForm.$invalid\">{{submitText || \"Submit\"}}</button> <button class=\"button cancel\" ng-click=\"$parent.cancel()\">{{cancelText || \"Cancel\"}}</button></div>");
+    "<div class=\"modal-header\"><h3 class=\"modal-title\">{{title}}</h3><h4 class=\"modal-subtitle\" ng-if=\"subtitle\">{{subtitle}}</h4><button class=\"modal-close btn-link\" ng-click=\"$parent.cancel()\"><span class=\"visually-hidden\">Close Window</span></button></div><div class=\"modal-body\"><div ng-show=\"$parent.isLoading\" class=\"loading\" rx-spinner=\"dark\" toggle=\"$parent.isLoading\"></div><form ng-hide=\"$parent.isLoading\" name=\"$parent.modalActionForm\" class=\"modal-form rx-form\" ng-transclude></form></div><div class=\"modal-footer\"><button class=\"button submit\" ng-click=\"$parent.submit()\" type=\"submit\" ng-disabled=\"$parent.modalActionForm.$invalid\">{{submitText || \"Submit\"}}</button> <button class=\"button cancel\" ng-click=\"$parent.cancel()\">{{cancelText || \"Cancel\"}}</button></div>");
 }]);
 
 angular.module("templates/rxNotification.html", []).run(["$templateCache", function($templateCache) {
@@ -3618,7 +3726,7 @@ angular.module("templates/rxNotification.html", []).run(["$templateCache", funct
 
 angular.module("templates/rxNotifications.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("templates/rxNotifications.html",
-    "<div class=\"rx-notifications\" ng-show=\"messages.length > 0\"><div ng-repeat=\"message in messages\" class=\"rx-notification notification-{{message.type}}\" ng-class=\"{'notification-loading': message.loading}\" rx-spinner toggle=\"message.loading\" ng-init=\"loading = message.loading\"><span class=\"notification-text\" ng-bind-html=\"message.text\"></span> <button ng-click=\"dismiss(message)\" class=\"notification-dismiss btn-link\" ng-if=\"message.dismissable && !message.loading\">&times; <span class=\"visually-hidden\">Dismiss Message</span></button></div></div>");
+    "<div class=\"rx-notifications\" ng-show=\"messages.length > 0\"><div ng-repeat=\"message in messages\" class=\"rx-notification animate-fade notification-{{message.type}}\" ng-class=\"{'notification-loading': message.loading}\" rx-spinner toggle=\"message.loading\" ng-init=\"loading = message.loading\"><span class=\"notification-text\" ng-bind-html=\"message.text\"></span> <button ng-click=\"dismiss(message)\" class=\"notification-dismiss btn-link\" ng-if=\"message.dismissable && !message.loading\">&times; <span class=\"visually-hidden\">Dismiss Message</span></button></div></div>");
 }]);
 
 angular.module("templates/rxPaginate.html", []).run(["$templateCache", function($templateCache) {

@@ -1133,6 +1133,18 @@ For apps that want to use the default Encore navigation, use the following HTML 
             }
         }
 
+        & > .rx-notifications {
+            position:fixed;
+            z-index: 5;
+            top: 0px;
+            left: 300px;
+            right: 100px;
+            opacity: 0.95;
+            .rx-notification {
+                width: 100%;
+            }
+        }
+
         .page-actions {
             float: right;
             margin: 0 0 2em 2em;
@@ -1146,8 +1158,6 @@ For apps that want to use the default Encore navigation, use the following HTML 
     width: 100%;
     margin-bottom: 0;
 }
-
-
 /*
 # rxBreadcrumbs
 
@@ -1855,6 +1865,24 @@ Replace default UI of select fields and adds custom border/arrow
     }
 }
 
+// User select element in Account section of nav
+
+.rx-app-nav-item .field-select {
+    background: #404140;
+    select {
+        border: 1px solid #3a3a3a;
+    }
+    &:before {
+        border-top-color: #cacaca;
+    }
+}
+
+.account-users {
+    float: right;
+    box-sizing: border-box;
+    width: 50%;
+}
+
 /*
  * rxInfoPanel
  */
@@ -2015,31 +2043,33 @@ Note: **Styledocco will not display the images associated with the notification 
 
 In the second example we added `<button class="notification-dismiss btn-link">&times;</button>` to add a dismiss marker. If you are not using Encore UI's angular.js directives, it's up to you to flesh out this functionality.
 
+Note that `<rx-app></rx-app>` uses the `<rx-notifications>` directive, where each individual status message has the class `animate-fade`. This class uses CSS3 animations and requires the `ngAnimate` module which adds `ng-enter` and `ng-leave` classes as the element appears and dissapears. The `<rx-notification>` directive does not include the animation class.
+
 ```
 <div class="rx-notifications">
-    <div class="rx-notification notification-error">
+    <div class="rx-notification animate-fade notification-error">
         Error Message
     </div>
 
-    <div class="rx-notification notification-error">
+    <div class="rx-notification animate-fade notification-error">
         Error Message
         <button class="notification-dismiss btn-link">&times;</button>
     </div>
 
-    <div class="rx-notification notification-info">
+    <div class="rx-notification animate-fade notification-info">
         Informational Message
     </div>    
 
-    <div class="rx-notification notification-info notification-loading">
+    <div class="rx-notification animate-fade notification-info notification-loading">
         <div class="rx-spinner"></div>
         Loading
     </div>
 
-    <div class="rx-notification notification-success">
+    <div class="rx-notification animate-fade notification-success">
         Success Message
     </div>
 
-    <div class="rx-notification notification-warning">
+    <div class="rx-notification animate-fade notification-warning">
         Warning Message
     </div>
 </div>
@@ -2106,6 +2136,28 @@ In the second example we added `<button class="notification-dismiss btn-link">&t
         }
     }
 }
+
+.animate-fade.ng-enter,
+.animate-fade.ng-leave {
+    -webkit-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animate-fade.ng-leave.ng-leave-active,
+.animate-fade.ng-enter {
+    opacity:0;
+}
+
+.animate-fade.ng-leave,
+.animate-fade.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
 /*
  # rxPaginate
 
