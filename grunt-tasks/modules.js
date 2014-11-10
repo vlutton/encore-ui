@@ -39,7 +39,8 @@ module.exports = function (grunt) {
             docs: {
                 md: grunt.file.expand('src/' + name + '/*.md').map(grunt.file.read).map(markdown).join('\n'),
                 js: grunt.file.expand('src/' + name + '/docs/!(*.midway).js').map(grunt.file.read).join('\n'),
-                html: grunt.file.expand('src/' + name + '/docs/*.html').map(grunt.file.read).join('\n')
+                html: grunt.file.expand('src/' + name + '/docs/*.html').map(grunt.file.read).join('\n'),
+                midway: grunt.file.expand('src/' + name + '/docs/*.midway.js').map(grunt.file.read).join('\n')
             }
         };
 
