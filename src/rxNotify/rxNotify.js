@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxNotify', ['ngSanitize'])
+angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
 /**
 * @ngdoc directive
 * @name encore.ui.rxNotify:rxNotification
@@ -129,6 +129,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize'])
         $interval(function () {
             dismiss(message);
         }, timeoutMs, 1);
+
     };
 
     /*

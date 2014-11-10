@@ -180,6 +180,9 @@ describe('rxNotify', function () {
             // run 'dismiss' method passing in message id
             notifySvc.dismiss(msg);
 
+            // wait until before timeout
+            interval.flush(650);
+
             // validate dismissed message not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(1);
 
@@ -204,13 +207,13 @@ describe('rxNotify', function () {
             });
 
             // wait until before timeout
-            interval.flush(800);
+            interval.flush(650);
 
             // validate still in stack
             expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText1);
 
             // wait until after timeout
-            interval.flush(201);
+            interval.flush(650);
 
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
@@ -285,6 +288,9 @@ describe('rxNotify', function () {
             // run 'dismiss' method passing in message id
             notifySvc.dismiss(msg);
 
+            // wait until before timeout
+            interval.flush(650);
+
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
         });
@@ -305,6 +311,9 @@ describe('rxNotify', function () {
             scope.loaded = true;
             scope.$digest();
 
+            // wait until before timeout
+            interval.flush(650);
+
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
         });
@@ -322,6 +331,9 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack][0]).to.eql(msg);
 
             scope.$destroy();
+
+            // wait until before timeout
+            interval.flush(650);
 
             // validate not in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
@@ -432,6 +444,9 @@ describe('rxNotify', function () {
             // trigger click on element
             helpers.clickElement(el[0].querySelector('.notification-dismiss'));
 
+            // wait until before timeout
+            interval.flush(650);
+
             // validate no longer exists
             expect(el.text()).to.not.contain(messageText1);
         });
@@ -494,6 +509,9 @@ describe('rxNotify', function () {
 
             scope.$digest();
 
+            // wait until before timeout
+            interval.flush(650);
+
             // expect loading message to no longer be in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
         });
@@ -549,6 +567,9 @@ describe('rxNotify', function () {
 
             scope.$digest();
 
+            // wait until before timeout
+            interval.flush(650);
+
             // expect loading message to no longer be in stack
             expect(notifySvc.stacks[defaultStack].length).to.equal(0);
 
@@ -572,6 +593,9 @@ describe('rxNotify', function () {
 
             scope.$digest();
 
+            // wait until before timeout
+            interval.flush(650);
+
             // expect error message to be the only thing showing
             expect(notifySvc.stacks[otherStack].length).to.equal(1);
             expect(notifySvc.stacks[otherStack][0].text).to.equal(errorMsg);
@@ -590,6 +614,9 @@ describe('rxNotify', function () {
             });
 
             scope.$digest();
+
+            // wait until before timeout
+            interval.flush(650);
 
             // expect error message to be the only thing showing
             expect(notifySvc.stacks[otherStack].length).to.equal(1);

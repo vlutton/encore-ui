@@ -1,7 +1,7 @@
 <div class="rx-notifications" ng-show="messages.length > 0">
     <div
         ng-repeat="message in messages"
-        class="rx-notification notification-{{message.type}}"
+        class="rx-notification animate-fade notification-{{message.type}}"
         ng-class="{'notification-loading': message.loading}"
         rx-spinner
         toggle="message.loading"
