@@ -4,7 +4,7 @@ describe('rxPaginate', function () {
 
     before(function () {
         demoPage.go('#/component/rxPaginate');
-        pagination = pagination.initialize($('div.rx-paginate'));
+        pagination = pagination.main;
     });
 
     it('should jump forward to page 7 using pagination', function () {
