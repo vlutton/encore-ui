@@ -16,6 +16,12 @@ describe('rxModalAction', function () {
                 }
             },
 
+            txtErrorMessage: {
+                get: function () {
+                    return this.rootElement.$('.error-message');
+                }
+            },
+
             newPassword: {
                 get: function () {
                     return this.txtNewPassword.getAttribute('value');
@@ -71,9 +77,17 @@ describe('rxModalAction', function () {
         expect(changePasswordModal.canSubmit()).to.eventually.be.false;
     });
 
+    it('should show a validation error message by default', function () {
+        expect(changePasswordModal.txtErrorMessage.isDisplayed()).to.eventually.be.true;
+    });
+
     it('should let me submit the modal when a new password is entered', function () {
         changePasswordModal.newPassword = 'hunter2';
         expect(changePasswordModal.canSubmit()).to.eventually.be.true;
+    });
+
+    it('should hide the validation error message when a new password is entered', function () {
+        expect(changePasswordModal.txtErrorMessage.isDisplayed()).to.eventually.be.false;
     });
 
     it('should submit', function () {
