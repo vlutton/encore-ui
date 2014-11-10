@@ -1,3 +1,30 @@
+<a name="1.4.0"></a>
+## 1.4.0 (2014-11-10)
+
+
+#### Bug Fixes
+
+* **rxAccountUsers:**
+  * using  instead ([31fce929](git@github.com:rackerlabs/encore-ui/commit/31fce92932c7c35f6dfb49eee92af8f057965c44))
+  * using  directly ([534cdb9f](git@github.com:rackerlabs/encore-ui/commit/534cdb9f8280b4976cb73f46448254305be5cca7))
+  * Use  to prevent app reloads ([e4d74d7c](git@github.com:rackerlabs/encore-ui/commit/e4d74d7c2bbdcff78633545620b8c8f6451e51dd))
+  * Broken test ([090464cf](git@github.com:rackerlabs/encore-ui/commit/090464cfd25621db4eb9bd4a0401dfed77d69743))
+  * Properly populate urls when outside of Cloud ([bb5f04a3](git@github.com:rackerlabs/encore-ui/commit/bb5f04a3124e4ac0d9efa4cef9b21f39e8c109bb))
+* **rxModalAction:**
+  * enable input validation error messages ([ee29c3dc](git@github.com:rackerlabs/encore-ui/commit/ee29c3dc8333b61e829f16aedc7f4a9bcce1a68b))
+  * Don't try to focus on empty modal forms ([14c0c343](git@github.com:rackerlabs/encore-ui/commit/14c0c343ee90752d4fe1555892a47109af804d3f), closes [#620](git@github.com:rackerlabs/encore-ui/issues/620))
+* **rxNotify:** EOD-281, messages on rxApp level fixed with fade-in ([9a4fa037](git@github.com:rackerlabs/encore-ui/commit/9a4fa0371c9e6af1736930827c9e7d32dc9c27a2))
+
+
+#### Features
+
+* **demo:** Protractor midways in demo ([0c5dafe6](git@github.com:rackerlabs/encore-ui/commit/0c5dafe666e26a51512c183da6766f31de3a5ede))
+* **rxAccountUsers:**
+  * Use nav isActive ([9c83838d](git@github.com:rackerlabs/encore-ui/commit/9c83838da6517e66fa39516f2f2db8fde7b1e557))
+  * add switch user directive ([ea72418c](git@github.com:rackerlabs/encore-ui/commit/ea72418cb5a8f59a54d258a67cfd15bfd9f5676a))
+* **rxNotify:** Animations now use ngAnimate library ([c5dc447d](git@github.com:rackerlabs/encore-ui/commit/c5dc447d240a6af48975bdc3f1b162d33f43cf70))
+
+
 <a name="1.3.4"></a>
 ### 1.3.4 (2014-11-05)
 
