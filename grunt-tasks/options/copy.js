@@ -38,7 +38,7 @@ module.exports = {
                 content = content.replace(/\[\!\[Build Status(.*)$/m, '');
 
                 // The README contains a link to the demo app, which leads the user off
-                // this page and to the github demo app. Let's remove that. Strip out "# Demo App", 
+                // this page and to the github demo app. Let's remove that. Strip out "# Demo App",
                 // and everything that follows it until the next section header "#"
                 // (Note that .* won't work because . doesn't match newlines. [\s\S] is equivalent
                 content = content.replace(/# Demo App[\s\S]*?(#[\s\S]*)/mg, '$1');
@@ -80,24 +80,6 @@ module.exports = {
 
                 // return dest + the rest of the path as a string
                 return dest + templatePath.join(path.sep);
-            }
-        }]
-    },
-    componentImages: {
-        files: [{
-            expand: true,
-            src: ['*/images/*'],
-            cwd: 'src/',
-            dest: '<%= config.dist %>/images/',
-            // remove 'images' from path
-            rename: function (dest, src) {
-                // convert src to array
-                var imagePath = src.split(path.sep);
-
-                // remove the componentName and images directory
-                imagePath.splice(0, 2);
-
-                return dest + imagePath.join(path.sep);
             }
         }]
     },
