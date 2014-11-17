@@ -23,7 +23,7 @@ module.exports = {
     },
     componentImages: {
         files: ['src/**/images/*'],
-        tasks: ['copy:componentImages']
+        tasks: ['imagemin']
     },
     demoSite: {
         files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/**/*', '!demo/bower_components/**/*'],
