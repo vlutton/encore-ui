@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxBreadcrumbs', [])
+angular.module('encore.ui.rxBreadcrumbs', ['ngSanitize'])
 .factory('rxBreadcrumbsSvc', function () {
     // default will always be home
     var breadcrumbs = [{
