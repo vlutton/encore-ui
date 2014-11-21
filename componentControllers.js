@@ -321,7 +321,7 @@ function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
         path: '/',
         name: 'Components'
     }, {
-        name: 'All Components'
+        name: '<strong>All Components</strong>'
     }]);
 }
 
