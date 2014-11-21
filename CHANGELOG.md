@@ -1,3 +1,18 @@
+<a name="1.4.1"></a>
+### 1.4.1 (2014-11-21)
+
+
+#### Bug Fixes
+
+* **rxDiskSize:** Properly handle 0 size with no units specificed ([13bf075a](git@github.com:rackerlabs/encore-ui/commit/13bf075aa080d27df2f28fb9ab4fa7891315a587), closes [#636](git@github.com:rackerlabs/encore-ui/issues/636))
+
+
+#### Features
+
+* **rxBreadcrumbs:** allow HTML in breadcrumb name ([bbc87545](git@github.com:rackerlabs/encore-ui/commit/bbc8754539fdbec859227a1de9c50bf3a799ed28))
+* **rxPage:** Relative position for page titles ([c2e4f118](git@github.com:rackerlabs/encore-ui/commit/c2e4f118bb8d6f5f7be756c344a71530d580993c))
+
+
 <a name="1.4.0"></a>
 ## 1.4.0 (2014-11-10)
 
