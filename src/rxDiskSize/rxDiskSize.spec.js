@@ -48,4 +48,34 @@ describe('rxDiskSize', function () {
         expect(disksize(size, unit)).to.equal('5 PB');
     });
 
+    it('should convert 0 to 0 GB', function () {
+        var size = 0;
+        expect(disksize(size)).to.equal('0 GB');
+    });
+
+    it('should convert 0 with a GB unit to 0 GB', function () {
+        var size = 0;
+        var unit = 'GB';
+        expect(disksize(size, unit)).to.equal('0 GB');
+    });
+    
+    it('should convert 0 with a TB unit to 0 TB', function () {
+        var size = 0;
+        var unit = 'TB';
+        expect(disksize(size, unit)).to.equal('0 TB');
+    });
+
+    it('should convert 0 with a PB unit to 0 PB', function () {
+        var size = 0;
+        var unit = 'PB';
+        expect(disksize(size, unit)).to.equal('0 PB');
+    });
+
+    it('should convert undefined to 0 GB', function () {
+        expect(disksize()).to.equal('0 GB');
+    });
+    
+    it('should convert null to 0 GB', function () {
+        expect(disksize()).to.equal('0 GB');
+    });
 });
