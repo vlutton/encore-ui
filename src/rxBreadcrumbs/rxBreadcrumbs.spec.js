@@ -9,6 +9,9 @@ describe('Breadcrumbs', function () {
     }, {
         path: 'two',
         name: 'Two'
+    }, {
+        path: 'three',
+        name: '<span class="alpha">Three</span>'
     }];
 
     var defaultBreadcrumb = {
@@ -55,7 +58,7 @@ describe('Breadcrumbs', function () {
         });
 
         it('should not have last breadcrumb as a link', function () {
-            var lastText = mockBreadcrumbs[1].name;
+            var lastText = mockBreadcrumbs[2].name;
             expect(el.find('a').text()).to.not.contain(lastText);
         });
 
@@ -63,9 +66,10 @@ describe('Breadcrumbs', function () {
             // spy on location service
             var links = el.find('a');
 
-            expect(links).to.have.length(2);
+            expect(links).to.have.length(3);
             expect(links.eq(0).attr('href')).to.eql('/');
             expect(links.eq(1).attr('href')).to.eql('one');
+            expect(links.eq(2).attr('href')).to.eql('two');
         });
 
         it('should add a class of "first" to the first breadcrumb', function () {
@@ -78,6 +82,12 @@ describe('Breadcrumbs', function () {
             var items = el[0].getElementsByClassName('breadcrumb-name');
 
             expect(items[items.length - 1].className).to.contain('last');
+        });
+
+        it('should allow HTML in breadcrumb name', function () {
+            var alpha = el.find('.alpha').eq(0);
+
+            expect(alpha.text()).to.equal('Three');
         });
     });
 
