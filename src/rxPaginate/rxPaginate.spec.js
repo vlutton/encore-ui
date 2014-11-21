@@ -1,17 +1,22 @@
 /* jshint node: true */
 
 describe('Pagination', function () {
-    var items = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+    var originalItems = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
         mockPageTracking = {
             itemsPerPage: 3,
             pageNumber: 0,
-            totalPages: Math.ceil(items.length / 3),
-            total: items.length,
+            totalPages: Math.ceil(originalItems.length / 3),
+            total: originalItems.length,
             pagesToShow: 6,
             showAll: false,
             pageInit: false
         },
-        pageTracking;
+        pageTracking,
+        items;
+
+    beforeEach(function () {
+        items = originalItems.slice(0);
+    });
 
     describe('Directive: rxPaginate', function () {
         // TODO redo these tests to use class names for finding first, prev, next, last, etc items
@@ -310,6 +315,31 @@ describe('Pagination', function () {
             // last page should return remaining items
             pager.pageNumber = pager.totalPages - 1;
             expect(paginate(items, pager)).to.eql([15,16]);
+        });
+
+        it('should switch page if item deletion causes us to be past last page', function () {
+            // Go to last page
+            pager.pageNumber = pager.totalPages - 1;
+            var lastPageNumber = pager.pageNumber;
+            expect(paginate(items, pager), 'two items on last page').to.eql([15,16]);
+
+            // Remove the two items on this page, should take us to pageNumber - 1
+            items.pop();
+            items.pop();
+            expect(paginate(items, pager), 'after deleting two items').to.eql([12, 13, 14]);
+            expect(pager.pageNumber, 'back one page').to.equal(lastPageNumber - 1);
+        });
+
+        it('should correctly switch if two pages worth of items are deleted', function () {
+            // Go to last page
+            pager.pageNumber = pager.totalPages - 1;
+            var lastPageNumber = pager.pageNumber;
+            expect(paginate(items, pager), 'two items on last page').to.eql([15,16]);
+
+            // Remove the last five items, which should remove two pages
+            items = items.slice(0, -5);
+            expect(paginate(items, pager), 'after deleting five items').to.eql([9, 10, 11]);
+            expect(pager.pageNumber, 'back two pages').to.equal(lastPageNumber - 2);
         });
     });
     
