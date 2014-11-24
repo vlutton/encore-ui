@@ -157,6 +157,13 @@ angular.module('encore.ui.rxPaginate', [])
             pager.total = items.length;
             pager.totalPages = Math.ceil(pager.total / pager.itemsPerPage);
 
+            // We were previously on the last page, but enough items were deleted
+            // to reduce the total number of pages. We should now jump to whatever the
+            // new last page is
+            if (pager.pageNumber + 1 > pager.totalPages) {
+                pager.pageNumber = pager.totalPages - 1;
+            }
+
             var first = pager.pageNumber * pager.itemsPerPage;
             var added = first + pager.itemsPerPage;
             var last = (added > items.length) ? items.length : added;
