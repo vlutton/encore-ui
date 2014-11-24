@@ -8,13 +8,13 @@
 
 <h3 class="title">Using the <code>disable</code> attribute<h3>
 <p>
-Normally the <code>ng-disabled</code> property of an <code>rxButton</code> is controlled by <code>toggle</code>. You can use the optional <code>disable</code> attribute to pass an expression that <code>rxButton</code> should use for <code>ng-disabled</code>
+Normally the <code>ng-disabled</code> property of an <code>rxButton</code> is controlled by <code>toggle</code>. You can use the optional <code>disable</code> attribute to pass an expression that <code>rxButton</code> should use for <code>ng-disabled</code>. Note that we set <code>classes="positive"</code> on the "Login" button to provide it with some styling.
 </p>
 <div ng-controller="rxButtonCtrl">
     <rx-button default-msg="Toggle enabled/disabled of 'Login'"
         rx-toggle="status.disable">
     </rx-button>
-    <rx-button toggle-msg="Authenticating" default-msg="Login"
+    <rx-button classes="positive" toggle-msg="Authenticating" default-msg="Login"
         toggle="status.loading" disable="status.disable" ng-click="login()">
     </rx-button>
 </div>
