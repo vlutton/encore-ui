@@ -85,8 +85,6 @@ These two directives are responsible for creating the menu in the left sidebar. 
 
 The rxApp common.less file defines many base CSS rules and classes for app use. Included in this is [normalize.css](http://necolas.github.io/normalize.css/). This helps create a consistent starting point for styles across all browsers.
 
-As mentioned, several classes are included for utility use in common.less. The [Encore-UI styleguide](http://rackerlabs.github.io/encore-ui/styleguide/rxApp-common.html) is the best place to read documentation on these classes.
-
 ## Fonts
 
 The Encore-UI default font is Roboto. This is used for all text on the page and is loaded via Google Fonts. Be sure your app includes the following line:
