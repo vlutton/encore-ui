@@ -6,7 +6,8 @@ angular.module('encore.ui.rxButton', [])
     *
     * @description
     * Renders a button which will disable when clicked and show a loading message
-    * and renable when operation is complete.
+    * and renable when operation is complete. If you set `classes` attributes `<rx-button>`,
+    * those will get passed to the `<button>` instance as `class`
     * @scope
     * @param {String} loadingMsg - Text to be displayed when an operation is in progress.
     * @param {String} defaultMsg - Text to be displayed by default an no operation is in progress.
@@ -22,6 +23,7 @@ angular.module('encore.ui.rxButton', [])
                 defaultMsg: '@',
                 toggle: '=',
                 disable: '=?',
-            }
+                classes: '@?'
+            },
         };
     });
