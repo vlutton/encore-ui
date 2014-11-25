@@ -160,8 +160,11 @@ angular.module('encore.ui.rxPaginate', [])
             // We were previously on the last page, but enough items were deleted
             // to reduce the total number of pages. We should now jump to whatever the
             // new last page is
+            // When loading items over the network, our first few times through here
+            // will have totalPages===0. We do the _.max to ensure that
+            // we never set pageNumber to -1
             if (pager.pageNumber + 1 > pager.totalPages) {
-                pager.pageNumber = pager.totalPages - 1;
+                pager.pageNumber = _.max([0, pager.totalPages - 1]);
             }
 
             var first = pager.pageNumber * pager.itemsPerPage;

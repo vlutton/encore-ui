@@ -341,6 +341,11 @@ describe('Pagination', function () {
             expect(paginate(items, pager), 'after deleting five items').to.eql([9, 10, 11]);
             expect(pager.pageNumber, 'back two pages').to.equal(lastPageNumber - 2);
         });
+
+        it('should set pageNumber to 0 if the items list is empty', function () {
+            expect(paginate([], pager), 'no items from pager').to.eql([]);
+            expect(pager.pageNumber).to.equal(0);
+        });
     });
     
     describe('Filter: PaginatedItemsSummary', function () {
