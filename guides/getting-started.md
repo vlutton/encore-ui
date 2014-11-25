@@ -56,6 +56,8 @@ From there, just start building pages, using whatever Encore-UI component is nee
 
 While the intention of Encore-UI is for it to be used in conjunction with AngularJS, it is possible to use just the styles (similar to how Twitter Bootstrap can be used without JS).
 
+The entirety of the Encore UI CSS is available via the main CSS file. To use, simply include it on your page.
+
 > Disclaimer: At any point in time, an HTML change to the Angular directive template can change the HTML needed for the CSS to work properly. Be sure when upgrading major/minor versions of the CSS file to check [the changelog](../CHANGELOG.md) for details on what has been updated.
 
 ## Further Guidance
