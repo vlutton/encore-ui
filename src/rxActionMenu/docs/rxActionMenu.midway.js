@@ -59,6 +59,14 @@ describe('rxActionMenu', function () {
         expect(localDismiss.isExpanded()).to.eventually.be.false;
     });
 
+    it('should answer correctly if it hasAction', function () {
+        expect(localDismiss.hasAction('Delete')).to.eventually.be.true;
+    });
+
+    it('should answer correctly if it does not hasAction', function () {
+        expect(localDismiss.hasAction('Non-Existent')).to.eventually.be.false;
+    });
+
     describe('default action menu items', function () {
         var actionItem;
 
