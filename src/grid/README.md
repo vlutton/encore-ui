@@ -12,4 +12,4 @@ Note that most of the grid layouts you will use will be in the context of `rxPag
 
 The code sample below will probably give the clearest context of how grids work. Note that the `.pure-g` also has a `clear` class attached because title containers on `rxPage` components are defaulted to float left.
 
-You'll find that the grid components will not have borders or padding within the grid units themselves. If you need white space between grid columns, you can nest a `<div>` inside each grid unit and style the child container.
+You'll find that the grid components will not have borders or padding within the grid units themselves. If you need white space between grid columns, adding a `columns` class to the `.pure-g` container will give padding of 1.5ems per each individual cell, or 3ems together.
