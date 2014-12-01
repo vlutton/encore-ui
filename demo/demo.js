@@ -61,10 +61,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'JS Docs'
                 },
                 {
-                    href: 'styleguide/index.html',
-                    linkText: 'Design Styleguide'
-                },
-                {
                     linkText: 'Other Links',
                     children: [
                         {

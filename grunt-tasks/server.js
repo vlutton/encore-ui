@@ -9,7 +9,6 @@ module.exports = function (grunt) {
                 'less',
                 'copy',
                 'ngdocs',
-                'styleguide',
             ];
 
             if (!testing) {

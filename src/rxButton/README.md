@@ -1,6 +1,6 @@
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-Provides styling for various types of buttons. See styleguide for examples.
+Provides styling for various types of buttons. See the .less file for examples.
 
 ## rxButton directive
 
