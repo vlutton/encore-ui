@@ -1,7 +1,7 @@
 {
   "name": "rx-page-objects",
   "description": "Midway test page objects for all of the Encore UI components",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "main": "index.js",
   "license": "Apache License, Version 2.0",
   "scripts": {

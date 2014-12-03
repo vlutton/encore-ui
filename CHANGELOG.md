@@ -1,3 +1,22 @@
+<a name="1.4.2"></a>
+### 1.4.2 (2014-12-03)
+
+
+#### Bug Fixes
+
+* **rxForm:** Prevent text from showing behind select caret ([7f187c4d](git@github.com:rackerlabs/encore-ui/commit/7f187c4dc78d1276f8a00e1e01b73f96aa6c90d9))
+* **rxPaginate:**
+  * Ensure pagination isn't messed up with 0 items ([1810ab60](git@github.com:rackerlabs/encore-ui/commit/1810ab6056bc36e2e94449ff7c7ce8d2373e8bab))
+  * Jump to new last page on item delete ([a4f901a4](git@github.com:rackerlabs/encore-ui/commit/a4f901a4d4ba92473fd596dd6e512bf569905a60), closes [#641](git@github.com:rackerlabs/encore-ui/issues/641))
+* **tabs:** Clear elements around navigation tabs ([97e733e1](git@github.com:rackerlabs/encore-ui/commit/97e733e11bea7ab2100f6a265c0451e48e979e2d))
+
+
+#### Features
+
+* **demo:** Add ability to view .less with each component ([bd894eca](git@github.com:rackerlabs/encore-ui/commit/bd894ecaf75eda2e5ca76a7810c6ae29e27a8fc8))
+* **rxButton:** Pass `class` attributes through the directive ([c617d736](git@github.com:rackerlabs/encore-ui/commit/c617d7360ed5c223f984f336720d8830e53c2b05), closes [#643](git@github.com:rackerlabs/encore-ui/issues/643))
+
+
 <a name="1.4.1"></a>
 ### 1.4.1 (2014-11-21)
 
