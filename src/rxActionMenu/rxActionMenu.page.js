@@ -97,7 +97,9 @@ var rxActionMenu = {
         value: function (actionName) {
             this.expand();
             var actionElement = this.rootElement.element(by.cssContainingText(this.cssFirstAny, actionName));
-            return actionElement.isPresent();
+            return actionElement.isPresent().then(function (present) {
+                return present ? actionElement.isDisplayed() : present;
+            });
         }
     },
 
