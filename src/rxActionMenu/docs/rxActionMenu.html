@@ -61,7 +61,7 @@
                     </rx-action-menu>
                 </td>
             </tr>
-                <td>Unorthodox Behaviors (no modals)</td>
+                <td>Unorthodox Behaviors (no modals, hidden item)</td>
                 <td ng-controller="rxActionMenuCtrl">
                     <rx-action-menu id="custom">
                         <ul class="actions-area">
@@ -73,6 +73,11 @@
                             <li>
                               <button class="btn-link trigger" ng-click="remove()">
                                   <span class="msg-warn"><i class="fa fa-times fa-lg"></i> Delete</span>
+                              </button>
+                            </li>
+                            <li ng-show="false">
+                              <button class="btn-link trigger">
+                                  <span class="msg-warn"><i class="fa fa-times fa-lg"></i> Visually Hidden</span>
                               </button>
                             </li>
                         </ul>
