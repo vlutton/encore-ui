@@ -136,7 +136,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Renders a button which will disable when clicked and show a loading message",
-      "keywords": "api button clicked complete default defaultmsg directive disable disabled display displayed encore loading loadingmsg message operation progress renable renders rxbutton text toggle true ui"
+      "keywords": "api attributes button class classes clicked complete default defaultmsg directive disable disabled display displayed encore instance loading loadingmsg message operation passed progress renable renders rxbutton set text toggle true ui"
     },
     {
       "section": "api",

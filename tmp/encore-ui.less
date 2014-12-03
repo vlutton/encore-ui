@@ -5,6 +5,20 @@ Licensed under the BSD License.
 https://github.com/yui/pure/blob/master/LICENSE.md
 */
 .pure-g{letter-spacing:-.31em;*letter-spacing:normal;*word-spacing:-.43em;text-rendering:optimizespeed;font-family:FreeSans,Arimo,"Droid Sans",Helvetica,Arial,sans-serif;display:-webkit-flex;-webkit-flex-flow:row wrap;display:-ms-flexbox;-ms-flex-flow:row wrap}.opera-only :-o-prefocus,.pure-g{word-spacing:-.43em}.pure-u{display:inline-block;*display:inline;zoom:1;letter-spacing:normal;word-spacing:normal;vertical-align:top;text-rendering:auto}.pure-g [class *="pure-u"]{font-family:sans-serif}.pure-u-1,.pure-u-1-1,.pure-u-1-2,.pure-u-1-3,.pure-u-2-3,.pure-u-1-4,.pure-u-3-4,.pure-u-1-5,.pure-u-2-5,.pure-u-3-5,.pure-u-4-5,.pure-u-5-5,.pure-u-1-6,.pure-u-5-6,.pure-u-1-8,.pure-u-3-8,.pure-u-5-8,.pure-u-7-8,.pure-u-1-12,.pure-u-5-12,.pure-u-7-12,.pure-u-11-12,.pure-u-1-24,.pure-u-2-24,.pure-u-3-24,.pure-u-4-24,.pure-u-5-24,.pure-u-6-24,.pure-u-7-24,.pure-u-8-24,.pure-u-9-24,.pure-u-10-24,.pure-u-11-24,.pure-u-12-24,.pure-u-13-24,.pure-u-14-24,.pure-u-15-24,.pure-u-16-24,.pure-u-17-24,.pure-u-18-24,.pure-u-19-24,.pure-u-20-24,.pure-u-21-24,.pure-u-22-24,.pure-u-23-24,.pure-u-24-24{display:inline-block;*display:inline;zoom:1;letter-spacing:normal;word-spacing:normal;vertical-align:top;text-rendering:auto}.pure-u-1-24{width:4.1667%;*width:4.1357%}.pure-u-1-12,.pure-u-2-24{width:8.3333%;*width:8.3023%}.pure-u-1-8,.pure-u-3-24{width:12.5%;*width:12.469%}.pure-u-1-6,.pure-u-4-24{width:16.6667%;*width:16.6357%}.pure-u-1-5{width:20%;*width:19.969%}.pure-u-5-24{width:20.8333%;*width:20.8023%}.pure-u-1-4,.pure-u-6-24{width:25%;*width:24.969%}.pure-u-7-24{width:29.1667%;*width:29.1357%}.pure-u-1-3,.pure-u-8-24{width:33.3333%;*width:33.3023%}.pure-u-3-8,.pure-u-9-24{width:37.5%;*width:37.469%}.pure-u-2-5{width:40%;*width:39.969%}.pure-u-5-12,.pure-u-10-24{width:41.6667%;*width:41.6357%}.pure-u-11-24{width:45.8333%;*width:45.8023%}.pure-u-1-2,.pure-u-12-24{width:50%;*width:49.969%}.pure-u-13-24{width:54.1667%;*width:54.1357%}.pure-u-7-12,.pure-u-14-24{width:58.3333%;*width:58.3023%}.pure-u-3-5{width:60%;*width:59.969%}.pure-u-5-8,.pure-u-15-24{width:62.5%;*width:62.469%}.pure-u-2-3,.pure-u-16-24{width:66.6667%;*width:66.6357%}.pure-u-17-24{width:70.8333%;*width:70.8023%}.pure-u-3-4,.pure-u-18-24{width:75%;*width:74.969%}.pure-u-19-24{width:79.1667%;*width:79.1357%}.pure-u-4-5{width:80%;*width:79.969%}.pure-u-5-6,.pure-u-20-24{width:83.3333%;*width:83.3023%}.pure-u-7-8,.pure-u-21-24{width:87.5%;*width:87.469%}.pure-u-11-12,.pure-u-22-24{width:91.6667%;*width:91.6357%}.pure-u-23-24{width:95.8333%;*width:95.8023%}.pure-u-1,.pure-u-1-1,.pure-u-5-5,.pure-u-24-24{width:100%}
+.pure-g.columns > div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+
+    &:first-child {
+        padding-left: 0;
+    }
+    &:last-child {
+        padding-right: 0;
+    }
+}
 /*
  * metadata
  */
@@ -1605,7 +1619,6 @@ Any input field can be placed inside an element with a class of 'field-input'.
     select {
         color: @inputColor;
         font-size: 1.2em;
-        border-radius: 0;
 
         &.ng-valid.ng-dirty {
             border-color: @inputBorderValid;
@@ -1673,6 +1686,7 @@ Replace default UI of select fields and adds custom border/arrow
 </span>
 ```
 */
+
 .field-select {
     display: inline-block;
     position: relative;
@@ -1680,31 +1694,68 @@ Replace default UI of select fields and adds custom border/arrow
 
     select {
         width: 100%;
-        // make sure arrow can show through
-        background: transparent;
-        // Remove default arrow
+        margin: 0;
+        border-radius: 0;
+        background: #fff;
+        border: none;
+        outline: none;
+        display: inline-block;
         -webkit-appearance: none;
-        // @bugfix FF doesn't like 'none'
-        // @see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
-        -moz-appearance: window;
-        position: relative;
-        z-index: 2;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
         .inputBorderPadding;
     }
 
     &:before {
-        content: ".";
-        width: 0;
-        height: 0;
-        font-size: 0;
-        display: block;
+        // background so long text doesn't show behind caret
+        content: '';
+        right: 1px;
+        top: 1px;
+        width: 20px;
+        height: 90%;
+        background: #fff;
         position: absolute;
-        border: 7px solid transparent;
-        border-top-color: @inputBorder;
-        border-bottom: none;
-        top: 50%;
-        margin-top: -4px;
-        right: 9px;
+        pointer-events: none;
+        display: block;
+    }
+
+    &:after {
+        // down caret from font awesome
+        content: '\f0d7';
+        font-family: FontAwesome;
+        font-size: 15px;
+        color: #aaa;
+        right: 10px;
+        top: 6px;
+        padding: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+}
+
+// User select element in Account section of nav
+
+.rx-app-nav-item .field-select {
+    select {
+        background: #404140;
+        border: 1px solid #3a3a3a;
+    }
+    &:before {
+        background: #404140;
+    }
+    &:after {
+        right: 6px;
+        top: 4px;
+    }
+}
+
+.account-users {
+    float: right;
+    box-sizing: border-box;
+    width: 50%;
+    select {
+        border-radius: 0;
     }
 }
 
@@ -1872,24 +1923,6 @@ Replace default UI of select fields and adds custom border/arrow
             width: auto;
         }
     }
-}
-
-// User select element in Account section of nav
-
-.rx-app-nav-item .field-select {
-    background: #404140;
-    select {
-        border: 1px solid #3a3a3a;
-    }
-    &:before {
-        border-top-color: #cacaca;
-    }
-}
-
-.account-users {
-    float: right;
-    box-sizing: border-box;
-    width: 50%;
 }
 
 /*
@@ -2529,6 +2562,7 @@ Provides styling for the Angular-UI tab HTML
 .nav-tabs {
     display: flex;
     border-bottom: 9px solid @tabBorder;
+    clear: both;
 
     li {
         flex: 0 0 auto;
