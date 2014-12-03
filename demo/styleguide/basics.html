@@ -1,0 +1,90 @@
+<rx-page title="'Introduction'">
+
+    <h2 class="title lg clear">Basics</h2>
+
+    <ul class="list">
+        <li>This sub-site provides development teams at Rackspace with a set of design patterns, to help ensure a consistent and unified look-and-feel for all products under the Encore umbrella.</li>
+        <li>This section of the Demo site focuses mainly on markup, CSS and design patterns. If you're curious about Encore-specific angular.js directives, find the "All Components" section in the left hand navigation.</li>
+        <li>If you're a Rackspace team outside of Encore and need help setting up an new project from an engineering perspective, go to this <a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/getting-started.md">Getting Started guide</a> in the Encore-UI repository.
+        <ul class="list">
+            <li>For the most part, RackSpace developer teams will be creating mark-up using the <a href="http://rackerlabs.github.io/encore-ui/#/component/rxApp">rxPage subdirective of rxApp</a> as a container.</li>
+            <li><a href="https://github.com/rackerlabs/encore-ui/blob/master/src/rxApp/templates/rxPage.html">rxPage's template code</a> contains a breadcrumb component, an attribute to pre-fill titles and subtitles and a rxNotification container so you can send page-level communication errors and validation messages in a standardized way. Check the angular.js code for controllers within Cloud Encore for implementation examples.</li>
+        </ul>
+        </li>
+        <li>The <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/rxApp">rxApp</a> <a href="https://github.com/rackerlabs/encore-ui/blob/master/src/rxApp/common.less">common.less file</a> defines many base CSS rules and classes for app use. Included in this is <a href="http://necolas.github.io/normalize.css/">normalize.css</a>. This helps create a consistent starting point for styles across all browsers.</li>
+
+        <li>Kevin Lamping, a developer on the EncoreUI team, wrote a document to address <a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/css-styleguide.md">coding standards while writing CSS</a>.</li>
+    </ul>
+
+    <h3 class="title clear" id="typography">Typography</h3>
+
+    <ul class="list">
+        <li><span class="msg-info">ENCORE-SPECIFIC:</span> We use Google Fonts, in particular the Roboto font. While Google Fonts are not included in the Encore-UI package, they are included if you use the encore-ui-template repository as a base.
+        <li>For developers not using encore-ui-template, <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/rxApp#fonts">read the README.md file for rxApp</a> on fonts for more information.</li>
+    </ul>
+
+    <h3 class="title clear" id="heading-title-styles">Heading/Title Styles</h3>
+    <div class="component-description clear">
+        <ul class="list">
+            <li>Headings are sized using the <code>title</code> class and an additional <code>xl</code>, <code>lg</code>, <code>sm</code> and <code>xs</code> classes. Not adding the additional class defaults the size to medium.</li>
+            <li>The size of the heading is not impacted by the heading level used (e.g. &lt;h1&gt;, &lt;h2&gt;). This is done to ensure that the heading levels are sequential.</li>
+            <li><span class="msg-info">ENCORE-SPECIFIC:</span> For design consistency, we usually use the default medium size (&lt;h2 class="title"&gt;) for most subheaders. Other headers classes can be used for context.</li>
+        </ul>
+    </div>
+
+    <rx-styleguide code-url="styleguide/basics/headings.html"></rx-styleguide>
+
+    <h3 class="title clear" id="descriptions-metadata">Descriptions / Metadata</h3>
+
+    <div class="component-description clear">
+        <ul class="list">
+            <li>The <a href="http://rackerlabs.github.io/encore-ui/#/component/metadata">Encore-UI metadata component</a> is a list of terms with their associated descriptions. This is used throughout Encore to show metadata, especially on an individual object such as a server or a CBS volume.</li>
+            <li><span class="msg-info">ENCORE-SPECIFIC:</span> This is an ideal solution if you have anywhere from 5-10 definitions. (See a Server Details page or Image Details page under Accounts -&gt; Cloud for an example.) Anything more - or anything displaying visual or image content - and you may want to consider a different design pattern. (See the "Non-Data based Tables" section in the Table page for more information.)</li>
+        </ul>
+    </div>
+    
+    <rx-styleguide code-url="styleguide/basics/metadata.html"></rx-styleguide>
+
+    <h3 class="title" id="lists">Lists</h3>
+    <div class="component-description clear">
+        <ul class="list">
+            <li>Lists by default do not have styles. Add bullets/decimals to lists with the <code>list</code> class. It is also possible to build non-semantic lists using the additional <code>item</code> class.</li>
+            <li><span class="msg-info">ENCORE-SPECIFIC:</span> Use this in conjunction with icons, colors and helper classes such as <code>.flush-right</code> to build out action menus. Look at the detail pages in Cloud Servers and view-source for additional context.</li>
+        </ul>
+    </div>
+    <rx-styleguide code-url="styleguide/basics/lists.html"></rx-styleguide>
+
+    <h3 class="title" id="wells">Wells</h3>
+    <div class="component-description clear">
+        <ul class="list">
+            <li>The <code>well</code> class creates a well effect - a box with significant padding and light gray background.</li>
+            <li><span class="msg-info">ENCORE-SPECIFIC:</span> In the context of Encore, we currently use this in the context of adding large amounts of extraneous or optional information. (Take a look at Account -> Cloud -> Database -> Create New Instance for an example of this or <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/databases/CreateInstance.html#L48-L67">view source</a>.)</li>
+        </ul>
+    </div>
+    <rx-styleguide code-url="styleguide/basics/wells.html"></rx-styleguide>
+
+    <h2 class="title lg" id="helper-classes">Helper Classes</h2>
+    <div class="component-description clear">
+
+<ul class="list">
+    <li>Subdued Text: The <code>.subdued</code> class is a basic color change to make text less prominent. The style persists if the class is nested in a link.</li>
+    <li>Full Width: <code>.full-width</code> class that marks content as full width (e.g. to give a button full width). Requires 'display' to be defined as inline-block or block.</li>
+    <li>Hidden content
+        <ul class="list">
+            <li><code>.hidden</code> class - Will add to hide an element but not remove it from the spacing of the page.</li>
+            <li><code>.visually-hidden</code> class - Used to hide content visually but <a href="http://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html">can still be read by screen readers</a> (i.e. removed from the page spacing)</li>
+        </ul>
+    </li>
+    <li>Clearing floats
+        <ul class="list">
+            <li><code>.clear</code> class - Provides clearfix functionality See <a href="http://nicolasgallagher.com/micro-clearfix-hack/">http://nicolasgallagher.com/micro-clearfix-hack</a>.</li>
+            <li><code>.clear-left</code>, <code>.clear-right</code> classes - Simple classes to help with clearing previous sibling floats</li>
+        </ul>
+    </li>    
+</ul>
+
+    </div>
+    
+    <rx-styleguide code-url="styleguide/basics/helpers.html"></rx-styleguide>
+
+</rx-page>
