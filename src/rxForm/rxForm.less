@@ -139,7 +139,6 @@ Any input field can be placed inside an element with a class of 'field-input'.
     select {
         color: @inputColor;
         font-size: 1.2em;
-        border-radius: 0;
 
         &.ng-valid.ng-dirty {
             border-color: @inputBorderValid;
@@ -207,6 +206,7 @@ Replace default UI of select fields and adds custom border/arrow
 </span>
 ```
 */
+
 .field-select {
     display: inline-block;
     position: relative;
@@ -214,31 +214,68 @@ Replace default UI of select fields and adds custom border/arrow
 
     select {
         width: 100%;
-        // make sure arrow can show through
-        background: transparent;
-        // Remove default arrow
+        margin: 0;
+        border-radius: 0;
+        background: #fff;
+        border: none;
+        outline: none;
+        display: inline-block;
         -webkit-appearance: none;
-        // @bugfix FF doesn't like 'none'
-        // @see https://bugzilla.mozilla.org/show_bug.cgi?id=649849
-        -moz-appearance: window;
-        position: relative;
-        z-index: 2;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
         .inputBorderPadding;
     }
 
     &:before {
-        content: ".";
-        width: 0;
-        height: 0;
-        font-size: 0;
-        display: block;
+        // background so long text doesn't show behind caret
+        content: '';
+        right: 1px;
+        top: 1px;
+        width: 20px;
+        height: 90%;
+        background: #fff;
         position: absolute;
-        border: 7px solid transparent;
-        border-top-color: @inputBorder;
-        border-bottom: none;
-        top: 50%;
-        margin-top: -4px;
-        right: 9px;
+        pointer-events: none;
+        display: block;
+    }
+
+    &:after {
+        // down caret from font awesome
+        content: '\f0d7';
+        font-family: FontAwesome;
+        font-size: 15px;
+        color: #aaa;
+        right: 10px;
+        top: 6px;
+        padding: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+}
+
+// User select element in Account section of nav
+
+.rx-app-nav-item .field-select {
+    select {
+        background: #404140;
+        border: 1px solid #3a3a3a;
+    }
+    &:before {
+        background: #404140;
+    }
+    &:after {
+        right: 6px;
+        top: 4px;
+    }
+}
+
+.account-users {
+    float: right;
+    box-sizing: border-box;
+    width: 50%;
+    select {
+        border-radius: 0;
     }
 }
 
@@ -406,22 +443,4 @@ Replace default UI of select fields and adds custom border/arrow
             width: auto;
         }
     }
-}
-
-// User select element in Account section of nav
-
-.rx-app-nav-item .field-select {
-    background: #404140;
-    select {
-        border: 1px solid #3a3a3a;
-    }
-    &:before {
-        border-top-color: #cacaca;
-    }
-}
-
-.account-users {
-    float: right;
-    box-sizing: border-box;
-    width: 50%;
 }
