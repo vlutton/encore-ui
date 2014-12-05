@@ -16,7 +16,16 @@ angular.module('encore.ui.rxPageTitle', [])
             } else {
                 title = t;
             }
-            $document.prop('title', title);
+
+            // protect against null, which can crash some browsers
+            if (_.isEmpty(title)) {
+                title = '';
+            }
+
+            var div = $document[0].createElement('div');
+            div.innerHTML = title;
+            var text = div.textContent || div.innerText || '';
+            $document.prop('title', text);
         },
         getTitle: function () {
             return $document.prop('title');
