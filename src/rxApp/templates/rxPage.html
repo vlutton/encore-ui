@@ -5,7 +5,10 @@
     <div class="page-body">
         <rx-notifications></rx-notifications>
         <div class="page-titles" ng-if="title.length > 0 || subtitle.length > 0">
-            <h2 class="page-title title lg" ng-bind-html="title" ng-if="title.length > 0"></h2>
+            <h2 class="page-title title lg" ng-if="title.length > 0">
+                <span ng-bind-html="title"></span>
+                <rx-status-tag status="{{ status }}"></rx-status-tag>
+            </h2>
             <h3 class="page-subtitle title subdued" ng-bind-html="subtitle" ng-if="subtitle.length > 0"></h3>
         </div>
         <div class="page-content" ng-transclude></div>

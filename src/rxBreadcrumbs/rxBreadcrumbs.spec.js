@@ -8,10 +8,12 @@ describe('Breadcrumbs', function () {
         name: 'One'
     }, {
         path: 'two',
-        name: 'Two'
+        name: 'Two',
+        status: 'beta'
     }, {
         path: 'three',
-        name: '<span class="alpha">Three</span>'
+        name: '<span class="custom-html">Three</span>',
+        status: 'alpha'
     }];
 
     var defaultBreadcrumb = {
@@ -27,6 +29,7 @@ describe('Breadcrumbs', function () {
     beforeEach(function () {
         // Load the service's module
         module('encore.ui.rxBreadcrumbs');
+        module('encore.ui.rxApp');
 
         // load the template
         module('templates/rxBreadcrumbs.html');
@@ -85,9 +88,21 @@ describe('Breadcrumbs', function () {
         });
 
         it('should allow HTML in breadcrumb name', function () {
-            var alpha = el.find('.alpha').eq(0);
+            var customSpan = el.find('.custom-html').eq(0);
 
-            expect(alpha.text()).to.equal('Three');
+            expect(customSpan.text()).to.equal('Three');
+        });
+        
+        it('should draw a tag specificed with `status` on a middle breadcrumb', function () {
+            var tag = el.find('.beta-status').eq(0);
+
+            expect(tag.text()).to.equal('Beta');
+        });
+
+        it('should draw a tag specificed with `status` on the last breadcrumb', function () {
+            var tag = el.find('.alpha-status').eq(0);
+
+            expect(tag.text()).to.equal('Alpha');
         });
     });
 

@@ -6,7 +6,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
 
     $scope.component = component;
 })
-.config(function ($routeProvider) {
+.config(function ($routeProvider, rxStatusTagsProvider) {
     $routeProvider
         .when('/', {
             redirectTo: '/overview'
@@ -34,6 +34,13 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 }
             }
         });
+
+    // Define a custom status tag for use in the rxBreadcrumbs demo
+    rxStatusTagsProvider.addStatus({
+        key: 'demo',
+        class: 'alpha-status',
+        text: 'Demo Tag'
+    });
 })
 .run(function ($rootScope, components, $window, Environment, rxBreadcrumbsSvc) {
     var baseGithubUrl = '//rackerlabs.github.io/encore-ui/';

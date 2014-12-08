@@ -123,6 +123,10 @@ var rxPage = {
         get: function () { return this.rootElement.$('.page-subtitle'); }
     },
 
+    lblTitleTag: {
+        get: function () { return this.rootElement.$('.page-titles .status-tag'); }
+    },
+
     title: {
         get: function () {
             var page = this;
@@ -144,6 +148,21 @@ var rxPage = {
             return this.lblSubtitle.isPresent().then(function (present) {
                 if (present) {
                     return page.lblSubtitle.getText();
+                } else {
+                    var deferred = protractor.promise.defer();
+                    deferred.fulfill('');
+                    return deferred.promise;
+                }
+            });
+        }
+    },
+
+    titleTag: {
+        get: function () {
+            var page = this;
+            return this.lblTitleTag.isPresent().then(function (present) {
+                if (present) {
+                    return page.lblTitleTag.getText();
                 } else {
                     var deferred = protractor.promise.defer();
                     deferred.fulfill('');
