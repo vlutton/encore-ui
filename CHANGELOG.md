@@ -1,3 +1,18 @@
+<a name="1.4.3"></a>
+### 1.4.3 (2014-12-08)
+
+
+#### Bug Fixes
+
+* **rxForm:** style before of selects to allow for border ([e71b7e7f](git@github.com:rackerlabs/encore-ui/commit/e71b7e7f531a2165629f49b6edc2190e04c8d65f))
+* **style:** Resolve #657, table bg should default white ([12b04f45](git@github.com:rackerlabs/encore-ui/commit/12b04f45424eb8108a8fc7cb607cc02922096b59))
+
+
+#### Features
+
+* **rxFloatingHeader:** Floating header for tables ([20a16332](git@github.com:rackerlabs/encore-ui/commit/20a16332f40825b703373aaf2e525726f20ab1e8), closes [#619](git@github.com:rackerlabs/encore-ui/issues/619))
+
+
 <a name="1.4.2"></a>
 ### 1.4.2 (2014-12-03)
 
