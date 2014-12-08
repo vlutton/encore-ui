@@ -249,7 +249,9 @@ table {
         color: @tableHeaderText;
         border: 1px solid @tableHeaderBorder;
     }
-
+    tr {
+        background: @tableBg;
+    }
     &.table-striped tr:nth-child(even) {
         background: @tableBgAlt;
     }
@@ -1478,6 +1480,29 @@ thead th .btn-link {
         height: 10em;
     }
 }
+/*
+ * rxFloatingHeader
+ */
+.rx-floating-header {
+    position: fixed;
+    z-index: 3;
+    opacity: 0.96;
+}
+
+
+// For tables with filters, style filter th differently
+th.filter-header {
+    font-weight: normal;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e1e0df;
+    input.filter-box {
+        color: #404040;
+    }
+    button {
+        margin: 0;
+    }
+}
+
 @import 'vars';
 
 .inputBorderPadding() {
@@ -1710,8 +1735,8 @@ Replace default UI of select fields and adds custom border/arrow
     &:before {
         // background so long text doesn't show behind caret
         content: '';
-        right: 1px;
-        top: 1px;
+        right: 2px;
+        top: 2px;
         width: 20px;
         height: 90%;
         background: #fff;

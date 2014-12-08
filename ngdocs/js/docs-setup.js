@@ -185,6 +185,24 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxFloatingHeader:rxDOMHelper",
+      "shortName": "rxDOMHelper",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "A small set of functions to provide some functionality",
+      "keywords": "angular api arguments dom-related elements encore functionality functions isn jquery-lite methods provide rxfloatingheader service set small ui wrapped"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxFloatingHeader:rxFloatingHeader",
+      "shortName": "rxFloatingHeader",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Turns a tableheader into a floating persistent header",
+      "keywords": "api directive encore floating header persistent rxfloatingheader tableheader turns ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxForm:rxFormFieldset",
       "shortName": "rxFormFieldset",
       "type": "directive",
