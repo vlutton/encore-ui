@@ -323,25 +323,23 @@ describe('rxApp - preprod environment', function () {
         isolateScope = el.isolateScope();
     });
 
-    describe('stuff', function () {
-        it('hasCustomURL should be set to false', function () {
-            expect(cdnPath.hasCustomURL).to.be.false;
-        });
-
-        it('should have set isPreProd on the scope', function () {
-            expect(isolateScope.isPreProd).to.be.true;
-        });
-        
-        it('should have set isWarning on the scope', function () {
-            expect(isolateScope.isWarning).to.be.true;
-        });
-
-        it('should set the preprod warning message', function () {
-            expect(isolateScope.warningMessage)
-                .to.contain('You are using a pre-production environment that has real, live production data!');
-        });
-        
+    it('hasCustomURL should be set to false', function () {
+        expect(cdnPath.hasCustomURL).to.be.false;
     });
+
+    it('should have set isPreProd on the scope', function () {
+        expect(isolateScope.isPreProd).to.be.true;
+    });
+    
+    it('should have set isWarning on the scope', function () {
+        expect(isolateScope.isWarning).to.be.true;
+    });
+
+    it('should set the preprod warning message', function () {
+        expect(isolateScope.warningMessage)
+            .to.contain('You are using a pre-production environment that has real, live production data!');
+    });
+    
 });
 
 describe('rxAppNav', function () {
@@ -739,4 +737,86 @@ describe('rxAccountUsers', function () {
         expect(userSelect.find('select')).to.have.length(0);
     });
 
+});
+
+describe('rxStatusTags - custom status tags', function () {
+    var rxstatusTags;
+
+    beforeEach(function () {
+        
+        // Initialize a fake module to get at its config block
+        // This is the main purpose of this whole `describe` block,
+        // to test that this can be set in a `.config`
+        angular.module('testApp', function () {})
+            .config(function (rxStatusTagsProvider) {
+                rxStatusTagsProvider.addStatus({
+                    key: 'testKey',
+                    class: 'test-class',
+                    text: 'test text'
+                });
+            });
+        module('encore.ui.rxApp', 'testApp');
+
+        // Inject in angular constructs
+        inject(function (rxStatusTags) {
+            rxstatusTags = rxStatusTags;
+        });
+
+    });
+
+    it('should know about testKey', function () {
+        var config = rxstatusTags.getTag('testKey');
+        expect(config.text).to.equal('test text');
+        expect(config.class).to.equal('test-class');
+        expect(rxstatusTags.hasTag('testKey')).to.be.true;
+    });
+
+    it('should return empty text and class values for unknown keys', function () {
+        var config = rxstatusTags.getTag('missingKey');
+        expect(config.text).to.equal('');
+        expect(config.class).to.equal('');
+        expect(rxstatusTags.hasTag('missingKey')).to.be.false;
+        
+    });
+
+});
+
+describe('rxStatusTag', function () {
+    var scope, compile, rootScope, el, emptyEl, badEl;
+    var standardTemplate = '<rx-status-tag status="alpha"></rx-status-tag>';
+    var emptyTemplate = '<rx-status-tag></rx-status-tag>';
+    var badTemplate = '<rx-status-tag status="badtag"></rx-status-tag>';
+
+    beforeEach(function () {
+        // load module
+        module('encore.ui.rxApp');
+
+        // Inject in angular constructs
+        inject(function ($rootScope, $compile) {
+            rootScope = $rootScope;
+            compile = $compile;
+        });
+
+        scope = rootScope.$new();
+
+        el = helpers.createDirective(standardTemplate, compile, scope);
+        emptyEl = helpers.createDirective(emptyTemplate, compile, scope);
+        badEl = helpers.createDirective(badTemplate, compile, scope);
+    });
+
+    it('draws an alpha tag', function () {
+        var span = el.find('.status-tag');
+
+        expect(span.text(), 'text').to.equal('Alpha');
+    });
+
+    it('does not draw the tag when no status key is passed in', function () {
+        var span = emptyEl.find('.status-tag');
+        expect(span.length).to.equal(0);
+    });
+    
+    it('does not draw the tag when an unknown status key is provided', function () {
+        var span = badEl.find('.status-tag');
+        expect(span.length).to.equal(0);
+    });
 });

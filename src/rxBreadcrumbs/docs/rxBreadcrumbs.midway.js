@@ -35,6 +35,10 @@ describe('rxBreadcrumbs', function () {
             expect(first.name).to.eventually.equal('Home');
         });
 
+        it('should not have a tag', function () {
+            expect(first.lblTag.isPresent()).to.eventually.be.false;
+        });
+
         it('should have the href "/"', function () {
             expect(first.href).to.eventually.equal(browser.baseUrl + '/');
         });
@@ -62,6 +66,11 @@ describe('rxBreadcrumbs', function () {
 
         it('should have the name "All Components"', function () {
             expect(last.name).to.eventually.equal('All Components');
+        });
+
+        it('should have a "DEMO TAG" tag',  function () {
+            expect(last.lblTag.isPresent()).to.eventually.be.true;
+            expect(last.tag).to.eventually.equal('DEMO TAG');
         });
 
         it('should have no href property', function () {
@@ -113,6 +122,11 @@ describe('rxBreadcrumbs', function () {
 
         it('should have the name "Components"', function () {
             expect(middle.name).to.eventually.equal('Components');
+        });
+        
+        it('should not have a tag', function () {
+            expect(middle.tag).to.eventually.equal('');
+            expect(middle.lblTag.isPresent()).to.eventually.be.false;
         });
 
         it('should have an href property', function () {
