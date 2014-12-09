@@ -149,6 +149,73 @@ var rxPaginate = {
         }
     },
 
+    shownItems: {
+        get: function () {
+            var rootElement = this.rootElement;
+            var indexesRegex = /Showing (\d+)-(\d+) of (\d+) items/;
+            // If the items per page exceeds total items, the `indexesRegex` won't match.
+            // Catch this edge case and coerce the text into something that will match.
+            var testThenMatch = function (text, matchIndex) {
+                if (!indexesRegex.test(text)) {
+                    var indexRegex = /Showing (\d+) items/;
+                    var totalItems = text.match(indexRegex)[1];
+                    text = 'Showing 1-' + totalItems + ' of ' + totalItems + ' items';
+                }
+                return parseInt(text.match(indexesRegex)[matchIndex], 10);
+            };
+
+            return Page.create({
+
+                lblIndexes: {
+                    get: function () {
+                        return rootElement.element(by.binding('pageTracking'));
+                    }
+                },
+
+                first: {
+                    get: function () {
+                        return this.lblIndexes.getText().then(function (text) {
+                            return testThenMatch(text, 1);
+                        });
+                    }
+                },
+
+                last: {
+                    get: function () {
+                        return this.lblIndexes.getText().then(function (text) {
+                            return testThenMatch(text, 2);
+                        });
+                    }
+                },
+
+                total: {
+                    get: function () {
+                        return this.lblIndexes.getText().then(function (text) {
+                            return testThenMatch(text, 3);
+                        });
+                    }
+                }
+
+            });
+        }
+    },
+
+    totalItems: {
+        get: function () {
+            return this.shownItems.total;
+        }
+    },
+
+    totalPages: {
+        get: function () {
+            return protractor.promise.all([this.totalItems, this.pageSize]).then(function (results) {
+                var totalItems = results[0];
+                var pageSize = results[1];
+                return Math.ceil(totalItems / pageSize);
+            });
+        }
+    },
+
     jumpToLowestAvailablePage: {
         value: function () {
             this.tblPages.first().click();
