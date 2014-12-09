@@ -17,6 +17,8 @@ angular.module('encore.ui.rxAccountInfo', [])
                         '</span><p>', badge.description, '</p>'].join('');
             };
 
+            scope.accountPageUrl = _.template('/accounts/<%= accountNumber %>', scope);
+
             SupportAccount.getBadges({ accountNumber: scope.accountNumber }, function (badges) {
                 scope.badges = scope.badges.concat(badges);
             }, function () {
