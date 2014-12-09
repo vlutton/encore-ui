@@ -767,14 +767,14 @@ describe('rxStatusTags - custom status tags', function () {
     it('should know about testKey', function () {
         var config = rxstatusTags.getTag('testKey');
         expect(config.text).to.equal('test text');
-        expect(config.klass).to.equal('test-class');
+        expect(config.class).to.equal('test-class');
         expect(rxstatusTags.hasTag('testKey')).to.be.true;
     });
 
-    it('should return empty text and klass values for unknown keys', function () {
+    it('should return empty text and class values for unknown keys', function () {
         var config = rxstatusTags.getTag('missingKey');
         expect(config.text).to.equal('');
-        expect(config.klass).to.equal('');
+        expect(config.class).to.equal('');
         expect(rxstatusTags.hasTag('missingkey')).to.be.false;
         
     });

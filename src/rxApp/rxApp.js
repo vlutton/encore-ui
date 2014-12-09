@@ -524,11 +524,11 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
      
     var allTags = {
         alpha: {
-            klass: 'alpha-status',
+            class: 'alpha-status',
             text: 'Alpha'
         },
         beta: {
-            klass: 'beta-status',
+            class: 'beta-status',
             text: 'Beta'
         },
     };
@@ -537,7 +537,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
     this.addStatus = function (config) {
         allTags[config.key] = {
             text: config.text,
-            'klass': config['class']
+            'class': config['class']
         };
     };
 
@@ -549,7 +549,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                 if (_.has(allTags, key)) {
                     return allTags[key];
                 }
-                return { klass: '', text: '' };
+                return { class: '', text: '' };
             },
 
             hasTag: function (key) {
@@ -569,7 +569,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
 */
 .directive('rxStatusTag', function (rxStatusTags) {
     return {
-        template: '<span ng-if="status && validKey" class="status-tag {{ klass }}">{{ text }}</span>',
+        template: '<span ng-if="status && validKey" class="status-tag {{ class }}">{{ text }}</span>',
         restrict: 'E',
         scope: {
             status: '@'
@@ -578,7 +578,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
             scope.validKey = rxStatusTags.hasTag(scope.status);
             if (scope.validKey) {
                 var config = rxStatusTags.getTag(scope.status);
-                scope.klass = config.klass;
+                scope.class = config.class;
                 scope.text = config.text;
             }
         }
