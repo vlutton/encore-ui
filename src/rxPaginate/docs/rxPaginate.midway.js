@@ -69,9 +69,36 @@ describe('rxPaginate', function () {
         expect(pagination.pageSize).to.eventually.equal(3);
     });
 
+    it('should list the lower bounds of the shown items currently in the table', function () {
+        expect(pagination.shownItems.first).to.eventually.equal(1);
+    });
+
+    it('should list the upper bounds of the shown items currently in the table', function () {
+        expect(pagination.shownItems.last).to.eventually.equal(3);
+    });
+
+    it('should know the total number of pages without visiting it', function () {
+        pagination.totalPages.then(function (totalPages) {
+            pagination.last();
+            expect(pagination.page).to.eventually.equal(totalPages);
+        });
+    });
+
     it('should switch to a different items per page', function () {
         pagination.pageSize = 50;
         expect(pagination.pageSize).to.eventually.equal(50);
+    });
+
+    it('should put the user back on the first page after resizing the items per page', function () {
+        expect(pagination.page).to.eventually.equal(1);
+    });
+
+    it('should not fail to match the lower bounds of the shown items even if not displayed', function () {
+        expect(pagination.shownItems.first).to.eventually.equal(1);
+    });
+
+    it('should not fail to match the upper bounds of the shown items even if not displayed', function () {
+        expect(pagination.shownItems.last).to.eventually.equal(21);
     });
 
     it('should not allow selecting an unavailable items per page', function () {
