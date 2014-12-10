@@ -1,6 +1,10 @@
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
-Service for managing the page titles. The factory will attempt to strip out any HTML from the titles using
+Service for managing the page titles. 
+
+Two methods are available for setting the page title. The first is `setTitle()`, which simply sets the title to whatever raw string is passed in.
+
+The second is `setTitleUnsafeStripHTML()`. This will strip any HTML tags from the string, and set the title to the result. This uses
 the [technique found here](http://stackoverflow.com/questions/5002111/javascript-how-to-strip-html-tags-from-string). Note the caveats
 listed there, namely:
 
