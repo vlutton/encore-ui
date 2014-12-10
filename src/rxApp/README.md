@@ -82,9 +82,9 @@ This will create a new status tag called `"gamma"`, which you can pass to `rx-pa
 
     <rx-page title="'Some Title'" status="gamma">
 
-And the title will appear with a `Hello World!` tag beside it, styled the same was as our `alpha` status tag is styled. You can also define your own CSS style in your application and use those instead, passing it as the `class` value to `addStatus()`
+And the title will appear with a `Hello World!` tag beside it, styled the same was as our `alpha` status tag is styled. You can also define your own CSS style in your application and use those instead, passing it as the `class` value to `addStatus()`.
 
-All the tags are accessible inside of [rxBreadcrumbs](./#/component/rxBreadcrumbs) as well.
+All the tags are accessible inside of [rxBreadcrumbs](./#/component/rxBreadcrumbs) as well. Any breadcrumb that was created with `useStatusTag` will automatically receive the same status tag as you passed to `<rx-page>`.
 
 ### .page-actions
 

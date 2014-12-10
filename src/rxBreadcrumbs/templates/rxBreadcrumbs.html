@@ -1,5 +1,5 @@
 <ol class="rx-breadcrumbs">
-    <li ng-repeat="breadcrumb in breadcrumbs.getAll()" class="breadcrumb">
+    <li ng-repeat="breadcrumb in breadcrumbs.getAll(status)" class="breadcrumb">
         <ng-switch on="$last">
             <span ng-switch-when="true" class="breadcrumb-name last">
                 <span ng-bind-html="breadcrumb.name"></span>

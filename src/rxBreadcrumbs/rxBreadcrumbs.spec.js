@@ -5,7 +5,8 @@ describe('Breadcrumbs', function () {
 
     var mockBreadcrumbs = [{
         path: 'one',
-        name: 'One'
+        name: 'One',
+        usePageStatusTag: true
     }, {
         path: 'two',
         name: 'Two',
@@ -93,6 +94,46 @@ describe('Breadcrumbs', function () {
             expect(customSpan.text()).to.equal('Three');
         });
         
+        it('should draw a tag specificed with `status` on a middle breadcrumb', function () {
+            var tag = el.find('.beta-status').eq(0);
+
+            expect(tag.text()).to.equal('Beta');
+        });
+
+        it('should draw a tag specificed with `status` on the last breadcrumb', function () {
+            var tag = el.find('.alpha-status').eq(0);
+
+            expect(tag.text()).to.equal('Alpha');
+        });
+
+        it('should not draw a tag on the first breadcrumb', function () {
+            var items = el[0].getElementsByClassName('breadcrumb-name');
+
+            expect($(items[1]).find('.status-tag').length).to.equal(0);
+            
+        });
+    });
+
+    describe('directive with status attribute', function () {
+        var el,
+            validTemplate = '<rx-breadcrumbs status="alpha"></rx-breadcrumbs>';
+
+        beforeEach(function () {
+            // Inject mock breadcrumbs
+            breadcrumbs.set(mockBreadcrumbs);
+
+            el = helpers.createDirective(validTemplate, compile, scope);
+
+            scope.$digest();
+        });
+
+        it('should draw a tag on the first breadcrumb', function () {
+            var items = el[0].getElementsByClassName('breadcrumb-name');
+
+            expect($(items[1]).find('.status-tag').length).to.equal(1);
+            
+        });
+
         it('should draw a tag specificed with `status` on a middle breadcrumb', function () {
             var tag = el.find('.beta-status').eq(0);
 
