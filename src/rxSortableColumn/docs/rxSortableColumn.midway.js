@@ -26,19 +26,17 @@ describe('rxSortableColumn', function () {
     });
 
     it('should support sorting columns ascending', function () {
-        var isAscending = true;
-        nameColumn.sort(isAscending);
+        nameColumn.sortAscending();
         expect(nameColumn.currentSortDirection).to.eventually.eq(1);
     });
 
     it('should support sorting columns descending', function () {
-        var isAscending = false;
-        nameColumn.sort(isAscending);
+        nameColumn.sortDescending();
         expect(nameColumn.currentSortDirection).to.eventually.eq(0);
     });
 
     it('should remove all other sorts when sorting an unsorted column', function () {
-        roleColumn.sort();
+        roleColumn.sortAscending();
         expect(nameColumn.currentSortDirection).to.eventually.eq(-1);
     });
 

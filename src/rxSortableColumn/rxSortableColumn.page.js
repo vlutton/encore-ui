@@ -21,22 +21,30 @@ var rxSortableColumn = {
         }
     },
 
-    sort: {
-        // Will default to an ascending sort if no parameters are passed in.
-        value: function (isAscending) {
-            if (isAscending === undefined) {
-                isAscending = true;
-            }
+    sortAscending: {
+        value: function () {
+            this.sort({ isAscending: true });
+        }
+    },
 
+    sortDescending: {
+        value: function () {
+            this.sort({ isAscending: false });
+        }
+    },
+
+    sort: {
+        // Prefer using `sortAscending` and `sortDescending` over using this method directly.
+        value: function (namedParams) {
             var page = this;
             return this.currentSortDirection.then(function (sortDirection) {
                 /*jshint eqeqeq: false*/
                 // Coercing -1 to Boolean results in -1 === true. We don't want that.
                 // It's easier to leave as is since -1 != true and -1 != false.
                 // Meaning we'll always sort the list at least once if it's currently unsorted.
-                if (sortDirection != isAscending) {
+                if (sortDirection != namedParams.isAscending) {
                     page.btnSort.click();
-                    page.sort(isAscending);
+                    page.sort(namedParams);
                 }
             });
         }
