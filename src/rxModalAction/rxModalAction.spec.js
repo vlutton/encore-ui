@@ -5,6 +5,7 @@ describe('rxModalForm', function () {
 
     var rxModalForm = '<rx-modal-form>${ fields }</rx-modal-form>';
     var hiddenInput = '<input type="hidden">';
+    var disabledInput = '<input disabled="disabled">';
     var textInput = '<input type="text">';
     var autofocusInput = '<input type="text" autofocus>';
     var textarea = '<textarea></textarea>';
@@ -96,6 +97,24 @@ describe('rxModalForm', function () {
         expect(inputs[1].focus).to.be.calledOnce;
     });
 
+    it('should not focus on disabled input element', function () {
+        var formHtml = _.template(rxModalForm, {
+            fields: disabledInput + textInput
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        var inputs = el.find('input');
+
+        sinon.spy(inputs[0], 'focus');
+        sinon.spy(inputs[1], 'focus');
+
+        timeout.flush();
+
+        expect(inputs[0].focus).to.not.be.called;
+        expect(inputs[1].focus).to.be.calledOnce;
+    });
+
     it('should prioritize elements with an autofocus attribute', function () {
         var formHtml = _.template(rxModalForm, {
             fields: textInput + autofocusInput
@@ -112,6 +131,78 @@ describe('rxModalForm', function () {
 
         expect(inputs[0].focus).to.not.be.called;
         expect(inputs[1].focus).to.be.calledOnce;
+    });
+
+    it('should focus on cancel button when specified', function () {
+        var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
+        var formHtml = _.template(rxModalForm, {
+            fields: textInput + textarea + selectBox,
+            defaultFocus: 'cancel'
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        var input = el.find('input')[0];
+        var cancelBtn = el.find('button.cancel')[0];
+
+        sinon.spy(input, 'focus');
+        sinon.spy(cancelBtn, 'focus');
+
+        timeout.flush();
+
+        // should only focus the specified element
+        expect(cancelBtn.focus).to.have.been.calledOnce;
+        expect(input.focus).to.not.have.been.called;
+
+    });
+
+    it('should focus on submit button when specified', function () {
+        var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
+        var formHtml = _.template(rxModalForm, {
+            fields: textInput + textarea + selectBox,
+            defaultFocus: 'submit'
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        var input = el.find('input')[0];
+        var submitBtn = el.find('button.submit')[0];
+
+        sinon.spy(input, 'focus');
+        sinon.spy(submitBtn, 'focus');
+
+        timeout.flush();
+
+        // should only focus the specified element
+        expect(submitBtn.focus).to.have.been.calledOnce;
+        expect(input.focus).to.not.have.been.called;
+
+    });
+
+    it('should focus on First Tabbable when anything else is specified', function () {
+        var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
+        var formHtml = _.template(rxModalForm, {
+            fields: textInput + textarea + selectBox,
+            defaultFocus: 'foo'
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        var input = el.find('input:not([type="hidden"]):not([disabled="disabled"]), textarea, select')[0];
+        var submitBtn = el.find('button.submit')[0];
+        var cancelBtn = el.find('button.cancel')[0];
+
+        sinon.spy(input, 'focus');
+        sinon.spy(submitBtn, 'focus');
+        sinon.spy(cancelBtn, 'focus');
+
+        timeout.flush();
+
+        // should only focus the specified element
+        expect(submitBtn.focus).to.not.have.been.called;
+        expect(cancelBtn.focus).to.not.have.been.called;
+        expect(input.focus).to.have.been.calledOnce;
+
     });
 
     it('should not throw errors if no focusable elements are found', function () {
