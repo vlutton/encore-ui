@@ -4,6 +4,12 @@
 .rx-sortable-column {
     position: relative;
 
+    .btn-link {
+        // This needs to be set explicitly, otherwise `.table-filters button`
+        // applies a font size of 93% and sortable columns have smaller headers.
+        font-size: 13px;
+    }
+
     .sort-action {
         display: block;
         width: 100%;
