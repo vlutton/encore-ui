@@ -66,4 +66,22 @@ describe('rxPageTitle', function () {
         pageTitle.setTitle(null);
         expect(pageTitle.getTitle()).to.equal('');
     });
+
+    it('should strip attributes from HTML tags', function () {
+        var title = 'New Title <span class="foo">Alpha</span>';
+        var expectedTitle = 'New Title Alpha';
+
+        pageTitle.setTitle(title);
+        expect(pageTitle.getTitle()).to.equal(expectedTitle);
+        
+    });
+
+    it('should handle escaped characters', function () {
+        var title = 'New Title <span class="foo">&lt;Alpha&gt;</span>';
+        var expectedTitle = 'New Title <Alpha>';
+
+        pageTitle.setTitle(title);
+        expect(pageTitle.getTitle()).to.equal(expectedTitle);
+        
+    });
 });
