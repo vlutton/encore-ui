@@ -36,7 +36,7 @@ describe('rxSortableColumn', function () {
     });
 
     it('should remove all other sorts when sorting an unsorted column', function () {
-        roleColumn.sort();
+        roleColumn.sortAscending();
         expect(nameColumn.currentSortDirection).to.eventually.eq(-1);
     });
 
