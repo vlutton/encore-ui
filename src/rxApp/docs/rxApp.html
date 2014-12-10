@@ -9,7 +9,7 @@
 
     <h1 class="title">Customized rxApp (collapsible)</h1>
     <rx-app collapsible-nav="true" site-title="My App" id="custom-rxApp" menu="customMenu" new-instance="true" hide-feedback="true">
-        <rx-page title="'Customized Page Title'" subtitle="subtitle">
+    <rx-page unsafe-html-title="'Customized Page <a href=&quot;http://rackspace.com&quot;>Title</a>'" subtitle="subtitle">
             <p class="clear">Click a link in the menu to see the active state change</p>
             <p>Click the toggle to hide the menu</p>
             <button ng-click="changeSubtitle()" class="changeSubtitle button">Change Subtitle</button>
