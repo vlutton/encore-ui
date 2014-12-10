@@ -26,12 +26,12 @@ describe('rxSortableColumn', function () {
     });
 
     it('should support sorting columns ascending', function () {
-        nameColumn.sort({ isAscending: true });
+        nameColumn.sortAscending();
         expect(nameColumn.currentSortDirection).to.eventually.eq(1);
     });
 
     it('should support sorting columns descending', function () {
-        nameColumn.sort({ isAscending: false });
+        nameColumn.sortDescending();
         expect(nameColumn.currentSortDirection).to.eventually.eq(0);
     });
 

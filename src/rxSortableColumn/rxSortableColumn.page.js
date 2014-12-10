@@ -21,13 +21,21 @@ var rxSortableColumn = {
         }
     },
 
-    sort: {
-        // Will default to an ascending sort if no parameters are passed in.
-        value: function (namedParams) {
-            if (namedParams === undefined) {
-                namedParams = { isAscending: true };
-            }
+    sortAscending: {
+        value: function () {
+            this.sort({ isAscending: true });
+        }
+    },
 
+    sortDescending: {
+        value: function () {
+            this.sort({ isAscending: false });
+        }
+    },
+
+    sort: {
+        // Prefer using `sortAscending` and `sortDescending` over using this method directly.
+        value: function (namedParams) {
             var page = this;
             return this.currentSortDirection.then(function (sortDirection) {
                 /*jshint eqeqeq: false*/
