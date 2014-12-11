@@ -66,6 +66,11 @@ You'll likely want to use `rx-page` inside your template view. For example, insi
 
 Both the `title` and `subtitle` attributes accept an Angular expression, which can be a string (shown in the previous example) or a scope property. This string/property can accept other expressions, enabling you to build custom titles. The demo has an example of this usage.
 
+If you wish to use arbitrary HTML in your title, you can use the `unsafe-html-title` attribute instead of `title`. This is considered "unsafe" because it is
+capable of executing arbitrary Javascript, so you must ensure that you trust the source of the title. The "Customized Page Title" in the demo shows the use of HTML tags.
+
+In either case (`title` or `unsafe-html-title`), the document title (i.e. visible in the browser tab) will be set to your chosen title. If you use `unsafe-html-title`, all HTML tags will be stripped before setting the document title.
+
 ### .page-actions
 
 A `page-actions` class is provided by rx-app to easily add custom page actions to the top right of a page. For example:

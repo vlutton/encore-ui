@@ -127,8 +127,15 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
 * @scope
 * @description
 * Responsible for creating the HTML necessary for a page (including breadcrumbs and page title)
+* You can pass in a `title` attribute or an `unsafeHtmlTitle` attribute, but not both. Use the former
+* if your title is a plain string, use the latter if your title contains embedded HTML tags AND you
+* trust the source of this title. Arbitrary javascript can be executed, so ensure you trust your source.
+*
+* The document title will be set to either `title` or a stripped version of `unsafeHtmlTitle`, depending
+* on which you provide.
 *
 * @param {expression} [title] Title of page
+* @param {expression} [unsafeHtmlTitle] Title for the page, with embedded HTML tags
 * @param {expression} [subtitle] Subtitle of page
 *
 * @example
@@ -143,7 +150,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         templateUrl: 'templates/rxPage.html',
         scope: {
             title: '=',
-            subtitle: '=',
+            unsafeHtmlTitle: '=',
+            subtitle: '='
         },
         link: function (scope, element) {
             // Remove the title attribute, as it will cause a popup to appear when hovering over page content
@@ -153,6 +161,12 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         controller: function ($scope, rxPageTitle) {
             $scope.$watch('title', function () {
                 rxPageTitle.setTitle($scope.title);
+            });
+
+            $scope.$watch('unsafeHtmlTitle', function () {
+                if (!_.isEmpty($scope.unsafeHtmlTitle)) {
+                    rxPageTitle.setTitleUnsafeStripHTML($scope.unsafeHtmlTitle);
+                }
             });
         }
     };

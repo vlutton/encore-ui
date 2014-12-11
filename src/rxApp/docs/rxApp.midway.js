@@ -88,6 +88,10 @@ describe('rxPage', function () {
         expect(customPage.subtitle).to.eventually.equal('With a subtitle');
     });
 
+    it('should have a custom title', function () {
+        expect(customPage.title).to.eventually.equal('Customized Page Title');
+    });
+
     it('should update page subtitle dynamically', function () {
         $('button.changeSubtitle').click();
         expect(customPage.subtitle).to.eventually.contain('With a new subtitle at 1');
