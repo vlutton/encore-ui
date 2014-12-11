@@ -79,6 +79,10 @@ describe('rxAccountInfo', function () {
         expect(el.find('h3').text()).to.contain('Account Info');
     });
 
+    it('should construct the proper account url', function () {
+        expect(el.isolateScope().accountPageUrl).to.eq('/accounts/123');
+    });
+
     it('should populate the account number', function () {
         scope.$digest();
         expect(el).not.be.empty;
