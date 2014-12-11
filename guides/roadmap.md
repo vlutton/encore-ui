@@ -1,4 +1,4 @@
-# Encore UI Roadmap and Prioritization
+# Encore-UI Roadmap and Prioritization
 
 The project is currently being run in [a "Kanban" style](http://en.wikipedia.org/wiki/Kanban_(development)). The project is focused on 'just-in-time delivery' and is built around being able to quickly iterate on features based on developer feedback.
 
@@ -8,7 +8,7 @@ While we limit the amount of process involved in planning, the following practic
 
 ## Backlog Management
 
-All work related to Encore UI is tracked inside of the GitHub Issues interface. This ensures an open and easy-to-access backlog for the project. We also use [Waffle.io](https://waffle.io/rackerlabs/encore-ui) for our Kanban taskboard.
+All work related to Encore-UI is tracked inside of the GitHub Issues interface. This ensures an open and easy-to-access backlog for the project. We also use [Waffle.io](https://waffle.io/rackerlabs/encore-ui) for our Kanban taskboard.
 
 ## Issue Prioritization
 
@@ -44,7 +44,7 @@ Velocity is tracked via [the GitHub commit activity view](https://github.com/rac
 
 ## Providing Feeback
 
-Encore UI is built for the folks implementing the framework, so it's crucial to recieve feedback on its implementation.
+Encore-UI is built for the folks implementing the framework, so it's crucial to recieve feedback on its implementation.
 
 ### Creating new issues
 
