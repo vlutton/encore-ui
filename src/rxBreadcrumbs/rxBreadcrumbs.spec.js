@@ -5,13 +5,16 @@ describe('Breadcrumbs', function () {
 
     var mockBreadcrumbs = [{
         path: 'one',
-        name: 'One'
+        name: 'One',
+        usePageStatusTag: true
     }, {
         path: 'two',
-        name: 'Two'
+        name: 'Two',
+        status: 'beta'
     }, {
         path: 'three',
-        name: '<span class="alpha">Three</span>'
+        name: '<span class="custom-html">Three</span>',
+        status: 'alpha'
     }];
 
     var defaultBreadcrumb = {
@@ -27,6 +30,7 @@ describe('Breadcrumbs', function () {
     beforeEach(function () {
         // Load the service's module
         module('encore.ui.rxBreadcrumbs');
+        module('encore.ui.rxApp');
 
         // load the template
         module('templates/rxBreadcrumbs.html');
@@ -85,9 +89,61 @@ describe('Breadcrumbs', function () {
         });
 
         it('should allow HTML in breadcrumb name', function () {
-            var alpha = el.find('.alpha').eq(0);
+            var customSpan = el.find('.custom-html').eq(0);
 
-            expect(alpha.text()).to.equal('Three');
+            expect(customSpan.text()).to.equal('Three');
+        });
+        
+        it('should draw a tag specificed with `status` on a middle breadcrumb', function () {
+            var tag = el.find('.beta-status').eq(0);
+
+            expect(tag.text()).to.equal('Beta');
+        });
+
+        it('should draw a tag specificed with `status` on the last breadcrumb', function () {
+            var tag = el.find('.alpha-status').eq(0);
+
+            expect(tag.text()).to.equal('Alpha');
+        });
+
+        it('should not draw a tag on the first breadcrumb', function () {
+            var items = el[0].getElementsByClassName('breadcrumb-name');
+
+            expect($(items[1]).find('.status-tag').length).to.equal(0);
+            
+        });
+    });
+
+    describe('directive with status attribute', function () {
+        var el,
+            validTemplate = '<rx-breadcrumbs status="alpha"></rx-breadcrumbs>';
+
+        beforeEach(function () {
+            // Inject mock breadcrumbs
+            breadcrumbs.set(mockBreadcrumbs);
+
+            el = helpers.createDirective(validTemplate, compile, scope);
+
+            scope.$digest();
+        });
+
+        it('should draw a tag on the first breadcrumb', function () {
+            var items = el[0].getElementsByClassName('breadcrumb-name');
+
+            expect($(items[1]).find('.status-tag').length).to.equal(1);
+            
+        });
+
+        it('should draw a tag specificed with `status` on a middle breadcrumb', function () {
+            var tag = el.find('.beta-status').eq(0);
+
+            expect(tag.text()).to.equal('Beta');
+        });
+
+        it('should draw a tag specificed with `status` on the last breadcrumb', function () {
+            var tag = el.find('.alpha-status').eq(0);
+
+            expect(tag.text()).to.equal('Alpha');
         });
     });
 

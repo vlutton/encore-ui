@@ -71,6 +71,26 @@ capable of executing arbitrary Javascript, so you must ensure that you trust the
 
 In either case (`title` or `unsafe-html-title`), the document title (i.e. visible in the browser tab) will be set to your chosen title. If you use `unsafe-html-title`, all HTML tags will be stripped before setting the document title.
 
+A final attribute that `rx-page` accepts is `status`. This takes a string, and has the effect of drawing a status "tag" beside the page title. The "Customized rxApp" demo shows the use of this with the `"alpha"` tag.
+
+The framework currently provides `"alpha"` and `"beta"` tags, but any product can specify their own custom tags using the `rxStatusTagsProvider`. It currently
+has one method, `addStatus`, which takes an unique `key` for the new tag, the `class` it should use in the HTML, and the `text` that will be drawn. All custom
+tags are drawn inside of a `<span>`, essentially as:
+
+    <span class="status-tag {{ class }}">{{ text }}</span>
+
+To use this, do the following in your application's `.config()` method:
+
+    rxStatusTagsProvider.addStatus({ key: 'gamma', class: 'alpha-status', text: 'Hello World!' });
+
+This will create a new status tag called `"gamma"`, which you can pass to `rx-page` as:
+
+    <rx-page title="'Some Title'" status="gamma">
+
+And the title will appear with a `Hello World!` tag beside it, styled the same way as our `"alpha"` status tag is styled. You can also define your own CSS style in your application and use those instead, passing it as the `class` value to `addStatus()`.
+
+All the tags are accessible inside of [rxBreadcrumbs](./#/component/rxBreadcrumbs) as well. Any breadcrumb that was created with `useStatusTag: true` will automatically receive the same status tag as you passed to `<rx-page>`.
+
 ### .page-actions
 
 A `page-actions` class is provided by rx-app to easily add custom page actions to the top right of a page. For example:

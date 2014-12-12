@@ -80,8 +80,12 @@ describe('rxPage', function () {
         expect(standardPage.title).to.eventually.equal('Standard Page Title');
     });
 
-    it('should return a blank string if no subtitle is found', function () {
-        expect(standardPage.subtitle).to.eventually.equal('');
+    it('should return a null if no tag is found', function () {
+        expect(standardPage.titleTag).to.eventually.be.null;
+    });
+
+    it('should return a null if no subtitle is found', function () {
+        expect(standardPage.subtitle).to.eventually.be.null;
     });
 
     it('should have a subtitle', function () {
@@ -90,6 +94,10 @@ describe('rxPage', function () {
 
     it('should have a custom title', function () {
         expect(customPage.title).to.eventually.equal('Customized Page Title');
+    });
+
+    it('should have a status tag', function () {
+        expect(customPage.titleTag).to.eventually.equal('ALPHA');
     });
 
     it('should update page subtitle dynamically', function () {

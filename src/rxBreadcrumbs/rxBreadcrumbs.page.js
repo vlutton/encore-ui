@@ -6,7 +6,26 @@ var breadcrumb = function (rootElement) {
 
         name: {
             get: function () {
-                return rootElement.getText();
+                return rootElement.element(by.exactBinding('breadcrumb.name')).getText();
+            }
+        },
+
+        lblTag: {
+            get: function () { return rootElement.$('.status-tag'); }
+        },
+
+        tag: {
+            get: function () {
+                var page = this;
+                return page.lblTag.isPresent().then(function (present) {
+                    if (present) {
+                        return page.lblTag.getText();
+                    } else {
+                        var deferred = protractor.promise.defer();
+                        deferred.fulfill('');
+                        return deferred.promise;
+                    }
+                });
             }
         },
 
@@ -53,7 +72,7 @@ var rxBreadcrumbs = {
 
     tblBreadcrumbs: {
         get: function () {
-            return this.rootElement.all(by.repeater('breadcrumb in breadcrumbs.getAll()'));
+            return this.rootElement.all(by.repeater('breadcrumb in breadcrumbs.getAll(status)'));
         }
     },
 
