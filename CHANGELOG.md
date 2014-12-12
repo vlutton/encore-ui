@@ -1,3 +1,23 @@
+<a name="1.5.0"></a>
+## 1.5.0 (2014-12-12)
+
+
+#### Bug Fixes
+
+* **rxForm:** textareas should have white background ([24f85d90](git@github.com:rackerlabs/encore-ui/commit/24f85d90334be48e4ee7bff0fbfafbcad458ffec))
+* **rxSortableColumn:** don't set font size for buttons ([9b0c4e3a](git@github.com:rackerlabs/encore-ui/commit/9b0c4e3a28c37c4edfe62704b1782fad439f1f6a))
+
+
+#### Features
+
+* **accountInfo:** Add URL to Account Page ([7560e5c2](git@github.com:rackerlabs/encore-ui/commit/7560e5c2118d942f137cdc94591ba7b7b56b265b))
+* **rxModalAction:** Add defaultFocus option ([56bc81e9](git@github.com:rackerlabs/encore-ui/commit/56bc81e996d24e5e0c7c31ac2147af17be4bf6e9))
+* **rxPage:** Enable access to rxPageTitle setTitleUnsafe ([641c6825](git@github.com:rackerlabs/encore-ui/commit/641c68250642c72371e9f2dc6cd352b5e92ea10b))
+* **rxPageTitle:** Strip HTML from page title ([24e9d504](git@github.com:rackerlabs/encore-ui/commit/24e9d504e91c024b32cdd573cc35b69d313db7be), closes [#660](git@github.com:rackerlabs/encore-ui/issues/660))
+* **rxUnsafeRemoveHTML:** New filter ([5416b6c8](git@github.com:rackerlabs/encore-ui/commit/5416b6c8e4269086a439c2e626ca6f625412ad20))
+* **statusTags:** Implement page/breadcrumb tags ([f310f8db](git@github.com:rackerlabs/encore-ui/commit/f310f8dbdd726641fde101456c2db120b5886e8c), closes [#638](git@github.com:rackerlabs/encore-ui/issues/638))
+
+
 <a name="1.4.3"></a>
 ### 1.4.3 (2014-12-08)
 
