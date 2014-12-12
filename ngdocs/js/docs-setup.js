@@ -91,7 +91,16 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Responsible for creating the HTML necessary for a page (including breadcrumbs and page title)",
-      "keywords": "api breadcrumbs creating directive encore html responsible rxapp subtitle title ui"
+      "keywords": "api arbitrary attribute breadcrumbs creating depending directive document embedded encore ensure executed html javascript pass plain provide responsible rxapp set source string stripped subtitle tags title trust ui unsafehtmltitle version"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxApp:rxStatusTag",
+      "shortName": "rxStatusTag",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "This is used to draw the Alpha/Beta/etc tags in page titles and in breadcrumbs. It&#39;s not",
+      "keywords": "alpha api breadcrumbs directive draw encore intended public rxapp tags titles ui"
     },
     {
       "section": "api",
@@ -128,6 +137,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Service which provides an entire solution for authenticating, user session management",
       "keywords": "api array authenticating broken components customization encore entire errorcallback expired facilitate getroles gettoken hasrole identity isauthenticated iscurrent login loginwithjson logout logs management password permission permissions promise re-use returns role roles rxauth rxidentity rxpermission rxsession service services session smaller solution stored stores storetoken successcallback token true ui user valid wrapper"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxBreadcrumbs:rxBreadcrumbs",
+      "shortName": "rxBreadcrumbs",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Responsible for drawing the breadcrumbs for a page",
+      "keywords": "api apply breadcrumbs custom directive drawing encore responsible rxbreadcrumbs site-title tag title ui usepagestatustag"
     },
     {
       "section": "api",
@@ -280,7 +298,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Responsible for creating the HTML necessary for modal form",
-      "keywords": "api button cancel creating default defaults directive encore form html is-loading modal responsible rxmodalaction spinner submit submit-text subtitle text title true ui window"
+      "keywords": "api button cancel creating default defaults directive element encore firsttabbable focus form html is-loading modal responsible rxmodalaction spinner submit submit-text subtitle text title true ui window"
     },
     {
       "section": "api",
@@ -317,6 +335,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Manages displaying messages for a promise",
       "keywords": "add api deferred displaying encore error loading manages message messages promise rxnotify rxpromisenotifications service success ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxPageTitle:rxUnsafeRemoveHTML",
+      "shortName": "rxUnsafeRemoveHTML",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "Given a string, it removes all HTML tags from the string, using the",
+      "keywords": "api browser cleaned content details encore engine filter html http inside note parsing remove removes rxpagetitle string tags text trusted ui"
     },
     {
       "section": "api",

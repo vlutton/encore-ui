@@ -319,11 +319,13 @@ function rxAuthCtrl ($scope, Auth) {
 function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
     rxBreadcrumbsSvc.set([{
         path: '/',
-        name: 'Components'
+        name: 'Components',
     }, {
-        name: '<strong>All Components</strong>'
+        name: '<strong>All Components</strong>',
+        status: 'demo'
     }]);
 }
+
 
 /*jshint unused:false*/
 function rxButtonCtrl ($scope, $timeout) {

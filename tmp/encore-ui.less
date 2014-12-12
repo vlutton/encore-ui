@@ -1183,6 +1183,21 @@ For apps that want to use the default Encore navigation, use the following HTML 
     margin-bottom: 0;
 }
 
+.status-tag {
+    &.alpha-status, &.beta-status {
+        margin-left: 10px;
+        text-transform: uppercase;
+        font-size: 9px;
+        border: 1px solid;
+        padding: 1px 2px;
+        border-radius: 2px;
+        top: 9px;
+        position: absolute;
+        color: #427fc4;
+    }
+}
+
+
 /*
 # rxBreadcrumbs
 
@@ -1275,7 +1290,16 @@ They show your position within the site heirarchy.
             border-left-color: #fff;
         }
     }
+
+    .status-tag {
+        &.alpha-status, &.beta-status {
+            margin-left: 6px;
+            position: static;
+        }
+    }
+
 }
+
 @import 'vars';
 
 /*
@@ -1663,7 +1687,7 @@ Any input field can be placed inside an element with a class of 'field-input'.
 
     textarea {
         .inputBorderPadding;
-        background-color: transparent;
+        background-color: #fff;
         width: 100%;
         position: relative;
         z-index: 2;
@@ -2447,6 +2471,12 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
  */
 .rx-sortable-column {
     position: relative;
+
+    .btn-link {
+        // This needs to be set explicitly, otherwise `.table-filters button`
+        // applies a font size of 93% and sortable columns have smaller headers.
+        font-size: 13px;
+    }
 
     .sort-action {
         display: block;
