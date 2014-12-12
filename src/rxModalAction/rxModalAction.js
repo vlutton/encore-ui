@@ -12,6 +12,7 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 * @param {boolean} [isLoading] True to show a spinner by default
 * @param {string} [submitText] 'Submit' button text to use. Defaults to 'Submit'
 * @param {string} [cancelText] 'Cancel' button text to use. Defaults to 'Cancel'
+* @param {string} [defaultFocus] default focus element. May be 'submit' or 'cancel'. Defaults to 'firstTabbable'
 *
 * @example
 * <rx-modal-form title="My Form" is-loading="true" submit-text="Yes!"></rx-modal-form>
@@ -26,30 +27,46 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
             subtitle: '@',
             isLoading: '=',
             submitText: '@',
-            cancelText: '@'
+            cancelText: '@',
+            defaultFocus: '@'
         },
         link: function (scope, element) {
-            // this function will focus on the first tabbable element inside the form
-            var focusOnFirstTabbable = function () {
-                var autofocusElements = '[autofocus]';
-                var tabbableElements = 'input:not([type="hidden"]), textarea, select';
-                var modalForm = element[0].querySelector('.modal-form');
 
-                // first check for an element with an autofocus attribute
-                var firstTabbable = modalForm.querySelector(autofocusElements);
-                if (!firstTabbable) {
-                    firstTabbable = modalForm.querySelector(tabbableElements);
-                }
+            var focusSelectors = {
+                'cancel': 'button.cancel',
+                'submit': 'button.submit',
+                'firstTabbable': 'input:not([type="hidden"]):not([disabled="disabled"]), textarea, select'
+            };
+            var setFocus = function (focus) {
+                var formSelector, focusElement;
 
-                // we need to wait for $modalWindow to run so it doesn't steal focus
-                if (firstTabbable) {
+                if (focus === 'cancel' || focus === 'submit') {
+                    formSelector = element[0].querySelector('.modal-footer');
+                    focusElement = formSelector.querySelector(focusSelectors[focus]);
+                    // wait for $modalWindow to run so it doesn't steal focus
                     $timeout(function () {
-                        firstTabbable.focus();
+                        if (focusElement) {
+                            focusElement.focus();
+                        }
                     }, 10);
+                } else {
+                    focus = 'firstTabbable';
+                    formSelector = element[0].querySelector('.modal-form');
+                    // Give content some time to load to get first tabbable
+                    $timeout(function () {
+                        // first check for an element with autofocus
+                        focusElement = formSelector.querySelector('[autofocus]');
+                        if (!focusElement) {
+                            focusElement = formSelector.querySelector(focusSelectors[focus]);
+                        }
+                        if (focusElement) {
+                            focusElement.focus();
+                        }
+                    }, 400);
                 }
             };
 
-            focusOnFirstTabbable();
+            setFocus(scope.defaultFocus);
 
             // Remove the title attribute, as it will cause a popup to appear when hovering over page content
             // @see https://github.com/rackerlabs/encore-ui/issues/256
