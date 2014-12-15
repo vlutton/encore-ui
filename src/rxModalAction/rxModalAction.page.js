@@ -62,7 +62,7 @@ var rxModalAction = {
 
     cancel: {
         value: function () {
-            this.btnCancel.click();
+            browser.actions().mouseDown(this.btnCancel).mouseUp().perform();
         }
     }
 
