@@ -56,6 +56,7 @@ paths:
   rxSortableColumn: "/#/component/rxSortableColumn"
   rxSpinner: "/#/component/rxSpinner"
   rxStatus: "/#/component/rxStatus"
+  rxStatusColumn: "/#/component/rxStatusColumn"
   rxToggle: "/#/component/rxToggle"
   rxTokenInterceptor: "/#/component/rxTokenInterceptor"
   rxUnauthorizedInterceptor: "/#/component/rxUnauthorizedInterceptor"
