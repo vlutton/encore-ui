@@ -1,17 +1,29 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
 
+// This is a shared function for getting one column's sort direction, and all columns' sort directions.
+// Ascending sort:  (1)  means the arrow is pointed down. [0-9, a-z]
+// Descending sort: (0)  means the arrow is pointed up.   [z-a, 9-0]
+// Not sorted:     (-1)  means there is no arrow for this column.
+var currentSortDirection = function (columnElement) {
+    var imgSortIcon = columnElement.$('.sort-icon');
+    return imgSortIcon.getAttribute('style').then(function (style) {
+        if (style.indexOf('hidden') > -1) {
+            // Sort arrow hidden; not sorted.
+            return -1;
+        } else {
+            return imgSortIcon.getAttribute('class').then(function (className) {
+                return className.indexOf('asc') > -1 ? 1 : 0;
+            });
+        }
+    });
+};
+
 var rxSortableColumn = {
 
     btnSort: {
         get: function () {
             return this.rootElement.$('.sort-action');
-        }
-    },
-
-    imgSortIcon: {
-        get: function () {
-            return this.rootElement.$('.sort-icon');
         }
     },
 
@@ -88,26 +100,46 @@ var rxSortableColumn = {
     },
 
     currentSortDirection: {
-        // Ascending sort:  (1)  means the arrow is pointed down. [0-9, a-z]
-        // Descending sort: (0)  means the arrow is pointed up.   [z-a, 9-0]
-        // Not sorted:     (-1)  means there is no arrow for this column.
         get: function () {
-            var page = this;
-            return this.imgSortIcon.getAttribute('style').then(function (style) {
-                if (style.indexOf('hidden') > -1) {
-                    // Sort arrow hidden; not sorted.
-                    return -1;
-                } else {
-                    return page.imgSortIcon.getAttribute('class').then(function (className) {
-                        return className.indexOf('asc') > -1 ? 1 : 0;
-                    });
-                }
-            });
+            return currentSortDirection(this.rootElement);
         }
     },
 
     CellUndiscoverableError: {
         get: function () { return this.exception('repeaterString required at initialization to use'); }
+    }
+
+};
+
+// Functions for manipulating entire column sets of rx-sortable-columns.
+var rxSortableColumns = {
+
+    tblColumns: {
+        get: function () {
+            return this.rootElement.$$('rx-sortable-column');
+        }
+    },
+
+    // Return all column names in `tableElement`.
+    // If any special work needs to be done, pass in a custom `mapFn` to `getNamesUsing` instead.
+    names: {
+        get: function () {
+            return this.getNamesUsing(function (columnElement) {
+                return columnElement.$('.sort-action .ng-scope').getText();
+            });
+        }
+    },
+
+    getNamesUsing: {
+        value: function (mapFn) {
+            return this.tblColumns.map(mapFn);
+        }
+    },
+
+    sorts: {
+        get: function () {
+            return this.tblColumns.map(currentSortDirection);
+        }
     }
 
 };
@@ -124,6 +156,14 @@ exports.rxSortableColumn = {
         };
 
         return Page.create(rxSortableColumn);
+    },
+
+    byTable: function (tableElement) {
+        rxSortableColumns.rootElement = {
+            get: function () { return tableElement; }
+        };
+
+        return Page.create(rxSortableColumns);
     }
 
 };
