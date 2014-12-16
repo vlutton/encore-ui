@@ -91,7 +91,7 @@ angular.module('encore.ui.rxPaginate', [])
 
     function PageTrackingObject (opts) {
         this.settings = _.defaults(opts, {
-            itemsPerPage: 50,
+            itemsPerPage: 200,
             pagesToShow: 5,
             pageNumber: 0,
             pageInit: false,
