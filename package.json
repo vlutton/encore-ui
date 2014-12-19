@@ -19,7 +19,7 @@
     "normalize.css": "^3.0.1"
   },
   "devDependencies": {
-    "astrolabe": "~0.3.3-alpha",
+    "astrolabe": "~0.3.6",
     "chai": "~1.9.0",
     "chai-as-promised": "~4.1.0",
     "connect-livereload": "~0.4.0",
@@ -67,7 +67,7 @@
     "mocha": "^1.21.5",
     "moment": "~2.8.2",
     "node-markdown": "0.1.1",
-    "protractor": "1.4.0",
+    "protractor": "1.5.0",
     "semver": "~2.3.0"
   }
 }
