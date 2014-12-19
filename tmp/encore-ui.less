@@ -2579,6 +2579,46 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
     100% { transform: rotate(360deg); }
 }
 
+/*
+ * rxStatusColumn
+ */
+
+th.rx-status-header {
+    width: 17px;
+    padding: 0;
+}
+
+td.rx-status-column {
+    &.status-ACTIVE {
+        background: #ddffd3;
+    }
+    &.status-PENDING {
+        background: #b6b1b1;
+        i {
+            color: #666;
+        }
+    }
+    &.status-WARNING {
+        background: #fda532;
+        i {
+            color: #db7820;
+        }
+    }
+    &.status-ERROR {
+        background: #eb2124;
+        i {
+            color: #861212;
+        }
+    }
+    &.status-INFO {
+        background: #86cafd;
+        i {
+            color: #287BBD;
+        }
+    }
+
+}
+
 @import 'vars';
 
 /*

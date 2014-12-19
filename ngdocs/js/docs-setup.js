@@ -482,6 +482,42 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxStatusColumn:rxStatusColumn",
+      "shortName": "rxStatusColumn",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "A directive for drawing colored status columns in a table. This",
+      "keywords": "api colored column columns default directive draw drawing encore mapping optionally passed place rxstatuscolumn status string table takes tooltip ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxStatusColumn:rxStatusColumnIcons",
+      "shortName": "rxStatusColumnIcons",
+      "type": "object",
+      "moduleName": "encore.ui",
+      "shortDescription": "Mapping of internal statuses to FontAwesome icons.",
+      "keywords": "api defined encore fontawesome icons internal map mapping names object rxstatuscolumn statuses ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxStatusColumn:rxStatusHeader",
+      "shortName": "rxStatusHeader",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Place this attribute directive on the &lt;th&gt; for the status columns. It ensures",
+      "keywords": "api attribute columns correct directive encore ensures place rxstatuscolumn status styling ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxStatusColumn:rxStatusMappings",
+      "shortName": "rxStatusMappings",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "A set of methods for creating mappings between a product&#39;s notion",
+      "keywords": "api creating encore encore-ui identifiers mappings methods notion product rxstatuscolumn service set status statuses ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxTokenInjector:TokenInjector",
       "shortName": "TokenInjector",
       "type": "service",
