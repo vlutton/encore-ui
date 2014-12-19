@@ -1,3 +1,18 @@
+<a name="1.5.1"></a>
+### 1.5.1 (2014-12-19)
+
+
+#### Bug Fixes
+
+* **rxBreadcrumbs:** make rxBreadcrumbs name functions consistent ([a7bb55ad](git@github.com:rackerlabs/encore-ui/commit/a7bb55ad3b37ebe3b7a50e378b354269a999695a))
+
+
+#### Features
+
+* **rxPaginate:** Default to 200 pagination items ([28125b5b](git@github.com:rackerlabs/encore-ui/commit/28125b5bdd3b9ebdedb1ed8d58ce72918986c258), closes [#685](git@github.com:rackerlabs/encore-ui/issues/685))
+* **rxStatusColumn:** Add support for coloured status columns ([2d0ebabd](git@github.com:rackerlabs/encore-ui/commit/2d0ebabd3ad8245e75d66698283dab18d3d35bdd), closes [#688](git@github.com:rackerlabs/encore-ui/issues/688))
+
+
 <a name="1.5.0"></a>
 ## 1.5.0 (2014-12-12)
 
