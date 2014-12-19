@@ -413,7 +413,7 @@ describe('Pagination', function () {
         });
 
         it('Should override default itemsPerPage', function () {
-            expect(tracking.createInstance().itemsPerPage).to.be.eq(50);
+            expect(tracking.createInstance().itemsPerPage).to.be.eq(200);
             expect(tracking.createInstance({ itemsPerPage: 15 }).itemsPerPage).to.be.eq(15);
             expect(tracking.createInstance({ itemsPerPage: 55 }).itemsPerPage).to.be.eq(55);
         });
@@ -425,11 +425,11 @@ describe('Pagination', function () {
 
         it('should allow for global stickiness of the user selected itemsPerPage', function () {
             var firstTable = tracking.createInstance();
-            expect(firstTable.itemsPerPage, 'default check').to.be.eq(50);
-            tracking.userSelectedItemsPerPage(200);
+            expect(firstTable.itemsPerPage, 'default check').to.be.eq(200);
+            tracking.userSelectedItemsPerPage(50);
 
             var secondTable = tracking.createInstance();
-            expect(secondTable.itemsPerPage, 'checking second table').to.be.eq(200);
+            expect(secondTable.itemsPerPage, 'checking second table').to.be.eq(50);
             
             tracking.userSelectedItemsPerPage(500);
             var thirdTable = tracking.createInstance();
@@ -446,7 +446,7 @@ describe('Pagination', function () {
 
             // 73 isn't an option in this new pagination, so it should go back
             // to the default value of 50
-            expect(tracking.createInstance().itemsPerPage, 'new pagination instance').to.equal(50);
+            expect(tracking.createInstance().itemsPerPage, 'new pagination instance').to.equal(200);
             
         });
     });
