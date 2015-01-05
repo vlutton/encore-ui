@@ -43,7 +43,6 @@ angular.module('encore.ui.rxStatusColumn', [])
     'ERROR': 'fa-ban',
     'WARNING': 'fa-exclamation-triangle',
     'INFO': 'fa-info-circle',
-    'PENDING': 'fa-repeat fa-spin'
 })
 
 /**
