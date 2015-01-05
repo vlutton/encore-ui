@@ -2031,16 +2031,16 @@ Replace default UI of select fields and adds custom border/arrow
 
 .modal {
     position: absolute;
-    top: 50%;
+    top: 10%;
     left: 50%;
     z-index: 1050;
     width: 560px;
     padding-right: @modalPadding;
     background: @white;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
     .box-shadow(0 3px 7px rgba(0, 0, 0, 0.3));
     .background-clip();
     outline: none;
@@ -2593,13 +2593,11 @@ td.rx-status-column {
         background: #ddffd3;
     }
     &.status-PENDING {
-        background: #b6b1b1;
-        i {
-            color: #666;
-        }
+        background: #fdbc3c;
+        background-image: url('images/status-pending.gif');
     }
     &.status-WARNING {
-        background: #fda532;
+        background: #fdbc3c;
         i {
             color: #db7820;
         }
