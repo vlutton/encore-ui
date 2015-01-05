@@ -1,16 +1,36 @@
 var rxSortableColumn = require('../rxSortableColumn.page.js').rxSortableColumn;
 
 describe('rxSortableColumn', function () {
-    var nameColumn = null;
-    var roleColumn = null;
+    var columnNames = ['Name', 'Occupation'];
+    var columns, nameColumn, roleColumn;
 
     before(function () {
         demoPage.go('#/component/rxSortableColumn');
+        columns = rxSortableColumn.byTable($('.component-demo table'));
         var nameSelector = $('rx-sortable-column[sort-property="name"]');
         var roleSelector = $('rx-sortable-column[sort-property="jobTitle"]');
         nameColumn = rxSortableColumn.initialize(nameSelector, 'resource in talentPool');
         roleColumn = rxSortableColumn.initialize(roleSelector);
     });
+
+    // https://github.com/rackerlabs/encore-ui/issues/694 -- See "End odd behavior".
+    it('should have every column', function () {
+        expect(columns.names).to.eventually.eql(columnNames);
+    });
+
+    it('should apply a custom function to each column', function () {
+        var doesNotUseBoldText = function (columnElement) {
+            return columnElement.getText().then(function (text) {
+                return text.indexOf('Occupation') > -1;
+            });
+        };
+        expect(columns.getNamesUsing(doesNotUseBoldText)).to.eventually.eql([false, true]);
+    });
+
+    it('should return all sorts in the table', function () {
+        expect(columns.sorts).to.eventually.eql([0, -1]);
+    });
+    // https://github.com/rackerlabs/encore-ui/issues/694 -- End odd behavior.
 
     it('should display some sortable columns', function () {
         expect(nameColumn.rootElement.isDisplayed()).to.eventually.eq.true;
