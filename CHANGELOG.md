@@ -1,3 +1,12 @@
+<a name="1.5.2"></a>
+### 1.5.2 (2015-01-05)
+
+
+#### Bug Fixes
+
+* **rxModal:** Fix top placement of modal ([d33a5e7d](git@github.com:rackerlabs/encore-ui/commit/d33a5e7d1b1001103c6565c8bee67f1a17edd99a))
+
+
 <a name="1.5.1"></a>
 ### 1.5.1 (2014-12-19)
 
