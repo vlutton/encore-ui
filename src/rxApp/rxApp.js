@@ -10,11 +10,12 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
 * @returns {object} Instance of rxAppRoutes with `fetchRoutes` method added
 */
 .factory('encoreRoutes', function (rxAppRoutes, routesCdnPath, rxNotify, $q, $http,
-                                     rxVisibilityPathParams, rxVisibility, Environment) {
+                                     rxVisibilityPathParams, rxVisibility, Environment, rxHideIfUkAccount) {
 
     // We use rxVisibility in the nav menu at routesCdnPath, so ensure it's ready
     // before loading from the CDN
     rxVisibility.addVisibilityObj(rxVisibilityPathParams);
+    rxVisibility.addVisibilityObj(rxHideIfUkAccount);
 
     var encoreRoutes = new rxAppRoutes();
 
@@ -525,6 +526,25 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
 })
 
 /*
+ * @ngdoc object
+ * name encore.ui.rxApp:rxHideIfUkAccount
+ * @description
+ * Check if account number in URL is of the UK origin
+ * @return false if account number matches UK pattern
+ * Use it as `visibility: [ 'rxHideIfUkAccount' ]`
+ */
+.factory('rxHideIfUkAccount', function ($routeParams) {
+    var isUkAccount = {
+        name: 'rxHideIfUkAccount',
+        method: function () {
+            return $routeParams.accountNumber < 10000000;
+        }
+    };
+
+    return isUkAccount;
+})
+
+/*
  * @ngdoc provider
  * name encore.ui.rxApp: rxStatusTags
  * @description
@@ -536,7 +556,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
  * these should rarely, if ever, be needed outside of the framework.
  */
 .provider('rxStatusTags', function () {
-     
+
     var allTags = {
         alpha: {
             class: 'alpha-status',
