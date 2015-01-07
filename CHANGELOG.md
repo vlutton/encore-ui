@@ -1,3 +1,13 @@
+<a name="1.5.3"></a>
+### 1.5.3 (2015-01-07)
+
+
+#### Features
+
+* **rxHideIfUkAccount:** hides nav if UK account ([3315e62c](git@github.com:rackerlabs/encore-ui/commit/3315e62c535fd8974fb8ba6955d7700c6c1ca16d))
+* **styleguide:** Add new styleguide ([33dde61a](git@github.com:rackerlabs/encore-ui/commit/33dde61aed645c0f93ba0a7d01394c308e4f4131), closes [#712](git@github.com:rackerlabs/encore-ui/issues/712), [#711](git@github.com:rackerlabs/encore-ui/issues/711), [#709](git@github.com:rackerlabs/encore-ui/issues/709), [#708](git@github.com:rackerlabs/encore-ui/issues/708), [#707](git@github.com:rackerlabs/encore-ui/issues/707), [#705](git@github.com:rackerlabs/encore-ui/issues/705), [#704](git@github.com:rackerlabs/encore-ui/issues/704))
+
+
 <a name="1.5.2"></a>
 ### 1.5.2 (2015-01-05)
 
