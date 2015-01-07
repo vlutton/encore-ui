@@ -34,7 +34,7 @@ This will add a new message to the default stack ('page') with all default optio
 
     > Default: `'info'`
 
-    *Other values*: `'warn'`, `'error'`, `'success'`
+    *Other values*: `'warning'`, `'error'`, `'success'`
 
 ------
 
