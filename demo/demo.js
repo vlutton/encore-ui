@@ -6,6 +6,9 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
 
     $scope.component = component;
 })
+.controller('styleguideCtrl', function (rxBreadcrumbsSvc) {
+    rxBreadcrumbsSvc.set();
+})
 .config(function ($routeProvider, rxStatusTagsProvider) {
     $routeProvider
         .when('/', {
@@ -19,6 +22,58 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         })
         .when('/overview', {
             templateUrl: 'overview.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })
+        .when('/styleguide/basics', {
+            templateUrl: 'styleguide/basics.html',
+            controller: 'styleguideCtrl'
+        })
+        .when('/styleguide/layouts', {
+            templateUrl: 'styleguide/layouts.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })
+        .when('/styleguide/layouts/1', {
+            templateUrl: 'styleguide/layout-1.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })
+        .when('/styleguide/layouts/2', {
+            templateUrl: 'styleguide/layout-2.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })
+        .when('/styleguide/layouts/3', {
+            templateUrl: 'styleguide/layout-3.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })        
+        .when('/styleguide/buttons', {
+            templateUrl: 'styleguide/buttons.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })
+        .when('/styleguide/tables', {
+            templateUrl: 'styleguide/tables.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })
+        .when('/styleguide/forms', {
+            templateUrl: 'styleguide/forms.html',
+            controller: function (rxBreadcrumbsSvc) {
+                rxBreadcrumbsSvc.set();
+            }
+        })
+        .when('/styleguide/modals', {
+            templateUrl: 'styleguide/modals.html',
             controller: function (rxBreadcrumbsSvc) {
                 rxBreadcrumbsSvc.set();
             }
@@ -42,7 +97,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         text: 'Demo Tag'
     });
 })
-.run(function ($rootScope, components, $window, Environment, rxBreadcrumbsSvc) {
+.run(function ($rootScope, components, $window, $location, $anchorScroll, Environment, rxBreadcrumbsSvc, rxPageTitle) {
     var baseGithubUrl = '//rackerlabs.github.io/encore-ui/';
     Environment.add({
         name: 'ghPages',
@@ -96,38 +151,225 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             ]
         },
         {
+            title: 'Design Styleguide',
+            children: [
+                {
+                    href: '#/styleguide/basics',
+                    linkText: 'Basics',
+                    children: [
+                        {
+                            href: '#/styleguide/basics#typography',
+                            linkText: 'Typography'
+                        },
+                        {
+                            href: '#/styleguide/basics#heading-title-styles',
+                            linkText: 'Header & Title Styles'
+                        },                        
+                        {
+                            href: '#/styleguide/basics#descriptions-metadata',
+                            linkText: 'Descriptions & Metadata'
+                        },
+                        {
+                            href: '#/styleguide/basics#lists',
+                            linkText: 'Lists'
+                        },
+                        {
+                            href: '#/styleguide/basics#wells',
+                            linkText: 'Wells'
+                        },
+                        {
+                            href: '#/styleguide/basics#helper-classes',
+                            linkText: 'Helper classes'
+                        }
+                    ]
+                },
+                {
+                    href: '#/styleguide/layouts',
+                    linkText: 'Layouts',
+                    children: [
+                        {
+                            href: '#/styleguide/layouts',
+                            linkText: 'Grids'
+                        },
+                        {
+                            href: '#/styleguide/layouts',
+                            linkText: 'Sample Layouts',
+                            children: [
+                                {
+                                    href: '#/styleguide/layouts/1',
+                                    linkText: 'Layout 1: Detail Page'
+                                },
+                                {
+                                    href: '#/styleguide/layouts/2',
+                                    linkText: 'Layout 2: Data Table'
+                                },
+                                {
+                                    href: '#/styleguide/layouts/3',
+                                    linkText: 'Layout 3: Create Form'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    href: '#/styleguide/buttons',
+                    linkText: 'Buttons & Links',
+                    children: [
+                        {
+                            href: '#/styleguide/buttons',
+                            linkText: 'Customizing Buttons'
+                        },
+                        {
+                            href: '#/styleguide/buttons#colors',
+                            linkText: 'Using Colors and Icons'
+                        }                    
+                    ]
+                },
+                {
+                    href: '#/styleguide/tables',
+                    linkText: 'Tables',
+                    children: [
+                        {
+                            href: '#/styleguide/tables',
+                            linkText: 'Basics'
+                        },
+                        {
+                            href: '#/styleguide/tables#directives',
+                            linkText: 'Directives'
+                        },                                            
+                        {
+                            href: '#/styleguide/tables#designpatterns',
+                            linkText: 'Design Patterns'
+                        },
+                        {
+                            href: '#/styleguide/tables#roadmap',
+                            linkText: 'UI Roadmap / Possible Future-work'
+                        }                    
+                    ]
+                },
+                {
+                    href: '#/styleguide/forms',
+                    linkText: 'Forms',
+                    children: [
+                        {
+                            href: '#/styleguide/forms',
+                            linkText: 'Directives'
+                        },
+                        {
+                            href: '#/styleguide/forms#designpatterns',
+                            linkText: 'Design Patterns within Encore'
+                        },
+                        {
+                            href: '#/styleguide/forms#roadmap',
+                            linkText: 'UI Roadmap / Possible Future-work'
+                        }                        
+                    ]
+                },
+                {
+                    href: '#/styleguide/modals',
+                    linkText: 'Modals',
+                    children: [
+                        {
+                            href: '#/styleguide/modals',
+                            linkText: 'Basic Usage'
+                        },
+                        {
+                            href: '#/styleguide/modals#designpatterns',
+                            linkText: 'Design Best Practices'
+                        },
+                        {
+                            href: '#/styleguide/modals#roadmap',
+                            linkText: 'UI Roadmap / Possible Future-work'
+                        }                         
+                    ]                    
+                }
+            ]
+        },
+        {
             title: 'All Components',
             children: []
         }
     ];
 
     _.each(components, function (component) {
-        demoNav[1].children.push({
+        demoNav[2].children.push({
             href: '#/component/' + component.name,
             linkText: component.name
         });
     });
 
     $rootScope.demoNav = demoNav;
+    
+    rxPageTitle.setSuffix(' - Encore-UI');
 
     $rootScope.$on('$routeChangeSuccess', function() {
-        $window.scrollTo(0,0);
+
+        if ($location.hash()) {
+            $anchorScroll();
+        } else {
+            $window.scrollTo(0,0);
+        }
     });
 })
-.directive('rxPrism', function ($timeout) {
+.directive('rxPrism', function ($timeout, $http) {
     return {
         restrict: 'E',
         template: '<pre><code class="language-{{language}}" ng-transclude></code></pre>',
         scope: {
-            language: '@'
+            language: '@',
+            codeUrl: '@',
+        
         },
         transclude: true,
         link: function (scope, el) {
             // delay execution of Prism until ng bindings have completed
             $timeout(function () {
                 var code = el.find('code')[0];
-                Prism.highlightElement(code);
+                if (scope.codeUrl) {
+                    $http.get(scope.codeUrl).then(function (result) {
+                        code.textContent = result.data;
+                        Prism.highlightElement(code);
+                    });
+                } else {
+                    Prism.highlightElement(code);
+                }
             }, 0);
         }
+    };
+})
+
+// Used for drawing the Demo and Markup tabs in the styleguide
+.directive('rxStyleguide', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'styleguide/rx-styleguide.html',
+        scope: {
+            codeUrl: '@'
+        }
+    };
+})
+
+// Used by the Tables styleguide page to show pagination
+.controller('tablePaginateExampleController', function ($scope, PageTracking) {
+    $scope.pager = PageTracking.createInstance();
+    $scope.people = [
+        { name: 'Patrick Deuley', occupation: 'Design Chaplain' },
+        { name: 'Hussam Dawood', occupation: 'Cat Lover' }
+    ];
+})
+
+// Used by the Layout 2 styleguide page to show pagination
+.controller('layout2StyleguideCtrl', function ($scope, PageTracking) {
+    $scope.pager = PageTracking.createInstance();
+    $scope.people = [
+        { name: 'Patrick Deuley', occupation: 'Design Chaplain', number: 1, status: 'ACTIVE' },
+        { name: 'Hussam Dawood', occupation: 'Cat Lover', number: 2, status: 'ACTIVE' },
+        { name: 'Kevin Lamping', occupation: 'Framework Father', number: 3, status: 'ERROR' },
+        { name: 'Glynnis Ritchie', occupation: 'Serif Sheriff', number: 4, status: 'INFO' },
+        { name: 'Freddy Knuth', occupation: 'Venezuelan Hurricane', number: 5, status: 'WARNING' },
+        { name: 'Chris Cantu', occupation: 'Texan Tornado', number: 6, status: 'PENDING' },
+    ];
+    $scope.clearFilter = function () {
+        $scope.searchText = '';
     };
 });
