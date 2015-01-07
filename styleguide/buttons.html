@@ -1,0 +1,49 @@
+<rx-page title="'Buttons &amp; Links'">
+
+<h3 class="title clear">Basics</h3>
+
+<p>While buttons in Encore-UI can be marked up multiple ways: through <code>button</code>, <code>input type="button"</code> or <a href="http://rackerlabs.github.io/encore-ui/#/component/rxButton">the rxButton direcitve</a>, which adds dynamic actions to loading indicators and messages - they should be styled using the <code>.button</code> class.</p>
+
+
+    <h3 class="title clear">Customizing Buttons</h3>
+    <div class="component-description clear">
+
+        <p>Buttons are sized using <code>xl</code>, <code>lg</code>, <code>sm</code> and <code>xs</code> classes. Not adding the additional class defaults the size to medium.</p>
+
+<h2>Using Colors with Buttons</h2>
+
+<p><span class="msg-info">ENCORE-SPECIFIC:</span> In the context of the Encore-UI, when is a button blue and when is a button green?</p>
+<ul class="list">
+    <li>If the form you are submitting results in CREATING or ADDING something, use green.</li>
+    <li>If the form you are submitting results in editing something or something auxiliary (like getting metadata from a different sources) keep it blue.</li>
+</ul>
+
+    </div>
+
+    <rx-styleguide code-url="styleguide/buttons/custom-buttons.html"></rx-styleguide>
+
+    <h3 class="title">Using Colors and Icons With Links</h2>
+    <div class="component-description clear">
+
+<h2 id="colors">Colors</h2>
+
+<p>Status Classes are used to provide a clearer status regarding a simple message. Within the context of Encore, we use the following colors to convey action links:</p>
+<ul class="list">
+    <li>Green (<code>.msg-action</code>) is for create/add actions. When part of a list, they appear at the top.</li>
+    <li>Blue (<code>.msg-info-blue</code>) is for edit/modify actions. When part of a list, they appear second.</li>
+    <li>Orange (<code>.msg-info</code>) is for build an action upon something. When part of a list, they appear third.</li>
+    <li>Red (<code>.msg-warn</code>) is for destructive actions. When part of a list, they appear last.</li>
+</ul>
+<p>
+<p><span class="msg-warn">HEADS UP:</span> Because these classes are colors, they can also be applied to regular text as well. This can cause confusion between when something is a text and something is an action. This is a design pattern discrepancy that will need to be resolved in a future iteration.</p>
+
+<h2>Icons</h2>
+<p>We've been using the <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> library as a way to primarily visualize actionable items. For the majority of Encore, actionable links are used in two places - in the upper right hand section of a details page, flushed right with the <code>page-actions</code> and <code>actions-area</code> classes, or in the rxActionMenu directive.</p>
+<p>Below we have included some icons that have used throughout Encore, as well as the actions associated with the icons. Feel free to re-use these icons as you see fit.</p>
+
+<p><span class="msg-warn">HEADS UP:</span> Most icons have been chosen based on the verb (Add, Edit, Delete, Restart, etc) but there are a couple of icons chosen on the noun (consoles, tachometers for throttling). This is a design pattern discrepancy that will need to be resolved in a future iteration.</p>
+
+    </div>
+    <rx-styleguide code-url="styleguide/buttons/links.html"></rx-styleguide>
+
+</rx-page>

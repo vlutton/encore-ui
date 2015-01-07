@@ -1,0 +1,37 @@
+<rx-page title="'Layouts'">
+
+    <h3 class="title clear">Grids</h3>
+    <div class="component-description clear">
+
+        <p>While Encore-UI was initially designed to be an AngularJS widget library, we recognize that teams will want to use a CSS layout framework. We have added the <a href="http://purecss.io/grids/">Grids module from Yahoo!'s Pure CSS framework</a> for teams to easily build out a grid or column system as part of Encore-UI. We chose this lightweight framework for its emphasis on flex based layouts.</p>
+
+        <h2>Usage</h2>
+
+<p>No additional installation is required. We have automatically included <code>grids-min.css</code> in the encore-ui CSS libraries.</p>
+<p>Note that most of the grid layouts you will use will be in the context of <code>rxPage</code> inside <code>rxApp</code>. For this reason we will be using the regular grids only, and not responsive grids.</p>
+<p>The code sample below will probably give the clearest context of how grids work. Note that the <code>.pure-g</code> also has a <code>clear</code> class attached because title containers on <code>rxPage</code> components are defaulted to float left.</p>
+<p>You'll find that the grid components will not have borders or padding within the grid units themselves. If you need white space between grid columns, adding a <code>.columns</code> class to the <code>.pure-g</code> container will give padding of 1.5ems per each individual cell, or 3ems together.</p>
+
+    </div>
+
+    <rx-styleguide code-url="styleguide/layouts/grids.html"></rx-styleguide>
+
+    <h3 class="title clear">Common Layouts</h2>
+    <div class="component-description clear">
+        <p>We've made some common layouts. When viewing these layouts, view or copy the source to get a good understanding of what's happening.</p>
+
+        <p>Note that the purpose of these layouts are to show design patterns and source markup rather than functionality, so as a result we have not included any angular.js components. As a result, the page may not function the way you expect.</p>
+
+        <ul class="list">
+        	<li><a href="#/styleguide/layouts/1">Layout #1</a>: two metadata element in two columns, an action menu with three datatables. (<a href="https://github.com/rackerlabs/encore-ui/tree/master/demo/styleguide/layout-1.html">markup</a>) Uses <a href="http://rackerlabs.github.io/encore-ui/#/component/rxApp">rxPage</a>, grids, metadata and basic table components.</li>
+
+        	<li><a href="#/styleguide/layouts/2">Layout #2</a>: Multiple-column data table. (<a href="https://github.com/rackerlabs/encore-ui/tree/master/demo/styleguide/layout-2.html">markup</a>) Uses <a href="http://rackerlabs.github.io/encore-ui/#/component/rxApp">rxPage</a>, <a href="http://rackerlabs.github.io/encore-ui/#/component/rxActionMenu">rxActionMenu</a>, parts of <a href="http://rackerlabs.github.io/encore-ui/#/component/rxPaginate">rxPaginate</a> and <a href="http://rackerlabs.github.io/encore-ui/#/component/rxModalAction">rxModalAction</a></li>
+
+        	<li><a href="#/styleguide/layouts/3">Layout #3</a>: create form that is page wide (rather than a modal) (<a href="https://github.com/rackerlabs/encore-ui/tree/master/demo/styleguide/layout-3.html">markup</a>). Uses <a href="http://rackerlabs.github.io/encore-ui/#/component/rxApp">rxPage</a> and sub-directives related to rxForm: <a href="http://rackerlabs.github.io/encore-ui/#/component/rxForm">rxFormItem, rxFormFieldset and parts of rxFormOptionTable</a>.</li>
+        </ul>
+
+
+    </div>
+
+
+</rx-page>
