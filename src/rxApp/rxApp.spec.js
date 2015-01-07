@@ -197,7 +197,7 @@ describe('rxApp - customURL', function () {
     }];
 
     beforeEach(function () {
-        
+
         var customURL = 'foo.json';
 
         // load module
@@ -234,7 +234,7 @@ describe('rxApp - customURL', function () {
 
         el = helpers.createDirective(standardTemplate, compile, scope);
 
-        // Because we want to test things on the scope that were defined 
+        // Because we want to test things on the scope that were defined
         // outside of the scope: {} object, we need to use the isolateScope
         // function
         isolateScope = el.isolateScope();
@@ -312,7 +312,6 @@ describe('rxApp - preprod environment', function () {
             httpMock = $httpBackend;
             cdnPath = routesCdnPath;
         });
-        
 
         cdnGet = httpMock.whenGET(cdnPath.preprod);
         cdnGet.respond(defaultNav);
@@ -330,7 +329,7 @@ describe('rxApp - preprod environment', function () {
     it('should have set isPreProd on the scope', function () {
         expect(isolateScope.isPreProd).to.be.true;
     });
-    
+
     it('should have set isWarning on the scope', function () {
         expect(isolateScope.isWarning).to.be.true;
     });
@@ -339,7 +338,7 @@ describe('rxApp - preprod environment', function () {
         expect(isolateScope.warningMessage)
             .to.contain('You are using a pre-production environment that has real, live production data!');
     });
-    
+
 });
 
 describe('rxAppNav', function () {
@@ -620,7 +619,7 @@ describe('rxVisibility', function () {
 
         rxvisibility.addMethod('foo', method);
         expect(rxvisibility.getMethod('foo'), 'getMethod').to.equal(method);
-        
+
     });
 
     it('should return undefined for an unknown method', function () {
@@ -642,7 +641,7 @@ describe('rxVisibilityPathParams', function () {
         module(function ($routeProvider) {
             $routeProvider.when('/foo/:barId', {});
         });
-        
+
         inject(function ($location, $route, $rootScope, $routeParams, rxVisibilityPathParams) {
             $location.path('/foo/someIdForBar');
             $rootScope.$digest();
@@ -653,6 +652,45 @@ describe('rxVisibilityPathParams', function () {
             expect(method(scope, { param: 'abc' }), ':abc is not defined, should not be present').to.be.false;
         });
 
+    });
+});
+
+describe('rxHideIfUkAccount', function () {
+    var $location, $route, $rootScope, $routeParams, rxHideIfUkAccount;
+
+    beforeEach(function () {
+        // Necessary so `$routeProvider` is available
+        module('ngRoute');
+
+        module('encore.ui.rxApp');
+
+        module(function ($routeProvider) {
+            $routeProvider.when('/accounts/:accountNumber', {});
+        });
+
+        inject(function ($injector) {
+            $location = $injector.get('$location');
+            $route = $injector.get('$route');
+            $rootScope = $injector.get('$rootScope');
+            $routeParams = $injector.get('$routeParams');
+            rxHideIfUkAccount = $injector.get('rxHideIfUkAccount');
+        });
+    });
+
+    it('should return false if UK account', function () {
+        $location.path('/accounts/10000001');
+        $rootScope.$digest();
+        expect($routeParams).to.deep.equal({ accountNumber: '10000001' });
+        var method = rxHideIfUkAccount.method;
+        expect(method(), 'UK Account should return false').to.be.false;
+    });
+
+    it('should return true if not UK account', function () {
+        $location.path('/accounts/9999999');
+        $rootScope.$digest();
+        expect($routeParams).to.deep.equal({ accountNumber: '9999999' });
+        var method = rxHideIfUkAccount.method;
+        expect(method(), 'Non-UK Account should return true').to.be.true;
     });
 });
 
@@ -743,7 +781,7 @@ describe('rxStatusTags - custom status tags', function () {
     var rxstatusTags;
 
     beforeEach(function () {
-        
+
         // Initialize a fake module to get at its config block
         // This is the main purpose of this whole `describe` block,
         // to test that this can be set in a `.config`
@@ -776,7 +814,7 @@ describe('rxStatusTags - custom status tags', function () {
         expect(config.text).to.equal('');
         expect(config.class).to.equal('');
         expect(rxstatusTags.hasTag('missingKey')).to.be.false;
-        
+
     });
 
 });
@@ -814,7 +852,7 @@ describe('rxStatusTag', function () {
         var span = emptyEl.find('.status-tag');
         expect(span.length).to.equal(0);
     });
-    
+
     it('does not draw the tag when an unknown status key is provided', function () {
         var span = badEl.find('.status-tag');
         expect(span.length).to.equal(0);
