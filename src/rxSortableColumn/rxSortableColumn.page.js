@@ -91,7 +91,7 @@ var rxSortableColumn = {
             var page = this;
             return this.sortProperty.then(function (sortProperty) {
                 if (page.repeaterString === undefined) {
-                    page.CellUndiscoverableError('data');
+                    page.CellUndiscoverableError.thro('data');
                 }
 
                 return customFn(element.all(by.repeater(page.repeaterString).column(sortProperty)));
