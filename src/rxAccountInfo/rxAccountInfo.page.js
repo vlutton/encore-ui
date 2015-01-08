@@ -29,7 +29,13 @@ var rxAccountInfo = {
 
     tblBadges: {
         get: function () {
-            return this.rootElement.all(by.repeater('badge in badges'));
+            return this.rootElement.$$('.account-info-badge img');
+        }
+    },
+
+    lblStatus: {
+        get: function () {
+            return this.rootElement.$('.account-status');
         }
     },
 
@@ -48,6 +54,23 @@ var rxAccountInfo = {
     number: {
         get: function () {
             return this.rootElement.element(by.binding('accountNumber')).getText();
+        }
+    },
+
+    status: {
+        get: function () {
+            return this.lblStatus.getText().then(function (text) {
+                return text.toLowerCase();
+            });
+        }
+    },
+
+    statusType: {
+        get: function () {
+            return this.lblStatus.getAttribute('class').then(function (classNames) {
+                var className = classNames.match(/msg-(\w+)/);
+                return className === null ? 'active' : className[1];
+            });
         }
     },
 
@@ -75,6 +98,14 @@ var rxAccountInfo = {
                     }
                 },
 
+                names: {
+                    get: function () {
+                        return page.tblBadges.map(function (badgeElement) {
+                            return badge(badgeElement).name;
+                        });
+                    }
+                },
+
                 count: {
                     value: function () {
                         return page.tblBadges.count();
@@ -89,15 +120,6 @@ var rxAccountInfo = {
         get: function () {
             var page = this;
             return Page.create({
-                all: {
-                    get: function () {
-                        return page.tblBadges.reduce(function (acc, badgeElement) {
-                            acc.push(badge(badgeElement));
-                            return acc;
-                        }, []);
-                    }
-                },
-
                 matchingName: {
                     value: function (badgeRegExp) {
                         return page.tblBadges.filter(function (badgeElement) {
@@ -131,6 +153,24 @@ exports.rxAccountInfo = {
             get: function () { return $('html'); }
         };
         return Page.create(rxAccountInfo);
-    })()
+    })(),
+
+    statuses: {
+        approvalDenied: 'approval denied',
+        aupViolation: 'aup violation',
+        delinquent: 'delinquent',
+        pendingApproval: 'pending approval',
+        pendingMigration: 'pending migration',
+        suspended: 'suspended',
+        terminated: 'terminated',
+        testStatus: 'teststatus',
+        unverified: 'unverified'
+    },
+
+    statusTypes: {
+        active: 'active',
+        info: 'info',
+        warning: 'warn'
+    }
 
 };

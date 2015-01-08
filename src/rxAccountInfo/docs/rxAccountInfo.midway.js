@@ -23,12 +23,7 @@ describe('rxAccountInfo', function () {
     });
 
     describe('badges', function () {
-        var badgesArray;
-        before(function () {
-            rxAccountInfo.badges.all.then(function (badges) {
-                badgesArray = badges;
-            });
-        });
+        var badgeNames = ['Creative Commons', 'Attribution', 'Non-Commercial', 'Public Domain'];
 
         it('should have four badges on the first Account Info box', function () {
             expect(rxAccountInfo.badge.count()).to.eventually.equal(4);
@@ -39,9 +34,8 @@ describe('rxAccountInfo', function () {
             expect(rxAccountInfo.badge.byIndex(0).src).to.eventually.equal(src);
         });
 
-        it('should have the correct first badge src via badges.all', function () {
-            var src = 'http://mirrors.creativecommons.org/presskit/icons/cc.large.png';
-            expect(badgesArray[0].src).to.eventually.equal(src);
+        it('should have badge names', function () {
+            expect(rxAccountInfo.badge.names).to.eventually.eql(badgeNames);
         });
 
         it('should have the right name on the last badge', function () {
@@ -74,6 +68,50 @@ describe('rxAccountInfo', function () {
                 });
             });
 
+        });
+
+    });
+
+    var statuses = rxAccountInfoPage.statuses;
+    var statusTypes = rxAccountInfoPage.statusTypes;
+    describe('account with warning status type', function () {
+        var warningAccount;
+
+        before(function () {
+            warningAccount = rxAccountInfoPage.initialize($('.delinquent-account rx-account-info'));
+        });
+
+        it('should have a name', function () {
+            expect(warningAccount.name).to.eventually.equal('DelinquentAccount');
+        });
+
+        it('should have a deliquent status', function () {
+            expect(warningAccount.status).to.eventually.equal(statuses.delinquent);
+        });
+
+        it('should have a warning type', function () {
+            expect(warningAccount.statusType).to.eventually.equal(statusTypes.warning);
+        });
+
+    });
+
+    describe('account with info status type', function () {
+        var infoAccount;
+
+        before(function () {
+            infoAccount = rxAccountInfoPage.initialize($('.unverified-account rx-account-info'));
+        });
+
+        it('should have a name', function () {
+            expect(infoAccount.name).to.eventually.equal('UnverifiedAccount');
+        });
+
+        it('should have a deliquent status', function () {
+            expect(infoAccount.status).to.eventually.equal(statuses.unverified);
+        });
+
+        it('should have a warning type', function () {
+            expect(infoAccount.statusType).to.eventually.equal(statusTypes.info);
         });
 
     });

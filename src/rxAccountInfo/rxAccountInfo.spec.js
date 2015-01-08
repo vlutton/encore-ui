@@ -1,8 +1,8 @@
 /* jshint node: true */
 
 describe('rxAccountInfo', function () {
-    var scope, compile, rootScope, el, q, rxnotify;
-    var validTemplate = '<rx-account-info account-number="123"></rx-account-info>';
+    var scope, compile, rootScope, el, q, rxnotify, encoreRoutesMock;
+    var validTemplate = '<rx-account-info account-info-banner="true" account-number="123"></rx-account-info>';
     var defaultStack = 'page';
 
     var account, badges, teamBadges;
@@ -10,7 +10,8 @@ describe('rxAccountInfo', function () {
     beforeEach(function () {
 
         account = {
-            name: 'Mosso'
+            name: 'Mosso',
+            status: 'Active'
         };
 
         badges = [
@@ -46,6 +47,32 @@ describe('rxAccountInfo', function () {
                 return {
                     badges: function () {}
                 };
+            })
+            .factory('AccountStatusGroup', function () {
+                return function (accountStatus) {
+                    accountStatus = accountStatus.toLowerCase();
+                    if (accountStatus === 'active') {
+                        return '';
+                    } else if (accountStatus === 'delinquent') {
+                        return 'warning';
+                    } else if (accountStatus === 'pending approval') {
+                        return 'info';
+                    }
+                };
+            })
+            .factory('encoreRoutes', function ($q) {
+                var mockReturn = false;
+                return {
+                    isActiveByKey: function () {
+                        var deferred = $q.defer();
+                        deferred.resolve(mockReturn);
+                        return deferred.promise;
+                    },
+
+                    setMock: function (mockValue) {
+                        mockReturn = mockValue;
+                    }
+                };
             });
 
         // load module
@@ -56,15 +83,17 @@ describe('rxAccountInfo', function () {
 
         // load templates
         module('templates/rxAccountInfo.html');
+        module('templates/rxAccountInfoBanner.html');
 
         // Inject in angular constructs
         inject(function ($location, $rootScope, $compile, $q, Encore, SupportAccount,
-                rxNotify, Teams) {
+                rxNotify, Teams, encoreRoutes) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
             q = $q;
             rxnotify = rxNotify;
+            encoreRoutesMock = encoreRoutes;
             helpers.resourceStub($q, Encore, 'getAccount', account);
             helpers.resourceStub($q, SupportAccount, 'getBadges', badges);
             helpers.resourceStub($q, Teams, 'badges', teamBadges);
@@ -76,7 +105,6 @@ describe('rxAccountInfo', function () {
     it('should render template correctly', function () {
         scope.$digest();
         expect(el).not.be.empty;
-        expect(el.find('h3').text()).to.contain('Account Info');
     });
 
     it('should construct the proper account url', function () {
@@ -93,6 +121,36 @@ describe('rxAccountInfo', function () {
         account.$deferred.resolve(account);
         scope.$digest();
         expect(el.text()).to.contain('Mosso');
+    });
+
+    it('should set an empty status class for an Active account', function () {
+        account.$deferred.resolve(account);
+        scope.$digest();
+        expect(el.isolateScope().statusClass).to.equal('');
+    });
+
+    it('should set the warning class for Deliquent', function () {
+        account.status = 'Delinquent';
+        account.$deferred.resolve(account);
+        scope.$digest();
+        expect(el.isolateScope().statusClass).to.equal('msg-warn');
+    });
+    
+    it('should set the info class for Pending Approval', function () {
+        account.status = 'Pending Approval';
+        account.$deferred.resolve(account);
+        scope.$digest();
+        expect(el.isolateScope().statusClass).to.equal('msg-info');
+    });
+
+    it('should not show Current User by default', function () {
+        expect(el.text()).to.not.contain('Current User');
+    });
+
+    it('should show Current User when in Cloud', function () {
+        encoreRoutesMock.setMock(true);
+        el = helpers.createDirective(validTemplate, compile, scope);
+        expect(el.text()).to.contain('Current User');
     });
 
     it('should populate the badges', function () {

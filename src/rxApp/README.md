@@ -71,6 +71,17 @@ capable of executing arbitrary Javascript, so you must ensure that you trust the
 
 In either case (`title` or `unsafe-html-title`), the document title (i.e. visible in the browser tab) will be set to your chosen title. If you use `unsafe-html-title`, all HTML tags will be stripped before setting the document title.
 
+### Account Info below Breadcrumbs
+
+`rxPage` integrates the [rxAccountInfo](#/component/rxAccountInfo) component, to draw the Account Info box directly underneath the `rxBreadcrumbs`. This is opt-in. By default, it will not appear. To enable it, pass the `account-number="..."` attribute to `<rx-page>` in your template, i.e
+
+    <rx-page account-number="{{ accountNumber }}">
+
+As noted on the [rxAccountInfo](#/component/rxAccountInfo) demo page, this directive requires that `SupportAccount`, `Encore` and `Teams` services are available to the Angular Dependency Injection system. These are *not* provided by Encore-UI, but are available in an internal Rackspace repository.
+
+
+### Status tags
+
 A final attribute that `rx-page` accepts is `status`. This takes a string, and has the effect of drawing a status "tag" beside the page title. The "Customized rxApp" demo shows the use of this with the `"alpha"` tag.
 
 The framework currently provides `"alpha"` and `"beta"` tags, but any product can specify their own custom tags using the `rxStatusTagsProvider`. It currently

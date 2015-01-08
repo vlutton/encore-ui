@@ -153,8 +153,9 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
             title: '=',
             unsafeHtmlTitle: '=',
             subtitle: '=',
-            status: '@'
-
+            status: '@',
+            accountNumber: '@',
+            teamId: '@'
         },
         link: function (scope, element) {
             // Remove the title attribute, as it will cause a popup to appear when hovering over page content
