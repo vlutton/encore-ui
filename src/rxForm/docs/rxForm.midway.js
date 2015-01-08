@@ -118,9 +118,7 @@ describe('rxForm', function () {
         it('should have every option listed', function () {
             var options = ['SATA', 'SSD', 'CD', 'DVD', 'BLURAY', 'TAPE', 'FLOPPY',
                            'LASERDISC', 'JAZDRIVE', 'PUNCHCARDS', 'RNA'];
-            dropdown.allOptions.then(function (allOptions) {
-                expect(Object.keys(allOptions)).to.eql(options);
-            });
+            expect(dropdown.options).to.eventually.eql(options);
         });
 
         it('should have a selected option by default', function () {

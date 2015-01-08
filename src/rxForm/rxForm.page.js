@@ -36,15 +36,11 @@ var optionFromElement = function (optionElement) {
 
 var dropdown = {
 
-    allOptions: {
+    options: {
         get: function () {
-            return this.rootElement.$$('option').reduce(function (acc, optionElement) {
-                var option = optionFromElement(optionElement);
-                return option.text.then(function (text) {
-                    acc[text] = option;
-                    return acc;
-                });
-            }, {});
+            return this.rootElement.$$('option').map(function (optionElement) {
+                return optionFromElement(optionElement).text;
+            });
         }
     },
 
