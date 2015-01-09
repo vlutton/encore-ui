@@ -404,6 +404,23 @@ describe('rxNotify', function () {
             var newEl = el2.find('span').eq(1);
             expect(newEl.text()).to.contain(messageText1);
         });
+
+        it('should add notification to stack and remove original element', function () {
+            var stackTemplate = '<div><rx-notification stack="page" type="info">' + messageText1 +
+                                    '</rx-notification></div>';
+
+            // Before compiling this notification, stack should be empty
+            expect(notifySvc.stacks[defaultStack].length).to.equal(0);
+            el2 = helpers.createDirective(stackTemplate, compile, scope);
+
+            // Stack should now have the contents of the notification directive
+            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
+            expect(notifySvc.stacks[defaultStack][0].type).to.equal('info');
+            expect(notifySvc.stacks[defaultStack][0].text).to.contain(messageText1);
+
+            // el2 is now <div></div> and it should have no children
+            expect(el2.children().length).to.equal(0);
+        });
     });
 
     describe('Directive: rxNotifications', function () {

@@ -71,4 +71,20 @@
     <rx-notification type="error">Hello, world!</rx-notification>
     <rx-notification type="warning">Hello, world!</rx-notification>
     <rx-notification type="info">Hello, world!</rx-notification>
+
+    <p>Using rx-notification with custom stack</p>
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <h2>Demo Stack (demo-stack)</h2>
+            <rx-notifications stack="demo-stack"></rx-notifications>
+        </div>
+
+        <div class="pure-u-1-2">
+            <h2>Custom Stack (custom-stack)</h2>
+            <rx-notifications stack="custom-stack"></rx-notifications>
+        </div>
+    </div>
+
+    <rx-notification stack="demo-stack" type="info">Hello, world in demo-stack stack!</rx-notification>
+    <rx-notification stack="custom-stack" type="warning">Hello, world in custom-stack stack!</rx-notification>
 </div>
