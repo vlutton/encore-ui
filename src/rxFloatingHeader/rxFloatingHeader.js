@@ -36,7 +36,7 @@ angular.module('encore.ui.rxFloatingHeader', [])
                 ths = ths.concat(_.map(tr.find('th'), angular.element));
             });
 
-            // Apply .filter-header to any <input> elements 
+            // Apply .filter-header to any <input> elements
             _.each(ths, function (th) {
                 var input = th.find('input');
                 if (input.length) {
@@ -52,7 +52,7 @@ angular.module('encore.ui.rxFloatingHeader', [])
                 }
 
                 maxHeight = _.max([maxHeight, table[0].offsetHeight]);
-                
+
                 if (rxDOMHelper.shouldFloat(table, maxHeight)) {
                     if (state === 'fixed') {
                         state = 'float';
@@ -133,7 +133,7 @@ angular.module('encore.ui.rxFloatingHeader', [])
  * @name encore.ui.rxFloatingHeader:rxDOMHelper
  * @description
  * A small set of functions to provide some functionality
- * that isn't present in Angular's jQuery-lite, and other 
+ * that isn't present in Angular's jQuery-lite, and other
  * DOM-related functions that are useful
  *
  * All methods take jquery-lite wrapped elements as arguments
@@ -147,7 +147,7 @@ angular.module('encore.ui.rxFloatingHeader', [])
         var scrolltop = $window.pageYOffset || doc.body.scrollTop || doc.documentElement.scrollTop || 0;
         return scrolltop;
     };
-    
+
     var offset = function (elm) {
         //http://cvmlrobotics.blogspot.co.at/2013/03/angularjs-get-element-offset-position.html
         var rawDom = elm[0];
@@ -173,7 +173,7 @@ angular.module('encore.ui.rxFloatingHeader', [])
     var width = function (elem) {
         return style(elem).width;
     };
-    
+
     var height = function (elem) {
         return style(elem).height;
     };
@@ -190,6 +190,10 @@ angular.module('encore.ui.rxFloatingHeader', [])
         angular.element($window).bind('scroll', f);
     };
 
+    var find = function (elem, selector) {
+        return angular.element(elem[0].querySelector(selector));
+    };
+
     return {
         offset: offset,
         scrollTop: scrollTop,
@@ -197,5 +201,6 @@ angular.module('encore.ui.rxFloatingHeader', [])
         height: height,
         shouldFloat: shouldFloat,
         onscroll: onscroll,
+        find: find
     };
 });

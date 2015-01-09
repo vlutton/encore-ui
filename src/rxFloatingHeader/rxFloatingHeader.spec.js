@@ -136,4 +136,13 @@ describe('rxDOMHelper', function () {
         rxjq.width(div);
         expect(windowMock.getComputedStyle).to.have.been.calledWith(raw);
     });
+
+    it('should allow query selectors for finding nested objects', function () {
+        var el = angular.element('<div><span><h1 class="title">Title!</h1></span></div>'),
+            title = rxjq.find(el, '.title');
+
+        expect(title.text()).to.equal('Title!');
+        expect(title[0].nodeName).to.equal('H1');
+
+    });
 });
