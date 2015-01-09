@@ -4,11 +4,11 @@ Service (rxNotify) and Directives (rxNotification and rxNotifications) for displ
 
 ## Using rxNotification as a State Message
 
-There may be situations where you will need to use the styling/markup of rxNotify's messaging queue in status messages of your own - for example, a modal window which asks if you want to delete an object, with the appropriate warning or error flags. If this is the case, we recommend using the `rx-notification` directive in your views (note difference of `rx-notifications`.
+There may be situations where you will need to use the styling/markup of rxNotify's messaging queue in status messages of your own - for example, a modal window which asks if you want to delete an object, with the appropriate warning or error flags. If this is the case, we recommend using the `rx-notification` directive in your views (note difference of `rx-notifications`).
 
-> `<rx-notification type="warn">This is warning message!</rx-notification>`
+> `<rx-notification type="warning">This is a warning message!</rx-notification>`
 
-For all values of warn, please look below under Message options, under `type`.
+For all notification types, please look below under Message options, under `type`.
 
 ## Adding a New Message Queue via rxNotify
 
