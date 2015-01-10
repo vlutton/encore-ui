@@ -1,6 +1,8 @@
+var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
 var rxForm = require('../rxForm.page.js').rxForm;
+var rxOptionFormTable = require('../rxForm.page.js').rxOptionFormTable;
 
 // shortens the process of selecting form elements on the page object below
 var elementByLabel = function (label) {
@@ -44,7 +46,7 @@ var formPageObject = Page.create({
         },
         set: function (enable) {
             var checkbox = rxForm.checkbox.initialize(this.chkRequireName);
-            enable ? checkbox.check() : checkbox.uncheck();
+            enable ? checkbox.select() : checkbox.unselect();
         }
     },
 
@@ -67,6 +69,37 @@ var formPageObject = Page.create({
                 }
             });
         }
+    },
+
+    optRadioTable: {
+        get: function () {
+            return rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableData"]'));
+        }
+    },
+
+    optionTableRadio: {
+        get: function () {
+            return this.optRadioTable.selections;
+        },
+        set: function (selections) {
+            this.optRadioTable.selectMany(selections);
+        }
+    },
+
+    optCheckboxTable: {
+        get: function () {
+            return rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableCheckboxData"]'));
+        }
+    },
+
+    optionTableCheckbox: {
+        get: function () {
+            return this.optCheckboxTable.selections;
+        },
+        set: function (selections) {
+            this.optCheckboxTable.unselectAll();
+            this.optCheckboxTable.selectMany(selections);
+        }
     }
 
 });
@@ -83,7 +116,9 @@ describe('rxForm', function () {
             requireName: false,
             selectBoxes: {
                 type: 'PUNCHCARDS'
-            }
+            },
+            optionTableRadio: [{ Name: 'Option #2' }],
+            optionTableCheckbox: [{ Name: 'Item 1' }, { Name: 'Item 2' }]
         };
 
         before(function () {
@@ -100,6 +135,133 @@ describe('rxForm', function () {
 
         it('should have selected the volume type', function () {
             expect(formPageObject.selectBoxes.type.text).to.eventually.equal('PUNCHCARDS');
+        });
+
+        it('should have selected the second row in the radio option table', function () {
+            expect(formPageObject.optionTableRadio).to.eventually.eql([1]);
+        });
+
+        it('should have selected both rows in the checkbox option table', function () {
+            expect(formPageObject.optionTableCheckbox).to.eventually.eql([0, 1]);
+        });
+
+    });
+
+    describe('rxOptionTable', function () {
+        var optionTable;
+
+        describe('radio', function () {
+            var columnNames = ['Name', 'Static Content', 'Expression 2', 'Expression 3', 'Expression 4'];
+
+            before(function () {
+                optionTable = rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableData"]'));
+            });
+
+            it('should not be empty', function () {
+                expect(optionTable.isEmpty()).to.eventually.be.false;
+            });
+
+            it('should not have a "table empty" error message', function () {
+                expect(optionTable.emptyMessage).to.eventually.be.null;
+            });
+
+            it('should have all column names', function () {
+                expect(optionTable.columnNames).to.eventually.eql(columnNames);
+            });
+
+            it('should return column data as text by default', function () {
+                var textData = ['$0.00', '$1.00', '$2.00'];
+                expect(optionTable.columnData('Expression 4')).to.eventually.eql(textData);
+            });
+
+            it('should return column data as defined by a custom function', function () {
+                var penniesData = [0, 100, 200];
+                var penniesFn = function (cellElements) {
+                    return cellElements.map(function (cellElement) {
+                        return cellElement.getText().then(rxForm.currencyToPennies);
+                    });
+                };
+
+                expect(optionTable.columnData('Expression 4', penniesFn)).to.eventually.eql(penniesData);
+            });
+
+            it('should select a column by text', function () {
+                optionTable.selectByColumnText('Expression 4', '$2.00');
+                expect(optionTable.selections).to.eventually.eql([2]);
+            });
+
+            describe('rows', function () {
+                var row;
+                var cellData = ['Option #3', 'Some Text & HTML', '200.00', 'NESTED NAME 3', '$2.00'];
+                var rowData = _.zipObject(columnNames, cellData);
+
+                before(function () {
+                    row = optionTable.selectedRow;
+                });
+
+                it('should be selected', function () {
+                    expect(row.isSelected()).to.eventually.be.true;
+                });
+
+                it('should not be the current saved data', function () {
+                    expect(row.isCurrent()).to.eventually.be.false;
+                });
+
+                it('should have the current saved data in the first row', function () {
+                    expect(optionTable.row(0).isCurrent()).to.eventually.be.true;
+                });
+
+                _.forEach(rowData, function (data, column) {
+                    it('should have the correct data in the ' + column + ' column', function () {
+                        expect(row.cell(column)).to.eventually.equal(data);
+                    });
+                });
+
+            });
+
+        });
+
+        describe('checkbox', function () {
+
+            before(function () {
+                optionTable = rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableCheckboxData"]'));
+            });
+
+            it('should have two rows selected', function () {
+                expect(optionTable.selections).to.eventually.eql([0, 1]);
+            });
+
+            it('should unselect all rows', function () {
+                optionTable.unselectAll();
+                expect(optionTable.selections).to.eventually.be.empty;
+            });
+
+            it('should select many rows', function () {
+                optionTable.selectMany([{ Name: 'Item 1' }, { Name: 'Item 2' }]);
+                expect(optionTable.selections).to.eventually.eql([0, 1]);
+            });
+
+            it('should unselect many rows', function () {
+                optionTable.unselectMany([{ Name: 'Item 1' }, { Name: 'Item 2' }]);
+                expect(optionTable.selections).to.eventually.be.empty;
+            });
+
+        });
+
+        describe('empty', function () {
+
+            before(function () {
+                optionTable = rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableEmptyData"]'));
+            });
+
+            it('should be empty', function () {
+                expect(optionTable.isEmpty()).to.eventually.be.true;
+            });
+
+            it('should have a "table empty" error message', function () {
+                expect(optionTable.emptyMessage).to.eventually.equal('You don\'t have any data!');
+            });
+
         });
 
     });
