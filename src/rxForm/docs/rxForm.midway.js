@@ -1,6 +1,6 @@
 var Page = require('astrolabe').Page;
 
-var rxFormPage = require('../rxForm.page.js').rxForm;
+var rxForm = require('../rxForm.page.js').rxForm;
 
 // shortens the process of selecting form elements on the page object below
 var elementByLabel = function (label) {
@@ -12,7 +12,7 @@ var formPageObject = Page.create({
 
     form: {
         set: function (formData) {
-            rxFormPage.form.fill(this, formData);
+            rxForm.form.fill(this, formData);
         }
     },
 
@@ -43,7 +43,7 @@ var formPageObject = Page.create({
             return this.chkRequireName.isSelected();
         },
         set: function (enable) {
-            var checkbox = rxFormPage.checkbox.initialize(this.chkRequireName);
+            var checkbox = rxForm.checkbox.initialize(this.chkRequireName);
             enable ? checkbox.check() : checkbox.uncheck();
         }
     },
@@ -59,10 +59,10 @@ var formPageObject = Page.create({
 
                 type: {
                     get: function () {
-                        return rxFormPage.dropdown.initialize(this.selVolumes).selectedOption;
+                        return rxForm.dropdown.initialize(this.selVolumes).selectedOption;
                     },
                     set: function (optionText) {
-                        rxFormPage.dropdown.initialize(this.selVolumes).select(optionText);
+                        rxForm.dropdown.initialize(this.selVolumes).select(optionText);
                     }
                 }
             });
@@ -108,7 +108,7 @@ describe('rxForm', function () {
         var dropdown;
 
         before(function () {
-            dropdown = rxFormPage.dropdown.initialize(element(by.model('volume.type')));
+            dropdown = rxForm.dropdown.initialize(element(by.model('volume.type')));
         });
 
         it('should have the right number of options', function () {
@@ -146,6 +146,35 @@ describe('rxForm', function () {
 
         it('should have a value', function () {
             expect(dropdown.selectedOption.value).to.eventually.equal('DVD');
+        });
+
+    });
+
+    describe('convenience functions', function () {
+
+        describe('currency to pennies', function () {
+            var pennies = rxForm.currencyToPennies;
+
+            it('should convert a single penny to the integer one', function () {
+                expect(pennies('$0.01')).to.equal(1);
+            });
+
+            it('should convert a fraction of a penny to a float', function () {
+                expect(pennies('$0.001')).to.equal(0.1);
+            });
+
+            it('should ignore any dollar type indicators (CAN, AUS, USD)', function () {
+                expect(pennies('$100 CAN')).to.equal(10000);
+            });
+
+            it('should convert negative currency notation to a negative integer', function () {
+                expect(pennies('($100 AUS)')).to.equal(-10000);
+            });
+
+            it('should convert negative currency notation to a negative float', function () {
+                expect(pennies('($0.001)')).to.equal(-0.1);
+            });
+
         });
 
     });
