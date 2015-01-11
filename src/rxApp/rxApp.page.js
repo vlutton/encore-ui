@@ -9,32 +9,16 @@ var rxApp = {
         get: function () { return '.collapsible-toggle'; }
     },
 
-    lblNavTitle: {
-        get: function () { return this.rootElement.$('.site-title'); }
-    },
-
-    lblNavSectionTitle: {
-        get: function () { return this.rootElement.$('.nav-section-title'); }
-    },
-
-    eleSiteNav: {
-        get: function () { return this.rootElement.$('.rx-app-nav'); }
-    },
-
     btnCollapseToggle: {
         get: function () { return this.rootElement.$(this.cssCollapseButtonSelector); }
     },
 
-    lnkLogout: {
-        get: function () { return this.rootElement.$('.site-logout'); }
-    },
-
     title: {
-        get: function () { return this.lblNavTitle.getText(); }
+        get: function () { return this.rootElement.$('.site-title').getText(); }
     },
 
     sectionTitle: {
-        get: function () { return this.lblNavSectionTitle.getText(); }
+        get: function () { return this.rootElement.$('.nav-section-title').getText(); }
     },
 
     expand: {
@@ -92,7 +76,7 @@ var rxApp = {
 
     logout: {
         value: function () {
-            this.lnkLogout.click();
+            this.rootElement.$('.site-logout').click();
         }
     },
 
@@ -158,9 +142,6 @@ var rxPage = {
 exports.rxPage = {
 
     initialize: function (rxPageElement) {
-        if (rxPageElement === undefined) {
-            rxPageElement = $('html');
-        }
         rxPage.rootElement = {
             get: function () { return rxPageElement; }
         };
