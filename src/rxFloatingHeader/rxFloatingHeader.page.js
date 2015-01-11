@@ -1,4 +1,5 @@
 /*jshint node:true*/
+var _ = require('lodash');
 
 exports.rxFloatingHeader = {
 
@@ -29,7 +30,7 @@ exports.rxFloatingHeader = {
             });
         } else {
             var location = elementOrLocation;
-            if (location[attribute]) {
+            if (_.has(location, attribute)) {
                 return protractor.promise.fulfilled(location[attribute]);
             } else {
                 return protractor.promise.fulfilled(location);
@@ -38,7 +39,6 @@ exports.rxFloatingHeader = {
     },
 
     compareLocations: function (e1, e2, attribute) {
-        attribute = attribute || 'y';
         var promises = [this.transformLocation(e1, attribute), this.transformLocation(e2, attribute)];
         return protractor.promise.all(promises).then(function (locations) {
             return locations[0] === locations[1];
