@@ -2,10 +2,12 @@ var _ = require('lodash');
 
 exports.rxEnvironment = {
 
-    // Return the current environment the user sees.
-    // The default is set to something simple and reasonable,
-    // but should you find a need to supply your own environments, be
-    // sure to have `environments` defined in your protractor conf's params section.
+    /*
+      Return the current environment the user sees.
+      The default is set to something simple and reasonable,
+      but should you find a need to supply your own environments, be
+      sure to have `environments` defined in your protractor conf's params section.
+    */
     current: function () {
         var component = this;
         return browser.getCurrentUrl().then(function (url) {
@@ -13,8 +15,10 @@ exports.rxEnvironment = {
         });
     },
 
-    // Return the original environment, as defined in the current protractor conf file.
-    // Returns a promise to keep the usage consistent with `rxEnvironment.current`.
+    /*
+      Return the original environment, as defined in the current protractor conf file.
+      Returns a promise to keep the usage consistent with `rxEnvironment.current`.
+    */
     original: function () {
         return protractor.promise.fulfilled(this.compare(browser.baseUrl));
     },
@@ -50,7 +54,9 @@ exports.rxEnvironment = {
         return this.confirmEnvironment(namedParams, 'production');
     },
 
-    // `namedParams` only supports { useBaseUrl: true }. If { useBaseUrl: false }, just leave undefined.
+    /*
+      `namedParams` only supports { useBaseUrl: true }. If { useBaseUrl: false }, just leave undefined.
+    */
     confirmEnvironment: function (namedParams, environment) {
         var component = this;
         if (namedParams === undefined) {

@@ -68,8 +68,10 @@ var rxAccountInfo = {
                 },
 
                 byName: {
-                    // Accepts strings for a fast, exact match only.
-                    // For a more flexible match, see `badges.matchingName`, which uses regular expressions.
+                    /*
+                      Accepts strings for a fast, exact match only.
+                      For a more flexible match, see `badges.matchingName`, which uses regular expressions.
+                    */
                     value: function (badgeName) {
                         return badge(page.rootElement.$('img[data-name="' + badgeName + '"]'));
                     }

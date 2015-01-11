@@ -1,5 +1,4 @@
 var rxStatusColumnPage = require('../rxStatusColumn.page.js').rxStatusColumn;
-var expect = require('chai').use(require('chai-as-promised')).expect;
 
 describe('rxStatusColumn', function () {
     var rxStatusColumn, all;
@@ -41,7 +40,7 @@ describe('rxStatusColumn', function () {
         it('should have no icon', function () {
             expect(first.icon).to.eventually.equal('');
         });
-        
+
     });
 
     describe('third cell', function () {
@@ -66,7 +65,7 @@ describe('rxStatusColumn', function () {
             expect(third.icon).to.eventually.equal('INFO');
         });
     });
-    
+
     describe('last cell', function () {
         var last;
         before(function () {

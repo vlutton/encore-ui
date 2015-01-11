@@ -4,8 +4,10 @@ var Page = require('astrolabe').Page;
 var rxApp = {
 
     cssCollapseButtonSelector: {
-        // Keep just the css string available for both the button element
-        // and the check made in `isCollapsible()`, which uses findAllBy.
+        /*
+          Keep just the css string available for both the button element
+          and the check made in `isCollapsible()`, which uses findAllBy.
+        */
         get: function () { return '.collapsible-toggle'; }
     },
 

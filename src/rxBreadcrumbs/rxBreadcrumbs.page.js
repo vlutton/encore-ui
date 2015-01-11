@@ -75,8 +75,10 @@ var rxBreadcrumbs = {
     },
 
     byName: {
-        // Return a single breadcrumb entry, located by the text of the element, case sensitive.
-        // If multiple entries exist with the same name, the first will be returned.
+        /*
+          Return a single breadcrumb entry, located by the text of the element, case sensitive.
+          If multiple entries exist with the same name, the first will be returned.
+        */
         value: function (breadcrumbName) {
             return this.tblBreadcrumbs.filter(function (breadcrumbElement) {
                 return breadcrumbElement.element(by.exactBinding('breadcrumb.name')).getText().then(function (name) {
