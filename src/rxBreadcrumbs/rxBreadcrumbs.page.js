@@ -21,9 +21,7 @@ var breadcrumb = function (rootElement) {
                     if (present) {
                         return page.lblTag.getText();
                     } else {
-                        var deferred = protractor.promise.defer();
-                        deferred.fulfill('');
-                        return deferred.promise;
+                        return null;
                     }
                 });
             }
@@ -35,7 +33,7 @@ var breadcrumb = function (rootElement) {
                     if (isLink) {
                         return rootElement.$('a').getAttribute('href');
                     } else {
-                        return protractor.promise.fulfilled(null);
+                        return null;
                     }
                 });
             }

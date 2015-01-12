@@ -123,9 +123,9 @@ describe('rxBreadcrumbs', function () {
         it('should have the name "Components"', function () {
             expect(middle.name).to.eventually.equal('Components');
         });
-        
+
         it('should not have a tag', function () {
-            expect(middle.tag).to.eventually.equal('');
+            expect(middle.tag).to.eventually.be.null;
             expect(middle.lblTag.isPresent()).to.eventually.be.false;
         });
 
