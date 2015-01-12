@@ -37,6 +37,9 @@ module.exports = {
     },
     serverHostname: 'localhost',
     serverPort: 9001,
+    styleguideCssFilename: 'generated_demo.css',
+    styleguideCss: 'demo/assets/<%= config.styleguideCssFilename %>',
+    styleguideLess: 'demo/assets/demo.less',
     tmp: '<%= config.build %>/tmp',
     tmpLess: '<%= config.tmp %>/encore-ui.less',
     // http://www.regexr.com/395kl

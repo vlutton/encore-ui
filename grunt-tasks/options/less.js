@@ -11,5 +11,11 @@ module.exports = {
         files: {
             '<%= config.dist %>/<%= config.fileName %>.css': ['<%= config.tmpLess %>']
         }
+    },
+
+    styleguide: {
+        files: {
+            '<%= config.styleguideCss %>': '<%= config.styleguideLess %>'
+        }
     }
 };
