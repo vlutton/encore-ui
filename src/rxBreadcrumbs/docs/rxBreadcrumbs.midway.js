@@ -80,25 +80,6 @@ describe('rxBreadcrumbs', function () {
 
     });
 
-    describe('all breadcrumbs', function () {
-        var all;
-
-        before(function () {
-            breadcrumbs.toArray().then(function (allBreadcrumbs) {
-                all = allBreadcrumbs;
-            });
-        });
-
-        it('should have the first breadcrumb first', function () {
-            expect(all[0].isFirst()).to.eventually.be.true;
-        });
-
-        it('should have the last breadcrumb last', function () {
-            expect(all[2].isLast()).to.eventually.be.true;
-        });
-
-    });
-
     describe('by name', function () {
         var middle;
 

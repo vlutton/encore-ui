@@ -74,15 +74,6 @@ var rxBreadcrumbs = {
         }
     },
 
-    toArray: {
-        value: function () {
-            return this.tblBreadcrumbs.reduce(function (acc, breadcrumbElement) {
-                acc.push(breadcrumb(breadcrumbElement));
-                return acc;
-            }, []);
-        }
-    },
-
     byName: {
         // Return a single breadcrumb entry, located by the text of the element, case sensitive.
         // If multiple entries exist with the same name, the first will be returned.
