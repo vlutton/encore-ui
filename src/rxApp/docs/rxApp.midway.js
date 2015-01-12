@@ -22,10 +22,6 @@ describe('rxApp', function () {
         expect(rxAppCustom.sectionTitle).to.eventually.equal('Example Menu');
     });
 
-    it('should have a logout link', function () {
-        expect(rxAppCustom.lnkLogout.isDisplayed()).to.eventually.be.true;
-    });
-
     it('should logout', function () {
         rxAppCustom.logout();
         expect(demoPage.currentUrl).to.eventually.contain('login');
