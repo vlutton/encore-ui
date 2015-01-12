@@ -2,7 +2,7 @@ var rxSpinnerPage = require('../rxSpinner.page.js').rxSpinner;
 
 describe('rxSpinner', function () {
 
-    it('beforeAll', function () {
+    before(function () {
         demoPage.go('#/component/rxSpinner');
     });
 
