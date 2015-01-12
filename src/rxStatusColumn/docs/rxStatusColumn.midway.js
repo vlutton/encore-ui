@@ -78,7 +78,7 @@ describe('rxStatusColumn', function () {
         });
 
         it('should have mapped the input status to the correct final status', function () {
-            expect(last.finalStatus).to.eventually.equal('WARNING');
+            expect(last.finalStatus).to.eventually.equal('PENDING');
         });
 
         it('should have the correct tooltip', function () {
@@ -89,8 +89,8 @@ describe('rxStatusColumn', function () {
             expect(last.api).to.eventually.equal('fooApi');
         });
 
-        it('should have the WARNING icon', function () {
-            expect(last.icon).to.eventually.equal('WARNING');
+        it('should have no icon', function () {
+            expect(last.icon).to.eventually.equal('');
         });
     });
 });

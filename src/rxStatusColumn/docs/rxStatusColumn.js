@@ -9,17 +9,17 @@ function rxStatusColumnCtrl ($scope, rxStatusMappings) {
         { status: 'REBOOT', title: 'REBOOT status mapped to INFO' },
         { status: 'SUSPENDED', title: 'SUSPENDED status mapped to WARNING' },
         { status: 'INPROGRESS', title: 'INPROGRESS status mapped to PENDING' },
-        { status: 'DELETING', title: 'DELETING status mapped to WARNING, using `fooApi` mapping', api:'fooApi' },
+        { status: 'DELETING', title: 'DELETING status mapped to PENDING, using `fooApi` mapping', api:'fooApi' },
     ];
 
     // We have a few different ways of adding mappings. We've tried to show them all here
     rxStatusMappings.addGlobal({
-        'DELETING': 'ERROR'
+        'DELETING': 'PENDING'
     });
     rxStatusMappings.mapToInfo(['BUILD', 'REBOOT']);
     rxStatusMappings.mapToWarning('SUSPENDED');
     rxStatusMappings.mapToPending('INPROGRESS');
 
-    rxStatusMappings.addAPI('fooApi', { 'DELETING': 'WARNING' });
-    rxStatusMappings.mapToWarning('SomeApiSpecificStatus', 'fooApi');
+    rxStatusMappings.addAPI('fooApi', { 'DELETING': 'PENDING' });
+    rxStatusMappings.mapToPending('SomeApiSpecificStatus', 'fooApi');
 }

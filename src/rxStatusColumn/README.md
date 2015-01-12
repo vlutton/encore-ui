@@ -27,6 +27,11 @@ The example in the demo shows a typical use of this directive, such as:
     </tbody>
 
 
+# A note about color usage for rxStatusColumn
+
+Encore uses the color red for destructive and "delete" actions, and the color green for additive or "create" actions, and at first it may seem that the styles of rxStatusColumn do not follow that same logic. However, the distinction here is that when an action or status on an item is "in progress" or "pending" (i.e. the user cannot take any additional action on that item until a transition completes), it is given the yellow animated `PENDING` treatment. This is true even for "create"/"add" actions or "delete" actions. A general rule of thumb to follow is that if a status ends in -`ING`, it should get the animated yellow stripes of `PENDING`.
+
+
 # Defining mappings
 
 To accommodate different statuses, the `rxStatusMappings` factory includes methods for defining mappings from your own statuses to the five defined ones. The basic methods for this are `rxStatusMappings.addGlobal()` and `rxStatusMappings.addAPI()`.
