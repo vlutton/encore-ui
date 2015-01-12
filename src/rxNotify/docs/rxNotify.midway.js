@@ -119,7 +119,7 @@ describe('rxNotify', function () {
     describe('all notifications', function () {
 
         it('should have 6 notifications in it', function () {
-            expect(notifications.all.count()).to.eventually.equal(6);
+            expect(notifications.all.count()).to.eventually.equal(8);
         });
 
         describe('by type', function () {
@@ -232,7 +232,7 @@ describe('rxNotify', function () {
         });
 
         it('should have actually dismissed the message', function () {
-            expect(notifications.all.count()).to.eventually.equal(5);
+            expect(notifications.all.count()).to.eventually.equal(7);
         });
 
         describe('by stack', function () {

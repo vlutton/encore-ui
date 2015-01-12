@@ -10,6 +10,14 @@ There may be situations where you will need to use the styling/markup of rxNotif
 
 For all notification types, please look below under Message options, under `type`.
 
+Another situation that you might encounter is adding a notification to the default stack but needing to do it via the template.  With the `stack` parameter you're allowed do define a notification and have it get added via `rxNotify.add`:
+
+> `<rx-notification type="error" stack="page">`
+
+>> `   This is an error message being added to the "page" stack with <strong>Custom</strong> html.`
+
+> `</rx-notification>`
+
 ## Adding a New Message Queue via rxNotify
 
 To add a new message to a stack, inject 'rxNotify' into your function and run:
