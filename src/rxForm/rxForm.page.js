@@ -135,25 +135,27 @@ exports.rxForm = {
 
     form: {
         fill: function (reference, formData) {
-            // Set `value` in `formData` to the page object's current method `key`.
-            // Aids in filling out form data via javascript objects.
-            //
-            // For example:
-            // yourPage.fill({
-            //     aTextbox: 'My Name',
-            //     aRadioButton: 'Second Option'
-            //     aSelectDropdown: 'My Choice'
-            //     aModule: {
-            //         hasMethods: 'Can Accept Input Too',
-            //         deepNesting: {
-            //             might: 'be overkill at this level'
-            //         }
-            //     }
-            // });
-            // Would invoke yourPage.aTextbox's set method, which might call sendKeys, and so on.
-            // For an example of this in use, see src/rxFormPage/docs/rxFormPage.midway.js
-            //
-            // Pass in the context to evaluate under as `reference` (typically, `this`).
+            /*
+              Set `value` in `formData` to the page object's current method `key`.
+              Aids in filling out form data via javascript objects.
+
+              For example:
+              yourPage.fill({
+                  aTextbox: 'My Name',
+                  aRadioButton: 'Second Option'
+                  aSelectDropdown: 'My Choice'
+                  aModule: {
+                      hasMethods: 'Can Accept Input Too',
+                      deepNesting: {
+                          might: 'be overkill at this level'
+                      }
+                  }
+              });
+              Would invoke yourPage.aTextbox's set method, which might call sendKeys, and so on.
+              For an example of this in use, see src/rxFormPage/docs/rxFormPage.midway.js
+
+              Pass in the context to evaluate under as `reference` (typically, `this`).
+            */
             var next = this;
             var page = reference;
             _.forEach(formData, function (value, key) {

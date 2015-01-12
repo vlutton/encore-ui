@@ -50,7 +50,9 @@ var rxPaginate = {
     },
 
     first: {
-        // Does nothing if already at the first page.
+        /*
+          Does nothing if already at the first page.
+        */
         value: function () {
             var page = this;
             return this.page.then(function (pageNumber) {
@@ -76,7 +78,9 @@ var rxPaginate = {
     },
 
     last: {
-        // Does nothing if already at the last page.
+        /*
+          Does nothing if already at the last page.
+        */
         value: function () {
             var page = this;
             var css = '.pagination-last a';
@@ -89,7 +93,9 @@ var rxPaginate = {
     },
 
     page: {
-        // Return the current page number, or change page numbers.
+        /*
+          Return the current page number, or change page numbers.
+        */
         get: function () {
             return this.lnkCurrentPage.getText().then(function (text) {
                 return parseInt(text, 10);
@@ -102,7 +108,9 @@ var rxPaginate = {
 
     pages: {
         get: function () {
-            // Return a list of page numbers available to paginate to.
+            /*
+              Return a list of page numbers available to paginate to.
+            */
             return this.tblPages.map(function (pageNumber) {
                 return pageNumber.getText().then(function (n) {
                     return parseInt(n, 10);
@@ -128,7 +136,9 @@ var rxPaginate = {
                 return parseInt(pageSize, 10);
             });
         },
-        // Will throw an exception if no matching `itemsPerPage` entry is found.
+        /*
+          Will throw an exception if no matching `itemsPerPage` entry is found.
+        */
         set: function (itemsPerPage) {
             var page = this;
             var css = '.pagination-per-page-button';
@@ -240,9 +250,11 @@ var rxPaginate = {
     },
 
     checkForInvalidLastPage: {
-        // Accepts an optional `pageNumber` argument to print to the exception
-        // should the `NoSuchPageException` get triggered during this call.
-        // Otherwise, it defaults to a generic invalid page message.
+        /*
+          Accepts an optional `pageNumber` argument to print to the exception
+          should the `NoSuchPageException` get triggered during this call.
+          Otherwise, it defaults to a generic invalid page message.
+        */
         value: function (pageNumber) {
             var page = this;
             return this.page.then(function (currentPage) {

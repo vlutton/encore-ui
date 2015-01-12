@@ -21,9 +21,7 @@ var breadcrumb = function (rootElement) {
                     if (present) {
                         return page.lblTag.getText();
                     } else {
-                        var deferred = protractor.promise.defer();
-                        deferred.fulfill('');
-                        return deferred.promise;
+                        return null;
                     }
                 });
             }
@@ -35,7 +33,7 @@ var breadcrumb = function (rootElement) {
                     if (isLink) {
                         return rootElement.$('a').getAttribute('href');
                     } else {
-                        return protractor.promise.fulfilled(null);
+                        return null;
                     }
                 });
             }
@@ -76,18 +74,11 @@ var rxBreadcrumbs = {
         }
     },
 
-    toArray: {
-        value: function () {
-            return this.tblBreadcrumbs.reduce(function (acc, breadcrumbElement) {
-                acc.push(breadcrumb(breadcrumbElement));
-                return acc;
-            }, []);
-        }
-    },
-
     byName: {
-        // Return a single breadcrumb entry, located by the text of the element, case sensitive.
-        // If multiple entries exist with the same name, the first will be returned.
+        /*
+          Return a single breadcrumb entry, located by the text of the element, case sensitive.
+          If multiple entries exist with the same name, the first will be returned.
+        */
         value: function (breadcrumbName) {
             return this.tblBreadcrumbs.filter(function (breadcrumbElement) {
                 return breadcrumbElement.element(by.exactBinding('breadcrumb.name')).getText().then(function (name) {

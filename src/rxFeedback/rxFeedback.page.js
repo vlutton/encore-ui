@@ -66,13 +66,15 @@ var rxFeedback = {
     },
 
     send: {
-        // Prepares, writes, and submits feedback.
-        // If `confirmSuccessWithin` is defined, a confirmation of submission success must appear
-        // within `confirmSuccessWithin` milliseconds.
-        //
-        // If confirmSuccessFn is undefined, the default behavior will look for an rxNotify success
-        // message. Otherwise, `confirmSuccessFn` will be attempted until it yields a truthy value,
-        // using Protractor's `wait` function.
+        /*
+          Prepares, writes, and submits feedback.
+          If `confirmSuccessWithin` is defined, a confirmation of submission success must appear
+          within `confirmSuccessWithin` milliseconds.
+
+          If confirmSuccessFn is undefined, the default behavior will look for an rxNotify success
+          message. Otherwise, `confirmSuccessFn` will be attempted until it yields a truthy value,
+          using Protractor's `wait` function.
+        */
         value: function (feedbackType, feedbackText, confirmSuccessWithin, confirmSuccessFn) {
             var page = this;
             return this.isDisplayed().then(function (isDisplayed) {

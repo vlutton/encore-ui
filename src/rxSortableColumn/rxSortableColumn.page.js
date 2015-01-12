@@ -1,10 +1,12 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
 
-// This is a shared function for getting one column's sort direction, and all columns' sort directions.
-// Ascending sort:  (1)  means the arrow is pointed down. [0-9, a-z]
-// Descending sort: (0)  means the arrow is pointed up.   [z-a, 9-0]
-// Not sorted:     (-1)  means there is no arrow for this column.
+/*
+  This is a shared function for getting one column's sort direction, and all columns' sort directions.
+  Ascending sort:  (1)  means the arrow is pointed down. [0-9, a-z]
+  Descending sort: (0)  means the arrow is pointed up.   [z-a, 9-0]
+  Not sorted:     (-1)  means there is no arrow for this column.
+*/
 var currentSortDirection = function (columnElement) {
     var imgSortIcon = columnElement.$('.sort-icon');
     return imgSortIcon.getAttribute('style').then(function (style) {
@@ -46,7 +48,9 @@ var rxSortableColumn = {
     },
 
     sort: {
-        // Prefer using `sortAscending` and `sortDescending` over using this method directly.
+        /*
+          Prefer using `sortAscending` and `sortDescending` over using this method directly.
+        */
         value: function (namedParams) {
             var page = this;
             return this.currentSortDirection.then(function (sortDirection) {
@@ -81,8 +85,10 @@ var rxSortableColumn = {
     },
 
     getDataUsing: {
-        // Return a list of all cell contents in this column.
-        // Passes all cell elements to `customFn`.
+        /*
+          Return a list of all cell contents in this column.
+          Passes all cell elements to `customFn`.
+        */
         value: function (customFn) {
             if (customFn === undefined) {
                 return this.data;
@@ -111,7 +117,9 @@ var rxSortableColumn = {
 
 };
 
-// Functions for manipulating entire column sets of rx-sortable-columns.
+/*
+  Functions for manipulating entire column sets of rx-sortable-columns.
+*/
 var rxSortableColumns = {
 
     tblColumns: {
@@ -120,8 +128,10 @@ var rxSortableColumns = {
         }
     },
 
-    // Return all column names in `tableElement`.
-    // If any special work needs to be done, pass in a custom `mapFn` to `getNamesUsing` instead.
+    /*
+      Return all column names in `tableElement`.
+      If any special work needs to be done, pass in a custom `mapFn` to `getNamesUsing` instead.
+    */
     names: {
         get: function () {
             return this.getNamesUsing(function (columnElement) {
