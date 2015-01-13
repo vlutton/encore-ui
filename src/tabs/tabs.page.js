@@ -116,7 +116,7 @@ var tabs = {
         }
     },
 
-    allNames: {
+    names: {
         get: function () {
             return this.tblTabs.map(function (tabElement) {
                 return tabElement.getText().then(function (text) {
@@ -129,15 +129,6 @@ var tabs = {
     activeTab: {
         get: function () {
             return tabFromElement(this.rootElement.$('.nav-tabs .active'));
-        }
-    },
-
-    all: {
-        get: function () {
-            return this.tblTabs.reduce(function (acc, tabElement) {
-                acc.push(tabFromElement(tabElement));
-                return acc;
-            }, []);
         }
     },
 

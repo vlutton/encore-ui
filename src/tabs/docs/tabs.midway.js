@@ -18,7 +18,7 @@ describe('tabs', function () {
     });
 
     it('should still have all tabs match the test data', function () {
-        expect(tabs.allNames).to.eventually.eql(tabNames);
+        expect(tabs.names).to.eventually.eql(tabNames);
     });
 
     it('should not find tabs that are not represented', function () {
@@ -79,29 +79,14 @@ describe('tabs', function () {
 
     });
 
-    describe('all tabs', function () {
-        var allTabs;
+    describe('main tabs', function () {
 
         before(function () {
             demoPage.go('#/component/hotkeys');
-            tabsPage.main.all.then(function (mainTabs) {
-                allTabs = mainTabs;
-            });
         });
 
-        it('should match the count from the tabs group', function () {
-            expect(tabsPage.main.count()).to.eventually.equal(allTabs.length);
-        });
-
-        it('should match the tabs by index', function () {
-            tabsPage.main.byIndex(1).name.then(function (name) {
-                expect(allTabs[1].name).to.eventually.equal(name);
-            });
-        });
-
-        it('should update the active tab in all tabs', function () {
-            allTabs[2].visit();
-            expect(allTabs[2].isActive()).to.eventually.be.true;
+        it('should find the only tabs on the page', function () {
+            expect(tabsPage.main.names).to.eventually.eql(['Demo', 'Markup', 'JavaScript', 'Protractor']);
         });
 
     });
