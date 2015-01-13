@@ -76,23 +76,12 @@ var rxNotify = {
         }
     },
 
-    messages: {
-        get: function () {
-            return this.tblNotifications.reduce(function (acc, notificationElement) {
-                acc.push(notification(notificationElement));
-                return acc;
-            }, []);
-        }
-    },
-
-    byType: {
-        value: function (notificationType) {
-            // Using reduce instead of map because protractor was crashing.
-            var css = '.notification-' + notificationType.toLowerCase();
-            return this.rootElement.$$(css).reduce(function (acc, notificationElement) {
-                acc.push(notification(notificationElement));
-                return acc;
-            }, []);
+    byText: {
+        /*
+          Returns the first matching notification with `notificationText` somewhere in it, regardless of type.
+        */
+        value: function (notificationText) {
+            return notification(this.rootElement.element(by.cssContainingText('.rx-notification', notificationText)));
         }
     },
 
