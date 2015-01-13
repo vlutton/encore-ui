@@ -79,24 +79,15 @@ describe('rxAccountInfo', function () {
     });
 
     describe('error messages', function () {
-        var badgeError, nameError;
-
-        before(function () {
-            notifications.byStack('badgeError').byType('error').then(function (errorMessages) {
-                badgeError = errorMessages[0];
-            });
-
-            notifications.byStack('nameError').byType('error').then(function (errorMessages) {
-                nameError = errorMessages[0];
-            });
-        });
 
         it('should show an error notification when it cannot load badges', function () {
-            expect(badgeError.text).to.eventually.equal('Error retrieving badges for this account');
+            var errorMessage = 'Error retrieving badges for this account';
+            expect(notifications.byStack('badgeError').exists(errorMessage)).to.eventually.be.true;
         });
 
         it('should show an error notification when it cannot load account name', function () {
-            expect(nameError.text).to.eventually.equal('Error retrieving account name');
+            var errorMessage = 'Error retrieving account name';
+            expect(notifications.byStack('nameError').exists(errorMessage)).to.eventually.be.true;
         });
     });
 
