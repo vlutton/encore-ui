@@ -88,8 +88,19 @@ var rxNotify = {
     dismiss: {
         value: function () {
             var page = this;
-            return this.tblNotifications.each(function () {
-                notification(page.tblNotifications.get(-1)).dismiss();
+            return this.tblNotifications.map(function (notificationElement, index) {
+                return notification(notificationElement).isDismissable().then(function (dimissable) {
+                    if (dimissable) {
+                        return index;
+                    }
+                });
+            }).then(function (dismissableIndexes) {
+                dismissableIndexes.reverse().forEach(function (index) {
+                    // The above `.map` call will populate the list with `undefined` if undismissable. Ignore those.
+                    if (index !== undefined) {
+                        notification(page.tblNotifications.get(index)).dismiss();
+                    }
+                });
             });
         }
     },
