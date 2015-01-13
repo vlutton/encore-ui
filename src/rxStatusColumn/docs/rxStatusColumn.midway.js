@@ -1,95 +1,209 @@
-var rxStatusColumnPage = require('../rxStatusColumn.page.js').rxStatusColumn;
+var Page = require('astrolabe').Page;
 
+var rxStatusColumn = require('../rxStatusColumn.page.js').rxStatusColumn;
+
+// an anonymous page object to demonstrate table and cell creation
+var tablePageObject = Page.create({
+
+    rootElement: {
+        get: function () {
+            return $('.demo-status-column-table');
+        }
+    },
+
+    tblServers: {
+        get: function () {
+            return this.rootElement.all(by.repeater('server in servers'));
+        }
+    },
+
+    row: {
+        value: function (rowIndex) {
+            var rowElement = this.tblServers.get(rowIndex);
+            return Page.create({
+                // The tests below focus heavily on this table row property
+                status: {
+                    get: function () {
+                        return rxStatusColumn.initialize(rowElement.$('[rx-status-column]'));
+                    }
+                },
+
+                // goo.gl/OJdysF
+                title: {
+                    get: function () {
+                        return rowElement.$('td+td').getText();
+                    }
+                }
+            });
+        }
+    }
+
+});
+
+var statuses = rxStatusColumn.statuses;
+var icons = rxStatusColumn.icons;
+var colors = rxStatusColumn.colors;
 describe('rxStatusColumn', function () {
-    var rxStatusColumn, all;
 
     before(function () {
         demoPage.go('#/component/rxStatusColumn');
-        rxStatusColumn = rxStatusColumnPage.initialize($('.demo-status-column-table'));
-        rxStatusColumn.statusCells().then(function (allStatusCells) {
-            all = allStatusCells;
-        });
     });
 
-    it('should show element', function () {
-        expect(rxStatusColumn.isDisplayed()).to.eventually.be.true;
+    describe('rows', function () {
+        var status;
+
+        describe('active cell', function () {
+
+            before(function () {
+                status = tablePageObject.row(0).status;
+            });
+
+            it('should have a status by type', function () {
+                expect(status.byType).to.eventually.equal(statuses.active);
+            });
+
+            it('should not have a status by icon', function () {
+                expect(status.byIcon).to.eventually.be.null;
+            });
+
+            it('should have a status by color', function () {
+                expect(status.byColor).to.eventually.equal(colors.active);
+            });
+
+            it('should not have an api ', function () {
+                expect(status.api).to.eventually.be.null;
+            });
+
+            it('should not have a tooltip', function () {
+                expect(status.tooltip.exists).to.eventually.be.false;
+            });
+
+            it('should have no tooltip text', function () {
+                expect(status.tooltip.text).to.eventually.be.null;
+            });
+
+        });
+
+        describe('error cell', function () {
+
+            before(function () {
+                status = tablePageObject.row(1).status;
+            });
+
+            it('should have a status by type', function () {
+                expect(status.byType).to.eventually.equal(statuses.error);
+            });
+
+            it('should not have a status by icon', function () {
+                expect(status.byIcon).to.eventually.equal(statuses.error);
+            });
+
+            it('should have a status by color', function () {
+                expect(status.byColor).to.eventually.equal(colors.error);
+            });
+
+            it('should have a tooltip', function () {
+                expect(status.tooltip.exists).to.eventually.be.true;
+            });
+
+            it('should have tooltip text', function () {
+                expect(status.tooltip.text).to.eventually.equal('ERROR');
+            });
+
+        });
+
+        describe('info cells', function () {
+
+            describe('build cell', function () {
+
+                before(function () {
+                    status = tablePageObject.row(2).status;
+                });
+
+                it('should have a status by type', function () {
+                    expect(status.byType).to.eventually.equal(statuses.build);
+                });
+
+                it('should not have a status by icon', function () {
+                    expect(status.byIcon).to.eventually.equal(icons.info);
+                });
+
+                it('should have a status by color', function () {
+                    expect(status.byColor).to.eventually.equal(colors.info);
+                });
+
+            });
+
+            describe('reboot cell', function () {
+
+                before(function () {
+                    status = tablePageObject.row(3).status;
+                });
+
+                it('should have a status by type', function () {
+                    expect(status.byType).to.eventually.equal(statuses.reboot);
+                });
+
+                it('should not have a status by icon', function () {
+                    expect(status.byIcon).to.eventually.equal(icons.info);
+                });
+
+                it('should have a status by color', function () {
+                    expect(status.byColor).to.eventually.equal(colors.info);
+                });
+
+            });
+
+        });
+
+        describe('pending cells', function () {
+
+            describe('in progress cell', function () {
+
+                before(function () {
+                    status = tablePageObject.row(-2).status;
+                });
+
+                it('should have a status by type', function () {
+                    expect(status.byType).to.eventually.equal(statuses.inProgress);
+                });
+
+                it('should have a status by icon', function () {
+                    expect(status.byIcon).to.eventually.be.null;
+                });
+
+                it('should have a status by color', function () {
+                    expect(status.byColor).to.eventually.equal(colors.pending);
+                });
+
+            });
+
+            describe('deleting cell', function () {
+
+                before(function () {
+                    status = tablePageObject.row(-1).status;
+                });
+
+                it('should have a status by type', function () {
+                    expect(status.byType).to.eventually.equal(statuses.deleting);
+                });
+
+                it('should have a status by icon', function () {
+                    expect(status.byIcon).to.eventually.be.null;
+                });
+
+                it('should have a status by color', function () {
+                    expect(status.byColor).to.eventually.equal(colors.pending);
+                });
+
+                it('should be using an api', function () {
+                    expect(status.api).to.eventually.equal('fooApi');
+                });
+
+            });
+
+        });
+
     });
 
-    it('should have seven cells', function () {
-        expect(rxStatusColumn.tblStatusCells.count()).to.eventually.equal(7);
-    });
-
-    describe('first cell', function () {
-        var first;
-        before(function () {
-            first = all[0];
-        });
-
-        it('should have the right input status', function () {
-            expect(first.inputStatus).to.eventually.equal('ACTIVE');
-        });
-
-        it('should have the correct final status', function () {
-            expect(first.finalStatus).to.eventually.equal('ACTIVE');
-        });
-
-        it('should have the correct tooltip', function () {
-            expect(first.tooltip).to.eventually.equal('ACTIVE');
-        });
-
-        it('should have no icon', function () {
-            expect(first.icon).to.eventually.equal('');
-        });
-
-    });
-
-    describe('third cell', function () {
-        var third;
-        before(function () {
-            third = all[2];
-        });
-
-        it('should have the right input status', function () {
-            expect(third.inputStatus).to.eventually.equal('BUILD');
-        });
-
-        it('should have mapped the input status to the correct final status', function () {
-            expect(third.finalStatus).to.eventually.equal('INFO');
-        });
-
-        it('should have the correct tooltip', function () {
-            expect(third.tooltip).to.eventually.equal('BUILD');
-        });
-
-        it('should have an INFO icon', function () {
-            expect(third.icon).to.eventually.equal('INFO');
-        });
-    });
-
-    describe('last cell', function () {
-        var last;
-        before(function () {
-            last = all[all.length - 1];
-        });
-
-        it('should have the right input status', function () {
-            expect(last.inputStatus).to.eventually.equal('DELETING');
-        });
-
-        it('should have mapped the input status to the correct final status', function () {
-            expect(last.finalStatus).to.eventually.equal('PENDING');
-        });
-
-        it('should have the correct tooltip', function () {
-            expect(last.tooltip).to.eventually.equal('DELETING');
-        });
-
-        it('should reference the right api', function () {
-            expect(last.api).to.eventually.equal('fooApi');
-        });
-
-        it('should have no icon', function () {
-            expect(last.icon).to.eventually.equal('');
-        });
-    });
 });
