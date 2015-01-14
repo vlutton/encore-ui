@@ -185,6 +185,42 @@ angular.module('encore.ui.rxFloatingHeader', [])
         return ((scrolltop > elemOffset.top) && (scrolltop < elemOffset.top + maxHeight));
     };
 
+    // An implementation of wrapAll, based on 
+    // http://stackoverflow.com/a/13169465
+    // Takes a raw DOM `newParent`, and moves all of `elms` (either
+    // a single element or an array of elements) into it. It then places
+    // `newParent` in the location that elms[0] was originally in
+    var wrapAll = function (newParent, elms) {
+
+        // Figure out if it's one element or an array
+        var el = elms.length ? elms[0] : elms;
+
+        // cache the current parent node and sibling 
+        // of the first element
+        var parentNode = el.parentNode;
+        var sibling = el.nextSibling;
+
+        // wrap the first element. This automatically
+        // removes it from its parent
+        newParent.appendChild(el);
+
+        // If there are other elements, wrap them. Each time
+        // it will remove the element from its current parent,
+        // and also from the `elms` array
+        while (elms.length) {
+            newParent.appendChild(elms[0]);
+        }
+
+        // If there was a sibling to the first element,
+        // insert newParent right before it. Otherwise
+        // just add it to parentNode
+        if (sibling) {
+            parentNode.insertBefore(newParent, sibling);
+        } else {
+            parentNode.appendChild(newParent);
+        }
+    };
+
     // bind `f` to the scroll event
     var onscroll = function (f) {
         angular.element($window).bind('scroll', f);
@@ -201,6 +237,7 @@ angular.module('encore.ui.rxFloatingHeader', [])
         height: height,
         shouldFloat: shouldFloat,
         onscroll: onscroll,
-        find: find
+        find: find,
+        wrapAll: wrapAll
     };
 });

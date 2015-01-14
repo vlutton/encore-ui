@@ -143,6 +143,21 @@ describe('rxDOMHelper', function () {
 
         expect(title.text()).to.equal('Title!');
         expect(title[0].nodeName).to.equal('H1');
+    });
 
+    it('should wrap a single element', function () {
+        var span = $('<span class="hi">Test</span>');
+        var div = $('<div></div>');
+        rxjq.wrapAll(div[0], span[0]);
+        expect(div.find('span').text()).to.equal('Test');
+        expect(div.find('span').hasClass('hi')).to.be.true;
+    });
+
+    it('should wrap embedded elements', function () {
+        var span = $('<span class="hi"><span class="foo">Test</span></span>');
+        var div = $('<div></div>');
+        rxjq.wrapAll(div[0], span[0]);
+        expect(div.find('span.hi span.foo').text()).to.equal('Test');
+        expect(div.find('span.hi span.foo').hasClass('foo')).to.be.true;
     });
 });

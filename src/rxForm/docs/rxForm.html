@@ -1,99 +1,107 @@
 <div class="forms rx-form" ng-controller="rxFormDemoCtrl" ng-class="{'layout-compressed': compressedLayout.value}">
-    <rx-form-item label="Switch to Compressed Layout">
-        <input type="checkbox" ng-model="compressedLayout.value" />
-    </rx-form-item>
-    <h3 class="title">Text inputs</h3>
+    <form name="demoForm">
+        <rx-form-item label="Switch to Compressed Layout">
+            <input type="checkbox" ng-model="compressedLayout.value" />
+        </rx-form-item>
+        <h3 class="title">Text inputs</h3>
 
-    <rx-form-item label="Plain textbox">
-        <input type="text" />
-    </rx-form-item>
+        <rx-form-item label="Plain textbox">
+            <input type="text" />
+        </rx-form-item>
 
-    <rx-form-item label="Text area">
-        <textarea rows="10" cols="50"></textarea>
-    </rx-form-item>
+        <rx-form-item label="Text area">
+            <textarea rows="10" cols="50"></textarea>
+        </rx-form-item>
 
-    <h4 class="title sm">Example of required text input w/ validation pattern</h4>
-    <rx-form-item label="Volume Name" description="Must be 2-5 letter palindrome (e.g. 'dewed')">
-        <input type="text" ng-model="volume.name" ng-required="volume.isNameRequired" ng-pattern="/^\b(\w)?(\w)\w?\2\1$/" />
-    </rx-form-item>
+        <h4 class="title sm">Example of required text input w/ validation pattern</h4>
+        <rx-form-item label="Volume Name" description="Must be 2-5 letter palindrome (e.g. 'dewed')">
+            <input type="text" ng-model="volume.name" ng-required="volume.isNameRequired" ng-pattern="/^\b(\w)?(\w)\w?\2\1$/" />
+        </rx-form-item>
 
-    <rx-form-item label="Require Name?" description="Check and uncheck with empty volume name to see border">
-        <input type="checkbox" ng-model="volume.isNameRequired" />
-    </rx-form-item>
+        <rx-form-item label="Require Name?" description="Check and uncheck with empty volume name to see border">
+            <input type="checkbox" ng-model="volume.isNameRequired" />
+        </rx-form-item>
 
-    <p class="clear">Bound Value: {{volume.name}}</p>
+        <p class="clear">Bound Value: {{volume.name}}</p>
 
-    <h4 class="title sm">Example with prefix/suffix</h4>
-    <rx-form-item label="Monthly Cost" prefix="$" suffix="million">
-        <input type="number" ng-model="volume.cost" />
-    </rx-form-item>
+        <h4 class="title sm">Example with prefix/suffix</h4>
+        <rx-form-item label="Monthly Cost" prefix="$" suffix="million">
+            <input type="number" ng-model="volume.cost" />
+        </rx-form-item>
 
-    <hr>
+        <h4 class="title sm">Example with validators</h4>
+        <rx-form-item label="Email address" description="Must contain foo.">
+            <input name="userEmail" type="email" ng-model="details.email" foocheck />
+            <div ng-show="demoForm.userEmail.$error.email" class="inline-error">Invalid email</div>
+            <div ng-show="demoForm.userEmail.$error.foocheck" class="inline-error">Your email address must contain 'foo'</div>
+        </rx-form-item>
 
-    <h3 class="title">Select Boxes</h3>
-    <rx-form-item label="Type" description="Bound Value: {{volume.type}}">
-        <span class="field-select">
-            <select ng-model="volume.type" ng-required="true">
-                <option
-                    ng-repeat="type in types"
-                    value="{{type.value}}"
-                    ng-selected="{{type.value == model}}"
-                    >{{type.label}}</option>
-            </select>
-        </span>
-    </rx-form-item>
+        <hr>
 
-    <hr>
+        <h3 class="title">Select Boxes</h3>
+        <rx-form-item label="Type" description="Bound Value: {{volume.type}}">
+            <span class="field-select">
+                <select ng-model="volume.type" ng-required="true">
+                    <option
+                        ng-repeat="type in types"
+                        value="{{type.value}}"
+                        ng-selected="{{type.value == model}}"
+                        >{{type.label}}</option>
+                </select>
+            </span>
+        </rx-form-item>
 
-    <h3 class="title">rxFormOptionTable</h3>
+        <hr>
 
-    <rx-form-fieldset legend="Option Table (radio w/full-width class)">
-        <rx-form-option-table
-            data="optionTableData"
-            columns="optionTableColumns"
-            type="radio"
-            model="volume.data"
-            field-id="optionTable"
-            selected="0"
-            class="full-width"
-            ></rx-form-option-table>
-    </rx-form-fieldset>
+        <h3 class="title">rxFormOptionTable</h3>
 
-    <p>Bound Value: {{volume.data}}</p>
+        <rx-form-fieldset legend="Option Table (radio w/full-width class)">
+            <rx-form-option-table
+                data="optionTableData"
+                columns="optionTableColumns"
+                type="radio"
+                model="volume.data"
+                field-id="optionTable"
+                selected="0"
+                class="full-width"
+                ></rx-form-option-table>
+        </rx-form-fieldset>
 
-    <rx-form-fieldset legend="Option Table (checkboxes)">
-        <rx-form-option-table
-            columns="optionTableColumns"
-            type="checkbox"
-            model="volume.checked"
-            field-id="optionCheckboxTable"
-            data="optionTableCheckboxData"
-            required="true"
-            ></rx-form-option-table>
-    </rx-form-fieldset>
+        <p>Bound Value: {{volume.data}}</p>
 
-    <p>Item 1 Value: {{volume.checked[0]}}</p>
-    <p>Item 2 Value: {{volume.checked[1]}}</p>
+        <rx-form-fieldset legend="Option Table (checkboxes)">
+            <rx-form-option-table
+                columns="optionTableColumns"
+                type="checkbox"
+                model="volume.checked"
+                field-id="optionCheckboxTable"
+                data="optionTableCheckboxData"
+                required="true"
+                ></rx-form-option-table>
+        </rx-form-fieldset>
 
-    <rx-form-fieldset legend="Option Table (empty)">
-        <rx-form-option-table
-            columns="optionTableColumns"
-            type="checkbox"
-            model="volume.checked"
-            field-id="optionCheckboxTable"
-            data="optionTableEmptyData"
-            empty-message="You don't have any data!"
-            ></rx-form-option-table>
-    </rx-form-fieldset>
+        <p>Item 1 Value: {{volume.checked[0]}}</p>
+        <p>Item 2 Value: {{volume.checked[1]}}</p>
 
-    <div class="form-actions">
-        <button class="button submit" type="submit">
-            Submit Form
-        </button>
+        <rx-form-fieldset legend="Option Table (empty)">
+            <rx-form-option-table
+                columns="optionTableColumns"
+                type="checkbox"
+                model="volume.checked"
+                field-id="optionCheckboxTable"
+                data="optionTableEmptyData"
+                empty-message="You don't have any data!"
+                ></rx-form-option-table>
+        </rx-form-fieldset>
 
-        <button class="button cancel" type="submit">
-            Cancel
-        </button>
-    </div>
+        <div class="form-actions">
+            <button class="button submit" type="submit">
+                Submit Form
+            </button>
 
+            <button class="button cancel" type="submit">
+                Cancel
+            </button>
+        </div>
+    </form>
 </div>

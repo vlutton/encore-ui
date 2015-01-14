@@ -14,6 +14,7 @@ describe('rxFormItem', function () {
 
     beforeEach(function () {
         module('encore.ui.rxForm');
+        module('encore.ui.rxFloatingHeader'); // for rxDOMHelper
         module('templates/rxFormItem.html');
 
         inject(function ($rootScope, $compile) {
