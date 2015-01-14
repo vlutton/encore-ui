@@ -76,31 +76,31 @@ var rxNotify = {
         }
     },
 
-    messages: {
-        get: function () {
-            return this.tblNotifications.reduce(function (acc, notificationElement) {
-                acc.push(notification(notificationElement));
-                return acc;
-            }, []);
-        }
-    },
-
-    byType: {
-        value: function (notificationType) {
-            // Using reduce instead of map because protractor was crashing.
-            var css = '.notification-' + notificationType.toLowerCase();
-            return this.rootElement.$$(css).reduce(function (acc, notificationElement) {
-                acc.push(notification(notificationElement));
-                return acc;
-            }, []);
+    byText: {
+        /*
+          Returns the first matching notification with `notificationText` somewhere in it, regardless of type.
+        */
+        value: function (notificationText) {
+            return notification(this.rootElement.element(by.cssContainingText('.rx-notification', notificationText)));
         }
     },
 
     dismiss: {
         value: function () {
             var page = this;
-            return this.tblNotifications.each(function () {
-                notification(page.tblNotifications.get(-1)).dismiss();
+            return this.tblNotifications.map(function (notificationElement, index) {
+                return notification(notificationElement).isDismissable().then(function (dimissable) {
+                    if (dimissable) {
+                        return index;
+                    }
+                });
+            }).then(function (dismissableIndexes) {
+                dismissableIndexes.reverse().forEach(function (index) {
+                    // The above `.map` call will populate the list with `undefined` if undismissable. Ignore those.
+                    if (index !== undefined) {
+                        notification(page.tblNotifications.get(index)).dismiss();
+                    }
+                });
             });
         }
     },

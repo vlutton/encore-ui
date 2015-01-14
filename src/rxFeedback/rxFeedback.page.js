@@ -97,9 +97,7 @@ var rxFeedback = {
             if (fn === undefined) {
                 var notifications = exports.rxNotify || require('../rxNotify/rxNotify.page.js').rxNotify;
                 fn = function () {
-                    return notifications.all.byType('success').then(function (successes) {
-                        return successes.length > 0;
-                    });
+                    return notifications.all.exists('feedback', 'success');
                 };
             }
 

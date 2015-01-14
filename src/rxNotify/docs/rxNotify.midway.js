@@ -24,23 +24,17 @@ describe('rxNotify', function () {
 
         it('should add a new success message that dismisses itself', function () {
             addToCustomStack('success', '.5');
-            notifications.byStack('custom').byType('success').then(function (successes) {
-                expect(successes.length).to.equal(1);
-            });
+            expect(notifications.all.byText('My message').type).to.eventually.equal('success');
         });
 
         it('should remove itself after a little while', function () {
             browser.sleep(1000);
-            notifications.byStack('custom').byType('success').then(function (successes) {
-                expect(successes.length).to.equal(0);
-            });
+            expect(notifications.byStack('custom').exists('My message', 'success')).to.eventually.false;
         });
 
         it('should add a new success message indefinitely', function () {
             addToCustomStack('success', -1);
-            notifications.byStack('custom').byType('success').then(function (successes) {
-                expect(successes.length).to.equal(1);
-            });
+            expect(notifications.all.byText('My message').type).to.eventually.equal('success');
         });
 
     });
@@ -51,65 +45,31 @@ describe('rxNotify', function () {
             expect(notifications.byStack('demo').count()).to.eventually.equal(4);
         });
 
-        describe('by type', function () {
+        describe('info type', function () {
             var info;
 
             before(function () {
-                notifications.byStack('demo').byType('info').then(function (infoMessages) {
-                    info = infoMessages;
-                });
+                info = notifications.byStack('demo').byText('Helpful Information');
             });
 
-            it('should have two notifications', function () {
-                expect(info.length).to.equal(2);
+            it('should be type "info"', function () {
+                expect(info.type).to.eventually.equal('info');
             });
 
-            it('should all be type "info"', function () {
-                _.forEach(info, function (infoMessage) {
-                    expect(infoMessage.type).to.eventually.equal('info');
-                });
+            it('should have helpful information', function () {
+                expect(info.text).to.eventually.equal('Helpful Information');
             });
 
-            describe('first notification', function () {
-                var notification;
-
-                before(function () {
-                    notification = info[0];
-                });
-
-                it('should have helpful information', function () {
-                    expect(notification.text).to.eventually.equal('Helpful Information');
-                });
-
-                it('should be dismissable', function () {
-                    expect(notification.isDismissable()).to.eventually.be.true;
-                });
-
-                it('should not have a spinner', function () {
-                    expect(notification.hasSpinner()).to.eventually.be.false;
-                });
-
+            it('should be dismissable', function () {
+                expect(info.isDismissable()).to.eventually.be.true;
             });
 
-            describe('second notification', function () {
-                var notification;
+            it('should not have a spinner', function () {
+                expect(info.hasSpinner()).to.eventually.be.false;
+            });
 
-                before(function () {
-                    notification = info[1];
-                });
-
-                it('should say it is loading', function () {
-                    expect(notification.text).to.eventually.equal('Loading');
-                });
-
-                it('should not be dismissable', function () {
-                    expect(notification.isDismissable()).to.eventually.be.false;
-                });
-
-                it('should have a spinner', function () {
-                    expect(notification.hasSpinner()).to.eventually.be.true;
-                });
-
+            it('should have a second spinner on another notification', function () {
+                expect(notifications.byStack('demo').byText('Loading').hasSpinner()).to.eventually.be.true;
             });
 
         });
@@ -126,61 +86,15 @@ describe('rxNotify', function () {
             var success;
 
             before(function () {
-                notifications.all.byType('success').then(function (successMessages) {
-                    success = successMessages;
-                });
+                success = notifications.all.byText('You did it!');
             });
 
-            it('should have two notifications', function () {
-                expect(success.length).to.equal(2);
+            it('should be type "success"', function () {
+                expect(success.type).to.eventually.equal('success');
             });
 
-            it('should all be type "success"', function () {
-                _.forEach(success, function (successMessage) {
-                    expect(successMessage.type).to.eventually.equal('success');
-                });
-            });
-
-            describe('first notification', function () {
-                var notification;
-
-                before(function () {
-                    notification = success[0];
-                });
-
-                it('should have done it', function () {
-                    expect(notification.text).to.eventually.equal('You did it!');
-                });
-
-                it('should be dismissable', function () {
-                    expect(notification.isDismissable()).to.eventually.be.true;
-                });
-
-                it('should not have a spinner', function () {
-                    expect(notification.hasSpinner()).to.eventually.be.false;
-                });
-
-            });
-
-            describe('second notification', function () {
-                var notification;
-
-                before(function () {
-                    notification = success[1];
-                });
-
-                it('should have my message', function () {
-                    expect(notification.text).to.eventually.equal('My message');
-                });
-
-                it('should be dismissable', function () {
-                    expect(notification.isDismissable()).to.eventually.be.true;
-                });
-
-                it('should not have a spinner', function () {
-                    expect(notification.hasSpinner()).to.eventually.be.false;
-                });
-
+            it('should have done it', function () {
+                expect(success.text).to.eventually.equal('You did it!');
             });
 
         });
@@ -219,16 +133,9 @@ describe('rxNotify', function () {
     });
 
     describe('dismissing notifications', function () {
-        var allMessages;
-
-        before(function () {
-            notifications.all.messages.then(function (messages) {
-                allMessages = messages;
-            });
-        });
 
         it('should dismiss a single notification', function () {
-            allMessages[0].dismiss();
+            notifications.all.byText('Careful now...').dismiss();
         });
 
         it('should have actually dismissed the message', function () {
