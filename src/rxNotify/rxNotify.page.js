@@ -89,8 +89,8 @@ var rxNotify = {
         value: function () {
             var page = this;
             return this.tblNotifications.map(function (notificationElement, index) {
-                return notification(notificationElement).isDismissable().then(function (dimissable) {
-                    if (dimissable) {
+                return notification(notificationElement).isDismissable().then(function (dismissable) {
+                    if (dismissable) {
                         return index;
                     }
                 });
