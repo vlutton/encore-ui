@@ -181,11 +181,11 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
                     return false;
                 }
             };
-            
+
             // Because of a bug in Angular 1.2.x, we can't use `required` and
             // ngTrueValue/ngFalseValue simultaneously. We don't want to affect
             // people that were already using rxFormOptionTable, so instead we'll
-            // build a `modelProxy` which is simply a mapping of $scope.model to 
+            // build a `modelProxy` which is simply a mapping of $scope.model to
             // an array of `true` / `false` values. We then have to take care
             // of updating the actual $scope.model ourselves in `updateCheckboxes`
             // with the correct ngTrueValue/ngFalseValue values
@@ -197,7 +197,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
 
             // If we are using checkboxes and the required attribute is set, then we
             // need an array to store the indexes of checked boxes. ng-required is
-            // specifically set if required is true and the array is empty. 
+            // specifically set if required is true and the array is empty.
             var boxesChecked = 0;
             _.forEach($scope.modelProxy, function (el) {
                 if (el) {
@@ -226,7 +226,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize'])
 
             /*
              * Get the value out of a key from the row, or parse an expression
-             * @param {String} expr - Key or Angular Expression (or static text) to be compiled
+             * @param {Object} column - Column whose `key` is an Angular Expression or HTML to be compiled
              * @param {Object} row - Data object with data to be used against the expression
              */
             $scope.getContent = function (column, row) {
