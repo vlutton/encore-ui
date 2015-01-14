@@ -24,7 +24,10 @@ angular.module('encore.ui.rxStatusColumn', [])
         link: function (scope, element) {
             scope.mappedStatus = rxStatusMappings.getInternalMapping(scope.status, scope.api);
             scope.tooltipText = scope.tooltipContent || scope.status;
-            scope.statusIcon = rxStatusColumnIcons[scope.mappedStatus] || '';
+
+            // We use `fa-exclamation-circle` when no icon should be visible. Our LESS file
+            // makes it transparent
+            scope.statusIcon = rxStatusColumnIcons[scope.mappedStatus] || 'fa-exclamation-circle';
             element.addClass('status');
             element.addClass('status-' + scope.mappedStatus);
             element.addClass('rx-status-column');

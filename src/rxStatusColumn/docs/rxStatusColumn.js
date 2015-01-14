@@ -1,7 +1,7 @@
 /*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxStatusColumnCtrl ($scope, rxStatusMappings) {
+function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
     $scope.servers = [
         { status: 'ACTIVE', title: 'ACTIVE status' },
         { status: 'ERROR', title: 'ERROR status' },
@@ -22,4 +22,8 @@ function rxStatusColumnCtrl ($scope, rxStatusMappings) {
 
     rxStatusMappings.addAPI('fooApi', { 'DELETING': 'PENDING' });
     rxStatusMappings.mapToPending('SomeApiSpecificStatus', 'fooApi');
+    $scope.sortCol = function (predicate) {
+        return rxSortUtil.sortCol($scope, predicate);
+    };
+    $scope.sort = rxSortUtil.getDefault('status');
 }

@@ -75,11 +75,11 @@ describe('rxStatusColumn', function () {
             });
 
             it('should not have a tooltip', function () {
-                expect(status.tooltip.exists).to.eventually.be.false;
+                expect(status.tooltip.exists).to.eventually.be.true;
             });
 
-            it('should have no tooltip text', function () {
-                expect(status.tooltip.text).to.eventually.be.null;
+            it('should have tooltip text', function () {
+                expect(status.tooltip.text).to.eventually.equal('ACTIVE');
             });
 
         });
@@ -87,7 +87,7 @@ describe('rxStatusColumn', function () {
         describe('error cell', function () {
 
             before(function () {
-                status = tablePageObject.row(1).status;
+                status = tablePageObject.row(3).status;
             });
 
             it('should have a status by type', function () {
@@ -117,7 +117,7 @@ describe('rxStatusColumn', function () {
             describe('build cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(2).status;
+                    status = tablePageObject.row(1).status;
                 });
 
                 it('should have a status by type', function () {
@@ -137,7 +137,7 @@ describe('rxStatusColumn', function () {
             describe('reboot cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(3).status;
+                    status = tablePageObject.row(5).status;
                 });
 
                 it('should have a status by type', function () {
@@ -161,7 +161,7 @@ describe('rxStatusColumn', function () {
             describe('in progress cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(-2).status;
+                    status = tablePageObject.row(4).status;
                 });
 
                 it('should have a status by type', function () {
@@ -181,7 +181,7 @@ describe('rxStatusColumn', function () {
             describe('deleting cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(-1).status;
+                    status = tablePageObject.row(2).status;
                 });
 
                 it('should have a status by type', function () {
@@ -198,6 +198,10 @@ describe('rxStatusColumn', function () {
 
                 it('should be using an api', function () {
                     expect(status.api).to.eventually.equal('fooApi');
+                });
+
+                it('should have tooltip text', function () {
+                    expect(status.tooltip.text).to.eventually.equal('DELETING');
                 });
 
             });
