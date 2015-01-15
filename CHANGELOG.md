@@ -1,3 +1,71 @@
+<a name="1.5.4"></a>
+### 1.5.4 (2015-01-15)
+
+
+#### Bug Fixes
+
+* **rxSortableColumn:** Put sort arrow in <button> ([1bd3d791](git@github.com:rackerlabs/encore-ui/commit/1bd3d791ae12685631ccb6d9bf61b7ae0ede95b2), closes [#732](git@github.com:rackerlabs/encore-ui/issues/732), [#733](git@github.com:rackerlabs/encore-ui/issues/733))
+
+
+#### Features
+
+* **errorHandling:** Show errors ([a39a7431](git@github.com:rackerlabs/encore-ui/commit/a39a7431ddf7bbacabd9d102f054a5c622ae9ccc), closes [#684](git@github.com:rackerlabs/encore-ui/issues/684))
+* **rxDOMHelpers:** add a find function ([5a130e5a](git@github.com:rackerlabs/encore-ui/commit/5a130e5a849c9308ff665d0af58e402b48be9e5e))
+* **rxNotification:** add ability to add a notification from a stack ([c9be2304](git@github.com:rackerlabs/encore-ui/commit/c9be2304441a6110752fafe5487cbb8f0cf855a7))
+
+
+#### Breaking Changes
+
+* This deprecates the old style of Account Info box, and
+changes the page objects to only work with the new style.
+
+To migrate to the new style, remove any instance of `<rx-account-info>`
+you have in your products, and instead pass `account-number="..."` to
+`<rx-page>`, on every page that you want this box to appear.
+
+If you were using the old account info box to display additional
+information, you can do something similar by using the `rxInfoPanel`
+directive instead.
+ ([fcd47422](git@github.com:rackerlabs/encore-ui/commit/fcd474223a7e948cceb2be14565af98e93bbe4af))
+* Avoid functions that iterate over a collection of sub
+components and return them as an object. It's slow and typically not
+used. Prefer the use of the term `.names` (as is used everywhere else),
+instead of `.allNames`.
+ ([89999dd0](git@github.com:rackerlabs/encore-ui/commit/89999dd07f25ad96af6131d2db4648497f4ca4d9))
+* Avoid the use of functions that evaluate many sub
+components into a single object. `.messages` and `.byType` with a more
+precise `.byText`, limiting the number of notifications that can be
+returned to one.
+ ([9ce3fae6](git@github.com:rackerlabs/encore-ui/commit/9ce3fae6048f4f7b4c30f8c4849a6dd397c3fbad))
+* Completely overhauls the page objects for
+rxStatusColumn, anything that was there before is almost certainly
+invalid now. The only exception to this is the `.api` property.
+ ([c25e881a](git@github.com:rackerlabs/encore-ui/commit/c25e881a480c5c77d24bb3ea6971a297ba84fb13))
+* Use Selenium's `.select` function names, not `.check`.
+
+Before, the checkbox and radio input page objects responded to `.check`
+to select, and for checkboxes, `.uncheck` was used to unselect. These
+are now aligned with Selenium's `.select` function.
+
+For the most part, checkboxes and radios weren't used directly, but
+rather, internally within other page objects (such as
+rxOptionFormTable), so migration shouldn't be necessary for
+most. However, changing all `.check` and `.uncheck` method calls to
+`.select` and `.unselect` will fix your problems.
+ ([b3b8a278](git@github.com:rackerlabs/encore-ui/commit/b3b8a27874aed5c9fe987ccf6728dce55b9b9453))
+* rxBreadcrumb's `.toArray` was removed, as evaluating an
+entire series of any sub-component is slow, expensive, rarely used, and
+can be implemented trivially in a test.
+ ([d20e27f4](git@github.com:rackerlabs/encore-ui/commit/d20e27f4e61e757ac2b798180500acec54897096))
+* if a tag is not present, breadcrumbs no longer report
+an empty string for that tag, instead returning `null`.
+ ([8391acb4](git@github.com:rackerlabs/encore-ui/commit/8391acb4132902c6d623284e5d834f08401d1e18))
+* Replaces `allOptions` with a more suitable `options`
+property that returns every dropdown option's text, and does away with
+`allOptions` altogether.
+ ([64195e44](git@github.com:rackerlabs/encore-ui/commit/64195e4451503365359418a0f8570c7e7b2352eb))
+
+
 <a name="1.5.3"></a>
 ### 1.5.3 (2015-01-07)
 
