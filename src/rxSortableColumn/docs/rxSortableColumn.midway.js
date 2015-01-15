@@ -50,9 +50,21 @@ describe('rxSortableColumn', function () {
         expect(nameColumn.currentSortDirection).to.eventually.eq(1);
     });
 
+    it('should have empty names appearing at the top in ascending sort', function () {
+        var names = ['', '', 'Andrew Yurisich', 'Hussam Dawood', 'Kerry Bowley', 'Patrick Deuley'];
+        nameColumn.sortAscending();
+        expect(nameColumn.data).to.eventually.eql(names);
+    });
+
     it('should support sorting columns descending', function () {
         nameColumn.sortDescending();
         expect(nameColumn.currentSortDirection).to.eventually.eq(0);
+    });
+
+    it('should have empty names appearing at the bottom in descending sort', function () {
+        nameColumn.sortDescending();
+        var names = ['Patrick Deuley', 'Kerry Bowley', 'Hussam Dawood', 'Andrew Yurisich', '', ''];
+        expect(nameColumn.data).to.eventually.eql(names);
     });
 
     it('should remove all other sorts when sorting an unsorted column', function () {
@@ -76,7 +88,7 @@ describe('rxSortableColumn', function () {
         });
 
         it('should return all names as data', function () {
-            var names = ['Andrew Yurisich', 'Hussam Dawood', 'Kerry Bowley', 'Patrick Deuley'];
+            var names = ['', '', 'Andrew Yurisich', 'Hussam Dawood', 'Kerry Bowley', 'Patrick Deuley'];
             expect(nameColumn.data).to.eventually.eql(names);
         });
 
@@ -89,7 +101,7 @@ describe('rxSortableColumn', function () {
                 });
             };
 
-            expect(nameColumn.getDataUsing(mapFn)).to.eventually.eql([true, false, false, false]);
+            expect(nameColumn.getDataUsing(mapFn)).to.eventually.eql([false, false, true, false, false, false]);
         });
 
         it('should apply a custom reduce function to cells', function () {
