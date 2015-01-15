@@ -88,8 +88,18 @@ var rxSortableColumn = {
         /*
           Return a list of all cell contents in this column.
           Passes all cell elements to `customFn`.
+
+          The second argument, `allByCssSelectorString` is used when your column's binding
+          (which is used by `by.repeater().column`) is for some reason unreachable by protractor.
+          A common reason why this wouldn't be the case is because the binding is not used as text
+          within a web element, but instead used within the tag's attrs. An example of this is here:
+
+          https://github.com/rackerlabs/encore-ui/blob/c200b7ca5019635724faefff8fbf5a16ccb0c8b7/src/rxStatusColumn/docs/rxStatusColumn.html#L14
+
+          In these cases, you should specify a css selector that will select each element in the column you
+          care about, since `by.binding` is not an option.
         */
-        value: function (customFn) {
+        value: function (customFn, allByCssSelectorString) {
             if (customFn === undefined) {
                 return this.data;
             }
@@ -100,7 +110,12 @@ var rxSortableColumn = {
                     page.CellUndiscoverableError.thro('data');
                 }
 
-                return customFn(element.all(by.repeater(page.repeaterString).column(sortProperty)));
+                if (allByCssSelectorString === undefined) {
+                    return customFn(element.all(by.repeater(page.repeaterString).column(sortProperty)));
+                } else {
+                    var elements = element.all(by.repeater(page.repeaterString));
+                    return customFn(elements.$$(allByCssSelectorString));
+                }
             });
         }
     },

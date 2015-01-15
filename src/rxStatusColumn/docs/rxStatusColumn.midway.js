@@ -1,8 +1,11 @@
+var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
 var rxStatusColumn = require('../rxStatusColumn.page.js').rxStatusColumn;
+var rxSortableColumn = require('../../rxSortableColumn/rxSortableColumn.page.js').rxSortableColumn;
 
 // an anonymous page object to demonstrate table and cell creation
+var repeaterString = 'server in servers';
 var tablePageObject = Page.create({
 
     rootElement: {
@@ -13,7 +16,17 @@ var tablePageObject = Page.create({
 
     tblServers: {
         get: function () {
-            return this.rootElement.all(by.repeater('server in servers'));
+            return this.rootElement.all(by.repeater(repeaterString));
+        }
+    },
+
+    column: {
+        value: function (columnName) {
+            // Only 'Status' is supported -- 'Title' is unsortable.
+            if (columnName === 'Status') {
+                var columnElement = this.rootElement.$('rx-sortable-column[sort-property="status"]');
+                return rxSortableColumn.initialize(columnElement, repeaterString);
+            }
         }
     },
 
@@ -206,6 +219,33 @@ describe('rxStatusColumn', function () {
 
             });
 
+        });
+
+    });
+
+    describe('sorting', function () {
+        var column;
+        var ascendingOrder = _.values(statuses).sort();
+
+        var statusCellData = function (cellElements) {
+            return cellElements.map(function (cellElement) {
+                return rxStatusColumn.initialize(cellElement).byType;
+            });
+        };
+
+        before(function () {
+            column = tablePageObject.column('Status');
+        });
+
+        it('should support sorting ascending', function () {
+            column.sortDescending(); // FIXME
+            expect(column.getDataUsing(statusCellData, '[rx-status-column]')).to.eventually.eql(ascendingOrder);
+        });
+
+        it('should support sorting descending', function () {
+            var descendingOrder = ascendingOrder.reverse();
+            column.sortAscending(); // FIXME
+            expect(column.getDataUsing(statusCellData, '[rx-status-column]')).to.eventually.eql(descendingOrder);
         });
 
     });
