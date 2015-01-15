@@ -82,6 +82,81 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 
 }
 
+/*
+ * rxAccountInfoBanner
+ */
+.rx-page {
+    // Account Info Banner
+
+    .account-info-banner {
+        clear: both;
+        background: #d1d1d1;
+        width: 100%;
+        border-top: 1px solid;
+        border-color: #b9b9b9;
+    }
+
+    ul.account-info-text {
+        padding: 5px 50px 5px 12px;
+        overflow: hidden;
+        li {
+            float: left;
+            padding-right: 40px;
+            .label {
+                color: #797979;
+                text-shadow: 0 1px #efefef;
+                font-size: 9px;
+            }
+            .account-data {
+                color: #505050;
+                font-size: 18px;
+                font-weight: 300;
+                .field-select {
+                    width: 140px;
+                    &:before { // background behind arrow
+                        background: #959595;
+                        top: 4px;
+                        height: 80%;
+                    }
+                    &:after { // arrow color
+                        color: #6c6c6c;
+                    }
+                }
+                select {
+                    font-size: 12px;
+                    background: #959595; // select box background
+                    border: 1px solid #6c6c6c;
+                    color: #fff;
+                }
+            }
+            .msg-warn {
+                color: #cb2124;
+            }
+            .msg-info {
+                color: #dd7800;
+            }
+        }
+        li.badges {
+            float: right;
+            padding: 0;
+            .account-info-badge {
+                .tooltip {
+                    width: 150px;
+                }
+                img {
+                    width: 35px;
+                    float: left;
+                    margin: 5px 2px;
+                }
+            }
+        }
+    }
+
+    ul.account-info-badges {
+        overflow: hidden;
+    }
+}
+
 @import 'vars';
 
 // containers for actionmenus that spawn modals
@@ -1720,6 +1795,16 @@ Any input field can be placed inside an element with a class of 'field-input'.
     box-shadow: none;
 }
 
+
+/* Inline error messages */
+.field-input-wrapper {
+    .inline-error {
+        color: #ff2400;
+        font-weight: 900;
+        margin-top: 5px;
+    }
+}
+
 /*
 ## Dropdowns
 Replace default UI of select fields and adds custom border/arrow
@@ -2584,11 +2669,22 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
  */
 
 th.rx-status-header {
-    width: 17px;
+    width: 20px;
     padding: 0;
+    rx-sortable-column {
+        .sort-action {
+            color: transparent;
+        }
+        .sort-icon {
+            margin: -9px 14px;
+        }
+    }
 }
 
 td.rx-status-column {
+    i {
+        padding-left: 2px;
+    }
     &.status-ACTIVE {
         background: #ddffd3;
     }
@@ -2614,6 +2710,11 @@ td.rx-status-column {
             color: #287BBD;
         }
     }
+
+    .fa-exclamation-circle {
+        color: transparent;
+    }
+
 
 }
 

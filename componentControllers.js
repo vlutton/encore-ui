@@ -43,8 +43,9 @@ function hotkeysCtrl ($scope, hotkeys) {
 
 
 
-// Note that these two factories are only present for the purposes of this demo. In a real application,
-// both SupportAccount and Encore will have to be provided from elsewhere, outside of encore-ui
+// Note that these factories are only present for the purposes of this demo. In a real application,
+// SupportAccount, Teams, AccountStatusGroup, and Encore will have to be provided from elsewhere,
+// outside of encore-ui. Specifically, we implement them in encore-ui-svcs
 
 angular.module('encore.ui.rxAccountInfo')
 .value('Badges',
@@ -125,8 +126,12 @@ angular.module('encore.ui.rxAccountInfo')
 
             if (config.id === '9876') {
                 deferred.reject();
+            } else if (config.id === '5623') {
+                deferred.resolve({ name: 'DelinquentAccount', status: 'Delinquent' });
+            } else if (config.id === '3265') {
+                deferred.resolve({ name: 'UnverifiedAccount', status: 'Unverified' });
             } else {
-                deferred.resolve({ name: 'Mosso' });
+                deferred.resolve({ name: 'Mosso', status: 'Active' });
             }
 
             deferred.promise.then(success, failure);
@@ -134,7 +139,84 @@ angular.module('encore.ui.rxAccountInfo')
             return deferred.promise;
         }
     };
-});
+})
+.factory('AccountStatusGroup', function () {
+    var warning = ['suspended', 'delinquent'];
+    var info = ['unverified', 'pending approval', 'approval denied', 'teststatus', 'terminated'];
+
+    return function (statusText) {
+        var lower = statusText.toLowerCase();
+        if (_.contains(warning, lower)) {
+            return 'warning';
+        } else if (_.contains(info, lower)) {
+            return 'info';
+        }
+        return '';
+    };
+})
+.controller('rxAccountInfoDemo', function ($scope) {
+        $scope.customMenu = [{
+            title: 'Example Menu',
+            children: [
+                {
+                    href: 'Lvl1-1',
+                    linkText: '1st Order Item'
+                },
+                {
+                    linkText: '1st Order Item (w/o href) w/ Children',
+                    childVisibility: [ 'isUserDefined' ],
+                    childHeader: '<strong class="current-search">Current User:</strong>' +
+                                 '<span class="current-result">{{$root.user}}</span>',
+                    children: [
+                        {
+                            href: 'Lvl1-2-Lvl2-1',
+                            linkText: '2nd Order Item w/ Children',
+                            children: [{
+                                href: 'Lvl1-2-Lvl2-1-Lvl3-1',
+                                linkText: '3rd Order Item'
+                            }]
+                        },
+                        {
+                            href: 'Lvl1-2-Lvl2-2',
+                            linkText: '2nd Order Item w/ Children',
+                            children: [
+                                {
+                                    href: 'Lvl1-2-Lvl2-2-Lvl3-1',
+                                    linkText: '3rd Order Item'
+                                },
+                                {
+                                    href: 'Lvl1-2-Lvl2-2-Lvl3-2',
+                                    linkText: '3rd Order Item'
+                                },
+                                {
+                                    href: 'Lvl1-2-Lvl2-2-Lvl3-3',
+                                    linkText: '3rd Order Item'
+                                },
+                                {
+                                    href: 'Lvl1-2-Lvl2-2-Lvl3-4',
+                                    linkText: '3rd Order Item'
+                                }
+                            ]
+                        },
+                        {
+                            href: 'Lvl1-2-Lvl2-3',
+                            linkText: '2nd Order Item'
+                        }
+                    ]
+                },
+                {
+                    href: 'Lvl1-3',
+                    linkText: '1st Order Item w/ Children',
+                    children: [
+                        {
+                            href: 'Lvl1-3-Lvl2-1',
+                            linkText: '2nd Order Item'
+                        }
+                    ]
+                }
+            ]
+        }];
+    });
 
 
 /*jshint unused:false*/
@@ -530,7 +612,35 @@ function rxFormDemoCtrl ($scope) {
     $scope.optionTableEmptyData = [];
 
     $scope.compressedLayout = { value: false };
+
+    $scope.details = { email: '' };
 }
+
+// A dummy directive only used within the rxForm demo page.
+// It's used to check that some string contains 'foo', and works
+// with ngForm to set the appropriate `.$error` value
+// Note: This code is easier to write in Angular 1.3, because
+// you can use `.$validators` instead of `.$parsers`
+angular.module('encore.ui.rxForm')
+.directive('foocheck', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, elm, attrs, ctrl) {
+
+            // Put a new validator on the beginning
+            ctrl.$parsers.unshift(function (viewValue) {
+                if (_.contains(viewValue, 'foo')) {
+                    ctrl.$setValidity('foocheck', true);
+                    return viewValue;
+                } else {
+                    ctrl.$setValidity('foocheck', false);
+                    return undefined;
+                }
+            });
+        }
+    };
+    
+});
 
 
 /*jshint unused:false*/
@@ -819,7 +929,7 @@ function rxStatusCtrl ($scope, $rootScope, Status) {
 /*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxStatusColumnCtrl ($scope, rxStatusMappings) {
+function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
     $scope.servers = [
         { status: 'ACTIVE', title: 'ACTIVE status' },
         { status: 'ERROR', title: 'ERROR status' },
@@ -827,19 +937,23 @@ function rxStatusColumnCtrl ($scope, rxStatusMappings) {
         { status: 'REBOOT', title: 'REBOOT status mapped to INFO' },
         { status: 'SUSPENDED', title: 'SUSPENDED status mapped to WARNING' },
         { status: 'INPROGRESS', title: 'INPROGRESS status mapped to PENDING' },
-        { status: 'DELETING', title: 'DELETING status mapped to WARNING, using `fooApi` mapping', api:'fooApi' },
+        { status: 'DELETING', title: 'DELETING status mapped to PENDING, using `fooApi` mapping', api:'fooApi' }
     ];
 
     // We have a few different ways of adding mappings. We've tried to show them all here
     rxStatusMappings.addGlobal({
-        'DELETING': 'ERROR'
+        'DELETING': 'PENDING'
     });
     rxStatusMappings.mapToInfo(['BUILD', 'REBOOT']);
     rxStatusMappings.mapToWarning('SUSPENDED');
     rxStatusMappings.mapToPending('INPROGRESS');
 
-    rxStatusMappings.addAPI('fooApi', { 'DELETING': 'WARNING' });
-    rxStatusMappings.mapToWarning('SomeApiSpecificStatus', 'fooApi');
+    rxStatusMappings.addAPI('fooApi', { 'DELETING': 'PENDING' });
+    rxStatusMappings.mapToPending('SomeApiSpecificStatus', 'fooApi');
+    $scope.sortCol = function (predicate) {
+        return rxSortUtil.sortCol($scope, predicate);
+    };
+    $scope.sort = rxSortUtil.getDefault('status');
 }
 
 

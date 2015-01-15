@@ -5,6 +5,15 @@ NG_DOCS={
   "pages": [
     {
       "section": "api",
+      "id": "encore.ui.rxAccountInfo:rxAccountInfo",
+      "shortName": "rxAccountInfo",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Responsible for drawing an account info box.",
+      "keywords": "account account-info-banner accountnumber api appears badges box breadcrumbs data defaults directive drawing encore errors info intended load loading notifications number optional pass responsible retrieve rxaccountinfo set stack style styles supported team true ui under-the-breadcrumbs underneath"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxActiveUrl",
       "shortName": "encore.ui.rxActiveUrl",
       "type": "directive",

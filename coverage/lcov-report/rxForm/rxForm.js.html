@@ -199,16 +199,16 @@
     <h1>Code coverage report for <span class="entity">rxForm/rxForm.js</span></h1>
     <h2>
         
-        Statements: <span class="metric">85% <small>(51 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">81.16% <small>(56 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">73.68% <small>(28 / 38)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">72.5% <small>(29 / 40)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Functions: <span class="metric">85.71% <small>(12 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Lines: <span class="metric">85% <small>(51 / 60)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">81.16% <small>(56 / 69)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
@@ -467,7 +467,27 @@
 249
 250
 251
-252</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -501,6 +521,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">13</span>
@@ -515,6 +540,21 @@
 <span class="cline-any cline-yes">13</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -735,7 +775,7 @@
  * @param {String} suffix - Text to include to the right of content
  * @param {String} description - Text to place below input
  */
-.directive('rxFormItem', function () {
+.directive('rxFormItem', function ($document, rxDOMHelper) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxFormItem.html',
@@ -747,7 +787,12 @@
             description: '@'
         },
         link: function (scope, el) {
-            var inputSelectors = '.field-input input, .field-input select, .field-input textarea';
+            var inputSelectors = [
+                '.field-input-wrapper input',
+                '.field-input-wrapper select',
+                '.field-input-wrapper textarea'
+            ];
+            inputSelectors = inputSelectors.join(', ');
 &nbsp;
             // For accessibility reasons, we need to link the &lt;label&gt; to the &lt;input&gt;
             // To do this, we use the 'for' and 'id' attributes on the &lt;label&gt; and &lt;input&gt; tags, respectively
@@ -766,6 +811,21 @@
                 if (!_.isObject(inputField)) {
                     return;
                 }
+&nbsp;
+                // Manually insert the `suffix` span after the input/select/textarea
+                // It needs to be in between the input/select/textarea and any other
+                // transcluded content, so we have to do it here instead of in the template
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (scope.suffix) {
+<span class="cstat-no" title="statement not covered" >                    var suffixSpan = $document[0].createElement('span');</span>
+<span class="cstat-no" title="statement not covered" >                    suffixSpan.innerHTML = scope.suffix;</span>
+<span class="cstat-no" title="statement not covered" >                    suffixSpan.className = 'field-suffix';</span>
+<span class="cstat-no" title="statement not covered" >                    inputField.parentNode.insertBefore(suffixSpan, inputField.nextSibling);</span>
+                }
+&nbsp;
+                // Put a &lt;span class="field-input"&gt; around the input/select/textarea
+                var fieldInputSpan = $document[0].createElement('span');
+                fieldInputSpan.className = 'field-input';
+                rxDOMHelper.wrapAll(fieldInputSpan, inputField);
 &nbsp;
                 var inputId = inputField.getAttribute('id');
 &nbsp;
@@ -901,11 +961,11 @@
                     return false;
                 }
             };
-            
+&nbsp;
             // Because of a bug in Angular 1.2.x, we can't use `required` and
             // ngTrueValue/ngFalseValue simultaneously. We don't want to affect
             // people that were already using rxFormOptionTable, so instead we'll
-            // build a `modelProxy` which is simply a mapping of $scope.model to 
+            // build a `modelProxy` which is simply a mapping of $scope.model to
             // an array of `true` / `false` values. We then have to take care
             // of updating the actual $scope.model ourselves in `updateCheckboxes`
             // with the correct ngTrueValue/ngFalseValue values
@@ -917,7 +977,7 @@
 &nbsp;
             // If we are using checkboxes and the required attribute is set, then we
             // need an array to store the indexes of checked boxes. ng-required is
-            // specifically set if required is true and the array is empty. 
+            // specifically set if required is true and the array is empty.
             var boxesChecked = 0;
             _.forEach($scope.modelProxy, function (el) {
                 if (el) {
@@ -946,7 +1006,7 @@
 &nbsp;
             /*
              * Get the value out of a key from the row, or parse an expression
-             * @param {String} expr - Key or Angular Expression (or static text) to be compiled
+             * @param {Object} column - Column whose `key` is an Angular Expression or HTML to be compiled
              * @param {Object} row - Data object with data to be used against the expression
              */
             $scope.getContent = function (column, row) {
@@ -974,7 +1034,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jan 07 2015 16:14:55 GMT-0500 (EST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 15 2015 12:25:11 GMT-0500 (EST)</div>
 </div>
 
 <script src="../prettify.js"></script>
