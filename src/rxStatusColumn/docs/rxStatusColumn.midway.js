@@ -1,8 +1,11 @@
+var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
 var rxStatusColumn = require('../rxStatusColumn.page.js').rxStatusColumn;
+var rxSortableColumn = require('../../rxSortableColumn/rxSortableColumn.page.js').rxSortableColumn;
 
 // an anonymous page object to demonstrate table and cell creation
+var repeaterString = 'server in servers';
 var tablePageObject = Page.create({
 
     rootElement: {
@@ -13,7 +16,17 @@ var tablePageObject = Page.create({
 
     tblServers: {
         get: function () {
-            return this.rootElement.all(by.repeater('server in servers'));
+            return this.rootElement.all(by.repeater(repeaterString));
+        }
+    },
+
+    column: {
+        value: function (columnName) {
+            // Only 'Status' is supported -- 'Title' is unsortable.
+            if (columnName === 'Status') {
+                var columnElement = this.rootElement.$('rx-sortable-column[sort-property="status"]');
+                return rxSortableColumn.initialize(columnElement, repeaterString);
+            }
         }
     },
 
@@ -75,11 +88,11 @@ describe('rxStatusColumn', function () {
             });
 
             it('should not have a tooltip', function () {
-                expect(status.tooltip.exists).to.eventually.be.false;
+                expect(status.tooltip.exists).to.eventually.be.true;
             });
 
-            it('should have no tooltip text', function () {
-                expect(status.tooltip.text).to.eventually.be.null;
+            it('should have tooltip text', function () {
+                expect(status.tooltip.text).to.eventually.equal('ACTIVE');
             });
 
         });
@@ -87,7 +100,7 @@ describe('rxStatusColumn', function () {
         describe('error cell', function () {
 
             before(function () {
-                status = tablePageObject.row(1).status;
+                status = tablePageObject.row(3).status;
             });
 
             it('should have a status by type', function () {
@@ -117,7 +130,7 @@ describe('rxStatusColumn', function () {
             describe('build cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(2).status;
+                    status = tablePageObject.row(1).status;
                 });
 
                 it('should have a status by type', function () {
@@ -137,7 +150,7 @@ describe('rxStatusColumn', function () {
             describe('reboot cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(3).status;
+                    status = tablePageObject.row(5).status;
                 });
 
                 it('should have a status by type', function () {
@@ -161,7 +174,7 @@ describe('rxStatusColumn', function () {
             describe('in progress cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(-2).status;
+                    status = tablePageObject.row(4).status;
                 });
 
                 it('should have a status by type', function () {
@@ -181,7 +194,7 @@ describe('rxStatusColumn', function () {
             describe('deleting cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(-1).status;
+                    status = tablePageObject.row(2).status;
                 });
 
                 it('should have a status by type', function () {
@@ -200,8 +213,39 @@ describe('rxStatusColumn', function () {
                     expect(status.api).to.eventually.equal('fooApi');
                 });
 
+                it('should have tooltip text', function () {
+                    expect(status.tooltip.text).to.eventually.equal('DELETING');
+                });
+
             });
 
+        });
+
+    });
+
+    describe('sorting', function () {
+        var column;
+        var ascendingOrder = _.values(statuses).sort();
+
+        var statusCellData = function (cellElements) {
+            return cellElements.map(function (cellElement) {
+                return rxStatusColumn.initialize(cellElement).byType;
+            });
+        };
+
+        before(function () {
+            column = tablePageObject.column('Status');
+        });
+
+        it('should support sorting ascending', function () {
+            column.sortDescending(); // FIXME
+            expect(column.getDataUsing(statusCellData, '[rx-status-column]')).to.eventually.eql(ascendingOrder);
+        });
+
+        it('should support sorting descending', function () {
+            var descendingOrder = ascendingOrder.reverse();
+            column.sortAscending(); // FIXME
+            expect(column.getDataUsing(statusCellData, '[rx-status-column]')).to.eventually.eql(descendingOrder);
         });
 
     });

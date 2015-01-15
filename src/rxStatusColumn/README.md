@@ -9,6 +9,25 @@ For the `<th>` component representing the status column, add the `rx-status-head
 
     <th rx-status-header></th>
 
+Note that status columns are sortable with <a href="#/component/rxSortableColumn">rxSortableColumn</a>, just like any other column. The demo below shows an example of this.
+
+One few things to note about the demo: The <code>&lt;th&gt;<code> is defined as:
+<pre><code>
+        &lt;th rx-status-header&gt;
+            &lt;rx-sortable-column
+              sort-method="sortCol(property)"
+              sort-property="status"
+              predicate="sort.predicate"
+              reverse="sort.reverse">
+                Status
+            &lt;/rx-sortable-column&gt;
+        &lt;th&gt;
+</code></pre>
+
+In particular, note that the word <code>Status</code> is used as the content of the <code>&lt;rx-sortable-column&gt;</code> directive, but this word doesn't actually appear in the header of the status column. This is because of a bug in <code>rxSortableColumn</code> that we will fix later. We purposely do not want the word to appear in that column, but we require <em>something</em> to be there, otherwise the column header is not clickable.
+
+Also note that <code>sort-property="status"</code> is referring to the <code>server.status</code> property on each row. Thus the sorting is done in this example by the status text coming from the API.
+
 ## rx-status-column
 
 For the corresponding `<td>`, you will need to add the `rx-status-column` attribute, and set the `status` attribute appropriately. You can optionally set `api` and `tooltip-content` attributes. `tooltip-content` sets the tooltip that will be used. If not set, it will default to the value you passed in for `status`. The `api` attribute will be explained below.
