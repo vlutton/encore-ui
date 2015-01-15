@@ -1,4 +1,4 @@
 module.exports = function(grunt) {
     grunt.registerTask('default', ['clean', 'syntax-check', 'html2js',
-        'build', 'test', 'minify', 'copy', 'rxPageObjects', 'ngdocs']);
+        'build', 'test', 'minify', 'copy', 'ngdocs']);
 };

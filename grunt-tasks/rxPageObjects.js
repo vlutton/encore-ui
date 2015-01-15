@@ -3,6 +3,7 @@ module.exports = function (grunt) {
         'concat:rxPageObjects',
         'shell:rxPageObjects',
         'copy:rxPageObjects',
+        'shell:npmPublish',
         'clean:rxPageObjects'
     ]);
 };

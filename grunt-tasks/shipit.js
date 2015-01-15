@@ -20,6 +20,9 @@ module.exports = function (grunt) {
             // push files to prod
             tasks.push('cloudfiles:production');
 
+            // push rx-page-objects to npm
+            tasks.push('rxPageObjects');
+
             // commit version increment
             tasks.push('bump-commit');
 

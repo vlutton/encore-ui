@@ -29,6 +29,10 @@ https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.co
 
 See [the main readme](../README.md) for a link to the latest build.
 
+### Secret Files Needed to Release
+
+For `grunt rxPageObjects`, you'll need to put the contents of the Encore-UI password safe entry for NPM in the project-local `.npmrc` file. This is located in the root of the project, and is ignored by git.
+
 ## Stability Index
 
 Because we're focused on delivering fast and continually improving, some components may be less stable/polished than others. To help with this, we're following the pattern set forth by the [Node Stability Index](http://nodejs.org/api/documentation.html#documentation_stability_index). To quote:
