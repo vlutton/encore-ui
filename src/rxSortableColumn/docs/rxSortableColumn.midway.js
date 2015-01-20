@@ -28,7 +28,7 @@ describe('rxSortableColumn', function () {
     });
 
     it('should return all sorts in the table', function () {
-        expect(columns.sorts).to.eventually.eql([0, -1]);
+        expect(columns.sorts).to.eventually.eql([1, -1]);
     });
     // https://github.com/rackerlabs/encore-ui/issues/694 -- End odd behavior.
 
@@ -37,8 +37,8 @@ describe('rxSortableColumn', function () {
         expect(roleColumn.rootElement.isDisplayed()).to.eventually.eq.true;
     });
 
-    it('should have a descending sort shown by default for the name column', function () {
-        expect(nameColumn.currentSortDirection).to.eventually.eq(0);
+    it('should have an ascending sort shown by default for the name column', function () {
+        expect(nameColumn.currentSortDirection).to.eventually.eq(1);
     });
 
     it('should have no sort shown by default for the job title column', function () {
@@ -66,6 +66,10 @@ describe('rxSortableColumn', function () {
     });
 
     describe('column data', function () {
+
+        beforeEach(function () {
+            nameColumn.sortAscending();
+        });
 
         it('should throw an error if attempting to access cell data without a repeater string', function () {
             expect(roleColumn.data).to.eventually.be.rejectedWith(roleColumn.CellUndiscoverableError);
