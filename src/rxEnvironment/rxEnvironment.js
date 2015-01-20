@@ -13,7 +13,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
 */
 .service('Environment', function ($location, $rootScope, $log) {
     /*
-     * This array defined different environments to check against.
+     * This array defines different environments to check against.
      * It is prefilled with 'Encore' based environments
      * It can be overwritten if necessary via the returned 'environments' property
      *
@@ -65,12 +65,9 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
      * @returns {boolean} true if valid, false otherwise
      */
     var isValidEnvironment = function (environment) {
-        var isValid =
-            _.isString(environment.name) &&
+        return _.isString(environment.name) &&
             (_.isString(environment.pattern) || _.isRegExp(environment.pattern)) &&
             _.isString(environment.url);
-
-        return isValid;
     };
 
     var environmentPatternMatch = function (href, pattern) {
@@ -199,9 +196,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
         var environment = Environment.get();
 
         // convert url template into full path based on details provided (if details is an object)
-        var url = _.isObject(details) ? $interpolate(environment.url)(details) : details;
-
-        return url;
+        return _.isObject(details) ? $interpolate(environment.url)(details) : details;
     };
 })
 /**
@@ -242,8 +237,8 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
 *
 * @example
 * <pre>
-*     <div rx-if-environment="staging">Show if staging</div>
-*     <div rx-if-environment="!production">Show if not prod</div>
+*     <div rx-if-environment="unified-preprod">Show if staging</div>
+*     <div rx-if-environment="!unified-prod">Show if not prod</div>
 * </pre>
 */
 .directive('rxIfEnvironment', function ($compile) {
