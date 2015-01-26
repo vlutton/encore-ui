@@ -238,13 +238,13 @@ describe('rxStatusColumn', function () {
         });
 
         it('should support sorting ascending', function () {
-            column.sortDescending(); // FIXME
+            column.sortAscending();
             expect(column.getDataUsing(statusCellData, '[rx-status-column]')).to.eventually.eql(ascendingOrder);
         });
 
         it('should support sorting descending', function () {
             var descendingOrder = ascendingOrder.reverse();
-            column.sortAscending(); // FIXME
+            column.sortDescending();
             expect(column.getDataUsing(statusCellData, '[rx-status-column]')).to.eventually.eql(descendingOrder);
         });
 

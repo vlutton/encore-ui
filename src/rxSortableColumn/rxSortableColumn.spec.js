@@ -2,7 +2,7 @@
 
 describe('rxSortableColumn', function () {
     var scope, compile, rootScope, el;
-    var validTemplate = '<rx-sortable-column reverse="true">Yo!</rx-sortable-column>';
+    var validTemplate = '<rx-sortable-column reverse="false">Yo!</rx-sortable-column>';
 
     beforeEach(function () {
         // load module

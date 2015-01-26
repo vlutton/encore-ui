@@ -4,7 +4,7 @@
         <span ng-transclude></span>
         <i class="sort-icon"
             ng-style="{visibility: predicate === '{{sortProperty}}' && 'visible' || 'hidden'}"
-            ng-class="{'desc': !reverse, 'asc': reverse}">
+            ng-class="{'desc': reverse, 'asc': !reverse}">
             <span class="visually-hidden">Sorted {{reverse ? 'ascending' : 'descending'}}</span>
         </i>
     </button>
