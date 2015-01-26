@@ -19,6 +19,13 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
             jobTitle: 'Design Chaplain'
         },
         {
+            name: null,
+            jobTitle: 'Chief Mastermind'
+        },
+        {
+            jobTitle: 'Assistant Chief Mastermind'
+        },
+        {
             name: 'Hussam Dawood',
             jobTitle: 'Evangelist of Roger Enriquez'
         },

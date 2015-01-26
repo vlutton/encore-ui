@@ -1,6 +1,5 @@
 <div ng-controller="rxSortableColumnCtrl">
-    <p>The demo here is shown with the table also using <code>rx-floating-header</code>, but this is not required. We've only done this to illustrate
-    that <code>rxSortableColumn</code> works properly with <code>rxFloatingHeader</code></p>
+    <p>Note: The demo table is also using <code>rx-floating-header</code>, which is not required. We've only done this to illustrate that <code>rxSortableColumn</code> works properly with <code>rxFloatingHeader</code>. The table is also using <code>rxSortEmptyTop</code>.</p>
     <table rx-floating-header>
         <thead>
             <tr>
@@ -25,7 +24,7 @@
             </tr>
         </thead>
         <tbody id="talentPoolData">
-            <tr ng-repeat="resource in talentPool | orderBy:sort.predicate:sort.reverse">
+            <tr ng-repeat="resource in talentPool | rxSortEmptyTop:sort.predicate:sort.reverse">
                 <th scope="row" class="talent-name">
                     {{resource.name}}
                 </th>
