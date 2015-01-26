@@ -1,0 +1,81 @@
+.component-description h1 {
+  font-size: 1.6em;
+  border-bottom: 1px solid #333;
+  margin-top: 1.2em;
+}
+.component-description h2 {
+  font-size: 1.4em;
+  border-bottom: 1px solid #ccc;
+  margin-top: .5em;
+}
+.component-description h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.component-description h4 {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #777;
+}
+.component-description {
+  border: 1px solid #aaa;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 2em;
+}
+.component-description .readme-title {
+  margin-top: 0;
+}
+/* Remove background color from syntax highlighted code (prism.css) */
+pre[class*="language-"] {
+  background: transparent;
+}
+ul.colors {
+  overflow: hidden;
+}
+ul.colors li.color-swatch {
+  clear: both;
+  float: left;
+  margin: 10px 0;
+  list-style: none;
+  border: 1px solid #c0c0c0;
+  width: 79px;
+}
+ul.colors .swatch {
+  margin: 2px;
+  width: 75px;
+  height: 75px;
+}
+ul.colors .color-logic {
+  float: left;
+  margin: 20px 10px;
+  max-width: 80%;
+}
+ul.colors .hexcode {
+  text-align: center;
+  font-weight: 900;
+}
+ul.colors .action-accept {
+  background-color: #24b56a;
+}
+ul.colors .status-success {
+  background-color: #c8e5bf;
+}
+ul.colors .action-edit {
+  background-color: #4881c0;
+}
+ul.colors .status-info {
+  background-color: #86cafd;
+}
+ul.colors .action-cancel {
+  background-color: #898989;
+}
+ul.colors .status-disabled {
+  background-color: #cfd2d4;
+}
+ul.colors .action-system {
+  background-color: #db7820;
+}
+ul.colors .action-delete {
+  background-color: #fc0f1d;
+}
