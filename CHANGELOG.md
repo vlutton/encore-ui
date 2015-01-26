@@ -1,3 +1,28 @@
+<a name="1.6.0"></a>
+## 1.6.0 (2015-01-26)
+
+
+#### Bug Fixes
+
+* **css:** bump size of field labels ([455fecfa](git@github.com:rackerlabs/encore-ui/commit/455fecfa0353004ce94b50b5c245753065905711))
+* **rxColumnSort:** Fix reversed ascending and descending sort ([2ea688f8](git@github.com:rackerlabs/encore-ui/commit/2ea688f86cdb684131154d56514f9f62c88f1660))
+* **rxFormOptionTable:** Change color of empty message text. ([b35b9fc2](git@github.com:rackerlabs/encore-ui/commit/b35b9fc2ff51020b22d7e912ccca9885a3f90b82))
+* **select:** 664 - Fix new select styles for FF ([5a9062e0](git@github.com:rackerlabs/encore-ui/commit/5a9062e02330c9a91758aaf0807cc832ecd41960))
+
+
+#### Features
+
+* **rxSortEmptyTop:** Add filter for placing empty values first ([e70989cb](git@github.com:rackerlabs/encore-ui/commit/e70989cba1cd3dde25ce35f71c96350b5805503f))
+
+
+#### Breaking Changes
+
+* Any page objects dependent on the presence of `.msg-warn` in rxFormOptionTable will now break. Update them to use `.empty-data` instead
+ ([b35b9fc2](git@github.com:rackerlabs/encore-ui/commit/b35b9fc2ff51020b22d7e912ccca9885a3f90b82))
+* The sort directions were incorrect. This has been corrected, but it will break existing tests.
+ ([2ea688f8](git@github.com:rackerlabs/encore-ui/commit/2ea688f86cdb684131154d56514f9f62c88f1660))
+
+
 <a name="1.5.4"></a>
 ### 1.5.4 (2015-01-15)
 
