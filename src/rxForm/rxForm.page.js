@@ -331,7 +331,7 @@ var rxOptionFormTable = {
 
     lblEmptyWarningMessage: {
         get: function () {
-            return this.rootElement.$('.msg-warn');
+            return this.rootElement.$('.empty-data');
         }
     },
 
