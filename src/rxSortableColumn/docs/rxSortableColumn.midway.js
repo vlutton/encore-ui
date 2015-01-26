@@ -1,6 +1,7 @@
 var rxSortableColumn = require('../rxSortableColumn.page.js').rxSortableColumn;
 
 describe('rxSortableColumn', function () {
+    var sorts = rxSortableColumn.sortDirections;
     var columnNames = ['Name', 'Occupation'];
     var columns, nameColumn, roleColumn;
 
@@ -28,7 +29,7 @@ describe('rxSortableColumn', function () {
     });
 
     it('should return all sorts in the table', function () {
-        expect(columns.sorts).to.eventually.eql([1, -1]);
+        expect(columns.sorts).to.eventually.eql([sorts.ascending, sorts.notSorted]);
     });
     // https://github.com/rackerlabs/encore-ui/issues/694 -- End odd behavior.
 
@@ -38,16 +39,16 @@ describe('rxSortableColumn', function () {
     });
 
     it('should have an ascending sort shown by default for the name column', function () {
-        expect(nameColumn.currentSortDirection).to.eventually.eq(1);
+        expect(nameColumn.currentSortDirection).to.eventually.eq(sorts.ascending);
     });
 
     it('should have no sort shown by default for the job title column', function () {
-        expect(roleColumn.currentSortDirection).to.eventually.eq(-1);
+        expect(roleColumn.currentSortDirection).to.eventually.eq(sorts.notSorted);
     });
 
     it('should support sorting columns ascending', function () {
         nameColumn.sortAscending();
-        expect(nameColumn.currentSortDirection).to.eventually.eq(1);
+        expect(nameColumn.currentSortDirection).to.eventually.eq(sorts.ascending);
     });
 
     it('should have empty names appearing at the top in ascending sort', function () {
@@ -58,7 +59,7 @@ describe('rxSortableColumn', function () {
 
     it('should support sorting columns descending', function () {
         nameColumn.sortDescending();
-        expect(nameColumn.currentSortDirection).to.eventually.eq(0);
+        expect(nameColumn.currentSortDirection).to.eventually.eq(sorts.descending);
     });
 
     it('should have empty names appearing at the bottom in descending sort', function () {
@@ -69,7 +70,7 @@ describe('rxSortableColumn', function () {
 
     it('should remove all other sorts when sorting an unsorted column', function () {
         roleColumn.sortAscending();
-        expect(nameColumn.currentSortDirection).to.eventually.eq(-1);
+        expect(nameColumn.currentSortDirection).to.eventually.eq(sorts.notSorted);
     });
 
     it('should have a name', function () {

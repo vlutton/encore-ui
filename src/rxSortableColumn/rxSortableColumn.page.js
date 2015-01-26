@@ -189,6 +189,12 @@ exports.rxSortableColumn = {
         };
 
         return Page.create(rxSortableColumns);
+    },
+
+    sortDirections: {
+        ascending: 1,
+        descending: 0,
+        notSorted: -1,
     }
 
 };
