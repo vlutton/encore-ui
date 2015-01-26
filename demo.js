@@ -158,6 +158,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'Basics',
                     children: [
                         {
+                            href: '#/styleguide/basics#color',
+                            linkText: 'Color'
+                        },
+                        {
                             href: '#/styleguide/basics#typography',
                             linkText: 'Typography'
                         },

@@ -857,6 +857,13 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
             jobTitle: 'Design Chaplain'
         },
         {
+            name: null,
+            jobTitle: 'Chief Mastermind'
+        },
+        {
+            jobTitle: 'Assistant Chief Mastermind'
+        },
+        {
             name: 'Hussam Dawood',
             jobTitle: 'Evangelist of Roger Enriquez'
         },
@@ -866,6 +873,7 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
         },
     ];
 }
+
 
 /*jshint unused:false*/
 function rxSpinnerCtrl ($scope) {

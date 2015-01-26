@@ -181,7 +181,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Show or hide content based on environment name",
-      "keywords": "api based content directive encore environment hide prod rx-if-environment rxenvironment staging ui"
+      "keywords": "api based content directive encore environment hide prod rx-if-environment rxenvironment staging ui unified-preprod"
     },
     {
       "section": "api",
@@ -443,6 +443,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Renders a clickable link in a table heading which will sort the table by",
       "keywords": "api array ascending called clickable clicked collection current descending directive displayed displaytext encore function heading indicates link order predicate property referenced renders reverse rxsortablecolumn sort sorted sortmethod sortproperty table text ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxSortableColumn:rxSortEmptyTop",
+      "shortName": "rxSortEmptyTop",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "Filter that moves rows with an empty predicate to the top of the column in ascending order,",
+      "keywords": "adam api ascending bottom column descending empty encore filter firstname moves null order predicate rows rxsortablecolumn rxsortemptytop sort top ui"
     },
     {
       "section": "api",
