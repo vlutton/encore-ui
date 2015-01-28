@@ -3864,7 +3864,7 @@ Replace default UI of select fields and adds custom border/arrow
   right: 1px;
   top: 1px;
   width: 20px;
-  height: 94%;
+  height: 93%;
   background: #fff;
   position: absolute;
   pointer-events: none;
@@ -4882,4 +4882,4 @@ Provides styling for the Angular-UI tab HTML
   background: #007bff;
   color: #ffffff;
 }
-/*# sourceMappingURL=encore-ui-1.6.0.css.map */
+/*# sourceMappingURL=encore-ui-1.6.1.css.map */
