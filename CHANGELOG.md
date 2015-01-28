@@ -1,3 +1,13 @@
+<a name="1.6.1"></a>
+### 1.6.1 (2015-01-28)
+
+
+#### Bug Fixes
+
+* **rxDOMHelper:** Properly wrap a select node instead of its options. ([1f70e8c2](git@github.com:rackerlabs/encore-ui/commit/1f70e8c22b61fc82fc49b8eaa595a110bdb3caca))
+* **select:** Adjust height of before content. ([a6042b87](git@github.com:rackerlabs/encore-ui/commit/a6042b870583281edad1dc65acc9ed4a02243ece))
+
+
 <a name="1.6.0"></a>
 ## 1.6.0 (2015-01-26)
 
