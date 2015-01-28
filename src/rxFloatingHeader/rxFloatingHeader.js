@@ -193,7 +193,8 @@ angular.module('encore.ui.rxFloatingHeader', [])
     var wrapAll = function (newParent, elms) {
 
         // Figure out if it's one element or an array
-        var el = elms.length ? elms[0] : elms;
+        var isNonEmptyArray = (elms.length && elms.tagName !== 'SELECT');
+        var el = isNonEmptyArray ? elms[0] : elms;
 
         // cache the current parent node and sibling 
         // of the first element
@@ -207,7 +208,7 @@ angular.module('encore.ui.rxFloatingHeader', [])
         // If there are other elements, wrap them. Each time
         // it will remove the element from its current parent,
         // and also from the `elms` array
-        while (elms.length) {
+        while (isNonEmptyArray) {
             newParent.appendChild(elms[0]);
         }
 
