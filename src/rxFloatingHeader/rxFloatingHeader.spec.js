@@ -160,4 +160,14 @@ describe('rxDOMHelper', function () {
         expect(div.find('span.hi span.foo').text()).to.equal('Test');
         expect(div.find('span.hi span.foo').hasClass('foo')).to.be.true;
     });
+
+    it('should work for select elements', function () {
+        var select = $('<select><option class="foo">Foo</option><option class="bar">Bar</option></select>');
+        var div = $('<div></div>');
+        rxjq.wrapAll(div[0], select[0]);
+        expect(div.find('select > option.foo').text()).to.equal('Foo');
+        expect(div.find('select > option.foo').hasClass('foo')).to.be.true;
+        expect(div.find('select > option.bar').text()).to.equal('Bar');
+        expect(div.find('select > option.bar').hasClass('bar')).to.be.true;
+    });
 });

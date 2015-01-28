@@ -193,7 +193,8 @@ angular.module('encore.ui.rxFloatingHeader', [])
     var wrapAll = function (newParent, elms) {
 
         // Figure out if it's one element or an array
-        var el = elms.length ? elms[0] : elms;
+        var isGroupParent = ['SELECT', 'FORM'].indexOf(elms.tagName) !== -1;
+        var el = (elms.length && !isGroupParent) ? elms[0] : elms;
 
         // cache the current parent node and sibling 
         // of the first element
@@ -207,8 +208,10 @@ angular.module('encore.ui.rxFloatingHeader', [])
         // If there are other elements, wrap them. Each time
         // it will remove the element from its current parent,
         // and also from the `elms` array
-        while (elms.length) {
-            newParent.appendChild(elms[0]);
+        if (!isGroupParent) {
+            while (elms.length) {
+                newParent.appendChild(elms[0]);
+            }
         }
 
         // If there was a sibling to the first element,
