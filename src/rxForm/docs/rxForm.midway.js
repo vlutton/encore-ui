@@ -319,8 +319,8 @@ describe('rxForm', function () {
                 expect(pennies('$0.01')).to.equal(1);
             });
 
-            it('should convert a fraction of a penny to a float', function () {
-                expect(pennies('$0.001')).to.equal(0.1);
+            it('should lose precision when converting a fraction of a penny to an int', function () {
+                expect(pennies('$0.019')).to.equal(1);
             });
 
             it('should ignore any dollar type indicators (CAN, AUS, USD)', function () {
@@ -331,8 +331,12 @@ describe('rxForm', function () {
                 expect(pennies('($100 AUS)')).to.equal(-10000);
             });
 
-            it('should convert negative currency notation to a negative float', function () {
-                expect(pennies('($0.001)')).to.equal(-0.1);
+            it('should lose precision when converting negative fractions of a penny to an int', function () {
+                expect(pennies('($1.011)')).to.equal(-101);
+            });
+
+            it('should not incur any binary rounding errors', function () {
+                expect(pennies('$1.10')).to.equal(110);
             });
 
         });

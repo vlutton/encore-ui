@@ -80,8 +80,8 @@ var dropdown = {
 exports.rxForm = {
 
     /*
-      Transform `currencyString` (USD) to pennies. Built to reverse Angular's built in 'currency' filter.
-      If your currency string includes fractions of a penny, expect a float to return.
+      Transform `currencyString` (USD) to an integer representing pennies. Built to reverse Angular's 'currency' filter.
+      If your currency string includes fractions of a penny, that precision will be lost!
     */
     currencyToPennies: function (currencyString) {
         var resFloat = parseFloat(currencyString.split(' ')[0].replace(/[,$()]/g, '').trim());
@@ -93,7 +93,7 @@ exports.rxForm = {
 
         // 0.001 -> 0.1
         //  0.01 -> 1
-        return resFloat * 100;
+        return parseInt(resFloat * 100, 10);
     },
 
     dropdown: {
