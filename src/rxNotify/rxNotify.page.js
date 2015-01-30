@@ -77,7 +77,7 @@ var rxNotify = {
     },
 
     byText: {
-        /*
+        /**
           Returns the first matching notification with `notificationText` somewhere in it, regardless of type.
         */
         value: function (notificationText) {

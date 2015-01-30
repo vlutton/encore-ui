@@ -99,7 +99,7 @@ var tabs = {
     },
 
     byName: {
-        /*
+        /**
           This will not be able to differentiate between similarly named tabs with
           different subtitled names. Include any subtitled text to differentiate between them.
           This will also return partial matches on the tab name since it uses `cssContainingText`.

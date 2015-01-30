@@ -10,35 +10,37 @@ var classNameToStatus = function (iconClassName) {
     }[iconClassName] || null;
 };
 
-/*
-  This is actually a page object for a single status column cell. The name is misleading only in that it's
-  more important to follow the naming convention of the directive rather than being completely correct here.
+/**
+   @namespace
 */
 var rxStatusColumn = {
 
+    /**
+       Represents the custom defined status type.
+       This has no relation to the tooltip text, the icon chosen, or the color used to represent it.
+       @returns {String} Status cell's custom defined status type.
+    */
     byType: {
-        /*
-          Represents the custom defined status type.
-          This has no relation to the tooltip text, the icon chosen, or the color used to represent it.
-        */
         get: function () {
             return this.rootElement.getAttribute('status');
         }
     },
 
+    /**
+       Represents the status as summarized by the icon selection alone. Extracted from the font-awesome icon used.
+       @returns {String} Status cell's font-awesome icon name.
+    */
     byIcon: {
-        /*
-          Represents the status as summarized by the icon selection alone. Extracted from the font-awesome icon used.
-        */
         get: function () {
             return this.rootElement.$('i').getAttribute('class').then(classNameToStatus);
         }
     },
 
+    /**
+       Represents the status as summarized by the color selection alone. Extracted from the class name.
+       @returns {String} Status cell's color class name.
+    */
     byColor: {
-        /*
-          Represents the status as summarized by the color selection alone. Extracted from the class name.
-        */
         get: function () {
             return this.rootElement.getAttribute('class').then(function (classes) {
                 return classes.match(/status-(\w+)/)[1];
@@ -54,6 +56,10 @@ var rxStatusColumn = {
         }
     },
 
+    /**
+       Will appear on hover.
+       @namespace rxStatusColumn.tooltip
+     */
     tooltip: {
         get: function () {
             var cellElement = this.rootElement;
@@ -64,16 +70,22 @@ var rxStatusColumn = {
                     }
                 },
 
+                /**
+                   Hovers over the current row's status column and returns whether or not a tooltip appears.
+                   @memberof rxStatusColumn.tooltip
+                   @returns {Boolean} Whether or not a tooltip is present.
+                */
                 exists: {
-                    /*
-                      Hovers over the current row's status column and returns whether or not a tooltip appears.
-                    */
                     get: function () {
                         browser.actions().mouseMove(cellElement.$('i')).perform();
                         return this.rootElement.isPresent();
                     }
                 },
 
+                /**
+                   @memberof rxStatusColumn.tooltip
+                   @returns {String} Tooltip text.
+                */
                 text: {
                     get: function () {
                         var tooltip = this;
@@ -89,8 +101,16 @@ var rxStatusColumn = {
 
 };
 
+/**
+   @exports encore.rxStatusColumn
+ */
 exports.rxStatusColumn = {
 
+    /**
+       @function
+       @param {WebElement} rxStatusCellElement - Status cell element from a table row.
+       @returns {Page} Page object representing an {@link rxStatusColumn}.
+     */
     initialize: function (rxStatusCellElement) {
         rxStatusColumn.rootElement = {
             get: function () { return rxStatusCellElement; }
@@ -98,6 +118,10 @@ exports.rxStatusColumn = {
         return Page.create(rxStatusColumn);
     },
 
+    /**
+       @constant
+       @returns {Object} Lookup of status strings from human-readable statuses.
+     */
     statuses: {
         active: 'ACTIVE',
         deleted: 'DELETED',
@@ -111,12 +135,20 @@ exports.rxStatusColumn = {
         unknown: 'UNKNOWN'
     },
 
+    /**
+       @constant
+       @returns {Object} Lookup of icon class names from a human-readable version.
+     */
     icons: {
         error: 'ERROR',
         info: 'INFO',
         warning: 'WARNING'
     },
 
+    /**
+       @constant
+       @returns {Object} Lookup of color class names from a human-readable class name.
+     */
     colors: {
         active: 'ACTIVE',
         error: 'ERROR',

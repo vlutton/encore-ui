@@ -12,7 +12,7 @@ var action = function (actionElement) {
         },
 
         openModal: {
-            /*
+            /**
               Returns a modal object to manipulate later, with given `customFunctionality`.
 
               This is the default behavior, since many instances of the action menu serve to launch
@@ -46,7 +46,7 @@ var rxActionMenu = {
     },
 
     cssFirstAny: {
-        /*
+        /**
           This selector will grab any top-level child elements under `.actions-area`, one level deep.
 
           Since action menus allow for free-form html entry, there is no guarantee that any
@@ -125,7 +125,7 @@ var rxActionMenu = {
 
 exports.rxActionMenu = {
 
-    /*
+    /**
       Passing in an `actionConstructorFn` will default to calling that for any
       calls made to `rxActionMenu.action('Action Name')`.
 

@@ -1,5 +1,4 @@
 var {%= name %}Page = require('../{%= name %}.page.js').{%=name %};
-var expect = require('chai').use(require('chai-as-promised')).expect;
 
 describe('{%= name %}', function () {
     var {%= name %};

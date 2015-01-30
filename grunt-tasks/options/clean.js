@@ -12,7 +12,7 @@ module.exports = {
         src: ['coverage']
     },
     rxPageObjects: {
-        src: ['utils/rx-page-objects/index.js', 'utils/rx-page-objects/*.tgz']
+        src: ['utils/rx-page-objects/*.tgz']
     },
     wraith: {
         src: ['<%= config.wraith %>/shots', '<%= config.wraith %>/tmp']

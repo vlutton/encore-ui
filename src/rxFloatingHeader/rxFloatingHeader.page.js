@@ -18,7 +18,7 @@ exports.rxFloatingHeader = {
         return this.compareLocations(e1, e2, 'x');
     },
 
-    /*
+    /**
       Unify input from either a location object or a web element into a promise
       representing the location attribute (x or y) of either input.
       Both `transformLocation($('.element'), 'y')` and `transformLocation({x: 20, y: 0}, 'y')`
