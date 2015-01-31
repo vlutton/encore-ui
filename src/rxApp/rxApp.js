@@ -425,15 +425,25 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         }
     };
 })
-.directive('rxBillingSearch', function ($window) {
+.directive('rxBillingSearch', function ($location, $window, encoreRoutes) {
     return {
-        template: '<rx-app-search placeholder="Fetch account by transaction or auth ID..." submit="fetchAccounts">' +
-            '</rx-app-search>',
+        templateUrl: 'templates/rxBillingSearch.html',
         restrict: 'E',
         link: function (scope) {
+            scope.searchType = 'bsl';
+            scope.$watch('searchType', function () {
+                scope.placeholder = scope.searchType === 'bsl' ? 'Transaction or Auth ID' : 'Account or Contact Info';
+            });
             scope.fetchAccounts = function (searchValue) {
                 if (!_.isEmpty(searchValue)) {
-                    $window.location = '/billing/search/' + searchValue;
+                    // Assuming we are already in /billing, we should use $location to prevent a page refresh
+                    encoreRoutes.isActiveByKey('billing').then(function (isBilling) {
+                        if (isBilling) {
+                            $location.url('/search?q=' + searchValue + '&type=' + scope.searchType);
+                        } else {
+                            $window.location = '/billing/search?q=' + searchValue + '&type=' + scope.searchType;
+                        }
+                    });
                 }
             };
         }
