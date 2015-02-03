@@ -180,7 +180,7 @@ describe('rxNotify', function () {
         });
 
         it('should say hello', function () {
-            expect(notification.text).to.eventually.equal('Hello, world!');
+            expect(notification.text).to.eventually.equal('Hello, world! This is a link.');
         });
 
         it('should not be dismissable', function () {
