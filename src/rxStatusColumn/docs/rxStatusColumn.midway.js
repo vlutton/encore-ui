@@ -127,34 +127,14 @@ describe('rxStatusColumn', function () {
 
         describe('info cells', function () {
 
-            describe('build cell', function () {
+            describe('rescue cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(1).status;
+                    status = tablePageObject.row(6).status;
                 });
 
                 it('should have a status by type', function () {
-                    expect(status.byType).to.eventually.equal(statuses.build);
-                });
-
-                it('should not have a status by icon', function () {
-                    expect(status.byIcon).to.eventually.equal(icons.info);
-                });
-
-                it('should have a status by color', function () {
-                    expect(status.byColor).to.eventually.equal(colors.info);
-                });
-
-            });
-
-            describe('reboot cell', function () {
-
-                before(function () {
-                    status = tablePageObject.row(5).status;
-                });
-
-                it('should have a status by type', function () {
-                    expect(status.byType).to.eventually.equal(statuses.reboot);
+                    expect(status.byType).to.eventually.equal(statuses.rescue);
                 });
 
                 it('should not have a status by icon', function () {
@@ -171,14 +151,14 @@ describe('rxStatusColumn', function () {
 
         describe('pending cells', function () {
 
-            describe('in progress cell', function () {
+            describe('migrating cell', function () {
 
                 before(function () {
                     status = tablePageObject.row(4).status;
                 });
 
                 it('should have a status by type', function () {
-                    expect(status.byType).to.eventually.equal(statuses.inProgress);
+                    expect(status.byType).to.eventually.equal(statuses.migrating);
                 });
 
                 it('should have a status by icon', function () {

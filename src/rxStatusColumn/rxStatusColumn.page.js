@@ -100,12 +100,15 @@ exports.rxStatusColumn = {
 
     statuses: {
         active: 'ACTIVE',
-        build: 'BUILD',
+        deleted: 'DELETED',
         deleting: 'DELETING',
         error: 'ERROR',
-        inProgress: 'INPROGRESS',
-        reboot: 'REBOOT',
-        suspended: 'SUSPENDED'
+        migrating: 'MIGRATING',
+        rebuild: 'REBUILD',
+        rescue: 'RESCUE',
+        resize: 'RESIZE',
+        suspended: 'SUSPENDED',
+        unknown: 'UNKNOWN'
     },
 
     icons: {
