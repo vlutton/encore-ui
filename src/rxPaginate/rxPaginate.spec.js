@@ -457,5 +457,12 @@ describe('Pagination', function () {
             expect(tracking.createInstance().itemsPerPage, 'new pagination instance').to.equal(200);
             
         });
+
+        it('should prefer the specified itemsPerPage over the globally configured one', function () {
+            tracking.userSelectedItemsPerPage(50);
+
+            var table = tracking.createInstance({ itemsPerPage: 350 });
+            expect(table.itemsPerPage, 'options check').to.be.eq(350);
+        });
     });
 });
