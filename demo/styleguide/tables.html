@@ -92,6 +92,17 @@
     <li>With the addition of <a href="http://rackerlabs.github.io/encore-ui/#/component/rxFloatingHeader">rxFloatingHeader</a> to the framework, we now have a standard way of adding table filters. In short, we add a new <code>&lt;tr&gt;</code> into the <code>&lt;thead&gt;</code> of the table. <code>rxFloatingHeader</code> will take care of the styling, by adding the appropriate classes on its own (namely <a href="https://github.com/rackerlabs/encore-ui/blob/master/src/rxFloatingHeader/rxFloatingHeader.less#L12"><code>th.filter-header</code></a>)</li>    
 </ul>
 
+<h3 class="title">Nested content</h3>
+
+    <div class="component-description clear">
+        <ul class="list">
+            <li>When a dataset includes a parent-child relationship, the nested tables style should be used to optionally show the related content.</li>
+            <li><span class="msg-info">ENCORE-SPECIFIC:</span> Use the double chevron in the right most column as the toggle switch for the hidden content.</li>
+        </ul>
+    </div>
+
+    <rx-styleguide code-url="styleguide/tables/nested.html"></rx-styleguide>
+
 <h2 class="title lg" id="roadmap">UI Roadmap / Possible Future-work</h2>
 
 <ul class="list">

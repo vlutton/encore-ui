@@ -109,8 +109,57 @@ table {
     tr {
         background: @tableBg;
     }
-    &.table-striped tr:nth-child(even) {
-        background: @tableBgAlt;
+    &.table-striped {
+        tr:nth-child(even), tbody:nth-child(odd) > tr {
+            background: @tableBgAlt;
+        }
+    }
+    td.double-chevron-cell {
+        width: 10px;
+        padding: 0px 10px;
+        .double-chevron {
+            cursor: pointer;
+            &::after {
+                display: inline-block;
+                color: @subduedText;
+                font-size: 20px;
+                .chevron-mixin;
+            }
+        }
+    }
+    td.expanded {
+        background-color: @subtableBorder;
+        border-bottom-color: @subtableBorder;
+        .double-chevron::after {
+            color: @white;
+            .chevron-mixin(-1);
+        }
+    }
+}
+
+.expanded-container {
+    padding: 0 3px 3px 3px;
+    background-color: @subtableBorder;
+    table.subtable {
+        table-layout: fixed;
+        margin-left: 2%;
+        width: 98%;
+
+        th:first-child {
+            border-left-width: 0;
+        }
+
+        th:last-child {
+            border-right-width: 0;
+            width: 15px;
+        }
+
+        th {
+            border-color: darken(@subtableBorder, 15%);
+            background-color: @subtableBorder;
+            border-top: 0;
+            border-bottom: 0;
+        }
     }
 }
 
