@@ -46,6 +46,7 @@ paths:
   rxInfoPanel: "/#/component/rxInfoPanel"
   rxLocalStorage: "/#/component/rxLocalStorage"
   rxLogout: "/#/component/rxLogout"
+  rxMisc: "/#/component/rxMisc"
   rxModalAction: "/#/component/rxModalAction"
   rxNotify: "/#/component/rxNotify"
   rxPageTitle: "/#/component/rxPageTitle"

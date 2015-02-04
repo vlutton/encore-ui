@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxForm', ['ngSanitize'])
+angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
 /**
  *
  * @ngdoc directive
