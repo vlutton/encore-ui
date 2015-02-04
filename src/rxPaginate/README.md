@@ -2,6 +2,10 @@
 
 Used for adding pagination around a data object.
 
+# Persistence
+
+The user's preference for the number of items to display per page will be persisted across applications using localstorage. This preference is set whenever the use selects a new number to show.
+
 # Hiding the pagination
 
 In some instances, the pagination should be hidden if there isn't enough data to require it. For example, if you have `itemsPerPage` set to 10, but only have 7 items of data (so only one page). Hiding the pagination is pretty simple:

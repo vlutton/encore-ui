@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxPaginate', [])
+angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
 /**
  *
  * @ngdoc directive
@@ -85,9 +85,7 @@ angular.module('encore.ui.rxPaginate', [])
 * PageTracking.createInstance({showAll: true, itemsPerPage: 15});
 * </pre>
 */
-.factory('PageTracking', function () {
-
-    var selectedItemsPerPage;
+.factory('PageTracking', function (LocalStorage) {
 
     function PageTrackingObject (opts) {
         this.settings = _.defaults(opts, {
@@ -111,8 +109,10 @@ angular.module('encore.ui.rxPaginate', [])
             itemSizeList.splice(index, 0, itemsPerPage);
         }
 
+        var selectedItemsPerPage = parseInt(LocalStorage.getItem('rxItemsPerPage'));
+
         // If the user has chosen a desired itemsPerPage, make sure we're respecting that
-        if (!_.isUndefined(selectedItemsPerPage) && _.contains(itemSizeList, selectedItemsPerPage)) {
+        if (!_.isNaN(selectedItemsPerPage) && _.contains(itemSizeList, selectedItemsPerPage)) {
             this.settings.itemsPerPage = selectedItemsPerPage;
         }
     }
@@ -125,7 +125,7 @@ angular.module('encore.ui.rxPaginate', [])
         },
 
         userSelectedItemsPerPage: function (itemsPerPage) {
-            selectedItemsPerPage = itemsPerPage;
+            LocalStorage.setItem('rxItemsPerPage', itemsPerPage);
         }
     };
 })
