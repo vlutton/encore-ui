@@ -1,3 +1,19 @@
+<a name="1.6.2"></a>
+### 1.6.2 (2015-02-06)
+
+
+#### Bug Fixes
+
+* **style:**
+  * compressed checkbox Chrome malfunction ([8c2da01b](git@github.com:rackerlabs/encore-ui/commit/8c2da01b5de28415a0d6dda0fbbc60fe3d86a574))
+  * rxActionMenu width ([a30dabf2](git@github.com:rackerlabs/encore-ui/commit/a30dabf2ad2d0ffb465a3ee3629904f04b454e3a))
+
+
+#### Features
+
+* **billing:** Add support for Cloud Control API search in Billing nav ([270bca2f](git@github.com:rackerlabs/encore-ui/commit/270bca2f9ae1d52d2592af14645536b791f6fdca))
+
+
 <a name="1.6.1"></a>
 ### 1.6.1 (2015-01-28)
 
