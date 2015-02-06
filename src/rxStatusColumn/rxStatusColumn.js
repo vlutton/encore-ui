@@ -22,15 +22,34 @@ angular.module('encore.ui.rxStatusColumn', [])
             tooltipContent: '@'
         },
         link: function (scope, element) {
-            scope.mappedStatus = rxStatusMappings.getInternalMapping(scope.status, scope.api);
-            scope.tooltipText = scope.tooltipContent || scope.status;
 
-            // We use `fa-exclamation-circle` when no icon should be visible. Our LESS file
-            // makes it transparent
-            scope.statusIcon = rxStatusColumnIcons[scope.mappedStatus] || 'fa-exclamation-circle';
-            element.addClass('status');
-            element.addClass('status-' + scope.mappedStatus);
-            element.addClass('rx-status-column');
+            var lastStatusClass = '';
+
+            var updateTooltip = function () {
+                scope.tooltipText = scope.tooltipContent || scope.status || '';
+            };
+
+            var setStatus = function (status) {
+                scope.mappedStatus = rxStatusMappings.getInternalMapping(status, scope.api);
+                updateTooltip();
+
+                // We use `fa-exclamation-circle` when no icon should be visible. Our LESS file
+                // makes it transparent
+                scope.statusIcon = rxStatusColumnIcons[scope.mappedStatus] || 'fa-exclamation-circle';
+                element.addClass('status');
+                element.removeClass(lastStatusClass);
+                lastStatusClass = 'status-' + scope.mappedStatus;
+                element.addClass(lastStatusClass);
+                element.addClass('rx-status-column');
+            };
+
+            scope.$watch('status', function (newStatus) {
+                setStatus(newStatus);
+            });
+
+            scope.$watch('tooltipContent', function () {
+                updateTooltip();
+            });
         }
     };
 })

@@ -18,6 +18,8 @@ describe('rxStatusColumn directive', function () {
             rxstatusMappings = rxStatusMappings;
         });
 
+        scope.status = 'MyInfoStatus';
+
         rxstatusMappings.mapToActive('SUCCESS');
         rxstatusMappings.mapToInfo('MyInfoStatus');
         rxstatusMappings.mapToWarning('MyWarningStatus');
@@ -101,6 +103,28 @@ describe('rxStatusColumn directive', function () {
         var validTemplate = '<td rx-status-column status="MyErrorStatus" tooltip-content="mytooltip"></td>';
         el = helpers.createDirective(validTemplate, compile, scope);
         expect(el.find('span').attr('tooltip')).to.equal('mytooltip');
+    });
+
+    it('shall update the status column when status changes', function () {
+        var validTemplate = '<td rx-status-column status="{{ status }}"></td>';
+        el = helpers.createDirective(validTemplate, compile, scope);
+        expect(el.hasClass('status-INFO')).to.be.true;
+
+        scope.status = 'MyErrorStatus';
+        scope.$digest();
+        expect(el.hasClass('status-ERROR')).to.be.true;
+        expect(el.hasClass('status-INFO')).to.be.false;
+    });
+
+    it('shall update the tooltip when the tooltip changes', function () {
+        scope.tooltipTest = 'My Tooltip';
+        var validTemplate = '<td rx-status-column status="MyErrorStatus" tooltip-content="{{ tooltipTest }}"></td>';
+        el = helpers.createDirective(validTemplate, compile, scope);
+        expect(el.find('span').attr('tooltip')).to.equal('My Tooltip');
+
+        scope.tooltipTest = 'Another Tooltip';
+        scope.$digest();
+        expect(el.find('span').attr('tooltip')).to.equal('Another Tooltip');
     });
 });
 
