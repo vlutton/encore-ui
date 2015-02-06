@@ -941,10 +941,13 @@ function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
     $scope.servers = [
         { status: 'ACTIVE', title: 'ACTIVE status' },
         { status: 'ERROR', title: 'ERROR status' },
-        { status: 'BUILD', title: 'BUILD status mapped to INFO' },
-        { status: 'REBOOT', title: 'REBOOT status mapped to INFO' },
+        { status: 'DELETED', title: 'DELETED status mapped to ERROR' },
+        { status: 'UNKNOWN', title: 'UNKNOWN status mapped to ERROR' },
+        { status: 'RESCUE', title: 'RESCUE status mapped to INFO' },
         { status: 'SUSPENDED', title: 'SUSPENDED status mapped to WARNING' },
-        { status: 'INPROGRESS', title: 'INPROGRESS status mapped to PENDING' },
+        { status: 'REBUILD', title: 'REBUILD status mapped to PENDING' },
+        { status: 'RESIZE', title: 'RESIZE status mapped to PENDING' },
+        { status: 'MIGRATING', title: 'MIGRATING status mapped to PENDING' },
         { status: 'DELETING', title: 'DELETING status mapped to PENDING, using `fooApi` mapping', api:'fooApi' }
     ];
 
@@ -952,10 +955,10 @@ function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
     rxStatusMappings.addGlobal({
         'DELETING': 'PENDING'
     });
-    rxStatusMappings.mapToInfo(['BUILD', 'REBOOT']);
+    rxStatusMappings.mapToInfo('RESCUE');
     rxStatusMappings.mapToWarning('SUSPENDED');
-    rxStatusMappings.mapToPending('INPROGRESS');
-
+    rxStatusMappings.mapToPending(['REBUILD','RESIZE','MIGRATING']);
+    rxStatusMappings.mapToError(['DELETED', 'UNKNOWN']);
     rxStatusMappings.addAPI('fooApi', { 'DELETING': 'PENDING' });
     rxStatusMappings.mapToPending('SomeApiSpecificStatus', 'fooApi');
     $scope.sortCol = function (predicate) {
