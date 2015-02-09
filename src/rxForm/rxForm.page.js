@@ -91,8 +91,6 @@ exports.rxForm = {
             resFloat = -resFloat;
         }
 
-        // 0.001 -> 0.1
-        //  0.01 -> 1
         return parseInt(resFloat * 100, 10);
     },
 
