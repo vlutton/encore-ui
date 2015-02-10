@@ -1,3 +1,12 @@
+<a name="1.6.3"></a>
+### 1.6.3 (2015-02-10)
+
+
+#### Bug Fixes
+
+* **css:** rx-app-search icon ([64220236](git@github.com:rackerlabs/encore-ui/commit/64220236101993b7bf40d7773138c75d49e04e57))
+
+
 <a name="1.6.2"></a>
 ### 1.6.2 (2015-02-06)
 
