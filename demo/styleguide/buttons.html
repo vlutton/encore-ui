@@ -10,14 +10,21 @@
 
         <p>Buttons are sized using <code>xl</code>, <code>lg</code>, <code>sm</code> and <code>xs</code> classes. Not adding the additional class defaults the size to medium.</p>
 
-<h2>Using Colors with Buttons</h2>
+        <h2>Using Colors with Buttons</h2>
 
-<p><span class="msg-info">ENCORE-SPECIFIC:</span> In the context of the Encore-UI, when is a button blue and when is a button green?</p>
-<ul class="list">
-    <li>If the form you are submitting results in CREATING or ADDING something, use green.</li>
-    <li>If the form you are submitting results in editing something or something auxiliary (like getting metadata from a different sources) keep it blue.</li>
-</ul>
+        <p><span class="msg-info">ENCORE-SPECIFIC:</span> In the context of the Encore-UI, when is a button blue and when is a button green?</p>
+        <ul class="list">
+            <li>If the form you are submitting results in CREATING or ADDING something, use green.</li>
+            <li>If the form you are submitting is within a modal, use green.</li>
+            <li>If the form you are submitting results in editing something or something auxiliary (like getting metadata from a different sources) keep it blue.</li>
+            <li>If you are providing a button for the user to exit a series of modals (with no submit), use blue.</li>
+        </ul>
 
+        <h2>Using Spinners with Buttons</h2>
+
+        <p>
+            The Framework provides a spinner style for use with buttons. Note that different spinner styles are used when content is loading or being fetched (see <a href="#colors">Using Colors and Icons With Links demo</a>). When a user takes an action with results that cannot be immediately displayed, a spinner is shown on a disabled button state until the call completes or the results of the user's action can be displayed in the UI. Text for buttons with spinners should describe the action being taken using "-ing" verbs, so the user understands why the button appearance has changed. Note that the disabled state ensures the user cannot submit the same data multiple times while the initial action completes.
+        </p>
     </div>
 
     <rx-styleguide code-url="styleguide/buttons/custom-buttons.html"></rx-styleguide>
