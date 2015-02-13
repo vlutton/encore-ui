@@ -376,4 +376,19 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     $scope.clearFilter = function () {
         $scope.searchText = '';
     };
+})
+
+// Used by the Customizing Buttons styleguide page
+.controller('customButtonsStyleguideCtrl', function ($scope, $timeout) {
+    $scope.status = {
+        loading: false,
+        disable: false
+    };
+
+    $scope.clickMe = function () {
+        $scope.status.loading = true;
+        $timeout(function () {
+            $scope.status.loading = false;
+        }, 4000);
+    };
 });
