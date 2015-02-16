@@ -38,8 +38,11 @@
 <p><span class="msg-warn">HEADS UP:</span> Because these classes are colors, they can also be applied to regular text as well. This can cause confusion between when something is a text and something is an action. This is a design pattern discrepancy that will need to be resolved in a future iteration.</p>
 
 <h2>Icons</h2>
-<p>We've been using the <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> library as a way to primarily visualize actionable items. For the majority of Encore, actionable links are used in two places - in the upper right hand section of a details page, flushed right with the <code>page-actions</code> and <code>actions-area</code> classes, or in the rxActionMenu directive.</p>
-<p>Below we have included some icons that have used throughout Encore, as well as the actions associated with the icons. Feel free to re-use these icons as you see fit.</p>
+<p>We use the <a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> library as a way to visualize and distinguish actionable items. So far we've tried to ensure that iconography with action links remains unique to one action (with the exception of "create", "delete", "change", "edit", and "go to" actions, which use the same icons in many places regardless of context). However, in the case of two opposite actions that you can take on a single unit (for example, choosing to enable connection throttling on a load balancer when throttling is disabled, or disabling throttling when throttling is enabled), then the same icon and color can be used. In the case of opposite actions, only one action should display at a time, depending on the state. Note that any "enable" or "disable" actions should be yellow in color, as they're causing changes to something rather than creating something new (green) or destroying something (red).
+</p>
+
+<p>For the majority of Encore, actionable links are used in two places&#8212;in the upper right hand section of a details page, flushed right with the <code>page-actions</code> and <code>actions-area</code> classes, or in the rxActionMenu directive.</p>
+<p>Below we have included icons that have been used throughout Encore, as well as the actions associated with the icons. Please use as a reference for which icons are already in use and should not be duplicated.</p>
 
 <p><span class="msg-warn">HEADS UP:</span> Most icons have been chosen based on the verb (Add, Edit, Delete, Restart, etc) but there are a couple of icons chosen on the noun (consoles, tachometers for throttling). This is a design pattern discrepancy that will need to be resolved in a future iteration.</p>
 
