@@ -14,7 +14,7 @@ var optionFromElement = function (optionElement) {
 
         select: {
             value: function () {
-                browser.actions().mouseDown(optionElement).mouseUp().perform();
+                exports.rxForm.slowClick(optionElement);
             }
         },
 
@@ -94,6 +94,10 @@ exports.rxForm = {
         // 0.001 -> 0.1
         //  0.01 -> 1
         return parseInt(resFloat * 100, 10);
+    },
+
+    slowClick: function (elem) {
+        browser.actions().mouseDown(elem).mouseUp().perform();
     },
 
     dropdown: {
