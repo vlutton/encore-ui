@@ -3,7 +3,8 @@ module.exports = {
         livereload: 1337
     },
     scripts: {
-        files: ['src/**/*.js', '!src/*/*.spec.js', '!src/**/*.midway.js', '!src/**/*.page.js'],
+        files: ['src/**/*.js', '!src/*/*.spec.js', '!src/**/*.midway.js',
+                '!src/**/*.page.js', '!src/**/*.exercise.js'],
         tasks: ['build', 'karma:watch:run']
     },
     specs: {

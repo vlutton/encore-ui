@@ -119,6 +119,37 @@ var helperComponent = exports.rxHelper || require('../rxHelper/rxHelper.page.js'
 
 Since the publish step of the page objects concatenates all pages together into one large zipped file, there isn't a reliable way to know if the import is happening in the "one large file", or in the `src/` directory (where UI smoke tests are run on Travis). This simply catches both cases, so that importing components can happen in either situation.
 
+Speaking of concatenating all page object files together, the code located at the top of the [grunt concat](../grunt-tasks/options/concat.js) task includes a list of third-party node modules used throughout the page objects and exercises. When requiring a new dependency into a page object or exercise, check that list and make sure it is included! It will make sure that the `index.js` and `exercise.js` files that get published by `grunt rxPageObjects` does not have duplicate `require` calls scattered throughout it.
+
+### Convenience Page Object Exercises
+
+Convenience page objects exist to abstract away many of the tedious commands needed to direct a component during tests that prove high-level business functionality in your tests. However, many tests should still be run to ensure that your app's encore-ui components were "wired up" correctly. They should respond to activities that many users will exercise during normal operation. Instead of duplicating these tests in every instance of a component in your app, you can include that page object's exercise using this pattern:
+
+```js
+// assuming you've included `encore = require('rx-page-objects')` in your protractor conf's onPrepare step
+describe('Home Page', function () {
+
+    before(function () {
+        loginPage.login();
+        homePage.search('My Term');
+    });
+
+    it('should have a pagination component present', function () {
+        expect(homePage.resultsTable.pagination.rootElement.isPresent()).to.eventually.be.true;
+    });
+
+    // you can skip many tests by simply doing this instead
+    describe('search result pagination', encore.exercise.rxPaginate(homePage.resultsTable.pagination));
+
+});
+```
+
+The above snippet would run a couple dozen basic tests, assuming there are no edge cases in your app's implementation of the pagination component. Examples of such edge cases might be having less than three pages of total pagination space, or defaulting to a very large or small number of results by default.
+
+### Handling Edge Cases in Exercises
+
+If you do have edge cases, many of the exercises support passing in an `options` argument, which should be documented in the [npm home page for rx-page-objects](https://www.npmjs.com/package/rx-page-objects). This allows you to specify aspects of a particular component's implementation to the exercise function, allowing it to skip certain tests that are not valid.
+
 UI Regression Tests
 -------------
 
