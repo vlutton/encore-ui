@@ -1,6 +1,7 @@
 var Page = require('astrolabe').Page;
 
 var actionMenu = require('../rxActionMenu.page').rxActionMenu;
+var rxForm = require('../../rxForm/rxForm.page').rxForm;
 var notifications = require('../../rxNotify/rxNotify.page').rxNotify;
 
 describe('rxActionMenu', function () {
@@ -10,7 +11,7 @@ describe('rxActionMenu', function () {
 
             triggerNotification: {
                 value: function () {
-                    actionElement.$('.trigger').click();
+                    rxForm.slowClick(actionElement.$('.trigger'));
                 }
             }
 

@@ -1,4 +1,5 @@
-var modal = require('../rxModalAction.page.js').rxModalAction;
+var modal = require('../rxModalAction.page').rxModalAction;
+var rxForm = require('../../rxForm/rxForm.page').rxForm;
 
 describe('rxModalAction', function () {
     var changePasswordModal, triggerModal;
@@ -6,7 +7,7 @@ describe('rxModalAction', function () {
     before(function () {
         demoPage.go('#/component/rxModalAction');
         triggerModal = function () {
-            $('.component-demo .modal-link').click();
+            rxForm.slowClick($('.component-demo .modal-link'));
         };
 
         var customFunctionalty = {
