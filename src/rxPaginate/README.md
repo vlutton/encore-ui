@@ -4,7 +4,7 @@ Used for adding pagination around a data object.
 
 # Persistence
 
-The user's preference for the number of items to display per page will be persisted across applications using localstorage. This preference is set whenever the use selects a new number to show.
+The user's preference for the number of items to display per page will be persisted across applications using localstorage. This preference is set whenever the user selects a new number to show.
 
 # Hiding the pagination
 
