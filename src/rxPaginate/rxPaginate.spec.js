@@ -218,6 +218,7 @@ describe('Pagination', function () {
 
             var firstButton = buttons.eq(0);
             var thirdButton = buttons.eq(2);
+            helpers.clickElement(firstButton[0]);
             expect(firstButton.prop('disabled'), 'first button disabled').to.be.true;
             expect(thirdButton.prop('disabled'), 'second button not disabled').to.be.false;
 
@@ -398,12 +399,19 @@ describe('Pagination', function () {
 
     describe('Factory: PageTracking', function () {
         var tracking;
+        var LocalStorage;
 
         beforeEach(function () {
             module('encore.ui.rxPaginate');
-            inject(function (PageTracking) {
+            inject(function (PageTracking, _LocalStorage_) {
                 tracking = PageTracking;
+                LocalStorage = _LocalStorage_;
+                LocalStorage.clear();
             });
+        });
+
+        afterEach(function () {
+            LocalStorage.clear();
         });
 
         it('Should override default showAll when set', function () {
@@ -430,7 +438,7 @@ describe('Pagination', function () {
 
             var secondTable = tracking.createInstance();
             expect(secondTable.itemsPerPage, 'checking second table').to.be.eq(50);
-            
+
             tracking.userSelectedItemsPerPage(500);
             var thirdTable = tracking.createInstance();
             expect(thirdTable.itemsPerPage, 'checking third table').to.be.eq(500);
@@ -445,9 +453,16 @@ describe('Pagination', function () {
             tracking.userSelectedItemsPerPage(73);
 
             // 73 isn't an option in this new pagination, so it should go back
-            // to the default value of 50
+            // to the default value of 200
             expect(tracking.createInstance().itemsPerPage, 'new pagination instance').to.equal(200);
             
+        });
+
+        it('should prefer the specified itemsPerPage over the globally configured one', function () {
+            tracking.userSelectedItemsPerPage(50);
+
+            var table = tracking.createInstance({ itemsPerPage: 350 });
+            expect(table.itemsPerPage, 'options check').to.be.eq(350);
         });
     });
 });
