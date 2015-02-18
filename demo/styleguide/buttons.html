@@ -10,20 +10,27 @@
 
         <p>Buttons are sized using <code>xl</code>, <code>lg</code>, <code>sm</code> and <code>xs</code> classes. Not adding the additional class defaults the size to medium.</p>
 
-<h2>Using Colors with Buttons</h2>
+        <h2>Using Colors with Buttons</h2>
 
-<p><span class="msg-info">ENCORE-SPECIFIC:</span> In the context of the Encore-UI, when is a button blue and when is a button green?</p>
-<ul class="list">
-    <li>If the form you are submitting results in CREATING or ADDING something, use green.</li>
-    <li>If the form you are submitting results in editing something or something auxiliary (like getting metadata from a different sources) keep it blue.</li>
-</ul>
+        <p><span class="msg-info">ENCORE-SPECIFIC:</span> In the context of the Encore-UI, when is a button blue and when is a button green?</p>
+        <ul class="list">
+            <li>If the form you are submitting results in CREATING or ADDING something, use green.</li>
+            <li>If the form you are submitting is within a modal, use green.</li>
+            <li>If the form you are submitting results in EDITING something or something auxiliary (like getting metadata from a different sources) keep it blue.</li>
+            <li>If you are providing a button for the user to exit a series of modals (with no submit), use blue.</li>
+        </ul>
 
+        <h2>Using Spinners with Buttons</h2>
+
+        <p>The Framework provides a spinner style for use with buttons. Note that different spinner styles are used when content is loading or being fetched (see <a href="#colors">Using Colors and Icons With Links demo</a>).</p>
+        <p>When a user takes an action with results that cannot be immediately displayed, a spinner is shown on a disabled button state until the call completes or the results of the user's action can be displayed in the UI. Text for buttons with spinners should describe the action being taken using "-ing" verbs, so the user understands why the button appearance has changed. Note that the disabled state ensures the user cannot submit the same data multiple times while the initial action completes.
+        </p>
     </div>
 
     <rx-styleguide code-url="styleguide/buttons/custom-buttons.html"></rx-styleguide>
 
-    <h3 class="title">Using Colors and Icons With Links</h2>
-    <div class="component-description clear">
+<h3 class="title">Using Colors and Icons With Links</h2>
+<div class="component-description clear">
 
 <h2 id="colors">Colors</h2>
 
@@ -34,7 +41,7 @@
     <li>Orange (<code>.msg-info</code>) is for build an action upon something. When part of a list, they appear third.</li>
     <li>Red (<code>.msg-warn</code>) is for destructive actions. When part of a list, they appear last.</li>
 </ul>
-<p>
+
 <p><span class="msg-warn">HEADS UP:</span> Because these classes are colors, they can also be applied to regular text as well. This can cause confusion between when something is a text and something is an action. This is a design pattern discrepancy that will need to be resolved in a future iteration.</p>
 
 <h2>Icons</h2>
@@ -46,7 +53,11 @@
 
 <p><span class="msg-warn">HEADS UP:</span> Most icons have been chosen based on the verb (Add, Edit, Delete, Restart, etc) but there are a couple of icons chosen on the noun (consoles, tachometers for throttling). This is a design pattern discrepancy that will need to be resolved in a future iteration.</p>
 
-    </div>
-    <rx-styleguide code-url="styleguide/buttons/links.html"></rx-styleguide>
+<h2>Using Spinners with Action Links</h2>
+<p>The Framework provides a spinner style for use with action links. Note that different spinner styles are used when a user takes action by clicking a button (see <a href="#">Buttons & Links demo</a>).</p>
+<p>When an action link must first fetch data or determine state before the user can click it, a spinner is shown to the right of the action link, and both spinner and link have a disabled grey color and are not clickable.</p>
+<p><span class="msg-warn">HEADS UP:</span> Note that the spinner with action link is being styled on a per-project basis currently, since the current implementation of rxSpinner needs to be updated to support this use case more easily.</p>
+</div>
+<rx-styleguide code-url="styleguide/buttons/links.html"></rx-styleguide>
 
 </rx-page>

@@ -14,14 +14,15 @@
 <hr />
 
 <h3 class="title">Spinner Styles</h3>
-<button class="button">
-    I have a spinner
-    <div class="spinner">
-        <i class="pos1"></i>
-        <i class="pos2"></i>
-        <i class="pos3"></i>
-    </div>
-</button>
+<div ng-controller="customButtonsStyleguideCtrl">
+    <rx-button
+        default-msg="Click me to see a spinner"
+        toggle="status.loading"
+        toggle-msg="Displaying spinner"
+        ng-click="clickMe()"
+        disable="status.disable">
+    </rx-button>
+</div>
 
 <hr />
  
