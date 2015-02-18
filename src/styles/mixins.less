@@ -61,3 +61,11 @@
     -o-transition: @value;
     transition: @value;
 }
+
+.chevron-mixin(@state: 1) {
+    content: "\00bb";
+    -webkit-transform: rotate(90deg) scaleX(@state);
+    transform: rotate(90deg) scaleX(@state);
+    -webkit-transition: all .2s;
+    transition: all .2s;
+}
