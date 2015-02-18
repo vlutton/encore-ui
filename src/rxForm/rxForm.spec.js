@@ -14,7 +14,6 @@ describe('rxFormItem', function () {
 
     beforeEach(function () {
         module('encore.ui.rxForm');
-        module('encore.ui.rxFloatingHeader'); // for rxDOMHelper
         module('templates/rxFormItem.html');
 
         inject(function ($rootScope, $compile) {
@@ -178,7 +177,7 @@ describe('rxFormOptionTable (Checkbox)', function () {
         var checkTableScope = checkTable.isolateScope();
         expect(checkTableScope.checkRequired()).to.be.false;
     });
-    
+
     it('should validate if there is one checkbox without an ngTrueValue a required flag', function () {
         var checkScope = rootScope.$new();
         checkScope.tableData = [
