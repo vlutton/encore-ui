@@ -362,6 +362,19 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     ];
 })
 
+// Used by the Tables styleguide page to show nested content
+.controller('tableNestedExampleCtrl', function ($scope) {
+    $scope.people = [
+        { name: 'Patrick Deuley', occupation: 'Design Chaplain', pets: [
+            { name: 'Shelly', animal: 'Turtle', age: 1 },
+            { name: 'Spike', animal: 'Porcupine', age: 10 }
+        ] },
+        { name: 'Hussam Dawood', occupation: 'Cat Lover', pets: [
+            { name: 'Sassy', animal: 'Cat', age: 6 }
+        ] }
+    ];
+})
+
 // Used by the Layout 2 styleguide page to show pagination
 .controller('layout2StyleguideCtrl', function ($scope, PageTracking) {
     $scope.pager = PageTracking.createInstance();
@@ -375,5 +388,20 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     ];
     $scope.clearFilter = function () {
         $scope.searchText = '';
+    };
+})
+
+// Used by the Customizing Buttons styleguide page
+.controller('customButtonsStyleguideCtrl', function ($scope, $timeout) {
+    $scope.status = {
+        loading: false,
+        disable: false
+    };
+
+    $scope.clickMe = function () {
+        $scope.status.loading = true;
+        $timeout(function () {
+            $scope.status.loading = false;
+        }, 4000);
     };
 });

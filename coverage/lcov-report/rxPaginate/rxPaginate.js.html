@@ -202,7 +202,7 @@
         Statements: <span class="metric">89.66% <small>(52 / 58)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
-        Branches: <span class="metric">81.25% <small>(26 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">81.82% <small>(27 / 33)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         
         
         Functions: <span class="metric">92.86% <small>(13 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
@@ -465,7 +465,8 @@
 247
 248
 249
-250</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+250
+251</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -553,11 +554,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -567,32 +566,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26</span>
-<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-yes">16</span>
 <span class="cline-any cline-yes">16</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-yes">3</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">20</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26</span>
-<span class="cline-any cline-yes">26</span>
-<span class="cline-any cline-yes">26</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
+<span class="cline-any cline-yes">27</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6</span>
+<span class="cline-any cline-yes">7</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -714,7 +716,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxPaginate', [])
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
 /**
  *
  * @ngdoc directive
@@ -801,12 +803,10 @@
 * PageTracking.createInstance({showAll: true, itemsPerPage: 15});
 * &lt;/pre&gt;
 */
-.factory('PageTracking', function () {
-&nbsp;
-    var selectedItemsPerPage;
+.factory('PageTracking', function (LocalStorage) {
 &nbsp;
     function PageTrackingObject (opts) {
-        this.settings = _.defaults(opts, {
+        this.settings = _.defaults(_.cloneDeep(opts), {
             itemsPerPage: 200,
             pagesToShow: 5,
             pageNumber: 0,
@@ -827,8 +827,11 @@
             itemSizeList.splice(index, 0, itemsPerPage);
         }
 &nbsp;
+        var selectedItemsPerPage = parseInt(LocalStorage.getItem('rxItemsPerPage'));
+&nbsp;
         // If the user has chosen a desired itemsPerPage, make sure we're respecting that
-        if (!_.isUndefined(selectedItemsPerPage) &amp;&amp; _.contains(itemSizeList, selectedItemsPerPage)) {
+        // However, a value specified in the options will take precedence
+        if (!opts.itemsPerPage &amp;&amp; !_.isNaN(selectedItemsPerPage) &amp;&amp; _.contains(itemSizeList, selectedItemsPerPage)) {
             this.settings.itemsPerPage = selectedItemsPerPage;
         }
     }
@@ -841,7 +844,7 @@
         },
 &nbsp;
         userSelectedItemsPerPage: function (itemsPerPage) {
-            selectedItemsPerPage = itemsPerPage;
+            LocalStorage.setItem('rxItemsPerPage', itemsPerPage);
         }
     };
 })
@@ -968,7 +971,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 10 2015 15:49:20 GMT-0500 (EST)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Feb 18 2015 16:30:47 GMT-0500 (EST)</div>
 </div>
 
 <script src="../prettify.js"></script>

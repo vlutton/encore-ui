@@ -677,6 +677,8 @@ function rxLocalStorageCtrl ($scope, LocalStorage) {
 
 
 
+
+
 /*jshint unused:false*/
 function rxModalActionCtrl ($scope) {
     $scope.password = 'guest';

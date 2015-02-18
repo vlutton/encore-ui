@@ -212,15 +212,6 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxFloatingHeader:rxDOMHelper",
-      "shortName": "rxDOMHelper",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A small set of functions to provide some functionality",
-      "keywords": "angular api arguments dom-related elements encore functionality functions isn jquery-lite methods provide rxfloatingheader service set small ui wrapped"
-    },
-    {
-      "section": "api",
       "id": "encore.ui.rxFloatingHeader:rxFloatingHeader",
       "shortName": "rxFloatingHeader",
       "type": "directive",
@@ -290,6 +281,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Adds logout functionality to an element",
       "keywords": "adds api custom directive element encore functionality location logging logout redirect rx-logout rxlogout ui url"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxMisc:rxDOMHelper",
+      "shortName": "rxDOMHelper",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "A small set of functions to provide some functionality",
+      "keywords": "angular api arguments dom-related elements encore functionality functions isn jquery-lite methods provide rxmisc service set small ui wrapped"
     },
     {
       "section": "api",
