@@ -1,3 +1,20 @@
+<a name="1.7.0"></a>
+## 1.7.0 (2015-02-18)
+
+
+#### Bug Fixes
+
+* **rxPaginate:** Prefer specified items per page over persisted one. ([521c476c](git@github.com:rackerlabs/encore-ui/commit/521c476c2fab73983c50f40ecb3ba3d630a29d8a))
+
+
+#### Features
+
+* **rxPaginate:** Persist items per page accross applications. ([4621e7f9](git@github.com:rackerlabs/encore-ui/commit/4621e7f940acc877400eedea42d2590030368179))
+* **table:**
+  * Add styles and demo for nested content (not tables). ([b85cd627](git@github.com:rackerlabs/encore-ui/commit/b85cd62775b848e5ff271a7d507c0f19f3ea00e7))
+  * Add styles and demo for nested tables. ([9a272827](git@github.com:rackerlabs/encore-ui/commit/9a2728279d8a8b316c2833258d0c5962a6e9ac37))
+
+
 <a name="1.6.3"></a>
 ### 1.6.3 (2015-02-10)
 
