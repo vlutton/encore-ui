@@ -64,9 +64,9 @@
     "karma-requirejs": "~0.2.2",
     "load-grunt-tasks": "~2.0.0",
     "lodash": "~2.4.1",
+    "marked": "^0.3.3",
     "mocha": "^2.1.0",
     "moment": "~2.9.0",
-    "node-markdown": "0.1.1",
     "protractor": "latest",
     "semver": "~4.2.0"
   }
