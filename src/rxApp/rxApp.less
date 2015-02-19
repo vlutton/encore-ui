@@ -7,16 +7,16 @@
     @appMenuWidth: 300px;
 
     min-height: 100%;
-    .flexbox-display();
-    .flexbox-direction(row);
+    .flexbox();
+    .flex-direction(row);
     background: @appBg;
 
     .rx-app-content {
-        .flexbox(1 1 0);
+        .flex(1 1 0);
     }
 
     .rx-app-menu {
-        .flexbox(0 0 @appMenuWidth);
+        .flex(0 0 @appMenuWidth);
         color: #fff;
         font-size: 15px;
         font-weight: 300;
@@ -97,7 +97,7 @@
 
     &.collapsed {
         .rx-app-menu {
-            .flexbox(0 0 25px);
+            .flex(0 0 25px);
             padding-bottom: 0;
             position: relative;
         }

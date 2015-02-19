@@ -75,9 +75,8 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
 
 .rx-paginate {
     .pagination {
-        display: flex;
-        flex-direction: row;
-        flex-flow: row;
+        .flexbox();
+        .flex-flow(row nowrap);
         padding-left: 0;
         width: 100%;
     }

@@ -57,16 +57,15 @@ field-prefix, field-suffix and field-description are all optional.
 
 .form-item {
     margin-top: 5px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: baseline;
+    .flexbox();
+    .flex-flow(row nowrap);
+    .justify-content(flex-start);
+    .align-items(baseline);
 }
 
 .text-area-label {
     &.form-item {
-        align-items: flex-start;
-        -webkit-align-items: flex-start;
-        -moz-align-items: flex-start;
+        .align-items(flex-start);
     }
 }
 
@@ -86,17 +85,15 @@ field-prefix, field-suffix and field-description are all optional.
 .field-legend, {
     color: @subduedTitle;
     font-size: 1.1em;
-    flex: 0 0 @fieldLabelWidth;
+    .flex(0 0 @fieldLabelWidth);
 }
 
 .field-content {
-    display: flex;
-    flex: 1 auto;
-
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
+    .flexbox();
+    .flex(1 auto);
+    .flex-flow(row wrap);
+    .justify-content(flex-start);
+    .align-items(center);
 
     .field-prefix,
     .field-suffix {
@@ -110,7 +107,7 @@ field-prefix, field-suffix and field-description are all optional.
     }
 
     .field-description {
-        flex: 1 100%;
+        .flex(1 100%);
         font-size: 0.8em;
         font-style: italic;
         margin-top: 5px;
@@ -394,13 +391,13 @@ Replace default UI of select fields and adds custom border/arrow
 
 .rx-form.layout-compressed {
     .rx-form-row {
-        display: flex;
-        flex-wrap: nowrap;
-        flex: 1 auto;
+        .flexbox();
+        .flex-wrap(nowrap);
+        .flex(1 auto);
 
         .form-item {
             padding: 0px 3px;
-            flex: 1;
+            .flex(1);
         }
     }
 
