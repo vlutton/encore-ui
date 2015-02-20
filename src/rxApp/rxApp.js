@@ -334,7 +334,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
  * @description
  * Provides the ability to switch between account users. This directive is specific to Rackspace
  */
-.directive('rxAccountUsers', function ($location, $route, $routeParams, Encore, $rootScope, encoreRoutes) {
+.directive('rxAccountUsers', function ($location, $route, Encore, $rootScope, encoreRoutes) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxAccountUsers.html',
@@ -354,10 +354,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                 });
             };
 
+            // We use $route.current.params instead of $routeParams because
+            // the former is always available, while $routeParams only gets populated
+            // after the route has successfully resolved. See the Angular docs on $routeParams
+            // for more details.
             var loadUsers = function () {
                 var success = function (account) {
                     scope.users = account.users;
-                    scope.currentUser = $routeParams.user;
+                    scope.currentUser = $route.current.params.user;
                     if (!scope.currentUser) {
                         // We're not in Cloud, but instead in Billing, or Events, or
                         // one of the other Accounts menu items that doesn't use a username as
@@ -368,7 +372,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                         encoreRoutes.rebuildUrls({ user: account.users[0].username });
                     }
                 };
-                Encore.getAccountUsers({ id: $routeParams.accountNumber }, success);
+                Encore.getAccountUsers({ id: $route.current.params.accountNumber }, success);
             };
 
             checkCloud();
