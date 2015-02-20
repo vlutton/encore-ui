@@ -1,6 +1,6 @@
-# Encore UI Versioning
+# EncoreUI Versioning
 
-In order to help prevent regressions and allow applications time to incorporate any breaking changes, Encore UI uses a 'pull' model for versioning. In order to get the latest version of Encore UI, the application must update their version reference (versus Encore UI automatically pushing down the latest version).
+In order to help prevent regressions and allow applications time to incorporate any breaking changes, EncoreUI uses a 'pull' model for versioning. In order to get the latest version of EncoreUI, the application must update their version reference (versus EncoreUI automatically pushing down the latest version).
 
 Encore follows the [Semanatic Versioning](http://semver.org/) model for releases.
 
@@ -31,7 +31,7 @@ See [the main readme](../README.md) for a link to the latest build.
 
 ### Secret Files Needed to Release
 
-For `grunt rxPageObjects`, you'll need to put the contents of the Encore-UI password safe entry for NPM in the project-local `.npmrc` file. This is located in the root of the project, and is ignored by git.
+For `grunt rxPageObjects`, you'll need to put the contents of the EncoreUI password safe entry for NPM in the project-local `.npmrc` file. This is located in the root of the project, and is ignored by git.
 
 ## Stability Index
 

@@ -1,4 +1,4 @@
-# Encore UI Front-end Architecture
+# EncoreUI Front-end Architecture
 
 ## General
 

@@ -84,7 +84,7 @@ For any new functionality that can't be tested via unit tests (or is outside of 
 
 It's a good rule of thumb that any new directives should have new midway tests.
 
-**For more on both unit and midway testing, read [the Encore UI Testing Handbook](./testing.md).**
+**For more on both unit and midway testing, read [the EncoreUI Testing Handbook](./testing.md).**
 
 # Other Guidelines
 

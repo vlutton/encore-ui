@@ -4,7 +4,7 @@ We want to keep it as easy as possible to contribute changes Encore. There are a
 
 ## Bugs & Issues
 
-Please submit any bugs you encounter when using Encore UI to our [Github Issues Tracker](https://github.com/rackerlabs/encore-ui/issues).
+Please submit any bugs you encounter when using EncoreUI to our [Github Issues Tracker](https://github.com/rackerlabs/encore-ui/issues).
 
 When submiting a bug report, please **include a set of steps to reproduce the issue** and any related information (browser, OS, etc). If we can't reproduce the issue then it makes fixing it much more difficult.
 
@@ -20,18 +20,18 @@ New additions to the framework are always encouraged. Here are some loose guidel
 3. Requirements are well defined and documented.
 4. If code has been written, it meets our standards (or is close enough for an easy update).
   - If code hasn’t been written, developers are available to write it (if not, make the suggestion via a Github Issue and we can pick up the work as time permits).
-5. It's specific to Encore-UI. It matches the Encore-UI style. It doesn't require a large new framework.
+5. It's specific to EncoreUI. It matches the EncoreUI style. It doesn't require a large new framework.
 6. There isn't already a design pattern for it. The functionality doesn't already exist.
 
-When in doubt about fit, ask in the Encore-UI chat room or open a new GitHub issue.
+When in doubt about fit, ask in the EncoreUI chat room or open a new GitHub issue.
 
 ### Get feedback early and often
 
 It's much better to ask for feedback on an unfinished idea than to recieve feedback on a finished one. If you're developing a new component, or updating an old one, post code as you write it. Don't wait until the Pull Request for a code design review.
 
-## Encore UI Developer Setup
+## EncoreUI Developer Setup
 
-[Encore UI Developer Setup](./guides/ui-setup.md) - How to install the Encore UI codebase
+[EncoreUI Developer Setup](./guides/ui-setup.md) - How to install the EncoreUI codebase
 
 ## Coding Standards
 
@@ -104,7 +104,7 @@ Sometimes changes are urgent, and in this case, the PR should be reviewed immedi
 - Proper commit logs
 - Passes JSHint & CSSLint
 
-Once a pull request has been submitted, you simply need to wait for the Encore UI team to respond. Every pull request sends an e-mail out to the team, so there is no need to send any further communication to the team. If the pull request is urgent, that needs to be communicated before the pull request is sent.
+Once a pull request has been submitted, you simply need to wait for the EncoreUI team to respond. Every pull request sends an e-mail out to the team, so there is no need to send any further communication to the team. If the pull request is urgent, that needs to be communicated before the pull request is sent.
 
 We like to at least comment on, if not accept, pull requests within three business days (and, typically, one business day). We may suggest some changes or improvements or alternatives, so **make sure there is time for review in your release plan**.
 

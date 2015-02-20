@@ -2,15 +2,15 @@
 
 ## Installation
 
-### Easy Setup: Clone the Encore-UI-Template
+### Easy Setup: Clone the EncoreUI-Template
 
-[Encore-UI-Template](https://github.com/rackerlabs/encore-ui-template) is a project template to help get things started with new Encore-UI based apps. You must be a Rackspace employee in order to access the repository.
+[EncoreUI-Template](https://github.com/rackerlabs/encore-ui-template) is a project template to help get things started with new EncoreUI based apps. You must be a Rackspace employee in order to access the repository.
 
-To use, simply copy the repo in to your new project and run an NPM/Bower install. All Encore-UI files will be included after the dependencies have been installed.
+To use, simply copy the repo in to your new project and run an NPM/Bower install. All EncoreUI files will be included after the dependencies have been installed.
 
 ### Manual Setup: Create a New Angular Project
 
-If you're unable to (or prefer not to) use the Encore-UI-Template, you need to manually create a new Angular project. Once set up, add the Encore-UI files to your page either through the CDN or Bower:
+If you're unable to (or prefer not to) use the EncoreUI-Template, you need to manually create a new Angular project. Once set up, add the EncoreUI files to your page either through the CDN or Bower:
 
 #### CDN
 
@@ -38,7 +38,7 @@ To use the CDN in your app, do the following:
 
 #### Bower
 
-If you have a static server that you'd like to build your files off of, you can install Encore-UI via [Bower](http://bower.io):
+If you have a static server that you'd like to build your files off of, you can install EncoreUI via [Bower](http://bower.io):
 
 ```
 bower install encore-ui
@@ -46,20 +46,20 @@ bower install encore-ui
 
 ## Using Components
 
-Now that Encore-UI is installed, you may begin using its components.
+Now that EncoreUI is installed, you may begin using its components.
 
-Very likely, the first component you'll want to get in to is `<rx-app>`. If you used the Encore-UI-Template, rxApp is already set up in the index.html file. If not, you'll want to read through [the rxApp documentation](http://rackerlabs.github.io/encore-ui/#/component/rxApp) for more information on its use (including how to use `<rx-page>`).
+Very likely, the first component you'll want to get in to is `<rx-app>`. If you used the EncoreUI-Template, rxApp is already set up in the index.html file. If not, you'll want to read through [the rxApp documentation](http://rackerlabs.github.io/encore-ui/#/component/rxApp) for more information on its use (including how to use `<rx-page>`).
 
-From there, just start building pages, using whatever Encore-UI component is needed.
+From there, just start building pages, using whatever EncoreUI component is needed.
 
-## Using Encore-UI without Angular
+## Using EncoreUI without Angular
 
-While the intention of Encore-UI is for it to be used in conjunction with AngularJS, it is possible to use just the styles (similar to how Twitter Bootstrap can be used without JS).
+While the intention of EncoreUI is for it to be used in conjunction with AngularJS, it is possible to use just the styles (similar to how Twitter Bootstrap can be used without JS).
 
-The entirety of the Encore UI CSS is available via the main CSS file. To use, simply include it on your page.
+The entirety of the EncoreUI CSS is available via the main CSS file. To use, simply include it on your page.
 
 > Disclaimer: At any point in time, an HTML change to the Angular directive template can change the HTML needed for the CSS to work properly. Be sure when upgrading major/minor versions of the CSS file to check [the changelog](../CHANGELOG.md) for details on what has been updated.
 
 ## Further Guidance
 
-For further help, reach out to the Encore-UI team via [our support information](https://github.com/rackerlabs/encore-ui#support).
+For further help, reach out to the EncoreUI team via [our support information](https://github.com/rackerlabs/encore-ui#support).

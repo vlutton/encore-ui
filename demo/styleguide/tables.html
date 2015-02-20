@@ -7,7 +7,7 @@
             <li>Tables have default styles: regular rows have white backgrounds, while headers use white text with a gray background. An additional <code>table-striped</code> class is available for alternate row striping.</li>
             <li><span class="msg-info">ENCORE-SPECIFIC:</span> In Encore, we usually use to tables to show data-table related data, such as listing of objects.</li>
             <li>If you need to show summary-style important pieces of metadata that aren't necessarily related to each other, consider <a href="#/styleguide/basics#descriptions-metadata">using a metadata component</a>.</li>
-            <li>In Support Services, there have been moments where we have displayed table in a structural format, but we use a different styling. See the <a href="#/styleguide/tables#non-data-tables">Non-Data based Tables</a> section for more information.</li>  
+            <li>In Support Services, there have been moments where we have displayed table in a structural format, but we use a different styling. See the <a href="#/styleguide/tables#non-data-tables">Non-Data based Tables</a> section for more information.</li>
         </ul>
     </div>
 
@@ -23,7 +23,7 @@
             <li><span class="msg-info">ENCORE-SPECIFIC:</span> In Encore, we usually use cogs if there are actionable items for every row. As an example, most main table listings show cog menus with actionable items, such as <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/servers/Servers.html#L135-L146">Cloud Server pages showing FirstGen/NextGen actions</a> or <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/cbs/Volumes.html#L115-L145">Cloud Block Storage Volumes</a>.</li>
             <li>For general advice as to what icons and colors to use, consult <a href="#/styleguide/buttons">the section on icons and colors</a>.
             <li>There may be cases where an action is not available on a particular row. In this case, those particular links were disabled using the <code>.disabled</code> class rather than not having them appear at all.</li>
-            <li><span class="msg-warn">HEADS UP:</span> In Encore Cloud's servers.less, we added the the <code>actions</code> class to the table header and styled the column at 15 pixels. This has not been implemented for Encore-UI.</li>
+            <li><span class="msg-warn">HEADS UP:</span> In Encore Cloud's servers.less, we added the the <code>actions</code> class to the table header and styled the column at 15 pixels. This has not been implemented for EncoreUI.</li>
             <li><span class="msg-warn">HEADS UP:</span> We have one design pattern that slightly differs; for data tables that have involved objects that only require deleting such as particular data tables related to LBaaS connection nodes and Support Service user tables, a particular delete-based design pattern was created. See <a href="#/styleguide/tables#delete-x">the section on Delete "X" actions</a>.</li>
         </ul>
     </div>
@@ -37,7 +37,7 @@
         <ul class="list">
             <li><a href="http://rackerlabs.github.io/encore-ui/#/component/rxPaginate">See the rxPaginate directive</a> for implementation and examples.</li>
             <li><span class="msg-info">ENCORE-SPECIFIC:</span> The pagination is visible in this example to show how mark-up will be implemented. Generally, the pagination directive does not display if there is only one page of data available. We use angular.js to make sure this doesn't display.</li>
-            <li><span class="msg-warn">HEADS UP:</span> It's a known issue that the footer wraps into a second line if the table is 50% of the screen. In cases like those, we've used the <code>display:none</code> CSS property for elements to hide all elements not directly related to pagination. See the <a href="https://github.com/rackerlabs/supportservice-ui/blob/master/app/styles/table.less#L40-L50">LESS of narrow tables used in Support Services</a> for an example of this. Note that this has not been implemented in Encore-UI yet.</li>
+            <li><span class="msg-warn">HEADS UP:</span> It's a known issue that the footer wraps into a second line if the table is 50% of the screen. In cases like those, we've used the <code>display:none</code> CSS property for elements to hide all elements not directly related to pagination. See the <a href="https://github.com/rackerlabs/supportservice-ui/blob/master/app/styles/table.less#L40-L50">LESS of narrow tables used in Support Services</a> for an example of this. Note that this has not been implemented in EncoreUI yet.</li>
         </ul>
     </div>
 
@@ -59,7 +59,7 @@
 
     <ul>
         <li>For Support Services, we use tables as a structural format but use different styling to show larger components of data such as tags, groups, badges and other block level information.</li>
-        <li>As the usage of this is outside of Encore-UI and falls outside the scope of this document, please look at the the staging site and the specific <a href="https://github.com/rackerlabs/supportservice-ui/blob/master/app/views/teams/teamDetail.html#L47-L80">markup</a> and <a href="https://github.com/rackerlabs/supportservice-ui/blob/master/app/styles/table.less">LESS files</a> for more information.</li>
+        <li>As the usage of this is outside of EncoreUI and falls outside the scope of this document, please look at the the staging site and the specific <a href="https://github.com/rackerlabs/supportservice-ui/blob/master/app/views/teams/teamDetail.html#L47-L80">markup</a> and <a href="https://github.com/rackerlabs/supportservice-ui/blob/master/app/styles/table.less">LESS files</a> for more information.</li>
     </ul>
 
 <h3 class="title" id="delete-x">Delete "X" action</h3>
@@ -89,7 +89,7 @@
         <li>Billing (Filtering by billing data and transactional status)</li>
     </ul>
     </li>
-    <li>With the addition of <a href="http://rackerlabs.github.io/encore-ui/#/component/rxFloatingHeader">rxFloatingHeader</a> to the framework, we now have a standard way of adding table filters. In short, we add a new <code>&lt;tr&gt;</code> into the <code>&lt;thead&gt;</code> of the table. <code>rxFloatingHeader</code> will take care of the styling, by adding the appropriate classes on its own (namely <a href="https://github.com/rackerlabs/encore-ui/blob/master/src/rxFloatingHeader/rxFloatingHeader.less#L12"><code>th.filter-header</code></a>)</li>    
+    <li>With the addition of <a href="http://rackerlabs.github.io/encore-ui/#/component/rxFloatingHeader">rxFloatingHeader</a> to the framework, we now have a standard way of adding table filters. In short, we add a new <code>&lt;tr&gt;</code> into the <code>&lt;thead&gt;</code> of the table. <code>rxFloatingHeader</code> will take care of the styling, by adding the appropriate classes on its own (namely <a href="https://github.com/rackerlabs/encore-ui/blob/master/src/rxFloatingHeader/rxFloatingHeader.less#L12"><code>th.filter-header</code></a>)</li>
 </ul>
 
 <h3 class="title">Nested content</h3>

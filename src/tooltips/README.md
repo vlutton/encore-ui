@@ -1,6 +1,6 @@
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-This component provides styles and a demo for the [the Angular-UI Bootstrap Tooltip plugin](https://github.com/angular-ui/bootstrap/tree/master/src/tabs), which is included as a dependency for Encore-UI.
+This component provides styles and a demo for the [the Angular-UI Bootstrap Tooltip plugin](https://github.com/angular-ui/bootstrap/tree/master/src/tabs), which is included as a dependency for EncoreUI.
 
 Note that the `tooltip` directive and its optional attributes can *only* be applied to raw HTML elements. They can't be applied to directives like this: `<rx-button tooltip="...">`
 

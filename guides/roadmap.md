@@ -1,4 +1,4 @@
-# Encore-UI Roadmap and Prioritization
+# EncoreUI Roadmap and Prioritization
 
 The project is currently being run in [a "Kanban" style](http://en.wikipedia.org/wiki/Kanban_(development)). The project is focused on 'just-in-time delivery' and is built around being able to quickly iterate on features based on developer feedback.
 
@@ -8,7 +8,7 @@ While we limit the amount of process involved in planning, the following practic
 
 ## Backlog Management
 
-All work related to Encore-UI is tracked inside of the GitHub Issues interface. This ensures an open and easy-to-access backlog for the project. We also use [Waffle.io](https://waffle.io/rackerlabs/encore-ui) for our Kanban taskboard.
+All work related to EncoreUI is tracked inside of the GitHub Issues interface. This ensures an open and easy-to-access backlog for the project. We also use [Waffle.io](https://waffle.io/rackerlabs/encore-ui) for our Kanban taskboard.
 
 ## Issue Prioritization
 
@@ -20,7 +20,7 @@ Rather than use a somewhat vaugue prioritization of "high", "medium" and "low", 
 
 Items marked either `now` or `soon` are naturally higher priorities than items marked `later`.
 
-This labelling also provides a bit of a road map for upcoming Encore UI features/work. Ideally, issues marked as `soon` get moved over to `now` within a week. If not, they issue's priority should be re-evaluated.
+This labelling also provides a bit of a road map for upcoming EncoreUI features/work. Ideally, issues marked as `soon` get moved over to `now` within a week. If not, they issue's priority should be re-evaluated.
 
 There should be no more than five issues labelled as `soon`, as it's unrealistic to work more than that over a short period of time (same goes for `now`).
 
@@ -44,11 +44,11 @@ Velocity is tracked via [the GitHub commit activity view](https://github.com/rac
 
 ## Providing Feeback
 
-Encore-UI is built for the folks implementing the framework, so it's crucial to recieve feedback on its implementation.
+EncoreUI is built for the folks implementing the framework, so it's crucial to recieve feedback on its implementation.
 
 ### Creating new issues
 
-Anyone, at any point in time, may open an issue. It can be a bug report, a feature suggestion, or just a simple question. While [the Encore-UI Slack channel](https://rx-encore.slack.com/messages/framework/) is always open for discussion, if it's easier to create an issue, go for it!
+Anyone, at any point in time, may open an issue. It can be a bug report, a feature suggestion, or just a simple question. While [the EncoreUI Slack channel](https://rx-encore.slack.com/messages/framework/) is always open for discussion, if it's easier to create an issue, go for it!
 
 ### Voting for existing issues
 
