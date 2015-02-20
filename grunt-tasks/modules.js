@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = function (grunt) {
-    var markdown = require('node-markdown').Markdown;
+    var markdown = require('marked');
 
     function enquote (str) {
         return '\'' + str + '\'';
@@ -28,6 +28,10 @@ module.exports = function (grunt) {
             });
         }
 
+        function parseMarkdown (text) {
+            return markdown(text);
+        }
+
         var module = {
             name: name,
             moduleName: enquote('encore.ui.' + name),
@@ -37,7 +41,7 @@ module.exports = function (grunt) {
             tplJsFiles: grunt.file.expand('templates/' + name + '/templates/*.html'),
             dependencies: dependenciesForModule(name),
             docs: {
-                md: grunt.file.expand('src/' + name + '/*.md').map(grunt.file.read).map(markdown).join('\n'),
+                md: grunt.file.expand('src/' + name + '/*.md').map(grunt.file.read).map(parseMarkdown).join('\n'),
                 js: grunt.file.expand('src/' + name + '/docs/!(*.midway).js').map(grunt.file.read).join('\n'),
                 html: grunt.file.expand('src/' + name + '/docs/*.html').map(grunt.file.read).join('\n'),
                 less: grunt.file.expand('src/' + name + '/*.less').map(grunt.file.read).join('\n'),
@@ -140,7 +144,5 @@ module.exports = function (grunt) {
 
         // Set the copy task to process via grunt template
         grunt.config('copy.demohtml.options.process', grunt.template.process);
-
-
     });
 };

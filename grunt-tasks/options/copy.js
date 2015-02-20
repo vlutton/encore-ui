@@ -31,7 +31,7 @@ module.exports = {
         }],
         options: {
             process: function (content) {
-                var markdown = require('node-markdown').Markdown;
+                var markdown = require('marked');
 
                 // Replace the [![Build Status...]] line with an empty string
                 // (note that /m makes $ match newlines
