@@ -1,5 +1,5 @@
 var {%= name %}Page = require('../{%= name %}.page.js').{%=name %};
-var expect = require('chai').use(require('chai-as-promised')).expect;
+var exercise = require('../{%= name %}.exercise.js');
 
 describe('{%= name %}', function () {
     var {%= name %};
@@ -12,4 +12,7 @@ describe('{%= name %}', function () {
     it('should show element', function () {
         expect({%= name %}.isDisplayed()).to.eventually.be.true;
     });
+
+    describe('exercises', exercise.{%= name %}());
+
 });

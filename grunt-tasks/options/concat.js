@@ -1,4 +1,11 @@
-var pageObjectHeader = '/*jshint node:true*/\nvar Page = require(\'astrolabe\').Page;\n';
+var removeFromIndex = ['/*jshint node:true*/\n',
+                       'var _ = require(\'lodash\');\n',
+                       'var moment = require(\'moment\');\n',
+                       'var Page = require(\'astrolabe\').Page;\n',
+                       'var exercise = require(\'./exercise\')\n'];
+
+var removeFromExercises = ['/*jshint node:true*/\n',
+                           'var _ = require(\'lodash\');\n'];
 
 module.exports = {
     dist: {
@@ -17,14 +24,33 @@ module.exports = {
     },
     rxPageObjects: {
         options: {
-            // Replace all Astrolabe requires with a single one up top
-            banner: pageObjectHeader,
+            // Replace all third-party requires with a single one up top
+            banner: removeFromIndex.join(''),
             process: function (src) {
-                return src.replace(pageObjectHeader, '');
+                removeFromIndex.forEach(function (toRemove) {
+                    // a regex is faster, but this is less work for me
+                    src = src.replace(toRemove, '');
+                });
+                return src;
             }
         },
         src: ['src/*/*.page.js'],
         dest: 'utils/rx-page-objects/index.js'
+    },
+    rxPageObjectsExercises: {
+        options: {
+            // Replace all third-party requires with a single one up top
+            banner: removeFromExercises.join(''),
+            process: function (src) {
+                removeFromExercises.forEach(function (toRemove) {
+                    // a regex is faster, but this is less work for me
+                    src = src.replace(toRemove, '');
+                });
+                return src;
+            }
+        },
+        src: ['src/*/*.exercise.js'],
+        dest: 'utils/rx-page-objects/exercise.js'
     },
     tmpLess: {
         // The `less` task can't properly create a source map when multiple input

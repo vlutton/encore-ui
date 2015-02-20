@@ -9,12 +9,23 @@ module.exports = {
             }
         }
     },
+
     wraith: {
         command: 'wraith capture config',
         options: {
             stdout: true,
             execOptions: {
                 cwd: '<%= config.wraith %>'
+            }
+        }
+    },
+
+    npmPublish: {
+        command: 'npm publish ./rx-page-objects',
+        options: {
+            stdout: true,
+            execOptions: {
+                cwd: 'utils/'
             }
         }
     }

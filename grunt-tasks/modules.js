@@ -36,7 +36,7 @@ module.exports = function (grunt) {
             name: name,
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
-            srcFiles: grunt.file.expand('src/' + name + '/!(*.spec|*.page).js'),
+            srcFiles: grunt.file.expand('src/' + name + '/!(*.spec|*.page|*.exercise).js'),
             tplFiles: grunt.file.expand('src/' + name + '/*.tpl.html'),
             tplJsFiles: grunt.file.expand('templates/' + name + '/templates/*.html'),
             dependencies: dependenciesForModule(name),
@@ -45,7 +45,9 @@ module.exports = function (grunt) {
                 js: grunt.file.expand('src/' + name + '/docs/!(*.midway).js').map(grunt.file.read).join('\n'),
                 html: grunt.file.expand('src/' + name + '/docs/*.html').map(grunt.file.read).join('\n'),
                 less: grunt.file.expand('src/' + name + '/*.less').map(grunt.file.read).join('\n'),
-                midway: grunt.file.expand('src/' + name + '/docs/*.midway.js').map(grunt.file.read).join('\n')
+                midway: grunt.file.expand('src/' + name + '/docs/*.midway.js').map(grunt.file.read).join('\n') +
+                    '\n// this component\'s exercise.js file, if it exists, is below\n\n' +
+                    grunt.file.expand('src/' + name + '/*.exercise.js').map(grunt.file.read).join('\n')
             }
         };
 

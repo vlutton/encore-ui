@@ -25,6 +25,7 @@ results
 # config file with secrets
 /localConfig.js
 /protractor.local.conf.js
+.npmrc
 
 # generated files/folders on build
 /coverage/
@@ -34,6 +35,8 @@ results
 /bower/
 /dist/
 /utils/rx-page-objects/index.js
+/utils/rx-page-objects/exercise.js
+/utils/rx-page-objects/README.md
 
 # wraith screenshots
 /wraith/shots/

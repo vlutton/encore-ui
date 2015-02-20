@@ -75,7 +75,7 @@ var rxBreadcrumbs = {
     },
 
     byName: {
-        /*
+        /**
           Return a single breadcrumb entry, located by the text of the element, case sensitive.
           If multiple entries exist with the same name, the first will be returned.
         */

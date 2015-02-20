@@ -66,7 +66,7 @@ var rxFeedback = {
     },
 
     send: {
-        /*
+        /**
           Prepares, writes, and submits feedback.
           If `confirmSuccessWithin` is defined, a confirmation of submission success must appear
           within `confirmSuccessWithin` milliseconds.

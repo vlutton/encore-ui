@@ -2,7 +2,7 @@ var _ = require('lodash');
 
 exports.rxEnvironment = {
 
-    /*
+    /**
       Return the current environment the user sees.
       The default is set to something simple and reasonable,
       but should you find a need to supply your own environments, be
@@ -15,7 +15,7 @@ exports.rxEnvironment = {
         });
     },
 
-    /*
+    /**
       Return the original environment, as defined in the current protractor conf file.
       Returns a promise to keep the usage consistent with `rxEnvironment.current`.
     */
@@ -54,7 +54,7 @@ exports.rxEnvironment = {
         return this.confirmEnvironment(namedParams, 'production');
     },
 
-    /*
+    /**
       `namedParams` only supports { useBaseUrl: true }. If { useBaseUrl: false }, just leave undefined.
     */
     confirmEnvironment: function (namedParams, environment) {
