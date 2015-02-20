@@ -750,16 +750,16 @@ Requires 'display' to be defined as `inline-block` or `block`
     @appMenuWidth: 300px;
 
     min-height: 100%;
-    .flexbox-display();
-    .flexbox-direction(row);
+    .flexbox();
+    .flex-direction(row);
     background: @appBg;
 
     .rx-app-content {
-        .flexbox(1 1 0);
+        .flex(1 1 0);
     }
 
     .rx-app-menu {
-        .flexbox(0 0 @appMenuWidth);
+        .flex(0 0 @appMenuWidth);
         color: #fff;
         font-size: 15px;
         font-weight: 300;
@@ -840,7 +840,7 @@ Requires 'display' to be defined as `inline-block` or `block`
 
     &.collapsed {
         .rx-app-menu {
-            .flexbox(0 0 25px);
+            .flex(0 0 25px);
             padding-bottom: 0;
             position: relative;
         }
@@ -1647,16 +1647,15 @@ field-prefix, field-suffix and field-description are all optional.
 
 .form-item {
     margin-top: 5px;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: baseline;
+    .flexbox();
+    .flex-flow(row nowrap);
+    .justify-content(flex-start);
+    .align-items(baseline);
 }
 
 .text-area-label {
     &.form-item {
-        align-items: flex-start;
-        -webkit-align-items: flex-start;
-        -moz-align-items: flex-start;
+        .align-items(flex-start);
     }
 }
 
@@ -1676,17 +1675,15 @@ field-prefix, field-suffix and field-description are all optional.
 .field-legend, {
     color: @subduedTitle;
     font-size: 1.1em;
-    flex: 0 0 @fieldLabelWidth;
+    .flex(0 0 @fieldLabelWidth);
 }
 
 .field-content {
-    display: flex;
-    flex: 1 auto;
-
-    -webkit-flex-flow: row wrap;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: center;
+    .flexbox();
+    .flex(1 auto);
+    .flex-flow(row wrap);
+    .justify-content(flex-start);
+    .align-items(center);
 
     .field-prefix,
     .field-suffix {
@@ -1700,7 +1697,7 @@ field-prefix, field-suffix and field-description are all optional.
     }
 
     .field-description {
-        flex: 1 100%;
+        .flex(1 100%);
         font-size: 0.8em;
         font-style: italic;
         margin-top: 5px;
@@ -1984,13 +1981,13 @@ Replace default UI of select fields and adds custom border/arrow
 
 .rx-form.layout-compressed {
     .rx-form-row {
-        display: flex;
-        flex-wrap: nowrap;
-        flex: 1 auto;
+        .flexbox();
+        .flex-wrap(nowrap);
+        .flex(1 auto);
 
         .form-item {
             padding: 0px 3px;
-            flex: 1;
+            .flex(1);
         }
     }
 
@@ -2363,9 +2360,8 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
 
 .rx-paginate {
     .pagination {
-        display: flex;
-        flex-direction: row;
-        flex-flow: row;
+        .flexbox();
+        .flex-flow(row nowrap);
         padding-left: 0;
         width: 100%;
     }
@@ -2706,12 +2702,12 @@ Provides styling for the Angular-UI tab HTML
 ```
 */
 .nav-tabs {
-    display: flex;
+    .flexbox();
     border-bottom: 9px solid @tabBorder;
     clear: both;
 
     li {
-        flex: 0 0 auto;
+        .flex(0 0 auto);
         font-size: 14px;
     }
 
