@@ -1,3 +1,18 @@
+<a name="1.7.2"></a>
+### 1.7.2 (2015-02-20)
+
+
+#### Bug Fixes
+
+* **flexbox:** normalize flexbox mixins and usage ([ef813bc5](git@github.com:rackerlabs/encore-ui/commit/ef813bc51fb27d8fb13b6ffcb115f1d78347bcfb))
+* **rxAccountUsers:** Switch to $route from $routeParams ([565ee3d3](git@github.com:rackerlabs/encore-ui/commit/565ee3d3ad8c33c2e2ec66c17002c8f7d5a32b26))
+
+
+#### Features
+
+* **tests:** Create and document exercises ([cf6b0cc0](git@github.com:rackerlabs/encore-ui/commit/cf6b0cc04f7f5e17c854a7faa3217c7c8a5ae5e1))
+
+
 <a name="1.7.1"></a>
 ### 1.7.1 (2015-02-19)
 
