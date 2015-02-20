@@ -105,7 +105,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         url: baseGithubUrl + '{{path}}'
     });
 
-    if (Environment.get().name === 'ghPages') {
+    if (Environment.envCheck('ghPages')) {
         rxBreadcrumbsSvc.setHome(baseGithubUrl);
     }
 

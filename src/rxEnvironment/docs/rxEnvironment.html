@@ -1,6 +1,4 @@
 <div ng-controller="rxEnvironmentCtrl">
-    <p>Current Environment: {{Environment.get().name}}</p>
-
     <p>Url built from Environment data: {{ { tld: 'cloudatlas', path: 'some/path' } | rxEnvironmentUrl }}</p>
 
     <p>Content shows if on GitHub demo page:
@@ -13,5 +11,9 @@
         <span rx-if-environment="!ghPages">
             You're not on the GitHub demo page
         </span>
+    </p>
+
+    <p>
+    Are we in the <code>ghPages</code> environment? {{ 'ghPages' | rxEnvironmentMatch }}
     </p>
 </div>
