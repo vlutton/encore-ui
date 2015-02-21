@@ -4,8 +4,8 @@ module.exports = function (grunt) {
         'concat:rxPageObjectsExercises',
         'shell:rxPageObjects',
         'copy:rxPageObjects',
-        'shell:npmPublish',
         'jsdoc2md:rxPageObjects',
+        'shell:npmPublish',
         'clean:rxPageObjects'
     ]);
 };
