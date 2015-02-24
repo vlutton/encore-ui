@@ -96,12 +96,15 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 * @param {function} [preHook] Function to call when a modal is opened
 * @param {function} [postHook] Function to call when a modal is submitted (not called when cancelled out of)
 * @param {string} [templateUrl] URL of template to use for modal content
+* @param {string} [disable-esc] If the `disable-esc` attribute is present, then "Press Esc to close" will be disabled
+*                               for the modal. This attribute takes no values.
 *
 * @example
 * <rx-modal-action
 *     pre-hook="myPreHook(this)"
 *     post-hook="myPostHook(fields)"
-*     template-url="modalContent.html">
+*     template-url="modalContent.html"
+*     disable-esc>
 *         My Link Text
 *  </rx-modal-action>
 */
@@ -151,6 +154,10 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
                 // Since we don't want to isolate the scope, we have to eval our attr instead of using `&`
                 // The eval will execute function (if it exists)
                 scope.$eval(attrs.preHook);
+
+                if (_.has(attrs, 'disableEsc')) {
+                    attrs.keyboard = false;
+                }
 
                 var modal = createModal(attrs, scope);
 

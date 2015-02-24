@@ -20,3 +20,11 @@ th.filter-header {
         margin: 0;
     }
 }
+
+// Batch actions menu is visible even when header floats
+// There's some black magic here. For whatever reason, we have to 
+// add z-index:2 to the other rows in the header, *not* the row
+// that the batch actions menu lives in.
+tr.rx-floating-header:not(.rx-table-filter-row) {
+  z-index: 2;
+}

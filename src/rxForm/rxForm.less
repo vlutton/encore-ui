@@ -6,51 +6,8 @@
 }
 
 
-/*
-## Form Fields
+/* Form Fields & Fieldsets */
 
-field-prefix, field-suffix and field-description are all optional.
-
-```
-<div class="form-item">
-    <label class="field-label">
-        Monthly Cost:
-    </label>
-
-    <div class="field-content">
-        <span class="field-prefix">$</span>
-
-        <span class="field-input">
-            <!-- Replace with desired form field -->
-            <input type="text">
-        </span>
-
-        <span class="field-suffix">Million</span>
-
-        <span class="field-description">Any description goes here</span>
-    </label>
-</div>
-```
-
-### Fieldsets
-
-```
-<div class="form-item rx-form-fieldset">
-    <fieldset>
-        <legend class="field-legend">
-            Field Legend:
-        </legend>
-
-        <div class="field-input">
-            <!-- Add form inputs here -->
-        </div>
-
-        <span class="field-description">Description of Fields</span>
-    </fieldset>
-</div>
-```
-
- */
 .rx-form {
     margin: 15px 0 0;
 }
@@ -114,23 +71,8 @@ field-prefix, field-suffix and field-description are all optional.
     }
 }
 
-/*
-## Input fields
+/* Input fields */
 
-Any input field can be placed inside an element with a class of 'field-input'.
-
-```
-<span class="field-input">
-    <input type="text">
-</span>
-```
-
-```
-<span class="field-input">
-    <input type="checkbox">
-</span>
-```
- */
 .field-input {
     input,
     select {
@@ -198,21 +140,7 @@ Any input field can be placed inside an element with a class of 'field-input'.
     }
 }
 
-/*
-## Dropdowns
-Replace default UI of select fields and adds custom border/arrow
-
-```
-<span class="field-select">
-    <select>
-        <option value="1">Option #1</option>
-        <option value="2">Option #2</option>
-        <option value="3">Option #3</option>
-        <option value="4">Option #4</option>
-    </select>
-</span>
-```
-*/
+/* Dropdowns */
 
 .field-select {
     display: inline-block;
@@ -289,8 +217,8 @@ Replace default UI of select fields and adds custom border/arrow
 .option-table {
     // we want the table to not look ugly when stretched across the screen
     width: auto;
-    // we also want a semi-consistent width
-    min-width: 40em;
+    // we also want a semi-consistent width, but not too wide for modals
+    min-width: 39em;
 
     td:not(.empty-data) {
         // remove default padding from td's so that we can make the label take up the full room
@@ -320,27 +248,7 @@ Replace default UI of select fields and adds custom border/arrow
     }
 }
 
-/*
-## Submit buttons
-
-```
-<div class="form-actions">
-    <button class="button submit" type="submit" disabled="disabled">
-        Submit Form (Disabled)
-    </button>
-
-    <button class="button submit" type="submit">
-        Submit Form
-    </button>
-
-    <button class="button cancel" type="submit">
-        Cancel Form
-    </button>
-
-</div>
-
-```
-*/
+/* Submit buttons */
 
 .form-actions {
     padding: 20px 0;
@@ -377,17 +285,7 @@ Replace default UI of select fields and adds custom border/arrow
 }
 
 
-/*
-## Compressed Layout
-
-```
-<div class="rx-form layout-compressed">
-    <label class="field-label">
-        Monthly Cost:
-    </label>
-</div>
-```
-*/
+/* Compressed Layout */
 
 .rx-form.layout-compressed {
     .rx-form-row {

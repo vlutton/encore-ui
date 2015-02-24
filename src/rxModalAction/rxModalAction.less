@@ -38,7 +38,6 @@
     left: 50%;
     z-index: 1050;
     width: 560px;
-    padding-right: @modalPadding;
     background: @white;
     border: 1px solid rgba(0, 0, 0, 0.3);
     transform: translate(-50%, 0);
@@ -51,7 +50,6 @@
 
 .modal-header {
     padding: @modalPadding;
-    padding-right: 0;
     border-bottom: 1px solid @pageDivider;
     position: relative;
 
@@ -70,7 +68,7 @@
     .modal-close {
         position: absolute;
         top: @modalPadding;
-        right: 0;
+        right: @modalPadding;
         font-size: 2em;
         width: 1em;
         height: 1em;
