@@ -65,8 +65,8 @@ FIXME
 
 <div class="component-description clear">
 <ul class="list">
-    <li>Note: Because Encore is built in angular, we leverage the <code>ng-required</code> directive, and as a result the Encore-UI library does have a custom CSS if an element has both <code>ng-invalid</code> and <code>ng-dirty</code> classes, which are dynamically added.</li>
-    <li>Designing an Encore-UI specific design pattern for form validation is on our roadmap.</li>
+    <li>Note: Because Encore is built in angular, we leverage the <code>ng-required</code> directive, and as a result the EncoreUI library does have a custom CSS if an element has both <code>ng-invalid</code> and <code>ng-dirty</code> classes, which are dynamically added.</li>
+    <li>Designing an EncoreUI specific design pattern for form validation is on our roadmap.</li>
 </ul>
 </div>
 
@@ -75,7 +75,7 @@ FIXME
 <h2 class="title lg" id="designpatterns">Design Patterns within Encore</h2>
 
 <ul class="list">
-    <li>Forms can be used on their own page. You can see this in Encore when you create a new object such as a <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/servers/CreateServer.html">Cloud Server</a> or a <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/databases/CreateInstance.html">Database under Encore Cloud</a>.</li> 
+    <li>Forms can be used on their own page. You can see this in Encore when you create a new object such as a <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/servers/CreateServer.html">Cloud Server</a> or a <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/databases/CreateInstance.html">Database under Encore Cloud</a>.</li>
     <li>Forms are also used within modals. This can be see when modifying content that requires form fields such as <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/servers/templates/server-actions.html#L33-L72">actions performed on a server detail page</a>.</li>
     <li><a href="#/styleguide/buttons">See the section on links and buttons</a> and the <a href="#/styleguide/layouts/3">sample Create Form</a> for details about how we style and color buttons, but in a nutshell: submit buttons should use the green submit class unless you're deleting or formatting, which should be the negative class. If you need to use a button in your field for auxillary purposes, make it blue.</li>
     <li><a href="#/styleguide/basics#wells">Wells</a> can be used to create additional context for the form.</li>

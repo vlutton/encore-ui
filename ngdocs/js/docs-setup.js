@@ -298,7 +298,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Link which will show a modal window on click, and handle callbacks for pre/post modal actions",
-      "keywords": "actions api call callbacks called cancelled click content directive encore function handle html link modal modalcontent myposthook myprehook opened post-hook pre pre-hook rxmodalaction submitted template template-url text ui url window"
+      "keywords": "actions api attribute call callbacks called cancelled click close content directive disable-esc disabled encore esc function handle html link modal modalcontent myposthook myprehook opened post-hook pre pre-hook press rxmodalaction submitted takes template template-url text ui url values window"
     },
     {
       "section": "api",

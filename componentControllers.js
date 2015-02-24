@@ -43,6 +43,13 @@ function hotkeysCtrl ($scope, hotkeys) {
 
 
 
+/*jshint unused:false*/
+
+// This file is used to help build the 'demo' documentation page and should be updated with example code
+function progressbarCtrl ($scope) {
+
+}
+
 // Note that these factories are only present for the purposes of this demo. In a real application,
 // SupportAccount, Teams, AccountStatusGroup, and Encore will have to be provided from elsewhere,
 // outside of encore-ui. Specifically, we implement them in encore-ui-svcs
@@ -483,12 +490,23 @@ function rxFeedbackCtrl ($scope, rxNotify) {
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
 function rxFloatingHeaderCtrl ($scope) {
+    $scope.searchText = '';
     $scope.data = [
         { name: 'A', value: 1 },
         { name: 'B', value: 2 },
         { name: 'C', value: 3 },
         { name: 'D', value: 4 },
         { name: 'E', value: 5 },
+        { name: 'First', value: 1 },
+        { name: 'F', value: 1 },
+        { name: 'F', value: 1 },
+        { name: 'F', value: 1 },
+        { name: 'F', value: 1 },
+        { name: 'F', value: 1 },
+        { name: 'F', value: 1 },
+        { name: 'F', value: 1 },
+        { name: 'F', value: 1 },
+        { name: 'F', value: 1 },
         { name: 'F', value: 1 },
         { name: 'G', value: 2 },
         { name: 'H', value: 3 },
