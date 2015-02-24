@@ -1,7 +1,7 @@
 /*jshint node:true*/
 
 // Basic template description.
-exports.description = 'Create an Encore-UI component, including unit tests and documentation.';
+exports.description = 'Create an EncoreUI component, including unit tests and documentation.';
 
 // Template-specific notes to be displayed before question prompts.
 exports.notes = 'All new components must follow the Encore UI CSS & JS Standards';

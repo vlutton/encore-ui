@@ -102,9 +102,9 @@ In order to create consistent class names, it's encouraged to use the naming def
 
 ### Grids/Layout
 
-Encore UI currently does not prescribe a specific grid system that apps should use. We leave the choice of framework up to the developers of the app and what fits them best.
+EncoreUI currently does not prescribe a specific grid system that apps should use. We leave the choice of framework up to the developers of the app and what fits them best.
 
-For layout needs (e.g. rxApp and rxForm), Encore uses either `flexbox` and `floats`, respectively. While relatively new, flexbox has proven to be very powerful and will likely replace floats as the defacto solution for layouts in the Encore UI framework.
+For layout needs (e.g. rxApp and rxForm), Encore uses either `flexbox` and `floats`, respectively. While relatively new, flexbox has proven to be very powerful and will likely replace floats as the defacto solution for layouts in the EncoreUI framework.
 
 ### Recommended Libraries
 

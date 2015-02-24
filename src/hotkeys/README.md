@@ -1,8 +1,8 @@
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-This component is simply a reference guide to using [the angular-hotkeys plugin](http://chieffancypants.github.io/angular-hotkeys/) from within Encore-UI.
+This component is simply a reference guide to using [the angular-hotkeys plugin](http://chieffancypants.github.io/angular-hotkeys/) from within EncoreUI.
 
-Angular-hotkeys was chosen as the solution for hotkeys from within Encore-UI apps, due to its integration into Angular, it's use of the very good 'mousetrap' library, and because it allows multiple ways to define hotkeys (through a directive, controller, route config, etc).
+Angular-hotkeys was chosen as the solution for hotkeys from within EncoreUI apps, due to its integration into Angular, it's use of the very good 'mousetrap' library, and because it allows multiple ways to define hotkeys (through a directive, controller, route config, etc).
 
 ## Global Shortcuts
 

@@ -53,7 +53,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             controller: function (rxBreadcrumbsSvc) {
                 rxBreadcrumbsSvc.set();
             }
-        })        
+        })
         .when('/styleguide/buttons', {
             templateUrl: 'styleguide/buttons.html',
             controller: function (rxBreadcrumbsSvc) {
@@ -112,7 +112,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     var demoNav = [
         {
             type: 'highlight',
-            title: 'Encore-UI',
+            title: 'EncoreUI',
             children: [
                 {
                     href: '#/overview',
@@ -130,7 +130,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                             children: [
                                 {
                                     href: 'https://github.com/rackerlabs/encore-ui',
-                                    linkText: 'Encore-UI'
+                                    linkText: 'EncoreUI'
                                 },
                                 {
                                     href: 'https://github.com/rackerlabs/encore-ui-template',
@@ -168,7 +168,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: '#/styleguide/basics#heading-title-styles',
                             linkText: 'Header & Title Styles'
-                        },                        
+                        },
                         {
                             href: '#/styleguide/basics#descriptions-metadata',
                             linkText: 'Descriptions & Metadata'
@@ -226,7 +226,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: '#/styleguide/buttons#colors',
                             linkText: 'Using Colors and Icons'
-                        }                    
+                        }
                     ]
                 },
                 {
@@ -240,7 +240,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: '#/styleguide/tables#directives',
                             linkText: 'Directives'
-                        },                                            
+                        },
                         {
                             href: '#/styleguide/tables#designpatterns',
                             linkText: 'Design Patterns'
@@ -248,7 +248,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: '#/styleguide/tables#roadmap',
                             linkText: 'UI Roadmap / Possible Future-work'
-                        }                    
+                        }
                     ]
                 },
                 {
@@ -266,7 +266,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: '#/styleguide/forms#roadmap',
                             linkText: 'UI Roadmap / Possible Future-work'
-                        }                        
+                        }
                     ]
                 },
                 {
@@ -284,8 +284,8 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: '#/styleguide/modals#roadmap',
                             linkText: 'UI Roadmap / Possible Future-work'
-                        }                         
-                    ]                    
+                        }
+                    ]
                 }
             ]
         },
@@ -303,8 +303,8 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     });
 
     $rootScope.demoNav = demoNav;
-    
-    rxPageTitle.setSuffix(' - Encore-UI');
+
+    rxPageTitle.setSuffix(' - EncoreUI');
 
     $rootScope.$on('$routeChangeSuccess', function() {
 
@@ -322,7 +322,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         scope: {
             language: '@',
             codeUrl: '@',
-        
+
         },
         transclude: true,
         link: function (scope, el) {

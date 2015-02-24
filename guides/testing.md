@@ -23,7 +23,7 @@ Component Tests (aka unit tests)
 
  - Code level tests
  - Uses [Karma](http://karma-runner.github.io) + [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) + [Sinon](http://sinonjs.org/)
- - Stored in same location as code (separate file with *.spec.js)
+ - Stored in same location as code (separate file with \*.spec.js)
  - Best for testing services, classes and objects
  - Does contain "functional" tests (can test browser interactions like 'click')
  - Sandboxed & Isolated testing
@@ -155,7 +155,7 @@ UI Regression Tests
 
 *Goal: Prevent visual regressions by making it easier to compare changes*
 
-[Wraith](https://github.com/BBC-News/wraith) is used in Encore-UI for UI regression testing. Currently, it will compare the production Encore-UI demo site with your local server.
+[Wraith](https://github.com/BBC-News/wraith) is used in EncoreUI for UI regression testing. Currently, it will compare the production EncoreUI demo site with your local server.
 
 ### Installation
 

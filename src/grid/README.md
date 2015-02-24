@@ -2,7 +2,7 @@
 
 # Description
 
-While Encore-UI was initially designed to be an AngularJS widget library, we recognize that teams will want to use a CSS layout framework. We have added the [Grids module from Yahoo!'s Pure CSS framework](http://purecss.io/grids/) for teams to easily build out a grid or column system as part of Encore-UI. We chose this lightweight framework for its emphasis on flex based layouts.
+While EncoreUI was initially designed to be an AngularJS widget library, we recognize that teams will want to use a CSS layout framework. We have added the [Grids module from Yahoo!'s Pure CSS framework](http://purecss.io/grids/) for teams to easily build out a grid or column system as part of EncoreUI. We chose this lightweight framework for its emphasis on flex based layouts.
 
 # Usage
 

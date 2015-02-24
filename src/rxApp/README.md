@@ -22,7 +22,7 @@ Inside your view, you'll likely want to use `rx-page` to wrap your content. See 
 
 Left-hand navigation is included as part of the app template. There are many options to control the navigation from an app level, as outlined with the following.
 
-Note: With the current set up, some app-specific menu items are defined in Encore-UI. While it's preferred to keep app-specific details outside of Encore-UI, because some top-level navigation is accessible from any app, it's important to store that information in a common location inside Encore-UI.
+Note: With the current set up, some app-specific menu items are defined in EncoreUI. While it's preferred to keep app-specific details outside of EncoreUI, because some top-level navigation is accessible from any app, it's important to store that information in a common location inside EncoreUI.
 
 ## Accessing route information
 
@@ -77,7 +77,7 @@ In either case (`title` or `unsafe-html-title`), the document title (i.e. visibl
 
     <rx-page account-number="{{ accountNumber }}">
 
-As noted on the [rxAccountInfo](#/component/rxAccountInfo) demo page, this directive requires that `SupportAccount`, `Encore` and `Teams` services are available to the Angular Dependency Injection system. These are *not* provided by Encore-UI, but are available in an internal Rackspace repository.
+As noted on the [rxAccountInfo](#/component/rxAccountInfo) demo page, this directive requires that `SupportAccount`, `Encore` and `Teams` services are available to the Angular Dependency Injection system. These are *not* provided by EncoreUI, but are available in an internal Rackspace repository.
 
 
 ### Status tags
@@ -123,7 +123,7 @@ The rxApp common.less file defines many base CSS rules and classes for app use. 
 
 ## Fonts
 
-The Encore-UI default font is Roboto. This is used for all text on the page and is loaded via Google Fonts. Be sure your app includes the following line:
+The EncoreUI default font is Roboto. This is used for all text on the page and is loaded via Google Fonts. Be sure your app includes the following line:
 
 ```
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />

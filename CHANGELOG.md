@@ -1429,7 +1429,7 @@ If you're defining it before the pre-hook (on page load), this will break. You w
 
 #### Breaking Changes
 
-* Path to Encore UI files has now changed
+* Path to EncoreUI files has now changed
 
     Instead of the convention being /v0.0.0/filename.ext
     It is now filename-0.0.0.ext

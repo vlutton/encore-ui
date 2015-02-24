@@ -1,6 +1,6 @@
-# Encore UI Developer Setup
+# EncoreUI Developer Setup
 
-If this is your first time, you'll need to set up your coding environment to be able to build Encore UI and work with git.
+If this is your first time, you'll need to set up your coding environment to be able to build EncoreUI and work with git.
 
 ## Preparing your environment
 
@@ -10,7 +10,7 @@ If this is your first time, you'll need to set up your coding environment to be 
 
 2. Install Node.js
 
-    [Download and install Node.js](http://howtonode.org/how-to-install-nodejs) if you don't already have it installed. All of Encore UI's build tools rely on Node.js.
+    [Download and install Node.js](http://howtonode.org/how-to-install-nodejs) if you don't already have it installed. All of EncoreUI's build tools rely on Node.js.
 
 3. Install NPM
 
@@ -45,11 +45,11 @@ Once downloaded, go into the new directory:
 
 `cd encore-ui`
 
-Finally, install the dependencies needed by Encore UI using NPM and bower:
+Finally, install the dependencies needed by EncoreUI using NPM and bower:
 
 `npm install && bower install`
 
-## Running Encore UI
+## Running EncoreUI
 
 Run the following command:
 
@@ -80,7 +80,7 @@ In order to take advantage of the scaffolding, you need to install grunt-init gl
 
 `npm install -g grunt-init`
 
-With grunt-init now installed, navigate to the `src` directory in Encore UI.
+With grunt-init now installed, navigate to the `src` directory in EncoreUI.
 
 Then create a new component folder and navigate into it, **with the name of your component in camelCase**. (e.g. `mkdir myTestComponent && cd myTestComponent`)
 
