@@ -1,3 +1,15 @@
+<a name="1.8.0"></a>
+## 1.8.0 (2015-02-24)
+
+
+#### Features
+
+* **progressbar:** Added bootstrap progressbar ([45711180](git@github.com:rackerlabs/encore-ui/commit/457111804bb6cdae5e132871be1acddbaee5d4c2))
+* **rxFLoatingHeader:** Correctly clone ng-show header rows ([556556f8](git@github.com:rackerlabs/encore-ui/commit/556556f80f9f25940e611abf774f5769154aba24))
+* **rxModalAction:** Allow disabling of esc-to-close ([3f67e14f](git@github.com:rackerlabs/encore-ui/commit/3f67e14f657e642b93126c49772c0cb877550cdd))
+* **rxStatusColumn:** Watch for changes to status ([8eb42452](git@github.com:rackerlabs/encore-ui/commit/8eb42452bc118cdcadc2c7e09eec637962ca098d))
+
+
 <a name="1.7.2"></a>
 ### 1.7.2 (2015-02-20)
 
