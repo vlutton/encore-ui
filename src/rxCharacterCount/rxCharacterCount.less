@@ -1,0 +1,24 @@
+/*
+ * rxCharacterCount
+ */
+
+// Wrapper provides proper width for text area and positioning 
+// character count. For specific use cases in a project, 
+// custom wrappers with custom widths can be set.
+.character-count-wrapper {
+    width: 375px;
+    textarea {
+        width: 370px;
+    }
+}
+
+.character-countdown {
+    text-align: right;
+    color: @subduedTitle;
+    &.near-limit {
+        color: #db7820;
+    }
+    &.over-limit {
+        color: #fc0f1d;
+    }
+}
