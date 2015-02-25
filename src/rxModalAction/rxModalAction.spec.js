@@ -12,6 +12,9 @@ describe('rxModalForm', function () {
     var selectBox = '<select><option>foo</option></select>';
 
     beforeEach(function () {
+        // The footers template must be loaded first because it is used in .run
+        module('templates/rxModalFooters.html');
+
         module('encore.ui.rxModalAction');
         module('templates/rxModalActionForm.html');
 
@@ -22,6 +25,16 @@ describe('rxModalForm', function () {
             compile = $compile;
             timeout = $timeout;
         });
+    });
+
+    it('should inject the modal footers into the template', function () {
+        var formHtml = _.template(rxModalForm, {
+            fields: textInput + textarea
+        });
+
+        el = helpers.createDirective(formHtml, compile, scope);
+
+        expect(el.children('div.modal-footer').children().attr('ng-switch')).to.equal('state');
     });
 
     it('should focus on first tabbable element', function () {
@@ -133,75 +146,73 @@ describe('rxModalForm', function () {
         expect(inputs[1].focus).to.be.calledOnce;
     });
 
-    it('should focus on cancel button when specified', function () {
-        var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
-        var formHtml = _.template(rxModalForm, {
-            fields: textInput + textarea + selectBox,
-            defaultFocus: 'cancel'
+    describe('when a default focus is specified', function () {
+        var focus;
+
+        beforeEach(function () {
+            focus = sinon.spy(HTMLElement.prototype, 'focus');
         });
 
-        el = helpers.createDirective(formHtml, compile, scope);
-
-        var input = el.find('input')[0];
-        var cancelBtn = el.find('button.cancel')[0];
-
-        sinon.spy(input, 'focus');
-        sinon.spy(cancelBtn, 'focus');
-
-        timeout.flush();
-
-        // should only focus the specified element
-        expect(cancelBtn.focus).to.have.been.calledOnce;
-        expect(input.focus).to.not.have.been.called;
-
-    });
-
-    it('should focus on submit button when specified', function () {
-        var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
-        var formHtml = _.template(rxModalForm, {
-            fields: textInput + textarea + selectBox,
-            defaultFocus: 'submit'
+        afterEach(function () {
+            focus.restore();
         });
 
-        el = helpers.createDirective(formHtml, compile, scope);
+        it('should focus on cancel button when specified', function () {
+            var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
+            var formHtml = _.template(rxModalForm, {
+                fields: textInput + textarea + selectBox,
+                defaultFocus: 'cancel'
+            });
 
-        var input = el.find('input')[0];
-        var submitBtn = el.find('button.submit')[0];
+            // The state must be manually written since the modal was not created via rxModalAction
+            scope.state = 'editing';
+            el = helpers.createDirective(formHtml, compile, scope);
 
-        sinon.spy(input, 'focus');
-        sinon.spy(submitBtn, 'focus');
+            timeout.flush();
 
-        timeout.flush();
+            // should only focus the specified element
+            expect(focus).to.have.been.calledOnce;
+            expect(focus.firstCall.thisValue.tagName).to.equal('BUTTON');
+            expect(focus.firstCall.thisValue.classList.contains('cancel')).to.be.true;
 
-        // should only focus the specified element
-        expect(submitBtn.focus).to.have.been.calledOnce;
-        expect(input.focus).to.not.have.been.called;
-
-    });
-
-    it('should focus on First Tabbable when anything else is specified', function () {
-        var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
-        var formHtml = _.template(rxModalForm, {
-            fields: textInput + textarea + selectBox,
-            defaultFocus: 'foo'
         });
 
-        el = helpers.createDirective(formHtml, compile, scope);
+        it('should focus on submit button when specified', function () {
+            var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
+            var formHtml = _.template(rxModalForm, {
+                fields: textInput + textarea + selectBox,
+                defaultFocus: 'submit'
+            });
 
-        var input = el.find('input:not([type="hidden"]):not([disabled="disabled"]), textarea, select')[0];
-        var submitBtn = el.find('button.submit')[0];
-        var cancelBtn = el.find('button.cancel')[0];
+            // The state must be manually written since the modal was not created via rxModalAction
+            scope.state = 'editing';
+            el = helpers.createDirective(formHtml, compile, scope);
 
-        sinon.spy(input, 'focus');
-        sinon.spy(submitBtn, 'focus');
-        sinon.spy(cancelBtn, 'focus');
+            timeout.flush();
 
-        timeout.flush();
+            // should only focus the specified element
+            expect(focus).to.have.been.calledOnce;
+            expect(focus.firstCall.thisValue.tagName).to.equal('BUTTON');
+            expect(focus.firstCall.thisValue.classList.contains('submit')).to.be.true;
 
-        // should only focus the specified element
-        expect(submitBtn.focus).to.not.have.been.called;
-        expect(cancelBtn.focus).to.not.have.been.called;
-        expect(input.focus).to.have.been.calledOnce;
+        });
+
+        it('should focus on First Tabbable when anything else is specified', function () {
+            var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
+            var formHtml = _.template(rxModalForm, {
+                fields: textInput + textarea + selectBox,
+                defaultFocus: 'foo'
+            });
+
+            el = helpers.createDirective(formHtml, compile, scope);
+
+            timeout.flush();
+
+            // should only focus the specified element
+            expect(focus).to.have.been.calledOnce;
+            expect(focus.firstCall.thisValue.tagName).to.equal('INPUT');
+
+        });
 
     });
 
@@ -217,6 +228,96 @@ describe('rxModalForm', function () {
 
         expect(test).to.not.throw('focus');
     });
+});
+
+describe('rxModalFooterTemplates', function () {
+    var rxModalFooterTemplates;
+
+    function wrap (html) {
+        return _.template('<div ng-switch="state">${html}</div>', {
+            html: html
+        });
+    }
+
+    beforeEach(function () {
+        module('encore.ui.rxModalAction');
+
+        inject(function (_rxModalFooterTemplates_) {
+            rxModalFooterTemplates = _rxModalFooterTemplates_;
+        });
+    });
+
+    _.each(['local', 'global'], function (type) {
+        it('should store the templates of ' + type + ' states', function () {
+            var fooHtml = '<div>foo</div>';
+            rxModalFooterTemplates.add('test', fooHtml, { global: type === 'global' });
+            expect(rxModalFooterTemplates.flush()).to.equal(wrap(fooHtml));
+        });
+    });
+
+    it('should concatenate multiple templates', function () {
+        var fooHtml = '<div>foo</div>';
+        var barHtml = '<div>bar</div>';
+        rxModalFooterTemplates.add('foo', fooHtml, { global: false });
+        rxModalFooterTemplates.add('bar', barHtml, { global: false });
+        expect(rxModalFooterTemplates.flush()).to.equal(wrap(fooHtml + barHtml));
+    });
+
+    it('should overwrite global states with local ones', function () {
+        var state = 'test';
+        var globalHtml = '<div>foo</div>';
+        var localHtml = '<div>bar</div>';
+        rxModalFooterTemplates.add(state, globalHtml, { global: true });
+        rxModalFooterTemplates.add(state, localHtml, { global: false });
+        expect(rxModalFooterTemplates.flush()).to.equal(wrap(localHtml));
+    });
+
+});
+
+describe('rxModalFooter', function () {
+    var scope, compile, addFooter;
+
+    var footerHtml = '<rx-modal-footer state="testState">foo</rx-modal-footer>';
+
+    beforeEach(function () {
+        module('encore.ui.rxModalAction');
+
+        module(function ($provide) {
+            addFooter = sinon.stub();
+            $provide.value('rxModalFooterTemplates', { add: addFooter });
+        });
+
+        // Inject in angular constructs
+        inject(function ($rootScope, $compile) {
+            scope = $rootScope.$new();
+            compile = $compile;
+        });
+    });
+
+    it('should wrap the content in a modal-footer div', function () {
+        helpers.createDirective(footerHtml, compile, scope);
+        expect(addFooter.firstCall.args[1]).to.equal(
+            '<div ng-switch-when="testState">foo</div>'
+        );
+    });
+
+    it('should save the template with its state', function () {
+        helpers.createDirective(footerHtml, compile, scope);
+        expect(addFooter).to.have.been.calledOnce;
+        expect(addFooter.firstCall.args[0]).to.equal('testState');
+    });
+
+    it('should set the global option to false by default', function () {
+        helpers.createDirective(footerHtml, compile, scope);
+        expect(addFooter.firstCall.args[2]).to.eql({ global: false });
+    });
+
+    it('should set the global option to true if the attribute is present', function () {
+        var footerHtml = '<rx-modal-footer state="testState" global>foo</rx-modal-footer>';
+        helpers.createDirective(footerHtml , compile, scope);
+        expect(addFooter.firstCall.args[2]).to.eql({ global: true });
+    });
+
 });
 
 describe('rxModalAction', function () {
