@@ -15,6 +15,7 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 * @param {boolean} [isLoading] True to show a spinner by default
 * @param {string} [submitText] 'Submit' button text to use. Defaults to 'Submit'
 * @param {string} [cancelText] 'Cancel' button text to use. Defaults to 'Cancel'
+* @param {string} [returnText] 'Return' button text to use. Defaults to 'Return'
 * @param {string} [defaultFocus] default focus element. May be 'submit' or 'cancel'. Defaults to 'firstTabbable'
 *
 * @example
@@ -27,20 +28,22 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
         restrict: 'E',
         scope: {
             title: '@',
-            subtitle: '@',
-            isLoading: '=',
-            submitText: '@',
-            cancelText: '@',
-            returnText: '@',
-            defaultFocus: '@'
-        },
-        controller: function ($scope, $element) {
-            _.assign($scope.$parent, _.pick($scope, ['submitText', 'cancelText', 'returnText']));
-            $compile(rxModalFooterTemplates.flush())($scope.$parent, function (clone) {
-                $element.children('div.modal-footer').append(clone);
-            });
+            subtitle: '@?',
+            isLoading: '=?',
+            submitText: '@?',
+            cancelText: '@?',
+            returnText: '@?',
+            defaultFocus: '@?'
         },
         link: function (scope, element) {
+            // Copy the text variables onto the parent scope so they can be accessible by transcluded content.
+            _.assign(scope.$parent, _.pick(scope, ['submitText', 'cancelText', 'returnText']));
+
+            // Manually compile and insert the modal's footers into the DOM.
+            $compile(rxModalFooterTemplates.flush())(scope.$parent, function (clone) {
+                element.children('div.modal-footer').append(clone);
+            });
+
             var focusSelectors = {
                 'cancel': 'button.cancel',
                 'submit': 'button.submit',
@@ -88,11 +91,29 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
     // cancel out of the modal if the route is changed
     $rootScope.$on('$routeChangeSuccess', $modalInstance.dismiss);
 })
+/**
+* @ngdoc service
+* @name encore.ui.rxModalAction:rxModalFooterTemplates
+* @description
+* A cache for storing the modal footer templates
+* This is used internally by rxModalFooter, which is preferred
+* for registering templates over direct calling of this api.
+* @example
+* <pre>
+* rxModalFooterTemplates.add("step1", "<p>Step 1 Body</p>");
+* rxModalFooterTemplates.flush(); // returns html string to be inserted into DOM
+* </pre>
+*/
 .factory('rxModalFooterTemplates', function () {
     var globals = {};
     var locals = {};
 
     return {
+        /*
+         * Concatenates all the registered templates and clears the local template cache.
+         * @public
+         * @returns {string} The concatenated templates wrapped in an ng-switch.
+         */
         flush: function () {
             var states = _.assign({}, globals, locals);
             locals = {};
@@ -100,6 +121,14 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
                 return html + template;
             }, '<div ng-switch="state">') + '</div>';
         },
+        /*
+         * Register a template with an associated state.
+         * @public
+         * @param {string} The state being registered.
+         * @param {string} The template assicated with the state.
+         * @param [object} options
+         * @param {boolean} options.global Indicates if the template is used in other modals.
+         */
         add: function (state, template, options) {
             if (options.global) {
                 globals[state] = template;
@@ -117,7 +146,7 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 * @description
 * Define a footer for the next modal.
 *
-* @param {string} [state] The content will be shown in the footer when this state is activated.
+* @param {string} state The content will be shown in the footer when this state is activated.
 * @param {string} [global] If the global attribute is present, then this footer can be used
 *                          in other modals. This attribute takes no values.
 *

@@ -15,16 +15,17 @@
         <rx-modal-action
             classes="button"
             controller="rxModalStateCtrl"
-            template-url="multiview.html">
+            template-url="multiview.html"
+            disable-esc>
             Multi-View Example
         </rx-modal-action>
     </p>
 
     <script type="text/ng-template" id="changePassword.html">
         <rx-modal-form title="Change {{user}} Admin Password"
-        submit-text="Submit Password"
-        cancel-text="Cancel Request"
-        subtitle="Please read instructions below">
+            submit-text="Submit Password"
+            cancel-text="Cancel Request"
+            subtitle="Please read instructions below">
             <h1>Password must:</h1>
             <ul class="list">
                 <li>have at least one uppercase letter</li>
@@ -52,7 +53,7 @@
                 </div>
                 <div ng-switch-when="confirm">
                     <h3 class="title">Are you sure you want to continue?</h3>
-                    <p ng-click="confirm()">This action cannot be undone.</p>
+                    <p>This action cannot be undone.</p>
                 </div>
                 <p ng-switch-when="pending">Man, this takes forever!</p>
                 <p ng-switch-when="complete">Nothing left to do here.</p>
