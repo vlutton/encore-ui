@@ -105,6 +105,9 @@ table {
         background: @tableHeaderBg;
         color: @tableHeaderText;
         border: 1px solid @tableHeaderBorder;
+        &.actions {
+          width: 15px;
+        }
     }
     tr {
         background: @tableBg;
@@ -153,7 +156,6 @@ table {
 
         th:last-child {
             border-right-width: 0;
-            width: 15px;
         }
 
         th {
