@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-var rxPaginate = require('./rxPaginate.page.js').rxPaginate;
+var rxPaginate = require('./rxPaginate.page').rxPaginate;
 
 /**
    rxPaginate exercises.

@@ -1,4 +1,4 @@
-var {%= name %} = require('./{%= name %}.page.js').{%= name %};
+var {%= name %} = require('./{%= name %}.page').{%= name %};
 
 /**
    {%= name %} exercises.
