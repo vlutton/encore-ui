@@ -1,8 +1,8 @@
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
-var rxForm = require('../rxForm.page.js').rxForm;
-var rxOptionFormTable = require('../rxForm.page.js').rxOptionFormTable;
+var rxForm = require('../rxForm.page').rxForm;
+var rxOptionFormTable = require('../rxForm.page').rxOptionFormTable;
 
 // shortens the process of selecting form elements on the page object below
 var elementByLabel = function (label) {

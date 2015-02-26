@@ -1,5 +1,5 @@
-var rxAppPage = require('../rxApp.page.js').rxApp;
-var rxPage = require('../rxApp.page.js').rxPage;
+var rxAppPage = require('../rxApp.page').rxApp;
+var rxPage = require('../rxApp.page').rxPage;
 
 describe('rxApp', function () {
     var rxAppCustom, rxAppStandard;

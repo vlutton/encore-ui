@@ -1,4 +1,4 @@
-var rxSortableColumn = require('../rxSortableColumn.page.js').rxSortableColumn;
+var rxSortableColumn = require('../rxSortableColumn.page').rxSortableColumn;
 
 describe('rxSortableColumn', function () {
     var sorts = rxSortableColumn.sortDirections;

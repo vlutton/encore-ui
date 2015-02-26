@@ -1,4 +1,4 @@
-var rxFloatingHeader = require('../rxFloatingHeader.page.js').rxFloatingHeader;
+var rxFloatingHeader = require('../rxFloatingHeader.page').rxFloatingHeader;
 
 describe('rxFloatingHeader', function () {
     var table, tr, middleRow, middleRowY, initialY;

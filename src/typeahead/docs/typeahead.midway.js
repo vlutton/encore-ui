@@ -1,4 +1,4 @@
-var typeaheadPage = require('../typeahead.page.js').typeahead;
+var typeaheadPage = require('../typeahead.page').typeahead;
 
 describe('typeahead', function () {
     var typeahead;

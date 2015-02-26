@@ -1,4 +1,4 @@
-var rxBreadcrumbs = require('../rxBreadcrumbs.page.js').rxBreadcrumbs;
+var rxBreadcrumbs = require('../rxBreadcrumbs.page').rxBreadcrumbs;
 
 describe('rxBreadcrumbs', function () {
     var breadcrumbs;

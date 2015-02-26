@@ -95,7 +95,7 @@ var rxFeedback = {
     confirmSuccess: {
         value: function (within, fn) {
             if (fn === undefined) {
-                var notifications = exports.rxNotify || require('../rxNotify/rxNotify.page.js').rxNotify;
+                var notifications = exports.rxNotify || require('../rxNotify/rxNotify.page').rxNotify;
                 fn = function () {
                     return notifications.all.exists('feedback', 'success');
                 };
@@ -112,7 +112,7 @@ var rxFeedback = {
 exports.rxFeedback = {
 
     initialize: function (rxFeedbackElement) {
-        var modal = exports.rxModalAction || require('../rxModalAction/rxModalAction.page.js').rxModalAction;
+        var modal = exports.rxModalAction || require('../rxModalAction/rxModalAction.page').rxModalAction;
         rxFeedback.eleFeedback = {
             get: function () { return rxFeedbackElement; }
         };

@@ -23,7 +23,7 @@ function rxModalStateCtrl ($scope, $modalInstance, $timeout, rxNotify) {
 
     $scope.submit = function () {
         $scope.setState('confirm');
-    }
+    };
 
     $scope.confirm = function () {
         $scope.loaded = false;
@@ -34,10 +34,10 @@ function rxModalStateCtrl ($scope, $modalInstance, $timeout, rxNotify) {
             dismiss: [$scope, 'loaded']
         });
         $timeout(complete, 2000);
-    }
+    };
 
     $scope.cancel = function () {
         rxNotify.clear('modal');
         $modalInstance.dismiss();
-    }
+    };
 }
