@@ -1,4 +1,4 @@
-var rxSpinnerPage = require('../rxSpinner.page.js').rxSpinner;
+var rxSpinnerPage = require('../rxSpinner.page').rxSpinner;
 
 describe('rxSpinner', function () {
 

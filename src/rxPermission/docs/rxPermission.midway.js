@@ -1,4 +1,4 @@
-var rxPermissionPage = require('../rxPermission.page.js').rxPermission;
+var rxPermissionPage = require('../rxPermission.page').rxPermission;
 
 describe('rxPermission', function () {
 

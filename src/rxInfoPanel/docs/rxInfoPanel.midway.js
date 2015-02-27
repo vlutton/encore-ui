@@ -1,4 +1,4 @@
-var rxInfoPanelPage = require('../rxInfoPanel.page.js').rxInfoPanel;
+var rxInfoPanelPage = require('../rxInfoPanel.page').rxInfoPanel;
 var expect = require('chai').use(require('chai-as-promised')).expect;
 
 describe('rxInfoPanel', function () {

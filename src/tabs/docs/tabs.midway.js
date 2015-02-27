@@ -1,4 +1,4 @@
-var tabsPage = require('../tabs.page.js').tabs;
+var tabsPage = require('../tabs.page').tabs;
 
 describe('tabs', function () {
     var tabs;

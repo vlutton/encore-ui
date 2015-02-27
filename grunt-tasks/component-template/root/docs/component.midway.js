@@ -1,5 +1,5 @@
-var {%= name %}Page = require('../{%= name %}.page.js').{%=name %};
-var exercise = require('../{%= name %}.exercise.js');
+var {%= name %}Page = require('../{%= name %}.page').{%=name %};
+var exercise = require('../{%= name %}.exercise');
 
 describe('{%= name %}', function () {
     var {%= name %};

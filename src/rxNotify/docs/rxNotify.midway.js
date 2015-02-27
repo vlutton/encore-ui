@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-var notifications = require('../rxNotify.page.js').rxNotify;
+var notifications = require('../rxNotify.page').rxNotify;
 
 describe('rxNotify', function () {
 

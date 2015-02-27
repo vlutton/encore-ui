@@ -1,8 +1,8 @@
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
-var rxStatusColumn = require('../rxStatusColumn.page.js').rxStatusColumn;
-var rxSortableColumn = require('../../rxSortableColumn/rxSortableColumn.page.js').rxSortableColumn;
+var rxStatusColumn = require('../rxStatusColumn.page').rxStatusColumn;
+var rxSortableColumn = require('../../rxSortableColumn/rxSortableColumn.page').rxSortableColumn;
 
 // an anonymous page object to demonstrate table and cell creation
 var repeaterString = 'server in servers';

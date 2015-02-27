@@ -1,4 +1,4 @@
-var rxButtonPage = require('../rxButton.page.js').rxButton;
+var rxButtonPage = require('../rxButton.page').rxButton;
 
 describe('rxButton', function () {
     var rxButton;

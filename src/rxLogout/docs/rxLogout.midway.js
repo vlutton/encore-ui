@@ -1,4 +1,4 @@
-var rxLogoutPage = require('../rxLogout.page.js').rxLogout;
+var rxLogoutPage = require('../rxLogout.page').rxLogout;
 
 describe('rxLogout', function () {
     var rxLogout;
