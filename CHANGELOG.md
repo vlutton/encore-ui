@@ -1,3 +1,20 @@
+<a name="1.9.0"></a>
+## 1.9.0 (2015-02-27)
+
+
+#### Bug Fixes
+
+* **rxButton:** Disabled style takes precedence while hovered. ([a6f4780a](git@github.com:rackerlabs/encore-ui/commit/a6f4780a2bac4903c0dee939f7f82486fb5d7fac))
+* **style:** last cell in subtable too small ([29ebc38a](git@github.com:rackerlabs/encore-ui/commit/29ebc38a88093a1480a6c171925f1b8e58b80454))
+* **typeahead:** Show typeahead in front of textarea. ([e6b3b82a](git@github.com:rackerlabs/encore-ui/commit/e6b3b82a6f7354631793ade16f66ca5341f4e7d0))
+
+
+#### Features
+
+* **rxCharacterCount:** Add a character counter directive and styles ([ab919407](git@github.com:rackerlabs/encore-ui/commit/ab919407b4bc4e084f61534ba23e5cb445f8a4cc), closes [#815](git@github.com:rackerlabs/encore-ui/issues/815))
+* **rxModalAction:** Make footer content stateful. ([603cafbc](git@github.com:rackerlabs/encore-ui/commit/603cafbcb09d67a801bd4c8e23938e1da359d6cc))
+
+
 <a name="1.8.0"></a>
 ## 1.8.0 (2015-02-24)
 
