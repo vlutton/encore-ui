@@ -404,4 +404,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             $scope.status.loading = false;
         }, 4000);
     };
+})
+.controller('commentBoxStyleguideCtrl', function ($scope) {
+    $scope.comment = '';
 });
