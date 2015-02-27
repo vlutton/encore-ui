@@ -512,6 +512,9 @@ table {
         background: @tableHeaderBg;
         color: @tableHeaderText;
         border: 1px solid @tableHeaderBorder;
+        &.actions {
+          width: 15px;
+        }
     }
     tr {
         background: @tableBg;
@@ -560,7 +563,6 @@ table {
 
         th:last-child {
             border-right-width: 0;
-            width: 15px;
         }
 
         th {
@@ -1632,7 +1634,7 @@ When is a submit button blue and when is the submit button green?  If the form y
         }
     }
 
-    &[disabled] {
+    &[disabled], &[disabled]:hover {
         cursor: not-allowed;
         color: @buttonDisabledText;
         background: @buttonDisabledBg;
@@ -1731,6 +1733,31 @@ thead th .btn-link {
     &:hover,
     &:focus {
         color: @tableHeaderText;
+    }
+}
+
+/*
+ * rxCharacterCount
+ */
+
+// Wrapper provides proper width for text area and positioning 
+// character count. For specific use cases in a project, 
+// custom wrappers with custom widths can be set.
+.character-count-wrapper {
+    width: 375px;
+    textarea {
+        width: 370px;
+    }
+}
+
+.character-countdown {
+    text-align: right;
+    color: @subduedTitle;
+    &.near-limit {
+        color: #db7820;
+    }
+    &.over-limit {
+        color: #fc0f1d;
     }
 }
 
@@ -1889,6 +1916,7 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
         width: 100%;
         position: relative;
         z-index: 2;
+        box-sizing: border-box;
     }
 
     input {
@@ -3002,6 +3030,7 @@ Provides styling for the Angular-UI tab HTML
     background: @white;
     border: 1px solid #ccc;
     padding: 6px 0;
+    z-index: 3; // Will display over a textarea element
 
     a {
         display: block;

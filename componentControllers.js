@@ -43,12 +43,14 @@ function hotkeysCtrl ($scope, hotkeys) {
 
 
 
+
 /*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
 function progressbarCtrl ($scope) {
 
 }
+
 
 // Note that these factories are only present for the purposes of this demo. In a real application,
 // SupportAccount, Teams, AccountStatusGroup, and Encore will have to be provided from elsewhere,
@@ -393,6 +395,7 @@ function rxAttributesCtrl ($scope) {
     $scope.customContent = '"Custom Content"';
 }
 
+
 function rxAuthCtrl ($scope, Auth) {
     $scope.hasRole = function () {
         alert('Has "superhero" Role? : ' + Auth.hasRole('superhero'));
@@ -439,6 +442,20 @@ function rxCapitalizeCtrl ($scope) {
     $scope.hello = 'hello world. this is my text';
 }
 
+
+/*jshint unused:false*/
+
+// This file is used to help build the 'demo' documentation page and should be updated with example code
+function rxCharacterCountCtrl ($scope) {
+    $scope.data = {
+        comment1: '',
+        comment2: '',
+        comment3: '',
+        comment4: ''
+    };
+}
+
+
 /*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
@@ -446,6 +463,7 @@ function rxCompileCtrl ($scope) {
     $scope.world = 'wrrrld';
     $scope.myExpression = 'Hello {{world}}';
 }
+
 
 /*jshint unused:false*/
 
@@ -456,10 +474,12 @@ function rxDiskSizeCtrl ($scope) {
     $scope.sizePB = 171337000;
 }
 
+
 /*jshint unused:false*/
 function rxEnvironmentCtrl ($scope, Environment) {
     $scope.Environment = Environment;
 }
+
 
 /*jshint unused:false*/
 function rxFaviconCtrl ($scope, Environment) {
@@ -467,6 +487,7 @@ function rxFaviconCtrl ($scope, Environment) {
         // TODO allow overriding the current environment to show how the favicon changes
     };
 }
+
 
 /*jshint unused:false*/
 function rxFeedbackCtrl ($scope, rxNotify) {
@@ -710,6 +731,38 @@ function rxModalActionCtrl ($scope) {
     };
 }
 
+function rxModalStateCtrl ($scope, $modalInstance, $timeout, rxNotify) {
+    function complete () {
+        $scope.loaded = true;
+        $scope.setState('complete');
+        rxNotify.add('Operation Success!', {
+            stack: 'modal',
+            type: 'success'
+        });
+    }
+
+    $scope.submit = function () {
+        $scope.setState('confirm');
+    };
+
+    $scope.confirm = function () {
+        $scope.loaded = false;
+        $scope.setState('pending');
+        rxNotify.add('Performing Operation...', {
+            stack: 'modal',
+            loading: true,
+            dismiss: [$scope, 'loaded']
+        });
+        $timeout(complete, 2000);
+    };
+
+    $scope.cancel = function () {
+        rxNotify.clear('modal');
+        $modalInstance.dismiss();
+    };
+}
+
+
 /*jshint unused:false*/
 
 function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
@@ -783,6 +836,7 @@ function rxPageTitleCtrl ($scope, rxPageTitle) {
 
     $scope.refreshTitle();
 }
+
 
 /*jshint unused:false*/
 
@@ -899,6 +953,7 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
 function rxSpinnerCtrl ($scope) {
     $scope.loading = true;
 }
+
 
 function rxStatusCtrl ($scope, $rootScope, Status) {
     Status.setScope($scope);

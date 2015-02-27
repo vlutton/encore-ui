@@ -302,12 +302,30 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxModalAction:rxModalFooter",
+      "shortName": "rxModalFooter",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Define a footer for the next modal.",
+      "keywords": "activated api attribute button class confirm content define directive encore footer global modal modals ng-click pending risks rxmodalaction setstate takes ui understand values"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxModalAction:rxModalFooterTemplates",
+      "shortName": "rxModalFooterTemplates",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "A cache for storing the modal footer templates",
+      "keywords": "add api body cache calling direct dom encore flush footer html inserted internally modal preferred registering returns rxmodalaction rxmodalfooter rxmodalfootertemplates service step1 storing string templates ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxModalAction:rxModalForm",
       "shortName": "rxModalForm",
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Responsible for creating the HTML necessary for modal form",
-      "keywords": "api button cancel creating default defaults directive element encore firsttabbable focus form html is-loading modal responsible rxmodalaction spinner submit submit-text subtitle text title true ui window"
+      "keywords": "api button cancel creating default defaults directive element encore firsttabbable focus form html is-loading modal responsible return rxmodalaction spinner submit submit-text subtitle text title true ui window"
     },
     {
       "section": "api",
