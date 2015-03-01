@@ -41,16 +41,16 @@ var rxCharacterCount = {
         }
     },
 
-    nearLimit: {
-        get: function () {
+    isNearLimit: {
+        value: function () {
             return this.lblRemaining.getAttribute('class').then(function (classNames) {
                 return classNames.indexOf('near-limit') > -1;
             });
         }
     },
 
-    overLimit: {
-        get: function () {
+    isOverLimit: {
+        value: function () {
             return this.lblRemaining.getAttribute('class').then(function (classNames) {
                 return classNames.indexOf('over-limit') > -1;
             });
