@@ -14,12 +14,12 @@ describe('rxCharacterCount', function () {
     });
 
     it('should have the right default remaining characters', function () {
-        expect(rxCharacterCount.remaining).to.eventually.equal('254');
+        expect(rxCharacterCount.remaining).to.eventually.equal(254);
     });
 
     it('should update the remaining when you insert text', function () {
         rxCharacterCount.comment = 'Foo';
-        expect(rxCharacterCount.remaining).to.eventually.equal('251');
+        expect(rxCharacterCount.remaining).to.eventually.equal(251);
     });
 
     it('should erase all text and replace it with new text on update', function () {
@@ -45,13 +45,17 @@ describe('rxCharacterCount', function () {
         expect(rxCharacterCount.isOverLimit()).to.eventually.be.true;
     });
 
+    it('should display a negative number when the over-limit class is reached', function () {
+        expect(rxCharacterCount.remaining).to.eventually.equal(-1);
+    });
+
     describe('custom max-characters', function () {
         beforeEach(function () {
             rxCharacterCount = rxCharacterCountPage.initialize($('.demo-custom-max-characters'));
         });
 
         it('should have 25 remaining characters', function () {
-            expect(rxCharacterCount.remaining).to.eventually.equal('25');
+            expect(rxCharacterCount.remaining).to.eventually.equal(25);
         });
     });
 

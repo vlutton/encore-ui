@@ -37,7 +37,7 @@ var rxCharacterCount = {
 
     remaining: {
         get: function () {
-            return this.lblRemaining.getText();
+            return this.lblRemaining.getText().then(parseInt);
         }
     },
 
