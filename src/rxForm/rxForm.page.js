@@ -725,6 +725,6 @@ exports.rxOptionFormTable = {
             }
         };
         return Page.create(rxOptionFormTable);
-    })(),
+    })()
 
 };

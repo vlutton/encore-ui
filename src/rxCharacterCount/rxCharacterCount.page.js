@@ -74,6 +74,16 @@ exports.rxCharacterCount = {
             get: function () { return rxCharacterCountElement; }
         };
         return Page.create(rxCharacterCount);
-    }
+    },
+
+    /**
+       @returns {rxCharacterCount} Page object representing the _first_ rxCharacterCount object found on the page.
+     */
+    main: (function () {
+        rxCharacterCount.rootElement = {
+            get: function () { return $('[rx-character-count]'); }
+        };
+        return Page.create(rxCharacterCount);
+    })()
 
 };
