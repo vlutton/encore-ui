@@ -2,6 +2,7 @@ var {%= name %} = require('./{%= name %}.page').{%= name %};
 
 /**
    {%= name %} exercises.
+   @exports encore.exercise.{%= name %}
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
    @example
@@ -25,7 +26,7 @@ exports.{%= name %} = function (options) {
             if (options.cssSelector === undefined) {
                 component = {%= name %}.main;
             } else {
-                component = {%= name %}.initialize(options.cssSelector);
+                component = {%= name %}.initialize($(options.cssSelector));
             }
         });
 
