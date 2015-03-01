@@ -7,9 +7,8 @@ var Page = require('astrolabe').Page;
 var {%= name %} = {
 
     /**
-       Returns whether the root element is currently displayed.
        @function
-       @returns {undefined}
+       @returns {Boolean} Whether the root element is currently displayed.
      */
     isDisplayed: {
         value: function () {
