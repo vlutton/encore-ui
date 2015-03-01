@@ -22,6 +22,11 @@ describe('rxCharacterCount', function () {
         expect(rxCharacterCount.remaining).to.eventually.equal('251');
     });
 
+    it('should erase all text and replace it with new text on update', function () {
+        rxCharacterCount.comment = 'Bar';
+        expect(rxCharacterCount.comment).to.eventually.equal('Bar');
+    });
+
     it('should not set the near-limit class on an empty text box', function () {
         expect(rxCharacterCount.isNearLimit()).to.eventually.be.false;
     });

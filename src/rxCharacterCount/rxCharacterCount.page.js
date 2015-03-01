@@ -26,7 +26,7 @@ var rxCharacterCount = {
 
     comment: {
         get: function () {
-            return this.txtComment.getText();
+            return this.txtComment.getAttribute('value');
         },
 
         set: function (text) {
