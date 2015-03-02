@@ -38,7 +38,7 @@ exports.rxPaginate = function (options) {
             if (options.cssSelector === undefined) {
                 pagination = rxPaginate.main;
             } else {
-                pagination = rxPaginate.initialize(options.cssSelector);
+                pagination = rxPaginate.initialize($(options.cssSelector));
             }
         });
 
@@ -120,6 +120,7 @@ exports.rxPaginate = function (options) {
             pagination.totalPages.then(function (totalPages) {
                 pagination.last();
                 expect(pagination.page).to.eventually.equal(totalPages);
+                pagination.first();
             });
         });
 
@@ -128,12 +129,17 @@ exports.rxPaginate = function (options) {
             it('should switch to a different items per page', function () {
                 pagination.pageSize = options.pageSizes[1];
                 expect(pagination.pageSize).to.eventually.equal(options.pageSizes[1]);
-            });
-
-            it('should put the user back on the first page after resizing the items per page', function () {
-                expect(pagination.page).to.eventually.equal(1);
                 pagination.pageSize = options.pageSizes[0];
             });
+
+            if (options.pages > 1) {
+                it('should put the user back on the first page after resizing the items per page', function () {
+                    pagination.page = 2;
+                    pagination.pageSize = options.pageSizes[1];
+                    expect(pagination.page).to.eventually.equal(1);
+                    pagination.pageSize = options.pageSizes[0];
+                });
+            }
 
         }
 
@@ -142,7 +148,7 @@ exports.rxPaginate = function (options) {
         });
 
         // execute only if the greatest items per page setting can contain all items
-        if (options.defaultPageSize * options.pages < _.last(options.pageSizes)) {
+        if (_.first(options.pageSizes) * options.pages < _.last(options.pageSizes)) {
 
             it('should not fail to match the upper bounds of the shown items even if not displayed', function () {
                 pagination.pageSize = _.last(options.pageSizes);

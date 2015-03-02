@@ -86,3 +86,15 @@ ul.colors .action-delete {
 .styleguide-character-count .counted-input-wrapper textarea {
   width: 328px;
 }
+.component-description ul li,
+.component-description ol li {
+  display: list-item;
+  margin: 5px 0 0 30px;
+}
+.component-description ul li,
+.component-description ul .item {
+  list-style: disc;
+}
+.component-description ol li {
+  list-style: decimal;
+}
