@@ -8,8 +8,8 @@ var rxPaginate = require('./rxPaginate.page').rxPaginate;
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {string} [options.cssSelector=] - Fallback selector string to initialize pagination widget with.
    @param {string} [options.pages=6] - Estimated page size in the pagination widget.
-   @param {number[]} [options.pageSizes=[3, 50, 200, 350, 500]] - Page sizes to validate.
-   @param {number} [options.defaultPageSize=3] - Default page size on page load.
+   @param {number[]} [options.pageSizes=[50, 200, 350, 500]] - Page sizes to validate.
+   @param {number} [options.defaultPageSize=50] - Default page size on page load.
    @param {number} [options.invalidPageSize=45] - For testing resizing pagination to invalid items per page.
    @example
    ```js
