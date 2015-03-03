@@ -43,7 +43,7 @@ module.exports = {
             banner: removeFromExercises.join(''),
             process: function (src) {
                 // replace all exercise require statements from src/ directory to index.js (published version)
-                src = src.replace(/require\('\.\/(.\w+\.page)'\)/g, 'require(\'./index\')');
+                src = src.replace(/require\('\.\/(.\w+\.page)'\)(?:\.js)?/g, 'require(\'./index\')');
                 removeFromExercises.forEach(function (toRemove) {
                     // a regex is faster, but this is less work for me
                     src = src.replace(toRemove, '');
