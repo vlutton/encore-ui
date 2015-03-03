@@ -1,3 +1,13 @@
+<a name="1.9.1"></a>
+### 1.9.1 (2015-03-03)
+
+
+#### Bug Fixes
+
+* **pageObjects:** Optional .js ending for replacement ([294f726d](git@github.com:rackerlabs/encore-ui/commit/294f726d9e16259e313ac7abd6c3644266a4a54a))
+* **rxPageObjects:** Exercise written with incompatible require path. ([1a178f4e](git@github.com:rackerlabs/encore-ui/commit/1a178f4ebadad201744020eb94edea9c4329c618))
+
+
 <a name="1.9.0"></a>
 ## 1.9.0 (2015-02-27)
 
