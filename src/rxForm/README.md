@@ -32,7 +32,7 @@ Creates a field row wrapped in a fieldset. Used for fields which include multipl
 
 ## rxFormOptionTable
 
-Given an data object and an additional optional object for column labels, rxFormOptionTable creates a series of radio or checkbox buttons. 
+Given a data object and an additional optional object for column labels, rxFormOptionTable creates a series of radio or checkbox buttons.
 
 ### Attributes
 
@@ -42,4 +42,11 @@ Given an data object and an additional optional object for column labels, rxForm
 - `data`: A data object to prefill the radio/checkbox collection. For checkboxes, checked values default to true unless `value` and `falseValue` attributes are given. See the samples.
 - `model`: The AngularJS model to tie all radios/checkboxes together.
 - `field-id`: The ID of the elements.
-- `empty-message`: (string) A default message if the data attribute is empty. 
+- `empty-message`: (string) A default message if the data attribute is empty.
+- `disable-fn`: (Function) Optional callback function to determine if option should be disabled. Parameters `tableId`, `fieldId`, and `rowId` will be passed to the function.
+
+# Services
+
+## rxFormUtils
+
+Provides a set of utility functions for accessing form data

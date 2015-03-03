@@ -8,7 +8,7 @@
                 </th>
             </tr>
         </thead>
-        <tr ng-repeat="row in data" ng-class="{current: isCurrent(row.value), selected: isSelected(row.value, $index)}">
+        <tr ng-repeat="row in data" ng-class="{current: isCurrent(row.value), selected: isSelected(row.value, $index), disabled: checkDisabled(row)}">
             <td class="option-table-input" ng-switch="type">
                 <label>
                     <input type="radio"
@@ -17,7 +17,7 @@
                         ng-model="$parent.$parent.model"
                         value="{{row.value}}"
                         name="{{fieldId}}"
-                        ng-disabled="isCurrent(row.value)"
+                        ng-disabled="checkDisabled(row)"
                         rx-attributes="{'ng-required': required}">
 
                     <input type="checkbox"

@@ -140,6 +140,12 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
  * @param {Object} model - Value to bind input to using ng-model
  * @param {String} fieldId - Used for label and input 'id' attribute
  * @param {Object} required - Value passed to input's 'ng-required' attribute
+ * @param {Function} disableFn - Callback function to determine if option should be disabled.
+                                 Takes tableId, fieldId, and rowId as parameters.
+                                 Example:
+```
+ disable-fn="disableOption(tableId, fieldId, rowId)"
+```
  */
 .directive('rxFormOptionTable', function ($interpolate) {
     return {
@@ -153,15 +159,20 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
             model: '=',
             fieldId: '@',
             required: '=',
-            emptyMessage: '@'
+            emptyMessage: '@',
+            disableFn: '&?'
         },
-        controller: function ($scope) {
+        controller: function ($scope, $element) {
             var determineMatch = function (val1, val2) {
                 if (_.isUndefined(val1) || _.isUndefined(val2)) {
                     return false;
                 }
 
                 return (val1 == val2);
+            };
+
+            $scope.checkDisabled = function (row) {
+                return $scope.disableFn({ tableId: $element.attr('id'), fieldId: $scope.fieldId, rowId: row.id });
             };
 
             // Determines whether the row is the initial choice
@@ -171,7 +182,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
 
             // Determines whether the row is selected
             $scope.isSelected = function (val, idx) {
-                // row can only be 'selected' if it's not the 'current'' value
+                // row can only be 'selected' if it's not the 'current' value
                 if (!$scope.isCurrent(val)) {
                     if ($scope.type == 'radio') {
                         return (val == $scope.model);
@@ -268,4 +279,57 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
         }
 
     };
+})
+/**
+ * @ngdoc service
+ * @name encore.ui.rxModalForm:rxFormUtils
+ * @description
+ * Set of utility functions used by rxForm to access form data
+ *
+ * @example
+ * <pre>
+ * // Returns the selected option for the rxFormOptionTable with id tableId
+ * // [{ tableId: 'tableId', fieldId: 'fieldId', rowId: 'rowId' }]
+ * getSelectedOptionForTable(tableId)
+
+ * // Returns the selected option for the rxFormOptionTable in the tabset with id tabsetId
+ * // [{ tableId: 'tableId', fieldId: 'fieldId', rowId: 'rowId' }]
+ * getSelectedOptionForTabSet(tabsetId)
+ * </pre>
+ */
+.factory('rxFormUtils', function () {
+
+    var rxFormUtils = {};
+
+    // Returns the selected option for the rxFormOptionTable with id: tableId
+    // and fieldId: fieldId (optional)
+    // @param {String} tableId - The id of the table
+    // @returns {object} The rowId of the selected option
+    rxFormUtils.getSelectedOptionForTable = function (tableId) {
+        var selectedRow;
+        var row = document.querySelector('rx-form-option-table#' + tableId + ' .selected input');
+        if (!_.isEmpty(row)) {
+            selectedRow = { rowId: row.value };
+        }
+        return selectedRow;
+    };
+
+    // Returns the selected option within the tabset
+    // @param {String} tabsetId - The id of the tabset
+    // @returns {object} The tableId, fieldId, and rowId of the selected option
+    rxFormUtils.getSelectedOptionForTabSet = function (tabsetId) {
+        var selectedOption;
+        var xpathToTable = '//div[@id="' + tabsetId +
+            '"]//tr[contains(@class, "selected")]//ancestor::rx-form-option-table';
+        var result = document.evaluate(xpathToTable, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+        if (result.singleNodeValue) {
+            var table = result.singleNodeValue;
+            var fieldId = table.getAttribute('field-id');
+            var rowId = rxFormUtils.getSelectedOptionForTable(table.id).rowId;
+            selectedOption = { tableId: table.id, fieldId: fieldId, rowId: rowId };
+        }
+        return selectedOption;
+    };
+
+    return rxFormUtils;
 });

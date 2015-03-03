@@ -57,6 +57,7 @@
 
         <rx-form-fieldset legend="Option Table (radio w/full-width class)">
             <rx-form-option-table
+                id="optionTableRadio"
                 data="optionTableData"
                 columns="optionTableColumns"
                 type="radio"
@@ -64,6 +65,7 @@
                 field-id="optionTable"
                 selected="0"
                 class="full-width"
+                disable-fn="disableOption(tableId, fieldId, rowId)"
                 ></rx-form-option-table>
         </rx-form-fieldset>
 
