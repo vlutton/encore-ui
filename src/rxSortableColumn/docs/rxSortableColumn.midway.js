@@ -1,17 +1,20 @@
 var rxSortableColumn = require('../rxSortableColumn.page').rxSortableColumn;
 
+var column = function (columnName, repeaterString) {
+    var columnElement = element(by.cssContainingText('rx-sortable-column', columnName));
+    return rxSortableColumn.initialize(columnElement, repeaterString);
+};
+
 describe('rxSortableColumn', function () {
     var sorts = rxSortableColumn.sortDirections;
-    var columnNames = ['Name', 'Occupation'];
+    var columnNames = ['Name', 'Occupation', 'Testing Sort Errors (see Protractor Tab)'];
     var columns, nameColumn, roleColumn;
 
     before(function () {
         demoPage.go('#/component/rxSortableColumn');
         columns = rxSortableColumn.byTable($('.component-demo table'));
-        var nameSelector = $('rx-sortable-column[sort-property="name"]');
-        var roleSelector = $('rx-sortable-column[sort-property="jobTitle"]');
-        nameColumn = rxSortableColumn.initialize(nameSelector, 'resource in talentPool');
-        roleColumn = rxSortableColumn.initialize(roleSelector);
+        nameColumn = column('Name', 'resource in talentPool');
+        roleColumn = column('Occupation');
     });
 
     // https://github.com/rackerlabs/encore-ui/issues/694 -- See "End odd behavior".
@@ -25,11 +28,11 @@ describe('rxSortableColumn', function () {
                 return text.indexOf('Occupation') > -1;
             });
         };
-        expect(columns.getNamesUsing(doesNotUseBoldText)).to.eventually.eql([false, true]);
+        expect(columns.getNamesUsing(doesNotUseBoldText)).to.eventually.eql([false, true, false]);
     });
 
     it('should return all sorts in the table', function () {
-        expect(columns.sorts).to.eventually.eql([sorts.ascending, sorts.notSorted]);
+        expect(columns.sorts).to.eventually.eql([sorts.ascending, sorts.notSorted, sorts.notSorted]);
     });
     // https://github.com/rackerlabs/encore-ui/issues/694 -- End odd behavior.
 
@@ -44,6 +47,11 @@ describe('rxSortableColumn', function () {
 
     it('should have no sort shown by default for the job title column', function () {
         expect(roleColumn.currentSortDirection).to.eventually.eq(sorts.notSorted);
+    });
+
+    it('should not throw an error if the column responds to sorting clicks', function () {
+        var error = nameColumn.ColumnSortRequestUnresponsiveError;
+        expect(nameColumn.sort({ isAscending: true })).to.not.be.rejectedWith(error);
     });
 
     it('should support sorting columns ascending', function () {
@@ -85,7 +93,7 @@ describe('rxSortableColumn', function () {
         });
 
         it('should throw an error if attempting to access cell data without a repeater string', function () {
-            expect(roleColumn.data).to.eventually.be.rejectedWith(roleColumn.CellUndiscoverableError);
+            expect(roleColumn.data).to.be.rejectedWith(roleColumn.CellUndiscoverableError);
         });
 
         it('should return all names as data', function () {
@@ -118,6 +126,20 @@ describe('rxSortableColumn', function () {
             };
 
             expect(nameColumn.getDataUsing(reduceFn)).to.eventually.eql({ 'Hussam Dawood': 'Republic of Dawood' });
+        });
+
+    });
+
+    describe('unresponsive column sorting', function () {
+        var errorColumn;
+
+        before(function () {
+            errorColumn = column('Testing Sort Errors');
+        });
+
+        it('should throw an error if the column does not respond to sorting clicks', function () {
+            var error = errorColumn.ColumnSortRequestUnresponsiveError;
+            expect(errorColumn.sort({ isAscending: true })).to.be.rejectedWith(error);
         });
 
     });
