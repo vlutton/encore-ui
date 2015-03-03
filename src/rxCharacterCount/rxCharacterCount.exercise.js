@@ -1,5 +1,5 @@
 var _ = require('lodash');
-var rxCharacterCount = require('./rxCharacterCount.page.js').rxCharacterCount;
+var rxCharacterCount = require('./rxCharacterCount.page').rxCharacterCount;
 
 /**
    rxCharacterCount exercises.
