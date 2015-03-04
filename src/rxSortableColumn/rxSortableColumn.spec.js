@@ -46,7 +46,7 @@ describe('rxSortUtil', function () {
     });
 
     it('SortUtil: getDefault will return default settings when no parameters are passed', function () {
-        expect(util.getDefault()).to.deep.eq({ predicate: 'name', reverse: undefined });
+        expect(util.getDefault()).to.deep.eq({ predicate: undefined, reverse: undefined });
     });
 
     it('SortUtils: getDfault will set parameters if specified', function () {

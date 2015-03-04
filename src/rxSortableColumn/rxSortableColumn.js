@@ -43,8 +43,7 @@ angular.module('encore.ui.rxSortableColumn', [])
     var util = {};
 
     util.getDefault = function (property, reversed) {
-        var prop = property ? property : 'name';
-        return { predicate: prop, reverse: reversed };
+        return { predicate: property, reverse: reversed };
     };
 
     util.sortCol = function ($scope, predicate) {
