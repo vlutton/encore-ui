@@ -4,6 +4,8 @@ describe('rxCharacterCount', function () {
     var originalScope, scope, compile, rootScope, el;
     var defaultTemplate = '<textarea ng-model="comment" rx-character-count></textarea>';
     var maxCharsTemplate = '<textarea ng-model="comment" rx-character-count max-characters="50"></textarea>';
+    var noTrimTemplate = '<textarea ng-model="comment" rx-character-count max-characters="50" ng-trim="false">' +
+                         '</textarea>';
     var boundaryTemplate = '<textarea ng-model="comment" rx-character-count max-characters="20" low-boundary="5">' +
                            '</textarea>';
 
@@ -21,10 +23,10 @@ describe('rxCharacterCount', function () {
 
     });
 
-    // The only way to get the textarea to fire its ngChange function
-    // on text change
+    // Originate the text change from the element
+    // so that the ngChange function is executed
     var changeText = function (el, text) {
-        el.controller('ngModel').$setViewValue(text);
+        el.val(text).triggerHandler('input');
         originalScope.$digest();
     };
 
@@ -103,6 +105,77 @@ describe('rxCharacterCount', function () {
             expect(scope.nearLimit, 'near, 51 chars').to.be.false;
             expect(scope.overLimit, 'over, 51 chars').to.be.true;
         });
+    });
+
+    describe('character highlighting', function () {
+
+        describe('with ngTrim', function ()  {
+
+            beforeEach(function () {
+                el = helpers.createDirective(maxCharsTemplate, compile, originalScope);
+                scope = el.scope();
+            });
+
+            it('should not count leading spaces when spliting text on the limit', function () {
+                var str = '     123456789012345678901234567890123456789012345';
+
+                // Pass in 50 characters, should not be below limit
+                changeText(el, str);
+                expect(scope.underLimitText).to.equal(str);
+                expect(scope.overLimitText).to.equal('');
+
+                // Pass in 55 characters, should be below limit, but not over
+                changeText(el, str + '67890');
+                expect(scope.underLimitText).to.equal(str + '67890');
+                expect(scope.overLimitText).to.equal('');
+
+                // Pass in 56 characters, should be over limit, but not below
+                changeText(el, str + '678901');
+                expect(scope.underLimitText).to.equal(str + '67890');
+                expect(scope.overLimitText).to.equal('1');
+            });
+
+            it('should not include trailing whitespace over the limit', function () {
+                // Pass in 55 characters, including 4 trailing spaces
+                var str = '12345678901234567890123456789012345678901234567890';
+                changeText(el, str + '1    ');
+                expect(scope.underLimitText).to.equal(str);
+                expect(scope.overLimitText).to.equal('1');
+            });
+
+        });
+
+        describe('without ngTrim', function () {
+
+            beforeEach(function () {
+                el = helpers.createDirective(noTrimTemplate, compile, originalScope);
+                scope = el.scope();
+            });
+
+            it('should count leading spaces when spliting text on the limit', function () {
+                var str = '     123456789012345678901234567890123456789012345';
+
+                // Pass in 50 characters, should be below limit, but not over
+                changeText(el, str);
+                expect(scope.underLimitText).to.equal(str);
+                expect(scope.overLimitText).to.equal('');
+
+                // Pass in 51 characters, should be over limit, but not below
+                changeText(el, str + '6');
+                expect(scope.underLimitText).to.equal(str);
+                expect(scope.overLimitText).to.equal('6');
+            });
+
+            it('should include trailing whitespace over the limit', function () {
+                // Pass in 55 characters, including 4 trailing spaces
+                var str = '12345678901234567890123456789012345678901234567890';
+                changeText(el, str + '1    ');
+                expect(scope.underLimitText).to.equal(str);
+                expect(scope.overLimitText).to.equal('1    ');
+            });
+
+        });
+
     });
 
 });
