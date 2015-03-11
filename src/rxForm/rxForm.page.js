@@ -366,6 +366,10 @@ var optionIsSelected = function (optionRowElement) {
     });
 };
 
+var optionIsDisabled = function (optionRowElement) {
+    return optionRowElement.$('label input').getAttribute('disabled');
+};
+
 var optionFormRowFromElement = function (optionRowElement) {
     return Page.create({
 
@@ -702,6 +706,25 @@ var rxOptionFormTable = {
                 });
             }).then(function (indexes) {
                 // `.map` will return `undefined` for non-selected rows. Drop those results.
+                return _.reject(indexes, _.isUndefined);
+            });
+        }
+    },
+
+    /**
+       Return a list of row indexes that are currently disabled.
+       @returns {number[]} All disabled row indexes from the rxOptionFormTable
+     */
+    disabledOptions: {
+        get: function () {
+            return this.tblRows.map(function (rowElement, index) {
+                return optionIsDisabled(rowElement).then(function (disabled) {
+                    if (disabled) {
+                        return index;
+                    }
+                });
+            }).then(function (indexes) {
+                // `.map` will return `undefined` for enabled rows. Drop those results.
                 return _.reject(indexes, _.isUndefined);
             });
         }

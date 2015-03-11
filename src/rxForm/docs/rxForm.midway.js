@@ -86,6 +86,12 @@ var formPageObject = Page.create({
         }
     },
 
+    optionTableDisabledOptions: {
+        get: function () {
+            return this.optRadioTable.disabledOptions;
+        }
+    },
+
     optCheckboxTable: {
         get: function () {
             return rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableCheckboxData"]'));
@@ -170,12 +176,12 @@ describe('rxForm', function () {
             });
 
             it('should return column data as text by default', function () {
-                var textData = ['$0.00', '$1.00', '$2.00'];
+                var textData = ['$0.00', '$1.00', '$2.00', '$3.00'];
                 expect(optionTable.columnData('Expression 4')).to.eventually.eql(textData);
             });
 
             it('should return column data as defined by a custom function', function () {
-                var penniesData = [0, 100, 200];
+                var penniesData = [0, 100, 200, 300];
                 var penniesFn = function (cellElements) {
                     return cellElements.map(function (cellElement) {
                         return cellElement.getText().then(rxForm.currencyToPennies);
@@ -215,6 +221,10 @@ describe('rxForm', function () {
                     it('should have the correct data in the ' + column + ' column', function () {
                         expect(row.cell(column)).to.eventually.equal(data);
                     });
+                });
+
+                it('should have disabled row 4', function () {
+                    expect(formPageObject.optionTableDisabledOptions).to.eventually.eql([3]);
                 });
 
             });

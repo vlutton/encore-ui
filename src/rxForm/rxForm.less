@@ -220,6 +220,17 @@
         // remove default padding from td's so that we can make the label take up the full room
         padding: 0;
     }
+    input[disabled] {
+        cursor: not-allowed;
+    }
+    .disabled {
+        label {
+            cursor: default;
+        }
+        span {
+            color: @disabledText;
+        }
+    }
     label {
         // add padding to labels so they take up the entire cell's space
         display: block;

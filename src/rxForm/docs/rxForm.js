@@ -47,6 +47,7 @@ function rxFormDemoCtrl ($scope) {
     ];
 
     $scope.volume = {
+        data: 0,
         isNameRequired: true,
         type: _.first($scope.types).value, // select the first type by default
         checked: [true, 'unchecked'] //example with first checkbox automatically checked
@@ -56,22 +57,32 @@ function rxFormDemoCtrl ($scope) {
 
     $scope.optionTableData = [
         {
+            'id': 'option1_id',
             'name': 'Option #1',
             'value': 0,
             'obj': {
                 'name': 'Nested Name 1'
             }
         }, {
+            'id': 'option2_id',
             'name': 'Option #2',
             'value': 1,
             'obj': {
                 'name': 'Nested Name 2'
             }
         }, {
+            'id': 'option3_id',
             'name': 'Option #3',
             'value': 2,
             'obj': {
                 'name': 'Nested Name 3'
+            }
+        }, {
+            'id': 'option4_id',
+            'name': 'Option #4',
+            'value': 3,
+            'obj': {
+                'name': 'Nested Name 4'
             }
         }
     ];
@@ -107,6 +118,11 @@ function rxFormDemoCtrl ($scope) {
     $scope.compressedLayout = { value: false };
 
     $scope.details = { email: '' };
+
+    $scope.disableOption = function (tableId, fieldId, rowId) {
+        return rowId === 'option4_id';
+    };
+
 }
 
 // A dummy directive only used within the rxForm demo page.
@@ -132,5 +148,5 @@ angular.module('encore.ui.rxForm')
             });
         }
     };
-    
+
 });

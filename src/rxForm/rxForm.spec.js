@@ -102,8 +102,9 @@ describe('rxFormOptionTable (Checkbox)', function () {
     var scope, compile, rootScope;
 
     var checkboxFormTemplate =
-        '<rx-form-option-table data="tableData" required="true" columns="tableColumns" ' +
-        'type="checkbox" model="myModel"></rx-form-option-table>';
+        '<rx-form-option-table id="optionTableId" field-id="optionTableFieldId" ' +
+        'data="tableData" required="true" columns="tableColumns" type="checkbox" ' +
+        'model="myModel" disable-fn="disableOption(tableId, fieldId, rowId)"></rx-form-option-table>';
 
     var tableDataTemplate = [
         {
@@ -123,6 +124,28 @@ describe('rxFormOptionTable (Checkbox)', function () {
             scope = $rootScope.$new();
             compile = $compile;
         });
+
+    });
+
+    it('should determine if row is disabled', function () {
+        var checkScope = rootScope.$new();
+        checkScope.tableData = [
+            {
+                'id': 'option1_id'
+            },
+            {
+                'id': 'option2_id'
+            }
+        ];
+
+        checkScope.disableOption = function (tableId, fieldId, rowId) {
+            return rowId === 'option1_id';
+        };
+
+        var checkTable = helpers.createDirective(checkboxFormTemplate, compile, checkScope);
+        var checkTableScope = checkTable.isolateScope();
+        expect(checkTableScope.checkDisabled({ 'id': 'option1_id' })).to.be.true;
+        expect(checkTableScope.checkDisabled({ 'id': 'option2_id' })).to.be.false;
     });
 
     it('should validate if there is an empty form but no required flag', function () {
@@ -221,8 +244,9 @@ describe('rxFormOptionTable (Checkbox)', function () {
 describe('rxFormOptionTable (Radio)', function () {
     var el, scope, compile, rootScope, elScope,
         radioFormTemplate =
-            '<rx-form-option-table data="tableData" columns="tableColumns" ' +
-            'type="radio" model="myModel" field-id="optionTable" selected="0"></rx-form-option-table>';
+            '<rx-form-option-table id="optionTableId" data="tableData" columns="tableColumns" ' +
+            'type="radio" model="myModel" field-id="optionTableFieldId" selected="0" ' +
+            'disable-fn="disableOption(tableId, fieldId, rowId)"></rx-form-option-table>';
 
     beforeEach(function () {
         module('encore.ui.rxForm');
@@ -239,12 +263,15 @@ describe('rxFormOptionTable (Radio)', function () {
 
         scope.tableData = [
             {
+                'id': 'option1_id',
                 'name': 'Option #1',
                 'value': 0
             }, {
+                'id': 'option2_id',
                 'name': 'Option #2',
                 'value': 1
             }, {
+                'id': 'option3_id',
                 'name': 'Option #3',
                 'value': 2
             }
@@ -255,6 +282,10 @@ describe('rxFormOptionTable (Radio)', function () {
             'key': 'name',
             'selectedLabel': '(Already saved data)'
         }];
+
+        scope.disableOption = function (tableId, fieldId, rowId) {
+            return rowId === 'option1_id';
+        };
 
         el = helpers.createDirective(radioFormTemplate, compile, scope);
 
@@ -270,6 +301,12 @@ describe('rxFormOptionTable (Radio)', function () {
         expect(elScope.isCurrent('0'), 'Item 1').to.be.true;
 
         expect(elScope.isCurrent(1), 'Item 2').to.be.false;
+    });
+
+    it('should determine if row is disabled', function () {
+        expect(elScope.checkDisabled({ 'id': 'option1_id' })).to.be.true;
+        expect(elScope.checkDisabled({ 'id': 'option2_id' })).to.be.false;
+        expect(elScope.checkDisabled({ 'id': 'option3_id' })).to.be.false;
     });
 
     it('should determine the selected row for radio inputs', function () {
@@ -348,4 +385,88 @@ describe('rxFormOptionTable (Radio)', function () {
             data = { amount: 12.5 };
         expect(elScope.getContent(column, data)).to.be.eq('$12.50');
     });
+});
+
+describe('rxFormUtils', function () {
+
+    var rxFormUtilsSvc, rootScope;
+
+    var template;
+
+    beforeEach(function () {
+        module('encore.ui.rxForm');
+
+        inject(function ($rootScope, rxFormUtils) {
+            rootScope = $rootScope;
+            rxFormUtilsSvc = rxFormUtils;
+        });
+
+        template = $('<div id="tabSet1"><div class="tab-content"><div class="tab-pane">' +
+                       '<rx-form-option-table id="table1" field-id="table1_fieldId">' +
+                         '<div>' +
+                           '<table><thead></thead><tbody>' +
+                             '<tr class="ng-scope selected">' +
+                               '<td><label><input value="table1_rowId1"></label></td>' +
+                             '</tr>' +
+                             '<tr class="ng-scope">' +
+                               '<td><label><input value="table1_rowId2"></label></td>' +
+                             '</tr>' +
+                             '<tr><td><label><input value="table1_rowId3"></label></td></tr>' +
+                           '</tbody></table>' +
+                         '</div>' +
+                       '</rx-form-option-table>' +
+                     '</div></div></div>' +
+                     '<div id="tabSet2"><div class="tab-content"><div class="tab-pane">' +
+                       '<rx-form-option-table id="table2">' +
+                         '<div>' +
+                           '<table><thead></thead><tbody>' +
+                             '<tr class="ng-scope selected">' +
+                               '<td><label><input value="table2_rowId1"></label></td>' +
+                             '</tr>' +
+                             '<tr class="ng-scope selected">' +
+                               '<td><label><input value="table2_rowId2"></label></td>' +
+                             '</tr>' +
+                             '<tr><td><label><input value="table2_rowId3"></label></td></tr>' +
+                           '</tbody></table>' +
+                         '</div>' +
+                       '</rx-form-option-table>' +
+                     '</div></div></div>');
+
+        rootScope.$digest();
+        $(document.body).append(template);
+    });
+
+    describe('getSelectedOptionForTable', function () {
+
+        var selectedOption = { rowId: 'table1_rowId1' };
+
+        it('returns the selected option for the table with id tableId', function () {
+            expect(rxFormUtilsSvc.getSelectedOptionForTable('table1')).to.deep.equal(selectedOption);
+        });
+
+        it('returns undefined if no table is found with that id', function () {
+            expect(rxFormUtilsSvc.getSelectedOptionForTable('notMyTable')).to.be.undefined;
+        });
+
+    });
+
+    describe('getSelectedOptionForTabSet', function () {
+
+        var selectedOption = { tableId: 'table1', fieldId: 'table1_fieldId', rowId: 'table1_rowId1' };
+
+        it('returns the selected option for the tabset', function () {
+            expect(rxFormUtilsSvc.getSelectedOptionForTabSet('tabSet1')).to.deep.equal(selectedOption);
+        });
+
+        it('returns undefined if no tabset is found with that id', function () {
+            expect(rxFormUtilsSvc.getSelectedOptionForTabSet('notMyTabSet')).to.be.undefined;
+        });
+
+        it('returns the selected option without the field id if no field-id exists', function () {
+            var selectedOptionNoFieldId = { tableId: 'table2', fieldId: null, rowId: 'table2_rowId1' };
+            expect(rxFormUtilsSvc.getSelectedOptionForTabSet('tabSet2')).to.deep.equal(selectedOptionNoFieldId);
+        });
+
+    });
+
 });
