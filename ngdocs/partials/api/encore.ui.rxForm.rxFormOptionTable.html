@@ -14,7 +14,8 @@
        type="{String}"
        model="{Object}"
        field-id="{String}"
-       required&gt;
+       required
+       disable-fn="{Function}"&gt;
 &lt;/rx-form-option-table&gt;</pre>
 <h3 id="usage_directive-info">Directive info</h3>
 <div class="directive-info"><ul><li>This directive creates new scope.</li>
@@ -57,6 +58,12 @@ key. Example:<pre><code>[
 </ul>
 </div></td></tr><tr><td>required</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="encore-ui-rxform-page encore-ui-rxform-rxformoptiontable-page"><ul>
 <li>Value passed to input&#39;s &#39;ng-required&#39; attribute</li>
+</ul>
+</div></td></tr><tr><td>disableFn</td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="encore-ui-rxform-page encore-ui-rxform-rxformoptiontable-page"><ul>
+<li>Callback function to determine if option should be disabled.
+Takes tableId, fieldId, and rowId as parameters.
+Example:<pre><code>disable-fn=&quot;disableOption(tableId, fieldId, rowId)&quot;
+</code></pre></li>
 </ul>
 </div></td></tr></tbody></table></div>
 </div>

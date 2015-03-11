@@ -244,7 +244,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "This directive is used to build a table of radio/checkbox inputs",
-      "keywords": "api array attribute bind build columns data directive disabled encore example fieldid input inputs item key label match model ng-model ng-required objects option passed populate properties radio required rxform selected table type ui values"
+      "keywords": "api array attribute bind build callback columns data determine directive disable-fn disabled disablefn disableoption encore example fieldid function input inputs item key label match model ng-model ng-required objects option parameters passed populate properties radio required rowid rxform selected table tableid takes type ui values"
     },
     {
       "section": "api",
@@ -326,6 +326,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Responsible for creating the HTML necessary for modal form",
       "keywords": "api button cancel creating default defaults directive element encore firsttabbable focus form html is-loading modal responsible return rxmodalaction spinner submit submit-text subtitle text title true ui window"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxModalForm:rxFormUtils",
+      "shortName": "rxFormUtils",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "Set of utility functions used by rxForm to access form data",
+      "keywords": "access api data encore fieldid form functions getselectedoptionfortable getselectedoptionfortabset option returns rowid rxform rxformoptiontable rxmodalform selected service set tableid tabset tabsetid ui utility"
     },
     {
       "section": "api",
