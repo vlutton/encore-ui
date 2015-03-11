@@ -2,7 +2,7 @@
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
 function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
-    $scope.sort = rxSortUtil.getDefault();
+    $scope.sort = rxSortUtil.getDefault('name');
     $scope.pager = PageTracking.createInstance();
 
     $scope.sortCol = function (predicate) {
