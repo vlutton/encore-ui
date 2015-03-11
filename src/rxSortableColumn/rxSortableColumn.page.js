@@ -62,16 +62,26 @@ var rxSortableColumn = {
        Prefer using {@link rxSortableColumn.sortAscending} and {@link rxSortableColumn.sortDescending} over this.
      */
     sort: {
-        value: function (namedParams) {
+        value: function (namedParams, attempts) {
             var page = this;
+            // this can get stuck if sorting isn't hooked up correctly and doesn't respond to clicks to sort
+            if (attempts === undefined) {
+                attempts = 0;
+            }
+
             return this.currentSortDirection.then(function (sortDirection) {
+                if (attempts > 3) {
+                    return page.name.then(page.ColumnSortRequestUnresponsiveError.thro);
+                }
+
                 /*jshint eqeqeq: false*/
                 // Coercing -1 to Boolean results in -1 === true. We don't want that.
                 // It's easier to leave as is since -1 != true and -1 != false.
                 // Meaning we'll always sort the list at least once if it's currently unsorted.
                 if (sortDirection != namedParams.isAscending) {
                     page.btnSort.click();
-                    page.sort(namedParams);
+                    attempts += 1;
+                    page.sort(namedParams, attempts);
                 }
             });
         }
@@ -165,6 +175,10 @@ var rxSortableColumn = {
 
     CellUndiscoverableError: {
         get: function () { return this.exception('repeaterString required at initialization to use'); }
+    },
+
+    ColumnSortRequestUnresponsiveError: {
+        get: function () { return this.exception('no sort activity after clicking multiple times for column'); }
     }
 
 };
