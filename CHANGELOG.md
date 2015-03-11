@@ -1,3 +1,20 @@
+<a name="1.10.0"></a>
+## 1.10.0 (2015-03-11)
+
+
+#### Bug Fixes
+
+* **rxCharacterCount:** layer input over highlighting background. ([3875c991](git@github.com:rackerlabs/encore-ui/commit/3875c9910bb354431faa1081ec63da6003d0b478))
+
+
+#### Features
+
+* **rxCharacterCount:** Highlight characters over the limit. ([d1c43161](git@github.com:rackerlabs/encore-ui/commit/d1c43161555f54e767b4b93a3f05a95072fde414))
+* **rxForm:** Disable options ([feca6aa8](git@github.com:rackerlabs/encore-ui/commit/feca6aa8caf398043a12970061ac3ccb3b8c9456))
+* **rxPageObjects:** Add accessor for a dropdown's values. ([05b97437](git@github.com:rackerlabs/encore-ui/commit/05b9743781f2677e8721f122dd027c69402ea9c4))
+* **rxSortUtil:** No longer use 'name' as a default predicate. ([e6b3a995](git@github.com:rackerlabs/encore-ui/commit/e6b3a995803126e420c13ac59fc1b913876a0751))
+
+
 <a name="1.9.1"></a>
 ### 1.9.1 (2015-03-03)
 
