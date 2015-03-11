@@ -69,6 +69,10 @@ exports.rxCharacterCount = function (options) {
             expect(component.isOverLimit()).to.eventually.be.false;
         });
 
+        it('should not show any highlights on an empty text box', function () {
+            expect(component.overLimitText).to.eventually.equal('');
+        });
+
         var belowNearLimitLength = options.maxCharacters + 1 - options.nearLimit;
         it('should not set the near-limit class when ' + belowNearLimitLength + ' characters are entered', function () {
             component.comment = Array(belowNearLimitLength).join('a');
@@ -93,6 +97,10 @@ exports.rxCharacterCount = function (options) {
             expect(component.isOverLimit()).to.eventually.be.false;
         });
 
+        it('should not highlight any characters', function () {
+            expect(component.overLimitText).to.eventually.equal('');
+        });
+
         it('should have zero remaining characters', function () {
             expect(component.remaining).to.eventually.equal(0);
         });
@@ -103,8 +111,17 @@ exports.rxCharacterCount = function (options) {
             expect(component.isOverLimit()).to.eventually.be.true;
         });
 
+        it('should highlight the characters over the limit', function () {
+            expect(component.overLimitText).to.eventually.equal('a');
+        });
+
         it('should display a negative number when the over-limit class is reached', function () {
             expect(component.remaining).to.eventually.equal(-1);
+        });
+
+        it('should clear the over-limit text highlighting when the text is reduced', function () {
+            component.comment = 'a';
+            expect(component.overLimitText).to.eventually.equal('');
         });
 
         var whitespace = '    leading and trailing whitespace    ';

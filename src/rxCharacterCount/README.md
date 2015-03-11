@@ -11,3 +11,5 @@ The 254 and 10 values are both configurable. To change the maximum number of cha
 ### Leading and Trailing characters ###
 By default, any text field using `ng-model` has `ng-trim="true"` applied to it. This means that any leading and trailing spaces/blanks in your text field will be ignored. They will not count towards the remaining character count. If you want it to count leading/trailing spaces, then just add `ng-trim="false"` to your `<textarea>`.
 
+### Styling ###
+When specifying a width other than the default, you should style some built-in classes in addition to the text field itself. As in the demo, the `.input-highlighting` class should have the same width as the text field, and the `.character-count-wrapper` should be used to correctly position the counter.

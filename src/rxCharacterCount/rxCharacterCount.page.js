@@ -6,9 +6,15 @@ var Page = require('astrolabe').Page;
  */
 var rxCharacterCount = {
 
+    eleParent: {
+        get: function () {
+            return this.rootElement.element(by.xpath('../..'));
+        }
+    },
+
     lblRemaining: {
         get: function () {
-            return this.rootElement.element(by.xpath('..')).element(by.binding('remaining'));
+            return this.eleParent.element(by.binding('remaining'));
         }
     },
 
@@ -81,6 +87,15 @@ var rxCharacterCount = {
             return this.lblRemaining.getAttribute('class').then(function (classNames) {
                 return classNames.indexOf('over-limit') > -1;
             });
+        }
+    },
+
+    /**
+       @returns {String} The characters that are over the limit.
+     */
+    overLimitText: {
+        get: function () {
+            return this.eleParent.$('.over-limit-text').getText();
         }
     }
 
