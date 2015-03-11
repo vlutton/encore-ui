@@ -69,6 +69,18 @@ var dropdown = {
 
     /**
        @memberof rxForm.dropdown
+       @returns {string[]} The value of each option element in the dropdown.
+     */
+    values: {
+        get: function () {
+            return this.rootElement.$$('option').map(function (optionElement) {
+                return optionFromElement(optionElement).value;
+            });
+        }
+    },
+
+    /**
+       @memberof rxForm.dropdown
        @returns {rxForm.dropdown.option} Page object representing the currently selected option.
      */
     selectedOption: {
