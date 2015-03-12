@@ -383,6 +383,7 @@ Creates a 'well' effect (box with light gray background)
 .well {
     background: #eee;
     padding: 40px 50px;
+    box-shadow: 0 0 0 10px white inset;
 
     p {
         line-height: 1.5em;
@@ -523,4 +524,20 @@ Requires 'display' to be defined as `inline-block` or `block`
 */
 .full-width {
     width: 100%;
+}
+
+/*
+### Centered
+
+Class that centers content.
+
+Requires 'display' to be defined as `inline-block` or `block`
+
+```
+<div class="centered">This text is centered</div>
+```
+
+*/
+.centered {
+    text-align: center;
 }
