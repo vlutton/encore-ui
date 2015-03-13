@@ -10,7 +10,17 @@
     </ul>
     <p><button class="button">Add Data</button></p>
 </div>
-<div class="modal-well">
-    <h2 class="title subdued">Modal Summary</h2>
-    <p>Allow a maximum of 123 simultaneous connections from a single IP.</p>
-</div>
+<rx-modal-action classes="button" template-url="modal-well.html">Open a modal</rx-modal-action>
+
+<script type="text/ng-template" id="modal-well.html">
+    <rx-modal-form title="Change Connection Throttling">
+        <rx-form-item label="Max Connections" description="Simultaneous connections">
+            <input type="number" ng-model="fields.maxConnections" ng-init="fields.maxConnections = 1">
+        </rx-form-item>
+
+        <div class="modal-well">
+            <h2 class="title subdued">Summary</h2>
+            <p>Allow a maximum of {{ fields.maxConnections }} simultaneous connections from a single IP.</p>
+        </div>
+    </rx-modal-form>
+</script>
