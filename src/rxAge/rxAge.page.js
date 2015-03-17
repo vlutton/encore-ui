@@ -26,7 +26,7 @@ exports.rxAge = {
         });
 
         var elapsed = _.zipObject(ageParts);
-        return moment().subtract(moment.duration(elapsed));
+        return moment().utc().subtract(moment.duration(elapsed));
     }
 
 };

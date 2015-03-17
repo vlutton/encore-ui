@@ -25,4 +25,8 @@ describe('rxCharacterCount', function () {
         ignoreInsignificantWhitespace: false
     }));
 
+    describe('initial value', exercise.rxCharacterCount({
+        cssSelector: '.demo-initial-value'
+    }));
+
 });

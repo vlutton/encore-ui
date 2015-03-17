@@ -2,6 +2,7 @@
 
 describe('rxCharacterCount', function () {
     var originalScope, scope, compile, rootScope, el;
+    var initialTemplate = '<textarea ng-model="initComment" rx-character-count></textarea>';
     var defaultTemplate = '<textarea ng-model="comment" rx-character-count></textarea>';
     var maxCharsTemplate = '<textarea ng-model="comment" rx-character-count max-characters="50"></textarea>';
     var noTrimTemplate = '<textarea ng-model="comment" rx-character-count max-characters="50" ng-trim="false">' +
@@ -18,6 +19,7 @@ describe('rxCharacterCount', function () {
             rootScope = $rootScope;
             originalScope = $rootScope.$new();
             originalScope.comment = '';
+            originalScope.initComment = 'I have an initial value';
             compile = $compile;
         });
 
@@ -29,6 +31,17 @@ describe('rxCharacterCount', function () {
         el.val(text).triggerHandler('input');
         originalScope.$digest();
     };
+
+    describe('initialTemplate', function () {
+        beforeEach(function () {
+            el = helpers.createDirective(initialTemplate, compile, originalScope);
+            scope = el.scope();
+        });
+
+        it('should initialize `remaining` based on the initial model value', function () {
+            expect(scope.remaining).to.equal(231);
+        });
+    });
 
     describe('defaultTemplate', function () {
         beforeEach(function () {

@@ -36,12 +36,16 @@ angular.module('encore.ui.rxCharacterCount', [])
 
             // This gets called whenever the ng-model for this element
             // changes, i.e. when someone enters new text into the textarea
-            ngModelCtrl.$parsers.push(function (newText) {
-                scope.remaining = maxCharacters - newText.length;
-                scope.nearLimit = scope.remaining >= 0 && scope.remaining < lowBoundary;
-                scope.overLimit = scope.remaining < 0;
-                return newText;
-            });
+            scope.$watch(
+                function () { return ngModelCtrl.$modelValue; },
+                function (newValue) {
+                    if (typeof newValue !== 'string') {
+                        return;
+                    }
+                    scope.remaining = maxCharacters - newValue.length;
+                    scope.nearLimit = scope.remaining >= 0 && scope.remaining < lowBoundary;
+                    scope.overLimit = scope.remaining < 0;
+                });
 
             function countSpaces (str, options) {
                 options || (options = {});
