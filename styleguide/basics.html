@@ -141,6 +141,10 @@
     <div class="component-description clear">
         <ul class="list">
             <li>The <code>well</code> class creates a well effect - a box with significant padding and light gray background.</li>
+            <li>Three well styles are available: one for modals, one for left-aligned summary text on a full page, and one for providing an explanation as to why data is not available to the user.</li>
+            <li>Modal wells: Modal wells are used in the context of modals, typically to provide a summary of data entered or decisions made by the user in a form to provide a clearer picture to the user of changes they are about to submit. Use the class <code>modal-well</code> for this type of well.</li>
+            <li>Left-aligned wells: These wells are used in conjunction with forms in much the same way modal wells are utilized, except left-aligned wells appear in a full-page context. Use the class <code>well</code> for this type of well.</li>
+            <li>Center-aligned wells: These wells are used to communicate why data is not present for the user, usually if data can only be seen with a permissions the user has not been granted. In other cases, it may be used to prompt the user to add data to an empty notes field. When utilizing this kind of well, list items may be appropriate. Use the classes <code>well</code> and <code>centered</code> for this type of well. Use the class <code>list</code> on a <code>ul</code> for correct styles and alignment.</li>
             <li><span class="msg-info">ENCORE-SPECIFIC:</span> In the context of Encore, we currently use this in the context of adding large amounts of extraneous or optional information. (Take a look at Account -> Cloud -> Database -> Create New Instance for an example of this or <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/databases/CreateInstance.html#L48-L67">view source</a>.)</li>
         </ul>
     </div>
