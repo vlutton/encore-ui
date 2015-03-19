@@ -2,3 +2,25 @@
     <h2 class="title subdued">Wait just a moment here!</h2>    
     In convallis sit amet nunc sit amet consectetur. Donec euismod ullamcorper mauris, non elementum nibh pharetra nec. Integer varius ipsum orci, vitae maximus felis aliquet a. Proin consequat cursus rutrum. 
 </div>
+<div class="well centered">
+    <h2 class="title subdued">You need permissions or this data isn't here yet.</h2>
+    <ul class="list">
+        <li>Here's a reason why you can't see it.</li>
+        <li>Here's a tip about what you can do to add data by clicking the button below.</li>
+    </ul>
+    <p><button class="button">Add Data</button></p>
+</div>
+<rx-modal-action classes="button" template-url="modal-well.html">Open a modal</rx-modal-action>
+
+<script type="text/ng-template" id="modal-well.html">
+    <rx-modal-form title="Change Connection Throttling">
+        <rx-form-item label="Max Connections" description="Simultaneous connections">
+            <input type="number" ng-model="fields.maxConnections" ng-init="fields.maxConnections = 1">
+        </rx-form-item>
+
+        <div class="modal-well">
+            <h2 class="title subdued">Summary</h2>
+            <p>Allow a maximum of {{ fields.maxConnections }} simultaneous connections from a single IP.</p>
+        </div>
+    </rx-modal-form>
+</script>
