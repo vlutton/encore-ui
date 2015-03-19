@@ -12,7 +12,10 @@
                 <div class="double-chevron" ng-class="{'double-chevron-left': !collapsedNav}"></div>
             </button>
             <div class="site-options">
-                <button class="btn-link site-option site-logout" rx-logout="{{logoutUrl}}">Logout</button>
+                <button class="btn-link site-option site-logout" rx-logout="{{logoutUrl}}">
+                    Logout
+                    <span ng-if="userId">({{ userId }})</span>
+                </button>
             </div>
         </header>
         <nav class="rx-app-nav">
