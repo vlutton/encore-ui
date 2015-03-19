@@ -1,3 +1,13 @@
+<a name="1.10.1"></a>
+### 1.10.1 (2015-03-19)
+
+
+#### Features
+
+* **rxApp:** Added center class and white borders to wells ([6c958b5d](git@github.com:rackerlabs/encore-ui/commit/6c958b5d7ccb627668db89448dd8fc821e9374b6))
+* **rxCharacterCount:** account for initial model value ([0e72b5f9](git@github.com:rackerlabs/encore-ui/commit/0e72b5f9bbe4801d27ddf15986e49d0c30dc9c53))
+
+
 <a name="1.10.0"></a>
 ## 1.10.0 (2015-03-11)
 
