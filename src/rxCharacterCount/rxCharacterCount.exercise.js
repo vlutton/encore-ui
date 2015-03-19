@@ -46,10 +46,6 @@ exports.rxCharacterCount = function (options) {
             expect(component.isDisplayed()).to.eventually.be.true;
         });
 
-        it('should have ' + options.maxCharacters + ' remaining characters by default', function () {
-            expect(component.remaining).to.eventually.equal(options.maxCharacters);
-        });
-
         it('should update the remaining number of characters left when you insert text', function () {
             component.comment = 'Foo';
             expect(component.remaining).to.eventually.equal(options.maxCharacters - 3);
@@ -63,6 +59,10 @@ exports.rxCharacterCount = function (options) {
         it('should not set the near-limit class on an empty text box', function () {
             component.comment = '';
             expect(component.isNearLimit()).to.eventually.be.false;
+        });
+
+        it('should have ' + options.maxCharacters + ' remaining characters by default', function () {
+            expect(component.remaining).to.eventually.equal(options.maxCharacters);
         });
 
         it('should not set the over-limit class on an empty text box', function () {

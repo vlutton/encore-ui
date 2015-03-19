@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var moment = require('moment');
 
-var age = require('../rxAge.page').rxAge;
+var rxAge = require('../rxAge.page').rxAge;
 
 describe('rxAge', function () {
     var momentsTable, isoString;
@@ -37,7 +37,7 @@ describe('rxAge', function () {
         it('should convert ' + testData + ' accurate within the hour', function () {
             momentsTable.get(index).getText().then(function (text) {
                 isoString = new Date(text.split('→')[0].trim());
-                expect(age.toMoment(testData).valueOf()).to.be.closeTo(moment(isoString).valueOf(), oneHour);
+                expect(rxAge.toMoment(testData).valueOf()).to.be.closeTo(moment(isoString).valueOf(), oneHour);
             });
         });
     });
