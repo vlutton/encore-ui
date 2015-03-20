@@ -36,9 +36,15 @@
             <div ng-show="demoForm.userEmail.$error.foocheck" class="inline-error">Your email address must contain 'foo'</div>
         </rx-form-item>
 
+        <h4 class="title sm">Example of disabled input</h4>
+        <rx-form-item label="IP Address">
+            <input name="ipaddress" type="text" ng-model="test" placeholder="127.0.0.1" disabled />
+        </rx-form-item>
+
         <hr>
 
         <h3 class="title">Select Boxes</h3>
+        <h4 class="title sm">Example of default select box</h4>
         <rx-form-item label="Type" description="Bound Value: {{volume.type}}">
             <span class="field-select">
                 <select ng-model="volume.type" ng-required="true">
