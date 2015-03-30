@@ -1,28 +1,6 @@
 @import 'vars';
 
-/*
-# Common button styles
-
-Buttons are sized using 'xl', 'lg', 'sm' and 'xs'
-
- ```
- <button class="button xl">Extra-large Button</button>
- <button class="button lg">Large Button</button>
- <button class="button">Default Button</button>
- <button class="button sm">Small Button</button>
- <button class="button xs">Tiny Button</button>
- <button class="button positive">"Positive" Button</button>
- <button class="button negative">"Negative" Button</button>
- <button class="button submit">"Submit" Button</button>
- <button class="button cancel">"Cancel" Button</button>
- <button class="button" disabled>Disabled Button</button>
- <a href="#" class="button">My Link Button</a>
- ```
-
-When is a submit button blue and when is the submit button green?  If the form you are submitting results in CREATING or ADDING something, use green. If the form you are submitting results in editing something or something auxiliary (like getting metadata from a different sources) keep it blue. Ping an EncoreUI member if you have questions!
-
- */
- .button {
+.button {
     display: inline-block;
     background: @buttonDefaultBg;
     color: @buttonText;
@@ -80,12 +58,6 @@ When is a submit button blue and when is the submit button green?  If the form y
         }
     }
 
-    &[disabled], &[disabled]:hover {
-        cursor: not-allowed;
-        color: @buttonDisabledText;
-        background: @buttonDisabledBg;
-    }
-
     &.cancel {
         background: @buttonCancelBg;
         &:hover,
@@ -94,21 +66,16 @@ When is a submit button blue and when is the submit button green?  If the form y
         }
     }
 
+    // Disabled styles should always come last in the cascade for color
+    // variations styles, or else they won't override other colors properly.
+    &[disabled], &[disabled]:hover {
+        cursor: not-allowed;
+        color: @buttonDisabledText;
+        background: @buttonDisabledBg;
+    }
 
-/*
-# Spinner styles
 
-```
-<button class="button">
-    I have a spinner
-    <div class="spinner">
-        <i class="pos1"></i>
-        <i class="pos2"></i>
-        <i class="pos3"></i>
-    </div>
-</button>
-```
-*/
+// Spinner styles
     .spinner {
         display: inline-block;
         position: relative;
@@ -155,13 +122,7 @@ When is a submit button blue and when is the submit button green?  If the form y
     }
 }
 
-/*
-# Make buttons look like plain links
-
-```
-<button class="btn-link">Link</button>
-```
-*/
+// Make buttons look like plain links
 .btn-link {
     color: @linkColor;
     background: none;
