@@ -35,6 +35,10 @@ describe('rxApp', function () {
         add: sinon.stub()
     };
 
+    var mockSession = {
+        getUserId: sinon.stub().returns('rack0000')
+    };
+
     beforeEach(function () {
         // load module
         module('encore.ui.rxApp');
@@ -51,6 +55,7 @@ describe('rxApp', function () {
 
         module(function ($provide) {
             $provide.value('rxNotify', mockNotify);
+            $provide.value('Session', mockSession);
         });
 
         // Inject in angular constructs
@@ -158,6 +163,11 @@ describe('rxApp', function () {
 
         it('should not set isWarning', function () {
             expect(el.isolateScope().isWarning).to.be.false;
+        });
+
+        it('should set the user name from the session', function () {
+            expect(mockSession.getUserId).to.have.been.called;
+            expect(el.isolateScope().userId).to.equal('rack0000');
         });
     });
 

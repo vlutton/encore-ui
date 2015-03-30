@@ -1,5 +1,5 @@
 angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnvironment', 'ngSanitize',
-    'ngRoute', 'cfp.hotkeys'])
+    'ngRoute', 'cfp.hotkeys', 'encore.ui.rxSession'])
 /**
 * @ngdoc service
 * @name encore.ui.rxApp:encoreRoutes
@@ -61,7 +61,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
 *     <rx-app site-title="Custom Title"></rx-app>
 * </pre>
 */
-.directive('rxApp', function (encoreRoutes, rxAppRoutes, hotkeys, Environment, routesCdnPath) {
+.directive('rxApp', function (encoreRoutes, rxAppRoutes, hotkeys,
+                              Environment, routesCdnPath, Session) {
     return {
         restrict: 'E',
         transclude: true,
@@ -76,6 +77,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
             logoutUrl: '@?'
         },
         link: function (scope) {
+            scope.userId = Session.getUserId();
+
             scope.isPreProd = Environment.isPreProd();
 
             scope.isLocalNav = routesCdnPath.hasCustomURL && (Environment.isLocal());
