@@ -184,6 +184,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: '#/styleguide/basics#helper-classes',
                             linkText: 'Helper classes'
+                        },
+                        {
+                            href: '#/styleguide/basics#progress-bars',
+                            linkText: 'Progress bars'
                         }
                     ]
                 },
