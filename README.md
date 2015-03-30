@@ -12,15 +12,15 @@ EncoreUI is a library of reusable AngularJS widgets for internal Rackspace proje
 
 You can see all components in action by visiting [the EncoreUI demo page](http://rackerlabs.github.io/encore-ui/).
 
-# Support
+# Getting your tool in Encore
 
-To discuss bugs and features (or float ideas), please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open). To view the issues we're currently working on, check out the [EncoreUI Task Board](https://waffle.io/rackerlabs/encore-ui).
+To receive support from the EncoreUI team, you must first be vetted through our application process. This provides us vital data that we need to understand your project, needs, resources, deadlines, etc. Without this information, our small team cannot adequately support you. Submit your application [through this request form on OneWiki](https://one.rackspace.com/display/rackertools/Submit+an+Encore+UI+Request).
 
-For technical support, we have two methods of contact. For high-level questions and requests, you can e-mail the [EncoreUI mailing list](mailto:encoreui@lists.rackspace.com). Expect a response within one working day.
+Once you have submitted an application, we will contact you and begin our intake process. Due to limited resources on our end, the more lead time between submitting your application and any deadlines you have, the better, as the intake process and subsequent support from our team requires prioritization and may take several weeks. We require a minimum of two weeks lead time.
 
-If ongoing support is preferred, the EncoreUI team is available through [the EncoreUI Slack channel](https://rx-encore.slack.com/messages/framework/). One of the main reasons for using the Slack channel over e-mail is that it favors quick back-and-forth communication. You can also search the entire history of the chatroom if needed.
+# General Support
 
-For access to the Slack channel, send a request through the EncoreUI mailing list.
+To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open). To view the issues we're currently working on, check out the [EncoreUI Task Board](https://waffle.io/rackerlabs/encore-ui). For high-level questions and requests, you can e-mail the [EncoreUI mailing list](mailto:encoreui@lists.rackspace.com). Expect a response within one working day.
 
 # Further Reading
 
