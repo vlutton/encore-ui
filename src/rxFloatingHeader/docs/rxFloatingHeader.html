@@ -46,9 +46,6 @@
                 <th>Column One Header</th>
                 <th>Column Two Header</th>
             </tr>
-            <tr ng-show="searchText === 'f'">
-                <th colspan="2">Message</th>
-            </tr>
         </thead>
         <tbody>
             <tr ng-repeat="datum in data | filter:searchText" class="row_{{datum.value}}" ng-class="{'middle-row': $index===2}">
