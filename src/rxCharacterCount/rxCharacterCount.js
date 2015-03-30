@@ -1,11 +1,31 @@
 angular.module('encore.ui.rxCharacterCount', [])
 .directive('rxCharacterCount', function ($compile) {
-    var counter = '<div class="character-countdown" ' +
-                  'ng-class="{ \'near-limit\': nearLimit, \'over-limit\': overLimit }"' +
+    var counterStart = '<div class="character-countdown" ';
+    var counterEnd =   'ng-class="{ \'near-limit\': nearLimit, \'over-limit\': overLimit }"' +
                   '>{{ remaining }}</div>';
 
-    var background = '<div class="input-highlighting"><span>{{ underLimitText }}</span>' +
+    var backgroundStart = '<div class="input-highlighting" ';
+    var backgroundEnd = '><span>{{ underLimitText }}</span>' +
                      '<span class="over-limit-text">{{ overLimitText }}</span></div>';
+
+    var extraDirectives = function (attrs) {
+        var extra = '';
+        if (_.has(attrs, 'ngShow')) {
+            extra += 'ng-show="' + attrs.ngShow + '" ';
+        }
+        if (_.has(attrs, 'ngHide')) {
+            extra += 'ng-hide="' + attrs.ngHide + '" ';
+        }
+        return extra;
+    };
+
+    var buildCounter = function (attrs) {
+        return counterStart + extraDirectives(attrs) + counterEnd;
+    };
+
+    var buildBackground = function (attrs) {
+        return backgroundStart + extraDirectives(attrs) + backgroundEnd;
+    };
 
     return {
         restrict: 'A',
@@ -19,13 +39,13 @@ angular.module('encore.ui.rxCharacterCount', [])
             var wrapper = angular.element('<div class="counted-input-wrapper" />');
             element.after(wrapper);
 
-            $compile(background)(scope, function (clone) {
+            $compile(buildBackground(attrs))(scope, function (clone) {
                 wrapper.append(clone);
                 wrapper.append(element);
             });
 
-            $compile(counter)(scope, function (clone) {
-                wrapper.after(clone);
+            $compile(buildCounter(attrs))(scope, function (clone) {
+                wrapper.append(clone);
             });
 
             var maxCharacters = _.parseInt(attrs.maxCharacters) || 254;
@@ -74,6 +94,7 @@ angular.module('encore.ui.rxCharacterCount', [])
 
             scope.$on('$destroy', function () {
                 element.off('input', writeLimitText);
+                wrapper.remove();
             });
         }
     };

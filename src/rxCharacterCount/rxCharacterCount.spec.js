@@ -20,6 +20,8 @@ describe('rxCharacterCount', function () {
             originalScope = $rootScope.$new();
             originalScope.comment = '';
             originalScope.initComment = 'I have an initial value';
+            originalScope.showTextArea = true;
+            originalScope.hideTextArea = true;
             compile = $compile;
         });
 
@@ -117,6 +119,44 @@ describe('rxCharacterCount', function () {
             changeText(el, '123456789012345678901234567890123456789012345678901');
             expect(scope.nearLimit, 'near, 51 chars').to.be.false;
             expect(scope.overLimit, 'over, 51 chars').to.be.true;
+        });
+    });
+
+    describe('cleanup', function () {
+        var parentDiv;
+        var ngIfTemplate = '<div class="parent">' +
+                           '<textarea ng-if="showTextArea" ng-model="comment" rx-character-count></textarea></div>';
+        var ngShowTemplate = '<div class="parent">' +
+                           '<textarea ng-show="showTextArea" ng-model="comment" rx-character-count></textarea></div>';
+        var ngHideTemplate = '<div class="parent">' +
+                           '<textarea ng-hide="hideTextArea" ng-model="comment" rx-character-count></textarea></div>';
+
+        it('should remove the character count if the element disappears', function () {
+            parentDiv = helpers.createDirective(ngIfTemplate, compile, originalScope);
+            el = parentDiv.find('textarea');
+            originalScope.showTextArea = false;
+            originalScope.$apply();
+            expect(parentDiv.is(':empty')).to.be.true;
+        });
+        
+        it('should hide the character count if the element hides (ngShow)', function () {
+            parentDiv = helpers.createDirective(ngShowTemplate, compile, originalScope);
+            el = parentDiv.find('textarea');
+            var characterCount = parentDiv.find('.character-countdown');
+            originalScope.showTextArea = false;
+            originalScope.$apply();
+            expect(el.hasClass('ng-hide'), 'textarea').to.be.true;
+            expect(characterCount.hasClass('ng-hide'), 'character countdown').to.be.true;
+        });
+        
+        it('should show the character count if the element becomes visible (ngHide)', function () {
+            parentDiv = helpers.createDirective(ngHideTemplate, compile, originalScope);
+            el = parentDiv.find('textarea');
+            var characterCount = parentDiv.find('.character-countdown');
+            originalScope.hideTextArea = false;
+            originalScope.$apply();
+            expect(el.hasClass('ng-hide'), 'textarea should be visible').to.be.false;
+            expect(characterCount.hasClass('ng-hide'), 'character countdown should be visible').to.be.false;
         });
     });
 

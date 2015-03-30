@@ -79,3 +79,10 @@ ul.colors .action-system {
 ul.colors .action-delete {
   background-color: #fc0f1d;
 }
+.styleguide-character-count .counted-input-wrapper {
+  width: 328px;
+}
+.styleguide-character-count .counted-input-wrapper .input-highlighting,
+.styleguide-character-count .counted-input-wrapper textarea {
+  width: 328px;
+}

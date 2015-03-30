@@ -5,26 +5,12 @@
 // Wrapper provides proper width for text area and positioning 
 // character count. For specific use cases in a project, 
 // custom wrappers with custom widths can be set.
-.character-count-wrapper {
+.counted-input-wrapper {
     width: 375px;
     // These two selectors must always be styled with the same width.
     .input-highlighting, textarea {
         width: 370px;
     }
-}
-
-.character-countdown {
-    text-align: right;
-    color: @subduedTitle;
-    &.near-limit {
-        color: #db7820;
-    }
-    &.over-limit {
-        color: #fc0f1d;
-    }
-}
-
-.counted-input-wrapper {
     position: relative;
     background-color: #ffffff;
     input, textarea {
@@ -43,6 +29,17 @@
         .over-limit-text {
             background-color: @warnRed;
             opacity: 0.3;
+        }
+    }
+
+    .character-countdown {
+        text-align: right;
+        color: @subduedTitle;
+        &.near-limit {
+            color: #db7820;
+        }
+        &.over-limit {
+            color: #fc0f1d;
         }
     }
 }
