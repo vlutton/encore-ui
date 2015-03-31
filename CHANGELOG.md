@@ -1,3 +1,18 @@
+<a name="1.11.0"></a>
+## 1.11.0 (2015-03-31)
+
+
+#### Bug Fixes
+
+* **rxCharacterCount:** Clean up the generated elements ([c70e340b](git@github.com:rackerlabs/encore-ui/commit/c70e340bf6571630ed784627927824f16fa720a1), closes [#847](git@github.com:rackerlabs/encore-ui/issues/847))
+* **rxFloatingHeader:** Remove bad example code ([4653ab49](git@github.com:rackerlabs/encore-ui/commit/4653ab496a59e1039895abfa31b3e50e8ddcc6fb))
+
+
+#### Features
+
+* **rxApp:** show user name next to logout link. ([672bf22d](git@github.com:rackerlabs/encore-ui/commit/672bf22d791490e80023ff5134c9bc597a75a9d7))
+
+
 <a name="1.10.1"></a>
 ### 1.10.1 (2015-03-19)
 
