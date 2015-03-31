@@ -58,85 +58,76 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 }
 
 @import 'vars';
-//
-// Progress bars
-// --------------------------------------------------
-
-.progress-bar-variant(@color) {
-  background-color: @color;
-
-  // Deprecated parent class requirement as of v3.2.0
-  .progress-striped & {
-    #gradient > .striped();
-  }
-}
 
 //** Background color of the whole progress component
-@progress-bg:                 #f5f5f5;
-//** Progress bar text color
-@progress-bar-color:          #fff;
-//** Variable for setting rounded corners on progress bar.
-@progress-border-radius:      4px;
+@progress-bg: #f5f5f5;
 
 //** Default progress bar color
-@progress-bar-bg:             @siteBrandingBg;
-//** Success progress bar color
-@progress-bar-success-bg:     #5cb85c;
-//** Warning progress bar color
-@progress-bar-warning-bg:     @infoOrange;
-//** Danger progress bar color
-@progress-bar-danger-bg:      @warnRed;
-//** Info progress bar color
-@progress-bar-info-bg:        @infoBlue;
+@progress-bar-bg: #86cafd;
+
+//** Secondary progress bar color
+@progress-bar-secondary-bg: @infoBlue;
+
+//** Tertiary progress bar color
+@progress-bar-tertiary-bg: @actionGreen;
+
 @font-size-base: @appFontSize;
 @font-size-large:         ceil((@font-size-base * 1.25));
 @font-size-small:         ceil((@font-size-base * 0.85)); 
+
 //** Unit-less `line-height` for use in components like buttons.
 @line-height-base:        1.428571429; // 20/14
+
 //** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
 @line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
 
 // Bar animations
 // -------------------------
-
 // WebKit
 @-webkit-keyframes progress-bar-stripes {
-  from  { background-position: 40px 0; }
-  to    { background-position: 0 0; }
+    from  { background-position: 40px 0; }
+    to    { background-position: 0 0; }
 }
 
 // Spec and IE10+
 @keyframes progress-bar-stripes {
-  from  { background-position: 40px 0; }
-  to    { background-position: 0 0; }
+    from  { background-position: 40px 0; }
+    to    { background-position: 0 0; }
 }
-
 
 // Bar itself
 // -------------------------
 
+.progress-bar-variant(@color) {
+    background-color: @color;
+
+    // Deprecated parent class requirement as of v3.2.0
+    .progress-striped & {
+        #gradient > .striped();
+    }
+}
+
 // Outer container
 .progress {
-  overflow: hidden;
-  height: @line-height-computed;
-  margin-bottom: @line-height-computed;
-  background-color: @progress-bg;
-  border-radius: @progress-border-radius;
-  .box-shadow(inset 0 1px 2px rgba(0,0,0,.1));
+    overflow: hidden;
+    height: @line-height-computed;
+    margin-bottom: @line-height-computed;
+    background-color: @progress-bg;
+    border: 1px solid #ccc;
+    padding: 1px;
 }
 
 // Bar of progress
 .progress-bar {
-  float: left;
-  width: 0%;
-  height: 100%;
-  font-size: @font-size-small;
-  line-height: @line-height-computed;
-  color: @progress-bar-color;
-  text-align: center;
-  background-color: @progress-bar-bg;
-  .box-shadow(inset 0 -1px 0 rgba(0,0,0,.15));
-  .transition(width .6s ease);
+    float: left;
+    width: 0%;
+    height: 100%;
+    font-size: @font-size-small;
+    line-height: @line-height-computed;
+    color: #1672b9;
+    text-align: center;
+    background-color: @progress-bar-bg;
+    .transition(width .6s ease);
 }
 
 // Striped bars
@@ -146,8 +137,8 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 // `.progress-bar`.
 .progress-striped .progress-bar,
 .progress-bar-striped {
-  #gradient > .striped();
-  background-size: 40px 40px;
+    #gradient > .striped();
+    background-size: 40px 40px;
 }
 
 // Call animation for the active one
@@ -156,94 +147,88 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 // `.progress-bar.active` approach.
 .progress.active .progress-bar,
 .progress-bar.active {
-  .animation(progress-bar-stripes 2s linear infinite);
+    .animation(progress-bar-stripes 2s linear infinite);
 }
-
 
 // Variations
 // -------------------------
 
-.progress-bar-success {
-  .progress-bar-variant(@progress-bar-success-bg);
+.progress-bar-secondary {
+    .progress-bar-variant(@progress-bar-secondary-bg);
+    color: #fff;
 }
 
-.progress-bar-info {
-  .progress-bar-variant(@progress-bar-info-bg);
+.progress-bar-tertiary {
+    .progress-bar-variant(@progress-bar-tertiary-bg);
+    color: #fff;
 }
-
-.progress-bar-warning {
-  .progress-bar-variant(@progress-bar-warning-bg);
-}
-
-.progress-bar-danger {
-  .progress-bar-variant(@progress-bar-danger-bg);
-}
-
-
 
 #gradient {
 
-  // Horizontal gradient, from left to right
-  //
-  // Creates two color stops, start and end, by specifying a color and position for each color stop.
-  // Color stops are not available in IE9 and below.
-  .horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
-    background-image: -webkit-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Safari 5.1-6, Chrome 10+
-    background-image: -o-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Opera 12
-    background-image: linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
-    background-repeat: repeat-x;
-    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down
-  }
+    // Horizontal gradient, from left to right
+    //
+    // Creates two color stops, start and end, by specifying a color and position for each color stop.
+    // Color stops are not available in IE9 and below.
+    .horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+        background-image: -webkit-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Safari 5.1-6, Chrome 10+
+        background-image: -o-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Opera 12
+        background-image: linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+        background-repeat: repeat-x;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down
+    }
 
-  // Vertical gradient, from top to bottom
-  //
-  // Creates two color stops, start and end, by specifying a color and position for each color stop.
-  // Color stops are not available in IE9 and below.
-  .vertical(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
-    background-image: -webkit-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Safari 5.1-6, Chrome 10+
-    background-image: -o-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Opera 12
-    background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
-    background-repeat: repeat-x;
-    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down
-  }
+    // Vertical gradient, from top to bottom
+    //
+    // Creates two color stops, start and end, by specifying a color and position for each color stop.
+    // Color stops are not available in IE9 and below.
+    .vertical(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+        background-image: -webkit-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Safari 5.1-6, Chrome 10+
+        background-image: -o-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Opera 12
+        background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+        background-repeat: repeat-x;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down
+    }
 
-  .directional(@start-color: #555; @end-color: #333; @deg: 45deg) {
-    background-repeat: repeat-x;
-    background-image: -webkit-linear-gradient(@deg, @start-color, @end-color); // Safari 5.1-6, Chrome 10+
-    background-image: -o-linear-gradient(@deg, @start-color, @end-color); // Opera 12
-    background-image: linear-gradient(@deg, @start-color, @end-color); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
-  }
-  .horizontal-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
-    background-image: -webkit-linear-gradient(left, @start-color, @mid-color @color-stop, @end-color);
-    background-image: -o-linear-gradient(left, @start-color, @mid-color @color-stop, @end-color);
-    background-image: linear-gradient(to right, @start-color, @mid-color @color-stop, @end-color);
-    background-repeat: no-repeat;
-    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
-  }
-  .vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
-    background-image: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
-    background-image: -o-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
-    background-image: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
-    background-repeat: no-repeat;
-    filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
-  }
-  .radial(@inner-color: #555; @outer-color: #333) {
-    background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
-    background-image: radial-gradient(circle, @inner-color, @outer-color);
-    background-repeat: no-repeat;
-  }
-  .striped(@color: rgba(255,255,255,.15); @angle: 45deg) {
-    background-image: -webkit-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
-    background-image: -o-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
-    background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
-  }
+    .directional(@start-color: #555; @end-color: #333; @deg: 45deg) {
+        background-repeat: repeat-x;
+        background-image: -webkit-linear-gradient(@deg, @start-color, @end-color); // Safari 5.1-6, Chrome 10+
+        background-image: -o-linear-gradient(@deg, @start-color, @end-color); // Opera 12
+        background-image: linear-gradient(@deg, @start-color, @end-color); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    }
+
+    .horizontal-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+        background-image: -webkit-linear-gradient(left, @start-color, @mid-color @color-stop, @end-color);
+        background-image: -o-linear-gradient(left, @start-color, @mid-color @color-stop, @end-color);
+        background-image: linear-gradient(to right, @start-color, @mid-color @color-stop, @end-color);
+        background-repeat: no-repeat;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+    }
+
+    .vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+        background-image: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+        background-image: -o-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+        background-image: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+        background-repeat: no-repeat;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+    }
+
+    .radial(@inner-color: #555; @outer-color: #333) {
+        background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
+        background-image: radial-gradient(circle, @inner-color, @outer-color);
+        background-repeat: no-repeat;
+    }
+
+    .striped(@color: rgba(255,255,255,.15); @angle: 45deg) {
+        background-image: -webkit-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+        background-image: -o-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+        background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+    }
 }
 
-
 .animation(@animation) {
-  -webkit-animation: @animation;
-       -o-animation: @animation;
-          animation: @animation;
+    -webkit-animation: @animation;
+         -o-animation: @animation;
+            animation: @animation;
 }
 
 /*
@@ -1378,29 +1363,7 @@ They show your position within the site heirarchy.
 
 @import 'vars';
 
-/*
-# Common button styles
-
-Buttons are sized using 'xl', 'lg', 'sm' and 'xs'
-
- ```
- <button class="button xl">Extra-large Button</button>
- <button class="button lg">Large Button</button>
- <button class="button">Default Button</button>
- <button class="button sm">Small Button</button>
- <button class="button xs">Tiny Button</button>
- <button class="button positive">"Positive" Button</button>
- <button class="button negative">"Negative" Button</button>
- <button class="button submit">"Submit" Button</button>
- <button class="button cancel">"Cancel" Button</button>
- <button class="button" disabled>Disabled Button</button>
- <a href="#" class="button">My Link Button</a>
- ```
-
-When is a submit button blue and when is the submit button green?  If the form you are submitting results in CREATING or ADDING something, use green. If the form you are submitting results in editing something or something auxiliary (like getting metadata from a different sources) keep it blue. Ping an EncoreUI member if you have questions!
-
- */
- .button {
+.button {
     display: inline-block;
     background: @buttonDefaultBg;
     color: @buttonText;
@@ -1458,12 +1421,6 @@ When is a submit button blue and when is the submit button green?  If the form y
         }
     }
 
-    &[disabled], &[disabled]:hover {
-        cursor: not-allowed;
-        color: @buttonDisabledText;
-        background: @buttonDisabledBg;
-    }
-
     &.cancel {
         background: @buttonCancelBg;
         &:hover,
@@ -1472,21 +1429,16 @@ When is a submit button blue and when is the submit button green?  If the form y
         }
     }
 
+    // Disabled styles should always come last in the cascade for color
+    // variations styles, or else they won't override other colors properly.
+    &[disabled], &[disabled]:hover {
+        cursor: not-allowed;
+        color: @buttonDisabledText;
+        background: @buttonDisabledBg;
+    }
 
-/*
-# Spinner styles
 
-```
-<button class="button">
-    I have a spinner
-    <div class="spinner">
-        <i class="pos1"></i>
-        <i class="pos2"></i>
-        <i class="pos3"></i>
-    </div>
-</button>
-```
-*/
+// Spinner styles
     .spinner {
         display: inline-block;
         position: relative;
@@ -1533,13 +1485,7 @@ When is a submit button blue and when is the submit button green?  If the form y
     }
 }
 
-/*
-# Make buttons look like plain links
-
-```
-<button class="btn-link">Link</button>
-```
-*/
+// Make buttons look like plain links
 .btn-link {
     color: @linkColor;
     background: none;
@@ -1567,26 +1513,12 @@ thead th .btn-link {
 // Wrapper provides proper width for text area and positioning 
 // character count. For specific use cases in a project, 
 // custom wrappers with custom widths can be set.
-.character-count-wrapper {
+.counted-input-wrapper {
     width: 375px;
     // These two selectors must always be styled with the same width.
     .input-highlighting, textarea {
         width: 370px;
     }
-}
-
-.character-countdown {
-    text-align: right;
-    color: @subduedTitle;
-    &.near-limit {
-        color: #db7820;
-    }
-    &.over-limit {
-        color: #fc0f1d;
-    }
-}
-
-.counted-input-wrapper {
     position: relative;
     background-color: #ffffff;
     input, textarea {
@@ -1605,6 +1537,17 @@ thead th .btn-link {
         .over-limit-text {
             background-color: @warnRed;
             opacity: 0.3;
+        }
+    }
+
+    .character-countdown {
+        text-align: right;
+        color: @subduedTitle;
+        &.near-limit {
+            color: #db7820;
+        }
+        &.over-limit {
+            color: #fc0f1d;
         }
     }
 }
@@ -1777,6 +1720,13 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
             font-size: 1em;
             vertical-align: middle;
         }
+
+        &[disabled] {
+            color: #999;
+            background-color: #dededd;
+            cursor: not-allowed;
+        }
+
     }
 }
 
@@ -2229,11 +2179,11 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
         height: 100%;
         padding: 0 15px;
         content: '\00D7';
-        .opacity(.2);
+        .opacity(.5);
         color: #000;
         &:hover,
         &:focus {
-            .opacity(.5);
+            .opacity(.8);
             text-decoration: none;
         }
     }

@@ -16,7 +16,7 @@
 
 <div class="component-description clear">
     <ul class="list">
-        <li>The framework provides styles for a character counter, including a generic wrapper (<code>.character-count-wrapper</code>) with the proper width needed to position the character counter in relation to a text area. Note that if you need a different text area width for specific use cases in a project, a custom wrapper class and text area width can be set.</li>
+        <li>The framework provides styles for a character counter, including a generic wrapper (<code>.counted-input-wrapper</code>) with the proper width needed to position the character counter in relation to a text area. Note that if you need a different text area width for specific use cases in a project, a custom wrapper class and text area width can be set.</li>
         <li>Counters are most often used with <code>textarea</code>s, where there is enough space for a user to type several sentences. It is rarely appropriate to use a counter on a different type or size input field.</li>
         <li>Character counters provide color feedback to the user in addition to numeric feedback. As a user approaches the character limit, the numeric value turns from gray to yellow, then yellow to red.</li>
         <li>See <a href="#/component/rxCharacterCount/">rxCharacterCount</a> for more specific documentation about implementing a counter on an input field.</li>
@@ -70,7 +70,13 @@
 
 <h3 class="title clear">Disabled state</h3>
 
-FIXME
+<div class="component-description clear">
+<ul class="list">
+    <li>When an input is disabled, styles are automatically applied to gray out the field and any text within, with a <code>not-allowed</code> pointer style.</li>
+</ul>
+</div>
+
+<rx-styleguide code-url="styleguide/forms/disabled.html"></rx-styleguide>
 
 <h3 class="title clear">Form Validation</h3>
 
