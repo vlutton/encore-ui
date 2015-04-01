@@ -14,11 +14,13 @@ You can see all components in action by visiting [the EncoreUI demo page](http:/
 
 # Getting your tool in Encore
 
-To receive support from the EncoreUI team, you must first be vetted through our application process. This provides us vital data that we need to understand your project, needs, resources, deadlines, etc. Without this information, our small team cannot adequately support you. Submit your application [through this request form on OneWiki](https://one.rackspace.com/display/rackertools/Submit+an+Encore+UI+Request).
+To receive support from the EncoreUI team, you must first be vetted through our application process. This provides us vital data that we need to understand your project, needs, resources, and deadlines. Without this information, our small team cannot adequately support you. Submit an application [through this request form on OneWiki](https://one.rackspace.com/display/rackertools/Submit+an+Encore+UI+Request).
 
-Once you have submitted an application, we will contact you and begin our intake process. Due to limited resources on our end, the more lead time between submitting your application and any deadlines you have, the better, as the intake process and subsequent support from our team requires prioritization and may take several weeks. We require a minimum of two weeks lead time.
+Once you have submitted an application, we will contact you and begin our intake process. Due to limited resources on our end, the intake process and subsequent support from our team requires prioritization and may take several weeks. We require a minimum of two weeks lead time.
 
 # General Support
+
+Our team can usually provide general assistance with using the Framework, but we do not create mock-ups of design for projects consuming the EncoreUI Framework.
 
 To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open). To view the issues we're currently working on, check out the [EncoreUI Task Board](https://waffle.io/rackerlabs/encore-ui). For high-level questions and requests, you can e-mail the [EncoreUI mailing list](mailto:encoreui@lists.rackspace.com). Expect a response within one working day.
 
