@@ -49,10 +49,6 @@
 
 - [Pure.css](http://purecss.io) (currently just for Grids)
 
-### Documentation Tool
-
-- [StyleDocco](http://jacobrask.github.io/styledocco/)
-
 ### Reset
 
 - [Normalize.css](http://necolas.github.io/normalize.css/)
