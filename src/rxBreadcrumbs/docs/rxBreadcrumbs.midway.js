@@ -115,6 +115,14 @@ describe('rxBreadcrumbs', function () {
             expect(middle.href).to.eventually.equal(browser.baseUrl + '/');
         });
 
+        it('should visit the correct page when clicking on the breadcrumb', function () {
+            var homeHref = browser.baseUrl + '/#/overview';
+
+            middle.visit();
+            expect(browser.getCurrentUrl()).to.eventually.equal(homeHref);
+        });
+        // Note that after this test, we are now at the /#/overview page
+
     });
 
     describe('default breadcrumbs', function () {
@@ -132,7 +140,6 @@ describe('rxBreadcrumbs', function () {
         it('should have the correct names', function () {
             expect(defaultBreadcrumbs.names).to.eventually.eql(['Home', 'configs']);
         });
-
     });
 
 });
