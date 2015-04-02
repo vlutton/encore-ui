@@ -1,12 +1,19 @@
 /*jshint node:true */
 module.exports = function (grunt) {
-    grunt.registerTask('shipit', 'Ships code to prod', function (versionType) {
+    grunt.registerTask('shipit', 'Ships code to prod', function (versionType, arg) {
         var validTypes = ['major', 'minor', 'patch'];
         var tasks = [];
 
         if (validTypes.indexOf(versionType) > -1) {
+
+            if (arg === 'hotfix' && versionType !== 'patch') {
+                grunt.fatal('A hotfix release can only have a `patch` type. `major` and `minor` are not allowed');
+            }
             // increment the version
             tasks.push('bump-only:' + versionType);
+
+            // set the last tag, for changelog to use
+            tasks.push('shell:latestTag');
 
             // create changelog
             tasks.push('changelog');
@@ -20,14 +27,20 @@ module.exports = function (grunt) {
             // push files to prod
             tasks.push('cloudfiles:production');
 
-            // push rx-page-objects to npm
-            tasks.push('rxPageObjects');
-
             // commit version increment
             tasks.push('bump-commit');
+            
+            // push rx-page-objects to npm
+            if (arg === 'hotfix') {
+                tasks.push('rxPageObjects:hotfix');
+            } else {
+                tasks.push('rxPageObjects');
+            }
 
-            // update gh-pages branch
-            tasks.push('gh-pages:ghPages');
+            if (arg === 'updateDemo') {
+                // update gh-pages branch, i.e. the demo app
+                tasks.push('gh-pages:ghPages');
+            }
 
             // update bower repo
             tasks.push('bower');
