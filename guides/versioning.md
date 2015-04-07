@@ -50,6 +50,22 @@ This will cause `v1.8.1` to be released. The diffences from a normal release are
 
 It's also important to note that publishing a hotfix will "mess" with our [Bower repository](https://github.com/rackerlabs/encore-ui-bower), but not in a way that matters. Specifically, everything gets pushed to `master` in Bower, thus pushing `v1.8.1` will now have `master` point to that instead of the newer `v1.10.0`. The reason this doesn't matter is that Bower only cares about annotated tags in the repository, it ignores the current state of `master`.
 
+
+### Prereleases
+
+We also support shipping "prelease" versions. These can be used when a given release is deemed feature complete, but you want an easy way to test it against released projects.
+
+In particular, we support:
+
+ * `grunt:shipit:premajor`
+ * `grunt:shipit:preminor`
+ * `grunt:shipit:prepatch`
+ * `grunt:shipit:prerelease`
+
+All of these follow the rules from [`grunt-bump`](https://github.com/vojtajina/grunt-bump#usage-examples)
+
+In short, once all your desired PRs are merged to `master`, do one of the first three commands above. This will update the version number appropriately and append a `-0` to the end. i.e. if we are currently on version `1.10.0`, and you run `grunt:shipit:preminor`, a new version will be created at `1.11.0-0`. If this prerelease is deemed correct, do `grunt:shipit:minor` to "officially" release it as `1.11.0`. If instead more work is needed, merge in the PRs for that extra work, and run `grunt:shipit:prerelease`. This will take us from `1.11.0-0` to `1.11.0-1`. You can do as many `grunt:shipit:prerelease` versions as necessary, it will incremement the trailing `-X` each time. And as before, finish with `grunt:shipit:minor` when you are ready for the official release.
+
 ## Production CDN and Bower
 
 Production releases are hosted on Rackspace's Cloud Files CDN. The URL for production files is:
