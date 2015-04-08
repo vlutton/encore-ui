@@ -59,12 +59,14 @@ describe('rxApp', function () {
         });
 
         // Inject in angular constructs
-        inject(function ($rootScope, $compile, encoreRoutes, $httpBackend, routesCdnPath) {
+        inject(function ($rootScope, $compile, encoreRoutes, $httpBackend, routesCdnPath, LocalStorage) {
             rootScope = $rootScope;
             compile = $compile;
             appRoutes = encoreRoutes;
             httpMock = $httpBackend;
             cdnPath = routesCdnPath;
+
+            LocalStorage.clear();
         });
 
         cdnGet = httpMock.whenGET(cdnPath.staging);
@@ -188,6 +190,179 @@ describe('rxApp', function () {
             expect(navTitle.textContent).to.equal(customNav[0].title);
         });
     });
+});
+
+describe('rxApp - nav environment detection', function () {
+    var mockEnvironment = {
+        isPreProd: function () { return false; },
+        isUnifiedProd: function () { return false; }
+    };
+
+    var mockCdnPath = {
+        staging: 'staging',
+        preprod: 'preprod',
+        production: 'production',
+        hasCustomURL: false
+    };
+
+    var mockLocalStorage = {
+        getObject: sinon.stub()
+    };
+
+    var testEnvironment = function (url, suffix) {
+        inject(function ($httpBackend, encoreRoutes) {
+            encoreRoutes.fetchRoutes();
+            expect(mockLocalStorage.getObject).to.have.been.calledWith('encoreRoutes-' + suffix);
+            $httpBackend.expectGET(url).respond(500);
+            $httpBackend.verifyNoOutstandingExpectation();
+        });
+    };
+
+    beforeEach(function () {
+        module('encore.ui.rxApp');
+        module('encore.ui.configs');
+        module('encore.ui.rxNotify');
+        module(function ($provide) {
+            $provide.value('Environment', mockEnvironment);
+            $provide.value('routesCdnPath', mockCdnPath);
+            $provide.value('LocalStorage', mockLocalStorage);
+        });
+
+        mockLocalStorage.getObject.reset();
+    });
+
+    // These tests are organized in reverse priority order.
+    // Since the mocks are not reset on each run, changing their behavior
+    // in one test will propagate to the following ones.  That way, the
+    // priority of the environments can be tested as well as their results.
+    it('recognizes the staging environemnt', function () {
+        testEnvironment(mockCdnPath.staging, 'staging');
+    });
+
+    it('recognizes a custom url', function () {
+        mockCdnPath.hasCustomURL = true;
+        testEnvironment(mockCdnPath.staging, 'custom');
+    });
+
+    it('recognizes the preprod environment', function () {
+        mockEnvironment.isPreProd = function () { return true; };
+        testEnvironment(mockCdnPath.preprod, 'preprod');
+    });
+
+    it('recognizes the prod environment', function () {
+        mockEnvironment.isUnifiedProd = function () { return true; };
+        testEnvironment(mockCdnPath.production, 'prod');
+    });
+});
+
+describe('rxApp - nav caching', function () {
+    var scope, compile, rootScope, el, appRoutes, httpMock,
+        cdnPath, cdnGet, localStorage, createDirective;
+    var standardTemplate = '<rx-app></rx-app>';
+
+    var mockNotify = {
+        add: sinon.stub()
+    };
+
+    var defaultNav = [{
+        title: 'All Tools',
+        children: [
+            {
+                'href': '/app',
+                'linkText': 'App',
+            }
+        ]
+    }];
+
+    beforeEach(function () {
+        // load module
+        module('encore.ui.rxApp');
+        module('encore.ui.configs');
+
+        // load templates
+        module('templates/rxApp.html');
+        module('templates/rxAppNav.html');
+        module('templates/rxAppNavItem.html');
+
+        module(function ($provide) {
+            $provide.value('rxNotify', mockNotify);
+        });
+
+        // Inject in angular constructs
+        inject(function ($rootScope, $compile, encoreRoutes, $httpBackend, routesCdnPath, LocalStorage) {
+            rootScope = $rootScope;
+            compile = $compile;
+            appRoutes = encoreRoutes;
+            httpMock = $httpBackend;
+            cdnPath = routesCdnPath;
+            localStorage = LocalStorage;
+        });
+
+        cdnGet = httpMock.whenGET(cdnPath.staging);
+        cdnGet.respond(defaultNav);
+
+        localStorage.clear();
+        sinon.spy(appRoutes, 'setAll');
+
+        scope = rootScope.$new();
+
+        createDirective = function () {
+            el = helpers.createDirective(standardTemplate, compile, scope);
+        };
+    });
+
+    afterEach(function () {
+        localStorage.clear();
+    });
+
+    it('should load the cached menu from the local storage', function () {
+        localStorage.setObject('encoreRoutes-staging', defaultNav);
+        createDirective();
+        var navTitle = el[0].querySelector('.nav-section-title');
+        expect($(navTitle).text()).to.equal(defaultNav[0].title);
+    });
+
+    it('should cache the CDN-loaded menu', function () {
+        createDirective();
+        httpMock.flush();
+        expect(localStorage.getObject('encoreRoutes-staging')).to.eql(defaultNav);
+    });
+
+    describe('when the CDN request fails', function () {
+
+        beforeEach(function () {
+            cdnGet.respond(404);
+        });
+
+        it('should fall back to the cached menu if available', function () {
+            localStorage.setObject('encoreRoutes-staging', defaultNav);
+            createDirective();
+
+            // Nav content is written before the request responds
+            var navTitle = el[0].querySelector('.nav-section-title');
+            expect($(navTitle).text()).to.equal(defaultNav[0].title);
+
+            httpMock.flush();
+            expect(mockNotify.add).to.have.been
+                .calledWith(sinon.match('cached version'), { type: 'warning' });
+            expect(appRoutes.setAll).to.have.been.calledOnce;
+
+            // angular.copy() used to remove $$hashKey for matching
+            var routes = appRoutes.setAll.firstCall.args[0];
+            expect(angular.copy(routes)).to.eql(defaultNav);
+        });
+
+        it('should show error message if nothing is cached', function () {
+            createDirective();
+            httpMock.flush();
+
+            expect(mockNotify.add).to.have.been
+                .calledWith(sinon.match('Error'), { type: 'error' });
+            expect(appRoutes.setAll).to.not.have.been.called;
+        });
+
+    });
+
 });
 
 describe('rxApp - customURL', function () {
