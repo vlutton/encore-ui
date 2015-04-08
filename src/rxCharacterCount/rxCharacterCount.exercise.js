@@ -10,6 +10,7 @@ var rxCharacterCount = require('./rxCharacterCount.page').rxCharacterCount;
    @param {Number} [options.nearLimit=10] - The number of remaining characters needed to trigger the "near-limit" class.
    @param {Boolean} [options.ignoreInsignificantWhitespace=false] - Whether or not the textbox ignores leading and
    trailing whitespace when calculating the remaining character count.
+   @param {Boolean} [options.highlight=false] - Determines if text over the limit should be highlighted.
    @example
    ```js
    describe('default exercises', encore.exercise.rxCharacterCount({
@@ -28,7 +29,8 @@ exports.rxCharacterCount = function (options) {
     options = _.defaults(options, {
         maxCharacters: 254,
         nearLimit: 10,
-        ignoreInsignificantWhitespace: true
+        ignoreInsignificantWhitespace: true,
+        highlight: false
     });
 
     return function () {
@@ -69,10 +71,6 @@ exports.rxCharacterCount = function (options) {
             expect(component.isOverLimit()).to.eventually.be.false;
         });
 
-        it('should not show any highlights on an empty text box', function () {
-            expect(component.overLimitText).to.eventually.equal('');
-        });
-
         var belowNearLimitLength = options.maxCharacters + 1 - options.nearLimit;
         it('should not set the near-limit class when ' + belowNearLimitLength + ' characters are entered', function () {
             component.comment = Array(belowNearLimitLength).join('a');
@@ -97,10 +95,6 @@ exports.rxCharacterCount = function (options) {
             expect(component.isOverLimit()).to.eventually.be.false;
         });
 
-        it('should not highlight any characters', function () {
-            expect(component.overLimitText).to.eventually.equal('');
-        });
-
         it('should have zero remaining characters', function () {
             expect(component.remaining).to.eventually.equal(0);
         });
@@ -111,17 +105,8 @@ exports.rxCharacterCount = function (options) {
             expect(component.isOverLimit()).to.eventually.be.true;
         });
 
-        it('should highlight the characters over the limit', function () {
-            expect(component.overLimitText).to.eventually.equal('a');
-        });
-
         it('should display a negative number when the over-limit class is reached', function () {
             expect(component.remaining).to.eventually.equal(-1);
-        });
-
-        it('should clear the over-limit text highlighting when the text is reduced', function () {
-            component.comment = 'a';
-            expect(component.overLimitText).to.eventually.equal('');
         });
 
         var whitespace = '    leading and trailing whitespace    ';
@@ -136,6 +121,33 @@ exports.rxCharacterCount = function (options) {
             it('should count insignificant leading and trailing whitespace', function () {
                 component.comment = whitespace;
                 expect(component.remaining).to.eventually.equal(options.maxCharacters - whitespaceLength);
+            });
+        }
+
+        if (options.highlight) {
+            describe('highlighting', function () {
+
+                it('should not show any highlights on an empty text box', function () {
+                    // A space is used because the `input` event is not fired by clear() or sendKeys('')
+                    component.comment = ' ';
+                    expect(component.overLimitText).to.eventually.equal('');
+                });
+
+                it('should not highlight any characters when ' + atLimit + ' characters are entered', function () {
+                    component.comment = Array(atLimit).join('a');
+                    expect(component.overLimitText).to.eventually.equal('');
+                });
+
+                it('should highlight a single characters when ' + overLimit + ' characters are entered', function () {
+                    component.comment = Array(overLimit).join('a');
+                    expect(component.overLimitText).to.eventually.equal('a');
+                });
+
+                it('should clear the over-limit text highlighting when the text is reduced', function () {
+                    component.comment = 'a';
+                    expect(component.overLimitText).to.eventually.equal('');
+                });
+
             });
         }
 

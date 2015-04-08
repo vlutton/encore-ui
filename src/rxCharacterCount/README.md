@@ -12,7 +12,7 @@ The 254 and 10 values are both configurable. To change the maximum number of cha
 By default, any text field using `ng-model` has `ng-trim="true"` applied to it. This means that any leading and trailing spaces/blanks in your text field will be ignored. They will not count towards the remaining character count. If you want it to count leading/trailing spaces, then just add `ng-trim="false"` to your `<textarea>`.
 
 ### Styling ###
-When specifying a width other than the default, you should style some built-in classes in addition to the text field itself. As in the demo, the `.input-highlighting` class should have the same width as the text field, and the `.character-count-wrapper` should be used to correctly position the counter.
+When specifying a width other than the default, you should style some built-in classes in addition to the text field itself. As in the demo, the `.input-highlighting` class should have the same width as the text field (if highlighting is used), and the `.counted-input-wrapper` should be used to correctly position the counter.
 
 ### ngShow/ngHide/ngIf/ngSwitch/etc. ###
 If you wish to show/hide your `textarea` element, we recommend placing the element inside of a `<div>` or `<span>`, and doing the `ng-show` / `ng-hide` /etc. on that `div` / `span`. For example, 
@@ -30,3 +30,10 @@ We _do_ have preliminary support for putting these directives directly inside th
 ```
 
 But this support should be considered experimental. If you choose to take advantage of it, please ensure you've extensively tested that it performs correctly for your uses.
+
+### Highlighting ###
+Characters that are over the limit will be highlighted in red if the `highlight="true"` attribute is on the directive's element. Because this functionality is currently unstable, it has been left off by default. Please test your use case heavily before shipping with this feature enabled.
+
+Known failure cases:
+* Content that causes a scrollbar in the textarea
+* Initial text (coming from the model) that is over the limit

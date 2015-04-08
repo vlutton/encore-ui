@@ -1,4 +1,21 @@
 angular.module('encore.ui.rxCharacterCount', [])
+/**
+ *
+ * @ngdoc directive
+ * @name encore.ui.rxCharacterCount:rxCharacterCount
+ * @restrict A
+ * @description
+ * Monitors the number of characters in a text input and compares it to the desired length.
+ *
+ * @param {number} [low-boundary=10] How far from the maximum to enter a warning state
+ * @param {number} [max-characters=254] The maximum number of characters allowed
+ * @param {boolean} [highlight=false] Whether or not characters over the limit are highlighted
+ *
+ * @example
+ * <pre>
+ *     <textarea ng-model="model" rx-character-count></textarea>
+ * </pre>
+ */
 .directive('rxCharacterCount', function ($compile) {
     var counterStart = '<div class="character-countdown" ';
     var counterEnd =   'ng-class="{ \'near-limit\': nearLimit, \'over-limit\': overLimit }"' +
@@ -39,12 +56,8 @@ angular.module('encore.ui.rxCharacterCount', [])
             var wrapper = angular.element('<div class="counted-input-wrapper" />');
             element.after(wrapper);
 
-            $compile(buildBackground(attrs))(scope, function (clone) {
-                wrapper.append(clone);
-                wrapper.append(element);
-            });
-
             $compile(buildCounter(attrs))(scope, function (clone) {
+                wrapper.append(element);
                 wrapper.append(clone);
             });
 
@@ -90,7 +103,13 @@ angular.module('encore.ui.rxCharacterCount', [])
                 scope.$apply();
             }
 
-            element.on('input', writeLimitText);
+            if (attrs.highlight === 'true') {
+                $compile(buildBackground(attrs))(scope, function (clone) {
+                    wrapper.prepend(clone);
+                });
+
+                element.on('input', writeLimitText);
+            }
 
             scope.$on('$destroy', function () {
                 element.off('input', writeLimitText);

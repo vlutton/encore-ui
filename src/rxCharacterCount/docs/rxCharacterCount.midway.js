@@ -29,4 +29,10 @@ describe('rxCharacterCount', function () {
         cssSelector: '.demo-initial-value'
     }));
 
+    describe('with highlighting', exercise.rxCharacterCount({
+        cssSelector: '.demo-highlighting',
+        maxCharacters: 10,
+        highlight: true
+    }));
+
 });

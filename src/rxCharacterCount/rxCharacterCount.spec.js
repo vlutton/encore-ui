@@ -5,8 +5,6 @@ describe('rxCharacterCount', function () {
     var initialTemplate = '<textarea ng-model="initComment" rx-character-count></textarea>';
     var defaultTemplate = '<textarea ng-model="comment" rx-character-count></textarea>';
     var maxCharsTemplate = '<textarea ng-model="comment" rx-character-count max-characters="50"></textarea>';
-    var noTrimTemplate = '<textarea ng-model="comment" rx-character-count max-characters="50" ng-trim="false">' +
-                         '</textarea>';
     var boundaryTemplate = '<textarea ng-model="comment" rx-character-count max-characters="20" low-boundary="5">' +
                            '</textarea>';
 
@@ -162,10 +160,15 @@ describe('rxCharacterCount', function () {
 
     describe('character highlighting', function () {
 
+        function getHighlightingTemplate (trim) {
+            return '<textarea ng-model="comment" rx-character-count max-characters="50" ' +
+                   'highlight="true" ng-trim="' + trim + '"></textarea>';
+        }
+
         describe('with ngTrim', function ()  {
 
             beforeEach(function () {
-                el = helpers.createDirective(maxCharsTemplate, compile, originalScope);
+                el = helpers.createDirective(getHighlightingTemplate(true), compile, originalScope);
                 scope = el.scope();
             });
 
@@ -201,7 +204,7 @@ describe('rxCharacterCount', function () {
         describe('without ngTrim', function () {
 
             beforeEach(function () {
-                el = helpers.createDirective(noTrimTemplate, compile, originalScope);
+                el = helpers.createDirective(getHighlightingTemplate(false), compile, originalScope);
                 scope = el.scope();
             });
 
