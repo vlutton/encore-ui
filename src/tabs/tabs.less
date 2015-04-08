@@ -41,6 +41,7 @@ Provides styling for the Angular-UI tab HTML
     li {
         .flex(0 0 auto);
         font-size: 14px;
+        margin-right: 1px;
     }
 
     a {
@@ -80,6 +81,9 @@ Provides styling for the Angular-UI tab HTML
     display: none;
     background: @white;
     padding: 10px;
+    border-left: 2px solid @tabBorder;
+    border-right: 2px solid @tabBorder;
+    border-bottom: 2px solid @tabBorder;
 
     &.active {
         display: block;
