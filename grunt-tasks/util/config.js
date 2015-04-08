@@ -16,6 +16,9 @@ module.exports = {
     fileName: 'encore-ui-<%= pkg.version %>',
     fileNameTpl: 'encore-ui-tpls-<%= pkg.version %>',
     cssMapName: '<%= config.fileName %>.css.map',
+
+    // Will be filled in by shipit task
+    latestTag: '',
     moduleName: 'encore.ui',
     modules: [],
     dependencies: ['cfp.hotkeys', 'ui.bootstrap'],
