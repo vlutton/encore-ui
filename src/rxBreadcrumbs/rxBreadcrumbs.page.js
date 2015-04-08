@@ -41,7 +41,7 @@ var breadcrumb = function (rootElement) {
 
         visit: {
             value: function () {
-                return rootElement.click();
+                return rootElement.$('a').click();
             }
         },
 
