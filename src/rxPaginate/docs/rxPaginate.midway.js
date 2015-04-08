@@ -70,6 +70,7 @@ describe('rxPaginate', function () {
     before(function () {
         demoPage.go('#/component/rxPaginate');
     });
+
     describe('UI pagination exercises', exercise.rxPaginate({
         pageSizes: [3, 50, 200, 350, 500],
         defaultPageSize: 3,
@@ -101,7 +102,7 @@ describe('rxPaginate', function () {
             nameColumn.sortDescending();
             expect(table.row(0).name).to.eventually.equal('Server 701');
         });
-        
+
         it('should sort the OS column descending', function () {
             osColumn.sortDescending();
             expect(table.row(0).os).to.eventually.equal('Ubuntu 13.04');
