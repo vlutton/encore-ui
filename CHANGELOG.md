@@ -1,3 +1,24 @@
+<a name="1.12.0"></a>
+## 1.12.0 (2015-04-08)
+
+
+#### Bug Fixes
+
+* **metadata:** correct double-click wonkyness ([6c12c409](git@github.com:rackerlabs/encore-ui/commit/6c12c409720c711f31782911bab1b9935ef39483))
+* **rxBreadcrumbs:** Fix rxBreadcrumbs.visit(); ([754f016e](git@github.com:rackerlabs/encore-ui/commit/754f016ef74aeb8a9dfa05e3d7445999851eee26))
+* **spelling:** Managed was mispelled ([2d5993b8](git@github.com:rackerlabs/encore-ui/commit/2d5993b83fc9ffaed4154d5fadde0670718ca448))
+* **styles:** normalize .border-radius() ([91ca691c](git@github.com:rackerlabs/encore-ui/commit/91ca691c4049d58c68d09776c547d600760d0162))
+
+
+#### Features
+
+* **deployment:** Updates to deploy to allow for hotfix releases ([3527edd9](git@github.com:rackerlabs/encore-ui/commit/3527edd9b0b2c0d74f8fcf2ebd38c2c03dc73ea1), closes [#861](git@github.com:rackerlabs/encore-ui/issues/861))
+* **rxApp:** cache nav in local storage ([5183c04f](git@github.com:rackerlabs/encore-ui/commit/5183c04f7194ac2c918db10e6ecfa8e0d94535cf))
+* **rxCharacterCount:** turn highlighing off by default ([c3ad8ed6](git@github.com:rackerlabs/encore-ui/commit/c3ad8ed6e5a0aa945e72f98b922886f5f31b1443))
+* **shipit:** Add prereleases ([bb2712db](git@github.com:rackerlabs/encore-ui/commit/bb2712db68f0915b60720ce486835cb4a3f9b82f))
+* **tabs:** Update styles for tab component ([33372d0d](git@github.com:rackerlabs/encore-ui/commit/33372d0d21d9cf2ae43700562aaf010ea8886fc1))
+
+
 <a name="1.11.0"></a>
 ## 1.11.0 (2015-03-31)
 
