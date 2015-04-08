@@ -1,0 +1,25 @@
+<h1><code ng:non-bindable="">rxCharacterCount</code>
+<div><span class="hint">directive in module <code ng:non-bindable="">encore.ui</code>
+</span>
+</div>
+</h1>
+<div><h2 id="description">Description</h2>
+<div class="description"><div class="encore-ui-rxcharactercount-page encore-ui-rxcharactercount-rxcharactercount-page"><p>Monitors the number of characters in a text input and compares it to the desired length.</p>
+</div></div>
+<h2 id="usage">Usage</h2>
+<div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY rx-character-count
+     low-boundary="{number}"
+     max-characters="{number}"
+     highlight="{boolean}"&gt;
+   ...
+&lt;/ANY&gt;</pre>
+<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>low-boundary</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="encore-ui-rxcharactercount-page encore-ui-rxcharactercount-rxcharactercount-page"><p>How far from the maximum to enter a warning state</p>
+</div> <p><em>(default: 10)</em></p></td></tr><tr><td>max-characters</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="encore-ui-rxcharactercount-page encore-ui-rxcharactercount-rxcharactercount-page"><p>The maximum number of characters allowed</p>
+</div> <p><em>(default: 254)</em></p></td></tr><tr><td>highlight</td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="encore-ui-rxcharactercount-page encore-ui-rxcharactercount-rxcharactercount-page"><p>Whether or not characters over the limit are highlighted</p>
+</div> <p><em>(default: false)</em></p></td></tr></tbody></table></div>
+<h2 id="example">Example</h2>
+<div class="example"><div class="encore-ui-rxcharactercount-page encore-ui-rxcharactercount-rxcharactercount-page"><pre class="prettyprint linenums">
+&lt;textarea ng-model="model" rx-character-count&gt;&lt;/textarea&gt;
+</pre>
+</div></div>
+</div>

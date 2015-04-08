@@ -167,6 +167,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxCharacterCount:rxCharacterCount",
+      "shortName": "rxCharacterCount",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Monitors the number of characters in a text input and compares it to the desired length.",
+      "keywords": "allowed api characters compares desired directive encore enter highlighted input length limit maximum model monitors ng-model number rx-character-count rxcharactercount text ui warning"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxEnvironment:Environment",
       "shortName": "Environment",
       "type": "service",

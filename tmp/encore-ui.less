@@ -22,38 +22,31 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 /*
  * metadata
  */
-.list-definition {
-    font-size: 16px;
-    dt {
-        line-height: 1.6em;
-        float: left;
-        min-width: 9em;
-        font-weight: 700;
-        text-align: right;
-        clear: left;
-    }
-    dd {
-        line-height: 1.6em;
-        float: left;
-        font-weight: 400;
-        text-align: left;
-        margin: 0;
-        padding-left: 1em;
-        clear: right;
-    }
-}
-
 .metadata {
-    &:extend(.list-definition all);
     overflow: hidden;
     font-size: 16px;
     color: #727272;
+    line-height: 1.6em;
+
     dl {
         margin: 0;
         clear: both;
     }
+
     dt {
-        min-width: 10em;
+      float: left;
+      font-weight: 700;
+      text-align: left;
+      clear: left;
+      margin-right: 1em;
+    }
+    dd {
+        font-weight: 400;
+        text-align: left;
+        margin: 0;
+        display: list-item;
+        list-style-type: none;
+        list-style-image: url('');
     }
 }
 
@@ -360,7 +353,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     min-width: 20em;
     font-size: .9em;
     border: 4px solid @white;
-    border-radius: 4px;
+    .border-radius(4px);
     background: @white;
     text-shadow: rgba(0, 0, 0, 0.09) 1px 1px 1px;
     box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 4px 0px;
@@ -1232,7 +1225,7 @@ body:hover .visually-hidden button {
         font-size: 9px;
         border: 1px solid;
         padding: 1px 2px;
-        border-radius: 2px;
+        .border-radius(2px);
         top: 9px;
         position: absolute;
         color: #427fc4;
@@ -1449,7 +1442,7 @@ They show your position within the site heirarchy.
             height: 5px;
             background: @buttonSpinnerBg;
 
-            border-radius: 100%;
+            .border-radius(100%);
             display: inline-block;
             -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
             animation: bouncedelay 1.4s infinite ease-in-out;
@@ -1759,7 +1752,7 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
     select {
         width: 100%;
         margin: 0;
-        border-radius: 0;
+        .border-radius(0px);
         background: #fff;
         border: none;
         outline: none;
@@ -1819,7 +1812,7 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
     box-sizing: border-box;
     width: 50%;
     select {
-        border-radius: 0;
+        .border-radius(0px);
     }
 }
 
@@ -2482,7 +2475,7 @@ Add the class `disabled` to classes `pagination-first`, `pagination-prev`, `pagi
     border: 2px solid white;
     border-top-color: transparent;
     border-left-color: transparent;
-    border-radius: 150px;
+    .border-radius(150px);
     display: inline-block;
     width: 12px;
     height: 12px;
@@ -2636,6 +2629,7 @@ Provides styling for the Angular-UI tab HTML
     li {
         .flex(0 0 auto);
         font-size: 14px;
+        margin-right: 1px;
     }
 
     a {
@@ -2675,6 +2669,9 @@ Provides styling for the Angular-UI tab HTML
     display: none;
     background: @white;
     padding: 10px;
+    border-left: 2px solid @tabBorder;
+    border-right: 2px solid @tabBorder;
+    border-bottom: 2px solid @tabBorder;
 
     &.active {
         display: block;
@@ -2746,7 +2743,7 @@ Provides styling for the Angular-UI tab HTML
     text-align: center;
     text-decoration: none;
     background-color: @tooltipBg;
-    border-radius: 4px;
+    .border-radius(4px);
     box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 4px 0px;
     padding: 1em;
     .tooltip-header {

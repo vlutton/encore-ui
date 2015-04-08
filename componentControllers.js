@@ -452,7 +452,8 @@ function rxCharacterCountCtrl ($scope) {
         comment2: '',
         comment3: '',
         comment4: '',
-        comment5: 'I have an initial value'
+        comment5: 'I have an initial value',
+        comment6: ''
     };
 }
 
