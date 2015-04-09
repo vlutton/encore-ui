@@ -61,15 +61,11 @@
     &.finish {
         background: #fff;
         color: @buttonDefaultBg;
-        -webkit-box-shadow: inset 0 0 0 2px @buttonDefaultBg;
-        -moz-box-shadow: inset 0 0 0 2px @buttonDefaultBg;
-        box-shadow: inset 0 0 0 2px @buttonDefaultBg;
+        .box-shadow(inset 0 0 0 2px @buttonDefaultBg);
         &:hover,
         &:focus {
             color: @buttonDefaultBgHover;
-            -webkit-box-shadow: inset 0 0 0 2px @buttonDefaultBgHover;
-            -moz-box-shadow: inset 0 0 0 2px @buttonDefaultBgHover;
-            box-shadow: inset 0 0 0 2px @buttonDefaultBgHover;
+            .box-shadow(inset 0 0 0 2px @buttonDefaultBgHover);
         }
     }
 
