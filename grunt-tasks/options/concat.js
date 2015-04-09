@@ -1,8 +1,7 @@
 var removeFromIndex = ['/*jshint node:true*/\n',
                        'var _ = require(\'lodash\');\n',
                        'var moment = require(\'moment\');\n',
-                       'var Page = require(\'astrolabe\').Page;\n',
-                       'var exercise = require(\'./exercise\')\n'];
+                       'var Page = require(\'astrolabe\').Page;\n'];
 
 var removeFromExercises = ['/*jshint node:true*/\n',
                            'var _ = require(\'lodash\');\n'];
@@ -26,6 +25,7 @@ module.exports = {
         options: {
             // Replace all third-party requires with a single one up top
             banner: removeFromIndex.join(''),
+            footer: '\nexports.exercise = require(\'./exercise\');',
             process: function (src) {
                 removeFromIndex.forEach(function (toRemove) {
                     // a regex is faster, but this is less work for me
