@@ -3,7 +3,7 @@
 .button {
     display: inline-block;
     background: @buttonDefaultBg;
-    color: @buttonText;
+    color: @buttonColor;
     border: 0;
     font-size: 1.1em;
     padding: 7px 13px;
@@ -15,7 +15,7 @@
         background: @buttonDefaultBgHover;
         cursor: pointer;
         // in case the buttons are created using the <a> tag
-        color: @buttonText;
+        color: @buttonColor;
         text-decoration: none;
     }
 
@@ -70,7 +70,7 @@
     // variations styles, or else they won't override other colors properly.
     &[disabled], &[disabled]:hover {
         cursor: not-allowed;
-        color: @buttonDisabledText;
+        color: @buttonColorDisabled;
         background: @buttonDisabledBg;
     }
 

@@ -35,9 +35,9 @@
 
 .field-label,
 .field-legend, {
-    color: @subduedTitle;
+    color: @inputLabelColor;
     font-size: 1.1em;
-    .flex(0 0 @fieldLabelWidth);
+    .flex(0 0 @inputLabelWidth);
 }
 
 .field-content {
@@ -75,11 +75,11 @@
         font-size: 1.2em;
 
         &.ng-valid.ng-dirty {
-            border-color: @inputBorderValid;
+            border-color: @inputBorderColorValid;
         }
 
         &.ng-invalid.ng-dirty {
-            border-color: @inputBorderInvalid;
+            border-color: @inputBorderColorInvalid;
         }
     }
 
@@ -100,11 +100,11 @@
     }
 
     input {
-        width: @fieldInputWidth;
+        width: @inputWidth;
         .inputBorderPadding;
 
         &[type="number"] {
-            width: @fieldInputNumberWidth;
+            width: @inputNumberWidth;
         }
 
         &[type="radio"],
@@ -116,11 +116,10 @@
         }
 
         &[disabled] {
-            color: #999;
-            background-color: #dededd;
+            color: @inputColorDisabled;
+            background-color: @inputBackgroundDisabled;
             cursor: not-allowed;
         }
-
     }
 }
 
@@ -148,7 +147,7 @@
 .field-select {
     display: inline-block;
     position: relative;
-    width: @fieldSelectWidth;
+    width: @inputSelectWidth;
 
     select {
         width: 100%;
@@ -235,7 +234,7 @@
             cursor: default;
         }
         span {
-            color: @disabledText;
+            color: @inputColorDisabled;
         }
     }
     label {

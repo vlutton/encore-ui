@@ -348,3 +348,21 @@ body:hover .visually-hidden button {
 .centered {
     text-align: center;
 }
+
+
+/* PLACEHOLDER TEXT STYLING
+  https://css-tricks.com/snippets/css/style-placeholder-text/
+*/
+::-webkit-input-placeholder { // Chrome
+  color: @inputPlaceholderColor;
+  font-weight: 300;
+}
+::-moz-placeholder { // Firefox 19+
+  color: @inputPlaceholderColor;
+  font-weight: 400;
+}
+
+// A "filter" style rxSearchBox
+.filter-box {
+  font-style: italic;
+}

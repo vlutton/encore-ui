@@ -15,8 +15,10 @@
 @tableBgAlt: #f2f2f2;
 @tableRowSelected: #c6e4c8;
 
-// ## Forms
+// ## Buttons
 @optionHighlightBg: #007bff;
+@buttonColor: @white;
+@buttonColorDisabled: #f0efef;
 @buttonDefaultBg: #427fc4;
 @buttonDefaultBgHover: lighten(@buttonDefaultBg, 10%);
 @buttonPositiveBg: #16b667;
@@ -26,7 +28,7 @@
 @buttonCancelBg: #898989;
 @buttonCancelBgHover: lighten(@buttonCancelBg, 10%);
 @buttonDisabledBg: #cfd2d4;
-@buttonSpinnerBg: @buttonText;
+@buttonSpinnerBg: @buttonColor;
 
 
 // # Borders
@@ -42,11 +44,6 @@
 
 // ## Tabs and Account Info
 @tabBorder: #4480c1;
-
-// ## Forms
-@inputBorder: #ccc;
-@inputBorderValid: #00afec;
-@inputBorderInvalid: #ff2400;
 
 
 // # Text colors
@@ -87,12 +84,6 @@
 @tableHeaderText: @white;
 @tableCellText: #555;
 
-// ## Forms
-@inputColor: @appTextColor;
-@buttonText: @white;
-@buttonDisabledText: #f0efef;
-@disabledText: #dddddd;
-
 // # Measurements
 
 // ## General
@@ -102,13 +93,42 @@
 // ## Tables
 @tableCellPadding: 5px 10px;
 
-// ## Forms
-@fieldInputWidth: 250px;
-@fieldInputNumberWidth: 150px;
-@fieldSelectWidth: @fieldInputWidth;
-@fieldLabelWidth: 110px;
-
 // # Fonts
 @appFont: "Roboto", sans-serif;
 @appLineHeight: 1.2;
 @appFontSize: 13px;
+
+
+/*
+ * Form Inputs
+ */
+@inputWidth: 250px;
+@inputSelectWidth: @inputWidth;
+@inputNumberWidth: 150px;
+@inputLabelWidth: 110px;
+@inputColor: @appTextColor;
+@inputColorDisabled: #999;
+@inputLabelColor: @subduedTitle;
+@inputPlaceholderColor: #a9a9a9;
+@inputBackground: #fff;
+@inputBackgroundDisabled: #dededd;
+@inputBorderRadius: 0px;
+@inputBorderColor: #ccc;
+@inputBorderColorValid: #00afec;
+@inputBorderColorInvalid: #ff2400;
+
+/*
+ * rxSearchBox
+ */
+@rxSearchBox-clear-width: 24px;
+@rxSearchBox-min-width: 5 * @rxSearchBox-clear-width;
+@rxSearchBox-width: @inputWidth;
+@rxSearchBox-color: @inputColor;
+@rxSearchBox-color-disabled: @inputColorDisabled;
+@rxSearchBox-color-icon: #a9a9a9;
+@rxSearchBox-background: @inputBackground;
+@rxSearchBox-background-disabled: @inputBackgroundDisabled;
+@rxSearchBox-border: 1px solid @inputBorderColor;
+@rxSearchBox-border-radius: @inputBorderRadius;
+@rxSearchBox-padding-vertical: 3px;
+@rxSearchBox-padding-horizontal: 5px;

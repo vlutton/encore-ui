@@ -383,6 +383,18 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     ];
 })
 
+// Used by the Tables styleguid page to show table with filtering capabilities
+.controller('tableWithFilteringCtrl', function ($scope, PageTracking) {
+    $scope.people = [
+        { name: 'Patrick Deuley', occupation: 'Design Chaplain' },
+        { name: 'Hussam Dawood', occupation: 'Cat Lover' },
+        { name: 'Kevin Lamping', occupation: 'Framework Father' },
+        { name: 'Glynnis Ritchie', occupation: 'Serif Sheriff' },
+        { name: 'Freddy Knuth', occupation: 'Venezuelan Hurricane' },
+        { name: 'Chris Cantu', occupation: 'Texan Tornado' },
+    ];
+})
+
 // Used by the Layout 2 styleguide page to show pagination
 .controller('layout2StyleguideCtrl', function ($scope, PageTracking) {
     $scope.pager = PageTracking.createInstance();
@@ -394,9 +406,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         { name: 'Freddy Knuth', occupation: 'Venezuelan Hurricane', number: 5, status: 'WARNING' },
         { name: 'Chris Cantu', occupation: 'Texan Tornado', number: 6, status: 'PENDING' },
     ];
-    $scope.clearFilter = function () {
-        $scope.searchText = '';
-    };
 })
 
 // Used by the Customizing Buttons styleguide page

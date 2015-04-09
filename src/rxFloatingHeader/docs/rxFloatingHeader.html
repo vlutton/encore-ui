@@ -35,12 +35,12 @@
     <table rx-floating-header class="filter">
         <thead>
             <tr>
-                <th colspan="2">
-                    <input placeholder="Filter by any..." style="font-style: italic" ng-model="searchText">
-                    <button class="pull-right button" ng-click="clearFilter()">
-                        Clear Filter
-                    </button>
-                </th>
+                <td colspan="2">
+                    <rx-search-box
+                        ng-model="searchText"
+                        class="filter-box"
+                        rx-placeholder="'Filter by any...'"></rx-search-box>
+                </td>
             </tr>
             <tr>
                 <th>Column One Header</th>
