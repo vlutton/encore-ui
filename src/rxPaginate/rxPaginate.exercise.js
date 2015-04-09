@@ -52,6 +52,15 @@ exports.rxPaginate = function (options) {
                 pagination.previous();
                 expect(pagination.page).to.eventually.equal(1);
             });
+
+            it('should navigate to the last page', function () {
+                pagination.page.then(function (page) {
+                    var firstPage = page;
+                    pagination.last();
+                    expect(pagination.page).to.eventually.be.above(firstPage);
+                    pagination.first();
+                });
+            });
         }
 
         if (options.pages > 5) {
@@ -67,19 +76,12 @@ exports.rxPaginate = function (options) {
             });
         }
 
-        it('should navigate to the last page', function () {
-            pagination.page.then(function (page) {
-                var firstPage = page;
-                pagination.last();
-                expect(pagination.page).to.eventually.be.above(firstPage);
-            });
-        });
-
         it('should not allow navigating `next` the last page', function () {
             expect(pagination.next).to.throw(pagination.NoSuchPageException);
         });
 
         it('should allow attempting to navigate to the last page when already on the last page', function () {
+            pagination.last();
             pagination.page.then(function (page) {
                 pagination.last();
                 expect(pagination.page).to.eventually.equal(page);
@@ -113,7 +115,7 @@ exports.rxPaginate = function (options) {
         });
 
         it('should list the upper bounds of the shown items currently in the table', function () {
-            expect(pagination.shownItems.last).to.eventually.equal(options.defaultPageSize);
+            expect(pagination.shownItems.last).to.eventually.not.be.above(options.defaultPageSize);
         });
 
         it('should know the total number of pages without visiting it', function () {
