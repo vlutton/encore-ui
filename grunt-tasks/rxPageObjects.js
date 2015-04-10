@@ -6,6 +6,7 @@ module.exports = function (grunt) {
             'shell:rxPageObjects',
             'copy:rxPageObjects',
             'jsdoc2md:rxPageObjects',
+            'shell:rxPageObjectsDemoDocs'
         ];
 
         if (publishType === 'hotfix') {
@@ -16,6 +17,6 @@ module.exports = function (grunt) {
 
         tasks.push('clean:rxPageObjects');
         grunt.task.run(tasks);
-        
+
     });
 };
