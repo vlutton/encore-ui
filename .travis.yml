@@ -3,7 +3,7 @@ node_js:
 - '0.10'
 before_install: npm install -g grunt-cli bower mocha@1.21.5
 install:
-- npm install
+- travis_retry npm install
 - bower install
 - ./node_modules/protractor/bin/webdriver-manager update --standalone
 before_script:
