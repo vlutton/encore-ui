@@ -22,8 +22,9 @@ angular.module('encore.ui.rxToggleSwitch', [])
     return {
         restrict: 'E',
         templateUrl: 'templates/rxToggleSwitch.html',
-        require: '^ngModel',
+        require: 'ngModel',
         scope: {
+            model: '=ngModel',
             disabled: '=?',
             postHook: '&',
             trueValue: '@',
@@ -32,6 +33,10 @@ angular.module('encore.ui.rxToggleSwitch', [])
         link: function (scope, element, attrs, ngModelCtrl) {
             var trueValue = _.isUndefined(scope.trueValue) ? true : scope.trueValue;
             var falseValue = _.isUndefined(scope.falseValue) ? false : scope.falseValue;
+
+            if (_.isUndefined(scope.model) || scope.model !== trueValue) {
+                scope.model = falseValue;
+            }
 
             ngModelCtrl.$formatters.push(function (value) {
                 return value === trueValue;

@@ -21,7 +21,6 @@ describe('rxToggleSwitch', function () {
 
             scope.countMe.withArgs('TEST-FALSY', 'TEST').returns('custom');
             scope.model = true;
-            scope.customModel = 'TEST';
         });
 
         el = helpers.createDirective(validTemplate, compile, scope);
@@ -45,6 +44,16 @@ describe('rxToggleSwitch', function () {
         postHookEL = null;
     });
 
+    it('should initialize the model value to the false value if undefined', function () {
+        expect(scope.customModel).to.equal('TEST-FALSY');
+    });
+
+    it('should initialize the model value to the false value if it is not the true or false value', function () {
+        scope.customModel = 'foo';
+        helpers.createDirective(customTemplate, compile, scope);
+        expect(scope.customModel).to.equal('TEST-FALSY');
+    });
+
     it('should render template correctly', function () {
         expect(el).to.not.be.empty;
         expect(el.hasClass('rx-toggle-switch')).to.be.true;
@@ -58,7 +67,7 @@ describe('rxToggleSwitch', function () {
         expect(el.hasClass('on')).to.be.true;
 
         expect(scope.model).to.be.true;
-        directiveScope.update(scope.model);
+        directiveScope.update();
         scope.$apply();
         expect(scope.model).to.be.false;
 
@@ -66,7 +75,7 @@ describe('rxToggleSwitch', function () {
         sinon.assert.notCalled(scope.countMe);
 
         expect(scope.model).to.be.false;
-        directiveScope.update(scope.model);
+        directiveScope.update();
         scope.$apply();
         expect(scope.model).to.be.true;
 
@@ -81,7 +90,7 @@ describe('rxToggleSwitch', function () {
         directiveScope = disabledEL.scope();
 
         expect(scope.model).to.be.true;
-        directiveScope.update(scope.model);
+        directiveScope.update();
         scope.$apply();
         expect(scope.model).to.be.true;
 
@@ -91,17 +100,17 @@ describe('rxToggleSwitch', function () {
     it('should render custom values template correctly', function () {
         directiveScope = customEL.scope();
 
-        expect(scope.customModel).to.be.eq('TEST');
-        directiveScope.update(scope.customModel);
-        scope.$apply();
         expect(scope.customModel).to.be.eq('TEST-FALSY');
+        directiveScope.update();
+        scope.$apply();
+        expect(scope.customModel).to.be.eq('TEST');
     });
 
     it('should call posthook when updating value', function () {
         directiveScope = postHookEL.scope();
 
         expect(scope.model).to.be.true;
-        directiveScope.update(scope.model);
+        directiveScope.update();
         timeout.flush(1);
         scope.$apply();
         expect(scope.model).to.be.false;
