@@ -1,0 +1,810 @@
+<h1 id="index">Index</h1>
+<p><strong>Modules</strong></p>
+<ul>
+<li><a href="#encore.module_rxCharacterCount">encore.rxCharacterCount</a><ul>
+<li><a href="#encore.module_rxCharacterCount.main">encore.rxCharacterCount.main</a></li>
+<li><a href="#encore.module_rxCharacterCount.initialize">encore.rxCharacterCount.initialize(rxCharacterCountElement)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxOptionFormTable">encore.rxOptionFormTable</a><ul>
+<li><a href="#encore.module_rxOptionFormTable.main">encore.rxOptionFormTable.main</a></li>
+<li><a href="#encore.module_rxOptionFormTable.initialize">encore.rxOptionFormTable.initialize(rxOptionFormTableElement)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxSortableColumn">encore.rxSortableColumn</a><ul>
+<li><a href="#encore.module_rxSortableColumn.initialize">encore.rxSortableColumn.initialize(rxSortableColumnElement, [repeaterString])</a></li>
+<li><a href="#encore.module_rxSortableColumn.byTable">encore.rxSortableColumn.byTable(tableElement)</a></li>
+<li><a href="#encore.module_rxSortableColumn.sortDirections">const: encore.rxSortableColumn.sortDirections</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxStatusColumn">encore.rxStatusColumn</a><ul>
+<li><a href="#encore.module_rxStatusColumn.initialize">encore.rxStatusColumn.initialize(rxStatusCellElement)</a></li>
+<li><a href="#encore.module_rxStatusColumn.statuses">const: encore.rxStatusColumn.statuses</a></li>
+<li><a href="#encore.module_rxStatusColumn.icons">const: encore.rxStatusColumn.icons</a></li>
+<li><a href="#encore.module_rxStatusColumn.colors">const: encore.rxStatusColumn.colors</a></li>
+</ul>
+</li>
+<li><a href="#encore.exercise.module_rxCharacterCount">encore.exercise.rxCharacterCount</a></li>
+<li><a href="#encore.exercise.module_rxPaginate">encore.exercise.rxPaginate</a></li>
+</ul>
+<p><strong>Namespaces</strong></p>
+<ul>
+<li><a href="#rxCharacterCount">rxCharacterCount</a><ul>
+<li><a href="#rxCharacterCount.comment">rxCharacterCount.comment</a></li>
+<li><a href="#rxCharacterCount.remaining">rxCharacterCount.remaining</a></li>
+<li><a href="#rxCharacterCount.overLimitText">rxCharacterCount.overLimitText</a></li>
+<li><a href="#rxCharacterCount.isDisplayed">rxCharacterCount.isDisplayed()</a></li>
+<li><a href="#rxCharacterCount.isNearLimit">rxCharacterCount.isNearLimit()</a></li>
+<li><a href="#rxCharacterCount.isOverLimit">rxCharacterCount.isOverLimit()</a></li>
+</ul>
+</li>
+<li><a href="#rxForm">rxForm</a><ul>
+<li><a href="#rxForm.currencyToPennies">rxForm.currencyToPennies(currencyString)</a></li>
+<li><a href="#rxForm.slowClick">rxForm.slowClick(elem)</a></li>
+<li><a href="#rxForm.dropdown">rxForm.dropdown</a><ul>
+<li><a href="#rxForm.dropdown.options">dropdown.options</a></li>
+<li><a href="#rxForm.dropdown.values">dropdown.values</a></li>
+<li><a href="#rxForm.dropdown.selectedOption">dropdown.selectedOption</a></li>
+<li><a href="#rxForm.dropdown.optionCount">dropdown.optionCount()</a></li>
+<li><a href="#rxForm.dropdown.optionExists">dropdown.optionExists(optionText)</a></li>
+<li><a href="#rxForm.dropdown.select">dropdown.select(optionText)</a></li>
+<li><a href="#rxForm.dropdown.initialize">dropdown.initialize(selectElement)</a></li>
+<li><a href="#rxForm.dropdown.option">dropdown.option</a><ul>
+<li><a href="#rxForm.dropdown.option.text">option.text</a></li>
+<li><a href="#rxForm.dropdown.option.value">option.value</a></li>
+<li><a href="#rxForm.dropdown.option.select">option.select()</a></li>
+<li><a href="#rxForm.dropdown.option.isSelected">option.isSelected()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#rxForm.checkbox">rxForm.checkbox</a><ul>
+<li><a href="#rxForm.checkbox.initialize">checkbox.initialize(checkboxElement)</a></li>
+<li><a href="#rxForm.checkbox.isSelected">checkbox.isSelected()</a></li>
+<li><a href="#rxForm.checkbox.select">checkbox.select()</a></li>
+<li><a href="#rxForm.checkbox.unselect">checkbox.unselect()</a></li>
+</ul>
+</li>
+<li><a href="#rxForm.radioButton">rxForm.radioButton</a><ul>
+<li><a href="#rxForm.radioButton.initialize">radioButton.initialize(radioElement)</a></li>
+<li><a href="#rxForm.radioButton.isSelected">radioButton.isSelected()</a></li>
+<li><a href="#rxForm.radioButton.select">radioButton.select()</a></li>
+</ul>
+</li>
+<li><a href="#rxForm.form">rxForm.form</a><ul>
+<li><a href="#rxForm.form.fill">form.fill(reference, formData)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#rxOptionFormTable">rxOptionFormTable</a><ul>
+<li><a href="#rxOptionFormTable.emptyMessage">rxOptionFormTable.emptyMessage</a></li>
+<li><a href="#rxOptionFormTable.selectedRow">rxOptionFormTable.selectedRow</a></li>
+<li><a href="#rxOptionFormTable.columnNames">rxOptionFormTable.columnNames</a></li>
+<li><a href="#rxOptionFormTable.selections">rxOptionFormTable.selections</a></li>
+<li><a href="#rxOptionFormTable.disabledOptions">rxOptionFormTable.disabledOptions</a></li>
+<li><a href="#rxOptionFormTable.isEmpty">rxOptionFormTable.isEmpty()</a></li>
+<li><a href="#rxOptionFormTable.columnData">rxOptionFormTable.columnData(columnName, [customFn])</a></li>
+<li><a href="#rxOptionFormTable.unselectAll">rxOptionFormTable.unselectAll()</a></li>
+<li><a href="#rxOptionFormTable.unselectByColumnText">rxOptionFormTable.unselectByColumnText(columnName, columnText)</a></li>
+<li><a href="#rxOptionFormTable.unselectMany">rxOptionFormTable.unselectMany(selections)</a></li>
+<li><a href="#rxOptionFormTable.selectByColumnText">rxOptionFormTable.selectByColumnText(columnName, columnText)</a></li>
+<li><a href="#rxOptionFormTable.selectMany">rxOptionFormTable.selectMany(selections)</a></li>
+<li><a href="#rxOptionFormTable.row">rxOptionFormTable.row</a><ul>
+<li><a href="#rxOptionFormTable.row.selectInput">row.selectInput</a></li>
+<li><a href="#rxOptionFormTable.row.isSelected">row.isSelected()</a></li>
+<li><a href="#rxOptionFormTable.row.isCurrent">row.isCurrent()</a></li>
+<li><a href="#rxOptionFormTable.row.cell">row.cell(columnName, [customFn])</a></li>
+<li><a href="#rxOptionFormTable.row.select">row.select()</a></li>
+<li><a href="#rxOptionFormTable.row.unselect">row.unselect()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#rxSortableColumn">rxSortableColumn</a><ul>
+<li><a href="#rxSortableColumn.sort">rxSortableColumn.sort</a></li>
+<li><a href="#rxSortableColumn.data">rxSortableColumn.data</a></li>
+<li><a href="#rxSortableColumn.getDataUsing">rxSortableColumn.getDataUsing</a></li>
+<li><a href="#rxSortableColumn.currentSortDirection">rxSortableColumn.currentSortDirection</a></li>
+<li><a href="#rxSortableColumn.sortAscending">rxSortableColumn.sortAscending()</a></li>
+<li><a href="#rxSortableColumn.sortDescending">rxSortableColumn.sortDescending()</a></li>
+</ul>
+</li>
+<li><a href="#rxSortableColumns">rxSortableColumns</a><ul>
+<li><a href="#rxSortableColumns.names">rxSortableColumns.names</a></li>
+</ul>
+</li>
+<li><a href="#rxStatusColumn">rxStatusColumn</a><ul>
+<li><a href="#rxStatusColumn.byType">rxStatusColumn.byType</a></li>
+<li><a href="#rxStatusColumn.byIcon">rxStatusColumn.byIcon</a></li>
+<li><a href="#rxStatusColumn.byColor">rxStatusColumn.byColor</a></li>
+<li><a href="#rxStatusColumn.tooltip">rxStatusColumn.tooltip</a><ul>
+<li><a href="#rxStatusColumn.tooltip.exists">tooltip.exists</a></li>
+<li><a href="#rxStatusColumn.tooltip.text">tooltip.text</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxCharacterCount"></a></p>
+<h1 id="encore-rxcharactercount">encore.rxCharacterCount</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxCharacterCount">encore.rxCharacterCount</a><ul>
+<li><a href="#encore.module_rxCharacterCount.main">encore.rxCharacterCount.main</a></li>
+<li><a href="#encore.module_rxCharacterCount.initialize">encore.rxCharacterCount.initialize(rxCharacterCountElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxCharacterCount.main"></a></p>
+<h2 id="encore-rxcharactercount-main">encore.rxCharacterCount.main</h2>
+<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the <em>first</em> rxCharacterCount object found on the page.<br><a name="encore.module_rxCharacterCount.initialize"></a></p>
+<h2 id="encore-rxcharactercount-initialize-rxcharactercountelement-">encore.rxCharacterCount.initialize(rxCharacterCountElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxCharacterCountElement <code>WebElement</code> - WebElement to be transformed into an rxCharacterCountElement object  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the rxCharacterCount object.<br><a name="encore.module_rxOptionFormTable"></a></p>
+<h1 id="encore-rxoptionformtable">encore.rxOptionFormTable</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxOptionFormTable">encore.rxOptionFormTable</a><ul>
+<li><a href="#encore.module_rxOptionFormTable.main">encore.rxOptionFormTable.main</a></li>
+<li><a href="#encore.module_rxOptionFormTable.initialize">encore.rxOptionFormTable.initialize(rxOptionFormTableElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxOptionFormTable.main"></a></p>
+<h2 id="encore-rxoptionformtable-main">encore.rxOptionFormTable.main</h2>
+<p><strong>Returns</strong>: <a href="#rxOptionFormTable">rxOptionFormTable</a> - Page object representing the <em>first</em> rxOptionFormTable object found on the page.<br><a name="encore.module_rxOptionFormTable.initialize"></a></p>
+<h2 id="encore-rxoptionformtable-initialize-rxoptionformtableelement-">encore.rxOptionFormTable.initialize(rxOptionFormTableElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxOptionFormTableElement <code>WebElement</code> - Web element to become an rxOptionFormTable object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxOptionFormTable">rxOptionFormTable</a> - Page object representing the rxOptionFormTable object.<br><a name="encore.module_rxSortableColumn"></a></p>
+<h1 id="encore-rxsortablecolumn">encore.rxSortableColumn</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxSortableColumn">encore.rxSortableColumn</a><ul>
+<li><a href="#encore.module_rxSortableColumn.initialize">encore.rxSortableColumn.initialize(rxSortableColumnElement, [repeaterString])</a></li>
+<li><a href="#encore.module_rxSortableColumn.byTable">encore.rxSortableColumn.byTable(tableElement)</a></li>
+<li><a href="#encore.module_rxSortableColumn.sortDirections">const: encore.rxSortableColumn.sortDirections</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxSortableColumn.initialize"></a></p>
+<h2 id="encore-rxsortablecolumn-initialize-rxsortablecolumnelement-repeaterstring-">encore.rxSortableColumn.initialize(rxSortableColumnElement, [repeaterString])</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxSortableColumnElement <code>WebElement</code> - WebElement to be transformed into an rxSortableColumn object.  </li>
+<li>[repeaterString] <code>String</code> - Repeater string from the table. Required for <a href="#rxSortableColumn.data">data</a>  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Page</code> - Page object representing the <a href="#rxSortableColumn">rxSortableColumn</a> object.<br><a name="encore.module_rxSortableColumn.byTable"></a></p>
+<h2 id="encore-rxsortablecolumn-bytable-tableelement-">encore.rxSortableColumn.byTable(tableElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>tableElement <code>WebElement</code> - Web element of the entire <code>&lt;table&gt;</code> node.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Page</code> - rxSortableColumns Page object representing the <a href="#rxSortableColumns">rxSortableColumns</a> object.<br><a name="encore.module_rxSortableColumn.sortDirections"></a></p>
+<h2 id="const-encore-rxsortablecolumn-sortdirections">const: encore.rxSortableColumn.sortDirections</h2>
+<p><strong>Returns</strong>: <code>Object</code> - sortDirections Lookup of integer codes for sort directions from human-readable ones.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">var sorts = encore.rxSortableColumn.sorts;
+// ...
+it(&#39;should sort the column ascending by default&#39;, function () {
+    expect(column.currentSortDirection).to.eventually.equal(sorts.ascending);
+});
+</code></pre>
+<p><a name="encore.module_rxStatusColumn"></a></p>
+<h1 id="encore-rxstatuscolumn">encore.rxStatusColumn</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxStatusColumn">encore.rxStatusColumn</a><ul>
+<li><a href="#encore.module_rxStatusColumn.initialize">encore.rxStatusColumn.initialize(rxStatusCellElement)</a></li>
+<li><a href="#encore.module_rxStatusColumn.statuses">const: encore.rxStatusColumn.statuses</a></li>
+<li><a href="#encore.module_rxStatusColumn.icons">const: encore.rxStatusColumn.icons</a></li>
+<li><a href="#encore.module_rxStatusColumn.colors">const: encore.rxStatusColumn.colors</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxStatusColumn.initialize"></a></p>
+<h2 id="encore-rxstatuscolumn-initialize-rxstatuscellelement-">encore.rxStatusColumn.initialize(rxStatusCellElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxStatusCellElement <code>WebElement</code> - Status cell element from a table row.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Page</code> - Page object representing an <a href="#rxStatusColumn">rxStatusColumn</a>.<br><a name="encore.module_rxStatusColumn.statuses"></a></p>
+<h2 id="const-encore-rxstatuscolumn-statuses">const: encore.rxStatusColumn.statuses</h2>
+<p><strong>Returns</strong>: <code>Object</code> - Lookup of status strings from human-readable statuses.<br><a name="encore.module_rxStatusColumn.icons"></a></p>
+<h2 id="const-encore-rxstatuscolumn-icons">const: encore.rxStatusColumn.icons</h2>
+<p><strong>Returns</strong>: <code>Object</code> - Lookup of icon class names from a human-readable version.<br><a name="encore.module_rxStatusColumn.colors"></a></p>
+<h2 id="const-encore-rxstatuscolumn-colors">const: encore.rxStatusColumn.colors</h2>
+<p><strong>Returns</strong>: <code>Object</code> - Lookup of color class names from a human-readable class name.<br><a name="encore.exercise.module_rxCharacterCount"></a></p>
+<h1 id="encore-exercise-rxcharactercount">encore.exercise.rxCharacterCount</h1>
+<p>rxCharacterCount exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[maxCharacters=254] <code>Number</code> - The total number of characters allowed.  </li>
+<li>[nearLimit=10] <code>Number</code> - The number of remaining characters needed to trigger the &quot;near-limit&quot; class.  </li>
+<li>[ignoreInsignificantWhitespace=false] <code>Boolean</code> - Whether or not the textbox ignores leading and
+trailing whitespace when calculating the remaining character count.  </li>
+<li>[highlight=false] <code>Boolean</code> - Determines if text over the limit should be highlighted.  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxCharacterCount({
+    cssSelector: &#39;.demo-custom-max-characters&#39;, // select one of many widgets on page
+    maxCharacters: 25,
+    nearLimit: 12,
+    ignoreInsignificantWhitespace: false
+}));
+</code></pre>
+<p><a name="encore.exercise.module_rxPaginate"></a></p>
+<h1 id="encore-exercise-rxpaginate">encore.exercise.rxPaginate</h1>
+<p>rxPaginate exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize pagination widget with.  </li>
+<li>[pages=6] <code>string</code> - Estimated page size in the pagination widget.  </li>
+<li>[pageSizes=50, 200, 350, 500] <code>Array.&lt;number&gt;</code> - Page sizes to validate.  </li>
+<li>[defaultPageSize=50] <code>number</code> - Default page size on page load.  </li>
+<li>[invalidPageSize=45] <code>number</code> - For testing resizing pagination to invalid items per page.  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxPaginate({
+    cssSelector: &#39;.secondary-info rx-paginate&#39;, // select one of many pagination tables
+    pages: 20 // will exercise full functionality at 6, limited functionality at 2
+}));
+</code></pre>
+<p><a name="rxCharacterCount"></a></p>
+<h1 id="rxcharactercount">rxCharacterCount</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxCharacterCount">rxCharacterCount</a><ul>
+<li><a href="#rxCharacterCount.comment">rxCharacterCount.comment</a></li>
+<li><a href="#rxCharacterCount.remaining">rxCharacterCount.remaining</a></li>
+<li><a href="#rxCharacterCount.overLimitText">rxCharacterCount.overLimitText</a></li>
+<li><a href="#rxCharacterCount.isDisplayed">rxCharacterCount.isDisplayed()</a></li>
+<li><a href="#rxCharacterCount.isNearLimit">rxCharacterCount.isNearLimit()</a></li>
+<li><a href="#rxCharacterCount.isOverLimit">rxCharacterCount.isOverLimit()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxCharacterCount.comment"></a></p>
+<h2 id="rxcharactercount-comment">rxCharacterCount.comment</h2>
+<p>Get and set the comment&#39;s textual content. Will erase the current text when setting new text.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>text <code>String</code> - The desired comment to be sent via <code>.sendKeys(text)</code>.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>String</code> - The current comment&#39;s text, via <code>.getAttribute(&#39;value&#39;)</code>.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">it(&#39;should erase all text and replace it with new text on update&#39;, function () {
+    rxCharacterCount.comment = &#39;Bar&#39;;
+    expect(rxCharacterCount.comment).to.eventually.equal(&#39;Bar&#39;);
+});
+</code></pre>
+<p><a name="rxCharacterCount.remaining"></a></p>
+<h2 id="rxcharactercount-remaining">rxCharacterCount.remaining</h2>
+<p><strong>Returns</strong>: <code>Number</code> - The remaining number of characters that can be entered.<br><a name="rxCharacterCount.overLimitText"></a></p>
+<h2 id="rxcharactercount-overlimittext">rxCharacterCount.overLimitText</h2>
+<p><strong>Returns</strong>: <code>String</code> - The characters that are over the limit.<br><a name="rxCharacterCount.isDisplayed"></a></p>
+<h2 id="rxcharactercount-isdisplayed-">rxCharacterCount.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxCharacterCount.isNearLimit"></a></p>
+<h2 id="rxcharactercount-isnearlimit-">rxCharacterCount.isNearLimit()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;near-limit&#39; class is displayed.<br><a name="rxCharacterCount.isOverLimit"></a></p>
+<h2 id="rxcharactercount-isoverlimit-">rxCharacterCount.isOverLimit()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="rxForm"></a></p>
+<h1 id="rxform">rxForm</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxForm">rxForm</a><ul>
+<li><a href="#rxForm.currencyToPennies">rxForm.currencyToPennies(currencyString)</a></li>
+<li><a href="#rxForm.slowClick">rxForm.slowClick(elem)</a></li>
+<li><a href="#rxForm.dropdown">rxForm.dropdown</a><ul>
+<li><a href="#rxForm.dropdown.options">dropdown.options</a></li>
+<li><a href="#rxForm.dropdown.values">dropdown.values</a></li>
+<li><a href="#rxForm.dropdown.selectedOption">dropdown.selectedOption</a></li>
+<li><a href="#rxForm.dropdown.optionCount">dropdown.optionCount()</a></li>
+<li><a href="#rxForm.dropdown.optionExists">dropdown.optionExists(optionText)</a></li>
+<li><a href="#rxForm.dropdown.select">dropdown.select(optionText)</a></li>
+<li><a href="#rxForm.dropdown.initialize">dropdown.initialize(selectElement)</a></li>
+<li><a href="#rxForm.dropdown.option">dropdown.option</a><ul>
+<li><a href="#rxForm.dropdown.option.text">option.text</a></li>
+<li><a href="#rxForm.dropdown.option.value">option.value</a></li>
+<li><a href="#rxForm.dropdown.option.select">option.select()</a></li>
+<li><a href="#rxForm.dropdown.option.isSelected">option.isSelected()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#rxForm.checkbox">rxForm.checkbox</a><ul>
+<li><a href="#rxForm.checkbox.initialize">checkbox.initialize(checkboxElement)</a></li>
+<li><a href="#rxForm.checkbox.isSelected">checkbox.isSelected()</a></li>
+<li><a href="#rxForm.checkbox.select">checkbox.select()</a></li>
+<li><a href="#rxForm.checkbox.unselect">checkbox.unselect()</a></li>
+</ul>
+</li>
+<li><a href="#rxForm.radioButton">rxForm.radioButton</a><ul>
+<li><a href="#rxForm.radioButton.initialize">radioButton.initialize(radioElement)</a></li>
+<li><a href="#rxForm.radioButton.isSelected">radioButton.isSelected()</a></li>
+<li><a href="#rxForm.radioButton.select">radioButton.select()</a></li>
+</ul>
+</li>
+<li><a href="#rxForm.form">rxForm.form</a><ul>
+<li><a href="#rxForm.form.fill">form.fill(reference, formData)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="rxForm.currencyToPennies"></a></p>
+<h2 id="rxform-currencytopennies-currencystring-">rxForm.currencyToPennies(currencyString)</h2>
+<p>Transform <code>currencyString</code> (USD) to an integer representing pennies. Built to reverse Angular&#39;s &#39;currency&#39; filter.
+      If your currency string includes fractions of a penny, that precision will be lost!</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>currencyString <code>string</code> - Raw text as output by Angular&#39;s <code>currency</code> filter.  </li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">encore.rxForm.currencyToPennies(&#39;$0.01&#39;)      ==  1
+encore.rxForm.currencyToPennies(&#39;$0.019&#39;)     ==  1
+encore.rxForm.currencyToPennies(&#39;$100 CAN&#39;)   ==  10000
+encore.rxForm.currencyToPennies(&#39;($100 AUS)&#39;) == -10000
+encore.rxForm.currencyToPennies(&#39;($1.011)&#39;)   == -101
+encore.rxForm.currencyToPennies(&#39;$1.10&#39;)      ==  110
+</code></pre>
+<p><a name="rxForm.slowClick"></a></p>
+<h2 id="rxform-slowclick-elem-">rxForm.slowClick(elem)</h2>
+<p>Equivalent to <code>browser.actions().mouseDown(elem).mouseUp().perform();</code>.
+       This function should be used when dealing with odd or unusual behavior while interacting with click events
+       that don&#39;t seem to work right. Either the element does not appear to respond to a normal <code>.click()</code> call, or
+       the element is responding to more than one click event. This typically happens more often in Firefox than
+       in other browsers. See <a href="#rxForm.dropdown.option.select">select</a> for an example of a function that will
+       slow click an element to achieve consistent behavior.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>elem <code>WebElement</code> - Web element to &quot;slow click&quot;.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.dropdown"></a></p>
+<h2 id="rxform-dropdown">rxForm.dropdown</h2>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxForm.dropdown">rxForm.dropdown</a><ul>
+<li><a href="#rxForm.dropdown.options">dropdown.options</a></li>
+<li><a href="#rxForm.dropdown.values">dropdown.values</a></li>
+<li><a href="#rxForm.dropdown.selectedOption">dropdown.selectedOption</a></li>
+<li><a href="#rxForm.dropdown.optionCount">dropdown.optionCount()</a></li>
+<li><a href="#rxForm.dropdown.optionExists">dropdown.optionExists(optionText)</a></li>
+<li><a href="#rxForm.dropdown.select">dropdown.select(optionText)</a></li>
+<li><a href="#rxForm.dropdown.initialize">dropdown.initialize(selectElement)</a></li>
+<li><a href="#rxForm.dropdown.option">dropdown.option</a><ul>
+<li><a href="#rxForm.dropdown.option.text">option.text</a></li>
+<li><a href="#rxForm.dropdown.option.value">option.value</a></li>
+<li><a href="#rxForm.dropdown.option.select">option.select()</a></li>
+<li><a href="#rxForm.dropdown.option.isSelected">option.isSelected()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="rxForm.dropdown.options"></a></p>
+<h3 id="dropdown-options">dropdown.options</h3>
+<p><strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The text of each option element in the dropdown.<br><a name="rxForm.dropdown.values"></a></p>
+<h3 id="dropdown-values">dropdown.values</h3>
+<p><strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The value of each option element in the dropdown.<br><a name="rxForm.dropdown.selectedOption"></a></p>
+<h3 id="dropdown-selectedoption">dropdown.selectedOption</h3>
+<p><strong>Returns</strong>: <a href="#rxForm.dropdown.option">option</a> - Page object representing the currently selected option.<br><a name="rxForm.dropdown.optionCount"></a></p>
+<h3 id="dropdown-optioncount-">dropdown.optionCount()</h3>
+<p><strong>Returns</strong>: <code>number</code> - The number of options in the dropdown.<br><a name="rxForm.dropdown.optionExists"></a></p>
+<h3 id="dropdown-optionexists-optiontext-">dropdown.optionExists(optionText)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionText <code>string</code> - The text to check for existence in the dropdown.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the option exists.<br><a name="rxForm.dropdown.select"></a></p>
+<h3 id="dropdown-select-optiontext-">dropdown.select(optionText)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionText <code>string</code> - Partial or total string matching the desired option to select.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><strong>Example</strong>  </p>
+<pre><code class="lang-js">var dropdown = encore.rxForm.dropdown.initialize($(&#39;#country-select&#39;));
+dropdown.select(&#39;United States&#39;);
+</code></pre>
+<p><a name="rxForm.dropdown.initialize"></a></p>
+<h3 id="dropdown-initialize-selectelement-">dropdown.initialize(selectElement)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>selectElement <code>WebElement</code> - Should be a <code>&lt;select&gt;</code> tag.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxForm.dropdown">dropdown</a> - Page object representing a dropdown.<br><a name="rxForm.dropdown.option"></a></p>
+<h3 id="dropdown-option">dropdown.option</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionText <code>string</code> - Partial or total string matching the desired option to select.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxForm.dropdown.option">option</a> - Page object representing an option.<br><strong>Members</strong></p>
+<ul>
+<li><a href="#rxForm.dropdown.option">dropdown.option</a><ul>
+<li><a href="#rxForm.dropdown.option.text">option.text</a></li>
+<li><a href="#rxForm.dropdown.option.value">option.value</a></li>
+<li><a href="#rxForm.dropdown.option.select">option.select()</a></li>
+<li><a href="#rxForm.dropdown.option.isSelected">option.isSelected()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxForm.dropdown.option.text"></a></p>
+<h4 id="option-text">option.text</h4>
+<p><strong>Returns</strong>: <code>string</code> - The text inside of the current option.<br><a name="rxForm.dropdown.option.value"></a></p>
+<h4 id="option-value">option.value</h4>
+<p><strong>Returns</strong>: <code>string</code> - The &quot;value&quot; attribute from the option html tag.<br><a name="rxForm.dropdown.option.select"></a></p>
+<h4 id="option-select-">option.select()</h4>
+<p>Selects the option from the dropdown.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.dropdown.option.isSelected"></a></p>
+<h4 id="option-isselected-">option.isSelected()</h4>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or no the option is currently the selected option.<br><a name="rxForm.checkbox"></a></p>
+<h2 id="rxform-checkbox">rxForm.checkbox</h2>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxForm.checkbox">rxForm.checkbox</a><ul>
+<li><a href="#rxForm.checkbox.initialize">checkbox.initialize(checkboxElement)</a></li>
+<li><a href="#rxForm.checkbox.isSelected">checkbox.isSelected()</a></li>
+<li><a href="#rxForm.checkbox.select">checkbox.select()</a></li>
+<li><a href="#rxForm.checkbox.unselect">checkbox.unselect()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxForm.checkbox.initialize"></a></p>
+<h3 id="checkbox-initialize-checkboxelement-">checkbox.initialize(checkboxElement)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>checkboxElement <code>WebElement</code> - Should be an <code>&lt;input&gt;</code> tag.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxForm.checkbox">checkbox</a> - Page object representing a checkbox.<br><a name="rxForm.checkbox.isSelected"></a></p>
+<h3 id="checkbox-isselected-">checkbox.isSelected()</h3>
+<p>Abstraction over <code>checkboxObject.rootElement.isSelected()</code> to keep things shorter.</p>
+<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the checkbox is currently selected.<br><a name="rxForm.checkbox.select"></a></p>
+<h3 id="checkbox-select-">checkbox.select()</h3>
+<p>Selects the current checkbox.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.checkbox.unselect"></a></p>
+<h3 id="checkbox-unselect-">checkbox.unselect()</h3>
+<p>Unselects the current checkbox.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.radioButton"></a></p>
+<h2 id="rxform-radiobutton">rxForm.radioButton</h2>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxForm.radioButton">rxForm.radioButton</a><ul>
+<li><a href="#rxForm.radioButton.initialize">radioButton.initialize(radioElement)</a></li>
+<li><a href="#rxForm.radioButton.isSelected">radioButton.isSelected()</a></li>
+<li><a href="#rxForm.radioButton.select">radioButton.select()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxForm.radioButton.initialize"></a></p>
+<h3 id="radiobutton-initialize-radioelement-">radioButton.initialize(radioElement)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>radioElement <code>WebElement</code> - Should be an <code>&lt;input&gt;</code> tag.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxForm.radioButton">radioButton</a> - Page object representing a radio button.<br><a name="rxForm.radioButton.isSelected"></a></p>
+<h3 id="radiobutton-isselected-">radioButton.isSelected()</h3>
+<p>Abstraction over <code>radioObject.rootElement.isSelected()</code> to keep things shorter.</p>
+<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the radio button is currently selected.<br><a name="rxForm.radioButton.select"></a></p>
+<h3 id="radiobutton-select-">radioButton.select()</h3>
+<p>Selects the current radio button.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.form"></a></p>
+<h2 id="rxform-form">rxForm.form</h2>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxForm.form">rxForm.form</a><ul>
+<li><a href="#rxForm.form.fill">form.fill(reference, formData)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxForm.form.fill"></a></p>
+<h3 id="form-fill-reference-formdata-">form.fill(reference, formData)</h3>
+<p>Set <code>value</code> in <code>formData</code> to the page object&#39;s current method <code>key</code>.
+           Aids in filling out form data via javascript objects.
+           For an example of this in use, see <a href="http://goo.gl/R7Frwv">encore-ui&#39;s end to end tests</a>.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>reference <code>Object</code> - Context to evaluate under as <code>this</code> (typically, <code>this</code>).  </li>
+<li>formData <code>Object</code> - Key-value pairs of deeply-nested form items, and their values to fill.  </li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">yourPage.fill({
+    aTextbox: &#39;My Name&#39;,
+    aRadioButton: &#39;Second Option&#39;
+    aSelectDropdown: &#39;My Choice&#39;
+    aModule: {
+        hasMethods: &#39;Can Accept Input Too&#39;,
+        deepNesting: {
+            might: &#39;be overkill at this level&#39;
+        }
+    }
+});
+</code></pre>
+<p><a name="rxOptionFormTable"></a></p>
+<h1 id="rxoptionformtable">rxOptionFormTable</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxOptionFormTable">rxOptionFormTable</a><ul>
+<li><a href="#rxOptionFormTable.emptyMessage">rxOptionFormTable.emptyMessage</a></li>
+<li><a href="#rxOptionFormTable.selectedRow">rxOptionFormTable.selectedRow</a></li>
+<li><a href="#rxOptionFormTable.columnNames">rxOptionFormTable.columnNames</a></li>
+<li><a href="#rxOptionFormTable.selections">rxOptionFormTable.selections</a></li>
+<li><a href="#rxOptionFormTable.disabledOptions">rxOptionFormTable.disabledOptions</a></li>
+<li><a href="#rxOptionFormTable.isEmpty">rxOptionFormTable.isEmpty()</a></li>
+<li><a href="#rxOptionFormTable.columnData">rxOptionFormTable.columnData(columnName, [customFn])</a></li>
+<li><a href="#rxOptionFormTable.unselectAll">rxOptionFormTable.unselectAll()</a></li>
+<li><a href="#rxOptionFormTable.unselectByColumnText">rxOptionFormTable.unselectByColumnText(columnName, columnText)</a></li>
+<li><a href="#rxOptionFormTable.unselectMany">rxOptionFormTable.unselectMany(selections)</a></li>
+<li><a href="#rxOptionFormTable.selectByColumnText">rxOptionFormTable.selectByColumnText(columnName, columnText)</a></li>
+<li><a href="#rxOptionFormTable.selectMany">rxOptionFormTable.selectMany(selections)</a></li>
+<li><a href="#rxOptionFormTable.row">rxOptionFormTable.row</a><ul>
+<li><a href="#rxOptionFormTable.row.selectInput">row.selectInput</a></li>
+<li><a href="#rxOptionFormTable.row.isSelected">row.isSelected()</a></li>
+<li><a href="#rxOptionFormTable.row.isCurrent">row.isCurrent()</a></li>
+<li><a href="#rxOptionFormTable.row.cell">row.cell(columnName, [customFn])</a></li>
+<li><a href="#rxOptionFormTable.row.select">row.select()</a></li>
+<li><a href="#rxOptionFormTable.row.unselect">row.unselect()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="rxOptionFormTable.emptyMessage"></a></p>
+<h2 id="rxoptionformtable-emptymessage">rxOptionFormTable.emptyMessage</h2>
+<p><strong>Returns</strong>: <code>string</code> | <code>null</code> - The currently displayed empty message label text, or <code>null</code> if not present.<br><a name="rxOptionFormTable.selectedRow"></a></p>
+<h2 id="rxoptionformtable-selectedrow">rxOptionFormTable.selectedRow</h2>
+<p>Will default to the first selected row if many are selected.
+       Be certain you have a selected row before calling this, or a
+       NoSuchElementError will be thrown.</p>
+<p><strong>Returns</strong>: <a href="#rxOptionFormTable.row">row</a> - Page object representing a row.<br><a name="rxOptionFormTable.columnNames"></a></p>
+<h2 id="rxoptionformtable-columnnames">rxOptionFormTable.columnNames</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - Every column heading&#39;s text, as an array.<br><a name="rxOptionFormTable.selections"></a></p>
+<h2 id="rxoptionformtable-selections">rxOptionFormTable.selections</h2>
+<p>Return a list of row indexes that are currently selected.
+       Get the row yourself if you need more information about the row&#39;s contents.</p>
+<p><strong>Returns</strong>: <code>Array.&lt;number&gt;</code> - All selected rows&#39; indexes from the rxOptionFormTable.<br><a name="rxOptionFormTable.disabledOptions"></a></p>
+<h2 id="rxoptionformtable-disabledoptions">rxOptionFormTable.disabledOptions</h2>
+<p>Return a list of row indexes that are currently disabled.</p>
+<p><strong>Returns</strong>: <code>Array.&lt;number&gt;</code> - All disabled row indexes from the rxOptionFormTable<br><a name="rxOptionFormTable.isEmpty"></a></p>
+<h2 id="rxoptionformtable-isempty-">rxOptionFormTable.isEmpty()</h2>
+<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the table&#39;s  the empty message label is currently present.<br><a name="rxOptionFormTable.columnData"></a></p>
+<h2 id="rxoptionformtable-columndata-columnname-customfn-">rxOptionFormTable.columnData(columnName, [customFn])</h2>
+<p>Return the value of the cells found under <code>columnName</code>, using <code>getText</code> by default.
+       For more control, pass in a <code>customFn</code>.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>columnName <code>string</code> - Column name containing the cell elements to be retrieved.  </li>
+<li>[customFn=getText()] <code>function</code> - Special work to be done on the column&#39;s cell elements.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>*</code> | <code>Array.&lt;string&gt;</code> - Array of return values specified in <code>customFn</code>, or an array of strings from <code>getText()</code><br><strong>Example</strong>  </p>
+<pre><code class="lang-js">// three rows, with [&#39;$0.00&#39;, &#39;$1.00&#39;, &#39;$2.00&#39;] in their cells, respectively.
+var penniesData = [0, 100, 200];
+var penniesFn = function (cellElements) {
+    return cellElements.map(function (cellElement) {
+        return cellElement.getText().then(rxForm.currencyToPennies);
+    });
+};
+
+// without the second argument, each cell will have `.getText()` called on it
+expect(optionTable.columnData(&#39;Surcharge&#39;, penniesFn)).to.eventually.eql(penniesData);
+</code></pre>
+<p><a name="rxOptionFormTable.unselectAll"></a></p>
+<h2 id="rxoptionformtable-unselectall-">rxOptionFormTable.unselectAll()</h2>
+<p>Unselects every row in the rxOptionFormTable.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable.unselectByColumnText"></a></p>
+<h2 id="rxoptionformtable-unselectbycolumntext-columnname-columntext-">rxOptionFormTable.unselectByColumnText(columnName, columnText)</h2>
+<p>Unselect a row by the <code>columnName</code> that contains <code>columnText</code>.
+       This function uses cssContainingText, be certain your column name and text is unique.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>columnName <code>string</code> - Name of the column that contains the cell to select.  </li>
+<li>columnText <code>string</code> - Cell text that uniquely identifies the selection.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable.unselectMany"></a></p>
+<h2 id="rxoptionformtable-unselectmany-selections-">rxOptionFormTable.unselectMany(selections)</h2>
+<p>Unselect options where each <code>{ columnName: columnText }</code> in <code>selections</code> is passed to
+       <a href="#rxOptionFormTable.unselectByColumnText">unselectByColumnText</a>.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>selections <code>Array.&lt;Object&gt;</code> - Array of single key-value pairs to unselect.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><strong>Example</strong>  </p>
+<pre><code class="lang-js">unselectMany([{ &#39;Name&#39;: &#39;Item 1&#39; },
+              { &#39;Name&#39;: &#39;Item 2&#39; }]);
+</code></pre>
+<p><a name="rxOptionFormTable.selectByColumnText"></a></p>
+<h2 id="rxoptionformtable-selectbycolumntext-columnname-columntext-">rxOptionFormTable.selectByColumnText(columnName, columnText)</h2>
+<p>Select a row by the <code>columnName</code> that contains <code>columnText</code>.
+       This function uses cssContainingText, be certain your column name and text is unique.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>columnName <code>string</code> - Name of the column that contains the cell to select.  </li>
+<li>columnText <code>string</code> - Cell text that uniquely identifies the selection.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable.selectMany"></a></p>
+<h2 id="rxoptionformtable-selectmany-selections-">rxOptionFormTable.selectMany(selections)</h2>
+<p>Select options where each <code>{ columnName: columnText }</code> in <code>selections</code> is passed to
+       <a href="#rxOptionFormTable.selectByColumnText">selectByColumnText</a>.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>selections <code>Array.&lt;Object&gt;</code> - Array of single key-value pairs to select.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><strong>Example</strong>  </p>
+<pre><code class="lang-js">selectMany([{ &#39;Name&#39;: &#39;Item 1&#39; },
+            { &#39;Name&#39;: &#39;Item 2&#39; }]);
+</code></pre>
+<p><a name="rxOptionFormTable.row"></a></p>
+<h2 id="rxoptionformtable-row">rxOptionFormTable.row</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rowIndex <code>number</code> - Index of the row in the table.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxOptionFormTable.row">row</a> - Page object representing a row.<br><strong>Members</strong></p>
+<ul>
+<li><a href="#rxOptionFormTable.row">rxOptionFormTable.row</a><ul>
+<li><a href="#rxOptionFormTable.row.selectInput">row.selectInput</a></li>
+<li><a href="#rxOptionFormTable.row.isSelected">row.isSelected()</a></li>
+<li><a href="#rxOptionFormTable.row.isCurrent">row.isCurrent()</a></li>
+<li><a href="#rxOptionFormTable.row.cell">row.cell(columnName, [customFn])</a></li>
+<li><a href="#rxOptionFormTable.row.select">row.select()</a></li>
+<li><a href="#rxOptionFormTable.row.unselect">row.unselect()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxOptionFormTable.row.selectInput"></a></p>
+<h3 id="row-selectinput">row.selectInput</h3>
+<p>Since checkboxes are a superset of radio input elements, a checkbox is used.</p>
+<p><strong>Returns</strong>: <a href="#rxForm.checkbox">checkbox</a> - Page object representing a checkbox.<br><a name="rxOptionFormTable.row.isSelected"></a></p>
+<h3 id="row-isselected-">row.isSelected()</h3>
+<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the row is currently selected.<br><a name="rxOptionFormTable.row.isCurrent"></a></p>
+<h3 id="row-iscurrent-">row.isCurrent()</h3>
+<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the row is visually marked as &quot;current&quot;.<br><a name="rxOptionFormTable.row.cell"></a></p>
+<h3 id="row-cell-columnname-customfn-">row.cell(columnName, [customFn])</h3>
+<p>Return the value of the cell by <code>columnName</code>, using <code>getText</code> by default.
+           For more control, pass in a <code>customFn</code>.
+           The reason <code>columnName</code> is used, as opposed to by binding, is due to some
+           complexity contained within the <code>getContent</code> function in the rxOptionFormTable directive.
+           <a href="http://goo.gl/HKBoez">Link to the <code>getContent</code> function</a>.
+           There are columns that may contain static data (or expressions to be evaluated against <code>$scope</code>)
+           for every row, and those data items are never bound to <code>$scope</code>. Although the column.keys that are
+           passed into <code>$scope.getContent</code> that contain angular expressions can be located by binding, there are
+           cases when plain text or HTML gets passed in. These never get bound to <code>$scope</code>. They can, however,
+           be located by querying the column name via CSS selector, so that&#39;s used instead.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>columnName <code>string</code> - Column name to grab the current row&#39;s cell under.  </li>
+<li>[customFn=getText()] <code>function</code> - Special work to be done to the resulting <code>cellElement</code>.  </li>
+</ul>
+<p><a name="rxOptionFormTable.row.select"></a></p>
+<h3 id="row-select-">row.select()</h3>
+<p>Selects the current row.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable.row.unselect"></a></p>
+<h3 id="row-unselect-">row.unselect()</h3>
+<p>Unselects the current row.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSortableColumn"></a></p>
+<h1 id="rxsortablecolumn">rxSortableColumn</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxSortableColumn">rxSortableColumn</a><ul>
+<li><a href="#rxSortableColumn.sort">rxSortableColumn.sort</a></li>
+<li><a href="#rxSortableColumn.data">rxSortableColumn.data</a></li>
+<li><a href="#rxSortableColumn.getDataUsing">rxSortableColumn.getDataUsing</a></li>
+<li><a href="#rxSortableColumn.currentSortDirection">rxSortableColumn.currentSortDirection</a></li>
+<li><a href="#rxSortableColumn.sortAscending">rxSortableColumn.sortAscending()</a></li>
+<li><a href="#rxSortableColumn.sortDescending">rxSortableColumn.sortDescending()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxSortableColumn.sort"></a></p>
+<h2 id="rxsortablecolumn-sort">rxSortableColumn.sort</h2>
+<p>Prefer using <a href="#rxSortableColumn.sortAscending">sortAscending</a> and <a href="#rxSortableColumn.sortDescending">sortDescending</a> over this.</p>
+<p><a name="rxSortableColumn.data"></a></p>
+<h2 id="rxsortablecolumn-data">rxSortableColumn.data</h2>
+<p><strong>Returns</strong>: <code>Array</code> - A list of all cell text in this column.<br><a name="rxSortableColumn.getDataUsing"></a></p>
+<h2 id="rxsortablecolumn-getdatausing">rxSortableColumn.getDataUsing</h2>
+<p>Return a list of all cell contents in this column.
+       Passes all cell elements to <code>customFn</code>, or if undefined, will return just the text of each cell.
+       The second argument, <code>allByCssSelectorString</code> is used when your column&#39;s binding
+       (which is used by <code>by.repeater().column</code>) is for some reason unreachable by protractor.
+       A common reason why this wouldn&#39;t be the case is because the binding is not used as text
+       within a web element, but instead used within the tag&#39;s attrs. An example of this is illustrated here:
+       <a href="http://goo.gl/HPjLU7">Binding inside of a tag&#39;s attributes.</a>
+       In these cases, you should specify a css selector that will select each element in the column you
+       care about, since <code>by.binding</code> is not an option.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[customFn] <code>function</code> - Specific work that must occur to all column cell elements.  </li>
+<li>[allByCssSelectorString] <code>String</code> - Fallback <code>$$(&#39;.all-by-css&#39;)</code>-style call to select column cells.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Array</code> - Dependent on the return value of <code>customFn</code>.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">var sumCurrency = function (columnElements) {
+    return columnElements.reduce(function (acc, columnElement) {
+        return columnElement.getText().then(function (text) {
+            return acc + encore.rxForm.currencyToPennies(text);
+        });
+    }, 0);
+};
+
+charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function (sum) {
+    expect(currentUsage.estimate).to.eventually.equal(sum);
+});
+</code></pre>
+<p><a name="rxSortableColumn.currentSortDirection"></a></p>
+<h2 id="rxsortablecolumn-currentsortdirection">rxSortableColumn.currentSortDirection</h2>
+<p>The current sort direction of the column.</p>
+<pre><code>   - Ascending sort:  (1)  means the arrow is pointed down. [0-9, a-z]
+   - Descending sort: (0)  means the arrow is pointed up.   [z-a, 9-0]
+   - Not sorted:     (-1)  means there is no arrow for this column.
+</code></pre><p><strong>Returns</strong>: <code>Integer</code> - : 1, 0, or -1 based on direction.
+       Use <a href="#encore.module_rxSortableColumn.sortDirections">sortDirections</a> when testing your columns.<br><a name="rxSortableColumn.sortAscending"></a></p>
+<h2 id="rxsortablecolumn-sortascending-">rxSortableColumn.sortAscending()</h2>
+<p>Will repeatedly click the sort button until the column is sorted ascending.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSortableColumn.sortDescending"></a></p>
+<h2 id="rxsortablecolumn-sortdescending-">rxSortableColumn.sortDescending()</h2>
+<p>Will repeatedly click the sort button until the column is sorted descending.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSortableColumns"></a></p>
+<h1 id="rxsortablecolumns">rxSortableColumns</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxSortableColumns">rxSortableColumns</a><ul>
+<li><a href="#rxSortableColumns.names">rxSortableColumns.names</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxSortableColumns.names"></a></p>
+<h2 id="rxsortablecolumns-names">rxSortableColumns.names</h2>
+<p>Return all column names in <code>tableElement</code>.
+       If any special work needs to be done, pass in a custom <code>mapFn</code> to <code>getNamesUsing</code> instead.</p>
+<p><strong>Returns</strong>: <code>Array</code> - : An array of strings representing text in each column in the table.<br><a name="rxStatusColumn"></a></p>
+<h1 id="rxstatuscolumn">rxStatusColumn</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxStatusColumn">rxStatusColumn</a><ul>
+<li><a href="#rxStatusColumn.byType">rxStatusColumn.byType</a></li>
+<li><a href="#rxStatusColumn.byIcon">rxStatusColumn.byIcon</a></li>
+<li><a href="#rxStatusColumn.byColor">rxStatusColumn.byColor</a></li>
+<li><a href="#rxStatusColumn.tooltip">rxStatusColumn.tooltip</a><ul>
+<li><a href="#rxStatusColumn.tooltip.exists">tooltip.exists</a></li>
+<li><a href="#rxStatusColumn.tooltip.text">tooltip.text</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="rxStatusColumn.byType"></a></p>
+<h2 id="rxstatuscolumn-bytype">rxStatusColumn.byType</h2>
+<p>Represents the custom defined status type.
+       This has no relation to the tooltip text, the icon chosen, or the color used to represent it.</p>
+<p><strong>Returns</strong>: <code>String</code> - Status cell&#39;s custom defined status type.<br><a name="rxStatusColumn.byIcon"></a></p>
+<h2 id="rxstatuscolumn-byicon">rxStatusColumn.byIcon</h2>
+<p>Represents the status as summarized by the icon selection alone. Extracted from the font-awesome icon used.</p>
+<p><strong>Returns</strong>: <code>String</code> - Status cell&#39;s font-awesome icon name.<br><a name="rxStatusColumn.byColor"></a></p>
+<h2 id="rxstatuscolumn-bycolor">rxStatusColumn.byColor</h2>
+<p>Represents the status as summarized by the color selection alone. Extracted from the class name.</p>
+<p><strong>Returns</strong>: <code>String</code> - Status cell&#39;s color class name.<br><a name="rxStatusColumn.tooltip"></a></p>
+<h2 id="rxstatuscolumn-tooltip">rxStatusColumn.tooltip</h2>
+<p>Will appear on hover.</p>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxStatusColumn.tooltip">rxStatusColumn.tooltip</a><ul>
+<li><a href="#rxStatusColumn.tooltip.exists">tooltip.exists</a></li>
+<li><a href="#rxStatusColumn.tooltip.text">tooltip.text</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxStatusColumn.tooltip.exists"></a></p>
+<h3 id="tooltip-exists">tooltip.exists</h3>
+<p>Hovers over the current row&#39;s status column and returns whether or not a tooltip appears.</p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not a tooltip is present.<br><a name="rxStatusColumn.tooltip.text"></a></p>
+<h3 id="tooltip-text">tooltip.text</h3>
+<p><strong>Returns</strong>: <code>String</code> - Tooltip text.  </p>
