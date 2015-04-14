@@ -1,3 +1,12 @@
+<a name="1.12.1"></a>
+### 1.12.1 (2015-04-14)
+
+
+#### Bug Fixes
+
+* **exercises:** Resolve require-loop ([655a3cf6](git@github.com:rackerlabs/encore-ui/commit/655a3cf681488755f83b20387f04de0d805d6b2e))
+
+
 <a name="1.12.0"></a>
 ## 1.12.0 (2015-04-08)
 
