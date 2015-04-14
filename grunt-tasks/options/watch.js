@@ -29,5 +29,9 @@ module.exports = {
     demoSite: {
         files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/**/*', '!demo/bower_components/**/*'],
         tasks: ['build']
+    },
+    rxPageObjectsDocs: {
+        files: ['src/**/*.page.js', 'src/**/*.exercise.js'],
+        tasks: ['jsdoc2md:rxPageObjects', 'shell:rxPageObjectsDemoDocs']
     }
 };

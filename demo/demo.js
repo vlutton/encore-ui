@@ -123,6 +123,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'JS Docs'
                 },
                 {
+                    href: 'rx-page-objects/index.html',
+                    linkText: 'Test Docs'
+                },
+                {
                     linkText: 'Other Links',
                     children: [
                         {

@@ -11,6 +11,13 @@ module.exports = function (grunt) {
             }
         },
 
+        rxPageObjectsDemoDocs: {
+            // run this after running `grunt jsdoc2md:rxPageObjects`
+            command: ['mkdir <%= config.docs %>/rx-page-objects;',
+                      './node_modules/.bin/marked -i utils/rx-page-objects/API.md',
+                      '-o <%= config.docs %>/rx-page-objects/index.html --gfm'].join(' ')
+        },
+
         wraith: {
             command: 'wraith capture config',
             options: {
@@ -30,7 +37,7 @@ module.exports = function (grunt) {
                 }
             }
         },
-        
+
         // When publishing a fix to an older version, we have to explicitly pass `--tag`
         // and a tagname, otherwise npm will automatically set this version as the `latest`,
         // even though "newer" versions exist
