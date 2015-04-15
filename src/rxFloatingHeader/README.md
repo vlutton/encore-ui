@@ -17,12 +17,11 @@ A common pattern in our products is to place an `<input>` filter at the top of t
     <table rx-floating-header>
         <thead>
           <tr>
-              <th colspan="2">
-                  <input placeholder="Filter by any..." ng-model="searchText"></input>
-                  <button class="pull-right button" ng-click="clearFilter()">
-                      Clear Filter
-                  </button>
-              </th>
+              <td colspan="2">
+                  <rx-search-box
+                      ng-model="searchText"
+                      rx-placeholder="'Filter by any...'"></rx-search-box>
+              </td>
           </tr>
           <tr>
              <th>Column One Header</th>

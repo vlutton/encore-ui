@@ -54,6 +54,7 @@ paths:
   rxPageTitle: "/#/component/rxPageTitle"
   rxPaginate: "/#/component/rxPaginate"
   rxPermission: "/#/component/rxPermission"
+  rxSearchBox: "/#/component/rxSearchBox"
   rxSession: "/#/component/rxSession"
   rxSessionStorage: "/#/component/rxSessionStorage"
   rxSortableColumn: "/#/component/rxSortableColumn"

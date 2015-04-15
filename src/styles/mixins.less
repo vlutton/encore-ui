@@ -62,7 +62,7 @@
 }
 
 .inputBorderPadding() {
-    border: 1px solid @inputBorder;
+    border: 1px solid @inputBorderColor;
     padding: 3px 5px;
 }
 
@@ -73,4 +73,19 @@
     -moz-user-select: @select;
     -ms-user-select: @select;
     user-select: @select;
+}
+
+// Reset native styling of form input elements
+.ResetFormInput() {
+  .box-sizing(border-box);
+  .background-clip(padding);
+  .border-radius(0px);
+  -webkit-appearance: none; // best-effort removal of native elements
+  background-color: #fff;
+  color: #000;
+  outline: none;
+  border: none;
+  margin: 0px;
+  padding: 0px;
+  text-align: left;
 }
