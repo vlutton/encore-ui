@@ -55,11 +55,12 @@
         .knob {
             left: 100%;
             -webkit-transform: translate(-100%, 0);
-                    transform: translate(-100%, 0);
+            -moz-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
         }
     }
     .knob {
-        transition: all 0.1s ease-out;
+        .transition-value(all 0.1s ease-out);
 
         position: absolute;
         display: inline-block;
