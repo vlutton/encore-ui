@@ -406,7 +406,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "encore.ui",
       "shortDescription": "This is the data service that can be used in conjunction with the pagination",
-      "keywords": "ability api assuming automatically call choose chooses class conjunction controls createinstance current data default determine display enables encore encore-ui-rxpaginate-page encore-ui-rxpaginate-pagetracking-page exists future generate initialzed instance instances isn items itemsizelist itemsperpage number object objects override pageinit pagenumber pagestoshow pagetracking pagination rxpaginate service set setting settings showall spot store stored tables total true ui user userselecteditemsperpage"
+      "keywords": "ability api assuming automatically call choose chooses class conjunction controls createinstance current data default determine display enables encore encore-ui-rxpaginate-page encore-ui-rxpaginate-pagetracking-page exists future generate initialzed instance instances isn items itemsizelist itemsperpage number object objects override pageinit pagenumber pager pagestoshow pagetracking pagination rxpaginate service set setting showall spot store stored tables total true ui user userselecteditemsperpage"
     },
     {
       "section": "api",
@@ -428,12 +428,30 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxPaginate:rxLoadingOverlay",
+      "shortName": "rxLoadingOverlay",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "This directive can be used to show and hide a &quot;loading&quot; overlay on top",
+      "keywords": "add api attribute automatically child controller directive element elements encore hide hides loading overlay promise rejects require resolves rxpaginate showandhide sibling top ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxPaginate:rxPaginate",
       "shortName": "rxPaginate",
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Directive that takes in the page tracking object and outputs a page",
-      "keywords": "api controller directive display encore instance maximum number numberofpages object outputs pagetracking rxpaginate service switching takes time tracking ui"
+      "keywords": "api call change changes column conjunction controller current described direction directive display displayed encore error fails filter getitems input instance intend maximum message method model number numberofpages object optional outputs pagetracking paginate paginated pagination readme request requirements rxpaginate server-side serverinterface service sort switching table takes time tracking ui ui-based watch"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxPaginate:rxPaginateUtils",
+      "shortName": "rxPaginateUtils",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "A few utilities",
+      "keywords": "api encore rxpaginate service ui utilities"
     },
     {
       "section": "api",
@@ -569,6 +587,15 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "A set of methods for creating mappings between a product&#39;s notion",
       "keywords": "api creating encore encore-ui identifiers mappings methods notion product rxstatuscolumn service set status statuses ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxToggleSwitch:rxToggleSwitch",
+      "shortName": "rxToggleSwitch",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Displays an on/off switch toggle",
+      "keywords": "api bind directive disabled displays encore foo function indicates input ng-model property rxtoggleswitch scope switch toggle toggled ui"
     },
     {
       "section": "api",

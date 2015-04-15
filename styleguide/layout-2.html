@@ -4,10 +4,10 @@
         <table class="table-striped" rx-floating-header>
             <thead>
                 <th colspan="6">
-                    <input placeholder="Filter by any..." style="font-style: italic" ng-model="searchText">
-                    <button class="pull-right button" ng-click="clearFilter()">
-                        Clear Filter
-                    </button>
+                    <rx-search-box
+                        rx-placeholder="'Filter by any...'"
+                        style="font-style: italic;"
+                        ng-model="searchText"></rx-search-box>
                 </th>
                 <tr>
                     <th rx-status-header></th>
@@ -51,7 +51,7 @@
                         <rx-paginate page-tracking="pager"></rx-paginate>
                     </td>
                 </tr>
-            </tfoot>        
-        </table> 
+            </tfoot>
+        </table>
     </div>
 </rx-page>

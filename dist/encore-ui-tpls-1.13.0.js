@@ -2,10 +2,11 @@
  * EncoreUI
  * https://github.com/rackerlabs/encore-ui
 
- * Version: 1.12.1 - 2015-04-14
+ * Version: 1.13.0 - 2015-04-15
  * License: Apache License, Version 2.0
  */
-angular.module('encore.ui', ['encore.ui.configs','encore.ui.rxAccountInfo','encore.ui.rxActionMenu','encore.ui.rxActiveUrl','encore.ui.rxAge','encore.ui.rxEnvironment','encore.ui.rxAppRoutes','encore.ui.rxLocalStorage','encore.ui.rxSession','encore.ui.rxApp','encore.ui.rxAttributes','encore.ui.rxIdentity','encore.ui.rxPermission','encore.ui.rxAuth','encore.ui.rxBreadcrumbs','encore.ui.rxButton','encore.ui.rxCapitalize','encore.ui.rxCharacterCount','encore.ui.rxCompile','encore.ui.rxDiskSize','encore.ui.rxFavicon','encore.ui.rxFeedback','encore.ui.rxMisc','encore.ui.rxFloatingHeader','encore.ui.rxForm','encore.ui.rxInfoPanel','encore.ui.rxLogout','encore.ui.rxModalAction','encore.ui.rxNotify','encore.ui.rxPageTitle','encore.ui.rxPaginate','encore.ui.rxSessionStorage','encore.ui.rxSortableColumn','encore.ui.rxSpinner','encore.ui.rxStatus','encore.ui.rxStatusColumn','encore.ui.rxToggle','encore.ui.rxTokenInterceptor','encore.ui.rxUnauthorizedInterceptor', 'cfp.hotkeys','ui.bootstrap']);
+angular.module('encore.ui', ['encore.ui.tpls', 'encore.ui.configs','encore.ui.rxAccountInfo','encore.ui.rxActionMenu','encore.ui.rxActiveUrl','encore.ui.rxAge','encore.ui.rxEnvironment','encore.ui.rxAppRoutes','encore.ui.rxLocalStorage','encore.ui.rxSession','encore.ui.rxApp','encore.ui.rxAttributes','encore.ui.rxIdentity','encore.ui.rxPermission','encore.ui.rxAuth','encore.ui.rxBreadcrumbs','encore.ui.rxButton','encore.ui.rxCapitalize','encore.ui.rxCharacterCount','encore.ui.rxCompile','encore.ui.rxDiskSize','encore.ui.rxFavicon','encore.ui.rxFeedback','encore.ui.rxMisc','encore.ui.rxFloatingHeader','encore.ui.rxForm','encore.ui.rxInfoPanel','encore.ui.rxLogout','encore.ui.rxModalAction','encore.ui.rxNotify','encore.ui.rxPageTitle','encore.ui.rxPaginate','encore.ui.rxSearchBox','encore.ui.rxSessionStorage','encore.ui.rxSortableColumn','encore.ui.rxSpinner','encore.ui.rxStatus','encore.ui.rxStatusColumn','encore.ui.rxToggle','encore.ui.rxToggleSwitch','encore.ui.rxTokenInterceptor','encore.ui.rxUnauthorizedInterceptor', 'cfp.hotkeys','ui.bootstrap']);
+angular.module('encore.ui.tpls', ['templates/rxAccountInfo.html','templates/rxAccountInfoBanner.html','templates/rxActionMenu.html','templates/rxActiveUrl.html','templates/rxAccountSearch.html','templates/rxAccountUsers.html','templates/rxApp.html','templates/rxAppNav.html','templates/rxAppNavItem.html','templates/rxAppSearch.html','templates/rxBillingSearch.html','templates/rxPage.html','templates/rxPermission.html','templates/rxBreadcrumbs.html','templates/rxButton.html','templates/feedbackForm.html','templates/rxFeedback.html','templates/rxFormFieldset.html','templates/rxFormItem.html','templates/rxFormOptionTable.html','templates/rxInfoPanel.html','templates/rxModalAction.html','templates/rxModalActionForm.html','templates/rxModalFooters.html','templates/rxNotification.html','templates/rxNotifications.html','templates/rxPaginate.html','templates/rxSearchBox.html','templates/rxSortableColumn.html','templates/rxStatusColumn.html','templates/rxToggleSwitch.html']);
 angular.module('encore.ui.configs', [])
 .value('devicePaths', [
     { value: '/dev/xvdb', label: '/dev/xvdb' },
@@ -3836,7 +3837,7 @@ angular.module('encore.ui.rxPageTitle', [])
     };
 }]);
 
-angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
+angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
 /**
  *
  * @ngdoc directive
@@ -3844,24 +3845,47 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
  * @restrict E
  * @description
  * Directive that takes in the page tracking object and outputs a page
- * switching controller
+ * switching controller. It can be used in conjunction with the Paginate
+ * filter for UI-based pagination, or can take an optional serverInterface
+ * object if you instead intend to use a paginated server-side API
  *
  * @param {Object} pageTracking This is the page tracking service instance to
  * be used for this directive
  * @param {number} numberOfPages This is the maximum number of pages that the
  * page object will display at a time.
+ * @param {Object} [serverInterface] An object with a `getItems()` method. The requirements
+ * of this method are described in the rxPaginate README
+ * @param {Object} [filterText] The model for the table filter input, if any. This directive
+ * will watch that model for changes, and request new results from the paginated API, on change
+ * @param {Object} [sortColumn] The model containing the current column the results should sort on.
+ * This directive will watch that column for changes, and request new results from the paginated API, on change
+ * @param {Object} [sortDirection] The model containing the current direction of the current sort column. This
+ * directive will watch for changes, and request new results from the paginated API, on change
+ * @param {String} [errorMessage] An error message that should be displayed if a call to the request fails
  */
-.directive('rxPaginate', ["PageTracking", function (PageTracking) {
+.directive('rxPaginate', ["$q", "$compile", "debounce", "PageTracking", "rxPromiseNotifications", function ($q, $compile, debounce, PageTracking, rxPromiseNotifications) {
     return {
         templateUrl: 'templates/rxPaginate.html',
         replace: true,
         restrict: 'E',
+        require: '?^rxLoadingOverlay',
         scope: {
             pageTracking: '=',
-            numberOfPages: '@'
+            numberOfPages: '@',
+            serverInterface: '=?',
+            filterText: '=?',
+            sortColumn: '=?',
+            sortDirection: '=?'
         },
-        link: function (scope, element) {
+        link: function (scope, element, attrs, rxLoadingOverlayCtrl) {
 
+            var errorMessage = attrs.errorMessage;
+
+            rxLoadingOverlayCtrl = rxLoadingOverlayCtrl || {
+                show: _.noop,
+                hide: _.noop,
+                showAndHide: _.noop
+            };
             // We need to find the `<table>` that contains
             // this `<rx-paginate>`
             var parentElement = element.parent();
@@ -3872,17 +3896,152 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
             var table = parentElement;
 
             scope.updateItemsPerPage = function (itemsPerPage) {
-                scope.pageTracking.itemsPerPage = itemsPerPage;
-                scope.pageTracking.pageNumber = 0;
+                return scope.pageTracking.setItemsPerPage(itemsPerPage).then(function () {
 
-                // Set itemsPerPage as the new default value for
-                // all future pagination tables
-                PageTracking.userSelectedItemsPerPage(itemsPerPage);
+                    // Set itemsPerPage as the new default value for
+                    // all future pagination tables
+                    PageTracking.userSelectedItemsPerPage(itemsPerPage);
+                });
             };
 
             scope.scrollToTop = function () {
                 table[0].scrollIntoView(true);
             };
+
+            // Everything here is restricted to using server-side pagination
+            if (!_.isUndefined(scope.serverInterface)) {
+
+                var params = function () {
+                    var direction = scope.sortDirection ? 'DESCENDING' : 'ASCENDING';
+                    return {
+                        filterText: scope.filterText,
+                        sortColumn: scope.sortColumn,
+                        sortDirection: direction
+                    };
+                };
+
+                var getItems = function (pageNumber, itemsPerPage) {
+                    scope.loadingState = 'loading';
+                    var response = scope.serverInterface.getItems(pageNumber,
+                                                   itemsPerPage,
+                                                   params());
+                    rxLoadingOverlayCtrl.showAndHide(response);
+
+                    if (errorMessage) {
+                        rxPromiseNotifications.add(response, {
+                            error: errorMessage
+                        });
+                    }
+                    return response.finally(function () {
+                        scope.loadingState = '';
+                    });
+                };
+        
+                // Register the getItems function with the PageTracker
+                scope.pageTracking.updateItemsFn(getItems);
+
+                var notifyPageTracking = function () {
+                    var pageNumber = 0;
+                    scope.pageTracking.newItems(getItems(pageNumber, scope.pageTracking.itemsPerPage));
+                };
+
+                // When someone changes the sort column, it will go to the 
+                // default direction for that column. That could cause both
+                // `sortColumn` and `sortDirection` to get changed, and 
+                // we don't want to cause two separate API requests to happen
+                var columnOrDirectionChange = debounce(notifyPageTracking, 100);
+
+                var textChange = debounce(notifyPageTracking, 500);
+
+                var ifChanged = function (fn) {
+                    return function (newVal,  oldVal) {
+                        if (newVal !== oldVal) {
+                            fn();
+                        }
+                    };
+                };
+                // Whenever the filter text changes (modulo a debounce), tell
+                // the PageTracker that it should go grab new items
+                if (!_.isUndefined(scope.filterText)) {
+                    scope.$watch('filterText', ifChanged(textChange));
+                }
+
+                if (!_.isUndefined(scope.sortColumn)) {
+                    scope.$watch('sortColumn', ifChanged(columnOrDirectionChange));
+                }
+                if (!_.isUndefined(scope.sortDirection)) {
+                    scope.$watch('sortDirection', ifChanged(columnOrDirectionChange));
+                }
+
+                notifyPageTracking();
+
+            }
+
+        }
+    };
+}])
+
+/**
+ *
+ * @ngdoc directive
+ * @name encore.ui.rxPaginate:rxLoadingOverlay
+ * @restrict A
+ * @description
+ * This directive can be used to show and hide a "loading" overlay on top
+ * of any given element. Add this as an attribute to your element, and then
+ * other sibling or child elements can require this as a controller.
+ *
+ * @method show - Shows the overlay
+ * @method hide - Hides the overlay
+ * @method showAndHide(promise) - Shows the overlay, and automatically
+ * hides it when the given promise either resolves or rejects
+ */
+.directive('rxLoadingOverlay', ["$compile", "rxDOMHelper", function ($compile, rxDOMHelper) {
+    var loadingBlockHTML = '<div ng-show="showLoadingOverlay" class="loading-overlay">' +
+                                '<div class="loading-text-wrapper">' +
+                                    '<i class="fa fa-fw fa-lg fa-spin fa-circle-o-notch"></i>' +
+                                    '<div class="loading-text">Loading...</div>' +
+                                '</div>' +
+                            '</div>';
+
+    return {
+        restrict: 'A',
+        scope: true,
+        controller: ["$scope", "$element", function ($scope, $element) {
+            this.show = function () {
+                var offset = rxDOMHelper.offset($element);
+                var width = rxDOMHelper.width($element);
+                var height = rxDOMHelper.height($element);
+                if (!_.isUndefined($scope.loadingBlock)) {
+                    $scope.loadingBlock.css({
+                        top: offset.top + 'px',
+                        left: offset.left + 'px',
+                        width: width,
+                        height: height,
+                    });
+                }
+                $scope.showLoadingOverlay = true;
+            };
+
+            this.hide = function () {
+                $scope.showLoadingOverlay = false;
+            };
+
+            this.showAndHide = function (promise) {
+                this.show();
+                promise.finally(this.hide);
+            };
+        }],
+        link: function (scope, element) {
+            // This target element has to have `position: relative` otherwise the overlay
+            // will not sit on top of it
+            element.css({ position: 'relative' });
+            scope.showLoadingOverlay = false;
+
+            $compile(loadingBlockHTML)(scope, function (clone) {
+                scope.loadingBlock = clone;
+                element.after(clone);
+            });
         }
     };
 }])
@@ -3908,7 +4067,7 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
 * the pagination or not.
 *
 * @method createInstance This is used to generate the instance of the
-* PageTracking object. Enables the ability to override default settings.
+* PageTracking object. Enables the ability to override default pager.
 * If you choose to override the default `itemsPerPage`, and it isn't
 * a value in itemSizeList, then it will automatically be added to itemSizeList
 * at the right spot.
@@ -3923,10 +4082,10 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
 * PageTracking.createInstance({showAll: true, itemsPerPage: 15});
 * </pre>
 */
-.factory('PageTracking', ["LocalStorage", function (LocalStorage) {
+.factory('PageTracking', ["$q", "LocalStorage", "rxPaginateUtils", function ($q, LocalStorage, rxPaginateUtils) {
 
     function PageTrackingObject (opts) {
-        this.settings = _.defaults(_.cloneDeep(opts), {
+        var pager = _.defaults(_.cloneDeep(opts), {
             itemsPerPage: 200,
             pagesToShow: 5,
             pageNumber: 0,
@@ -3936,8 +4095,13 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
             itemSizeList: [50, 200, 350, 500]
         });
 
-        var itemsPerPage = this.settings.itemsPerPage;
-        var itemSizeList = this.settings.itemSizeList;
+        // This holds all the items we've received. For UI pagination,
+        // this will be the entire set. For API pagination, this will be
+        // whatever chunk of data the API decided to send us
+        pager.localItems = [];
+
+        var itemsPerPage = pager.itemsPerPage;
+        var itemSizeList = pager.itemSizeList;
 
         // If itemSizeList doesn't contain the desired itemsPerPage,
         // then find the right spot in itemSizeList and insert the
@@ -3952,15 +4116,176 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
         // If the user has chosen a desired itemsPerPage, make sure we're respecting that
         // However, a value specified in the options will take precedence
         if (!opts.itemsPerPage && !_.isNaN(selectedItemsPerPage) && _.contains(itemSizeList, selectedItemsPerPage)) {
-            this.settings.itemsPerPage = selectedItemsPerPage;
+            pager.itemsPerPage = selectedItemsPerPage;
         }
+        
+        Object.defineProperties(pager, {
+            'items': {
+                // This returns the slice of data for whatever current page the user is on.
+                // It is used for server-side pagination.
+                get: function () {
+                    var info = rxPaginateUtils.firstAndLast(pager.pageNumber, pager.itemsPerPage, pager.total);
+                    return pager.localItems.slice(info.first - pager.cacheOffset, info.last - pager.cacheOffset);
+                }
+            },
+
+            'totalPages': {
+                get: function () { return Math.ceil(pager.total / pager.itemsPerPage); }
+            }
+        });
+
+        function updateCache (pager, pageNumber, localItems) {
+            var numberOfPages = Math.floor(localItems.length / pager.itemsPerPage);
+            var cachedPages = numberOfPages ? _.range(pageNumber, pageNumber + numberOfPages) : [pageNumber];
+            pager.cachedPages = !_.isEmpty(cachedPages) ? cachedPages : [pageNumber];
+            pager.cacheOffset = pager.cachedPages[0] * pager.itemsPerPage;
+        }
+
+        updateCache(pager, 0, pager.localItems);
+        
+        var updateItems = function (pageNumber) {
+            // This is the function that gets used when doing UI pagination,
+            // thus we're not waiting for the pageNumber to come back from a service,
+            // so we should set it right away. We can also return an empty items list,
+            // because for UI pagination, the items themselves come in through the Pagination
+            // filter
+            pager.pageNumber = pageNumber;
+            var data = {
+                items: [],
+                pageNumber: pageNumber,
+                totalNumberOfItems: pager.total
+            };
+            return $q.when(data);
+        };
+        pager.updateItemsFn = function (fn) {
+            updateItems = fn;
+        };
+
+        // Used by rxPaginate to tell the pager that it should grab
+        // new items from itemsPromise, where itemsPromise is the promise
+        // returned by a product's getItems() method.
+        // Set shouldUpdateCache to false if the pager should not update its cache with these values
+        pager.newItems = function (itemsPromise, shouldUpdateCache) {
+            if (_.isUndefined(shouldUpdateCache)) {
+                shouldUpdateCache = true;
+            }
+            return itemsPromise.then(function (data) {
+                pager.pageNumber = data.pageNumber;
+                pager.localItems = data.items;
+                pager.total = data.totalNumberOfItems;
+                if (shouldUpdateCache) {
+                    updateCache(pager, pager.pageNumber, data.items);
+                }
+                return data;
+            });
+        };
+
+        // 0-based page number
+        // opts: An object containing:
+        //  forceCacheUpdate: true/false, whether or not to flush the cache
+        //  itemsPerPage: If specificed, request this many items for the page, instead of
+        //                using pager.itemsPerPage
+        pager.goToPage = function (n, opts) {
+            opts = opts || {};
+            var shouldUpdateCache = true;
+
+            // If the desired page number is currently cached, then just reuse
+            // our `localItems` cache, rather than going back to the API.
+            // By setting `updateCache` to false, it ensures that the current
+            // pager.cacheOffset and pager.cachedPages values stay the
+            // same
+            if (!opts.forceCacheUpdate && _.contains(pager.cachedPages, n)) {
+                shouldUpdateCache = false;
+                return pager.newItems($q.when({
+                    pageNumber: n,
+                    items: pager.localItems,
+                    totalNumberOfItems: pager.total
+                }), shouldUpdateCache);
+            }
+
+            var itemsPerPage = opts.itemsPerPage || pager.itemsPerPage;
+            return pager.newItems(updateItems(n, itemsPerPage), shouldUpdateCache);
+        };
+
+        // This tells the pager to go to the current page, but ensure no cached
+        // values are used. Can be used by page controllers when they want
+        // to force an update
+        pager.refresh = function (stayOnCurrentPage) {
+            var pageNumber = stayOnCurrentPage ? pager.currentPage() : 0;
+            return pager.goToPage(pageNumber, { forceCacheUpdate: true });
+        };
+
+        pager.isFirstPage = function () {
+            return pager.isPage(0);
+        };
+
+        pager.isLastPage = function () {
+            return pager.isPage(pager.totalPages - 1);
+        };
+
+        pager.isPage = function (n) {
+            return pager.pageNumber === n;
+        };
+        
+        pager.isPageNTheLastPage = function (n) {
+            return pager.totalPages - 1 === n;
+        };
+        
+        pager.currentPage = function () {
+            return pager.pageNumber;
+        };
+
+        pager.goToFirstPage = function () {
+            pager.goToPage(0);
+        };
+
+        pager.goToLastPage = function () {
+            pager.goToPage(_.max([0, pager.totalPages - 1]));
+        };
+
+        pager.goToPrevPage = function () {
+            pager.goToPage(pager.currentPage() - 1);
+        };
+
+        pager.goToNextPage = function () {
+            pager.goToPage(pager.currentPage() + 1);
+        };
+
+        pager.isEmpty = function () {
+            return pager.total === 0;
+        };
+
+        pager.setItemsPerPage = function (numItems) {
+            var opts = {
+                forceCacheUpdate: true,
+                itemsPerPage: numItems
+            };
+            return pager.goToPage(0, opts).then(function (data) {
+                // Wait until we get the data back from the API before we
+                // update itemsPerPage. This ensures that we don't show
+                // a "weird" number of items in a table
+                pager.itemsPerPage = numItems;
+                // Now that we've "officially" changed the itemsPerPage,
+                // we have to update all the cache values
+                updateCache(pager, data.pageNumber, data.items);
+            });
+        };
+
+        pager.isItemsPerPage = function (numItems) {
+            return pager.itemsPerPage === numItems;
+        };
+
+        this.pager = pager;
+
+        pager.goToPage(pager.pageNumber);
+
     }
 
     return {
         createInstance: function (options) {
             options = options ? options : {};
             var tracking = new PageTrackingObject(options);
-            return tracking.settings;
+            return tracking.pager;
         },
 
         userSelectedItemsPerPage: function (itemsPerPage) {
@@ -3983,7 +4308,7 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
 *
 * @returns {Object} The list of items for the current page in the PageTracking object
 */
-.filter('Paginate', ["PageTracking", function (PageTracking) {
+.filter('Paginate', ["PageTracking", "rxPaginateUtils", function (PageTracking, rxPaginateUtils) {
     return function (items, pager) {
         if (!pager) {
             pager = PageTracking.createInstance();
@@ -3993,9 +4318,8 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
             return items;
         }
         if (items) {
+            
             pager.total = items.length;
-            pager.totalPages = Math.ceil(pager.total / pager.itemsPerPage);
-
             // We were previously on the last page, but enough items were deleted
             // to reduce the total number of pages. We should now jump to whatever the
             // new last page is
@@ -4003,20 +4327,53 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
             // will have totalPages===0. We do the _.max to ensure that
             // we never set pageNumber to -1
             if (pager.pageNumber + 1 > pager.totalPages) {
-                pager.pageNumber = _.max([0, pager.totalPages - 1]);
+                pager.goToLastPage();
             }
-
-            var first = pager.pageNumber * pager.itemsPerPage;
-            var added = first + pager.itemsPerPage;
-            var last = (added > items.length) ? items.length : added;
-
-            pager.first = first + 1;
-            pager.last = last;
-
-            return items.slice(first, last);
+            var firstLast = rxPaginateUtils.firstAndLast(pager.currentPage(), pager.itemsPerPage, items.length);
+            return items.slice(firstLast.first, firstLast.last);
         }
     };
 }])
+
+/**
+*
+* @ngdoc service
+* @name encore.ui.rxPaginate:rxPaginateUtils
+* @description
+* A few utilities
+*/
+.factory('rxPaginateUtils', function () {
+    var rxPaginateUtils = {};
+
+    rxPaginateUtils.firstAndLast = function (pageNumber, itemsPerPage, totalNumItems) {
+        var first = pageNumber * itemsPerPage;
+        var added = first + itemsPerPage;
+        var last = (added > totalNumItems) ? totalNumItems : added;
+
+        return {
+            first: first,
+            last: last,
+        };
+        
+    };
+
+    // Given the user requested pageNumber and itemsPerPage, and the number of items we'll
+    // ask a paginated API for (serverItemsPerPage), calculate what page number the API
+    // should be asked for, how and far of an offset to use to slice into the returned items.
+    // It is expected that authors of getItems() functions will use this, and do the slice themselves
+    // before resolving getItems()
+    rxPaginateUtils.calculateApiVals = function (pageNumber, itemsPerPage, serverItemsPerPage) {
+        var serverPageNumber = Math.floor(pageNumber * itemsPerPage / serverItemsPerPage);
+        var offset = pageNumber * itemsPerPage - serverItemsPerPage * serverPageNumber;
+
+        return {
+            serverPageNumber: serverPageNumber,
+            offset: offset
+        };
+    };
+
+    return rxPaginateUtils;
+})
 
 /**
  * @ngdoc filter
@@ -4030,19 +4387,20 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
  *
  * @returns {String} The list of page numbers that will be displayed.
  */
-.filter('PaginatedItemsSummary', function () {
+.filter('PaginatedItemsSummary', ["rxPaginateUtils", function (rxPaginateUtils) {
     return function (pager) {
         var template = '<%= first %>-<%= last %> of <%= total %>';
         if (pager.showAll || pager.itemsPerPage > pager.total) {
             template = '<%= total %>';
         }
+        var firstAndLast = rxPaginateUtils.firstAndLast(pager.currentPage(), pager.itemsPerPage, pager.total);
         return _.template(template, {
-            first: pager.first,
-            last: pager.last,
+            first: firstAndLast.first + 1,
+            last: firstAndLast.last,
             total: pager.total
         });
     };
-})
+}])
 /**
 *
 * @ngdoc filter
@@ -4086,6 +4444,36 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage'])
     };
 
 }]);
+
+angular.module('encore.ui.rxSearchBox', [])
+.directive('rxSearchBox', function () {
+    return {
+        restrict: 'E',
+        require: 'ngModel',
+        templateUrl: 'templates/rxSearchBox.html',
+        scope: {
+            searchVal: '=ngModel',
+            isDisabled: '@ngDisabled',
+            rxPlaceholder: '=?'
+        },
+        controller: ["$scope", function ($scope) {
+            $scope.searchVal = $scope.searchVal || '';
+            $scope.rxPlaceholder = $scope.rxPlaceholder || 'Search...';
+
+            $scope.$watch('searchVal', function (newVal) {
+                if ($scope.isDisabled) {
+                    $scope.isClearable = false;
+                } else {
+                    $scope.isClearable = newVal.toString() !== '';
+                }
+            });
+
+            $scope.clearSearch = function () {
+                $scope.searchVal = '';
+            };
+        }]
+    };
+});
 
 /*jshint proto:true*/
 angular.module('encore.ui.rxSessionStorage', [])
@@ -4701,6 +5089,71 @@ angular.module('encore.ui.rxToggle', [])
     };
 });
 
+angular.module('encore.ui.rxToggleSwitch', [])
+/**
+ *
+ * @ngdoc directive
+ * @name encore.ui.rxToggleSwitch:rxToggleSwitch
+ * @restrict E
+ * @description
+ * Displays an on/off switch toggle
+ *
+ * @paran {string} [ng-model] The scope property to bind to
+ * @param {boolean} [disabled] Indicates if the input is disabled
+ * @param {function} [postHook] A function to run when the switch is toggled
+ * @param {expression} [trueValue=true] The value of the scope property when the switch is on
+ * @param {expression} [falseValue=false] The value of the scope property when the switch is off
+ *
+ * @example
+ * <pre>
+ *     <rx-toggle-switch ng-model="foo"></rx-toggle-switch>
+ * </pre>
+ */
+.directive('rxToggleSwitch', function () {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxToggleSwitch.html',
+        require: 'ngModel',
+        scope: {
+            model: '=ngModel',
+            disabled: '=?',
+            postHook: '&',
+            trueValue: '@',
+            falseValue: '@'
+        },
+        link: function (scope, element, attrs, ngModelCtrl) {
+            var trueValue = _.isUndefined(scope.trueValue) ? true : scope.trueValue;
+            var falseValue = _.isUndefined(scope.falseValue) ? false : scope.falseValue;
+
+            if (_.isUndefined(scope.model) || scope.model !== trueValue) {
+                scope.model = falseValue;
+            }
+
+            ngModelCtrl.$formatters.push(function (value) {
+                return value === trueValue;
+            });
+
+            ngModelCtrl.$parsers.push(function (value) {
+                return value ? trueValue : falseValue;
+            });
+
+            ngModelCtrl.$render = function () {
+                scope.state = ngModelCtrl.$viewValue ? 'ON' : 'OFF';
+            };
+
+            scope.update = function () {
+                if (scope.disabled) {
+                    return;
+                }
+
+                ngModelCtrl.$setViewValue(!ngModelCtrl.$viewValue);
+                ngModelCtrl.$render();
+                scope.postHook({ value: ngModelCtrl.$modelValue });
+            };
+        }
+    };
+});
+
 angular.module('encore.ui.rxTokenInterceptor', ['encore.ui.rxSession'])
     /**
     *
@@ -4790,3 +5243,158 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', ['encore.ui.rxSession'])
 
         return svc;
     }]);
+
+angular.module("templates/rxAccountInfo.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAccountInfo.html",
+    "<div class=\"rx-account-info\"><rx-info-panel panel-title=\"Account Info\"><div class=\"account-info-wrapper\"><div class=\"account-info-label\">Account Name</div><div class=\"account-info-data\"><a href=\"{{ accountPageUrl }}\" target=\"_blank\">{{ accountName }}</a></div></div><div class=\"account-info-wrapper\"><div class=\"account-info-label\">Account #</div><div class=\"account-info-data\"><a href=\"{{ accountPageUrl }}\" target=\"_blank\">{{ accountNumber }}</a></div></div><div class=\"account-info-wrapper\"><div class=\"account-info-label\">Badges</div><div class=\"account-info-data\"><img ng-repeat=\"badge in badges\" ng-src=\"{{badge.url}}\" data-name=\"{{badge.name}}\" data-description=\"{{badge.description}}\" tooltip-html-unsafe=\"{{tooltipHtml(badge)}}\" tooltip-placement=\"bottom\"></div></div><div class=\"account-info-wrapper\" ng-transclude></div></rx-info-panel></div>");
+}]);
+
+angular.module("templates/rxAccountInfoBanner.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAccountInfoBanner.html",
+    "<div class=\"account-info-banner\"><ul class=\"account-info-text\"><li><div class=\"label\">Account Name:</div><div class=\"account-data\"><a href=\"{{ accountPageUrl }}\" target=\"_blank\">{{ accountName }}</a></div></li><li><div class=\"label\">Account #:</div><div class=\"account-data\"><a href=\"{{ accountPageUrl }}\" target=\"_blank\">{{ accountNumber }}</a></div></li><li><div class=\"label\">Account Status:</div><div class=\"account-data {{ statusClass }} account-status\">{{ accountStatus }}</div></li><li ng-if=\"showCurrentUser\"><div class=\"label\">Current User:</div><div class=\"account-data\"><rx-account-users></rx-account-users></div></li><li class=\"badges\" ng-repeat=\"badge in badges\"><div class=\"account-info-badge\"><img ng-src=\"{{badge.url}}\" data-name=\"{{badge.name}}\" data-description=\"{{badge.description}}\" tooltip-html-unsafe=\"{{tooltipHtml(badge)}}\" tooltip-placement=\"bottom\"></div></li></ul></div>");
+}]);
+
+angular.module("templates/rxActionMenu.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxActionMenu.html",
+    "<div class=\"action-menu-container\"><i ng-click=\"toggle()\" class=\"fa fa-cog fa-lg\"></i><div ng-show=\"displayed\" ng-click=\"modalToggle()\" class=\"action-list action-list-hideable\" ng-transclude></div></div>");
+}]);
+
+angular.module("templates/rxActiveUrl.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxActiveUrl.html",
+    "<li ng-class=\"{ selected: navActive }\" ng-transclude></li>");
+}]);
+
+angular.module("templates/rxAccountSearch.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAccountSearch.html",
+    "<div class=\"rx-app-search\"><form name=\"search\" role=\"search\" ng-submit=\"fetchAccount(model)\"><input type=\"text\" placeholder=\"Search by Account Number or Username...\" ng-model=\"model\" class=\"form-item search-input\" ng-required ng-pattern=\"/^([0-9a-zA-Z._ -]{2,})$/\"> <button type=\"submit\" class=\"search-action\" ng-disabled=\"!search.$valid\"><span class=\"visually-hidden\">Search</span></button></form></div>");
+}]);
+
+angular.module("templates/rxAccountUsers.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAccountUsers.html",
+    "<span ng-if=\"isCloudProduct\" class=\"account-users field-select\"><select ng-model=\"currentUser\" ng-options=\"user.username as user.username for user in users\" ng-change=\"switchUser(currentUser)\"></select></span>");
+}]);
+
+angular.module("templates/rxApp.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxApp.html",
+    "<div class=\"warning-bar rx-notifications\" ng-class=\"{preprod: isPreProd}\" ng-if=\"isWarning\"><div class=\"rx-notification notification-warning\"><span class=\"notification-text\">{{ warningMessage }}</span></div></div><div class=\"rx-app\" ng-class=\"{collapsible: collapsibleNav === 'true', collapsed: collapsedNav, 'warning-bar': isWarning, preprod: isPreProd}\" ng-cloak><nav class=\"rx-app-menu\"><header class=\"site-branding\"><h1 class=\"site-title\">{{ siteTitle || 'Encore' }}</h1><button class=\"collapsible-toggle btn-link\" ng-if=\"collapsibleNav === 'true'\" rx-toggle=\"$parent.collapsedNav\" title=\"{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu\"><span class=\"visually-hidden\">{{ (collapsedNav) ? 'Show' : 'Hide' }} Main Menu</span><div class=\"double-chevron\" ng-class=\"{'double-chevron-left': !collapsedNav}\"></div></button><div class=\"site-options\"><button class=\"btn-link site-option site-logout\" rx-logout=\"{{logoutUrl}}\">Logout <span ng-if=\"userId\">({{ userId }})</span></button></div></header><nav class=\"rx-app-nav\"><div ng-repeat=\"section in routes\" class=\"nav-section nav-section-{{ section.type || 'all' }}\"><h2 class=\"nav-section-title\">{{ section.title }}</h2><rx-app-nav items=\"section.children\" level=\"1\"></rx-app-nav></div></nav><div class=\"rx-app-help clearfix\"><rx-feedback ng-if=\"!hideFeedback\"></rx-feedback></div></nav><div class=\"rx-app-content\" ng-transclude></div></div>");
+}]);
+
+angular.module("templates/rxAppNav.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAppNav.html",
+    "<div class=\"rx-app-nav rx-app-nav-level-{{level}}\"><ul class=\"rx-app-nav-group\"><rx-app-nav-item ng-repeat=\"item in items\" item=\"item\"></rx-app-nav-item></ul></div>");
+}]);
+
+angular.module("templates/rxAppNavItem.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAppNavItem.html",
+    "<li class=\"rx-app-nav-item\" ng-show=\"isVisible(item.visibility)\" ng-class=\"{'has-children': item.children.length > 0, active: item.active, 'rx-app-key-{{ item.key }}': item.key }\"><a href=\"{{ item.url }}\" class=\"item-link\" ng-click=\"toggleNav($event, item.href)\">{{item.linkText}}</a><div class=\"item-content\" ng-show=\"item.active && (item.directive || item.children)\"><div class=\"item-directive\" ng-show=\"item.directive\"></div><div class=\"item-children\" ng-show=\"item.children && isVisible(item.childVisibility)\"><div class=\"child-header\" ng-if=\"item.childHeader\" rx-compile=\"item.childHeader\"></div></div></div></li>");
+}]);
+
+angular.module("templates/rxAppSearch.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxAppSearch.html",
+    "<div class=\"rx-app-search\"><form role=\"search\" ng-submit=\"submit(model)\"><input type=\"text\" placeholder=\"{{ placeholder }}\" ng-model=\"model\" class=\"form-item search-input\" ng-required rx-attributes=\"{'ng-pattern': pattern}\"> <button type=\"submit\" class=\"search-action\"><span class=\"visually-hidden\">Search</span></button></form></div>");
+}]);
+
+angular.module("templates/rxBillingSearch.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxBillingSearch.html",
+    "<div class=\"rx-app-search\"><form name=\"search\" role=\"search\" ng-submit=\"fetchAccounts(model)\"><fieldset><input type=\"text\" ng-attr-placeholder=\"Search by {{ placeholder }}\" ng-model=\"model\" class=\"form-item search-input\" ng-required> <button type=\"submit\" class=\"search-action\" ng-disabled=\"!search.$valid\"><span class=\"visually-hidden\">Search</span></button></fieldset><fieldset><ul><li class=\"search-option\"><label for=\"transaction\"><input id=\"transaction\" type=\"radio\" value=\"bsl\" ng-model=\"searchType\"> Transaction/Auth ID</label></li><li class=\"search-option\"><label for=\"account\"><input id=\"account\" type=\"radio\" value=\"cloud\" ng-model=\"searchType\"> Account/Contact Info</label></li></ul></fieldset></form></div>");
+}]);
+
+angular.module("templates/rxPage.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxPage.html",
+    "<div class=\"rx-page\"><header class=\"page-header clearfix\"><rx-breadcrumbs status=\"{{ status }}\"></rx-breadcrumbs><rx-account-info ng-if=\"accountNumber\" account-info-banner=\"true\" account-number=\"{{ accountNumber }}\" team-id=\"{{ teamId }}\"></rx-account-info></header><div class=\"page-body\"><rx-notifications></rx-notifications><div class=\"page-titles\" ng-if=\"title.length > 0 || unsafeHtmlTitle.length > 0 || subtitle.length > 0\"><h2 class=\"page-title title lg\" ng-if=\"title.length > 0\"><span ng-bind=\"title\"></span><rx-status-tag status=\"{{ status }}\"></rx-status-tag></h2><h2 class=\"page-title title lg\" ng-if=\"unsafeHtmlTitle.length > 0\"><span ng-bind-html=\"unsafeHtmlTitle\"></span><rx-status-tag status=\"{{ status }}\"></rx-status-tag></h2><h3 class=\"page-subtitle title subdued\" ng-bind-html=\"subtitle\" ng-if=\"subtitle.length > 0\"></h3></div><div class=\"page-content\" ng-transclude></div></div></div>");
+}]);
+
+angular.module("templates/rxPermission.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxPermission.html",
+    "<div class=\"rxPermission\" ng-if=\"hasRole(role)\" ng-transclude></div>");
+}]);
+
+angular.module("templates/rxBreadcrumbs.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxBreadcrumbs.html",
+    "<ol class=\"rx-breadcrumbs\"><li ng-repeat=\"breadcrumb in breadcrumbs.getAll(status)\" class=\"breadcrumb\"><ng-switch on=\"$last\"><span ng-switch-when=\"true\" class=\"breadcrumb-name last\"><span ng-bind-html=\"breadcrumb.name\"></span><rx-status-tag status=\"{{ breadcrumb.status }}\"></rx-status-tag></span> <span ng-switch-default><a href=\"{{breadcrumb.path}}\" ng-class=\"{first: $first}\" class=\"breadcrumb-name\"><span ng-bind-html=\"breadcrumb.name\"></span><rx-status-tag status=\"{{ breadcrumb.status }}\"></rx-status-tag></a></span></ng-switch></li></ol>");
+}]);
+
+angular.module("templates/rxButton.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxButton.html",
+    "<button type=\"submit\" class=\"button rx-button {{classes}}\" ng-disabled=\"toggle || disable\">{{ toggle ? toggleMsg : defaultMsg }}<div class=\"spinner\" ng-show=\"toggle\"><i class=\"pos1\"></i> <i class=\"pos2\"></i> <i class=\"pos3\"></i></div></button>");
+}]);
+
+angular.module("templates/feedbackForm.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/feedbackForm.html",
+    "<rx-modal-form title=\"Submit Feedback\" subtitle=\"for page: {{ currentUrl }}\" submit-text=\"Send Feedback\" class=\"rx-feedback-form\"><rx-form-item label=\"Report Type\"><select ng-model=\"fields.type\" ng-options=\"opt as opt.label for opt in feedbackTypes\" ng-init=\"fields.type = feedbackTypes[0]\" required></select></rx-form-item><rx-form-item label=\"{{fields.type.prompt}}\" ng-show=\"fields.type\" class=\"feedback-description\"><textarea placeholder=\"{{fields.type.placeholder}}\" required ng-model=\"fields.description\" class=\"feedback-textarea\"></textarea></rx-form-item></rx-modal-form>");
+}]);
+
+angular.module("templates/rxFeedback.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxFeedback.html",
+    "<div class=\"rx-feedback\"><rx-modal-action post-hook=\"sendFeedback(fields)\" template-url=\"templates/feedbackForm.html\">Submit Feedback</rx-modal-action></div>");
+}]);
+
+angular.module("templates/rxFormFieldset.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxFormFieldset.html",
+    "<div class=\"form-item rx-form-fieldset\"><fieldset><legend class=\"field-legend\">{{legend}}:</legend><div class=\"field-input\" ng-transclude></div><span ng-if=\"description\" class=\"field-description\" ng-bind-html=\"description\"></span></fieldset></div>");
+}]);
+
+angular.module("templates/rxFormItem.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxFormItem.html",
+    "<div class=\"form-item\" ng-class=\"{'text-area-label': isTextArea}\"><label class=\"field-label\">{{label}}:</label><div class=\"field-content\"><span class=\"field-prefix\" ng-if=\"prefix\">{{prefix}}</span> <span class=\"field-input-wrapper\" ng-transclude></span><div ng-if=\"description\" class=\"field-description\" ng-bind-html=\"description\"></div></div></div>");
+}]);
+
+angular.module("templates/rxFormOptionTable.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxFormOptionTable.html",
+    "<div class=\"form-item\"><table class=\"table-striped option-table\" ng-show=\"data.length > 0 || emptyMessage \"><thead><tr><th></th><th ng-repeat=\"column in columns\" scope=\"col\">{{column.label}}</th></tr></thead><tr ng-repeat=\"row in data\" ng-class=\"{current: isCurrent(row.value), selected: isSelected(row.value, $index), disabled: checkDisabled(row)}\"><td class=\"option-table-input\" ng-switch=\"type\"><label><input type=\"radio\" ng-switch-when=\"radio\" id=\"{{fieldId}}_{{$index}}\" ng-model=\"$parent.$parent.model\" value=\"{{row.value}}\" name=\"{{fieldId}}\" ng-disabled=\"checkDisabled(row)\" rx-attributes=\"{'ng-required': required}\"> <input type=\"checkbox\" ng-switch-when=\"checkbox\" id=\"{{fieldId}}_{{$index}}\" ng-model=\"$parent.modelProxy[$index]\" ng-change=\"updateCheckboxes($parent.modelProxy[$index], $index)\" ng-required=\"checkRequired()\"></label></td><td ng-repeat=\"column in columns\"><label for=\"{{column.label}}_{{$parent.$index}}\"><span ng-bind-html=\"getContent(column, row)\"></span> <span ng-show=\"isCurrent(row.value)\">{{column.selectedLabel}}</span></label></td></tr><tr ng-if=\"data.length === 0 && emptyMessage\"><td colspan=\"{{columns.length + 1}}\" class=\"empty-data\">{{emptyMessage}}</td></tr></table></div>");
+}]);
+
+angular.module("templates/rxInfoPanel.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxInfoPanel.html",
+    "<section class=\"info-panel\"><h3 class=\"info-title\">{{panelTitle}}</h3><div class=\"info-body\" ng-transclude></div></section>");
+}]);
+
+angular.module("templates/rxModalAction.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxModalAction.html",
+    "<span class=\"modal-link-container rx-modal-action\"><a href=\"#\" class=\"modal-link {{classes}}\" ng-click=\"showModal($event)\" ng-transclude></a></span>");
+}]);
+
+angular.module("templates/rxModalActionForm.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxModalActionForm.html",
+    "<div class=\"modal-header\"><h3 class=\"modal-title\">{{title}}</h3><h4 class=\"modal-subtitle\" ng-if=\"subtitle\">{{subtitle}}</h4><button class=\"modal-close btn-link\" ng-click=\"$parent.cancel()\"><span class=\"visually-hidden\">Close Window</span></button></div><div class=\"modal-body\"><div ng-show=\"$parent.isLoading\" class=\"loading\" rx-spinner=\"dark\" toggle=\"$parent.isLoading\"></div><form ng-hide=\"$parent.isLoading\" name=\"$parent.modalActionForm\" class=\"modal-form rx-form\" ng-transclude></form></div><div class=\"modal-footer\"></div>");
+}]);
+
+angular.module("templates/rxModalFooters.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxModalFooters.html",
+    "<rx-modal-footer state=\"editing\" global><button class=\"button submit\" ng-click=\"submit()\" type=\"submit\" ng-disabled=\"$parent.modalActionForm.$invalid\">{{submitText || \"Submit\"}}</button> <button class=\"button cancel\" ng-click=\"cancel()\">{{cancelText || \"Cancel\"}}</button></rx-modal-footer><rx-modal-footer state=\"complete\" global><button class=\"button finish\" ng-click=\"cancel()\">{{returnText || \"Finish &amp; Close\"}}</button></rx-modal-footer>");
+}]);
+
+angular.module("templates/rxNotification.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxNotification.html",
+    "<div class=\"rx-notifications\"><div class=\"rx-notification notification-{{type}}\"><span class=\"notification-text\" ng-transclude></span></div></div>");
+}]);
+
+angular.module("templates/rxNotifications.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxNotifications.html",
+    "<div class=\"rx-notifications\" ng-show=\"messages.length > 0\"><div ng-repeat=\"message in messages\" class=\"rx-notification animate-fade notification-{{message.type}}\" ng-class=\"{'notification-loading': message.loading}\" rx-spinner toggle=\"message.loading\" ng-init=\"loading = message.loading\"><span class=\"notification-text\" ng-bind-html=\"message.text\"></span> <button ng-click=\"dismiss(message)\" class=\"notification-dismiss btn-link\" ng-if=\"message.dismissable && !message.loading\">&times; <span class=\"visually-hidden\">Dismiss Message</span></button></div></div>");
+}]);
+
+angular.module("templates/rxPaginate.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxPaginate.html",
+    "<div class=\"rx-paginate\" ng-switch=\"loadingState\"><ul ng-switch-when=\"loading\" class=\"loading-row\"><li><span class=\"page-link\" style=\"z-index: 5; position: relative\">Loading...<span class=\"fa fa-fw fa-sm fa-spin fa-circle-o-notch\"></span></span></li></ul><ul ng-switch-default class=\"pagination\"><li><a tabindex=\"0\" ng-click=\"scrollToTop()\">Back to top</a></li><li>Showing {{ pageTracking | PaginatedItemsSummary}} items</li><span class=\"page-links\"><li ng-class=\"{disabled: pageTracking.isFirstPage()}\" class=\"pagination-first\"><a ng-click=\"pageTracking.goToFirstPage()\" ng-hide=\"pageTracking.isFirstPage()\">First</a> <span ng-show=\"pageTracking.isFirstPage()\">First</span></li><li ng-class=\"{disabled: pageTracking.isFirstPage()}\" class=\"pagination-prev\"><a ng-click=\"pageTracking.goToPrevPage()\" ng-hide=\"pageTracking.isFirstPage()\">« Prev</a> <span ng-show=\"pageTracking.isFirstPage()\">« Prev</span></li><li ng-repeat=\"n in pageTracking | Page\" ng-class=\"{active: pageTracking.isPage(n), 'page-number-last': pageTracking.isPageNTheLastPage(n)}\" class=\"pagination-page\"><a ng-click=\"pageTracking.goToPage(n)\">{{n + 1}}</a></li><li ng-class=\"{disabled: pageTracking.isLastPage() || pageTracking.isEmpty()}\" class=\"pagination-next\"><a ng-click=\"pageTracking.goToNextPage()\" ng-hide=\"pageTracking.isLastPage() || pageTracking.isEmpty()\">Next »</a> <span ng-show=\"pageTracking.isLastPage()\">Next »</span></li><li ng-class=\"{disabled: pageTracking.isLastPage()}\" class=\"pagination-last\"><a ng-click=\"pageTracking.goToLastPage()\" ng-hide=\"pageTracking.isLastPage()\">Last</a> <span ng-show=\"pageTracking.isLastPage()\">Last</span></li></span><li class=\"pagination-per-page\"><div>Show<ul><li ng-repeat=\"i in pageTracking.itemSizeList\"><button ng-disabled=\"pageTracking.isItemsPerPage(i)\" class=\"pagination-per-page-button\" ng-disabled=\"i == pageTracking.itemsPerPage\" ng-click=\"updateItemsPerPage(i)\">{{ i }}</button></li></ul></div></li></ul></div>");
+}]);
+
+angular.module("templates/rxSearchBox.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxSearchBox.html",
+    "<div class=\"rxSearchBox-wrapper\"><input type=\"text\" class=\"rxSearchBox-input\" placeholder=\"{{rxPlaceholder}}\" ng-disabled=\"{{isDisabled}}\" ng-model=\"searchVal\"> <span class=\"rxSearchBox-clear\" ng-if=\"isClearable\" ng-click=\"clearSearch()\"><i class=\"rxSearchBox-clear-icon fa fa-fw fa-times-circle\"></i></span></div>");
+}]);
+
+angular.module("templates/rxSortableColumn.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxSortableColumn.html",
+    "<div class=\"rx-sortable-column\"><button class=\"sort-action btn-link\" ng-click=\"sortMethod({property:sortProperty})\"><span class=\"visually-hidden\">Sort by&nbsp;</span> <span ng-transclude></span> <i class=\"sort-icon\" ng-style=\"{visibility: predicate === '{{sortProperty}}' && 'visible' || 'hidden'}\" ng-class=\"{'desc': reverse, 'asc': !reverse}\"><span class=\"visually-hidden\">Sorted {{reverse ? 'ascending' : 'descending'}}</span></i></button></div>");
+}]);
+
+angular.module("templates/rxStatusColumn.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxStatusColumn.html",
+    "<span tooltip=\"{{ tooltipText }}\" tooltip-placement=\"top\"><i class=\"fa fa-lg {{ statusIcon }}\" title=\"{{ tooltipText }}\"></i></span>");
+}]);
+
+angular.module("templates/rxToggleSwitch.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("templates/rxToggleSwitch.html",
+    "<div class=\"rx-toggle-switch\" ng-class=\"{on: state === 'ON'}\" ng-click=\"update()\" ng-disabled=\"disabled\"><div class=\"knob\"></div><span>{{ state }}</span></div>");
+}]);

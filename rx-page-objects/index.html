@@ -11,6 +11,11 @@
 <li><a href="#encore.module_rxOptionFormTable.initialize">encore.rxOptionFormTable.initialize(rxOptionFormTableElement)</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_rxSearchBox">encore.rxSearchBox</a><ul>
+<li><a href="#encore.module_rxSearchBox.main">encore.rxSearchBox.main</a></li>
+<li><a href="#encore.module_rxSearchBox.initialize">encore.rxSearchBox.initialize(rxSearchBoxElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxSortableColumn">encore.rxSortableColumn</a><ul>
 <li><a href="#encore.module_rxSortableColumn.initialize">encore.rxSortableColumn.initialize(rxSortableColumnElement, [repeaterString])</a></li>
 <li><a href="#encore.module_rxSortableColumn.byTable">encore.rxSortableColumn.byTable(tableElement)</a></li>
@@ -24,8 +29,15 @@
 <li><a href="#encore.module_rxStatusColumn.colors">const: encore.rxStatusColumn.colors</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_rxToggleSwitch">encore.rxToggleSwitch</a><ul>
+<li><a href="#encore.module_rxToggleSwitch.main">encore.rxToggleSwitch.main</a></li>
+<li><a href="#encore.module_rxToggleSwitch.initialize">encore.rxToggleSwitch.initialize(rxToggleSwitchElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.exercise.module_rxCharacterCount">encore.exercise.rxCharacterCount</a></li>
 <li><a href="#encore.exercise.module_rxPaginate">encore.exercise.rxPaginate</a></li>
+<li><a href="#encore.exercise.module_rxSearchBox">encore.exercise.rxSearchBox</a></li>
+<li><a href="#encore.exercise.module_rxToggleSwitch">encore.exercise.rxToggleSwitch</a></li>
 </ul>
 <p><strong>Namespaces</strong></p>
 <ul>
@@ -101,6 +113,15 @@
 </li>
 </ul>
 </li>
+<li><a href="#rxSearchBox">rxSearchBox</a><ul>
+<li><a href="#rxSearchBox.term">rxSearchBox.term</a></li>
+<li><a href="#rxSearchBox.placeholder">rxSearchBox.placeholder</a></li>
+<li><a href="#rxSearchBox.isClearable">rxSearchBox.isClearable</a></li>
+<li><a href="#rxSearchBox.isSearchable">rxSearchBox.isSearchable</a></li>
+<li><a href="#rxSearchBox.isDisplayed">rxSearchBox.isDisplayed</a></li>
+<li><a href="#rxSearchBox.clear">rxSearchBox.clear()</a></li>
+</ul>
+</li>
 <li><a href="#rxSortableColumn">rxSortableColumn</a><ul>
 <li><a href="#rxSortableColumn.sort">rxSortableColumn.sort</a></li>
 <li><a href="#rxSortableColumn.data">rxSortableColumn.data</a></li>
@@ -123,6 +144,15 @@
 <li><a href="#rxStatusColumn.tooltip.text">tooltip.text</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#rxToggleSwitch">rxToggleSwitch</a><ul>
+<li><a href="#rxToggleSwitch.text">rxToggleSwitch.text</a></li>
+<li><a href="#rxToggleSwitch.isDisplayed">rxToggleSwitch.isDisplayed()</a></li>
+<li><a href="#rxToggleSwitch.isEnabled">rxToggleSwitch.isEnabled()</a></li>
+<li><a href="#rxToggleSwitch.enable">rxToggleSwitch.enable()</a></li>
+<li><a href="#rxToggleSwitch.isDisabled">rxToggleSwitch.isDisabled()</a></li>
+<li><a href="#rxToggleSwitch.disable">rxToggleSwitch.disable()</a></li>
 </ul>
 </li>
 </ul>
@@ -162,7 +192,25 @@
 <ul>
 <li>rxOptionFormTableElement <code>WebElement</code> - Web element to become an rxOptionFormTable object.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxOptionFormTable">rxOptionFormTable</a> - Page object representing the rxOptionFormTable object.<br><a name="encore.module_rxSortableColumn"></a></p>
+<p><strong>Returns</strong>: <a href="#rxOptionFormTable">rxOptionFormTable</a> - Page object representing the rxOptionFormTable object.<br><a name="encore.module_rxSearchBox"></a></p>
+<h1 id="encore-rxsearchbox">encore.rxSearchBox</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxSearchBox">encore.rxSearchBox</a><ul>
+<li><a href="#encore.module_rxSearchBox.main">encore.rxSearchBox.main</a></li>
+<li><a href="#encore.module_rxSearchBox.initialize">encore.rxSearchBox.initialize(rxSearchBoxElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxSearchBox.main"></a></p>
+<h2 id="encore-rxsearchbox-main">encore.rxSearchBox.main</h2>
+<p><strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the <em>first</em> rxSearchBox object found on the page.<br><a name="encore.module_rxSearchBox.initialize"></a></p>
+<h2 id="encore-rxsearchbox-initialize-rxsearchboxelement-">encore.rxSearchBox.initialize(rxSearchBoxElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxSearchBoxElement <code>WebElement</code> - WebElement to be transformed into an rxSearchBoxElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the rxSearchBox object.<br><a name="encore.module_rxSortableColumn"></a></p>
 <h1 id="encore-rxsortablecolumn">encore.rxSortableColumn</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -219,7 +267,25 @@ it(&#39;should sort the column ascending by default&#39;, function () {
 <h2 id="const-encore-rxstatuscolumn-icons">const: encore.rxStatusColumn.icons</h2>
 <p><strong>Returns</strong>: <code>Object</code> - Lookup of icon class names from a human-readable version.<br><a name="encore.module_rxStatusColumn.colors"></a></p>
 <h2 id="const-encore-rxstatuscolumn-colors">const: encore.rxStatusColumn.colors</h2>
-<p><strong>Returns</strong>: <code>Object</code> - Lookup of color class names from a human-readable class name.<br><a name="encore.exercise.module_rxCharacterCount"></a></p>
+<p><strong>Returns</strong>: <code>Object</code> - Lookup of color class names from a human-readable class name.<br><a name="encore.module_rxToggleSwitch"></a></p>
+<h1 id="encore-rxtoggleswitch">encore.rxToggleSwitch</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxToggleSwitch">encore.rxToggleSwitch</a><ul>
+<li><a href="#encore.module_rxToggleSwitch.main">encore.rxToggleSwitch.main</a></li>
+<li><a href="#encore.module_rxToggleSwitch.initialize">encore.rxToggleSwitch.initialize(rxToggleSwitchElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxToggleSwitch.main"></a></p>
+<h2 id="encore-rxtoggleswitch-main">encore.rxToggleSwitch.main</h2>
+<p><strong>Returns</strong>: <a href="#rxToggleSwitch">rxToggleSwitch</a> - Page object representing the <em>first</em> rxToggleSwitch object found on the page.<br><a name="encore.module_rxToggleSwitch.initialize"></a></p>
+<h2 id="encore-rxtoggleswitch-initialize-rxtoggleswitchelement-">encore.rxToggleSwitch.initialize(rxToggleSwitchElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxToggleSwitchElement <code>WebElement</code> - WebElement to be transformed into an rxToggleSwitchElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxToggleSwitch">rxToggleSwitch</a> - Page object representing the rxToggleSwitch object.<br><a name="encore.exercise.module_rxCharacterCount"></a></p>
 <h1 id="encore-exercise-rxcharactercount">encore.exercise.rxCharacterCount</h1>
 <p>rxCharacterCount exercises.</p>
 <p><strong>Params</strong></p>
@@ -260,6 +326,39 @@ trailing whitespace when calculating the remaining character count.  </li>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxPaginate({
     cssSelector: &#39;.secondary-info rx-paginate&#39;, // select one of many pagination tables
     pages: 20 // will exercise full functionality at 6, limited functionality at 2
+}));
+</code></pre>
+<p><a name="encore.exercise.module_rxSearchBox"></a></p>
+<h1 id="encore-exercise-rxsearchbox">encore.exercise.rxSearchBox</h1>
+<p>rxSearchBox exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[disabled=false] <code>boolean</code> - Determines if the search box is disabled  </li>
+<li>[placeholder=&#39;Search...&#39;] <code>string</code> - Expected placeholder value  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxSearchBox({
+    cssSelector: &#39;.secondary-info rx-search-box&#39;, // select one of many widgets on page
+}));
+</code></pre>
+<p><a name="encore.exercise.module_rxToggleSwitch"></a></p>
+<h1 id="encore-exercise-rxtoggleswitch">encore.exercise.rxToggleSwitch</h1>
+<p>rxToggleSwitch exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[disabled=false] <code>boolean</code> - Determines if the switch can be toggled  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxToggleSwitch({
+    cssSelector: &#39;.demo-defualt-values&#39; // select one of many widgets on page
 }));
 </code></pre>
 <p><a name="rxCharacterCount"></a></p>
@@ -691,7 +790,55 @@ expect(optionTable.columnData(&#39;Surcharge&#39;, penniesFn)).to.eventually.eql
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable.row.unselect"></a></p>
 <h3 id="row-unselect-">row.unselect()</h3>
 <p>Unselects the current row.</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSortableColumn"></a></p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSearchBox"></a></p>
+<h1 id="rxsearchbox">rxSearchBox</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxSearchBox">rxSearchBox</a><ul>
+<li><a href="#rxSearchBox.term">rxSearchBox.term</a></li>
+<li><a href="#rxSearchBox.placeholder">rxSearchBox.placeholder</a></li>
+<li><a href="#rxSearchBox.isClearable">rxSearchBox.isClearable</a></li>
+<li><a href="#rxSearchBox.isSearchable">rxSearchBox.isSearchable</a></li>
+<li><a href="#rxSearchBox.isDisplayed">rxSearchBox.isDisplayed</a></li>
+<li><a href="#rxSearchBox.clear">rxSearchBox.clear()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxSearchBox.term"></a></p>
+<h2 id="rxsearchbox-term">rxSearchBox.term</h2>
+<p>getter/setter for the search value</p>
+<p><strong>Properties</strong></p>
+<ul>
+<li>term <code>string</code> - getter/setter for search value  </li>
+</ul>
+<p><a name="rxSearchBox.placeholder"></a></p>
+<h2 id="rxsearchbox-placeholder">rxSearchBox.placeholder</h2>
+<p><strong>Properties</strong></p>
+<ul>
+<li>placeholder <code>string</code> - retrieve placeholder value  </li>
+</ul>
+<p><a name="rxSearchBox.isClearable"></a></p>
+<h2 id="rxsearchbox-isclearable">rxSearchBox.isClearable</h2>
+<p><strong>Properties</strong></p>
+<ul>
+<li>isClearable <code>boolean</code> - whether the element can be cleared  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code><br><a name="rxSearchBox.isSearchable"></a></p>
+<h2 id="rxsearchbox-issearchable">rxSearchBox.isSearchable</h2>
+<p><strong>Properties</strong></p>
+<ul>
+<li>isSearchable <code>boolean</code> - true unless disabled  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code><br><a name="rxSearchBox.isDisplayed"></a></p>
+<h2 id="rxsearchbox-isdisplayed">rxSearchBox.isDisplayed</h2>
+<p><strong>Properties</strong></p>
+<ul>
+<li>isDisplayed <code>boolean</code> - whether the element is displayed  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxSearchBox.clear"></a></p>
+<h2 id="rxsearchbox-clear-">rxSearchBox.clear()</h2>
+<p>Clear the value of the search box.</p>
+<p><a name="rxSortableColumn"></a></p>
 <h1 id="rxsortablecolumn">rxSortableColumn</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -807,4 +954,30 @@ charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function 
 <p>Hovers over the current row&#39;s status column and returns whether or not a tooltip appears.</p>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not a tooltip is present.<br><a name="rxStatusColumn.tooltip.text"></a></p>
 <h3 id="tooltip-text">tooltip.text</h3>
-<p><strong>Returns</strong>: <code>String</code> - Tooltip text.  </p>
+<p><strong>Returns</strong>: <code>String</code> - Tooltip text.<br><a name="rxToggleSwitch"></a></p>
+<h1 id="rxtoggleswitch">rxToggleSwitch</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxToggleSwitch">rxToggleSwitch</a><ul>
+<li><a href="#rxToggleSwitch.text">rxToggleSwitch.text</a></li>
+<li><a href="#rxToggleSwitch.isDisplayed">rxToggleSwitch.isDisplayed()</a></li>
+<li><a href="#rxToggleSwitch.isEnabled">rxToggleSwitch.isEnabled()</a></li>
+<li><a href="#rxToggleSwitch.enable">rxToggleSwitch.enable()</a></li>
+<li><a href="#rxToggleSwitch.isDisabled">rxToggleSwitch.isDisabled()</a></li>
+<li><a href="#rxToggleSwitch.disable">rxToggleSwitch.disable()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxToggleSwitch.text"></a></p>
+<h2 id="rxtoggleswitch-text">rxToggleSwitch.text</h2>
+<p><strong>Returns</strong>: <code>String</code> - The current text of the switch.<br><a name="rxToggleSwitch.isDisplayed"></a></p>
+<h2 id="rxtoggleswitch-isdisplayed-">rxToggleSwitch.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxToggleSwitch.isEnabled"></a></p>
+<h2 id="rxtoggleswitch-isenabled-">rxToggleSwitch.isEnabled()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the switch component is currently enabled.<br><a name="rxToggleSwitch.enable"></a></p>
+<h2 id="rxtoggleswitch-enable-">rxToggleSwitch.enable()</h2>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxToggleSwitch.isDisabled"></a></p>
+<h2 id="rxtoggleswitch-isdisabled-">rxToggleSwitch.isDisabled()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the switch component is currently disabled.<br><a name="rxToggleSwitch.disable"></a></p>
+<h2 id="rxtoggleswitch-disable-">rxToggleSwitch.disable()</h2>
+<p><strong>Returns</strong>: <code>undefined</code>  </p>
