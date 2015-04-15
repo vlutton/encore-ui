@@ -17,6 +17,31 @@
 
     <script src="assets/prism.js"></script>
 
+    <!-- PhantomJS doesn't support .bind, so add it here to make sure it's available -->
+    <script>
+        if (!Function.prototype.bind) {
+            Function.prototype.bind = function(oThis) {
+                if (typeof this !== 'function') {
+                    // closest thing possible to the ECMAScript 5 internal IsCallable function
+                    throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+                }
+
+                var aArgs = Array.prototype.slice.call(arguments, 1),
+                    fToBind = this,
+                    FNOP = function() {},
+                    fBound = function() {
+                        return fToBind.apply(this instanceof FNOP && oThis ? this : oThis,
+                            aArgs.concat(Array.prototype.slice.call(arguments)));
+                    };
+
+                FNOP.prototype = this.prototype;
+                fBound.prototype = new FNOP();
+
+                return fBound;
+            };
+        }
+    </script>
+
     <!-- Content inside bower:js is auto-generated via `grunt wiredep` -->
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
@@ -30,6 +55,7 @@
     <script src="bower_components/html2canvas/build/html2canvas.js"></script>
     <script src="bower_components/mousetrap/mousetrap.js"></script>
     <script src="bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
+    <script src="bower_components/ng-debounce/angular-debounce.js"></script>
     <!-- endbower -->
 
     <script src="dist/<%= config.fileNameTpl %>.js"></script>
