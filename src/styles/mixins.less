@@ -65,3 +65,12 @@
     border: 1px solid @inputBorder;
     padding: 3px 5px;
 }
+
+.user-select(@select) {
+    -webkit-touch-callout: @select;
+    -webkit-user-select: @select;
+    -khtml-user-select: @select;
+    -moz-user-select: @select;
+    -ms-user-select: @select;
+    user-select: @select;
+}

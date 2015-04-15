@@ -61,6 +61,7 @@ paths:
   rxStatus: "/#/component/rxStatus"
   rxStatusColumn: "/#/component/rxStatusColumn"
   rxToggle: "/#/component/rxToggle"
+  rxToggleSwitch: "/#/component/rxToggleSwitch"
   rxTokenInterceptor: "/#/component/rxTokenInterceptor"
   rxUnauthorizedInterceptor: "/#/component/rxUnauthorizedInterceptor"
   tabs: "/#/component/tabs"

@@ -1,0 +1,80 @@
+/*
+ * rxToggleSwitch
+ */
+.rx-toggle-switch {
+
+    @textColor: #fff;
+    @offStateColor: #b3b3b3;
+    @borderColor: darken(@offStateColor, 10%);
+    @onStateColor: #00ac31;
+    @knobColor: #fff;
+    @knobBorderColor: darken(@knobColor, 10%);
+    @knobSize: 1.2em;
+    @edgeSpacing: @knobSize * 0.9;
+    @lineHeight: @knobSize * 1.25;
+    @blurDist: @edgeSpacing;
+    @blurSpread: (@edgeSpacing/3) * -1;
+
+    font-size: 0.8em;
+    line-height: @lineHeight;
+
+    display: inline-block;
+
+    border: 1px @borderColor solid;
+    border-radius: 9px;
+    background-color: @offStateColor;
+    color: @textColor;
+
+    padding: 0 @edgeSpacing 0 @edgeSpacing;
+
+    width: 5em;
+
+    cursor: pointer;
+    position: relative;
+    text-align: right;
+
+    .box-shadow(inset 1px 2px @blurDist @blurSpread rgba(0,0,0,0.50));
+    .user-select(none);
+    .box-sizing(border-box);
+
+    &[disabled] {
+        background-color: desaturate(lighten(@offStateColor, 7%), 80%);
+        color: #666666;
+        &.on {
+            background-color: desaturate(lighten(@onStateColor, 33%), 80%);
+        }
+        cursor: not-allowed;
+        .knob {
+            background-color: #adadad;
+            border: 1px #999999 solid;
+        }
+    }
+    &.on {
+        background-color: @onStateColor;
+        text-align: left;
+        .knob {
+            left: 100%;
+            -webkit-transform: translate(-100%, 0);
+            -moz-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
+        }
+    }
+    .knob {
+        .transition-value(all 0.1s ease-out);
+
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        left: 0;
+
+        width: @knobSize;
+        height: @knobSize;
+        border-radius: (@knobSize/2)+1;
+        background-color: @knobColor;
+        border: 1px @knobBorderColor solid;
+
+        .box-shadow(0 0 @blurDist @blurSpread rgba(0,0,0,0.55));
+        overflow: hidden;
+    }
+
+}
