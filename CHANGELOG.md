@@ -1,3 +1,20 @@
+<a name="1.13.0"></a>
+## 1.13.0 (2015-04-15)
+
+
+#### Bug Fixes
+
+* **rxToggleSwitch:**
+  * add browser prefixes to styles ([9377e647](git@github.com:rackerlabs/encore-ui/commit/9377e6472af365c09d05ddc0b37815c8df540170))
+  * initialize model value ([1b30bcd0](git@github.com:rackerlabs/encore-ui/commit/1b30bcd0b90c0d823c5bb6d284d8f574ed1f2d37))
+
+
+#### Features
+
+* **rxSearchBox:** new component ([eafe949a](git@github.com:rackerlabs/encore-ui/commit/eafe949a4696a1ee53b8d2e9d37bde1efa1e1dc0))
+* **rxToggleSwitch:** add new component ([62e43ebc](git@github.com:rackerlabs/encore-ui/commit/62e43ebca20c46701c29473d5d339c29b4f2e133))
+
+
 <a name="1.12.1"></a>
 ### 1.12.1 (2015-04-14)
 
