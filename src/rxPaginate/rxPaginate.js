@@ -381,7 +381,7 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
         };
 
         pager.isLastPage = function () {
-            return pager.isPage(pager.totalPages - 1);
+            return pager.isPage(_.max([0, pager.totalPages - 1]));
         };
 
         pager.isPage = function (n) {
@@ -488,7 +488,9 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
             // will have totalPages===0. We do the _.max to ensure that
             // we never set pageNumber to -1
             if (pager.pageNumber + 1 > pager.totalPages) {
-                pager.goToLastPage();
+                if (!pager.isLastPage()) {
+                    pager.goToLastPage();
+                }
             }
             var firstLast = rxPaginateUtils.firstAndLast(pager.currentPage(), pager.itemsPerPage, items.length);
             return items.slice(firstLast.first, firstLast.last);
