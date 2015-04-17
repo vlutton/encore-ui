@@ -1,3 +1,12 @@
+<a name="1.13.1"></a>
+### 1.13.1 (2015-04-17)
+
+
+#### Bug Fixes
+
+* **rxPaginate:** Fix infinite loop on one page tables ([20f3da7f](git@github.com:rackerlabs/encore-ui/commit/20f3da7fd7d6e85d8108e6d22c61f6f1063d3688))
+
+
 <a name="1.13.0"></a>
 ## 1.13.0 (2015-04-15)
 
