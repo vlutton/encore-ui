@@ -259,13 +259,12 @@ exports.rxForm = {
            ```
          */
         generateAccessor: function (elem) {
-            var dropdown = exports.rxForm.dropdown.initialize(elem);
             return {
                 get: function () {
-                    return dropdown.selectedOption;
+                    return exports.rxForm.dropdown.initialize(elem).selectedOption;
                 },
                 set: function (optionText) {
-                    dropdown.select(optionText);
+                    exports.rxForm.dropdown.initialize(elem).select(optionText);
                 }
             };
         }
@@ -351,12 +350,12 @@ exports.rxForm = {
            ```
          */
         generateAccessor: function (elem) {
-            var checkbox = exports.rxForm.checkbox.initialize(elem);
             return {
                 get: function () {
-                    return checkbox.isSelected();
+                    return exports.rxForm.checkbox.initialize(elem).isSelected();
                 },
                 set: function (enable) {
+                    var checkbox = exports.rxForm.checkbox.initialize(elem);
                     enable ? checkbox.select() : checkbox.unselect();
                 }
             };
@@ -894,12 +893,12 @@ exports.rxOptionFormTable = {
        ```
     */
     generateAccessor: function (elem) {
-        var optionTable = exports.rxOptionFormTable.initialize(elem);
         return {
             get: function () {
-                return optionTable.selections;
+                return exports.rxOptionFormTable.initialize(elem).selections;
             },
             set: function (selections) {
+                var optionTable = exports.rxOptionFormTable.initialize(elem);
                 optionTable.unselectAll();
                 optionTable.selectMany(selections);
             }
