@@ -145,6 +145,11 @@
     &:focus {
         text-decoration: underline;
     }
+
+    &[disabled], &[disabled]:hover {
+        cursor: not-allowed;
+        color: @buttonDisabledBg;
+    }
 }
 thead th .btn-link {
     color: @tableHeaderText;
