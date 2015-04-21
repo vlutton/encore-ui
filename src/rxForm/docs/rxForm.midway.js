@@ -14,99 +14,37 @@ var formPageObject = Page.create({
 
     form: {
         set: function (formData) {
-            rxForm.form.fill(this, formData);
+            rxForm.fill(this, formData);
         }
     },
 
-    txtPlainTextbox: {
-        get: function () {
-            return elementByLabel('Plain textbox').$('input');
-        }
-    },
+    plainTextbox: rxForm.textField.generateAccessor(elementByLabel('Plain textbox').$('input')),
 
-    plainTextbox: {
-        get: function () {
-            return this.txtPlainTextbox.getAttribute('value');
-        },
-        set: function (input) {
-            this.txtPlainTextbox.clear();
-            this.txtPlainTextbox.sendKeys(input);
-        }
-    },
-
-    chkRequireName: {
-        get: function () {
-            return elementByLabel('Require Name?').$('input');
-        }
-    },
-
-    requireName: {
-        get: function () {
-            return this.chkRequireName.isSelected();
-        },
-        set: function (enable) {
-            var checkbox = rxForm.checkbox.initialize(this.chkRequireName);
-            enable ? checkbox.select() : checkbox.unselect();
-        }
-    },
+    requireName: rxForm.checkbox.generateAccessor(elementByLabel('Require Name?').$('input')),
 
     selectBoxes: {
         get: function () {
             return Page.create({
-                selVolumes: {
-                    get: function () {
-                        return element(by.model('volume.type'));
-                    }
-                },
-
-                type: {
-                    get: function () {
-                        return rxForm.dropdown.initialize(this.selVolumes).selectedOption;
-                    },
-                    set: function (optionText) {
-                        rxForm.dropdown.initialize(this.selVolumes).select(optionText);
-                    }
-                }
+                type: rxForm.dropdown.generateAccessor(element(by.model('volume.type')))
             });
         }
     },
 
-    optRadioTable: {
+    radioTableObject: {
         get: function () {
             return rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableData"]'));
         }
     },
 
-    optionTableRadio: {
-        get: function () {
-            return this.optRadioTable.selections;
-        },
-        set: function (selections) {
-            this.optRadioTable.selectMany(selections);
-        }
-    },
+    radioTable: rxOptionFormTable.generateAccessor($('rx-form-option-table[data="optionTableData"]')),
 
-    optionTableDisabledOptions: {
-        get: function () {
-            return this.optRadioTable.disabledOptions;
-        }
-    },
-
-    optCheckboxTable: {
+    checkboxTableObject: {
         get: function () {
             return rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableCheckboxData"]'));
         }
     },
 
-    optionTableCheckbox: {
-        get: function () {
-            return this.optCheckboxTable.selections;
-        },
-        set: function (selections) {
-            this.optCheckboxTable.unselectAll();
-            this.optCheckboxTable.selectMany(selections);
-        }
-    }
+    checkboxTable: rxOptionFormTable.generateAccessor($('rx-form-option-table[data="optionTableCheckboxData"]'))
 
 });
 
@@ -123,8 +61,8 @@ describe('rxForm', function () {
             selectBoxes: {
                 type: 'PUNCHCARDS'
             },
-            optionTableRadio: [{ Name: 'Option #2' }],
-            optionTableCheckbox: [{ Name: 'Item 1' }, { Name: 'Item 2' }]
+            radioTable: [{ Name: 'Option #2' }],
+            checkboxTable: [{ Name: 'Item 1' }, { Name: 'Item 2' }]
         };
 
         before(function () {
@@ -144,11 +82,11 @@ describe('rxForm', function () {
         });
 
         it('should have selected the second row in the radio option table', function () {
-            expect(formPageObject.optionTableRadio).to.eventually.eql([1]);
+            expect(formPageObject.radioTable).to.eventually.eql([1]);
         });
 
         it('should have selected both rows in the checkbox option table', function () {
-            expect(formPageObject.optionTableCheckbox).to.eventually.eql([0, 1]);
+            expect(formPageObject.checkboxTable).to.eventually.eql([0, 1]);
         });
 
     });
@@ -160,7 +98,7 @@ describe('rxForm', function () {
             var columnNames = ['Name', 'Static Content', 'Expression 2', 'Expression 3', 'Expression 4'];
 
             before(function () {
-                optionTable = rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableData"]'));
+                optionTable = formPageObject.radioTableObject;
             });
 
             it('should not be empty', function () {
@@ -224,7 +162,7 @@ describe('rxForm', function () {
                 });
 
                 it('should have disabled row 4', function () {
-                    expect(formPageObject.optionTableDisabledOptions).to.eventually.eql([3]);
+                    expect(optionTable.disabledOptions).to.eventually.eql([3]);
                 });
 
             });
@@ -234,7 +172,7 @@ describe('rxForm', function () {
         describe('checkbox', function () {
 
             before(function () {
-                optionTable = rxOptionFormTable.initialize($('rx-form-option-table[data="optionTableCheckboxData"]'));
+                optionTable = formPageObject.checkboxTableObject;
             });
 
             it('should have two rows selected', function () {
