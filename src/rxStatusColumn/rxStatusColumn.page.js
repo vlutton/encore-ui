@@ -124,6 +124,7 @@ exports.rxStatusColumn = {
      */
     statuses: {
         active: 'ACTIVE',
+        disabled: 'DISABLED',
         deleted: 'DELETED',
         deleting: 'DELETING',
         error: 'ERROR',
@@ -151,6 +152,7 @@ exports.rxStatusColumn = {
      */
     colors: {
         active: 'ACTIVE',
+        disabled: 'DISABLED',
         error: 'ERROR',
         info: 'INFO',
         pending: 'PENDING',

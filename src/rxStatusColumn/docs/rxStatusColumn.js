@@ -5,6 +5,7 @@ function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
     $scope.servers = [
         { status: 'ACTIVE', title: 'ACTIVE status' },
         { status: 'ERROR', title: 'ERROR status' },
+        { status: 'DISABLED', title: 'DISABLED status' },
         { status: 'DELETED', title: 'DELETED status mapped to ERROR' },
         { status: 'UNKNOWN', title: 'UNKNOWN status mapped to ERROR' },
         { status: 'RESCUE', title: 'RESCUE status mapped to INFO' },
