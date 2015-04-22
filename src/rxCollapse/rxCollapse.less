@@ -1,0 +1,49 @@
+/*
+ * rxCollapse
+ */
+rx-collapse {
+  display: block;
+
+  .collapse-container {
+
+    .double-chevron-cell {
+      display: inline-block;
+      .box-sizing(border-box);
+      width: 30px;
+      padding: 0 10px;
+      background-color: @borderGrey;
+      vertical-align: middle;
+
+      .double-chevron {
+        cursor: pointer;
+        &:after {
+          display: inline-block;
+          color: @white;
+          font-size: 28px;
+          .chevron-mixin(-1);
+        }
+      }
+
+      &.expanded {
+        .double-chevron {
+          &:after {
+            .chevron-mixin;
+          }
+        }
+      }
+    }
+
+    border: 2px solid @borderGrey;
+
+    .rx-collapse-title {
+      display: inline-block;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+
+    .collapse-body {
+      margin: 0;
+      padding: 10px;
+    }
+  }
+}
