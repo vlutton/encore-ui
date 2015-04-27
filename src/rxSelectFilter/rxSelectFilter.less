@@ -1,0 +1,58 @@
+/*
+ * rxSelectFilter
+ */
+@import 'vars';
+
+.rx-select-filter {
+    .select-wrapper:not(:first-child) {
+        padding-left: 20px;
+    }
+
+    .field-label {
+        margin-right: 5px;
+    }
+}
+
+.rx-multi-select {
+
+    color: @inputColor;
+    border: 1px solid @inputBorderColor;
+    padding: 3px;
+    width: 150px;
+    position: relative;
+    font-size: 1.2em;
+
+    &:hover {
+        cursor:pointer;
+    }
+
+    ul {
+        position: absolute;
+        top: ~"calc(-1px)";
+        z-index: 1;
+        left: -1px;
+        width: 100%;
+        border: 1px solid @inputBorderColor;
+        background: @white;
+        box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.35);
+    }
+
+    rx-select-option[value="all"] label {
+        border-bottom: 1px solid @inputBorderColor;
+    }
+
+}
+
+.rx-select-option {
+
+    label {
+        display: block;
+        padding: 2px 10px;
+
+        &:hover {
+            background: @optionHighlightBg;
+            color: @white;
+            cursor: pointer;
+        }
+    }
+}
