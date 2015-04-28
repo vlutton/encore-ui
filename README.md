@@ -42,7 +42,7 @@ Bringing in Bootstrap as a whole would necessitate overriding styles to customiz
 
 ### Why hasn't EncoreUI switched from Grunt to using Gulp?
 
-We have a fairly extensive build system built with grunt. Converting to gulp would require a lot of effort, and it would be difficult to validate wheter all the functionality is ported correctly, so there's no obvious benefit to making the switch.
+We have a fairly extensive build system built with grunt. Converting to gulp would require a lot of effort, and it would be difficult to validate whether all the functionality is ported correctly, so there's no obvious benefit to making the switch.
 
 ### When do releases happen? What versioning system is used?
 
