@@ -5,6 +5,7 @@ module.exports = {
     font: '<%= config.dist %>/font',
     docs: 'build', // used for demo, coverage, jsdocs files to go to gh-pages (same a 'build' folder, but a
                    // different variable in case they're later changed)
+    exportableStyles: '<%= config.app %>/styles',
     bower: 'bower',
     wraith: 'wraith',
     liveReloadPage: require('connect-livereload')({ port: 1337 }),

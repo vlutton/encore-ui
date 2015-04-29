@@ -109,6 +109,11 @@ module.exports = {
         }, {
             src: 'bower.json',
             dest: '<%= config.bower %>/bower.json'
+        }, {
+            expand: true,
+            cwd: '<%= config.exportableStyles %>/',
+            src: '*.less',
+            dest: '<%= config.bower %>/less/'
         }]
     }
 };
