@@ -21,6 +21,7 @@ describe('rxStatusColumn directive', function () {
         scope.status = 'MyInfoStatus';
 
         rxstatusMappings.mapToActive('SUCCESS');
+        rxstatusMappings.mapToDisabled('MyDisabledStatus');
         rxstatusMappings.mapToInfo('MyInfoStatus');
         rxstatusMappings.mapToWarning('MyWarningStatus');
         rxstatusMappings.mapToError('MyErrorStatus');
@@ -34,6 +35,12 @@ describe('rxStatusColumn directive', function () {
         var validTemplate = '<td rx-status-column status="ACTIVE"></td>';
         el = helpers.createDirective(validTemplate, compile, scope);
         expect(el.hasClass('status-ACTIVE')).to.be.true;
+    });
+
+    it('shall set the right style for DISABLED', function () {
+        var validTemplate = '<td rx-status-column status="DISABLED"></td>';
+        el = helpers.createDirective(validTemplate, compile, scope);
+        expect(el.hasClass('status-DISABLED')).to.be.true;
     });
 
     it('shall set the right style for ERROR', function () {
@@ -63,6 +70,12 @@ describe('rxStatusColumn directive', function () {
         expect(el.hasClass('status-INFO')).to.be.true;
     });
     
+    it('shall correctly map to DISABLED', function () {
+        var validTemplate = '<td rx-status-column status="MyDisabledStatus"></td>';
+        el = helpers.createDirective(validTemplate, compile, scope);
+        expect(el.hasClass('status-DISABLED')).to.be.true;
+    });
+
     it('shall correctly map to WARNING', function () {
         var validTemplate = '<td rx-status-column status="MyWarningStatus"></td>';
         el = helpers.createDirective(validTemplate, compile, scope);
@@ -147,6 +160,7 @@ describe('rxStatusMappings', function () {
 
         it('should accept a mapping object', function () {
             rxstatusMappings.addGlobal({
+                'D': 'DISABLED',
                 'E': 'ERROR',
                 'W': 'WARNING',
                 'A': 'ACTIVE',
@@ -154,6 +168,7 @@ describe('rxStatusMappings', function () {
                 'P': 'PENDING'
             });
 
+            expect(rxstatusMappings.getInternalMapping('D')).to.equal('DISABLED');
             expect(rxstatusMappings.getInternalMapping('E')).to.equal('ERROR');
             expect(rxstatusMappings.getInternalMapping('W')).to.equal('WARNING');
             expect(rxstatusMappings.getInternalMapping('A')).to.equal('ACTIVE');
@@ -163,6 +178,8 @@ describe('rxStatusMappings', function () {
 
         it('should accept multiple mappings to one status', function () {
             rxstatusMappings.addGlobal({
+                'D': 'DISABLED',
+                'DD': 'DISABLED',
                 'E': 'ERROR',
                 'EE': 'ERROR',
                 'W': 'WARNING',
@@ -175,6 +192,8 @@ describe('rxStatusMappings', function () {
                 'PP': 'PENDING'
             });
 
+            expect(rxstatusMappings.getInternalMapping('D')).to.equal('DISABLED');
+            expect(rxstatusMappings.getInternalMapping('DD')).to.equal('DISABLED');
             expect(rxstatusMappings.getInternalMapping('E')).to.equal('ERROR');
             expect(rxstatusMappings.getInternalMapping('EE')).to.equal('ERROR');
             expect(rxstatusMappings.getInternalMapping('W')).to.equal('WARNING');
@@ -189,6 +208,7 @@ describe('rxStatusMappings', function () {
 
         it('should convert lowercase map targets to uppercase', function () {
             rxstatusMappings.addGlobal({
+                'D': 'disabled',
                 'E': 'error',
                 'W': 'warning',
                 'A': 'active',
@@ -196,6 +216,7 @@ describe('rxStatusMappings', function () {
                 'P': 'pending'
             });
 
+            expect(rxstatusMappings.getInternalMapping('D')).to.equal('DISABLED');
             expect(rxstatusMappings.getInternalMapping('E')).to.equal('ERROR');
             expect(rxstatusMappings.getInternalMapping('W')).to.equal('WARNING');
             expect(rxstatusMappings.getInternalMapping('A')).to.equal('ACTIVE');
@@ -207,12 +228,16 @@ describe('rxStatusMappings', function () {
     describe('addAPI()', function () {
         it('should accept an API mapping object', function () {
             rxstatusMappings.addAPI('myApi', {
+                'D': 'DISABLED',
                 'E': 'ERROR',
                 'W': 'WARNING',
                 'A': 'ACTIVE',
                 'I': 'INFO',
                 'P': 'PENDING'
             });
+
+            expect(rxstatusMappings.getInternalMapping('D'), 'no mapping without api').to.equal('D');
+            expect(rxstatusMappings.getInternalMapping('D', 'myApi'), 'provided api').to.equal('DISABLED');
 
             expect(rxstatusMappings.getInternalMapping('E'), 'no mapping without api').to.equal('E');
             expect(rxstatusMappings.getInternalMapping('E', 'myApi'), 'provided api').to.equal('ERROR');
@@ -285,7 +310,41 @@ describe('rxStatusMappings', function () {
             expect(rxstatusMappings.getInternalMapping('C', 'myApi')).to.equal('ACTIVE');
         });
     });
-    
+
+    describe('mapToDisabled', function () {
+        it('should accept a single string as a mapping', function () {
+            rxstatusMappings.mapToDisabled('A');
+
+            expect(rxstatusMappings.getInternalMapping('A')).to.equal('DISABLED');
+        });
+
+        it('should accept an array of mappings', function () {
+            rxstatusMappings.mapToDisabled(['A', 'B', 'C']);
+
+            expect(rxstatusMappings.getInternalMapping('A')).to.equal('DISABLED');
+            expect(rxstatusMappings.getInternalMapping('B')).to.equal('DISABLED');
+            expect(rxstatusMappings.getInternalMapping('C')).to.equal('DISABLED');
+        });
+
+        it('should accept a single API mapping', function () {
+            rxstatusMappings.mapToDisabled('A', 'myApi');
+
+            expect(rxstatusMappings.getInternalMapping('A')).to.equal('A');
+            expect(rxstatusMappings.getInternalMapping('A', 'myApi')).to.equal('DISABLED');
+        });
+
+        it('should accept an array of API mappings', function () {
+            rxstatusMappings.mapToDisabled(['A', 'B', 'C'], 'myApi');
+
+            expect(rxstatusMappings.getInternalMapping('A')).to.equal('A');
+            expect(rxstatusMappings.getInternalMapping('A', 'myApi')).to.equal('DISABLED');
+            expect(rxstatusMappings.getInternalMapping('B')).to.equal('B');
+            expect(rxstatusMappings.getInternalMapping('B', 'myApi')).to.equal('DISABLED');
+            expect(rxstatusMappings.getInternalMapping('C')).to.equal('C');
+            expect(rxstatusMappings.getInternalMapping('C', 'myApi')).to.equal('DISABLED');
+        });
+    });
+
     describe('mapToInfo', function () {
         it('should accept a single string as a mapping', function () {
             rxstatusMappings.mapToInfo('A');

@@ -143,6 +143,7 @@ angular.module('encore.ui.rxStatusColumn', [])
     rxStatusMappings.mapToError = buildMapFunc('ERROR');
     rxStatusMappings.mapToInfo = buildMapFunc('INFO');
     rxStatusMappings.mapToPending = buildMapFunc('PENDING');
+    rxStatusMappings.mapToDisabled = buildMapFunc('DISABLED');
     
     rxStatusMappings.getInternalMapping = function (statusString, api) {
         if (_.has(apiMappings, api) && _.has(apiMappings[api], statusString)) {

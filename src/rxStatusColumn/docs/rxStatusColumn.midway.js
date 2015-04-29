@@ -97,10 +97,42 @@ describe('rxStatusColumn', function () {
 
         });
 
-        describe('error cell', function () {
+        describe('disabled cell', function () {
 
             before(function () {
                 status = tablePageObject.row(3).status;
+            });
+
+            it('should have a status by type', function () {
+                expect(status.byType).to.eventually.equal(statuses.disabled);
+            });
+
+            it('should not have a status by icon', function () {
+                expect(status.byIcon).to.eventually.be.null;
+            });
+
+            it('should have a status by color', function () {
+                expect(status.byColor).to.eventually.equal(colors.disabled);
+            });
+
+            it('should not have an api ', function () {
+                expect(status.api).to.eventually.be.null;
+            });
+
+            it('should not have a tooltip', function () {
+                expect(status.tooltip.exists).to.eventually.be.true;
+            });
+
+            it('should have tooltip text', function () {
+                expect(status.tooltip.text).to.eventually.equal('DISABLED');
+            });
+
+        });
+
+        describe('error cell', function () {
+
+            before(function () {
+                status = tablePageObject.row(4).status;
             });
 
             it('should have a status by type', function () {
@@ -130,7 +162,7 @@ describe('rxStatusColumn', function () {
             describe('rescue cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(6).status;
+                    status = tablePageObject.row(7).status;
                 });
 
                 it('should have a status by type', function () {
@@ -154,7 +186,7 @@ describe('rxStatusColumn', function () {
             describe('migrating cell', function () {
 
                 before(function () {
-                    status = tablePageObject.row(4).status;
+                    status = tablePageObject.row(5).status;
                 });
 
                 it('should have a status by type', function () {

@@ -32,7 +32,7 @@ Also note that <code>sort-property="status"</code> is referring to the <code>ser
 
 For the corresponding `<td>`, you will need to add the `rx-status-column` attribute, and set the `status` attribute appropriately. You can optionally set `api` and `tooltip-content` attributes. `tooltip-content` sets the tooltip that will be used. If not set, it will default to the value you passed in for `status`. The `api` attribute will be explained below.
 
-We currently support five statuses, with corresponding CSS styles. Namely, `"ACTIVE"`, `"WARNING"`, `"ERROR"`, `"INFO"` and `"PENDING"`. If your code happens to already use those statuses, then you can simply pass them to the `status` attribute as appropriate. However, it's likely that internally you will be receiving a number of different statuses from your APIs, and will need to map them to these five statuses.
+We currently support six statuses, with corresponding CSS styles. Namely, `"ACTIVE"`, `"DISABLED"`, `"WARNING"`, `"ERROR"`, `"INFO"` and `"PENDING"`. If your code happens to already use those statuses, then you can simply pass them to the `status` attribute as appropriate. However, it's likely that internally you will be receiving a number of different statuses from your APIs, and will need to map them to these six statuses.
 
 The example in the demo shows a typical use of this directive, such as:
 
@@ -53,11 +53,11 @@ Encore uses the color red for destructive and "delete" actions, and the color gr
 
 # Defining mappings
 
-To accommodate different statuses, the `rxStatusMappings` factory includes methods for defining mappings from your own statuses to the five defined ones. The basic methods for this are `rxStatusMappings.addGlobal()` and `rxStatusMappings.addAPI()`.
+To accommodate different statuses, the `rxStatusMappings` factory includes methods for defining mappings from your own statuses to the six defined ones. The basic methods for this are `rxStatusMappings.addGlobal()` and `rxStatusMappings.addAPI()`.
 
 ## addGlobal()
 
-`rxStatusMappings.addGlobal()` takes an object as an argument, with the keys being your own product's statuses, and the values being one of the five internal statuses that it should map to. For example:
+`rxStatusMappings.addGlobal()` takes an object as an argument, with the keys being your own product's statuses, and the values being one of the six internal statuses that it should map to. For example:
 
     rxStatusMappings.addGlobal({
         'RUNNING': 'ACTIVE',
@@ -98,15 +98,15 @@ There is required repetition of `"ERROR"` in each pair, and there's always the c
 
 This has the advantage that it's shorter to type, eliminates the chance of mistyping or misassigning `"ERROR"`, and keeps all `"ERROR"` mappings physically grouped. With this, you could easily keep your mapping values in an Angular `.value` or `.constant`, and just pass them to these methods in your `.run()` method.
 
-There are equivalent `mapToWarning`, `mapToActive`, `mapToPending` and `mapToInfo` methods.
+There are equivalent `mapToWarning`, `mapToActive`, `mapToDisabled`, `mapToPending` and `mapToInfo` methods.
 
-All five of these methods can take an array or a single string as the first argument. The call above is equivalent to this group of individual calls:
+All six of these methods can take an array or a single string as the first argument. The call above is equivalent to this group of individual calls:
 
     rxStatusMappings.mapToError('BLOCKED');
     rxStatusMappings.mapToError('SHUTDOWN');
     rxStatusMappings.mapToError('FAILED');
 
-All five can also take `api` as a second, optional parameter. Thus we could define the `rxStatusMappings.addAPI({ 'FOO': 'ERROR' }, 'z')` example from above as:
+All six can also take `api` as a second, optional parameter. Thus we could define the `rxStatusMappings.addAPI({ 'FOO': 'ERROR' }, 'z')` example from above as:
 
     rxStatusMappings.mapToError('FOO', 'z');
 
