@@ -1519,6 +1519,11 @@ They show your position within the site heirarchy.
     &:focus {
         text-decoration: underline;
     }
+
+    &[disabled], &[disabled]:hover {
+        cursor: not-allowed;
+        color: @buttonDisabledBg;
+    }
 }
 thead th .btn-link {
     color: @tableHeaderText;
@@ -1701,10 +1706,6 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
     select {
         color: @inputColor;
         font-size: 1.2em;
-
-        &.ng-valid.ng-dirty {
-            border-color: @inputBorderColorValid;
-        }
 
         &.ng-invalid.ng-dirty {
             border-color: @inputBorderColorInvalid;
@@ -2636,6 +2637,9 @@ td.rx-status-column {
         i {
             color: #287BBD;
         }
+    }
+    &.status-DISABLED {
+        background: #dededd;
     }
 
     .fa-exclamation-circle {

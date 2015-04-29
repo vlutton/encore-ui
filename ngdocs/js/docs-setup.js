@@ -293,6 +293,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxMisc:rxAutoSave",
+      "shortName": "rxAutoSave",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "A factory that controllers can use to help automatically save and load",
+      "keywords": "api automatically controllers encore factory forms help load localstorage rxmisc save service ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxMisc:rxDOMHelper",
       "shortName": "rxDOMHelper",
       "type": "service",
