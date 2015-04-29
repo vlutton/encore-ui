@@ -1,3 +1,19 @@
+<a name="1.14.0"></a>
+## 1.14.0 (2015-04-29)
+
+
+#### Bug Fixes
+
+* **rxForm:** Remove blue ng-valid border on dirty form fields ([cd0135b1](git@github.com:rackerlabs/encore-ui/commit/cd0135b1038bb39595d30bc737a6c3e6503ea418))
+
+
+#### Features
+
+* **LESS:** Bundle our main LESS files with bower ([e5af9a87](git@github.com:rackerlabs/encore-ui/commit/e5af9a8706c2eacb80eeb94eebdf991a7a88c0ae), closes [#635](git@github.com:rackerlabs/encore-ui/issues/635))
+* **rxMisc:** Added rxAutoSave service ([3f379070](git@github.com:rackerlabs/encore-ui/commit/3f3790705438f1eb62fa7592babf33448bc7ab27), closes [#679](git@github.com:rackerlabs/encore-ui/issues/679))
+* **rxStatusColumn:** add disabled status ([2ef4144b](git@github.com:rackerlabs/encore-ui/commit/2ef4144b3ed7635980ad04eb2aabdfb2d989794c))
+
+
 <a name="1.13.1"></a>
 ### 1.13.1 (2015-04-17)
 
