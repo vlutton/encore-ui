@@ -60,6 +60,15 @@
     </div>
     <rx-styleguide code-url="styleguide/tables/delete.html"></rx-styleguide>
 
+    <h3 class="title">Other single action</h3>
+    <div class="component-description clear">
+        <ul class="list">
+            <li>A button link is used for tables where each row has a single action that is not a deletion.</li>
+            <li>If the action is unavailable for a row, the link should be disabled and have a tooltip indicating why.</li>
+        </ul>
+    </div>
+    <rx-styleguide code-url="styleguide/tables/single-action.html"></rx-styleguide>
+
     <h3 class="title">Status columns</h3>
     <ul>
         <li><span class="msg-info">ENCORE-SPECIFIC:</span> We provide a standardized mechanism for color coding of status columns, via <a href="http://rackerlabs.github.io/encore-ui/#/component/rxStatusColumn">rxStatusColumn</a>. Ticket Queues has their own styling that predates this, and can be seen in <a href="https://github.com/rackerlabs/encore-tq-ui/blob/master/app/styles/tickets.less">their tickets.less file.</a> For consistency, new projects should use <code>rxStatusColumn</code>. If it doesn't satisfy your needs, please let us know and we'll see what we can do.</li>
