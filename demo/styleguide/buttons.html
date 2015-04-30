@@ -26,6 +26,10 @@
         <p>The Framework provides a spinner style for use with buttons. Note that different spinner styles are used when content is loading or being fetched (see <a href="#colors">Using Colors and Icons With Links demo</a>).</p>
         <p>When a user takes an action with results that cannot be immediately displayed, a spinner is shown on a disabled button state until the call completes or the results of the user's action can be displayed in the UI. Text for buttons with spinners should describe the action being taken using "-ing" verbs, so the user understands why the button appearance has changed. Note that the disabled state ensures the user cannot submit the same data multiple times while the initial action completes.
         </p>
+
+        <h2>Button Groups</h2>
+        <p>This control should NOT be used as a replacement for radio inputs. Instead, it should be used to indicate state on a page. For example, the legend of a time plot may allow the user to select a range of a week, month, or year. In this situation, there is no form being submitted, but there is an indication of the graph's state that can be interacted with. Conversely, radio inputs are the correct way to implement a form input where one of a few options can be selected.</p>
+        <p>Also, this type of control should only be used with at most four segments.</p>
     </div>
 
     <rx-styleguide code-url="styleguide/buttons/custom-buttons.html"></rx-styleguide>
