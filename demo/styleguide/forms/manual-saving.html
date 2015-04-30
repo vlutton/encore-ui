@@ -1,0 +1,12 @@
+<form name="form">
+    <rx-notification ng-if="form.$dirty" type="info">Changes made are not automatically saved. 
+        <button class="button submit xs" ng-disabled="form.$invalid">Save Now</button>
+    </rx-notification>
+    <span class="field-input">
+        <input type="text"
+            ng-model="text"
+            placeholder="no symbols allowed..."
+            ng-pattern="/^\w+$/"
+            ng-required>
+    </span>
+</form>
