@@ -408,6 +408,17 @@ exports.rxForm = {
         }
     },
 
+    form: {
+        /**
+           This is an alias to the new `rxForm.fill`, which was formally `rxForm.form.fill`.
+           It is kept here to remain backwards compatible with previous versions of the library.
+           @private
+        */
+        fill: function (reference, formData) {
+            exports.rxForm.fill(reference, formData);
+        }
+    },
+
     /**
        Set `value` in `formData` to the page object's current method `key`.
        Aids in filling out form data via javascript objects.
@@ -434,7 +445,7 @@ exports.rxForm = {
                    might: 'be overkill at this level'
                }
            }
-       });
+       };
        ```
     */
     fill: function (reference, formData) {
