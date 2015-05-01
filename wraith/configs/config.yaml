@@ -38,6 +38,7 @@ paths:
   rxButton: "/#/component/rxButton"
   rxCapitalize: "/#/component/rxCapitalize"
   rxCharacterCount: "/#/component/rxCharacterCount"
+  rxCheckbox: "/#/component/rxCheckbox"
   rxCollapse: "/#/component/rxCollapse"
   rxCompile: "/#/component/rxCompile"
   rxDiskSize: "/#/component/rxDiskSize"
