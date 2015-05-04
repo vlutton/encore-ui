@@ -154,6 +154,41 @@ describe('rxNotify', function () {
 
         });
 
+        describe('with ondismiss function', function () {
+            var msgText = 'Testing On Dismiss Method';
+
+            before(function () {
+                var chkOnDismiss = $('input[ng-model="ondismiss.should"]');
+                var txtMessage = $('input[ng-model="message"]');
+
+                txtMessage.clear();
+                txtMessage.sendKeys(msgText);
+
+                chkOnDismiss.getAttribute('checked').then(function (isChecked) {
+                    if (!isChecked) {
+                        chkOnDismiss.click();
+                    }
+                });
+
+                element(by.buttonText('Add to Custom Stack')).click();
+            });
+
+            it('should have an alert when the message is dismissed', function () {
+                notifications.byStack('custom').byText(msgText).dismiss();
+
+                browser.wait(function () {
+                    return browser.switchTo().alert().then(function (alertBox) {
+                        return alertBox.getText().then(function (txt) {
+                            expect(txt).to.eq('We are dismissing the message: Testing On Dismiss Method');
+                            return alertBox.dismiss().then(function () {
+                                return true;
+                            });
+                        });
+                    });
+                });
+            });
+        });
+
         describe('all', function () {
 
             it('should dismiss all notifications', function () {

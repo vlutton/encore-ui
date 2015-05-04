@@ -121,6 +121,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
         loading: false,
         show: 'immediate',
         dismiss: 'next',
+        ondismiss: _.noop(),
         stack: 'page',
         repeat: true
     };
@@ -242,6 +243,12 @@ angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
     var dismiss = function (msg) {
         // remove message by id
         stacks[msg.stack] = _.reject(stacks[msg.stack], { 'id': msg.id });
+
+        if (_.isFunction(msg.ondismiss)) {
+            $interval(function () {
+                msg.ondismiss(msg);
+            }, 0, 1);
+        }
     };
 
     /*

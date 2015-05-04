@@ -11,6 +11,14 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         repeat: true
     };
 
+    $scope.ondismiss = {
+        should: false,
+        method: function (msg) {
+            /* global alert */
+            alert('We are dismissing the message: ' + msg.text);
+        }
+    };
+
     $scope.routeChange = function (stack) {
         $rootScope.$broadcast('$routeChangeStart', {});
         $rootScope.$broadcast('$routeChangeSuccess', {});
@@ -18,6 +26,11 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
 
     $scope.add = function (stack) {
         var messageOptions = _.clone($scope.options);
+
+        if ($scope.ondismiss.should) {
+            messageOptions.ondismiss = _.clone($scope.ondismiss.method);
+        }
+
         messageOptions.stack = stack;
 
         rxNotify.add($scope.message, messageOptions);
