@@ -37,6 +37,10 @@
 
 - [SMACSS](http://smacss.com)
 
+### Regression Testing Tools
+
+- [snappit-mocha-protractor](https://www.npmjs.com/package/snappit-mocha-protractor)
+
 ### Pre-processor
 
 - [Less](http://lesscss.org)
