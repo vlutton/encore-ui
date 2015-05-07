@@ -117,6 +117,9 @@ Once we are happy with the final state of the PR, we will write "LGTM" or "Looks
  1. `git rebase -i HEAD~x` where x = number of commits you've made on the branch/PR (The Conversation/Commits/Files Changed tab on the PR page will show you how many commits you've made)
  2. Not including your original commit, mark `f` or `s` for all commits after it ([see example that follows](#example-of-step-2))
  3. Update the latest master and do `git rebase master` on your branch, now that everything has been summed up into one or two commits
+  1. You may run into a merge conflict. In that case, open the conflicting file(s) and modify it so that it reflects the desired final state.
+  2. `git add <filename>` will include the corrected file into the rebase
+  3. `git rebase --continue` will conclude the rebase now that the conflict has been resolved
  4. `git push -f` to force push your branch up to Github
 
 Once Travis completes the tests on the rebased branch, we'll merge in the PR.
