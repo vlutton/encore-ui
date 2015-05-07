@@ -52,6 +52,124 @@ it('should have actually sorted the column ascending', function () {
 });
 ```
 
+## Forms
+
+Forms are everywhere. And they are *horribly boring*. Most forms are not innovative by themselves, but can be the epicenter of many tests that validate input, success messages, error responses, etc. How can you make a form with rx-page-objects? Easy!
+
+**bad**
+```js
+it('should fill out the form correctly', function () {
+    element(by.model('user.name')).sendKeys('Charlie Day');
+    element(by.model('user.country')).click();
+    element.all(by.repeater('country in countries')).element(by.cssContainingText('option', 'United States')).click();
+    element(by.buttonText('Submit')).click();
+    expect(element.all(by.repeater('message in messages')).first.getText()).to.eventually.contain('Success');
+});
+
+it('should show an error message when submitting a foreign country', function () {
+    // http://i.imgur.com/ag8KcpB.jpg
+    element(by.model('user.name')).sendKeys('Lāčplēsis');
+    element(by.model('user.country')).click();
+    element.all(by.repeater('country in countries')).element(by.cssContainingText('option', 'Latvia')).click();
+    element(by.buttonText('Submit')).click();
+    expect(element.all(by.repeater('message in messages')).first.getText()).to.eventually.contain('Error');
+});
+
+// copy-pasted tests continue below...I sure hope this form never changes...
+```
+
+**better**
+```js
+var Page = require('astrolabe').Page;
+
+var form = Page.create({
+
+    name: {
+        get: function () {
+            return element(by.model('user.name')).getAttribute('value');
+        },
+        set: function (input) {
+            element(by.model('user.name')).clear();
+            element(by.model('user.name')).sendKeys(input);
+        }
+    },
+
+    country: {
+        get: function () {
+            return encore.rxForm.dropdown.initiailze(element(by.model('user.country'))).selectedOption;
+        },
+        set: function (countryName) {
+            encore.rxForm.dropdown.initiailze(element(by.model('user.country'))).select(countryName);
+        }
+    },
+
+    submit: {
+        value: function () {
+            element(by.buttonText('Submit')).click();
+        }
+    }
+
+});
+
+it('should fill out the form correctly', function () {
+    form.name = 'Charlie Day';
+    form.country = 'United States';
+    form.submit();
+    expect(encore.rxNotify.all.exists('Success')).to.eventually.be.true;
+});
+
+it('should show an error message when submitting a foreign country', function () {
+    form.name = 'Lāčplēsis';
+    form.country = 'Latvia';
+    form.submit();
+    expect(encore.rxNotify.all.exists('Error')).to.eventually.be.true;
+});
+```
+
+**best**
+```js
+var Page = require('astrolabe').Page;
+
+var form = Page.create({
+
+    fill: {
+        value: function (formData) {
+            encore.rxForm.fill(this, formData);
+            this.submit();
+        }
+    },
+
+    name: encore.rxForm.textField.generateAccessor(element(by.model('user.name'))),
+
+    country: encore.rxForm.dropdown.generateAccessor(element(by.model('user.country')),
+
+    submit: {
+        value: function () {
+            element(by.buttonText('Submit')).click();
+        }
+    }
+
+});
+
+it('should fill out the form correctly', function () {
+    form.fill({
+        name: 'Charlie Day';
+        country: 'United States'
+    });
+    expect(encore.rxNotify.all.exists('Success')).to.eventually.be.true;
+});
+
+it('should show an error message when submitting a foreign country', function () {
+    form.fill({
+        name: 'Lāčplēsis';
+        country: 'Latvia'
+    });
+    expect(encore.rxNotify.all.exists('Error')).to.eventually.be.true;
+});
+```
+
+More examples of supported form entry elements can be found in the [test library's API documentation](http://rackerlabs.github.io/encore-ui/rx-page-objects/index.html#rxForm).
+
 When you're using rx-page-objects in your app, you can get back to focusing on what matters -- testing the *business logic* that your app provides, not that all the little buttons, notifications, and menus are working.
 
 ## Exercises
@@ -104,6 +222,6 @@ describe('user list table', function () {
 
 ## Links
 
-Documentation: http://rackerlabs.github.io/encore-ui/rx-page-objects/index.html
+[Full Documentation](http://rackerlabs.github.io/encore-ui/rx-page-objects/index.html).
 
-Components Demo: http://rackerlabs.github.io/encore-ui/#/overview
+[Components Demo](http://rackerlabs.github.io/encore-ui/#/overview).

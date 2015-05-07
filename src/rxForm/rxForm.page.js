@@ -191,6 +191,42 @@ exports.rxForm = {
     /**
        @namespace
      */
+    textField: {
+        /**
+           Generates a getter and a setter for a text field on your page.
+           Text fields include text boxes, text areas, anything that responds to `.clear()` and `.sendKeys()`.
+           @param {WebElement} elem - The WebElement for the text field.
+           @function
+           @returns {Object} A getter and a setter to be applied to a text field in a page object.
+           @example
+           ```js
+           var yourPage = Page.create({
+               plainTextbox: rxForm.textField.generateAccessor(element(by.model('username')));
+           });
+
+           it('should fill out the text box', function () {
+               yourPage.plainTextbox = 'My Username'; // setter
+               expect(yourPage.plainTextbox).to.eventually.equal('My Username'); // getter
+           });
+           ```
+         */
+        generateAccessor: function (elem) {
+            return {
+                get: function () {
+                    return elem.getAttribute('value');
+                },
+                set: function (input) {
+                    elem.clear();
+                    elem.sendKeys(input);
+                }
+            };
+        }
+
+    },
+
+    /**
+       @namespace
+     */
     dropdown: {
         /**
            @param {WebElement} selectElement - Should be a `<select>` tag.
@@ -203,6 +239,34 @@ exports.rxForm = {
                 }
             };
             return Page.create(dropdown);
+        },
+
+        /**
+           Generates a getter and a setter for a dropdown on your page.
+           @param {WebElement} elem - The WebElement for the dropdown.
+           @function
+           @returns {Object} A getter and a setter to be applied to a dropdown in a page object.
+           @example
+           ```js
+           var yourPage = Page.create({
+               someDropdown: rxForm.dropdown.generateAccessor(element(by.model('country')));
+           });
+
+           it('should select the country', function () {
+               yourPage.someDropdown = 'United States'; // setter
+               expect(yourPage.someDropdown).to.eventually.equal('United States'); // getter
+           });
+           ```
+         */
+        generateAccessor: function (elem) {
+            return {
+                get: function () {
+                    return exports.rxForm.dropdown.initialize(elem).selectedOption;
+                },
+                set: function (optionText) {
+                    exports.rxForm.dropdown.initialize(elem).select(optionText);
+                }
+            };
         }
     },
 
@@ -266,7 +330,37 @@ exports.rxForm = {
                     }
                 }
             });
+        },
+
+        /**
+           Generates a getter and a setter for a checkbox on your page.
+           @param {WebElement} elem - The WebElement for the checkbox.
+           @function
+           @returns {Object} A getter and a setter to be applied to a checkbox in a page object.
+           @example
+           ```js
+           var yourPage = Page.create({
+               someCheckbox: rxForm.checkbox.generateAccessor(element(by.model('isPrivate')));
+           });
+
+           it('should fill out the checkbox', function () {
+               yourPage.someCheckbox = true; // setter
+               expect(yourPage.someCheckbox).to.eventually.be.true; // getter
+           });
+           ```
+         */
+        generateAccessor: function (elem) {
+            return {
+                get: function () {
+                    return exports.rxForm.checkbox.initialize(elem).isSelected();
+                },
+                set: function (enable) {
+                    var checkbox = exports.rxForm.checkbox.initialize(elem);
+                    enable ? checkbox.select() : checkbox.unselect();
+                }
+            };
         }
+
     },
 
     /**
@@ -314,44 +408,58 @@ exports.rxForm = {
         }
     },
 
-    /**
-       @namespace
-     */
     form: {
         /**
-           Set `value` in `formData` to the page object's current method `key`.
-           Aids in filling out form data via javascript objects.
-           For an example of this in use, see [encore-ui's end to end tests]{@link http://goo.gl/R7Frwv}.
-           @param {Object} reference - Context to evaluate under as `this` (typically, `this`).
-           @param {Object} formData - Key-value pairs of deeply-nested form items, and their values to fill.
-           @example
-           ```js
-           yourPage.fill({
-               aTextbox: 'My Name',
-               aRadioButton: 'Second Option'
-               aSelectDropdown: 'My Choice'
-               aModule: {
-                   hasMethods: 'Can Accept Input Too',
-                   deepNesting: {
-                       might: 'be overkill at this level'
-                   }
-               }
-           });
-           ```
+           This is an alias to the new `rxForm.fill`, which was formally `rxForm.form.fill`.
+           It is kept here to remain backwards compatible with previous versions of the library.
+           @private
         */
         fill: function (reference, formData) {
-            var next = this;
-            var page = reference;
-            _.forEach(formData, function (value, key) {
-                if (_.isPlainObject(value)) {
-                    // There is a deeply-nested function call in the form.
-                    reference = page[key];
-                    next.fill(reference, value);
-                } else {
-                    page[key] = value;
-                }
-            });
+            exports.rxForm.fill(reference, formData);
         }
+    },
+
+    /**
+       Set `value` in `formData` to the page object's current method `key`.
+       Aids in filling out form data via javascript objects.
+       For an example of this in use, see [encore-ui's end to end tests]{@link http://goo.gl/R7Frwv}.
+       @param {Object} reference - Context to evaluate under as `this` (typically, `this`).
+       @param {Object} formData - Key-value pairs of deeply-nested form items, and their values to fill.
+       @example
+       ```js
+       var yourPage = Page.create({
+           form: {
+               set: function (formData) {
+                   rxForm.fill(this, formData);
+               }
+           }
+       });
+
+       yourPage.form = {
+           aTextbox: 'My Name',
+           aRadioButton: 'Second Option'
+           aSelectDropdown: 'My Choice'
+           aModule: {
+               hasMethods: 'Can Accept Input Too',
+               deepNesting: {
+                   might: 'be overkill at this level'
+               }
+           }
+       };
+       ```
+    */
+    fill: function (reference, formData) {
+        var next = this;
+        var page = reference;
+        _.forEach(formData, function (value, key) {
+            if (_.isPlainObject(value)) {
+                // There is a deeply-nested function call in the form.
+                reference = page[key];
+                next.fill(reference, value);
+            } else {
+                page[key] = value;
+            }
+        });
     }
 
 };
@@ -760,6 +868,52 @@ exports.rxOptionFormTable = {
             }
         };
         return Page.create(rxOptionFormTable);
-    })()
+    })(),
+
+    /**
+       Generates a getter and a setter for an option table on your page, no matter if that
+       rxOptionFormTable contains radio buttons or checkboxes. They will both function identically.
+       This function is very much tied to the {@link rxOptionFormTable} page object,
+       which is much more feature rich than the other components in rxForm. When using this,
+       consider exposing a raw rxOptionFormTable component on your page object as well. This
+       provides users the ability to not only quickly get and set options in the rxOptionFormTable,
+       but also get columns, query cells, and other useful functions exposed in the component.
+       @param {WebElement} elem - The WebElement for the rxOptionFormTable.
+       @function
+       @returns {Object} A getter and a setter to be applied to an option form table in a page object.
+       @example
+       ```js
+       var yourPage = Page.create({
+           paymentMethod: rxOptionFormTable.generateAccessor(element(by.model('paymentMethod.primary')));
+
+           // you should still expose the optionTable as well, for greater usability in integration tests
+           paymentMethodTable: {
+               get: function () {
+                   rxOptionFormTable.initialize(element(by.model('paymentMethod.primary')));
+               }
+           }
+       });
+
+       it('should select the country', function () {
+           // select the card in the third row by `cardNumber`
+           yourPage.paymentMethod = [{cardNumber: '4111 1111 1111 1111'}]; // setter
+           expect(yourPage.paymentMethod).to.eventually.equal([2]); // getter
+           // include a raw option table object as well -- it will simplify more expressive tests
+           expect(yourPage.paymentMethodTable.row(2).cell('Card Type')).to.eventually.equal('Visa');
+       });
+       ```
+    */
+    generateAccessor: function (elem) {
+        return {
+            get: function () {
+                return exports.rxOptionFormTable.initialize(elem).selections;
+            },
+            set: function (selections) {
+                var optionTable = exports.rxOptionFormTable.initialize(elem);
+                optionTable.unselectAll();
+                optionTable.selectMany(selections);
+            }
+        };
+    }
 
 };
