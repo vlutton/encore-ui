@@ -176,6 +176,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxCollapse:rxCollapse",
+      "shortName": "rxCollapse",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Hide and show an element with a transition.",
+      "keywords": "api button collapsed default directive display element encore expanded filter hide initially rxcollapse title toggle transition true ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxEnvironment:Environment",
       "shortName": "Environment",
       "type": "service",
@@ -451,7 +460,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "encore.ui",
       "shortDescription": "Directive that takes in the page tracking object and outputs a page",
-      "keywords": "api call change changes column conjunction controller current described direction directive display displayed encore error fails filter getitems input instance intend maximum message method model number numberofpages object optional outputs pagetracking paginate paginated pagination readme request requirements rxpaginate server-side serverinterface service sort switching table takes time tracking ui ui-based watch"
+      "keywords": "api call change changes column conjunction controller current described direction directive display displayed encore error fails filter getitems input instance intend maximum message method model number numberofpages object optional outputs pagetracking paginate paginated pagination property readme request requirements rxpaginate selected selectfilter selections server-side serverinterface service sort switching table takes time tracking ui ui-based watch"
     },
     {
       "section": "api",
@@ -479,6 +488,51 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Simple directive which will show or hide content if user specified role.",
       "keywords": "api content directive encore hide required role rxpermission simple ui user"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxSelectFilter:Apply",
+      "shortName": "Apply",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "Used to apply an instance of SelectFilter to an array.",
+      "keywords": "api apply array encore filter filtered instance list rxselectfilter selectfilter ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxSelectFilter:rxMultiSelect",
+      "shortName": "rxMultiSelect",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "A multi-select dropdown with checkboxes for each option",
+      "keywords": "api checkboxes directive dropdown encore input list multi-select ng-model option options property rxselectfilter scope stores ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxSelectFilter:rxSelectFilter",
+      "shortName": "rxSelectFilter",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "Autmatically creates the appropriate dropdowns to manage a filter object.",
+      "keywords": "api appropriate autmatically creates directive dropdowns encore filter instance manage object rxselectfilter selectfilter ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxSelectFilter:rxSelectOption",
+      "shortName": "rxSelectOption",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "A single option for rxMultiSelect",
+      "keywords": "api content directive encore option provided rxmultiselect rxselectfilter single text transcluded ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxSelectFilter:SelectFilter",
+      "shortName": "SelectFilter",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "A prototype for creating objects that can be used for filtering arrays.",
+      "keywords": "api arrays create creating encore filter filtering objects properties prototype provided rxselectfilter service tracks ui"
     },
     {
       "section": "api",

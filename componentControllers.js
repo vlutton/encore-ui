@@ -42,6 +42,31 @@ function hotkeysCtrl ($scope, hotkeys) {
 }
 
 
+angular
+    .module('demoApp')
+    .controller('layoutController', function ($scope) {
+        $scope.layout = 'row';
+        $scope.align = { first: 'center', second: 'middle' };
+        $scope.options1 = ['left', 'center', 'right', 'spread', 'justify'];
+        $scope.options2 = ['top', 'middle', 'bottom', 'stretch'];
+
+        // Swap the first 3 items in each array and set new value
+        $scope.swap = function (option) {
+
+            if ($scope.layout === option) {
+                return;
+            }
+
+            var swap = $scope.options2.slice(0, 3).concat($scope.options1.slice(3));
+            $scope.options2 = $scope.options1.slice(0, 3).concat($scope.options2.slice(3));
+            $scope.options1 = swap;
+            swap = $scope.options1[$scope.options1.indexOf($scope.align.second)] || 'spread';
+            $scope.align.second = $scope.options2[$scope.options2.indexOf($scope.align.first)] || 'stretch';
+            $scope.align.first = swap;
+        };
+});
+
+
 
 
 /*jshint unused:false*/
@@ -456,6 +481,8 @@ function rxCharacterCountCtrl ($scope) {
         comment6: ''
     };
 }
+
+
 
 
 /*jshint unused:false*/
@@ -907,12 +934,12 @@ function rxPageTitleCtrl ($scope, rxPageTitle) {
 /*jshint unused:false*/
 
 // This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTracking, rxSortUtil) {
+function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTracking, rxSortUtil, SelectFilter) {
     $scope.pager = PageTracking.createInstance({ itemsPerPage: 3 });
 
+    var os = ['Ubuntu 12.04', 'Red Hat Enterprise Linux 6.4', 'CentOS 6.4', 'Ubuntu 13.04'];
     var makeServers = function (serverCount) {
         var servers = [];
-        var os = ['Ubuntu 12.04', 'Red Hat Enterprise Linux 6.4', 'CentOS 6.4', 'Ubuntu 13.04'];
         for (var i = 1; i < serverCount + 1; i++) {
             var server = {
                 id: i,
@@ -959,6 +986,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
                 var last = (added > allLazyServers.length) ? allLazyServers.length : added;
 
                 var filteredServers = $filter('filter')(allLazyServers, filterText);
+                filteredServers = $scope.osFilter.applyTo(filteredServers);
                 filteredServers = $filter('orderBy')(filteredServers, sortColumn);
 
                 // Return 100 items more than the user's `itemsPerPage`. i.e. if the
@@ -989,6 +1017,12 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
     $scope.clearFilter = function () {
         $scope.data.searchText = '';
     };
+    $scope.osFilter = SelectFilter.create({
+        properties: ['os'],
+        available: {
+            os: os
+        }
+    });
     $scope.serverInterface = serverInterface;
     $scope.pagedServers = PageTracking.createInstance({ itemsPerPage: 25 });
 }
@@ -1015,6 +1049,31 @@ angular.module('demoApp')
     $scope.searchModel = '';
     $scope.filterPlaceholder = 'Filter by any...';
 });
+
+
+/*jshint unused:false*/
+
+// This file is used to help build the 'demo' documentation page and should be updated with example code
+function rxSelectFilterCtrl ($scope, SelectFilter) {
+    $scope.data = {
+        classification: []
+    };
+
+    $scope.filter = SelectFilter.create({
+        properties: ['account', 'status'],
+        selected: {
+            account: ['A']
+        }
+    });
+
+    $scope.tickets = [
+        { account: 'A', status: 'NEW', description: 'A new ticket' },
+        { account: 'A', status: 'IN_PROGRESS', description: 'Fix all the bugs' },
+        { account: 'B', status: 'TRANSFERRED', description: 'Don\'t stop believing' },
+        { account: 'B', status: 'VENDOR', description: 'Hold on to that feeling' },
+        { account: 'A', status: 'TRANSFERRED', description: 'qwertyuiop' }
+    ];
+}
 
 
 function rxSessionCtrl ($scope, Session) {

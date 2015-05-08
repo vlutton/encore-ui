@@ -19,6 +19,263 @@ https://github.com/yui/pure/blob/master/LICENSE.md
         padding-right: 0;
     }
 }
+// Adapted from https://github.com/angular/material/commits/master/src/core/style/layout.scss
+// commit 4216d242d78f1bdadd89ebd59e1d80b9cc4f2978
+
+@import 'flexbox';
+@import 'mixins';
+@import 'vars';
+
+// Layout
+// ------------------------------
+
+[layout] {
+  .box-sizing(border-box);
+  .flexbox;
+}
+
+[layout="column"] {
+  .flex-direction(column);
+}
+
+[layout="row"] {
+  .flex-direction(row);
+}
+
+[layout-padding],
+[layout-padding] > [flex] {
+  padding: @layout-gutter-width / 2;
+}
+
+[layout-margin],
+[layout-margin] > [flex] {
+  margin: @layout-gutter-width / 2;
+}
+
+[layout-wrap] {
+  .flex-wrap(wrap);
+}
+
+[layout-fill] {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+@-moz-document url-prefix() {
+  [layout-fill] {
+    margin: 0;
+    width: 100%;
+    min-height: auto;
+    height: inherit;
+  }
+}
+
+
+// Used to concatenate selectors with '-' delimiter or without if no value provided
+// Only works for variable name @selector
+.concat-selector(@base, @value) when not (@value = null) {
+  @selector: ~'@{base}-@{value}';
+}
+.concat-selector(@base, @value) when (@value = null) {
+  @selector: ~'@{base}';
+}
+
+
+.flex-order-for-name(@suffix: null) {
+  .concat-selector('flex-order', @suffix);
+  .loop (@i) when (@i < 10) {
+    [@{selector}="@{i}"] { order: @i; }
+    .loop (@i + 1);
+  }
+  .loop (0);
+}
+
+.layout-for-name(@name) {
+  @selector: ~'layout-@{name}';
+  [@{selector}] {
+    .box-sizing(border-box);
+    .flexbox;
+  }
+  [@{selector}="column"] {
+    .flex-direction(col);
+  }
+  [@{selector}="row"] {
+    .flex-direction(row);
+  }
+}
+
+.offset-for-name(@suffix: null) {
+  .concat-selector('flex-offset', @suffix);
+  .loop (@i) when (@i < 20) {
+    @offset: @i * 5;
+    [@{selector}="@{offset}"] {
+      margin-left: ~"@{offset}%";
+    }
+    .loop (@i + 1);
+  }
+  .loop (1);
+
+  [@{selector}="33"], [@{selector}="34"] {
+    margin-left: 33.33%;
+  }
+  [@{selector}="66"], [@{selector}="67"] {
+    margin-left: 66.66%;
+  }
+}
+
+
+.flex-properties-for-name(@suffix: null) {
+  .concat-selector('flex', @suffix);
+
+  [@{selector}] {
+    .box-sizing(border-box);
+    .flex(1);
+  }
+
+  // (0-20) * 5 = 0-100%
+  .loop (@i) when (@i < 21) {
+    @flex: @i * 5;
+    [@{selector}="@{flex}"] {
+      .flex(0 0 ~'@{flex}%');
+    }
+    [layout="row"] > [@{selector}="@{flex}"] {
+      max-width: ~'@{flex}%';
+    }
+    [layout="column"] > [@{selector}="@{flex}"] {
+      max-height: ~'@{flex}%';
+    }
+    .loop (@i + 1);
+  }
+  .loop (0);
+
+  [@{selector}="33"], [@{selector}="34"] {
+    .flex(0 0 33.33%);
+  }
+  [@{selector}="66"], [@{selector}="67"] {
+    .flex(0 0 66.66%);
+  }
+
+  [layout="row"] {
+    > [@{selector}="33"], > [@{selector}="34"] {
+      max-width: 33.33%;
+    }
+    > [@{selector}="66"], > [@{selector}="67"] {
+      max-width: 66.66%;
+    }
+  }
+  [layout="column"] {
+    > [@{selector}="33"], > [@{selector}="34"] {
+      max-height: 33.33%;
+    }
+    > [@{selector}="66"], > [@{selector}="67"] {
+      max-height: 66.66%;
+    }
+  }
+}
+
+
+.layout-align-for-name(@suffix: null) {
+  .concat-selector('layout', @suffix);
+
+  [@{selector}="row"] {
+    .concat-selector('layout-align', @suffix);
+
+    &[@{selector}~="left"]    { .justify-content(flex-start); }
+    &[@{selector}~="center"]  { .justify-content(center); }
+    &[@{selector}~="right"]   { .justify-content(flex-end); }
+    &[@{selector}~="justify"] { .justify-content(space-between); }
+    &[@{selector}~="spread"]  { .justify-content(space-around); }
+
+    &[@{selector}~="top"]     { .align-items(flex-start); }
+    &[@{selector}~="middle"]  { .align-items(center); }
+    &[@{selector}~="bottom"]  { .align-items(flex-end); }
+    &[@{selector}~="stretch"] { .align-items(stretch); }
+  }
+
+  [@{selector}="column"] {
+    .concat-selector('layout-align', @suffix);
+
+    &[@{selector}~="top"]     { .justify-content(flex-start); }
+    &[@{selector}~="middle"]  { .justify-content(center); }
+    &[@{selector}~="bottom"]  { .justify-content(flex-end); }
+    &[@{selector}~="justify"] { .justify-content(space-between); }
+    &[@{selector}~="spread"]  { .justify-content(space-around); }
+
+    &[@{selector}~="left"]    { .align-items(flex-start); }
+    &[@{selector}~="center"]  { .align-items(center); }
+    &[@{selector}~="right"]   { .align-items(flex-end); }
+    &[@{selector}~="stretch"] { .align-items(stretch); }
+  }
+}
+
+// Flex attributes for layout children
+// ------------------------------
+
+.flex-properties-for-name();
+.layout-align-for-name();
+.flex-order-for-name();
+.offset-for-name();
+
+.base-box {
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  padding: 20px;
+  text-shadow: 0 0 4px rgba(100, 100, 100, 1);
+}
+
+.box {
+  &:extend(.base-box);
+  width: 150px;
+  margin: 10px 15px;
+}
+
+.flex-box {
+  &:extend(.base-box);
+  width: auto;
+}
+
+.dark-blue { background-color: #4881c0; }
+.light-blue { background-color: #86cafd; }
+.dark-green { background-color: #24b56a; }
+.light-green { background-color: #c8e5bf; }
+.orange { background-color: #db7820; }
+
+.small-box-container {
+  width: 95%;
+  height: 300px;
+  margin: 0 auto 10px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
+}
+
+.small-box {
+  &:extend(.base-box);
+  height: auto;
+  width: auto;
+  text-align: center;
+}
+
+.grow-box {
+  &:extend(.base-box);
+  height: auto;
+}
+
+.layout-examples {
+  input[type="radio"] {
+    margin-right: 6px;
+  }
+
+  label {
+    margin: 10px 0 0 10px;
+  }
+}
+
+code {
+  padding: 1px 2px;
+  background-color: #F0F0F0;
+  color: #db7820;
+  border-radius: 2px;
+}
 /*
  * metadata
  */
@@ -1533,6 +1790,47 @@ thead th .btn-link {
     }
 }
 
+.button-group {
+    display: flex;
+    border: @buttonGroupBorder;
+    border-radius: @buttonGroupBorderRadius + 2;
+    font-size: 1.1em;
+
+    input {
+        display: none;
+    }
+    label {
+
+        flex: 1;
+        text-align: center;
+        padding: 7px 13px;
+        color: #989998;
+
+        &:first-of-type {
+            border-top-left-radius: @buttonGroupBorderRadius;
+            border-bottom-left-radius: @buttonGroupBorderRadius;
+        }
+        &:last-of-type {
+            border-top-right-radius: @buttonGroupBorderRadius;
+            border-bottom-right-radius: @buttonGroupBorderRadius;
+        }
+        &:not(:last-of-type) {
+            border-right: @buttonGroupBorder;
+        }
+
+        &:hover,
+        &:focus {
+            cursor: pointer;
+            color: @white;
+            background: @buttonCancelBgHover;
+        }
+    }
+    input:checked + label {
+        color: @white;
+        background: #757575;
+    }
+}
+
 /*
  * rxCharacterCount
  */
@@ -1577,6 +1875,56 @@ thead th .btn-link {
             color: #fc0f1d;
         }
     }
+}
+
+/*
+ * rxCollapse
+ */
+rx-collapse {
+  display: block;
+
+  .collapse-container {
+
+    .double-chevron-cell {
+      display: inline-block;
+      .box-sizing(border-box);
+      width: 30px;
+      padding: 0 10px;
+      background-color: @borderGrey;
+      vertical-align: middle;
+
+      .double-chevron {
+        cursor: pointer;
+        &:after {
+          display: inline-block;
+          color: @white;
+          font-size: 28px;
+          .chevron-mixin(-1);
+        }
+      }
+
+      &.expanded {
+        .double-chevron {
+          &:after {
+            .chevron-mixin;
+          }
+        }
+      }
+    }
+
+    border: 2px solid @borderGrey;
+
+    .rx-collapse-title {
+      display: inline-block;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+
+    .collapse-body {
+      margin: 0;
+      padding: 10px;
+    }
+  }
 }
 
 /*
@@ -2150,6 +2498,11 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
         position: relative;
         background: no-repeat 18px 50%;
 
+        .button {
+            font-weight: normal;
+            margin-bottom: 0px;
+        }
+
         &.notification-success {
             background-color: #ddffd3;
             background-image: url('images/green-checkmark-circled.png');
@@ -2478,6 +2831,65 @@ rx-search-box {
     }//.rxSearchBox-clear
   }//.rxSearchBox-wrapper
 }//rx-search-box
+
+/*
+ * rxSelectFilter
+ */
+@import 'vars';
+
+.rx-select-filter {
+    .select-wrapper:not(:first-child) {
+        padding-left: 20px;
+    }
+
+    .field-label {
+        margin-right: 5px;
+    }
+}
+
+.rx-multi-select {
+
+    color: @inputColor;
+    border: 1px solid @inputBorderColor;
+    padding: 3px;
+    width: 150px;
+    position: relative;
+    font-size: 1.2em;
+
+    &:hover {
+        cursor:pointer;
+    }
+
+    ul {
+        position: absolute;
+        top: ~"calc(-1px)";
+        z-index: 1;
+        left: -1px;
+        width: 100%;
+        border: 1px solid @inputBorderColor;
+        background: @white;
+        box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.35);
+    }
+
+    rx-select-option[value="all"] label {
+        border-bottom: 1px solid @inputBorderColor;
+    }
+
+}
+
+.rx-select-option {
+
+    label {
+        display: block;
+        padding: 2px 10px;
+
+        &:hover {
+            background: @optionHighlightBg;
+            color: @white;
+            cursor: pointer;
+        }
+    }
+}
 
 /*
  * rxSortableColumn

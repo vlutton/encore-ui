@@ -6,14 +6,35 @@
 <li><a href="#encore.module_rxCharacterCount.initialize">encore.rxCharacterCount.initialize(rxCharacterCountElement)</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_rxCollapse">encore.rxCollapse</a><ul>
+<li><a href="#encore.module_rxCollapse.main">encore.rxCollapse.main</a></li>
+<li><a href="#encore.module_rxCollapse.initialize">encore.rxCollapse.initialize(rxCollapseElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxOptionFormTable">encore.rxOptionFormTable</a><ul>
 <li><a href="#encore.module_rxOptionFormTable.main">encore.rxOptionFormTable.main</a></li>
 <li><a href="#encore.module_rxOptionFormTable.initialize">encore.rxOptionFormTable.initialize(rxOptionFormTableElement)</a></li>
+<li><a href="#encore.module_rxOptionFormTable.generateAccessor">encore.rxOptionFormTable.generateAccessor(elem)</a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxSearchBox">encore.rxSearchBox</a><ul>
 <li><a href="#encore.module_rxSearchBox.main">encore.rxSearchBox.main</a></li>
 <li><a href="#encore.module_rxSearchBox.initialize">encore.rxSearchBox.initialize(rxSearchBoxElement)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
+<li><a href="#encore.module_rxMultiSelect.main">encore.rxMultiSelect.main</a></li>
+<li><a href="#encore.module_rxMultiSelect.initialize">encore.rxMultiSelect.initialize(rxMultiSelectElement)</a></li>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter">encore.rxMultiSelect~rxSelectFilter</a><ul>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.apply">rxSelectFilter.apply(filterData)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#encore.module_rxSelectFilter">encore.rxSelectFilter</a><ul>
+<li><a href="#encore.module_rxSelectFilter.main">encore.rxSelectFilter.main</a></li>
+<li><a href="#encore.module_rxSelectFilter.initialize">encore.rxSelectFilter.initialize(rxSelectFilterElement)</a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxSortableColumn">encore.rxSortableColumn</a><ul>
@@ -35,8 +56,10 @@
 </ul>
 </li>
 <li><a href="#encore.exercise.module_rxCharacterCount">encore.exercise.rxCharacterCount</a></li>
+<li><a href="#encore.exercise.module_rxCollapse">encore.exercise.rxCollapse</a></li>
 <li><a href="#encore.exercise.module_rxPaginate">encore.exercise.rxPaginate</a></li>
 <li><a href="#encore.exercise.module_rxSearchBox">encore.exercise.rxSearchBox</a></li>
+<li><a href="#encore.exercise.module_rxMultiSelect">encore.exercise.rxMultiSelect</a></li>
 <li><a href="#encore.exercise.module_rxToggleSwitch">encore.exercise.rxToggleSwitch</a></li>
 </ul>
 <p><strong>Namespaces</strong></p>
@@ -50,9 +73,18 @@
 <li><a href="#rxCharacterCount.isOverLimit">rxCharacterCount.isOverLimit()</a></li>
 </ul>
 </li>
+<li><a href="#rxCollapse">rxCollapse</a><ul>
+<li><a href="#rxCollapse.isDisplayed">rxCollapse.isDisplayed()</a></li>
+</ul>
+</li>
 <li><a href="#rxForm">rxForm</a><ul>
 <li><a href="#rxForm.currencyToPennies">rxForm.currencyToPennies(currencyString)</a></li>
 <li><a href="#rxForm.slowClick">rxForm.slowClick(elem)</a></li>
+<li><a href="#rxForm.fill">rxForm.fill(reference, formData)</a></li>
+<li><a href="#rxForm.textField">rxForm.textField</a><ul>
+<li><a href="#rxForm.textField.generateAccessor">textField.generateAccessor(elem)</a></li>
+</ul>
+</li>
 <li><a href="#rxForm.dropdown">rxForm.dropdown</a><ul>
 <li><a href="#rxForm.dropdown.options">dropdown.options</a></li>
 <li><a href="#rxForm.dropdown.values">dropdown.values</a></li>
@@ -61,6 +93,7 @@
 <li><a href="#rxForm.dropdown.optionExists">dropdown.optionExists(optionText)</a></li>
 <li><a href="#rxForm.dropdown.select">dropdown.select(optionText)</a></li>
 <li><a href="#rxForm.dropdown.initialize">dropdown.initialize(selectElement)</a></li>
+<li><a href="#rxForm.dropdown.generateAccessor">dropdown.generateAccessor(elem)</a></li>
 <li><a href="#rxForm.dropdown.option">dropdown.option</a><ul>
 <li><a href="#rxForm.dropdown.option.text">option.text</a></li>
 <li><a href="#rxForm.dropdown.option.value">option.value</a></li>
@@ -75,16 +108,13 @@
 <li><a href="#rxForm.checkbox.isSelected">checkbox.isSelected()</a></li>
 <li><a href="#rxForm.checkbox.select">checkbox.select()</a></li>
 <li><a href="#rxForm.checkbox.unselect">checkbox.unselect()</a></li>
+<li><a href="#rxForm.checkbox.generateAccessor">checkbox.generateAccessor(elem)</a></li>
 </ul>
 </li>
 <li><a href="#rxForm.radioButton">rxForm.radioButton</a><ul>
 <li><a href="#rxForm.radioButton.initialize">radioButton.initialize(radioElement)</a></li>
 <li><a href="#rxForm.radioButton.isSelected">radioButton.isSelected()</a></li>
 <li><a href="#rxForm.radioButton.select">radioButton.select()</a></li>
-</ul>
-</li>
-<li><a href="#rxForm.form">rxForm.form</a><ul>
-<li><a href="#rxForm.form.fill">form.fill(reference, formData)</a></li>
 </ul>
 </li>
 </ul>
@@ -120,6 +150,26 @@
 <li><a href="#rxSearchBox.isSearchable">rxSearchBox.isSearchable</a></li>
 <li><a href="#rxSearchBox.isDisplayed">rxSearchBox.isDisplayed</a></li>
 <li><a href="#rxSearchBox.clear">rxSearchBox.clear()</a></li>
+</ul>
+</li>
+<li><a href="#rxMultiSelect">rxMultiSelect</a><ul>
+<li><a href="#rxMultiSelect.preview">rxMultiSelect.preview</a></li>
+<li><a href="#rxMultiSelect.options">rxMultiSelect.options</a></li>
+<li><a href="#rxMultiSelect.values">rxMultiSelect.values</a></li>
+<li><a href="#rxMultiSelect.selectedOptions">rxMultiSelect.selectedOptions</a></li>
+<li><a href="#rxMultiSelect.closeMenu">rxMultiSelect.closeMenu()</a></li>
+<li><a href="#rxMultiSelect.openMenu">rxMultiSelect.openMenu()</a></li>
+<li><a href="#rxMultiSelect.isOpen">rxMultiSelect.isOpen()</a></li>
+<li><a href="#rxMultiSelect.select">rxMultiSelect.select(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.unselect">rxMultiSelect.unselect(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
+<li><a href="#rxMultiSelect.option.text">option.text</a></li>
+<li><a href="#rxMultiSelect.option.value">option.value</a></li>
+<li><a href="#rxMultiSelect.option.select">option.select()</a></li>
+<li><a href="#rxMultiSelect.option.unselect">option.unselect()</a></li>
+<li><a href="#rxMultiSelect.option.isSelected">option.isSelected()</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#rxSortableColumn">rxSortableColumn</a><ul>
@@ -174,13 +224,32 @@
 <ul>
 <li>rxCharacterCountElement <code>WebElement</code> - WebElement to be transformed into an rxCharacterCountElement object  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the rxCharacterCount object.<br><a name="encore.module_rxOptionFormTable"></a></p>
+<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the rxCharacterCount object.<br><a name="encore.module_rxCollapse"></a></p>
+<h1 id="encore-rxcollapse">encore.rxCollapse</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxCollapse">encore.rxCollapse</a><ul>
+<li><a href="#encore.module_rxCollapse.main">encore.rxCollapse.main</a></li>
+<li><a href="#encore.module_rxCollapse.initialize">encore.rxCollapse.initialize(rxCollapseElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxCollapse.main"></a></p>
+<h2 id="encore-rxcollapse-main">encore.rxCollapse.main</h2>
+<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the <em>first</em> rxCollapse object found on the page.<br><a name="encore.module_rxCollapse.initialize"></a></p>
+<h2 id="encore-rxcollapse-initialize-rxcollapseelement-">encore.rxCollapse.initialize(rxCollapseElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxCollapseElement <code>WebElement</code> - WebElement to be transformed into an rxCollapseElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the rxCollapse object.<br><a name="encore.module_rxOptionFormTable"></a></p>
 <h1 id="encore-rxoptionformtable">encore.rxOptionFormTable</h1>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxOptionFormTable">encore.rxOptionFormTable</a><ul>
 <li><a href="#encore.module_rxOptionFormTable.main">encore.rxOptionFormTable.main</a></li>
 <li><a href="#encore.module_rxOptionFormTable.initialize">encore.rxOptionFormTable.initialize(rxOptionFormTableElement)</a></li>
+<li><a href="#encore.module_rxOptionFormTable.generateAccessor">encore.rxOptionFormTable.generateAccessor(elem)</a></li>
 </ul>
 </li>
 </ul>
@@ -192,7 +261,40 @@
 <ul>
 <li>rxOptionFormTableElement <code>WebElement</code> - Web element to become an rxOptionFormTable object.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxOptionFormTable">rxOptionFormTable</a> - Page object representing the rxOptionFormTable object.<br><a name="encore.module_rxSearchBox"></a></p>
+<p><strong>Returns</strong>: <a href="#rxOptionFormTable">rxOptionFormTable</a> - Page object representing the rxOptionFormTable object.<br><a name="encore.module_rxOptionFormTable.generateAccessor"></a></p>
+<h2 id="encore-rxoptionformtable-generateaccessor-elem-">encore.rxOptionFormTable.generateAccessor(elem)</h2>
+<p>Generates a getter and a setter for an option table on your page, no matter if that
+       rxOptionFormTable contains radio buttons or checkboxes. They will both function identically.
+       This function is very much tied to the <a href="#rxOptionFormTable">rxOptionFormTable</a> page object,
+       which is much more feature rich than the other components in rxForm. When using this,
+       consider exposing a raw rxOptionFormTable component on your page object as well. This
+       provides users the ability to not only quickly get and set options in the rxOptionFormTable,
+       but also get columns, query cells, and other useful functions exposed in the component.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>elem <code>WebElement</code> - The WebElement for the rxOptionFormTable.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to an option form table in a page object.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">var yourPage = Page.create({
+    paymentMethod: rxOptionFormTable.generateAccessor(element(by.model(&#39;paymentMethod.primary&#39;)));
+
+    // you should still expose the optionTable as well, for greater usability in integration tests
+    paymentMethodTable: {
+        get: function () {
+            rxOptionFormTable.initialize(element(by.model(&#39;paymentMethod.primary&#39;)));
+        }
+    }
+});
+
+it(&#39;should select the country&#39;, function () {
+    // select the card in the third row by `cardNumber`
+    yourPage.paymentMethod = [{cardNumber: &#39;4111 1111 1111 1111&#39;}]; // setter
+    expect(yourPage.paymentMethod).to.eventually.equal([2]); // getter
+    // include a raw option table object as well -- it will simplify more expressive tests
+    expect(yourPage.paymentMethodTable.row(2).cell(&#39;Card Type&#39;)).to.eventually.equal(&#39;Visa&#39;);
+});
+</code></pre>
+<p><a name="encore.module_rxSearchBox"></a></p>
 <h1 id="encore-rxsearchbox">encore.rxSearchBox</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -210,7 +312,80 @@
 <ul>
 <li>rxSearchBoxElement <code>WebElement</code> - WebElement to be transformed into an rxSearchBoxElement object.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the rxSearchBox object.<br><a name="encore.module_rxSortableColumn"></a></p>
+<p><strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the rxSearchBox object.<br><a name="encore.module_rxMultiSelect"></a></p>
+<h1 id="encore-rxmultiselect">encore.rxMultiSelect</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
+<li><a href="#encore.module_rxMultiSelect.main">encore.rxMultiSelect.main</a></li>
+<li><a href="#encore.module_rxMultiSelect.initialize">encore.rxMultiSelect.initialize(rxMultiSelectElement)</a></li>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter">encore.rxMultiSelect~rxSelectFilter</a><ul>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.apply">rxSelectFilter.apply(filterData)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxMultiSelect.main"></a></p>
+<h2 id="encore-rxmultiselect-main">encore.rxMultiSelect.main</h2>
+<p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the <em>first</em> rxMultiSelect object found on the page.<br><a name="encore.module_rxMultiSelect.initialize"></a></p>
+<h2 id="encore-rxmultiselect-initialize-rxmultiselectelement-">encore.rxMultiSelect.initialize(rxMultiSelectElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxMultiSelectElement <code>WebElement</code> - WebElement to be transformed into an rxMultiSelectElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxMultiSelect..rxSelectFilter"></a></p>
+<h2 id="encore-rxmultiselect-rxselectfilter">encore.rxMultiSelect~rxSelectFilter</h2>
+<p><strong>Scope</strong>: inner namespace of <a href="#encore.module_rxMultiSelect">rxMultiSelect</a><br><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter">encore.rxMultiSelect~rxSelectFilter</a><ul>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
+<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.apply">rxSelectFilter.apply(filterData)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel"></a></p>
+<h3 id="rxselectfilter-multiselectbylabel-label-">rxSelectFilter.multiSelectByLabel(label)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>label <code>string</code> - The label of the rxMultiSelect dropdown.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxMultiSelect..rxSelectFilter.apply"></a></p>
+<h3 id="rxselectfilter-apply-filterdata-">rxSelectFilter.apply(filterData)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>filterData <code>Object</code> - Key-value pairs of the rxMultiSelects&#39; labels and their options to select.<pre><code>                              The value is an object, where the keys are the options and the values indicate
+                              if the option should be selected or unselected.  
+</code></pre></li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><strong>Example</strong>  </p>
+<pre><code class="lang-js"> multiSelect.filter({
+     Account: {
+         All: false,
+         B: true
+     }
+ });
+</code></pre>
+<p><a name="encore.module_rxSelectFilter"></a></p>
+<h1 id="encore-rxselectfilter">encore.rxSelectFilter</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxSelectFilter">encore.rxSelectFilter</a><ul>
+<li><a href="#encore.module_rxSelectFilter.main">encore.rxSelectFilter.main</a></li>
+<li><a href="#encore.module_rxSelectFilter.initialize">encore.rxSelectFilter.initialize(rxSelectFilterElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxSelectFilter.main"></a></p>
+<h2 id="encore-rxselectfilter-main">encore.rxSelectFilter.main</h2>
+<p><strong>Returns</strong>: <code>rxSelectFilter</code> - Page object representing the <em>first</em> rxSelectFilter object found on the page.<br><a name="encore.module_rxSelectFilter.initialize"></a></p>
+<h2 id="encore-rxselectfilter-initialize-rxselectfilterelement-">encore.rxSelectFilter.initialize(rxSelectFilterElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxSelectFilterElement <code>WebElement</code> - WebElement to be transformed into an rxSelectFilterElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>rxSelectFilter</code> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxSortableColumn"></a></p>
 <h1 id="encore-rxsortablecolumn">encore.rxSortableColumn</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -308,6 +483,21 @@ trailing whitespace when calculating the remaining character count.  </li>
     ignoreInsignificantWhitespace: false
 }));
 </code></pre>
+<p><a name="encore.exercise.module_rxCollapse"></a></p>
+<h1 id="encore-exercise-rxcollapse">encore.exercise.rxCollapse</h1>
+<p>rxCollapse exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxCollapse({
+    cssSelector: &#39;.secondary-info rx-paginate&#39;, // select one of many widgets on page
+}));
+</code></pre>
 <p><a name="encore.exercise.module_rxPaginate"></a></p>
 <h1 id="encore-exercise-rxpaginate">encore.exercise.rxPaginate</h1>
 <p>rxPaginate exercises.</p>
@@ -343,6 +533,22 @@ trailing whitespace when calculating the remaining character count.  </li>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxSearchBox({
     cssSelector: &#39;.secondary-info rx-search-box&#39;, // select one of many widgets on page
+}));
+</code></pre>
+<p><a name="encore.exercise.module_rxMultiSelect"></a></p>
+<h1 id="encore-exercise-rxmultiselect">encore.exercise.rxMultiSelect</h1>
+<p>rxMultiSelect exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[inputs=[]] <code>Object</code> - The options of the select input.  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxMultiSelect({
+    cssSelector: &#39;.my-form rx-multi-select&#39;, // select one of many widgets on page
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxToggleSwitch"></a></p>
@@ -398,13 +604,29 @@ trailing whitespace when calculating the remaining character count.  </li>
 <h2 id="rxcharactercount-isnearlimit-">rxCharacterCount.isNearLimit()</h2>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;near-limit&#39; class is displayed.<br><a name="rxCharacterCount.isOverLimit"></a></p>
 <h2 id="rxcharactercount-isoverlimit-">rxCharacterCount.isOverLimit()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="rxForm"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="rxCollapse"></a></p>
+<h1 id="rxcollapse">rxCollapse</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxCollapse">rxCollapse</a><ul>
+<li><a href="#rxCollapse.isDisplayed">rxCollapse.isDisplayed()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxCollapse.isDisplayed"></a></p>
+<h2 id="rxcollapse-isdisplayed-">rxCollapse.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxForm"></a></p>
 <h1 id="rxform">rxForm</h1>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#rxForm">rxForm</a><ul>
 <li><a href="#rxForm.currencyToPennies">rxForm.currencyToPennies(currencyString)</a></li>
 <li><a href="#rxForm.slowClick">rxForm.slowClick(elem)</a></li>
+<li><a href="#rxForm.fill">rxForm.fill(reference, formData)</a></li>
+<li><a href="#rxForm.textField">rxForm.textField</a><ul>
+<li><a href="#rxForm.textField.generateAccessor">textField.generateAccessor(elem)</a></li>
+</ul>
+</li>
 <li><a href="#rxForm.dropdown">rxForm.dropdown</a><ul>
 <li><a href="#rxForm.dropdown.options">dropdown.options</a></li>
 <li><a href="#rxForm.dropdown.values">dropdown.values</a></li>
@@ -413,6 +635,7 @@ trailing whitespace when calculating the remaining character count.  </li>
 <li><a href="#rxForm.dropdown.optionExists">dropdown.optionExists(optionText)</a></li>
 <li><a href="#rxForm.dropdown.select">dropdown.select(optionText)</a></li>
 <li><a href="#rxForm.dropdown.initialize">dropdown.initialize(selectElement)</a></li>
+<li><a href="#rxForm.dropdown.generateAccessor">dropdown.generateAccessor(elem)</a></li>
 <li><a href="#rxForm.dropdown.option">dropdown.option</a><ul>
 <li><a href="#rxForm.dropdown.option.text">option.text</a></li>
 <li><a href="#rxForm.dropdown.option.value">option.value</a></li>
@@ -427,16 +650,13 @@ trailing whitespace when calculating the remaining character count.  </li>
 <li><a href="#rxForm.checkbox.isSelected">checkbox.isSelected()</a></li>
 <li><a href="#rxForm.checkbox.select">checkbox.select()</a></li>
 <li><a href="#rxForm.checkbox.unselect">checkbox.unselect()</a></li>
+<li><a href="#rxForm.checkbox.generateAccessor">checkbox.generateAccessor(elem)</a></li>
 </ul>
 </li>
 <li><a href="#rxForm.radioButton">rxForm.radioButton</a><ul>
 <li><a href="#rxForm.radioButton.initialize">radioButton.initialize(radioElement)</a></li>
 <li><a href="#rxForm.radioButton.isSelected">radioButton.isSelected()</a></li>
 <li><a href="#rxForm.radioButton.select">radioButton.select()</a></li>
-</ul>
-</li>
-<li><a href="#rxForm.form">rxForm.form</a><ul>
-<li><a href="#rxForm.form.fill">form.fill(reference, formData)</a></li>
 </ul>
 </li>
 </ul>
@@ -470,7 +690,65 @@ encore.rxForm.currencyToPennies(&#39;$1.10&#39;)      ==  110
 <ul>
 <li>elem <code>WebElement</code> - Web element to &quot;slow click&quot;.  </li>
 </ul>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.dropdown"></a></p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.fill"></a></p>
+<h2 id="rxform-fill-reference-formdata-">rxForm.fill(reference, formData)</h2>
+<p>Set <code>value</code> in <code>formData</code> to the page object&#39;s current method <code>key</code>.
+       Aids in filling out form data via javascript objects.
+       For an example of this in use, see <a href="http://goo.gl/R7Frwv">encore-ui&#39;s end to end tests</a>.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>reference <code>Object</code> - Context to evaluate under as <code>this</code> (typically, <code>this</code>).  </li>
+<li>formData <code>Object</code> - Key-value pairs of deeply-nested form items, and their values to fill.  </li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">var yourPage = Page.create({
+    form: {
+        set: function (formData) {
+            rxForm.fill(this, formData);
+        }
+    }
+});
+
+yourPage.form = {
+    aTextbox: &#39;My Name&#39;,
+    aRadioButton: &#39;Second Option&#39;
+    aSelectDropdown: &#39;My Choice&#39;
+    aModule: {
+        hasMethods: &#39;Can Accept Input Too&#39;,
+        deepNesting: {
+            might: &#39;be overkill at this level&#39;
+        }
+    }
+};
+</code></pre>
+<p><a name="rxForm.textField"></a></p>
+<h2 id="rxform-textfield">rxForm.textField</h2>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxForm.textField">rxForm.textField</a><ul>
+<li><a href="#rxForm.textField.generateAccessor">textField.generateAccessor(elem)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxForm.textField.generateAccessor"></a></p>
+<h3 id="textfield-generateaccessor-elem-">textField.generateAccessor(elem)</h3>
+<p>Generates a getter and a setter for a text field on your page.
+           Text fields include text boxes, text areas, anything that responds to <code>.clear()</code> and <code>.sendKeys()</code>.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>elem <code>WebElement</code> - The WebElement for the text field.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to a text field in a page object.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">var yourPage = Page.create({
+    plainTextbox: rxForm.textField.generateAccessor(element(by.model(&#39;username&#39;)));
+});
+
+it(&#39;should fill out the text box&#39;, function () {
+    yourPage.plainTextbox = &#39;My Username&#39;; // setter
+    expect(yourPage.plainTextbox).to.eventually.equal(&#39;My Username&#39;); // getter
+});
+</code></pre>
+<p><a name="rxForm.dropdown"></a></p>
 <h2 id="rxform-dropdown">rxForm.dropdown</h2>
 <p><strong>Members</strong></p>
 <ul>
@@ -482,6 +760,7 @@ encore.rxForm.currencyToPennies(&#39;$1.10&#39;)      ==  110
 <li><a href="#rxForm.dropdown.optionExists">dropdown.optionExists(optionText)</a></li>
 <li><a href="#rxForm.dropdown.select">dropdown.select(optionText)</a></li>
 <li><a href="#rxForm.dropdown.initialize">dropdown.initialize(selectElement)</a></li>
+<li><a href="#rxForm.dropdown.generateAccessor">dropdown.generateAccessor(elem)</a></li>
 <li><a href="#rxForm.dropdown.option">dropdown.option</a><ul>
 <li><a href="#rxForm.dropdown.option.text">option.text</a></li>
 <li><a href="#rxForm.dropdown.option.value">option.value</a></li>
@@ -522,7 +801,24 @@ dropdown.select(&#39;United States&#39;);
 <ul>
 <li>selectElement <code>WebElement</code> - Should be a <code>&lt;select&gt;</code> tag.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxForm.dropdown">dropdown</a> - Page object representing a dropdown.<br><a name="rxForm.dropdown.option"></a></p>
+<p><strong>Returns</strong>: <a href="#rxForm.dropdown">dropdown</a> - Page object representing a dropdown.<br><a name="rxForm.dropdown.generateAccessor"></a></p>
+<h3 id="dropdown-generateaccessor-elem-">dropdown.generateAccessor(elem)</h3>
+<p>Generates a getter and a setter for a dropdown on your page.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>elem <code>WebElement</code> - The WebElement for the dropdown.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to a dropdown in a page object.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">var yourPage = Page.create({
+    someDropdown: rxForm.dropdown.generateAccessor(element(by.model(&#39;country&#39;)));
+});
+
+it(&#39;should select the country&#39;, function () {
+    yourPage.someDropdown = &#39;United States&#39;; // setter
+    expect(yourPage.someDropdown).to.eventually.equal(&#39;United States&#39;); // getter
+});
+</code></pre>
+<p><a name="rxForm.dropdown.option"></a></p>
 <h3 id="dropdown-option">dropdown.option</h3>
 <p><strong>Params</strong></p>
 <ul>
@@ -556,6 +852,7 @@ dropdown.select(&#39;United States&#39;);
 <li><a href="#rxForm.checkbox.isSelected">checkbox.isSelected()</a></li>
 <li><a href="#rxForm.checkbox.select">checkbox.select()</a></li>
 <li><a href="#rxForm.checkbox.unselect">checkbox.unselect()</a></li>
+<li><a href="#rxForm.checkbox.generateAccessor">checkbox.generateAccessor(elem)</a></li>
 </ul>
 </li>
 </ul>
@@ -574,7 +871,24 @@ dropdown.select(&#39;United States&#39;);
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.checkbox.unselect"></a></p>
 <h3 id="checkbox-unselect-">checkbox.unselect()</h3>
 <p>Unselects the current checkbox.</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.radioButton"></a></p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.checkbox.generateAccessor"></a></p>
+<h3 id="checkbox-generateaccessor-elem-">checkbox.generateAccessor(elem)</h3>
+<p>Generates a getter and a setter for a checkbox on your page.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>elem <code>WebElement</code> - The WebElement for the checkbox.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to a checkbox in a page object.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">var yourPage = Page.create({
+    someCheckbox: rxForm.checkbox.generateAccessor(element(by.model(&#39;isPrivate&#39;)));
+});
+
+it(&#39;should fill out the checkbox&#39;, function () {
+    yourPage.someCheckbox = true; // setter
+    expect(yourPage.someCheckbox).to.eventually.be.true; // getter
+});
+</code></pre>
+<p><a name="rxForm.radioButton"></a></p>
 <h2 id="rxform-radiobutton">rxForm.radioButton</h2>
 <p><strong>Members</strong></p>
 <ul>
@@ -597,39 +911,7 @@ dropdown.select(&#39;United States&#39;);
 <p><strong>Returns</strong>: <code>boolean</code> - Whether or not the radio button is currently selected.<br><a name="rxForm.radioButton.select"></a></p>
 <h3 id="radiobutton-select-">radioButton.select()</h3>
 <p>Selects the current radio button.</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxForm.form"></a></p>
-<h2 id="rxform-form">rxForm.form</h2>
-<p><strong>Members</strong></p>
-<ul>
-<li><a href="#rxForm.form">rxForm.form</a><ul>
-<li><a href="#rxForm.form.fill">form.fill(reference, formData)</a></li>
-</ul>
-</li>
-</ul>
-<p><a name="rxForm.form.fill"></a></p>
-<h3 id="form-fill-reference-formdata-">form.fill(reference, formData)</h3>
-<p>Set <code>value</code> in <code>formData</code> to the page object&#39;s current method <code>key</code>.
-           Aids in filling out form data via javascript objects.
-           For an example of this in use, see <a href="http://goo.gl/R7Frwv">encore-ui&#39;s end to end tests</a>.</p>
-<p><strong>Params</strong></p>
-<ul>
-<li>reference <code>Object</code> - Context to evaluate under as <code>this</code> (typically, <code>this</code>).  </li>
-<li>formData <code>Object</code> - Key-value pairs of deeply-nested form items, and their values to fill.  </li>
-</ul>
-<p><strong>Example</strong>  </p>
-<pre><code class="lang-js">yourPage.fill({
-    aTextbox: &#39;My Name&#39;,
-    aRadioButton: &#39;Second Option&#39;
-    aSelectDropdown: &#39;My Choice&#39;
-    aModule: {
-        hasMethods: &#39;Can Accept Input Too&#39;,
-        deepNesting: {
-            might: &#39;be overkill at this level&#39;
-        }
-    }
-});
-</code></pre>
-<p><a name="rxOptionFormTable"></a></p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable"></a></p>
 <h1 id="rxoptionformtable">rxOptionFormTable</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -838,7 +1120,89 @@ expect(optionTable.columnData(&#39;Surcharge&#39;, penniesFn)).to.eventually.eql
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxSearchBox.clear"></a></p>
 <h2 id="rxsearchbox-clear-">rxSearchBox.clear()</h2>
 <p>Clear the value of the search box.</p>
-<p><a name="rxSortableColumn"></a></p>
+<p><a name="rxMultiSelect"></a></p>
+<h1 id="rxmultiselect">rxMultiSelect</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxMultiSelect">rxMultiSelect</a><ul>
+<li><a href="#rxMultiSelect.preview">rxMultiSelect.preview</a></li>
+<li><a href="#rxMultiSelect.options">rxMultiSelect.options</a></li>
+<li><a href="#rxMultiSelect.values">rxMultiSelect.values</a></li>
+<li><a href="#rxMultiSelect.selectedOptions">rxMultiSelect.selectedOptions</a></li>
+<li><a href="#rxMultiSelect.closeMenu">rxMultiSelect.closeMenu()</a></li>
+<li><a href="#rxMultiSelect.openMenu">rxMultiSelect.openMenu()</a></li>
+<li><a href="#rxMultiSelect.isOpen">rxMultiSelect.isOpen()</a></li>
+<li><a href="#rxMultiSelect.select">rxMultiSelect.select(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.unselect">rxMultiSelect.unselect(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
+<li><a href="#rxMultiSelect.option.text">option.text</a></li>
+<li><a href="#rxMultiSelect.option.value">option.value</a></li>
+<li><a href="#rxMultiSelect.option.select">option.select()</a></li>
+<li><a href="#rxMultiSelect.option.unselect">option.unselect()</a></li>
+<li><a href="#rxMultiSelect.option.isSelected">option.isSelected()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="rxMultiSelect.preview"></a></p>
+<h2 id="rxmultiselect-preview">rxMultiSelect.preview</h2>
+<p><strong>Returns</strong>: <code>string</code> - The preview text for the dropdown.<br><a name="rxMultiSelect.options"></a></p>
+<h2 id="rxmultiselect-options">rxMultiSelect.options</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The text of each option element in the dropdown.<br><a name="rxMultiSelect.values"></a></p>
+<h2 id="rxmultiselect-values">rxMultiSelect.values</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The value of each option element in the dropdown.<br><a name="rxMultiSelect.selectedOptions"></a></p>
+<h2 id="rxmultiselect-selectedoptions">rxMultiSelect.selectedOptions</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;optionTexts&gt;</code> - Array of strings representing the currently selected options.<br><a name="rxMultiSelect.closeMenu"></a></p>
+<h2 id="rxmultiselect-closemenu-">rxMultiSelect.closeMenu()</h2>
+<p>Close the menu</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.openMenu"></a></p>
+<h2 id="rxmultiselect-openmenu-">rxMultiSelect.openMenu()</h2>
+<p>Open the menu</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.isOpen"></a></p>
+<h2 id="rxmultiselect-isopen-">rxMultiSelect.isOpen()</h2>
+<p><strong>Returns</strong>: <code>boolean</code> - - Whether or not the menu is visible.<br><a name="rxMultiSelect.select"></a></p>
+<h2 id="rxmultiselect-select-optiontexts-">rxMultiSelect.select(optionTexts)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to select.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.unselect"></a></p>
+<h2 id="rxmultiselect-unselect-optiontexts-">rxMultiSelect.unselect(optionTexts)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to unselect.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option"></a></p>
+<h2 id="rxmultiselect-option">rxMultiSelect.option</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionText <code>string</code> - Partial or total string matching the desired option.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxMultiSelect.option">option</a> - Page object representing an option.<br><strong>Members</strong></p>
+<ul>
+<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
+<li><a href="#rxMultiSelect.option.text">option.text</a></li>
+<li><a href="#rxMultiSelect.option.value">option.value</a></li>
+<li><a href="#rxMultiSelect.option.select">option.select()</a></li>
+<li><a href="#rxMultiSelect.option.unselect">option.unselect()</a></li>
+<li><a href="#rxMultiSelect.option.isSelected">option.isSelected()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxMultiSelect.option.text"></a></p>
+<h3 id="option-text">option.text</h3>
+<p><strong>Returns</strong>: <code>string</code> - The text inside of the current option.<br><a name="rxMultiSelect.option.value"></a></p>
+<h3 id="option-value">option.value</h3>
+<p><strong>Returns</strong>: <code>string</code> - The value bound to the option.<br><a name="rxMultiSelect.option.select"></a></p>
+<h3 id="option-select-">option.select()</h3>
+<p>Selects the option in the dropdown.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option.unselect"></a></p>
+<h3 id="option-unselect-">option.unselect()</h3>
+<p>Unselects the option in the dropdown.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option.isSelected"></a></p>
+<h3 id="option-isselected-">option.isSelected()</h3>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the option is currently selected.<br><a name="rxSortableColumn"></a></p>
 <h1 id="rxsortablecolumn">rxSortableColumn</h1>
 <p><strong>Members</strong></p>
 <ul>

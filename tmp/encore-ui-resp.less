@@ -1,0 +1,3536 @@
+/*!
+Pure v0.5.0
+Copyright 2014 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+https://github.com/yui/pure/blob/master/LICENSE.md
+*/
+.pure-g{letter-spacing:-.31em;*letter-spacing:normal;*word-spacing:-.43em;text-rendering:optimizespeed;font-family:FreeSans,Arimo,"Droid Sans",Helvetica,Arial,sans-serif;display:-webkit-flex;-webkit-flex-flow:row wrap;display:-ms-flexbox;-ms-flex-flow:row wrap}.opera-only :-o-prefocus,.pure-g{word-spacing:-.43em}.pure-u{display:inline-block;*display:inline;zoom:1;letter-spacing:normal;word-spacing:normal;vertical-align:top;text-rendering:auto}.pure-g [class *="pure-u"]{font-family:sans-serif}.pure-u-1,.pure-u-1-1,.pure-u-1-2,.pure-u-1-3,.pure-u-2-3,.pure-u-1-4,.pure-u-3-4,.pure-u-1-5,.pure-u-2-5,.pure-u-3-5,.pure-u-4-5,.pure-u-5-5,.pure-u-1-6,.pure-u-5-6,.pure-u-1-8,.pure-u-3-8,.pure-u-5-8,.pure-u-7-8,.pure-u-1-12,.pure-u-5-12,.pure-u-7-12,.pure-u-11-12,.pure-u-1-24,.pure-u-2-24,.pure-u-3-24,.pure-u-4-24,.pure-u-5-24,.pure-u-6-24,.pure-u-7-24,.pure-u-8-24,.pure-u-9-24,.pure-u-10-24,.pure-u-11-24,.pure-u-12-24,.pure-u-13-24,.pure-u-14-24,.pure-u-15-24,.pure-u-16-24,.pure-u-17-24,.pure-u-18-24,.pure-u-19-24,.pure-u-20-24,.pure-u-21-24,.pure-u-22-24,.pure-u-23-24,.pure-u-24-24{display:inline-block;*display:inline;zoom:1;letter-spacing:normal;word-spacing:normal;vertical-align:top;text-rendering:auto}.pure-u-1-24{width:4.1667%;*width:4.1357%}.pure-u-1-12,.pure-u-2-24{width:8.3333%;*width:8.3023%}.pure-u-1-8,.pure-u-3-24{width:12.5%;*width:12.469%}.pure-u-1-6,.pure-u-4-24{width:16.6667%;*width:16.6357%}.pure-u-1-5{width:20%;*width:19.969%}.pure-u-5-24{width:20.8333%;*width:20.8023%}.pure-u-1-4,.pure-u-6-24{width:25%;*width:24.969%}.pure-u-7-24{width:29.1667%;*width:29.1357%}.pure-u-1-3,.pure-u-8-24{width:33.3333%;*width:33.3023%}.pure-u-3-8,.pure-u-9-24{width:37.5%;*width:37.469%}.pure-u-2-5{width:40%;*width:39.969%}.pure-u-5-12,.pure-u-10-24{width:41.6667%;*width:41.6357%}.pure-u-11-24{width:45.8333%;*width:45.8023%}.pure-u-1-2,.pure-u-12-24{width:50%;*width:49.969%}.pure-u-13-24{width:54.1667%;*width:54.1357%}.pure-u-7-12,.pure-u-14-24{width:58.3333%;*width:58.3023%}.pure-u-3-5{width:60%;*width:59.969%}.pure-u-5-8,.pure-u-15-24{width:62.5%;*width:62.469%}.pure-u-2-3,.pure-u-16-24{width:66.6667%;*width:66.6357%}.pure-u-17-24{width:70.8333%;*width:70.8023%}.pure-u-3-4,.pure-u-18-24{width:75%;*width:74.969%}.pure-u-19-24{width:79.1667%;*width:79.1357%}.pure-u-4-5{width:80%;*width:79.969%}.pure-u-5-6,.pure-u-20-24{width:83.3333%;*width:83.3023%}.pure-u-7-8,.pure-u-21-24{width:87.5%;*width:87.469%}.pure-u-11-12,.pure-u-22-24{width:91.6667%;*width:91.6357%}.pure-u-23-24{width:95.8333%;*width:95.8023%}.pure-u-1,.pure-u-1-1,.pure-u-5-5,.pure-u-24-24{width:100%}
+.pure-g.columns > div {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
+
+    &:first-child {
+        padding-left: 0;
+    }
+    &:last-child {
+        padding-right: 0;
+    }
+}
+// Adapted from https://github.com/angular/material/commits/master/src/core/style/layout.scss
+// commit 4216d242d78f1bdadd89ebd59e1d80b9cc4f2978
+
+@import 'flexbox';
+@import 'mixins';
+@import 'vars';
+
+// Layout
+// ------------------------------
+
+[layout] {
+  .box-sizing(border-box);
+  .flexbox;
+}
+
+[layout="column"] {
+  .flex-direction(column);
+}
+
+[layout="row"] {
+  .flex-direction(row);
+}
+
+[layout-padding],
+[layout-padding] > [flex] {
+  padding: @layout-gutter-width / 2;
+}
+
+[layout-margin],
+[layout-margin] > [flex] {
+  margin: @layout-gutter-width / 2;
+}
+
+[layout-wrap] {
+  .flex-wrap(wrap);
+}
+
+[layout-fill] {
+  margin: 0;
+  min-height: 100%;
+  width: 100%;
+}
+@-moz-document url-prefix() {
+  [layout-fill] {
+    margin: 0;
+    width: 100%;
+    min-height: auto;
+    height: inherit;
+  }
+}
+
+
+// Used to concatenate selectors with '-' delimiter or without if no value provided
+// Only works for variable name @selector
+.concat-selector(@base, @value) when not (@value = null) {
+  @selector: ~'@{base}-@{value}';
+}
+.concat-selector(@base, @value) when (@value = null) {
+  @selector: ~'@{base}';
+}
+
+
+.flex-order-for-name(@suffix: null) {
+  .concat-selector('flex-order', @suffix);
+  .loop (@i) when (@i < 10) {
+    [@{selector}="@{i}"] { order: @i; }
+    .loop (@i + 1);
+  }
+  .loop (0);
+}
+
+.layout-for-name(@name) {
+  @selector: ~'layout-@{name}';
+  [@{selector}] {
+    .box-sizing(border-box);
+    .flexbox;
+  }
+  [@{selector}="column"] {
+    .flex-direction(col);
+  }
+  [@{selector}="row"] {
+    .flex-direction(row);
+  }
+}
+
+.offset-for-name(@suffix: null) {
+  .concat-selector('flex-offset', @suffix);
+  .loop (@i) when (@i < 20) {
+    @offset: @i * 5;
+    [@{selector}="@{offset}"] {
+      margin-left: ~"@{offset}%";
+    }
+    .loop (@i + 1);
+  }
+  .loop (1);
+
+  [@{selector}="33"], [@{selector}="34"] {
+    margin-left: 33.33%;
+  }
+  [@{selector}="66"], [@{selector}="67"] {
+    margin-left: 66.66%;
+  }
+}
+
+
+.flex-properties-for-name(@suffix: null) {
+  .concat-selector('flex', @suffix);
+
+  [@{selector}] {
+    .box-sizing(border-box);
+    .flex(1);
+  }
+
+  // (0-20) * 5 = 0-100%
+  .loop (@i) when (@i < 21) {
+    @flex: @i * 5;
+    [@{selector}="@{flex}"] {
+      .flex(0 0 ~'@{flex}%');
+    }
+    [layout="row"] > [@{selector}="@{flex}"] {
+      max-width: ~'@{flex}%';
+    }
+    [layout="column"] > [@{selector}="@{flex}"] {
+      max-height: ~'@{flex}%';
+    }
+    .loop (@i + 1);
+  }
+  .loop (0);
+
+  [@{selector}="33"], [@{selector}="34"] {
+    .flex(0 0 33.33%);
+  }
+  [@{selector}="66"], [@{selector}="67"] {
+    .flex(0 0 66.66%);
+  }
+
+  [layout="row"] {
+    > [@{selector}="33"], > [@{selector}="34"] {
+      max-width: 33.33%;
+    }
+    > [@{selector}="66"], > [@{selector}="67"] {
+      max-width: 66.66%;
+    }
+  }
+  [layout="column"] {
+    > [@{selector}="33"], > [@{selector}="34"] {
+      max-height: 33.33%;
+    }
+    > [@{selector}="66"], > [@{selector}="67"] {
+      max-height: 66.66%;
+    }
+  }
+}
+
+
+.layout-align-for-name(@suffix: null) {
+  .concat-selector('layout', @suffix);
+
+  [@{selector}="row"] {
+    .concat-selector('layout-align', @suffix);
+
+    &[@{selector}~="left"]    { .justify-content(flex-start); }
+    &[@{selector}~="center"]  { .justify-content(center); }
+    &[@{selector}~="right"]   { .justify-content(flex-end); }
+    &[@{selector}~="justify"] { .justify-content(space-between); }
+    &[@{selector}~="spread"]  { .justify-content(space-around); }
+
+    &[@{selector}~="top"]     { .align-items(flex-start); }
+    &[@{selector}~="middle"]  { .align-items(center); }
+    &[@{selector}~="bottom"]  { .align-items(flex-end); }
+    &[@{selector}~="stretch"] { .align-items(stretch); }
+  }
+
+  [@{selector}="column"] {
+    .concat-selector('layout-align', @suffix);
+
+    &[@{selector}~="top"]     { .justify-content(flex-start); }
+    &[@{selector}~="middle"]  { .justify-content(center); }
+    &[@{selector}~="bottom"]  { .justify-content(flex-end); }
+    &[@{selector}~="justify"] { .justify-content(space-between); }
+    &[@{selector}~="spread"]  { .justify-content(space-around); }
+
+    &[@{selector}~="left"]    { .align-items(flex-start); }
+    &[@{selector}~="center"]  { .align-items(center); }
+    &[@{selector}~="right"]   { .align-items(flex-end); }
+    &[@{selector}~="stretch"] { .align-items(stretch); }
+  }
+}
+
+// Flex attributes for layout children
+// ------------------------------
+
+.flex-properties-for-name();
+.layout-align-for-name();
+.flex-order-for-name();
+.offset-for-name();
+
+
+// Adapted from https://github.com/angular/material/commits/master/src/core/style/layout.scss
+// commit 4216d242d78f1bdadd89ebd59e1d80b9cc4f2978
+
+@import 'src/layout/layout.less';
+
+// Responsive attributes
+// ------------------------------
+
+[layout-padding] > [flex-sm],
+[layout-padding] > [flex-lt-md]
+{
+  padding: @layout-gutter-width / 4;
+}
+[layout-padding] > [flex-gt-sm],
+[layout-padding] > [flex-md],
+[layout-padding] > [flex-lt-lg]
+{
+  padding: @layout-gutter-width / 2;
+}
+[layout-padding] > [flex-gt-md],
+[layout-padding] > [flex-lg]
+{
+  padding: @layout-gutter-width / 1;
+}
+
+[layout-margin] > [flex-sm],
+[layout-margin] > [flex-lt-md]
+{
+  margin: @layout-gutter-width / 4;
+}
+[layout-margin] > [flex-gt-sm],
+[layout-margin] > [flex-md],
+[layout-margin] > [flex-lt-lg] {
+  margin: @layout-gutter-width / 2;
+}
+[layout-margin] > [flex-gt-md],
+[layout-margin] > [flex-lg]
+{
+  margin: @layout-gutter-width / 1;
+}
+
+
+/**
+ * `hide-gt-sm show-gt-lg` should hide from 600px to 1200px
+ * `show-md hide-gt-sm` should show from 0px to 960px and hide at > 960px
+ * `hide-gt-md show-gt-sm` should show everywhere (show overrides hide)`
+ */
+
+
+// SMALL SCREEN
+@media (max-width: (@layout-breakpoint-sm - 1)) {
+  [hide-sm], [hide] {
+    &:not([show-sm]):not([show]) {
+      display: none;
+    }
+  }
+
+  .flex-order-for-name(sm);
+  .layout-align-for-name(sm);
+  .layout-for-name(sm);
+  .offset-for-name(sm);
+  .flex-properties-for-name(sm);
+}
+
+// BIGGER THAN SMALL SCREEN
+@media (min-width: @layout-breakpoint-sm) {
+  .flex-order-for-name(gt-sm);
+  .layout-align-for-name(gt-sm);
+  .layout-for-name(gt-sm);
+  .offset-for-name(gt-sm);
+  .flex-properties-for-name(gt-sm);
+}
+
+// MEDIUM SCREEN
+@media (min-width: @layout-breakpoint-sm) and (max-width: (@layout-breakpoint-md - 1)) {
+  [hide], [hide-gt-sm] {
+    &:not([show-gt-sm]):not([show-md]):not([show]) {
+      display: none;
+    }
+  }
+  [hide-md]:not([show-md]):not([show]) {
+    display: none;
+  }
+
+  .flex-order-for-name(md);
+  .layout-align-for-name(md);
+  .layout-for-name(md);
+  .offset-for-name(md);
+  .flex-properties-for-name(md);
+}
+
+// BIGGER THAN MEDIUM SCREEN
+@media (min-width: @layout-breakpoint-md) {
+  .flex-order-for-name(gt-md);
+  .layout-align-for-name(gt-md);
+  .layout-for-name(gt-md);
+  .offset-for-name(gt-md);
+  .flex-properties-for-name(gt-md);
+}
+
+// LARGE SCREEN
+@media (min-width: @layout-breakpoint-md) and (max-width: (@layout-breakpoint-lg - 1)) {
+  [hide], [hide-gt-sm], [hide-gt-md] {
+    &:not([show-gt-sm]):not([show-gt-md]):not([show-lg]):not([show]) {
+      display: none;
+    }
+  }
+  [hide-lg]:not([show-lg]):not([show]) {
+    display: none;
+  }
+
+  .flex-order-for-name(lg);
+  .layout-align-for-name(lg);
+  .layout-for-name(lg);
+  .offset-for-name(lg);
+  .flex-properties-for-name(lg);
+}
+
+// BIGGER THAN LARGE SCREEN
+@media (min-width: @layout-breakpoint-lg) {
+  [hide-gt-sm], [hide-gt-md], [hide-gt-lg], [hide] {
+    &:not([show-gt-sm]):not([show-gt-md]):not([show-gt-lg]):not([show]) {
+      display: none;
+    }
+  }
+
+  .flex-order-for-name(gt-lg);
+  .layout-align-for-name(gt-lg);
+  .layout-for-name(gt-lg);
+  .offset-for-name(gt-lg);
+  .flex-properties-for-name(gt-lg);
+}
+
+.base-box {
+  height: 50px;
+  color: white;
+  font-weight: bold;
+  padding: 20px;
+  text-shadow: 0 0 4px rgba(100, 100, 100, 1);
+}
+
+.box {
+  &:extend(.base-box);
+  width: 150px;
+  margin: 10px 15px;
+}
+
+.flex-box {
+  &:extend(.base-box);
+  width: auto;
+}
+
+.dark-blue { background-color: #4881c0; }
+.light-blue { background-color: #86cafd; }
+.dark-green { background-color: #24b56a; }
+.light-green { background-color: #c8e5bf; }
+.orange { background-color: #db7820; }
+
+.small-box-container {
+  width: 95%;
+  height: 300px;
+  margin: 0 auto 10px;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
+}
+
+.small-box {
+  &:extend(.base-box);
+  height: auto;
+  width: auto;
+  text-align: center;
+}
+
+.grow-box {
+  &:extend(.base-box);
+  height: auto;
+}
+
+.layout-examples {
+  input[type="radio"] {
+    margin-right: 6px;
+  }
+
+  label {
+    margin: 10px 0 0 10px;
+  }
+}
+
+code {
+  padding: 1px 2px;
+  background-color: #F0F0F0;
+  color: #db7820;
+  border-radius: 2px;
+}
+/*
+ * metadata
+ */
+.metadata {
+    overflow: hidden;
+    font-size: 16px;
+    color: #727272;
+    line-height: 1.6em;
+
+    dl {
+        margin: 0;
+        clear: both;
+    }
+
+    dt {
+      float: left;
+      font-weight: 700;
+      text-align: left;
+      clear: left;
+      margin-right: 1em;
+    }
+    dd {
+        font-weight: 400;
+        text-align: left;
+        margin: 0;
+        display: list-item;
+        list-style-type: none;
+        list-style-image: url('');
+    }
+}
+
+@import 'vars';
+
+//** Background color of the whole progress component
+@progress-bg: #f5f5f5;
+
+//** Default progress bar color
+@progress-bar-bg: #86cafd;
+
+//** Secondary progress bar color
+@progress-bar-secondary-bg: @infoBlue;
+
+//** Tertiary progress bar color
+@progress-bar-tertiary-bg: @actionGreen;
+
+@font-size-base: @appFontSize;
+@font-size-large:         ceil((@font-size-base * 1.25));
+@font-size-small:         ceil((@font-size-base * 0.85)); 
+
+//** Unit-less `line-height` for use in components like buttons.
+@line-height-base:        1.428571429; // 20/14
+
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
+
+// Bar animations
+// -------------------------
+// WebKit
+@-webkit-keyframes progress-bar-stripes {
+    from  { background-position: 40px 0; }
+    to    { background-position: 0 0; }
+}
+
+// Spec and IE10+
+@keyframes progress-bar-stripes {
+    from  { background-position: 40px 0; }
+    to    { background-position: 0 0; }
+}
+
+// Bar itself
+// -------------------------
+
+.progress-bar-variant(@color) {
+    background-color: @color;
+
+    // Deprecated parent class requirement as of v3.2.0
+    .progress-striped & {
+        #gradient > .striped();
+    }
+}
+
+// Outer container
+.progress {
+    overflow: hidden;
+    height: @line-height-computed;
+    margin-bottom: @line-height-computed;
+    background-color: @progress-bg;
+    border: 1px solid #ccc;
+    padding: 1px;
+}
+
+// Bar of progress
+.progress-bar {
+    float: left;
+    width: 0%;
+    height: 100%;
+    font-size: @font-size-small;
+    line-height: @line-height-computed;
+    color: #1672b9;
+    text-align: center;
+    background-color: @progress-bar-bg;
+    .transition(width .6s ease);
+}
+
+// Striped bars
+//
+// `.progress-striped .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar-striped` class, which you just add to an existing
+// `.progress-bar`.
+.progress-striped .progress-bar,
+.progress-bar-striped {
+    #gradient > .striped();
+    background-size: 40px 40px;
+}
+
+// Call animation for the active one
+//
+// `.progress.active .progress-bar` is deprecated as of v3.2.0 in favor of the
+// `.progress-bar.active` approach.
+.progress.active .progress-bar,
+.progress-bar.active {
+    .animation(progress-bar-stripes 2s linear infinite);
+}
+
+// Variations
+// -------------------------
+
+.progress-bar-secondary {
+    .progress-bar-variant(@progress-bar-secondary-bg);
+    color: #fff;
+}
+
+.progress-bar-tertiary {
+    .progress-bar-variant(@progress-bar-tertiary-bg);
+    color: #fff;
+}
+
+#gradient {
+
+    // Horizontal gradient, from left to right
+    //
+    // Creates two color stops, start and end, by specifying a color and position for each color stop.
+    // Color stops are not available in IE9 and below.
+    .horizontal(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+        background-image: -webkit-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Safari 5.1-6, Chrome 10+
+        background-image: -o-linear-gradient(left, @start-color @start-percent, @end-color @end-percent); // Opera 12
+        background-image: linear-gradient(to right, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+        background-repeat: repeat-x;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down
+    }
+
+    // Vertical gradient, from top to bottom
+    //
+    // Creates two color stops, start and end, by specifying a color and position for each color stop.
+    // Color stops are not available in IE9 and below.
+    .vertical(@start-color: #555; @end-color: #333; @start-percent: 0%; @end-percent: 100%) {
+        background-image: -webkit-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Safari 5.1-6, Chrome 10+
+        background-image: -o-linear-gradient(top, @start-color @start-percent, @end-color @end-percent);  // Opera 12
+        background-image: linear-gradient(to bottom, @start-color @start-percent, @end-color @end-percent); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+        background-repeat: repeat-x;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down
+    }
+
+    .directional(@start-color: #555; @end-color: #333; @deg: 45deg) {
+        background-repeat: repeat-x;
+        background-image: -webkit-linear-gradient(@deg, @start-color, @end-color); // Safari 5.1-6, Chrome 10+
+        background-image: -o-linear-gradient(@deg, @start-color, @end-color); // Opera 12
+        background-image: linear-gradient(@deg, @start-color, @end-color); // Standard, IE10, Firefox 16+, Opera 12.10+, Safari 7+, Chrome 26+
+    }
+
+    .horizontal-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+        background-image: -webkit-linear-gradient(left, @start-color, @mid-color @color-stop, @end-color);
+        background-image: -o-linear-gradient(left, @start-color, @mid-color @color-stop, @end-color);
+        background-image: linear-gradient(to right, @start-color, @mid-color @color-stop, @end-color);
+        background-repeat: no-repeat;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=1)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+    }
+
+    .vertical-three-colors(@start-color: #00b3ee; @mid-color: #7a43b6; @color-stop: 50%; @end-color: #c3325f) {
+        background-image: -webkit-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+        background-image: -o-linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+        background-image: linear-gradient(@start-color, @mid-color @color-stop, @end-color);
+        background-repeat: no-repeat;
+        filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d', GradientType=0)",argb(@start-color),argb(@end-color))); // IE9 and down, gets no color-stop at all for proper fallback
+    }
+
+    .radial(@inner-color: #555; @outer-color: #333) {
+        background-image: -webkit-radial-gradient(circle, @inner-color, @outer-color);
+        background-image: radial-gradient(circle, @inner-color, @outer-color);
+        background-repeat: no-repeat;
+    }
+
+    .striped(@color: rgba(255,255,255,.15); @angle: 45deg) {
+        background-image: -webkit-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+        background-image: -o-linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+        background-image: linear-gradient(@angle, @color 25%, transparent 25%, transparent 50%, @color 50%, @color 75%, transparent 75%, transparent);
+    }
+}
+
+.animation(@animation) {
+    -webkit-animation: @animation;
+         -o-animation: @animation;
+            animation: @animation;
+}
+
+/*
+ * rxAccountInfo
+ */
+.rx-account-info {
+    .info-panel {
+        overflow: hidden;
+    }
+    .account-info-wrapper {
+        float: left;
+        margin-right: 5em;
+    }
+    .account-info-label {
+        color: #777;
+    }
+    .account-info-data {
+        color: #777;
+        font-size: 26px;
+        img {
+            height: 35px;
+            margin-right: 5px;
+        }
+    }
+
+}
+
+/*
+ * rxAccountInfoBanner
+ */
+.rx-page {
+    // Account Info Banner
+
+    .account-info-banner {
+        clear: both;
+        background: #d1d1d1;
+        width: 100%;
+        border-top: 1px solid;
+        border-color: #b9b9b9;
+    }
+
+    ul.account-info-text {
+        padding: 5px 50px 5px 12px;
+        overflow: hidden;
+        li {
+            float: left;
+            padding-right: 40px;
+            .label {
+                color: #797979;
+                text-shadow: 0 1px #efefef;
+                font-size: 9px;
+            }
+            .account-data {
+                color: #505050;
+                font-size: 18px;
+                font-weight: 300;
+                .field-select {
+                    width: 140px;
+                    &:before { // background behind arrow
+                        background: #959595;
+                        top: 4px;
+                        height: 80%;
+                    }
+                    &:after { // arrow color
+                        color: #6c6c6c;
+                    }
+                }
+                select {
+                    font-size: 12px;
+                    background: #959595; // select box background
+                    border: 1px solid #6c6c6c;
+                    color: #fff;
+                }
+            }
+            .msg-warn {
+                color: #cb2124;
+            }
+            .msg-info {
+                color: #dd7800;
+            }
+        }
+        li.badges {
+            float: right;
+            padding: 0;
+            .account-info-badge {
+                .tooltip {
+                    width: 150px;
+                }
+                img {
+                    width: 35px;
+                    float: left;
+                    margin: 5px 2px;
+                }
+            }
+        }
+    }
+
+    ul.account-info-badges {
+        overflow: hidden;
+    }
+}
+
+@import 'vars';
+
+// containers for actionmenus that spawn modals
+.action-menu-container {
+    position: relative;
+    width: 15px;
+    & > i {
+        cursor: pointer;
+        color: @subduedText;
+        &:hover {
+            color: @subduedTextHover;
+        }
+    }
+}
+
+.actions-area {
+    font-size: 115%;
+    line-height: 2em;
+}
+
+.action-list-hideable {
+    float: left;
+    z-index: 99;
+    position: absolute;
+    top: -10px;
+    right: 15px;
+    min-width: 20em;
+    font-size: .9em;
+    border: 4px solid @white;
+    .border-radius(4px);
+    background: @white;
+    text-shadow: rgba(0, 0, 0, 0.09) 1px 1px 1px;
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 4px 0px;
+    padding: 6px;
+
+    &:before {
+        content:  "\f0da";
+        text-shadow: rgba(0, 0, 0, 0.35) 1px 1px 1px;
+        font-family: FontAwesome;
+        text-decoration: inherit;
+        color: @white;
+        font-size: 24px;
+        display: block;
+        left: 249px;
+        position: absolute;
+        top: 0;
+        width: 0;
+        z-index: 1;
+    }
+
+    i {
+        margin-right: 5px;
+    }
+}
+
+.action-list {
+    float: right;
+}
+
+@import (less) 'demo/bower_components/font-awesome/less/font-awesome.less';
+@fa-font-path: 'font';
+@import 'vars';
+@import (inline) 'normalize.css';
+
+// Resets for HTML elements
+html, body {
+    height: 100%;
+    font-size: @appFontSize;
+    color: @appTextColor;
+    font-family: @appFont;
+}
+
+// Set default font
+button, input, select,
+.pure-g [class *= "pure-u"],
+.pure-g-r [class *= "pure-u"] {
+    font-family: @appFont;
+}
+
+// Remove default margin/padding/etc
+header, nav,
+ol, ul, li,
+h1, h2, h3, h4, h5, h6,
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    vertical-align: baseline;
+}
+
+// No list styles for lists
+ol, ul, li {
+    list-style: none;
+}
+
+// We want a little bit more line-spacing in paragraphs
+p {
+    line-height: @appLineHeight;
+}
+
+// Link Styles
+a {
+    text-decoration: none;
+    color: @linkColor;
+}
+a:hover,
+a:focus {
+    text-decoration: underline;
+    color: @linkColorHover;
+}
+
+// Table Styles
+table {
+    clear: both;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    td,
+    th {
+        border: 1px solid @tableBorder;
+        padding: @tableCellPadding;
+        color: @tableCellText;
+    }
+    thead th {
+        text-align: left;
+        background: @tableHeaderBg;
+        color: @tableHeaderText;
+        border: 1px solid @tableHeaderBorder;
+        &.actions {
+          width: 15px;
+        }
+    }
+    tr {
+        background: @tableBg;
+    }
+    &.table-striped {
+        tr:nth-child(even), tbody:nth-child(odd) > tr {
+            background: @tableBgAlt;
+        }
+    }
+    td.double-chevron-cell {
+        width: 10px;
+        padding: 0px 10px;
+        .double-chevron {
+            cursor: pointer;
+            &::after {
+                display: inline-block;
+                color: @subduedText;
+                font-size: 20px;
+                .chevron-mixin;
+            }
+        }
+    }
+    td.expanded {
+        background-color: @subtableBorder;
+        border-bottom-color: @subtableBorder;
+        .double-chevron::after {
+            color: @white;
+            .chevron-mixin(-1);
+        }
+    }
+}
+
+.expanded-container {
+    padding: 0 3px 3px 3px;
+    background-color: @subtableBorder;
+    & > * {
+        margin-left: 2%;
+        width: 98%;
+    }
+    table.subtable {
+        table-layout: fixed;
+
+        th:first-child {
+            border-left-width: 0;
+        }
+
+        th:last-child {
+            border-right-width: 0;
+        }
+
+        th {
+            border-color: darken(@subtableBorder, 15%);
+            background-color: @subtableBorder;
+            border-top: 0;
+            border-bottom: 0;
+        }
+    }
+    .expanded-content {
+        background-color: @white;
+        margin-top: 3px;
+    }
+}
+
+// Heading/Title Styles
+.title {
+    font-size: 18px;
+    margin: 1em 0;
+
+    & + & {
+        // remove the top margin if two titles are placed right next to each other
+        margin-top: 0;
+    }
+
+    // Sizing
+    &.xl {
+        font-size: 28px;
+    }
+
+    &.lg {
+        font-size: 22px;
+    }
+
+    &.sm {
+        font-size: 16px;
+    }
+
+    &.xs {
+        font-size: 13px;
+    }
+
+    // Colors
+    &.subdued {
+        color: @subduedTitle;
+    }
+}
+
+// Statuses
+.link-action,
+.link-action a,
+.link-warn,
+.link-warn a {
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.link-action:before,
+.link-action a:before {
+    content: '+ ';
+}
+
+.link-warn:before,
+.link-warn a:before {
+    content: '- ';
+}
+
+.action-separator {
+    font-size: 1.1em;
+    color: @subduedText;
+}
+
+.msg-action,
+.msg-action a {
+    color: @actionGreen;
+    &:hover,
+    &:focus {
+        color: @actionGreen;
+    }
+}
+
+.msg-warn,
+.msg-warn a {
+    color: @warnRed;
+    &:hover,
+    &:focus {
+        color: @warnRedHover;
+    }
+}
+
+.msg-info,
+.msg-info a {
+    color: @infoOrange;
+    &:hover,
+    &:focus {
+        color: @infoOrangeHover;
+    }
+}
+
+.msg-info-blue,
+.msg-info-blue a {
+    color: @infoBlue;
+    &:hover,
+    &:focus {
+        color: @infoBlueHover;
+    }
+}
+
+// Lists
+.list {
+    li,
+    .item {
+        display: list-item;
+        margin: 5px 0 0 30px;
+    }
+
+    ul&,
+    &.bulleted {
+        li,
+        .item {
+            list-style: disc;
+        }
+    }
+
+    ol&,
+    &.decimal {
+        li,
+        .item {
+            list-style: decimal;
+        }
+    }
+}
+
+// Wells
+.well {
+    background: #eee;
+    padding: 40px 50px;
+    box-shadow: 0 0 0 10px white inset;
+
+    p {
+        line-height: 1.5em;
+        color: @wellText;
+    }
+
+    ul {
+        display: inline-block;
+        text-align: left;
+    }
+}
+
+.modal-well {
+    background-color: #eee;
+    padding: 20px 30px;
+
+    h2 {
+        font-size: 14px;
+    }
+}
+
+// Other Stuff
+.subdued {
+    color: @subduedText;
+}
+
+// Add hover style if a link or inside a link
+a.subdued:hover,
+a.subdued:focus,
+a:hover .subdued,
+a:focus .subdued {
+    color: @subduedTextHover;
+}
+
+// Hidden content
+.hidden {
+    visibility: hidden;
+}
+
+// Used to hide content visually but let them still be read
+// by screen readers (removed from the page spacing)
+.visually-hidden {
+    position: absolute !important;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0 !important;
+    border: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden;
+}
+body:hover .visually-hidden a,
+body:hover .visually-hidden input,
+body:hover .visually-hidden button {
+    display: none;
+}
+
+// Clearing Floats
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+// Clearing siblings
+.clear {
+    clear: both;
+}
+.clear-left {
+    clear: left;
+}
+.clear-right {
+    clear: right;
+}
+
+// Marks content as full width (e.g. to give a button full width).
+// Requires 'display' to be defined as `inline-block` or `block`
+.full-width {
+    width: 100%;
+}
+
+// Center content
+// Requires 'display' to be defined as `inline-block` or `block`
+.centered {
+    text-align: center;
+}
+
+
+/* PLACEHOLDER TEXT STYLING
+  https://css-tricks.com/snippets/css/style-placeholder-text/
+*/
+::-webkit-input-placeholder { // Chrome
+  color: @inputPlaceholderColor;
+  font-weight: 300;
+}
+::-moz-placeholder { // Firefox 19+
+  color: @inputPlaceholderColor;
+  font-weight: 400;
+}
+
+// A "filter" style rxSearchBox
+.filter-box {
+  font-style: italic;
+}
+
+@import 'vars';
+@import 'flexbox';
+@import 'mixins';
+
+.rx-app {
+    @navTransitionDuration: .2s;
+    @appMenuWidth: 300px;
+
+    min-height: 100%;
+    .flexbox();
+    .flex-direction(row);
+    background: @appBg;
+
+    .rx-app-content {
+        .flex(1 1 0);
+    }
+
+    .rx-app-menu {
+        .flex(0 0 @appMenuWidth);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 300;
+        background: @appMenuBg;
+        line-height: @appLineHeight;
+        padding-bottom: 10em;
+        position: relative;
+    }
+
+    .site-branding {
+        border-top: 1px solid #074285;
+        border-bottom: 1px solid #052953;
+        padding: 5px 20px;
+        overflow: hidden;
+        background: @siteBrandingBg;
+        position: relative;
+
+        .site-title {
+            float: left;
+        }
+        .site-options {
+            float: right;
+            font-size: .8em;
+            margin-top: 1px;
+
+            .site-option {
+                color: @menuLinkLightBlue;
+                display: inline-block;
+                margin-left: 1em;
+                &:hover,
+                &:focus {
+                    color: @white;
+                }
+            }
+        }
+
+        .collapsible-toggle {
+            position: absolute;
+            text-align: center;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            width: 2em;
+            border-left: 1px solid #052953;
+            &:hover {
+                background: lighten(@siteBrandingBg, 10%);
+            }
+        }
+
+        .double-chevron {
+            font-size: 20px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+
+            &::before {
+                color: @menuLinkLightBlue;
+                content: "\00bb";
+            }
+
+            &.double-chevron-left::before {
+                content: "\00ab";
+            }
+
+            &:hover &::before {
+                color: @white;
+            }
+        }
+    }
+
+    &.collapsible {
+        .site-branding {
+            padding-right: calc(~"2em + 20px");
+        }
+    }
+
+    &.collapsed {
+        .rx-app-menu {
+            .flex(0 0 25px);
+            padding-bottom: 0;
+            position: relative;
+        }
+
+        .site-branding,
+        .collapsible-toggle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .site-title,
+        .site-options,
+        .rx-app-nav,
+        .rx-app-help {
+            display: none;
+        }
+    }
+
+    &.warning-bar {
+        position: absolute;
+        margin-top: 3em;
+        width: 100%;
+    }
+
+    &.warning-bar.preprod {
+        .rx-app-menu {
+            background: @preprodBackground;
+        }
+        .rx-app-nav-item {
+            &.active:not(.has-children) > .item-link {
+                border-top-color: @preprodBorderTop;
+            }
+            .item-link {
+                background: @preprodBackground;
+                border-top: 1px solid @preprodBorderTop;
+                border-bottom: 1px solid @preprodBorderBottom;
+                &:hover,
+                &:focus {
+                    background: @preprodBackgroundFocus;
+                    border-top: 1px solid @preprodBorderBottom;
+                    border-bottom: 1px solid @preprodBorderBottom;
+                }
+            }
+
+            // active nav, w/children (double arrow up, gray bg)
+            &.active.has-children > .item-link {
+                border-top-color: @preprodBorderTop;
+                // used to show BG of arrow (because :after is rotated)
+                &:before {
+                    background: @preprodActiveBackground;
+                }
+                .item-content {
+                    border-bottom: 1px solid #000000;
+                }
+            }
+
+            .item-content {
+                background: @preprodActiveBackground;
+            }
+        }
+    }
+
+    .rx-app-nav {
+        clear: both;
+
+        .nav-section {
+            padding-left: 5px;
+        }
+
+        .nav-section-title {
+            padding: 5px 15px;
+            font-size: 13px;
+        }
+
+        .nav-section-all {
+            background: #407610;
+            border-top: 1px solid #568c26;
+        }
+
+        .nav-section-highlight {
+            background: #0951a3;
+            border-top: 1px solid #00408f;
+        }
+    }
+
+    .rx-app-nav-item {
+        clear: both;
+
+        // common nav styles (inactive nav, no children)
+        .item-link {
+            background: #1a1a1a;
+            border-top: 1px solid #333333;
+            border-bottom: 1px solid #000000;
+            padding: 10px 4em 10px 15px;
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            -webkit-transition: background @navTransitionDuration;
+            transition: background @navTransitionDuration;
+            position: relative;
+            &:hover,
+            &:focus {
+                background: #262626;
+                border-top: 1px solid #404040;
+                border-bottom: 1px solid #0d0d0d;
+            }
+            &:before,
+            &:after {
+                content: '';
+                position: absolute;
+            }
+            &:after {
+                -webkit-transition: all @navTransitionDuration;
+                transition: all @navTransitionDuration;
+            }
+        }
+
+        &:not(.has-children) > .item-link:after {
+            right: 0;
+            top: 0;
+            border: transparent solid;
+            border-width: calc(~"5px + 1em") 6px;
+            border-right: 0;
+        }
+
+        // active nav, no children (blue bg, arrow right)
+        &.active:not(.has-children) > .item-link {
+            border-color: transparent;
+            background: #0E7FFF;
+            &:after {
+                right: -6px;
+                border-left-color: #0E7FFF;
+            }
+        }
+
+        // inactive nav, w/children (double arrow down)
+        &.has-children > .item-link:after {
+            font-size: 2em;
+            content: "\00bb"; // angle quotation mark, right (&raquo;)
+            -webkit-transform: rotate(90deg) scaleX(1);
+            transform: rotate(90deg) scaleX(1);
+            top: 50%;
+            line-height: 0;
+            right: .45em;
+        }
+
+        // active nav, w/children (double arrow up, gray bg)
+        &.active.has-children > .item-link {
+            border-top-color: #404040;
+            border-bottom-width: 0;
+            // used to show BG of arrow (because :after is rotated)
+            &:before {
+                width: 3em;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                background: #333;
+            }
+            &:after {
+                // flip arrow around
+                -webkit-transform: rotate(90deg) scaleX(-1);
+                transform: rotate(90deg) scaleX(-1);
+            }
+            .item-content {
+                border-bottom: 1px solid #000000;
+            }
+        }
+
+        .item-content {
+            background: #333;
+            padding: 10px;
+        }
+
+        .item-directive:not(.ng-hide) + .item-children {
+            margin-top: 10px;
+        }
+
+        .item-children {
+            padding: 10px;
+            background: #4d4d4c;
+        }
+
+        .child-header {
+            margin-bottom: 1em;
+        }
+
+        .current-search {
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #9c9c9c;
+            font-size: 10px;
+            display: block;
+        }
+        .current-result {
+            color: #d5d5d3;
+            font-size: 18px;
+        }
+
+    }
+
+    .rx-app-nav-level-2 {
+        .item-link {
+            background: #666766;
+            border-top-color: #787878;
+            border-bottom-color: #595959;
+            font-size: 13px;
+
+            &:hover,
+            &:focus {
+                background: #595959;
+                border-top: 1px solid #737373;
+                border-bottom: 1px solid #404040;
+            }
+        }
+        .active:not(.has-children) > .item-link {
+            margin-right: -10px;
+        }
+        .active.has-children > .item-link {
+            background: #1a1a1a;
+            border-color: transparent;
+        }
+
+        .item-content {
+            background: #1a1a1a;
+            padding: 0 0 4px 4px;
+        }
+
+        .item-children {
+            padding: 0;
+        }
+    }
+
+    .rx-app-nav-level-3 .item-link {
+        background: #333333;
+        border-color: transparent;
+        padding: 5px 15px;
+
+        &:hover,
+        &:focus {
+            background: #404040;
+            border-color: transparent;
+        }
+    }
+    .rx-app-nav-level-3 .rx-app-nav-item {
+        &:first-child {
+            border-top: 3px solid #333;
+        }
+        .item-link:after {
+            border-top-width: 1em;
+            border-bottom-width: 1em;
+        }
+    }
+
+    .rx-app-search {
+        position: relative;
+        font-size: 14px;
+        color: #babab9;
+
+        fieldset {
+          position: relative;
+        }
+
+        // NOTE: We have to have this duplication because CSS doesn't like combining the placholder selectors
+        .placeholder() {
+           font-style: italic;
+           text-overflow: ellipsis;
+        }
+
+        ::-webkit-input-placeholder {
+            .placeholder();
+        }
+        ::-moz-placeholder {
+           .placeholder();
+        }
+        :-ms-input-placeholder {
+           .placeholder();
+        }
+
+        .search-input {
+            .box-sizing(border-box);
+            background: #4d4d4c;
+            border: 0;
+            width: 100%;
+            padding: 9px;
+            padding-right: 30px;
+            margin: 0;
+        }
+
+        .search-input.ng-invalid:focus {
+            outline-color: @menuRed;
+        }
+
+        .search-action {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 100%;
+            background: url(images/magnifying-glass.png) no-repeat 50% 50%;
+            border: 0;
+            opacity: 0.2;
+        }
+
+        .search-option {
+            margin-top: 10px;
+        }
+    }
+
+    .rx-app-help {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: @appMenuWidth;
+        background: @appHelpBg;
+        border-top: 1px solid @appHelpBorder;
+        line-height: 3em;
+        padding-bottom: 1px;
+        font-size: .8em;
+        text-shadow: 1px 1px 0px rgba(26, 26, 26, 0.2);
+
+        .rx-feedback .modal-link {
+            background: url(images/icon-feedback.png) no-repeat 20px calc(~"50% + 1px");
+            vertical-align: middle;
+            color: @menuLinkOrange;
+            padding: 0 21px 0 41px;
+            float: right;
+        }
+    }
+
+
+    // Page Styles
+
+    .page-header {
+        background: linear-gradient(to bottom, #e7e7e7 0%, #d6d6d6 100%);
+        border-bottom: 1px solid #bbb;
+    }
+
+    .page-body {
+        padding: 20px 30px 50px;
+        clear: both;
+
+        .page-titles {
+            float: left;
+
+            .page-title {
+                margin: 0;
+                position: relative;
+            }
+
+            .page-subtitle {
+                margin-top: 0;
+            }
+        }
+
+        & > .rx-notifications {
+            position:fixed;
+            z-index: 5;
+            top: 0px;
+            left: 300px;
+            right: 100px;
+            opacity: 0.95;
+            .rx-notification {
+                width: 100%;
+            }
+        }
+
+        .page-actions {
+            float: right;
+            margin: 0 0 2em 2em;
+        }
+    }
+}
+
+.warning-bar.rx-notifications {
+    position: fixed;
+    z-index: 3;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.status-tag {
+    &.alpha-status, &.beta-status {
+        margin-left: 10px;
+        text-transform: uppercase;
+        font-size: 9px;
+        border: 1px solid;
+        padding: 1px 2px;
+        .border-radius(2px);
+        top: 9px;
+        position: absolute;
+        color: #427fc4;
+    }
+}
+
+/* Disabled link styles */
+.link-disabled {
+    pointer-events: none;
+    a {
+        color: #d5d3d3;
+    }
+    .rx-spinner {
+        margin-left: 10px;
+        border-bottom-color: #d5d3d3;
+        border-right-color: #d5d3d3;
+    }
+}
+
+a.disabled {
+    color: #d5d3d3;
+    cursor: default;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+/*
+# rxBreadcrumbs
+
+They show your position within the site heirarchy.
+
+```
+<ol class="rx-breadcrumbs">
+    <li class="breadcrumb">
+        <span>
+            <a href="#" class="breadcrumb-name first">First Breadcrumb</a>
+        </span>
+    </li>
+    <li class="breadcrumb">
+        <span>
+            <a href="#" class="breadcrumb-name">Middle Breadcrumb</a>
+        </span>
+    </li>
+    <li class="breadcrumb">
+        <span>
+            <a href="#" class="breadcrumb-name :hover">Hovered Breadcrumb</a>
+        </span>
+    </li>
+    <li class="breadcrumb">
+        <span class="breadcrumb-name last">Last Breadcrumb</span>
+    </li>
+</ol>
+```
+*/
+
+.rx-breadcrumbs {
+    overflow: hidden;
+    border-style: solid;
+    border-color: #ccc;
+    float: left;
+
+    .breadcrumb {
+        float: left;
+
+        @breadcrumbHeight: 1.2em;
+        @breadcrumbArrowWidth: 9px;
+
+        .breadcrumb-name {
+            padding: @breadcrumbHeight/2 1em @breadcrumbHeight/2 2em;
+            font-size: 0.9em;
+            display: block;
+            color: #555;
+            position: relative;
+            text-decoration: none;
+            text-shadow: 0 1px 0 rgba(255,255,255,.5);
+            background: #ddd;
+        }
+        .breadcrumb-name.last {
+            background: transparent;
+        }
+
+        a::after,
+        a::before{
+            content: "";
+            position: absolute;
+            top: 50%;
+            margin-top: -@breadcrumbHeight;
+            border: 0 solid transparent;
+            border-width: @breadcrumbHeight 0 @breadcrumbHeight @breadcrumbArrowWidth;
+            right: -@breadcrumbArrowWidth;
+        }
+
+        a::after{
+            /* TODO add in border gradient to match nav background */
+            border-left-color: #ddd;
+            z-index: 2;
+        }
+        a::before{
+            border-left-color: #ccc;
+            right: -(@breadcrumbArrowWidth + 1);
+            z-index: 1;
+        }
+
+        .first {
+            padding-left: 1em;
+            background: #c8c8c8;
+        }
+        .first::after {
+            border-left-color: #c8c8c8;
+        }
+
+        a:hover {
+            background: #fff;
+        }
+        a:hover::after {
+            border-left-color: #fff;
+        }
+    }
+
+    .status-tag {
+        &.alpha-status, &.beta-status {
+            margin-left: 6px;
+            position: static;
+        }
+    }
+
+}
+
+@import 'vars';
+
+.button {
+    display: inline-block;
+    background: @buttonDefaultBg;
+    color: @buttonColor;
+    border: 0;
+    font-size: 1.1em;
+    padding: 7px 13px;
+    margin-bottom: 10px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+    &:hover,
+    &:focus {
+        background: @buttonDefaultBgHover;
+        cursor: pointer;
+        // in case the buttons are created using the <a> tag
+        color: @buttonColor;
+        text-decoration: none;
+    }
+
+    // Size Variations
+    &.xl {
+        font-size: 1.25em;
+        padding: 20px 30px;
+    }
+
+    &.lg {
+        font-size: 1.15em;
+        padding: 15px 26px;
+    }
+
+    &.sm {
+        padding: 5px 10px;
+        font-size: 1em;
+    }
+
+    &.xs {
+        padding: 3px 7px;
+        margin-bottom: 5px;
+        font-size: .9em;
+    }
+
+    // Color Variations
+    &.positive, &.submit {
+        background: @buttonPositiveBg;
+        &:hover,
+        &:focus {
+            background: @buttonPositiveBgHover;
+        }
+    }
+
+    &.negative {
+        background: @buttonNegativeBg;
+        &:hover,
+        &:focus {
+            background: @buttonNegativeBgHover;
+        }
+    }
+
+    &.finish {
+        background: #fff;
+        color: @buttonDefaultBg;
+        .box-shadow(inset 0 0 0 2px @buttonDefaultBg);
+        &:hover,
+        &:focus {
+            color: @buttonDefaultBgHover;
+            .box-shadow(inset 0 0 0 2px @buttonDefaultBgHover);
+        }
+    }
+
+    &.cancel {
+        background: @buttonCancelBg;
+        &:hover,
+        &:focus {
+            background: @buttonCancelBgHover;
+        }
+    }
+
+    // Disabled styles should always come last in the cascade for color
+    // variations styles, or else they won't override other colors properly.
+    &[disabled], &[disabled]:hover {
+        cursor: not-allowed;
+        color: @buttonColorDisabled;
+        background: @buttonDisabledBg;
+    }
+
+
+// Spinner styles
+    .spinner {
+        display: inline-block;
+        position: relative;
+        left: 3px;
+
+        i {
+            width: 5px;
+            height: 5px;
+            background: @buttonSpinnerBg;
+
+            .border-radius(100%);
+            display: inline-block;
+            -webkit-animation: bouncedelay 1.4s infinite ease-in-out;
+            animation: bouncedelay 1.4s infinite ease-in-out;
+            /* Prevent first frame from flickering when animation starts */
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+
+            &.pos1 {
+                -webkit-animation-delay: -0.32s;
+                animation-delay: -0.32s;
+            }
+
+            &.pos2 {
+                -webkit-animation-delay: -0.16s;
+                animation-delay: -0.16s;
+            }
+        }
+    }
+
+    @-webkit-keyframes bouncedelay {
+        0%, 80%, 100% { -webkit-transform: scale(0.0) }
+        40% { -webkit-transform: scale(1.0) }
+    }
+
+    @keyframes bouncedelay {
+        0%, 80%, 100% {
+            transform: scale(0.0);
+            -webkit-transform: scale(0.0);
+        } 40% {
+            transform: scale(1.0);
+            -webkit-transform: scale(1.0);
+        }
+    }
+}
+
+// Make buttons look like plain links
+.btn-link {
+    color: @linkColor;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-size: inherit;
+    &:hover,
+    &:focus {
+        text-decoration: underline;
+    }
+
+    &[disabled], &[disabled]:hover {
+        cursor: not-allowed;
+        color: @buttonDisabledBg;
+    }
+}
+thead th .btn-link {
+    color: @tableHeaderText;
+    &:hover,
+    &:focus {
+        color: @tableHeaderText;
+    }
+}
+
+.button-group {
+    display: flex;
+    border: @buttonGroupBorder;
+    border-radius: @buttonGroupBorderRadius + 2;
+    font-size: 1.1em;
+
+    input {
+        display: none;
+    }
+    label {
+
+        flex: 1;
+        text-align: center;
+        padding: 7px 13px;
+        color: #989998;
+
+        &:first-of-type {
+            border-top-left-radius: @buttonGroupBorderRadius;
+            border-bottom-left-radius: @buttonGroupBorderRadius;
+        }
+        &:last-of-type {
+            border-top-right-radius: @buttonGroupBorderRadius;
+            border-bottom-right-radius: @buttonGroupBorderRadius;
+        }
+        &:not(:last-of-type) {
+            border-right: @buttonGroupBorder;
+        }
+
+        &:hover,
+        &:focus {
+            cursor: pointer;
+            color: @white;
+            background: @buttonCancelBgHover;
+        }
+    }
+    input:checked + label {
+        color: @white;
+        background: #757575;
+    }
+}
+
+/*
+ * rxCharacterCount
+ */
+
+// Wrapper provides proper width for text area and positioning 
+// character count. For specific use cases in a project, 
+// custom wrappers with custom widths can be set.
+.counted-input-wrapper {
+    width: 375px;
+    // These two selectors must always be styled with the same width.
+    .input-highlighting, textarea {
+        width: 370px;
+    }
+    position: relative;
+    background-color: #ffffff;
+    input, textarea {
+      position: relative; // Ensure the input is layered over the highlighting without z-index
+      background-color: transparent;
+      resize: none;
+      .inputBorderPadding;
+    }
+    .input-highlighting {
+        position: absolute;
+        top: 4px;
+        left: 6px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        color: transparent;
+        .over-limit-text {
+            background-color: @warnRed;
+            opacity: 0.3;
+        }
+    }
+
+    .character-countdown {
+        text-align: right;
+        color: @subduedTitle;
+        &.near-limit {
+            color: #db7820;
+        }
+        &.over-limit {
+            color: #fc0f1d;
+        }
+    }
+}
+
+/*
+ * rxCollapse
+ */
+rx-collapse {
+  display: block;
+
+  .collapse-container {
+
+    .double-chevron-cell {
+      display: inline-block;
+      .box-sizing(border-box);
+      width: 30px;
+      padding: 0 10px;
+      background-color: @borderGrey;
+      vertical-align: middle;
+
+      .double-chevron {
+        cursor: pointer;
+        &:after {
+          display: inline-block;
+          color: @white;
+          font-size: 28px;
+          .chevron-mixin(-1);
+        }
+      }
+
+      &.expanded {
+        .double-chevron {
+          &:after {
+            .chevron-mixin;
+          }
+        }
+      }
+    }
+
+    border: 2px solid @borderGrey;
+
+    .rx-collapse-title {
+      display: inline-block;
+      margin: 0 10px;
+      vertical-align: middle;
+    }
+
+    .collapse-body {
+      margin: 0;
+      padding: 10px;
+    }
+  }
+}
+
+/*
+ * rxFeedback
+ */
+.rx-feedback-form .feedback-description {
+    .field-label,
+    .field-input,
+    .feedback-textarea {
+        display: block;
+        width: 100%;
+        float: none;
+    }
+
+    .field-input {
+        top: 0;
+        margin-top: 5px;
+    }
+
+    .feedback-textarea {
+        height: 10em;
+    }
+}
+/*
+ * rxFloatingHeader
+ */
+.rx-floating-header {
+    position: fixed;
+    z-index: 3;
+    opacity: 0.96;
+}
+
+
+// For tables with filters, style filter th differently
+th.filter-header {
+    font-weight: normal;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e1e0df;
+    input.filter-box {
+        color: #404040;
+    }
+    button {
+        margin: 0;
+    }
+}
+
+// Batch actions menu is visible even when header floats
+// There's some black magic here. For whatever reason, we have to 
+// add z-index:2 to the other rows in the header, *not* the row
+// that the batch actions menu lives in.
+tr.rx-floating-header:not(.rx-table-filter-row) {
+  z-index: 2;
+}
+
+@import 'vars';
+@import 'mixins';
+
+/* Form Fields & Fieldsets */
+
+.rx-form {
+    margin: 15px 0 0;
+}
+
+.form-item {
+    margin-top: 5px;
+    .flexbox();
+    .flex-flow(row nowrap);
+    .justify-content(flex-start);
+    .align-items(baseline);
+}
+
+.text-area-label {
+    &.form-item {
+        .align-items(flex-start);
+    }
+}
+
+.rx-form-fieldset > fieldset {
+    width: 100%;
+    .full-width .option-table {
+        width: 100%;
+    }
+}
+
+.form-description,
+.form-item {
+    margin-bottom: 15px;
+}
+
+.field-label,
+.field-legend, {
+    color: @inputLabelColor;
+    font-size: 1.1em;
+    .flex(0 0 @inputLabelWidth);
+}
+
+.field-content {
+    .flexbox();
+    .flex(1 auto);
+    .flex-flow(row wrap);
+    .justify-content(flex-start);
+    .align-items(center);
+
+    .field-prefix,
+    .field-suffix {
+        font-size: 1.2em;
+    }
+    .field-prefix {
+        margin-right: 5px;
+    }
+    .field-suffix {
+        margin-left: 5px;
+    }
+
+    .field-description {
+        .flex(1 100%);
+        font-size: 0.8em;
+        font-style: italic;
+        margin-top: 5px;
+    }
+}
+
+/* Input fields */
+
+.field-input {
+    input,
+    select {
+        color: @inputColor;
+        font-size: 1.2em;
+
+        &.ng-invalid.ng-dirty {
+            border-color: @inputBorderColorInvalid;
+        }
+    }
+
+    input,
+    .field-select {
+        background: @white;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        .inputBorderPadding;
+        background-color: #fff;
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        box-sizing: border-box;
+    }
+
+    input {
+        width: @inputWidth;
+        .inputBorderPadding;
+
+        &[type="number"] {
+            width: @inputNumberWidth;
+        }
+
+        &[type="radio"],
+        &[type="checkbox"] {
+            width: auto;
+            max-width: none;
+            font-size: 1em;
+            vertical-align: middle;
+        }
+
+        &[disabled] {
+            color: @inputColorDisabled;
+            background-color: @inputBackgroundDisabled;
+            cursor: not-allowed;
+        }
+    }
+}
+
+/*
+ * @bugfix Input field is marked as invalid before a user has done anything on form
+ * @browsers FF
+ * @see http://stackoverflow.com/questions/17209057/firefox-draws-red-border-on-required-select-box
+ */
+.ng-pristine .field-input .ng-invalid-required {
+    box-shadow: none;
+}
+
+
+/* Inline error messages */
+.field-input-wrapper {
+    .inline-error {
+        color: #ff2400;
+        font-weight: 900;
+        margin-top: 5px;
+    }
+}
+
+/* Dropdowns */
+
+.field-select {
+    display: inline-block;
+    position: relative;
+    width: @inputSelectWidth;
+
+    select {
+        width: 100%;
+        margin: 0;
+        .border-radius(0px);
+        background: #fff;
+        border: none;
+        outline: none;
+        display: inline-block;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        cursor: pointer;
+        .inputBorderPadding;
+    }
+
+    &:before {
+        // background so long text doesn't show behind caret
+        content: '';
+        right: 1px;
+        top: 1px;
+        width: 20px;
+        height: 93%;
+        background: #fff;
+        position: absolute;
+        pointer-events: none;
+        display: block;
+    }
+
+    &:after {
+        // down caret from font awesome
+        content: '\f0d7';
+        font-family: FontAwesome;
+        font-size: 15px;
+        color: #aaa;
+        right: 10px;
+        top: 7px;
+        padding: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+}
+
+// User select element in Account section of nav
+
+.rx-app-nav-item .field-select {
+    select {
+        background: #404140;
+        border: 1px solid #3a3a3a;
+    }
+    &:before {
+        background: #404140;
+    }
+    &:after {
+        right: 10px;
+        top: 5px;
+    }
+}
+
+.account-users {
+    float: right;
+    box-sizing: border-box;
+    width: 50%;
+    select {
+        .border-radius(0px);
+    }
+}
+
+.option-table {
+    // we want the table to not look ugly when stretched across the screen
+    width: auto;
+    // we also want a semi-consistent width, but not too wide for modals
+    min-width: 39em;
+
+    td:not(.empty-data) {
+        // remove default padding from td's so that we can make the label take up the full room
+        padding: 0;
+    }
+    input[disabled] {
+        cursor: not-allowed;
+    }
+    .disabled {
+        label {
+            cursor: default;
+        }
+        span {
+            color: @inputColorDisabled;
+        }
+    }
+    label {
+        // add padding to labels so they take up the entire cell's space
+        display: block;
+        padding: @tableCellPadding;
+        cursor: pointer;
+    }
+    .option-table-input {
+        text-align: center;
+        line-height: 0;
+    }
+    .current td {
+        color: #3AB661;
+    }
+    // @note KL: I'd like to stick with just adding the background to the <tr>, but
+    // we need to make the selector more specific to override the table-stripe styles.
+    .selected td {
+        background: @tableRowSelected;
+        border-color: #bad4bb;
+        // this 'double' makes it so that the border-color applies to the top border as well
+        // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
+        border-style: double;
+    }
+}
+
+/* Submit buttons */
+
+.form-actions {
+    padding: 20px 0;
+}
+
+.form-action {
+    // override default button styles
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    font-size: 1.2em;
+
+    &.submit {
+        color: @actionGreen;
+        margin-right: 1em;
+        &:hover,
+        &:focus {
+            color: @actionGreenHover;
+        }
+        &[disabled="disabled"] {
+            color: @subduedText;
+            cursor: not-allowed;
+        }
+    }
+    &.cancel {
+        color: @subduedText;
+        &:hover,
+        &:focus {
+            color: @subduedTextHover;
+        }
+    }
+}
+
+
+/* Compressed Layout */
+
+.rx-form.layout-compressed {
+    .rx-form-row {
+        .flexbox();
+        .flex-wrap(nowrap);
+        .flex(1 auto);
+
+        .form-item {
+            padding: 0px 3px;
+            .flex(1);
+        }
+    }
+
+    .form-item {
+        display: block;
+
+        .field-input {
+            width: 100%;
+            display: block;
+
+            select,
+            textarea {
+                width: 100%;
+            }
+
+            input {
+                &:not([type="checkbox"]),
+                &:not([type="radio"]) {
+                    width: 100%;
+                }
+
+                &[type="checkbox"],
+                &[type="radio"] {
+                  width: 1em;
+                }
+            }
+        }
+
+        .field-label,
+        .field-legend, {
+            font-size: 0.8em;
+            display: block;
+        }
+
+    }
+
+    // This is selecting based off of the element so that we can be sure to set
+    // this if there is a prefix OR a suffix set. We can't assume they'll both
+    // always be there.
+    rx-form-item[suffix],
+    rx-form-item[prefix] {
+        .field-input {
+            display: inline-block;
+            width: auto;
+        }
+    }
+}
+
+/*
+ * rxInfoPanel
+ */
+.info-panel {
+    clear: both;
+    background: #fff;
+    border-color: @tabBorder;
+    border-width: 0 5px 5px 5px;
+    border-style: solid;
+    padding: 0 10px 10px 10px;
+    overflow: hidden;
+
+    .info-title {
+        background: @tabBorder;
+        color: #fff;
+        width: 100%;
+        padding: 8px 10px;
+        margin: 0 0 10px -10px;
+    }
+}
+
+@import 'mixins';
+@import 'vars';
+
+/**
+ * rxModalAction.less
+ *
+ * Stylesheet for modals, repurposed from the modal component of http://angular-ui.github.io/bootstrap
+ *
+ * @version 1.0
+ * @author Ernie Hsiung
+ */
+
+.modal,
+.modal-backdrop {
+    .transition();
+    .opacity(0);
+    &.fade.in {
+        .opacity(1);
+    }
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background: #000;
+    &.fade.in {
+        .opacity(0.4);
+    }
+}
+
+.modal {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    z-index: 1050;
+    width: 560px;
+    background: @white;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    .box-shadow(0 3px 7px rgba(0, 0, 0, 0.3));
+    .background-clip();
+    outline: none;
+}
+
+.modal-header {
+    padding: @modalPadding;
+    border-bottom: 1px solid @pageDivider;
+    position: relative;
+
+    .modal-title {
+        line-height: 1;
+        font-size: 1.75em;
+        margin: 0;
+    }
+    .modal-subtitle {
+        line-height: 1.5;
+        font-size: 1em;
+        font-wieght: bold;
+        color: @subduedTitle;
+        margin: 0;
+    }
+    .modal-close {
+        position: absolute;
+        top: @modalPadding;
+        right: @modalPadding;
+        font-size: 2em;
+        width: 1em;
+        height: 1em;
+        text-align: center;
+        color: @closeText;
+        &:hover,
+        &:focus {
+            color: @closeTextHover;
+        }
+
+        &:before {
+            content: '\00D7';
+            position: absolute;
+            line-height: 0;
+            right: 0;
+            width: 1em;
+        }
+    }
+}
+.modal-body {
+    position: relative;
+    overflow-y: auto;
+    max-height: 400px;
+    padding: @modalBodyPadding @modalPadding;
+
+    .loading {
+        margin: 0 auto;
+        width: 1em;
+    }
+
+    .form-radio {
+        border: 0;
+    }
+
+    .rx-form.modal-form {
+        margin: 0;
+    }
+}
+
+.modal-footer {
+    padding: @modalPadding;
+    border-top: 1px solid @pageDivider;
+}
+
+@media (max-width:480px) {
+    @padding: 10px;
+    .modal {
+        position: absolute;
+        top: @padding;
+        left: @padding;
+        right: @padding;
+    }
+    .modal-header .close{
+        padding: @padding;
+        margin: -@padding;
+    }
+}
+
+@import 'mixins';
+
+.rx-notifications {
+    margin-bottom: 1.5em;
+
+    .rx-notification {
+        clear: both;
+        font-weight: 800;
+        font-size: 1.2em;
+        padding: 10px 50px;
+        margin-bottom: 2px;
+        position: relative;
+        background: no-repeat 18px 50%;
+
+        .button {
+            font-weight: normal;
+            margin-bottom: 0px;
+        }
+
+        &.notification-success {
+            background-color: #ddffd3;
+            background-image: url('images/green-checkmark-circled.png');
+            color: #45ad26;
+            a {
+              color: #7db162;
+            }
+        }
+        &.notification-info {
+            background-color: #83c9fe;
+            background-image: url('images/info-circled.png');
+            color: #1672b9;
+            a {
+              color: #568fb8;
+            }
+        }
+        &.notification-warning {
+            background-color: #ffa61b;
+            background-image: url('images/warning-triangle.png');
+            color: #fff;
+            a {
+              color: #f1d6af;
+            }
+        }
+        &.notification-error {
+            background-color: #f21a1a;
+            background-image: url('images/error-stop.png');
+            color: #fff;
+            a {
+              color: #fdaaab;
+            }
+        }
+        &.notification-loading {
+            // Hide icon since it's replaced by spinner
+            background-image: none;
+            .rx-spinner {
+                position: absolute;
+                left: 19px;
+                top: 50%;
+                margin-top: -9px;
+            }
+        }
+    }
+
+    .notification-dismiss {
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100%;
+        padding: 0 15px;
+        content: '\00D7';
+        .opacity(.5);
+        color: #000;
+        &:hover,
+        &:focus {
+            .opacity(.8);
+            text-decoration: none;
+        }
+    }
+}
+
+.animate-fade.ng-enter,
+.animate-fade.ng-leave {
+    -webkit-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -moz-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -ms-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -o-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.animate-fade.ng-leave.ng-leave-active,
+.animate-fade.ng-enter {
+    opacity:0;
+}
+
+.animate-fade.ng-leave,
+.animate-fade.ng-enter.ng-enter-active {
+    opacity:1;
+}
+
+/*
+  rxPaginate
+
+ */
+
+ @paginationColor: #ababab;
+
+.paginate-area {
+    text-align: center;
+    td {
+        padding: 0;
+        background: #fff;
+    }
+}
+
+.rx-paginate {
+    .pagination {
+        .flexbox();
+        .flex-flow(row nowrap);
+        padding-left: 0;
+        width: 100%;
+    }
+
+    .pagination li {
+        display: inline;
+    }
+
+    .pagination li a {
+        cursor: pointer;
+    }
+
+    .pagination li a,
+    .pagination li span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        text-decoration: none;
+        background: #fff;
+        border-top: 2px solid transparent;
+        color: @paginationColor;
+    }
+
+    .pagination > li:first-child {
+        order: 1;
+    }
+
+    .pagination > li:first-child > a,
+    .pagination > li:first-child > span {
+        padding-left: 30px;
+        color: @infoBlue;
+        background: transparent;
+        &:before {
+            content: ".";
+            width: 0;
+            height: 0;
+            font-size: 0;
+            display: block;
+            position: absolute;
+            border: 6px solid transparent;
+            border-bottom-color: @infoBlue;
+            border-top: none;
+            left: 10px;
+            top: 55%;
+            margin-top: -4px;
+        }
+    }
+
+    .pagination > li:nth-child(2) {
+        order: 2;
+        padding: 6px 12px;
+        border-top: 2px solid transparent;
+        color: @paginationColor;
+    }
+
+    .pagination > .page-links {
+        order: 3;
+        margin: auto;
+        align-self: center;
+    }
+
+    .pagination > li:last-child {
+        order: 4;
+        border-top: 2px solid transparent;
+        padding: 6px 12px;
+        color: @paginationColor;
+        button[disabled] {
+            color: @paginationColor;
+        }
+    }
+
+    .pagination > li > div > ul {
+        float: right;
+        padding-left: 5px;
+        button {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: @infoBlue;
+        }
+        span {
+            float: none;
+            background: transparent;
+        }
+        & li + li::before {
+           content: " | ";
+           margin: 0 1em;
+        }
+    }
+
+    .pagination > li:last-child > a,
+    .pagination > li:last-child > span {
+    }
+
+    .pagination > .page-links > li > a:hover,
+    .pagination > .page-links > li > span:hover,
+    .pagination > .page-links > li > a:focus,
+    .pagination > .page-links > li > span:focus {
+        background: #eee;
+    }
+
+    .pagination > .page-links > .active > a,
+    .pagination > .page-links > .active > span,
+    .pagination > .page-links > .active > a:hover,
+    .pagination > .page-links > .active > span:hover,
+    .pagination > .page-links > .active > a:focus,
+    .pagination > .page-links > .active > span:focus {
+        z-index: 2;
+        cursor: default;
+        border-top-color: #000;
+        color: #000;
+        background: #fff;
+    }
+
+    .pagination .disabled > span,
+    .pagination .disabled > span:hover,
+    .pagination .disabled > span:focus,
+    .pagination .disabled > a,
+    .pagination .disabled > a:hover,
+    .pagination .disabled > a:focus {
+        visibility: hidden;
+    }
+
+    .pagination-lg > li > a,
+    .pagination-lg > li > span {
+        padding: 10px 16px;
+        font-size: 18px;
+    }
+
+    .pagination-sm > li > a,
+    .pagination-sm > li > span {
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+}
+
+.loading-overlay {
+    position: absolute;
+    background: rgba(222, 222, 221, 0.8);
+    .loading-text-wrapper {
+        width: 100px;
+        margin: 20% auto;
+    }
+    .loading-text {
+        font-size: 18px;
+        margin-top: 15%;
+        text-align: center;
+        color: #777;
+    }
+    i {
+        font-size: 30px;
+        margin-left: 25px;
+        color: #777;
+    }
+}
+
+.loading-row {
+    padding: 10px;
+}
+
+/*
+ * rxSearchBox
+ */
+rx-search-box {
+  display: inline-block;
+  width: @rxSearchBox-width;
+  min-width: @rxSearchBox-min-width;
+  font-size: 1.2em;
+
+  // wrapper fits full width
+  .rxSearchBox-wrapper {
+    .box-sizing(border-box);
+    border: @rxSearchBox-border;
+    height: auto;
+    min-width: @rxSearchBox-min-width;
+    padding: 0px;
+
+    background: @rxSearchBox-background;
+    color: @rxSearchBox-color;
+
+    // as flex container
+    .flexbox();
+    .flex-flow(row nowrap);
+    .justify-content(flex-start);
+
+    .rxSearchBox-input {
+      .ResetFormInput();
+      .flex(1 1);
+      .box-sizing(border-box);
+
+      background: transparent;
+      padding: @rxSearchBox-padding-vertical @rxSearchBox-padding-horizontal;
+
+      /*
+      This gets around FireFox setting the min-width to a value
+      that overflows content out of the .rxSearch container.
+       */
+      min-width: (@rxSearchBox-min-width - @rxSearchBox-clear-width - (2 * @rxSearchBox-padding-horizontal));
+
+      &[disabled] {
+        color: @rxSearchBox-color-disabled;
+        background: @rxSearchBox-background-disabled;
+        cursor: not-allowed;
+      }
+    }//.rxSearchBox-input
+
+    .rxSearchBox-clear {
+      .box-sizing(border-box);
+      cursor: pointer;
+      //font-size: 0.75em;
+      color: @rxSearchBox-color-icon;
+
+      // as flex item
+      .flex(0 0 @rxSearchBox-clear-width);
+
+      // as flex container
+      .flexbox();
+      .align-items(center);
+      .justify-content(center);
+
+      .rxSearchBox-clear-icon {
+        min-width: @rxSearchBox-clear-width;
+      }
+    }//.rxSearchBox-clear
+  }//.rxSearchBox-wrapper
+}//rx-search-box
+
+/*
+ * rxSelectFilter
+ */
+@import 'vars';
+
+.rx-select-filter {
+    .select-wrapper:not(:first-child) {
+        padding-left: 20px;
+    }
+
+    .field-label {
+        margin-right: 5px;
+    }
+}
+
+.rx-multi-select {
+
+    color: @inputColor;
+    border: 1px solid @inputBorderColor;
+    padding: 3px;
+    width: 150px;
+    position: relative;
+    font-size: 1.2em;
+
+    &:hover {
+        cursor:pointer;
+    }
+
+    ul {
+        position: absolute;
+        top: ~"calc(-1px)";
+        z-index: 1;
+        left: -1px;
+        width: 100%;
+        border: 1px solid @inputBorderColor;
+        background: @white;
+        box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.35);
+    }
+
+    rx-select-option[value="all"] label {
+        border-bottom: 1px solid @inputBorderColor;
+    }
+
+}
+
+.rx-select-option {
+
+    label {
+        display: block;
+        padding: 2px 10px;
+
+        &:hover {
+            background: @optionHighlightBg;
+            color: @white;
+            cursor: pointer;
+        }
+    }
+}
+
+/*
+ * rxSortableColumn
+ */
+.rx-sortable-column {
+    position: relative;
+
+    .btn-link {
+        // This needs to be set explicitly, otherwise `.table-filters button`
+        // applies a font size of 93% and sortable columns have smaller headers.
+        font-size: 13px;
+    }
+
+    .sort-action {
+        display: block;
+        width: 100%;
+        margin: 0;
+        text-align: left;
+        &:focus {
+            // since we underline on focus, we can remove the outline rectangle that sticks around
+            outline: none;
+        }
+    }
+
+    .sort-icon {
+        display: block;
+        height: 0;
+        width: 0;
+        border: solid transparent;
+        border-width: 6px 5px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+
+        &.asc {
+            margin-top: -9px;
+            border-bottom-color: #4a4a4a;
+        }
+        &.desc {
+            margin-top: -3px;
+            border-top-color: #4a4a4a;
+        }
+    }
+}
+@import 'vars';
+
+/*********************************************************
+ *  CSS3 Animation spinner
+ *
+ *  Based on: http://cssdeck.com/labs/css3-animation-spinner
+ *  Copyright 2013 - birkof.ro
+ *********************************************************/
+.rx-spinner {
+    background-color: transparent;
+    border: 2px solid white;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    .border-radius(150px);
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-bottom: 3px;
+    vertical-align: middle;
+    -webkit-animation: spin .8s infinite linear;
+    -moz-animation: spin .8s infinite linear;
+    -ms-animation: spin .8s infinite linear;
+    -o-animation: spin .8s infinite linear;
+    animation: spin .8s infinite linear;
+}
+.rx-spinner.dark {
+    border-bottom-color: @appTextColor;
+    border-right-color: @appTextColor;
+}
+.rx-spinner.mini {
+    border-width: 2px;
+    width: 4px;
+    height: 4px;
+}
+.rx-spinner.small {
+    border-width: 2px;
+    width: 8px;
+    height: 8px;
+}
+.rx-spinner.large {
+    border-width: 3px;
+    width: 22px;
+    height: 22px;
+}
+.rx-spinner.extra-large {
+    border-width: 4px;
+    width: 32px;
+    height: 32px;
+}
+@-webkit-keyframes spin { /* Safari and Chrome */
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+@-moz-keyframes spin { /* Firefox */
+    0% { -moz-transform: rotate(0deg); }
+    100% { -moz-transform: rotate(360deg); }
+}
+@-ms-keyframes spin { /* IE */
+    0% { -ms-transform: rotate(0deg); }
+    100% { -ms-transform: rotate(360deg); }
+}
+@-o-keyframes spin { /* Opera */
+    0% { -o-transform: rotate(0deg); }
+    100% { -o-transform: rotate(360deg); }
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/*
+ * rxStatusColumn
+ */
+
+th.rx-status-header {
+    width: 20px;
+    padding: 0;
+    rx-sortable-column {
+        .sort-action {
+            color: transparent;
+        }
+        .sort-icon {
+            margin: -9px 14px;
+        }
+    }
+}
+
+td.rx-status-column {
+    i {
+        padding-left: 2px;
+    }
+    &.status-ACTIVE {
+        background: #ddffd3;
+    }
+    &.status-PENDING {
+        background: #fdbc3c;
+        background-image: url('images/status-pending.gif');
+    }
+    &.status-WARNING {
+        background: #fdbc3c;
+        i {
+            color: #db7820;
+        }
+    }
+    &.status-ERROR {
+        background: #eb2124;
+        i {
+            color: #861212;
+        }
+    }
+    &.status-INFO {
+        background: #86cafd;
+        i {
+            color: #287BBD;
+        }
+    }
+    &.status-DISABLED {
+        background: #dededd;
+    }
+
+    .fa-exclamation-circle {
+        color: transparent;
+    }
+
+
+}
+
+/*
+ * rxToggleSwitch
+ */
+.rx-toggle-switch {
+
+    @textColor: #fff;
+    @offStateColor: #b3b3b3;
+    @borderColor: darken(@offStateColor, 10%);
+    @onStateColor: #00ac31;
+    @knobColor: #fff;
+    @knobBorderColor: darken(@knobColor, 10%);
+    @knobSize: 1.2em;
+    @edgeSpacing: @knobSize * 0.9;
+    @lineHeight: @knobSize * 1.25;
+    @blurDist: @edgeSpacing;
+    @blurSpread: (@edgeSpacing/3) * -1;
+
+    font-size: 0.8em;
+    line-height: @lineHeight;
+
+    display: inline-block;
+
+    border: 1px @borderColor solid;
+    border-radius: 9px;
+    background-color: @offStateColor;
+    color: @textColor;
+
+    padding: 0 @edgeSpacing 0 @edgeSpacing;
+
+    width: 5em;
+
+    cursor: pointer;
+    position: relative;
+    text-align: right;
+
+    .box-shadow(inset 1px 2px @blurDist @blurSpread rgba(0,0,0,0.50));
+    .user-select(none);
+    .box-sizing(border-box);
+
+    &[disabled] {
+        background-color: desaturate(lighten(@offStateColor, 7%), 80%);
+        color: #666666;
+        &.on {
+            background-color: desaturate(lighten(@onStateColor, 33%), 80%);
+        }
+        cursor: not-allowed;
+        .knob {
+            background-color: #adadad;
+            border: 1px #999999 solid;
+        }
+    }
+    &.on {
+        background-color: @onStateColor;
+        text-align: left;
+        .knob {
+            left: 100%;
+            -webkit-transform: translate(-100%, 0);
+            -moz-transform: translate(-100%, 0);
+            transform: translate(-100%, 0);
+        }
+    }
+    .knob {
+        .transition-value(all 0.1s ease-out);
+
+        position: absolute;
+        display: inline-block;
+        top: 0;
+        left: 0;
+
+        width: @knobSize;
+        height: @knobSize;
+        border-radius: (@knobSize/2)+1;
+        background-color: @knobColor;
+        border: 1px @knobBorderColor solid;
+
+        .box-shadow(0 0 @blurDist @blurSpread rgba(0,0,0,0.55));
+        overflow: hidden;
+    }
+
+}
+
+@import 'vars';
+
+/*
+
+# Angular-UI Tabs
+
+Provides styling for the Angular-UI tab HTML
+
+```
+<div class="tabbable">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a>Bacon Ipsum</a>
+        </li>
+        <li>
+            <a>Veggie Ipsum</a>
+        </li>
+        <li>
+            <a>Cat Ipsum</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active">
+            <p>First Tab Content. Bacon ipsum dolor sit amet salami jowl corned beef, andouille flank tongue ball tip kielbasa pastrami tri-tip meatloaf short loin beef biltong. Cow bresaola ground round strip steak fatback meatball shoulder leberkas pastrami sausage corned beef t-bone pork belly drumstick.</p>
+        </div>
+        <div class="tab-pane">
+            <p>Second tab content. Veggies sunt bona vobis, proinde vos postulo esse magis grape pea sprouts horseradish courgette maize spinach prairie turnip jícama coriander quandong gourd broccoli seakale gumbo. Parsley corn lentil zucchini radicchio maize burdock avocado sea lettuce. Garbanzo tigernut earthnut pea fennel.</p>
+        </div>
+        <div class="tab-pane">
+            <p>Cat ipsum dolor sit amet, hunt anything that moves or hopped up on goofballs hide when guests come over. Hide when guests come over intrigued by the shower, or stare at ceiling climb leg for stretch and use lap as chair. Hunt anything that moves flop over, leave dead animals as gifts for chase imaginary bugs, chase mice for stare at ceiling yet hopped up on goofballs.</p>
+        </div>
+    </div>
+</div>
+```
+*/
+.nav-tabs {
+    .flexbox();
+    border-bottom: 9px solid @tabBorder;
+    clear: both;
+
+    li {
+        .flex(0 0 auto);
+        font-size: 14px;
+        margin-right: 1px;
+    }
+
+    a {
+        display: block;
+        background: #3f6085;
+        color: #ccc;
+        padding: 10px 20px;
+
+        .subdued {
+            color: @subduedTextHover;
+        }
+
+        &:hover:not(.active),
+        &:focus:not(.active) {
+            cursor: pointer;
+            color: @white;
+            text-decoration: none;
+
+            .subdued {
+                color: @subduedText;
+            }
+        }
+    }
+
+    .active a {
+        background: @tabBorder;
+        color: @white;
+
+        .subdued {
+            color: @subduedText;
+        }
+    }
+}
+
+.tab-pane {
+    clear: both;
+    display: none;
+    background: @white;
+    padding: 10px;
+    border-left: 2px solid @tabBorder;
+    border-right: 2px solid @tabBorder;
+    border-bottom: 2px solid @tabBorder;
+
+    &.active {
+        display: block;
+    }
+
+    // If the title is the first part of the tab-pane, remove its top border so there isn't so much space
+    .title:first-child {
+        margin-top: 0;
+    }
+}
+
+@import 'vars';
+//
+// Tooltips
+// --------------------------------------------------
+
+@zindexTooltip: 1070;
+@tooltipMaxWidth: 200px;
+@tooltipHeaderColor: #fff;
+@tooltipColor: #f1f1f1;
+@tooltipBg: #878787;
+@tooltipOpacity: 1;
+
+//** Tooltip arrow width
+@tooltipArrowWidth: 5px;
+//** Tooltip arrow color
+@tooltipArrowColor: @tooltipBg;
+
+// Base class
+.tooltip {
+    position: absolute;
+    z-index: @zindexTooltip;
+    display: block;
+    visibility: visible;
+    font-size: @appFontSize;
+    line-height: @appLineHeight;
+    .opacity(0);
+
+    &.in {
+        .opacity(@tooltipOpacity);
+    }
+
+    &.top {
+        margin-top: -3px;
+        padding: @tooltipArrowWidth 0;
+    }
+
+    &.right {
+        margin-left: 3px;
+        padding: 0 @tooltipArrowWidth;
+    }
+
+    &.bottom {
+        margin-top: 3px;
+        padding: @tooltipArrowWidth 0;
+    }
+
+    &.left {
+        margin-left: -3px;
+        padding: 0 @tooltipArrowWidth;
+    }
+}
+
+// Wrapper for the tooltip content
+.tooltip-inner {
+    max-width: @tooltipMaxWidth;
+    padding: 3px 8px;
+    color: @tooltipColor;
+    text-align: center;
+    text-decoration: none;
+    background-color: @tooltipBg;
+    .border-radius(4px);
+    box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 4px 0px;
+    padding: 1em;
+    .tooltip-header {
+        color: @tooltipHeaderColor;
+        text-align: left;
+        font-size: 15px;
+        padding-bottom: 5px;
+        font-weight: 600;
+  }
+}
+
+// Arrows
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    text-shadow: rgba(0, 0, 0, 0.09) 1px 1px 1px;
+}
+.tooltip {
+    &.top .tooltip-arrow {
+        bottom: 0;
+        left: 50%;
+        margin-left: -@tooltipArrowWidth;
+        border-width: @tooltipArrowWidth @tooltipArrowWidth 0;
+        border-top-color: @tooltipArrowColor;
+    }
+    &.top-left .tooltip-arrow {
+        bottom: 0;
+        left: @tooltipArrowWidth;
+        border-width: @tooltipArrowWidth @tooltipArrowWidth 0;
+        border-top-color: @tooltipArrowColor;
+    }
+    &.top-right .tooltip-arrow {
+        bottom: 0;
+        right: @tooltipArrowWidth;
+        border-width: @tooltipArrowWidth @tooltipArrowWidth 0;
+        border-top-color: @tooltipArrowColor;
+    }
+    &.right .tooltip-arrow {
+        top: 50%;
+        left: 0;
+        margin-top: -@tooltipArrowWidth;
+        border-width: @tooltipArrowWidth @tooltipArrowWidth @tooltipArrowWidth 0;
+        border-right-color: @tooltipArrowColor;
+    }
+    &.left .tooltip-arrow {
+        top: 50%;
+        right: 0;
+        margin-top: -@tooltipArrowWidth;
+        border-width: @tooltipArrowWidth 0 @tooltipArrowWidth @tooltipArrowWidth;
+        border-left-color: @tooltipArrowColor;
+    }
+    &.bottom .tooltip-arrow {
+        top: 0;
+        left: 50%;
+        margin-left: -@tooltipArrowWidth;
+        border-width: 0 @tooltipArrowWidth @tooltipArrowWidth;
+        border-bottom-color: @tooltipArrowColor;
+    }
+    &.bottom-left .tooltip-arrow {
+        top: 0;
+        left: @tooltipArrowWidth;
+        border-width: 0 @tooltipArrowWidth @tooltipArrowWidth;
+        border-bottom-color: @tooltipArrowColor;
+    }
+    &.bottom-right .tooltip-arrow {
+        top: 0;
+        right: @tooltipArrowWidth;
+        border-width: 0 @tooltipArrowWidth @tooltipArrowWidth;
+        border-bottom-color: @tooltipArrowColor;
+    }
+}
+
+@import 'vars';
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: -1px;
+    display: none;
+    list-style: none;
+    background: @white;
+    border: 1px solid #ccc;
+    padding: 6px 0;
+    z-index: 3; // Will display over a textarea element
+
+    a {
+        display: block;
+        margin: 0;
+        padding: 5px 10px;
+        color: @inputColor;
+    }
+    .active a {
+        background: @optionHighlightBg;
+        color: @white;
+    }
+}
