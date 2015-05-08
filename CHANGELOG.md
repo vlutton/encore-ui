@@ -1,3 +1,12 @@
+<a name="1.15.1"></a>
+### 1.15.1 (2015-05-08)
+
+
+#### Bug Fixes
+
+* **styles:** remove code block style ([dae709a1](git@github.com:rackerlabs/encore-ui/commit/dae709a18f571439437e329a14a0d158a4a21c7f))
+
+
 <a name="1.15.0"></a>
 ## 1.15.0 (2015-05-08)
 
