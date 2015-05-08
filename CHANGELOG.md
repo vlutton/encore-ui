@@ -1,3 +1,29 @@
+<a name="1.15.0"></a>
+## 1.15.0 (2015-05-08)
+
+
+#### Bug Fixes
+
+* **contributing:** update rebase instructions ([f62fa0e3](git@github.com:rackerlabs/encore-ui/commit/f62fa0e3684e9b0134a7efe6c0d1430b6aeaa1eb))
+* **rxForm:**
+  * Alias to backwards-compatible call ([a77b52d8](git@github.com:rackerlabs/encore-ui/commit/a77b52d8206c170db8067dd6966cce25ad34faf3))
+  * Remove variables that reference DOM ([437aadbc](git@github.com:rackerlabs/encore-ui/commit/437aadbceb1d92d5d13168010c9ebadc001c506f))
+
+
+#### Features
+
+* **ResponsiveLayout:** Added responsive layout module and docs ([b2faa229](git@github.com:rackerlabs/encore-ui/commit/b2faa2291075d10985e484f0853de2774ac19d26))
+* **rxButton:** add button group styles ([65c2c67b](git@github.com:rackerlabs/encore-ui/commit/65c2c67ba25b6309db5f05166ed90b40c818a63c))
+* **rxCollapse:** Add collapsible component ([a004fa49](git@github.com:rackerlabs/encore-ui/commit/a004fa491d8a406807741ba6c3e70c7d47688380))
+* **rxSelectFilter:** Add table filtering component ([9d3fa57d](git@github.com:rackerlabs/encore-ui/commit/9d3fa57dcb67e1f92f3250e298812f41ff1c5419))
+
+
+#### Breaking Changes
+
+* `rxForm.form.fill` now aliased as `rxForm.fill`
+ ([0cff9bc3](git@github.com:rackerlabs/encore-ui/commit/0cff9bc350b820d6cb5bb725c89a7c87e8bc6e17))
+
+
 <a name="1.14.0"></a>
 ## 1.14.0 (2015-04-29)
 
