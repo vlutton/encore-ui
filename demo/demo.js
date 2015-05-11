@@ -452,4 +452,9 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         { name: 'I/O1-15', ram: '15 GB', cpu: 4, disk: '40GB SSD', region: 'HKG'},
         { name: 'I/O1-30', ram: '30 GB', cpu: 8, disk: '40GB SSD', region: 'SYD'}
     ];
+})
+
+.controller('formsAutoSaveExampleController', function ($scope, rxAutoSave) {
+    $scope.forms = { autosave: '' };
+    rxAutoSave($scope, 'forms');
 });
