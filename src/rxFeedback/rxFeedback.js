@@ -122,9 +122,7 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
                     type: feedback.type.label,
                     description: feedback.description,
                     screenshot: screenshot,
-                    sso: feedback.sso,
-                    currentPage: feedback.currentPage,
-                    browserAgent: feedback.browserAgent
+                    sso: feedback.sso
                 }, showSuccessMessage, function (httpResponse) {
                     showFailureMessage(httpResponse);
 
@@ -135,8 +133,6 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
             if (!_.isFunction(scope.sendFeedback)) {
                 scope.sendFeedback = function (feedback) {
                     feedback.sso = Session.getUserId();
-                    feedback.currentPage = $location.absUrl();
-                    feedback.browserAgent = navigator.userAgent;
 
                     var root = document.querySelector('.rx-app');
 

@@ -15,10 +15,7 @@ describe('rxFeedback', function () {
     var feedbackWithScreenshot = {
         type: feedback.type.label,
         description: feedback.description,
-        screenshot: theScreenshot,
-        currentPage: 'http://server/',
-        browserAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X) ' +
-        'AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34'
+        screenshot: theScreenshot
     };
 
     beforeEach(function () {
