@@ -86,7 +86,7 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
 
     return container;
 })
-.directive('rxFeedback', function (feedbackTypes, $location, rxFeedbackSvc, rxScreenshotSvc, rxNotify) {
+.directive('rxFeedback', function (feedbackTypes, $location, rxFeedbackSvc, rxScreenshotSvc, rxNotify, Session) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxFeedback.html',
@@ -121,7 +121,10 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
                 rxFeedbackSvc.api.save({
                     type: feedback.type.label,
                     description: feedback.description,
-                    screenshot: screenshot
+                    screenshot: screenshot,
+                    sso: feedback.sso,
+                    currentPage: feedback.currentPage,
+                    browserAgent: feedback.browserAgent
                 }, showSuccessMessage, function (httpResponse) {
                     showFailureMessage(httpResponse);
 
@@ -131,6 +134,10 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
 
             if (!_.isFunction(scope.sendFeedback)) {
                 scope.sendFeedback = function (feedback) {
+                    feedback.sso = Session.getUserId();
+                    feedback.currentPage = $location.absUrl();
+                    feedback.browserAgent = navigator.userAgent;
+
                     var root = document.querySelector('.rx-app');
 
                     // capture screenshot

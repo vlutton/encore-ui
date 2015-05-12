@@ -1,6 +1,7 @@
 /* jshint node: true */
 describe('rxFeedback', function () {
-    var scope, compile, rootScope, el, feedbackSvc, apiUrl, httpMock, notifySvcMock, screenshotSvcMock, elScope;
+    var scope, compile, rootScope, el, feedbackSvc, apiUrl, httpMock,
+        notifySvcMock, screenshotSvcMock, elScope, sessionSvcMock;
     var validTemplate = '<rx-feedback></rx-feedback>';
     var theScreenshot = 'the screenshot';
 
@@ -14,7 +15,10 @@ describe('rxFeedback', function () {
     var feedbackWithScreenshot = {
         type: feedback.type.label,
         description: feedback.description,
-        screenshot: theScreenshot
+        screenshot: theScreenshot,
+        currentPage: 'http://server/',
+        browserAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X) ' +
+        'AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.7 Safari/534.34'
     };
 
     beforeEach(function () {
@@ -28,6 +32,10 @@ describe('rxFeedback', function () {
             })
         };
 
+        sessionSvcMock = {
+            getUserId: sinon.stub()
+        };
+
         // load module
         module('encore.ui.configs');
         module('encore.ui.rxFeedback');
@@ -38,6 +46,7 @@ describe('rxFeedback', function () {
         module(function ($provide) {
             $provide.value('rxNotify', notifySvcMock);
             $provide.value('rxScreenshotSvc', screenshotSvcMock);
+            $provide.value('Session', sessionSvcMock);
         });
 
         // Inject in angular constructs
