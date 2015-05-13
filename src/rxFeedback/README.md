@@ -2,6 +2,13 @@
 
 Component built to gather and send user feedback
 
+## Default Submission Function
+
+The `rxFeedback` component sends feedback to `/api/encore/feedback`, which routes feedback to `encoreui@lists`. 
+This endpoint also supports a `product` parameter `/api/encore/feedback/:product` for sending feedback to a 
+product-specific mailing list. Adding a custom endpoint is managed in `encore-service-pillar`. Once configured 
+you can override the default endpoint with `rxFeedbackSvc.setEndpoint`.
+
 ## Custom Submission Function
 
 The `rxFeedback` component allows you to define an `on-submit` attribute that points to a custom function for the
