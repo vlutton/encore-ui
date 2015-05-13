@@ -89,6 +89,18 @@
 
 <rx-styleguide code-url="styleguide/forms/validation.html"></rx-styleguide>
 
+<h3 class="title clear">Saving In-Progress Form State</h3>
+<div class="component-description clear">
+    <ul class="list">
+        <li>When a user is filling out a form, it often makes sense to automatically save the state of that form, in case they navigate away and want to return and continue. The framework has support for this with the <code>rxAutoSave</code> service.</li>
+        <li><code>rxAutoSave</code> interacts exclusively with your model layer. Your UI/template code will be unaware that its state is being saved.
+        <li>See <a href="#/component/rxMisc/">rxAutoSave</a> (which lives in the <code>rxMisc</code> module) for further details</li>
+    </ul>
+</div>
+
+<rx-styleguide code-url="styleguide/forms/autosave.html"></rx-styleguide>
+
+
 <h3 class="title lg">Manual Form Saving</h3>
 <div class="component-description clear">
 <ul class="list">
