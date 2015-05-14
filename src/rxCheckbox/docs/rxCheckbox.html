@@ -1,0 +1,150 @@
+<div ng-controller="rxCheckboxCtrl">
+
+  <h2 class="title">Examples</h2>
+
+  <h3 class="title">Show/Hide Input</h3>
+  <p>
+    <input rx-checkbox
+           id="chkAmSure"
+           ng-model="amSure"
+           ng-required="true" />
+    <label for="chkAmSure">Are you sure?</label>
+    <small>({{amSure}})</small>
+    <br />
+    <sub><em>Valid only if checked</em></sub>
+  </p>
+  <p ng-show="amSure">
+    <input rx-checkbox
+           id="chkAmReallySure"
+           ng-model="amReallySure" />
+    <label for="chkAmReallySure">Are you REALLY sure?</label>
+    <small>({{amReallySure}})</small>
+  </p>
+
+  <br />
+
+  <h3 class="title">Destroy Input</h3>
+  <p>Support for <code>$destroy</code> events.</p>
+  <p>
+    <input rx-checkbox
+           id="chkRemoveCheckbox"
+           ng-model="chkIsRemoved" />
+    <label for="chkRemoveCheckbox">Remove Following Checkbox:</label>
+
+    <input rx-checkbox
+           checked
+           id="chkRemoveable"
+           ng-if="!chkIsRemoved" />
+  </p>
+
+  <!-- END DEMO CODE -->
+  <!-- END DEMO CODE -->
+  <!-- END DEMO CODE -->
+
+  <h2 class="title">Checkbox States</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Disabled (ng-disabled)</th>
+        <th>Disabled (disabled)</th>
+        <th>Valid</th>
+        <th>Invalid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- NG-Disabled -->
+        <td>
+          <p>
+            <input rx-checkbox
+                   id="checkOne"
+                   ng-disabled="true"
+                   ng-model="checkOne" />
+            <label for="checkOne">Checked</label>
+          </p>
+          <p>
+            <input rx-checkbox
+                   id="checkTwo"
+                   ng-disabled="true"
+                   ng-model="checkTwo" />
+            <label for="checkTwo">Unchecked</label>
+          </p>
+        </td>
+
+        <!-- Disabled -->
+        <td>
+          <p>
+            <input rx-checkbox
+                   id="checkSeven"
+                   disabled
+                   ng-model="checkSeven" />
+            <label for="checkSeven">Checked</label>
+          </p>
+          <p>
+            <input rx-checkbox
+                   id="checkEight"
+                   disabled
+                   ng-model="checkEight" />
+            <label for="checkEight">Unchecked</label>
+          </p>
+        </td>
+
+        <!-- Valid -->
+        <td>
+          <p>
+            <input rx-checkbox
+                   id="checkThree"
+                   ng-model="checkThree" />
+            <label for="checkThree">Checked</label>
+          </p>
+          <p>
+            <input rx-checkbox
+                   id="checkFour"
+                   ng-model="checkFour" />
+            <label for="checkFour">Unchecked</label>
+          </p>
+        </td>
+
+        <!-- Invalid -->
+        <td>
+          <p>
+            <input rx-checkbox
+                   id="checkFive"
+                   ng-model="checkFive"
+                   always-invalid />
+            <label for="checkFive">Checked</label>
+          </p>
+          <p>
+            <input rx-checkbox
+                   id="checkSix"
+                   ng-model="checkSix"
+                   always-invalid />
+            <label for="checkSix">Unchecked</label>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 class="title">Attributes</h2>
+<table class="component-attributes table-striped">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Required?</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        <code>ng-disabled</code>
+      </th>
+      <td><em>optional</em></td>
+      <td>
+        In addition to default functionality, this will add/remove the <code>rx-disabled</code> class on the control wrapper for purposes of styling sibling elements.
+      </td>
+    </tr>
+  </tbody>
+</table>
