@@ -14,7 +14,7 @@ angular.module('encore.ui.configs', [])
     { value: '/dev/xvdo', label: '/dev/xvdo' },
     { value: '/dev/xvdp', label: '/dev/xvdp' }
 ])
-.constant('feedbackApi', '/api/feedback')
+.constant('feedbackApi', '/api/encore/feedback')
 .provider('routesCdnPath', function () {
 
     this.customURL = null;
