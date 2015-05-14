@@ -1,0 +1,182 @@
+<!-- Sample HTML goes here as a live example of how the component can be used -->
+<div ng-controller="rxRadioCtrl">
+
+  <h2 class="title">Examples</h2>
+
+  <h3 class="title">Show/Hide Input</h3>
+  <p>
+    <strong>Do you like bacon?</strong>
+    <small ng-show="likesbacon">({{likesbacon}})</small>
+  </p>
+  <p>
+    <input rx-radio
+           id="radHateBacon"
+           value="hate it"
+           ng-model="likesbacon"
+           ng-required="true" />
+    <label for="radHateBacon">I hate bacon</label>
+  </p>
+  <p>
+    <input rx-radio
+           id="radLikeBacon"
+           value="like it"
+           ng-model="likesbacon"
+           ng-required="true" />
+    <label for="radLikeBacon">I like bacon</label>
+  </p>
+  <p ng-show="likesbacon && likesbacon !== 'hate it'">
+    <input rx-radio
+           id="radLoveBacon"
+           value="love it"
+           ng-model="likesbacon"
+           ng-required="true" />
+    <label for="radLoveBacon">Actually, I LOVE bacon</label>
+  </p>
+
+  <br />
+
+  <h3 class="title">Destroy Input</h3>
+  <p>Suport for <code>$destroy</code> events.</p>
+  <p>
+    <span>
+      <input rx-radio
+             id="radDestroyed"
+             value="destroyed"
+             ng-model="radCreateDestroy" />
+      <label for="radDestroy">Destroyed</label>
+    </span>
+    <span>
+      <input rx-radio
+             id="radCreated"
+             value="created"
+             ng-model="radCreateDestroy" />
+      <label for="radCreate">Created</label>
+    </span>
+  </p>
+  <p>
+    The following radio is <code>{{radCreateDestroy}}</code>:
+    <input rx-radio
+           checked
+           id="radTargetCreated"
+           ng-if="radCreateDestroy === 'created'" />
+  </p>
+
+  <!-- END DEMO CODE -->
+  <!-- END DEMO CODE -->
+  <!-- END DEMO CODE -->
+
+  <h2 class="title">Radio States</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Disabled (ng-disable)</th>
+        <th>Disabled (disabled)</th>
+        <th>Valid</th>
+        <th>Invalid</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <!-- NG-Disabled -->
+        <td>
+          <p>
+            <input rx-radio
+                   id="radOne"
+                   value="1"
+                   ng-disabled="true"
+                   ng-model="ngDisabledRadio" />
+            <label for="radOne">Selected</label>
+          </p>
+          <p>
+            <input rx-radio
+                   id="radTwo"
+                   value="2"
+                   ng-disabled="true"
+                   ng-model="ngDisabledRadio" />
+            <label for="radTwo">Unselected</label>
+          </p>
+        </td>
+
+        <!-- Native Disabled -->
+        <td>
+          <p>
+            <input rx-radio
+                   id="radSeven"
+                   value="1"
+                   disabled
+                   ng-model="disabledRadio" />
+            <label for="radSeven">Selected</label>
+          </p>
+          <p>
+            <input rx-radio
+                   id="radEight"
+                   value="2"
+                   disabled
+                   ng-model="disabledRadio" />
+            <label for="radEight">Unselected</label>
+          </p>
+        </td>
+
+        <!-- Valid -->
+        <td>
+          <p>
+            <input rx-radio
+                   id="radThree"
+                   value="1"
+                   ng-model="enabledRadio" />
+            <label for="radThree">Selected</label>
+          </p>
+          <p>
+            <input rx-radio
+                   id="radFour"
+                   value="2"
+                   ng-model="enabledRadio" />
+            <label for="radFour">Unselected</label>
+          </p>
+        </td>
+
+        <!-- Invalid -->
+        <td>
+          <p>
+            <input rx-radio
+                   id="radFive"
+                   value="1"
+                   ng-model="errRadio"
+                   always-invalid />
+            <label for="radFive">Selected</label>
+          </p>
+          <p>
+            <input rx-radio
+                   id="radSix"
+                   value="2"
+                   ng-model="errRadio"
+                   always-invalid />
+            <label for="radSix">Unselected</label>
+          </p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="title">Attributes</h3>
+<table class="component-attributes table-striped">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Required?</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        <code>ng-disabled</code>
+      </th>
+      <td><em>optional</em></td>
+      <td>
+        In addition to default functionality, this will add/remove the <code>rx-disabled</code> class on the control wrapper for purposes of styling sibling elements.
+      </td>
+    </tr>
+  </tbody>
+</table>

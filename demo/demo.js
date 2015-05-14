@@ -358,6 +358,15 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     };
 })
 
+.directive('alwaysInvalid', function () {
+    return {
+        require: 'ngModel',
+        link: function (scope, el, attrs, ctrl) {
+            ctrl.$setValidity('alwaysInvalid', false);
+        }
+    };
+})
+
 // Used for drawing the Demo and Markup tabs in the styleguide
 .directive('rxStyleguide', function () {
     return {
