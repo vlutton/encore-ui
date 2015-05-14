@@ -483,6 +483,31 @@ function rxCharacterCountCtrl ($scope) {
 }
 
 
+/*jshint unused:false*/
+
+angular.module('demoApp')
+.controller('rxCheckboxCtrl', function ($scope) {
+    $scope.checkOne = true;
+    $scope.checkThree = true;
+    $scope.checkFive = true;
+    $scope.checkSeven = true;
+
+    $scope.checkTwo = false;
+    $scope.checkFour = false;
+    $scope.checkSix = false;
+    $scope.checkEight = false;
+
+    $scope.amSure = false;
+    $scope.amReallySure = false;
+
+    $scope.$watch('amSure', function (newVal) {
+        if (newVal === false) {
+            $scope.amReallySure = false;
+        }
+    });
+});
+
+
 
 
 /*jshint unused:false*/
@@ -869,6 +894,14 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
         repeat: true
     };
 
+    $scope.ondismiss = {
+        should: false,
+        method: function (msg) {
+            /* global alert */
+            alert('We are dismissing the message: ' + msg.text);
+        }
+    };
+
     $scope.routeChange = function (stack) {
         $rootScope.$broadcast('$routeChangeStart', {});
         $rootScope.$broadcast('$routeChangeSuccess', {});
@@ -876,6 +909,11 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
 
     $scope.add = function (stack) {
         var messageOptions = _.clone($scope.options);
+
+        if ($scope.ondismiss.should) {
+            messageOptions.ondismiss = _.clone($scope.ondismiss.method);
+        }
+
         messageOptions.stack = stack;
 
         rxNotify.add($scope.message, messageOptions);
@@ -1042,6 +1080,17 @@ function rxPermissionCtrl ($scope, Session, rxNotify) {
         Session.logout();
     };
 }
+
+
+/*jshint unused:false*/
+angular.module('demoApp')
+.controller('rxRadioCtrl', function ($scope) {
+    $scope.ngDisabledRadio = 1;
+    $scope.disabledRadio = 1;
+    $scope.enabledRadio = 1;
+    $scope.errRadio = 1;
+    $scope.radCreateDestroy = 'destroyed';
+});
 
 
 angular.module('demoApp')

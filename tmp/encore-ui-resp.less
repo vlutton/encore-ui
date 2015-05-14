@@ -2008,6 +2008,104 @@ thead th .btn-link {
 }
 
 /*
+ * rxCheckbox
+ */
+.rxCheckbox {
+  display: inline-block;
+  width: @rxCheckbox-size;
+  height: @rxCheckbox-size;
+  color: @rxCheckbox-color;
+  background-color: @rxCheckbox-background-color;
+  position: relative;
+
+  input[type="checkbox"],
+  .fake-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+  }
+
+  .fake-checkbox {
+    box-sizing: border-box;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+
+    // enabled unchecked
+    background-color: @rxCheckbox-background-color;
+    border: 1px solid @rxCheckbox-border-color;
+
+    // perfect center alignment for tick
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+
+    .tick {
+      flex: 0 0 auto;
+      font-size: @rxCheckbox-font-size;
+    }
+  }//.fake-checkbox
+
+  &.rx-disabled {
+    // disabled, unchecked
+    .fake-checkbox {
+      background: @inputBackground;
+    }
+
+    input[type="checkbox"] {
+      cursor: not-allowed;
+
+      // disabled, checked
+      &:checked ~ .fake-checkbox {
+        background-color: @inputBackgroundDisabled;
+        border: none;
+      }
+    }
+
+    & + label {
+      color: @inputColorDisabled;
+    }
+  }//.rx-disabled
+
+  input[type="checkbox"] {
+    z-index: 1;
+    height: 110%;
+    width: 110%;
+    opacity: 0;
+    cursor: pointer;
+
+    // enabled checked
+    &:checked ~ .fake-checkbox {
+      background-color: @rxCheckbox-background-color-selected;
+      color: @rxCheckbox-color;
+      border: none;
+    }
+
+    &.ng-invalid {
+      // enabled unchecked error
+      & ~ .fake-checkbox {
+        background-color: @rxCheckbox-background-color;
+        border: 2px solid @inputBackgroundError;
+      }
+
+      // enabled checked error
+      &:checked {
+        & ~ .fake-checkbox {
+          background-color: @inputBackgroundError;
+        }
+      }
+    }
+  }
+}//.rxCheckbox
+
+/*
  * rxCollapse
  */
 rx-collapse {
@@ -2894,6 +2992,104 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 .loading-row {
     padding: 10px;
 }
+
+/*
+ * rxRadio
+ */
+.rxRadio {
+  display: inline-block;
+  width: @rxRadio-size;
+  height: @rxRadio-size;
+  background-color: @rxRadio-background-color;
+  position: relative;
+
+  input[type="radio"],
+  .fake-radio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    outline: 0px;
+  }
+
+  .fake-radio {
+    .box-sizing(border-box);
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    .border-radius(100%);
+    overflow: hidden;
+    border: 1px solid @inputBorderColor;
+
+    // perfect center alignment for tick
+    // TODO: use MIXINS
+    .flexbox();
+    .flex-flow(row nowrap);
+    .align-items(center);
+    .justify-content(center);
+
+    .tick {
+      .flex(0 0 auto);
+      .border-radius(100%);
+      width: 60%;
+      height: 60%;
+      background-color: transparent;
+    }
+  }//.fake-radio
+
+  &.rx-disabled + label {
+    color: @inputColorDisabled;
+  }
+
+  input[type="radio"] {
+    z-index: 1;
+    height: 110%;
+    width: 110%;
+    opacity: 0;
+    cursor: pointer;
+
+    // enabled checked
+    &:checked + .fake-radio {
+      border-color: @rxRadio-color-selected;
+
+      .tick {
+        background-color: @rxRadio-color-selected;
+      }
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+
+      // disabled, unchecked
+      & + .fake-radio {
+        border-color: @inputBackgroundDisabled;
+      }
+
+      &:checked + .fake-radio .tick {
+        background: @inputBackgroundDisabled;
+      }
+    }//[disabled]
+
+    &.ng-invalid {
+      // enabled unchecked error
+      & + .fake-radio {
+        border: 2px solid @rxRadio-color-error;
+
+        .tick {
+          width: 70%;
+          height: 70%;
+        }
+      }
+
+      &:checked + .fake-radio .tick {
+        background: @rxRadio-color-error;
+      }
+    }
+  }//input
+}//.rxRadio
 
 /*
  * rxSearchBox

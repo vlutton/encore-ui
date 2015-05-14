@@ -6,6 +6,11 @@
 <li><a href="#encore.module_rxCharacterCount.initialize">encore.rxCharacterCount.initialize(rxCharacterCountElement)</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_rxCheckbox">encore.rxCheckbox</a><ul>
+<li><a href="#encore.module_rxCheckbox.main">encore.rxCheckbox.main</a></li>
+<li><a href="#encore.module_rxCheckbox.initialize">encore.rxCheckbox.initialize(rxCheckboxElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxCollapse">encore.rxCollapse</a><ul>
 <li><a href="#encore.module_rxCollapse.main">encore.rxCollapse.main</a></li>
 <li><a href="#encore.module_rxCollapse.initialize">encore.rxCollapse.initialize(rxCollapseElement)</a></li>
@@ -15,6 +20,11 @@
 <li><a href="#encore.module_rxOptionFormTable.main">encore.rxOptionFormTable.main</a></li>
 <li><a href="#encore.module_rxOptionFormTable.initialize">encore.rxOptionFormTable.initialize(rxOptionFormTableElement)</a></li>
 <li><a href="#encore.module_rxOptionFormTable.generateAccessor">encore.rxOptionFormTable.generateAccessor(elem)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxRadio">encore.rxRadio</a><ul>
+<li><a href="#encore.module_rxRadio.main">encore.rxRadio.main</a></li>
+<li><a href="#encore.module_rxRadio.initialize">encore.rxRadio.initialize(rxRadioElement)</a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxSearchBox">encore.rxSearchBox</a><ul>
@@ -56,8 +66,10 @@
 </ul>
 </li>
 <li><a href="#encore.exercise.module_rxCharacterCount">encore.exercise.rxCharacterCount</a></li>
+<li><a href="#encore.exercise.module_rxCheckbox">encore.exercise.rxCheckbox</a></li>
 <li><a href="#encore.exercise.module_rxCollapse">encore.exercise.rxCollapse</a></li>
 <li><a href="#encore.exercise.module_rxPaginate">encore.exercise.rxPaginate</a></li>
+<li><a href="#encore.exercise.module_rxRadio">encore.exercise.rxRadio</a></li>
 <li><a href="#encore.exercise.module_rxSearchBox">encore.exercise.rxSearchBox</a></li>
 <li><a href="#encore.exercise.module_rxMultiSelect">encore.exercise.rxMultiSelect</a></li>
 <li><a href="#encore.exercise.module_rxToggleSwitch">encore.exercise.rxToggleSwitch</a></li>
@@ -71,6 +83,17 @@
 <li><a href="#rxCharacterCount.isDisplayed">rxCharacterCount.isDisplayed()</a></li>
 <li><a href="#rxCharacterCount.isNearLimit">rxCharacterCount.isNearLimit()</a></li>
 <li><a href="#rxCharacterCount.isOverLimit">rxCharacterCount.isOverLimit()</a></li>
+</ul>
+</li>
+<li><a href="#rxCheckbox">rxCheckbox</a><ul>
+<li><a href="#rxCheckbox.isCheckbox">rxCheckbox.isCheckbox()</a></li>
+<li><a href="#rxCheckbox.isDisplayed">rxCheckbox.isDisplayed()</a></li>
+<li><a href="#rxCheckbox.isValid">rxCheckbox.isValid()</a></li>
+<li><a href="#rxCheckbox.isSelected">rxCheckbox.isSelected()</a></li>
+<li><a href="#rxCheckbox.isDisabled">rxCheckbox.isDisabled()</a></li>
+<li><a href="#rxCheckbox.isPresent">rxCheckbox.isPresent()</a></li>
+<li><a href="#rxCheckbox.select">rxCheckbox.select()</a></li>
+<li><a href="#rxCheckbox.deselect">rxCheckbox.deselect()</a></li>
 </ul>
 </li>
 <li><a href="#rxCollapse">rxCollapse</a><ul>
@@ -141,6 +164,16 @@
 <li><a href="#rxOptionFormTable.row.unselect">row.unselect()</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#rxRadio">rxRadio</a><ul>
+<li><a href="#rxRadio.isRadio">rxRadio.isRadio()</a></li>
+<li><a href="#rxRadio.isDisplayed">rxRadio.isDisplayed()</a></li>
+<li><a href="#rxRadio.isValid">rxRadio.isValid()</a></li>
+<li><a href="#rxRadio.isSelected">rxRadio.isSelected()</a></li>
+<li><a href="#rxRadio.isDisabled">rxRadio.isDisabled()</a></li>
+<li><a href="#rxRadio.isPresent">rxRadio.isPresent()</a></li>
+<li><a href="#rxRadio.select">rxRadio.select()</a></li>
 </ul>
 </li>
 <li><a href="#rxSearchBox">rxSearchBox</a><ul>
@@ -224,7 +257,25 @@
 <ul>
 <li>rxCharacterCountElement <code>WebElement</code> - WebElement to be transformed into an rxCharacterCountElement object  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the rxCharacterCount object.<br><a name="encore.module_rxCollapse"></a></p>
+<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the rxCharacterCount object.<br><a name="encore.module_rxCheckbox"></a></p>
+<h1 id="encore-rxcheckbox">encore.rxCheckbox</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxCheckbox">encore.rxCheckbox</a><ul>
+<li><a href="#encore.module_rxCheckbox.main">encore.rxCheckbox.main</a></li>
+<li><a href="#encore.module_rxCheckbox.initialize">encore.rxCheckbox.initialize(rxCheckboxElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxCheckbox.main"></a></p>
+<h2 id="encore-rxcheckbox-main">encore.rxCheckbox.main</h2>
+<p><strong>Returns</strong>: <a href="#rxCheckbox">rxCheckbox</a> - Page object representing the <em>first</em> rxCheckbox object found on the page.<br><a name="encore.module_rxCheckbox.initialize"></a></p>
+<h2 id="encore-rxcheckbox-initialize-rxcheckboxelement-">encore.rxCheckbox.initialize(rxCheckboxElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxCheckboxElement <code>WebElement</code> - WebElement to be transformed into an rxCheckboxElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxCheckbox">rxCheckbox</a> - Page object representing the rxCheckbox object.<br><a name="encore.module_rxCollapse"></a></p>
 <h1 id="encore-rxcollapse">encore.rxCollapse</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -294,7 +345,25 @@ it(&#39;should select the country&#39;, function () {
     expect(yourPage.paymentMethodTable.row(2).cell(&#39;Card Type&#39;)).to.eventually.equal(&#39;Visa&#39;);
 });
 </code></pre>
-<p><a name="encore.module_rxSearchBox"></a></p>
+<p><a name="encore.module_rxRadio"></a></p>
+<h1 id="encore-rxradio">encore.rxRadio</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxRadio">encore.rxRadio</a><ul>
+<li><a href="#encore.module_rxRadio.main">encore.rxRadio.main</a></li>
+<li><a href="#encore.module_rxRadio.initialize">encore.rxRadio.initialize(rxRadioElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxRadio.main"></a></p>
+<h2 id="encore-rxradio-main">encore.rxRadio.main</h2>
+<p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the <em>first</em> rxRadio object found on the page.<br><a name="encore.module_rxRadio.initialize"></a></p>
+<h2 id="encore-rxradio-initialize-rxradioelement-">encore.rxRadio.initialize(rxRadioElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxRadioElement <code>WebElement</code> - WebElement to be transformed into an rxRadioElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the rxRadio object.<br><a name="encore.module_rxSearchBox"></a></p>
 <h1 id="encore-rxsearchbox">encore.rxSearchBox</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -483,6 +552,20 @@ trailing whitespace when calculating the remaining character count.  </li>
     ignoreInsignificantWhitespace: false
 }));
 </code></pre>
+<p><a name="encore.exercise.module_rxCheckbox"></a></p>
+<h1 id="encore-exercise-rxcheckbox">encore.exercise.rxCheckbox</h1>
+<p>rxCheckbox exercises</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>String</code> - Fallback selector string with which to initialize widget.  </li>
+<li>[disabled=false] <code>Boolean</code> - Determines if the checkbox is disabled  </li>
+<li>[selected=false] <code>Boolean</code> - Determines if the checkbox is selected  </li>
+<li>[visible=true] <code>Boolean</code> - Determines if the checkbox is visible  </li>
+<li>[valid=true] <code>Boolean</code> - Determines if the checkbox is valid  </li>
+</ul>
+</li>
+</ul>
 <p><a name="encore.exercise.module_rxCollapse"></a></p>
 <h1 id="encore-exercise-rxcollapse">encore.exercise.rxCollapse</h1>
 <p>rxCollapse exercises.</p>
@@ -518,6 +601,20 @@ trailing whitespace when calculating the remaining character count.  </li>
     pages: 20 // will exercise full functionality at 6, limited functionality at 2
 }));
 </code></pre>
+<p><a name="encore.exercise.module_rxRadio"></a></p>
+<h1 id="encore-exercise-rxradio">encore.exercise.rxRadio</h1>
+<p>rxRadio exercises</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>String</code> - Fallback selector string with which to initialize widget.  </li>
+<li>[disabled=false] <code>Boolean</code> - Determines if the radio is disabled.  </li>
+<li>[selected=false] <code>Boolean</code> - Determines if the radio is selected.  </li>
+<li>[visible=true] <code>Boolean</code> - Determines if the radio is visible.  </li>
+<li>[valid=true] <code>Boolean</code> - Determines if the radio is valid.  </li>
+</ul>
+</li>
+</ul>
 <p><a name="encore.exercise.module_rxSearchBox"></a></p>
 <h1 id="encore-exercise-rxsearchbox">encore.exercise.rxSearchBox</h1>
 <p>rxSearchBox exercises.</p>
@@ -604,7 +701,41 @@ trailing whitespace when calculating the remaining character count.  </li>
 <h2 id="rxcharactercount-isnearlimit-">rxCharacterCount.isNearLimit()</h2>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;near-limit&#39; class is displayed.<br><a name="rxCharacterCount.isOverLimit"></a></p>
 <h2 id="rxcharactercount-isoverlimit-">rxCharacterCount.isOverLimit()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="rxCollapse"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="rxCheckbox"></a></p>
+<h1 id="rxcheckbox">rxCheckbox</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxCheckbox">rxCheckbox</a><ul>
+<li><a href="#rxCheckbox.isCheckbox">rxCheckbox.isCheckbox()</a></li>
+<li><a href="#rxCheckbox.isDisplayed">rxCheckbox.isDisplayed()</a></li>
+<li><a href="#rxCheckbox.isValid">rxCheckbox.isValid()</a></li>
+<li><a href="#rxCheckbox.isSelected">rxCheckbox.isSelected()</a></li>
+<li><a href="#rxCheckbox.isDisabled">rxCheckbox.isDisabled()</a></li>
+<li><a href="#rxCheckbox.isPresent">rxCheckbox.isPresent()</a></li>
+<li><a href="#rxCheckbox.select">rxCheckbox.select()</a></li>
+<li><a href="#rxCheckbox.deselect">rxCheckbox.deselect()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxCheckbox.isCheckbox"></a></p>
+<h2 id="rxcheckbox-ischeckbox-">rxCheckbox.isCheckbox()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether root element is of type=&quot;checkbox&quot;<br><a name="rxCheckbox.isDisplayed"></a></p>
+<h2 id="rxcheckbox-isdisplayed-">rxCheckbox.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the fake checkbox is currently displayed.<br><a name="rxCheckbox.isValid"></a></p>
+<h2 id="rxcheckbox-isvalid-">rxCheckbox.isValid()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the native checkbox element is valid.<br><a name="rxCheckbox.isSelected"></a></p>
+<h2 id="rxcheckbox-isselected-">rxCheckbox.isSelected()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox element is currently selected.<br><a name="rxCheckbox.isDisabled"></a></p>
+<h2 id="rxcheckbox-isdisabled-">rxCheckbox.isDisabled()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the wrapper is disabled.<br><a name="rxCheckbox.isPresent"></a></p>
+<h2 id="rxcheckbox-ispresent-">rxCheckbox.isPresent()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the styled element exists on the page<br><a name="rxCheckbox.select"></a></p>
+<h2 id="rxcheckbox-select-">rxCheckbox.select()</h2>
+<p>Make sure checkbox is selected/checked</p>
+<p><a name="rxCheckbox.deselect"></a></p>
+<h2 id="rxcheckbox-deselect-">rxCheckbox.deselect()</h2>
+<p>make sure checkbox is deselected/unchecked</p>
+<p><a name="rxCollapse"></a></p>
 <h1 id="rxcollapse">rxCollapse</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -1072,7 +1203,37 @@ expect(optionTable.columnData(&#39;Surcharge&#39;, penniesFn)).to.eventually.eql
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable.row.unselect"></a></p>
 <h3 id="row-unselect-">row.unselect()</h3>
 <p>Unselects the current row.</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSearchBox"></a></p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxRadio"></a></p>
+<h1 id="rxradio">rxRadio</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxRadio">rxRadio</a><ul>
+<li><a href="#rxRadio.isRadio">rxRadio.isRadio()</a></li>
+<li><a href="#rxRadio.isDisplayed">rxRadio.isDisplayed()</a></li>
+<li><a href="#rxRadio.isValid">rxRadio.isValid()</a></li>
+<li><a href="#rxRadio.isSelected">rxRadio.isSelected()</a></li>
+<li><a href="#rxRadio.isDisabled">rxRadio.isDisabled()</a></li>
+<li><a href="#rxRadio.isPresent">rxRadio.isPresent()</a></li>
+<li><a href="#rxRadio.select">rxRadio.select()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxRadio.isRadio"></a></p>
+<h2 id="rxradio-isradio-">rxRadio.isRadio()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - whether root element is if type=&quot;radio&quot;<br><a name="rxRadio.isDisplayed"></a></p>
+<h2 id="rxradio-isdisplayed-">rxRadio.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxRadio.isValid"></a></p>
+<h2 id="rxradio-isvalid-">rxRadio.isValid()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the native checkbox element is valid.<br><a name="rxRadio.isSelected"></a></p>
+<h2 id="rxradio-isselected-">rxRadio.isSelected()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the radio element is currently selected.<br><a name="rxRadio.isDisabled"></a></p>
+<h2 id="rxradio-isdisabled-">rxRadio.isDisabled()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - whether or not the wrapper is disabled<br><a name="rxRadio.isPresent"></a></p>
+<h2 id="rxradio-ispresent-">rxRadio.isPresent()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the root element exists on the page<br><a name="rxRadio.select"></a></p>
+<h2 id="rxradio-select-">rxRadio.select()</h2>
+<p>Make sure radio is selected</p>
+<p><a name="rxSearchBox"></a></p>
 <h1 id="rxsearchbox">rxSearchBox</h1>
 <p><strong>Members</strong></p>
 <ul>

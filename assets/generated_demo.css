@@ -98,3 +98,10 @@ ul.colors .action-delete {
 .component-description ol li {
   list-style: decimal;
 }
+table.component-attributes tbody tr th {
+  white-space: nowrap;
+}
+table.component-attributes th,
+table.component-attributes td {
+  vertical-align: top;
+}
