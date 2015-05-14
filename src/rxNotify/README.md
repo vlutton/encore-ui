@@ -158,6 +158,14 @@ This will add a new message to the default stack ('page') with all default optio
 
 ------
 
+- **`ondismiss`**: *A Function that should be run when message is dismissed.*
+
+    > Default: `_.noop`
+
+    *Other values*: `function () { ... }`
+
+------
+
 - **`stack`**: *Which message stack the message gets added to.*
 
     > Default: `'page'`

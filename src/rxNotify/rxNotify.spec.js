@@ -190,6 +190,41 @@ describe('rxNotify', function () {
             expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText2);
         });
 
+        it('should fire ondismiss function if set', function () {
+            // add message to be dismissed
+            var dismissedResultA = false;
+            var dismissedResultB = false;
+            
+            var msg = notifySvc.add(messageText1, {
+                ondismiss: function () {
+                    dismissedResultA = true;
+                }
+            });
+
+            // add other message
+            notifySvc.add(messageText2, {
+                ondismiss: function () {
+                    dismissedResultB = true;
+                }
+            });
+
+            // run 'dismiss' method passing in message id
+            notifySvc.dismiss(msg);
+
+            // wait until before timeout
+            interval.flush(650);
+
+            // validate dismissed message not in stack
+            expect(notifySvc.stacks[defaultStack].length).to.equal(1);
+
+            // validate other message is still in stack and in first position
+            expect(notifySvc.stacks[defaultStack][0].text).to.equal(messageText2);
+
+            // validate ondismiss only ran for A, not B 
+            expect(dismissedResultA).to.be.true;
+            expect(dismissedResultB).to.be.false;
+        });
+
         it('should set dismissable if passed in', function () {
             // add message w/dismissable set to false
             notifySvc.add(messageText1, {
