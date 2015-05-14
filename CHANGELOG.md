@@ -1,3 +1,17 @@
+<a name="1.16.0"></a>
+## 1.16.0 (2015-05-14)
+
+
+#### Features
+
+* **rxCheckbox:** add rxCheckbox attribute directive ([887c3a0a](git@github.com:rackerlabs/encore-ui/commit/887c3a0a743815959e00ecaa3001739d41654055))
+* **rxFeedback:**
+  * use headers for current page and user agent ([da177ba7](git@github.com:rackerlabs/encore-ui/commit/da177ba724077ea811dd86efeb97860fd876007d))
+  * Update API endpoint and add fields ([5408b56f](git@github.com:rackerlabs/encore-ui/commit/5408b56f6af73d9b05082a41f7b2aa499aa8a4b2))
+* **rxNotify:** Add ondismiss method to rxNotify ([861be26d](git@github.com:rackerlabs/encore-ui/commit/861be26d5b11d3678a73464529ccc3f327127a56))
+* **rxRadio:** add rxRadio component ([ba2e32dc](git@github.com:rackerlabs/encore-ui/commit/ba2e32dc1203cc0460a63a98c3f6089ee722294c))
+
+
 <a name="1.15.1"></a>
 ### 1.15.1 (2015-05-08)
 
