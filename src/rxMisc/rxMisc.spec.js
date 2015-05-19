@@ -336,6 +336,34 @@ describe('rxAutoSave', function () {
         expect(scope.formA.foo, 'stored data for this url').to.equal('bar');
     });
 
+    it('should allow key manipulation for stored values on URLs', function () {
+        // store a value on the default URL
+        scope.formA.foo = 'bar';
+        flush();
+
+        var oldUrl = url;
+
+        var opts = {
+            keyShaping: function (key) {
+                return key.replace('invalid', '');
+            }
+        };
+
+        // Navigate to a new URL with the same form structure
+        url = oldUrl + 'invalid';
+        initializeScope();
+        a = rxAutoSave(scope, 'formA', opts);
+        scope.$digest();
+        expect(scope.formA.foo, 'stored data for this url').to.equal('bar');
+
+        // Navigate back to the original URL
+        url = oldUrl;
+        initializeScope();
+        a = rxAutoSave(scope, 'formA', opts);
+        scope.$digest();
+        expect(scope.formA.foo, 'stored data for this url').to.equal('bar');
+    });
+
     it('should let you add a clear promise via clearOnSuccess()', function () {
         // have rxAutoSave store 'bar'
         scope.formA.foo = 'bar';

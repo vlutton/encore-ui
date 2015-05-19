@@ -186,8 +186,11 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
     // @param [storageBackend] - Optional, defaults to LocalStorage. If you pass in a storage object,
     //                           it must support both getObject(key) and setObject(key, val), matching
     //                           the operations of LocalStorage and SessionStorage
-    var StorageAPI = function (watchVar, storageBackend) {
-        this.key = 'rxAutoSave::' + $location.url();
+    // @param [keyShaping] - Optional, defaults to just returning the originally defined key value.
+    //                       It gets passed the original value defined ('rxAutoSave::' + $location.url())
+    //                       and is expected to return the new key that you wish to have used.
+    var StorageAPI = function (watchVar, storageBackend, keyShaping) {
+        this.key = keyShaping('rxAutoSave::' + $location.url());
         this.watchVar = watchVar;
         this.storage = storageBackend ? storageBackend : LocalStorage;
     };
@@ -284,12 +287,13 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
             clearOnSuccess: undefined,
             exclude: [],
             ttl: 172800,
+            keyShaping: _.identity,
             storageBackend: LocalStorage
         });
 
         opts.ttl = opts.ttl * 1000; // convert back to milliseconds
         
-        var api = new StorageAPI(watchVar, opts.storageBackend);
+        var api = new StorageAPI(watchVar, opts.storageBackend, opts.keyShaping);
 
         var updateExpiryTime = function () {
             if (opts.ttl > 0) {

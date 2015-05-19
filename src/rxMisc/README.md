@@ -204,3 +204,18 @@ If you wish to use a different storage backend (`SessionStorage`, for instance),
 `storageBackend` requires that you pass it an object which has `getObject(key)` and `setObject(key, val)` methods. `LocalStorage` and `SessionStorage` are both provided by EncoreUI, and support this interface.
 
 You can use your own custom backends as well, as long as it supports `getObject(key)` and `setObject(key, val)`.
+
+### Custom Storage Key Values
+Sometimes, it may be necessary to change how a key is formed for the specified `storageBackend`. As previously stated, these are calculated by prepending `'rxAutoSave::'` before the url. You can override this by passing in a `keyShaping` function to the options object.
+
+An example one would be as follows:
+
+```
+    var autosave = rxAutoSave($scope, 'formData', {
+        keyShaping: function (key) {
+            return key.replace('?cache=false', '');
+        }
+    });
+```
+
+The above example could be used to have the current url ignore any caching flags passed in. The `keyShaping` function will receive the default calculated key (`rxAutoSave::` + $location.url()). By default, `keyShaping` just returns the original calculated key.
