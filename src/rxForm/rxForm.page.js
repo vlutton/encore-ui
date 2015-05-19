@@ -529,7 +529,7 @@ var optionFormRowFromElement = function (optionRowElement) {
                     };
                 }
 
-                var css = 'label[for^="' + columnName + '"]';
+                var css = 'td[data-column^="' + columnName + '"] label';
                 return customFn(optionRowElement.$(css));
             }
         },
@@ -574,7 +574,7 @@ var optionFormRowFromElement = function (optionRowElement) {
 };
 
 var cssForCellInColumn = function (columnName) {
-    return 'tr td > label[for^="' + columnName + '"]';
+    return 'tr td[data-column^="' + columnName + '"] label';
 };
 
 /**

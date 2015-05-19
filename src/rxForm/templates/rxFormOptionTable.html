@@ -10,29 +10,37 @@
         </thead>
         <tr ng-repeat="row in data" ng-class="{current: isCurrent(row.value), selected: isSelected(row.value, $index), disabled: checkDisabled(row)}">
             <td class="option-table-input" ng-switch="type">
-                <label>
-                    <input type="radio"
-                        ng-switch-when="radio"
-                        id="{{fieldId}}_{{$index}}"
-                        ng-model="$parent.$parent.model"
-                        value="{{row.value}}"
-                        name="{{fieldId}}"
-                        ng-disabled="checkDisabled(row)"
-                        rx-attributes="{'ng-required': required}">
+                <div class="fillWrapper">
+                    <label>
+                        <div class="alignWrapper">
+                            <input rx-radio
+                                ng-switch-when="radio"
+                                id="{{fieldId}}_{{$index}}"
+                                ng-model="$parent.$parent.model"
+                                value="{{row.value}}"
+                                name="{{fieldId}}"
+                                ng-disabled="checkDisabled(row)"
+                                rx-attributes="{'ng-required': required}">
 
-                    <input type="checkbox"
-                        ng-switch-when="checkbox"
-                        id="{{fieldId}}_{{$index}}"
-                        ng-model="$parent.modelProxy[$index]"
-                        ng-change="updateCheckboxes($parent.modelProxy[$index], $index)"
-                        ng-required="checkRequired()">
-                </label>
+                            <input rx-checkbox
+                                ng-switch-when="checkbox"
+                                id="{{fieldId}}_{{$index}}"
+                                ng-model="$parent.modelProxy[$index]"
+                                ng-change="updateCheckboxes($parent.modelProxy[$index], $index)"
+                                ng-required="checkRequired()">
+                        </div>
+                    </label>
+                </div>
             </td>
-            <td ng-repeat="column in columns">
-                <label for="{{column.label}}_{{$parent.$index}}">
-                    <span ng-bind-html="getContent(column, row)"></span>
-                    <span ng-show="isCurrent(row.value)">{{column.selectedLabel}}</span>
-                </label>
+            <td ng-repeat="column in columns" data-column="{{column.label}}">
+                <div class="fillWrapper">
+                    <label for="{{fieldId}}_{{$parent.$index}}">
+                        <div class="alignWrapper">
+                            <span ng-bind-html="getContent(column, row)"></span>
+                            <span ng-show="isCurrent(row.value)">{{column.selectedLabel}}</span>
+                        </div>
+                    </label>
+                </div>
             </td>
         </tr>
         <tr ng-if="data.length === 0 && emptyMessage">
