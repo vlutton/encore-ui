@@ -2,6 +2,6 @@
 module.exports = {
     options: {
         debug: true,
-        coverage_dir: '<%= config.build %>/coverage/'
+        coverageDir: '<%= config.build %>/coverage/'
     }
 };
