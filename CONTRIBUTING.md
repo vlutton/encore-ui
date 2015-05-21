@@ -1,6 +1,6 @@
 # How to contribute
 
-We want to keep it as easy as possible to contribute changes Encore. There are a few guidelines that we need to follow so that we can have a chance of keeping on top of things.
+We want to keep it as easy as possible to contribute changes to EncoreUI, while making sure not to overburden the core EncoreUI team. There are a few guidelines that we need to follow so that we can have a chance of keeping on top of things.
 
 ## Bugs & Issues
 
@@ -8,26 +8,86 @@ Please submit any bugs you encounter when using EncoreUI to our [Github Issues T
 
 When submiting a bug report, please **include a set of steps to reproduce the issue** and any related information (browser, OS, etc). If we can't reproduce the issue then it makes fixing it much more difficult.
 
+### Preparing an Issue for development
+When an Issue is ready to move to development, make sure it includes the following:
+
+ * Link to Invision designs (if applicable)
+ * Screenshot of final visual design
+ * For new visual components or visual changes, sign-off from our designers is _required_. Mark issue with `Needs Design` label to request input
+ * When all technical discussion on the issue is complete, change the label to `Ready for Dev`. For visual components/changes, *only* a designer may make this change.
+
 ## Adding/Updating Code
 
-If you haven't already, let the Racker Tools team know what your plans are. This is important so that time isn't spent by separate teams doing the same thing, and so that the team can get an initial round of feedback in before coding starts.
+If you plan on adding/updating code, please make sure you've first filed an issue, detailing why you think the update is necessary. This lets the EncoreUI team discuss the problem and potential solutions with you. We also want to ensure that separate teams aren't trying to do the same thing simultaneously.
 
-### Criteria for New Additions
+## PR Types:
 
-New additions to the framework are always encouraged. Here are some loose guidelines that new components should meet:
+There are a few typical types of Pull Requests that we see:
 
-1. The component is re-usable. Multiple projects have a need for it.
-3. Requirements are well defined and documented.
-4. If code has been written, it meets our standards (or is close enough for an easy update).
-  - If code hasn’t been written, developers are available to write it (if not, make the suggestion via a Github Issue and we can pick up the work as time permits).
-5. It's specific to EncoreUI. It matches the EncoreUI style. It doesn't require a large new framework.
-6. There isn't already a design pattern for it. The functionality doesn't already exist.
+* New Components
+* DO NOT MERGE - Reserved for prototype work
+* Styles
+* Docs
+* Bug Fixes
+* Component Revisions - Update to the style or interaction
+* Deprecations
 
-When in doubt about fit, ask in the EncoreUI chat room or open a new GitHub issue.
+The most complex PRs are usually "New Components". The "PR Steps" below describe our criteria for putting together a new component PR. For the other types, adjust the steps as necessary, let common sense be your guide!
+
+Currently, when adding a new component, our most precious resource is the time of our designers. We want to ensure that the PR process is as streamlined for them as possible, and this is made explicit below.
+
+## PR Steps
+* **Prerequisites**: 
+    * New Components _must_ be created using our [Component Scaffolding](./guides/ui-setup.md#creating-a-new-component)
+    * A corresponding [Issue should be present](#preparing-an-issue-for-development)
+* **Step 1**: Submitter includes screenshot of new component in PR description (See ["Design Review of Pull Requests"](#design-review-of-pull-requests) below)
+* **Step 2**: Comment with Design Sign-Off on final product - Design LGTM
+* **Step 3**: Checklist
+    * [Unit Tests](./guides/testing.md#component-tests-aka-unit-tests)
+    * [Page Objects updated](./guides/testing.md#convienience-page-objects)
+    * [Functional/Midway Tests updated](./guides/testing.md#midway-tests)
+    * [CSS Best Practices (this document needs an update)](./guides/css-styleguide.md)
+    * Component Documentation Updated (i.e. the `README.md` for the component)
+    * EncoreUI Style Guide updated if applicable
+* **Step 4**: Comment from submitter with their verification of Checklist
+* **Step 5**: Requested Feedback:
+    * Keep an eye out for Labels added by reviewers (ex. "On Hold", "Needs Design", etc.)
+    * Stop the Train Criteria:
+        * Breaking Changes not previously discussed & documented
+        * New Technologies not previously discussed & documented
+        * Major visual component not approved by Design
+    * See [Providing PR Feedback](#providing-pr-feedback)
+* **Step 6**: 2 Dev LGTM's
+* **Step 7**: Squash Commit ([see here for more details](#finalizing-a-pull-request))
+* **Step 8**: Final Travis Build Verification
+* **Step 9**: MERGE IT!
+
+
+### Providing PR Feedback
+There are certain things we look for in PR Feedback, and certain items that can usually "wait until later".
+
+#### Requested Feedback
+
+ * CSS Best Practices (ie: LESS variables)
+ * JavaScript / Angular Best Practices
+ * Maintainability of the Code Base
+ * JavaScript Documentation
+ * Test Coverage Validation
+
+#### Non-Requested Feedback
+
+Create an issue for non-requested feedback & tag with types, for example:
+
+ * visual design
+ * architecture 
+ * feature request 
+ * etc.
+
+Topics outside of the scope of the PR should be left for later. If a component already has design sign-off, the PR is not the place to question the design or ask for design changes
 
 ### Get feedback early and often
 
-It's much better to ask for feedback on an unfinished idea than to recieve feedback on a finished one. If you're developing a new component, or updating an old one, post code as you write it. Don't wait until the Pull Request for a code design review.
+It's much better to ask for feedback on an unfinished idea than to receive feedback on a finished one. If you're developing a new component, or updating an old one, feel free to post code as you write it. But please add "DO NOT MERGE" to the title of the PR, to let people know it's not quite ready.
 
 ## EncoreUI Developer Setup
 
@@ -48,7 +108,7 @@ To sum up:
 1. Create a new branch in your local repo
 2. Commit to that branch
 3. Push branch up to Github
-4. Submit PR to for review
+4. Submit PR for review (according to guidelines above)
 5. Once reviewed and feedback given (and implemented), we will merge the branch to master
 
 ## 3rd-party Libraries
@@ -90,26 +150,7 @@ We use [the same commit format that the Angular Team follows](https://github.com
 
 Before submitting any changes, make sure the master branch is merged locally into your branch (using [Git rebase](http://git-scm.com/book/en/Git-Branching-Rebasing) is preferred). Once done, push your branch up to Github and [submit a Pull Request](https://help.github.com/articles/using-pull-requests).
 
-### Submitting Urgent Changes
-
-Normally, a review of all outstanding PRs is done every morning. This means that a PR submitted in the afternoon may not be reviewed until the next day. For non-urgent changes, this usually isn't an issue (although it isn't fun to wait for feedback).
-
-Sometimes changes are urgent, and in this case, the PR should be reviewed immediately. To mark a PR as urgent, use the 'PR:urgent' label. It's also helpful to note in the Pull Request comments the specifics behind the urgency.
-
-### Pull Request Minimum Requirements
-
-- Complete documentation (a docs subfolder with working examples and [ngdocs](https://github.com/angular/angular.js/wiki/Writing-AngularJS-Documentation)), along with inline code comments as beneficial
-- Unit tests with 80% line coverage
-- Midways tests for all new UI functionality
-- Screenshots highlighting design implementation
-- Proper commit logs
-- Passes JSHint & CSSLint
-
-Once a pull request has been submitted, you simply need to wait for the EncoreUI team to respond. Every pull request sends an e-mail out to the team, so there is no need to send any further communication to the team. If the pull request is urgent, that needs to be communicated before the pull request is sent.
-
-We like to at least comment on, if not accept, pull requests within three business days (and, typically, one business day). We may suggest some changes or improvements or alternatives, so **make sure there is time for review in your release plan**.
-
-### Design Review of Pull Requests
+## Design Review of Pull Requests
 
 Many times, pull requests will touch resources that render visually. These are still changes that must be reviewed! For the sake of simplicity and transparency, it is the responsibility of the author of a pull request to also include a comment containing screenshots of the visual changes. Here is an example of a typical pull request workflow containing designer feedback and sign off.
 
@@ -138,7 +179,7 @@ Here is an example of how you should edit the old screenshot comments to change 
 [Outdated screenshot.](https://cloud.githubusercontent.com/assets/12158682/7732292/7690b012-feec-11e4-9f2c-5dd32c81ad07.png)
 ```
 
-### Finalizing a Pull Request
+## Finalizing a Pull Request
 
 Occasionally a PR will receive comments and/or requests for changes before we merge it in. These changes should be submitted as new commits on the existing PR.
 
