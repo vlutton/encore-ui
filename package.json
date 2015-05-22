@@ -16,7 +16,8 @@
     "postinstall": "grunt hooks"
   },
   "dependencies": {
-    "normalize.css": "^3.0.2"
+    "normalize.css": "^3.0.2",
+    "karma-sinon-chai": "^0.3.0"
   },
   "devDependencies": {
     "astrolabe": "~0.3.6",
