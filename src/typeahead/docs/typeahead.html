@@ -1,5 +1,11 @@
 <div ng-controller="typeaheadCtrl">
+    <h3 class="title">Standard Use</h3>
     <rx-form-item label="States">
-        <input type="text" ng-model="selected" typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-input" id="typeahead">
+        <input type="text" ng-model="selected1" typeahead="state for state in states | filter:$viewValue | limitTo:8">
+    </rx-form-item>
+
+    <h3 class="title">Show List on Focus</h3>
+    <rx-form-item label="States">
+        <input type="text" ng-model="selected2" typeahead="state for state in states | filter:$viewValue:allowEmpty" id="typeahead">
     </rx-form-item>
 </div>
