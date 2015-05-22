@@ -233,11 +233,28 @@
             color: @inputColorDisabled;
         }
     }
-    label {
-        // add padding to labels so they take up the entire cell's space
-        display: block;
+    .fillWrapper {
+      box-sizing: border-box;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      position: relative;
+
+      label {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
         padding: @tableCellPadding;
         cursor: pointer;
+
+        .flexbox();
+        // vertically centered content in label
+        .align-items(center);
+
+        .alignWrapper {
+          .flex(1 1 auto);
+        }
+      }
     }
     .option-table-input {
         text-align: center;
