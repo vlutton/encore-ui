@@ -1,0 +1,151 @@
+<style>
+  .demoContainer { width: 400px; }
+</style>
+
+<div ng-controller="rxSelectCtrl">
+  <div class="demoContainer">
+    <h2 class="title">Examples</h2>
+
+    <h3 class="title">With Validation</h3>
+    <p>
+      <strong>How do you like your bacon?</strong>
+      <small ng-if="baconPrep">({{baconPrep}})</small>
+      <br />
+      <select rx-select
+              id="selBaconPrep"
+              ng-model="baconPrep"
+              ng-required="true">
+        <option value="">I do not like bacon</option>
+        <option value="thin">Thin (light and crispy)</option>
+        <option value="medium">Medium (perfect balance of flavor)</option>
+        <option value="thick">Thick (borderline jerky)</option>
+        <option value="crumbled">Crumbled (great on salads)</option>
+      </select>
+    </p>
+    <br />
+
+    <h3 class="title">Show/Hide Select</h3>
+    <p>
+      <input rx-checkbox id="chkShow" ng-model="isShown" />
+      <label for="chkShow">Show?</label><br />
+      <span ng-show="isShown">
+        <select rx-select id="selTargetShow">
+          <option>I'm visible!</option>
+        </select>
+      </span>
+    </p>
+
+    <h3 class="title">Destroy Select</h3>
+    <p>Support for <code>$destroy</code> events.</p>
+    <p>
+      <span>
+        <input rx-radio
+               id="radDestroyed"
+               value="destroyed"
+               ng-model="radCreateDestroy" />
+        <label for="radDestroyed">Destroyed</label>
+      </span>
+      <span>
+        <input rx-radio
+               id="radCreated"
+               value="created"
+               ng-model="radCreateDestroy" />
+        <label for="radCreated">Created</label>
+      </span>
+    </p>
+    <p>
+      The following select is <code>{{radCreateDestroy}}</code>:
+      <select rx-select
+              id="selTargetCreated"
+              ng-if="radCreateDestroy === 'created'">
+        <option>CREATED!</option>
+      </select>
+    </p>
+    <br />
+  </div>
+
+  <!-- END OF DEMO -->
+  <!-- END OF DEMO -->
+  <!-- END OF DEMO -->
+
+  <h3 class="title">Select States</h3>
+  <table>
+    <thead>
+      <tr>
+        <th width="150px">State</th>
+        <th>Example</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>Disabled</th>
+        <td>
+          <select rx-select
+                  id="selOne"
+                  ng-model="selOne"
+                  ng-disabled="true">
+            <option value="na">Disabled by 'ng-disabled' attribute</option>
+          </select>
+          <br />
+          <select rx-select
+                  id="selTwo"
+                  disabled
+                  ng-model="selTwo">
+            <option value="na">Disabled by 'disabled' attribute</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Valid</th>
+        <td>
+          <select rx-select
+                  id="selThree"
+                  ng-model="selThree">
+            <option value="1">First</option>
+            <option value="2">Second</option>
+            <option value="3">Third</option>
+            <option value="4">Fourth</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <th>Invalid</th>
+        <td>
+          <select rx-select
+                  id="selFour"
+                  always-invalid
+                  ng-model="selFour">
+            <option value="1">First</option>
+            <option value="2">Second</option>
+            <option value="3">Third</option>
+            <option value="4">Fourth</option>
+          </select>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h3 class="title">Attributes</h3>
+<table class="component-attributes table-striped">
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Required?</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>
+        <code>ng-disabled</code>
+      </th>
+      <td>
+        <em>optional</em>
+      </td>
+      <td>
+        In addition to default functionality, this will add/remove the <code>rx-disabled</code> class on the control wrapper for purposes of styling sibling elements.
+      </td>
+    </tr>
+  </tbody>
+</table>

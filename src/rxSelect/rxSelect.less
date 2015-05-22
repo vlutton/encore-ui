@@ -1,0 +1,107 @@
+/*
+ * rxSelect
+ */
+.rxSelect {
+  .box-sizing(border-box);
+  display: block;
+  overflow: hidden;
+  position: relative;
+  color: @rxSelect-color;
+  background: @rxSelect-background;
+  .border-radius(@rxSelect-border-radius);
+
+  // Element should be resizable via wrapper alone
+  min-width: @rxSelect-min-width;
+  min-height: @rxSelect-min-height;
+
+  &.rx-disabled {
+    color: @inputColorDisabled;
+    background: @inputBackgroundDisabled;
+  }
+
+  // position elements in wrapper
+  select,
+  .fake-select {
+    .box-sizing(border-box);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  select {
+    z-index: 0;
+    padding: 5px;
+    cursor: pointer;
+
+    // reset native styling
+    border: none !important;
+    outline: none !important;
+    background: transparent;
+    &:-moz-focusring {
+      // FF uses text color to draw ring. Make it transparent
+      color: transparent;
+      // However, we still need to display our select <option> text
+      text-shadow: 0 0 0 @rxSelect-color;
+    }
+
+    & + .fake-select {
+      border-color: @inputBorderColor;
+      border-width: 1px;
+    }
+
+    &.ng-invalid + .fake-select {
+      border-color: @rxSelect-border-color-invalid;
+      border-width: 2px;
+
+      .select-trigger {
+        color: @rxSelect-trigger-color-invalid;
+      }
+    }
+
+    &[disabled] {
+      cursor: not-allowed ;
+
+      & + .fake-select {
+        border-color: @rxSelect-border-color-disabled;
+        border-width: 1px;
+
+        .select-trigger {
+          background: @rxSelect-background-disabled;
+          border-left-width: 0px;
+          border-left-color: @rxSelect-color-disabled;
+          color: @rxSelect-trigger-color-disabled;
+        }
+      }
+    }//[disabled]
+  }//select
+
+  .fake-select {
+    z-index: 10;
+    border: @rxSelect-border-width solid @rxSelect-border-color;
+    overflow: hidden;
+    .border-radius(@rxSelect-border-radius);
+    .flexbox();
+    .justify-content(flex-end);
+    .flex-flow(row nowrap);
+
+    // This allow pointer events to pass THROUGH to the
+    // native <select> element
+    pointer-events: none !important;
+
+    // Custom trigger button will cover native <select> button
+    .select-trigger {
+      .box-sizing(border-box);
+      width: @rxSelect-trigger-width;
+      background: @rxSelect-trigger-background;
+      color: @rxSelect-trigger-color;
+
+      // perfectly center the trigger icon
+      .flexbox();
+      .align-items(center);
+      .justify-content(center);
+    }//.select-trigger
+  }//.fake-select
+}//.rxSelect
+

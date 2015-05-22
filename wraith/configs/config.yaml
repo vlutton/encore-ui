@@ -59,6 +59,7 @@ paths:
   rxPermission: "/#/component/rxPermission"
   rxRadio: "/#/component/rxRadio"
   rxSearchBox: "/#/component/rxSearchBox"
+  rxSelect: "/#/component/rxSelect"
   rxSelectFilter: "/#/component/rxSelectFilter"
   rxSession: "/#/component/rxSession"
   rxSessionStorage: "/#/component/rxSessionStorage"
