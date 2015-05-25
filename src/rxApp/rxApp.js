@@ -1,5 +1,5 @@
 angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnvironment', 'ngSanitize',
-    'ngRoute', 'cfp.hotkeys', 'encore.ui.rxSession', 'encore.ui.rxLocalStorage'])
+    'ngRoute', 'cfp.hotkeys', 'encore.ui.rxSession', 'encore.ui.rxLocalStorage', 'encore.ui.rxPermission'])
 /**
 * @ngdoc service
 * @name encore.ui.rxApp:encoreRoutes
@@ -301,16 +301,40 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         scope: {
             item: '='
         },
-        controller: function ($scope, $location, rxVisibility) {
+        controller: function ($scope, $location, rxVisibility, Permission) {
             // provide `route` as a scope property so that links can tie into them
             $scope.route = $route;
 
-            $scope.isVisible = function (visibility) {
+            var roleCheck = function (roles) {
+                if (_.isUndefined(roles)) {
+                    return true;
+                }
+
+                if (!_.isUndefined(roles.any)) {
+                    return Permission.hasRole(roles.any);
+                }
+                
+                if (!_.isUndefined(roles.all)) {
+                    return Permission.hasAllRoles(roles.all);
+                }
+
+                return false;
+            };
+
+            /*
+             * @description Determines whether or not a nav item should be displayed, based on `visibility`
+             * criteria and `roles` criteria
+             * @param [visibility] - Can be an expression, a function, an array (using format below) to
+             *                     determine visibility
+             * @param {object} [roles] - An object with a format { 'any': ['role1', 'role2'] } or
+             *                           { 'all': ['role1', 'role2'] }
+             */
+            $scope.isVisible = function (visibility, roles) {
                 var locals = {
                     location: $location
                 };
-                if (_.isUndefined(visibility)) {
-                    // if undefined, default to true
+                if (_.isUndefined(visibility) && _.isUndefined(roles)) {
+                    // no visibility or role criteria specified, so default to true
                     return true;
                 }
 
@@ -328,8 +352,18 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                     // in $scope.$eval
                     visibility = rxVisibility.getMethod(methodName) || 'false';
                 }
+                
+                // If `visibility` isn't defined, then default it to `true` (i.e. visible)
+                var visible = _.isUndefined(visibility) ? true : $scope.$eval(visibility, locals),
+                    hasRole = true;
 
-                return $scope.$eval(visibility, locals);
+                // Only do a roleCheck() if `visible` is true. If we failed the visibility test,
+                // then we must ensure the nav item is not displayed, regardless of the roles
+                if (visible && _.isObject(roles)) {
+                    hasRole = roleCheck(roles);
+                }
+
+                return visible && hasRole;
             };
 
             $scope.toggleNav = function (ev, href) {

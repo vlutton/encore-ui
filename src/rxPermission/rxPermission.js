@@ -16,24 +16,58 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     .factory('Permission', function (Session) {
         var permissionSvc = {};
         
+        var cleanRoles = function (roles) {
+            return roles.split(',').map(function (r) {
+                return r.trim();
+            });
+        };
+
+        var userRoles = function () {
+            return _.pluck(permissionSvc.getRoles(), 'name');
+        };
+
+        /*
+         * @description Takes a function and a list of roles, and returns the
+         * result of calling that function with `roles`, and comparing to userRoles()
+         * @param {function} fn - Comparison function to use. _.any, _.all, etc.
+         * @param {array} roles - List of desired roles
+         */
+        var checkRoles = function (roles, fn) {
+            // Some code expects to pass a comma-delimited string
+            // here, so turn that into an array
+            if (_.isString(roles)) {
+                roles = cleanRoles(roles);
+            }
+
+            var allUserRoles = userRoles();
+            return fn(roles, function (role) {
+                return _.contains(allUserRoles, role);
+            });
+        };
+
+        /*
+         * @description Returns a list of all roles associated to the user
+         */
         permissionSvc.getRoles = function () {
             var token = Session.getToken();
             return (token && token.access && token.access.user && token.access.user.roles) ?
                 token.access.user.roles : [];
         };
 
+        /*
+         * @description Returns whether or not the user has at least one of `roles`
+         * @param {array} roles - List of roles to check against
+         */
         permissionSvc.hasRole = function (roles) {
-            // Replace any spaces surrounded the comma delimeter
-            roles = roles.split(',').map(function (r) {
-                return r.trim();
-            });
-            
-            // Get all the role names from the session and retrieve their names
-            var userRoles = _.pluck(this.getRoles(), 'name');
-            // Find the common roles between what's been passed in, and the session
-            var commonRoles = _.intersection(userRoles, roles);
-            // if the common roles list is not empty, then we have the expected roles
-            return !_.isEmpty(commonRoles);
+            return checkRoles(roles, _.any);
+        };
+
+        /*
+         * @description Returns whether or not the user has _every_ role in `roles`
+         * @param {array} roles - List of roles to check against
+         */
+        permissionSvc.hasAllRoles = function (roles) {
+            return checkRoles(roles, _.all);
         };
 
         return permissionSvc;
