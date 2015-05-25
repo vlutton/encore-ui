@@ -6,6 +6,11 @@
 <li><a href="#encore.module_rxCharacterCount.initialize">encore.rxCharacterCount.initialize(rxCharacterCountElement)</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_htmlCheckbox">encore.htmlCheckbox</a><ul>
+<li><a href="#encore.module_htmlCheckbox.main">encore.htmlCheckbox.main</a></li>
+<li><a href="#encore.module_htmlCheckbox.initialize">encore.htmlCheckbox.initialize(checkboxElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxCheckbox">encore.rxCheckbox</a><ul>
 <li><a href="#encore.module_rxCheckbox.main">encore.rxCheckbox.main</a></li>
 <li><a href="#encore.module_rxCheckbox.initialize">encore.rxCheckbox.initialize(rxCheckboxElement)</a></li>
@@ -22,6 +27,11 @@
 <li><a href="#encore.module_rxOptionFormTable.generateAccessor">encore.rxOptionFormTable.generateAccessor(elem)</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_htmlRadio">encore.htmlRadio</a><ul>
+<li><a href="#encore.module_htmlRadio.main">encore.htmlRadio.main</a></li>
+<li><a href="#encore.module_htmlRadio.initialize">encore.htmlRadio.initialize(radioElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxRadio">encore.rxRadio</a><ul>
 <li><a href="#encore.module_rxRadio.main">encore.rxRadio.main</a></li>
 <li><a href="#encore.module_rxRadio.initialize">encore.rxRadio.initialize(rxRadioElement)</a></li>
@@ -30,6 +40,20 @@
 <li><a href="#encore.module_rxSearchBox">encore.rxSearchBox</a><ul>
 <li><a href="#encore.module_rxSearchBox.main">encore.rxSearchBox.main</a></li>
 <li><a href="#encore.module_rxSearchBox.initialize">encore.rxSearchBox.initialize(rxSearchBoxElement)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_htmlSelectOption">encore.htmlSelectOption</a><ul>
+<li><a href="#encore.module_htmlSelectOption.initialize">encore.htmlSelectOption.initialize(selectOption)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_htmlSelect">encore.htmlSelect</a><ul>
+<li><a href="#encore.module_htmlSelect.main">encore.htmlSelect.main</a></li>
+<li><a href="#encore.module_htmlSelect.initialize">encore.htmlSelect.initialize(selectElement)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxSelect">encore.rxSelect</a><ul>
+<li><a href="#encore.module_rxSelect.main">encore.rxSelect.main</a></li>
+<li><a href="#encore.module_rxSelect.initialize">encore.rxSelect.initialize(rxSelectElement)</a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
@@ -71,6 +95,7 @@
 <li><a href="#encore.exercise.module_rxPaginate">encore.exercise.rxPaginate</a></li>
 <li><a href="#encore.exercise.module_rxRadio">encore.exercise.rxRadio</a></li>
 <li><a href="#encore.exercise.module_rxSearchBox">encore.exercise.rxSearchBox</a></li>
+<li><a href="#encore.exercise.module_rxSelect">encore.exercise.rxSelect</a></li>
 <li><a href="#encore.exercise.module_rxMultiSelect">encore.exercise.rxMultiSelect</a></li>
 <li><a href="#encore.exercise.module_rxToggleSwitch">encore.exercise.rxToggleSwitch</a></li>
 </ul>
@@ -85,15 +110,21 @@
 <li><a href="#rxCharacterCount.isOverLimit">rxCharacterCount.isOverLimit()</a></li>
 </ul>
 </li>
+<li><a href="#htmlCheckbox">htmlCheckbox</a><ul>
+<li><a href="#htmlCheckbox.isDisplayed">htmlCheckbox.isDisplayed()</a></li>
+<li><a href="#htmlCheckbox.isValid">htmlCheckbox.isValid()</a></li>
+<li><a href="#htmlCheckbox.isSelected">htmlCheckbox.isSelected()</a></li>
+<li><a href="#htmlCheckbox.isDisabled">htmlCheckbox.isDisabled()</a></li>
+<li><a href="#htmlCheckbox.isPresent">htmlCheckbox.isPresent()</a></li>
+<li><a href="#htmlCheckbox.select">htmlCheckbox.select()</a></li>
+<li><a href="#htmlCheckbox.deselect">htmlCheckbox.deselect()</a></li>
+</ul>
+</li>
 <li><a href="#rxCheckbox">rxCheckbox</a><ul>
 <li><a href="#rxCheckbox.isCheckbox">rxCheckbox.isCheckbox()</a></li>
 <li><a href="#rxCheckbox.isDisplayed">rxCheckbox.isDisplayed()</a></li>
-<li><a href="#rxCheckbox.isValid">rxCheckbox.isValid()</a></li>
-<li><a href="#rxCheckbox.isSelected">rxCheckbox.isSelected()</a></li>
 <li><a href="#rxCheckbox.isDisabled">rxCheckbox.isDisabled()</a></li>
 <li><a href="#rxCheckbox.isPresent">rxCheckbox.isPresent()</a></li>
-<li><a href="#rxCheckbox.select">rxCheckbox.select()</a></li>
-<li><a href="#rxCheckbox.deselect">rxCheckbox.deselect()</a></li>
 </ul>
 </li>
 <li><a href="#rxCollapse">rxCollapse</a><ul>
@@ -166,14 +197,18 @@
 </li>
 </ul>
 </li>
+<li><a href="#htmlRadio">htmlRadio</a><ul>
+<li><a href="#htmlRadio.isDisplayed">htmlRadio.isDisplayed()</a></li>
+<li><a href="#htmlRadio.isValid">htmlRadio.isValid()</a></li>
+<li><a href="#htmlRadio.isSelected">htmlRadio.isSelected()</a></li>
+<li><a href="#htmlRadio.select">htmlRadio.select()</a></li>
+</ul>
+</li>
 <li><a href="#rxRadio">rxRadio</a><ul>
 <li><a href="#rxRadio.isRadio">rxRadio.isRadio()</a></li>
 <li><a href="#rxRadio.isDisplayed">rxRadio.isDisplayed()</a></li>
-<li><a href="#rxRadio.isValid">rxRadio.isValid()</a></li>
-<li><a href="#rxRadio.isSelected">rxRadio.isSelected()</a></li>
 <li><a href="#rxRadio.isDisabled">rxRadio.isDisabled()</a></li>
 <li><a href="#rxRadio.isPresent">rxRadio.isPresent()</a></li>
-<li><a href="#rxRadio.select">rxRadio.select()</a></li>
 </ul>
 </li>
 <li><a href="#rxSearchBox">rxSearchBox</a><ul>
@@ -183,6 +218,38 @@
 <li><a href="#rxSearchBox.isSearchable">rxSearchBox.isSearchable</a></li>
 <li><a href="#rxSearchBox.isDisplayed">rxSearchBox.isDisplayed</a></li>
 <li><a href="#rxSearchBox.clear">rxSearchBox.clear()</a></li>
+</ul>
+</li>
+<li><a href="#htmlSelectOption">htmlSelectOption</a><ul>
+<li><a href="#htmlSelectOption.label">htmlSelectOption.label</a></li>
+<li><a href="#htmlSelectOption.value">htmlSelectOption.value</a></li>
+<li><a href="#htmlSelectOption.select">htmlSelectOption.select()</a></li>
+<li><a href="#htmlSelectOption.isSelected">htmlSelectOption.isSelected()</a></li>
+</ul>
+</li>
+<li><a href="#htmlSelect">htmlSelect</a><ul>
+<li><a href="#htmlSelect.isDisabled">htmlSelect.isDisabled()</a></li>
+<li><a href="#htmlSelect.isDisplayed">htmlSelect.isDisplayed()</a></li>
+<li><a href="#htmlSelect.isPresent">htmlSelect.isPresent()</a></li>
+<li><a href="#htmlSelect.isValid">htmlSelect.isValid()</a></li>
+<li><a href="#htmlSelect.option">htmlSelect.option(optionText)</a></li>
+<li><a href="#htmlSelect.options">htmlSelect.options()</a></li>
+<li><a href="#htmlSelect.optionCount">htmlSelect.optionCount()</a></li>
+<li><a href="#htmlSelect.optionElements">htmlSelect.optionElements()</a></li>
+<li><a href="#htmlSelect.optionExists">htmlSelect.optionExists(optionText)</a></li>
+<li><a href="#htmlSelect.optionLabels">htmlSelect.optionLabels()</a></li>
+<li><a href="#htmlSelect.optionValues">htmlSelect.optionValues()</a></li>
+<li><a href="#htmlSelect.selectedOptions">htmlSelect.selectedOptions()</a></li>
+<li><a href="#htmlSelect.selectedOptionCount">htmlSelect.selectedOptionCount()</a></li>
+<li><a href="#htmlSelect.selectedOptionElements">htmlSelect.selectedOptionElements()</a></li>
+<li><a href="#htmlSelect.findOption">htmlSelect.findOption(optionText)</a></li>
+<li><a href="#htmlSelect.selectOption">htmlSelect.selectOption(optionText)</a></li>
+</ul>
+</li>
+<li><a href="#rxSelect">rxSelect</a><ul>
+<li><a href="#rxSelect.isDisabled">rxSelect.isDisabled()</a></li>
+<li><a href="#rxSelect.isDisplayed">rxSelect.isDisplayed()</a></li>
+<li><a href="#rxSelect.isPresent">rxSelect.isPresent()</a></li>
 </ul>
 </li>
 <li><a href="#rxMultiSelect">rxMultiSelect</a><ul>
@@ -257,8 +324,29 @@
 <ul>
 <li>rxCharacterCountElement <code>WebElement</code> - WebElement to be transformed into an rxCharacterCountElement object  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the rxCharacterCount object.<br><a name="encore.module_rxCheckbox"></a></p>
+<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the rxCharacterCount object.<br><a name="encore.module_htmlCheckbox"></a></p>
+<h1 id="encore-htmlcheckbox">encore.htmlCheckbox</h1>
+<p>Page object for interacting with plain old html checkboxes</p>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_htmlCheckbox">encore.htmlCheckbox</a><ul>
+<li><a href="#encore.module_htmlCheckbox.main">encore.htmlCheckbox.main</a></li>
+<li><a href="#encore.module_htmlCheckbox.initialize">encore.htmlCheckbox.initialize(checkboxElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_htmlCheckbox.main"></a></p>
+<h2 id="encore-htmlcheckbox-main">encore.htmlCheckbox.main</h2>
+<p><strong>Returns</strong>: <a href="#htmlCheckbox">htmlCheckbox</a> - Page object representing the <em>first</em> <code>&lt;input type=&quot;checkbox&quot; /&gt;</code>
+  object found on the page.<br><a name="encore.module_htmlCheckbox.initialize"></a></p>
+<h2 id="encore-htmlcheckbox-initialize-checkboxelement-">encore.htmlCheckbox.initialize(checkboxElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>checkboxElement <code>WebElement</code> - WebElement to be transformed into an htmlCheckbox page object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#htmlCheckbox">htmlCheckbox</a> - Page object representing the checkbox object<br><a name="encore.module_rxCheckbox"></a></p>
 <h1 id="encore-rxcheckbox">encore.rxCheckbox</h1>
+<p>Page object for interacting with rxCheckbox elements</p>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxCheckbox">encore.rxCheckbox</a><ul>
@@ -269,13 +357,13 @@
 </ul>
 <p><a name="encore.module_rxCheckbox.main"></a></p>
 <h2 id="encore-rxcheckbox-main">encore.rxCheckbox.main</h2>
-<p><strong>Returns</strong>: <a href="#rxCheckbox">rxCheckbox</a> - Page object representing the <em>first</em> rxCheckbox object found on the page.<br><a name="encore.module_rxCheckbox.initialize"></a></p>
+<p><strong>Returns</strong>: <a href="#rxCheckbox">rxCheckbox</a> - Page object representing the <em>first</em> <code>&lt;input rx-checkbox /&gt;</code> element found on the page<br><a name="encore.module_rxCheckbox.initialize"></a></p>
 <h2 id="encore-rxcheckbox-initialize-rxcheckboxelement-">encore.rxCheckbox.initialize(rxCheckboxElement)</h2>
 <p><strong>Params</strong></p>
 <ul>
-<li>rxCheckboxElement <code>WebElement</code> - WebElement to be transformed into an rxCheckboxElement object.  </li>
+<li>rxCheckboxElement <code>WebElement</code> - WebElement to be transformed into an rxCheckbox page object  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxCheckbox">rxCheckbox</a> - Page object representing the rxCheckbox object.<br><a name="encore.module_rxCollapse"></a></p>
+<p><strong>Returns</strong>: <a href="#rxCheckbox">rxCheckbox</a> - Page object representing the rxCheckbox element<br><a name="encore.module_rxCollapse"></a></p>
 <h1 id="encore-rxcollapse">encore.rxCollapse</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -345,7 +433,25 @@ it(&#39;should select the country&#39;, function () {
     expect(yourPage.paymentMethodTable.row(2).cell(&#39;Card Type&#39;)).to.eventually.equal(&#39;Visa&#39;);
 });
 </code></pre>
-<p><a name="encore.module_rxRadio"></a></p>
+<p><a name="encore.module_htmlRadio"></a></p>
+<h1 id="encore-htmlradio">encore.htmlRadio</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_htmlRadio">encore.htmlRadio</a><ul>
+<li><a href="#encore.module_htmlRadio.main">encore.htmlRadio.main</a></li>
+<li><a href="#encore.module_htmlRadio.initialize">encore.htmlRadio.initialize(radioElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_htmlRadio.main"></a></p>
+<h2 id="encore-htmlradio-main">encore.htmlRadio.main</h2>
+<p><strong>Returns</strong>: <a href="#htmlRadio">htmlRadio</a> - Page object representing the <em>first</em> <code>&lt;input type=&quot;radio&quot; /&gt;</code> element found on the page<br><a name="encore.module_htmlRadio.initialize"></a></p>
+<h2 id="encore-htmlradio-initialize-radioelement-">encore.htmlRadio.initialize(radioElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>radioElement <code>WebElement</code> - WebElement to be transformed into an htmlRadio page object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#htmlRadio">htmlRadio</a> - Page object representing the radio element<br><a name="encore.module_rxRadio"></a></p>
 <h1 id="encore-rxradio">encore.rxRadio</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -357,13 +463,13 @@ it(&#39;should select the country&#39;, function () {
 </ul>
 <p><a name="encore.module_rxRadio.main"></a></p>
 <h2 id="encore-rxradio-main">encore.rxRadio.main</h2>
-<p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the <em>first</em> rxRadio object found on the page.<br><a name="encore.module_rxRadio.initialize"></a></p>
+<p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the <em>first</em> <code>&lt;input rx-radio /&gt;</code> element found on the page<br><a name="encore.module_rxRadio.initialize"></a></p>
 <h2 id="encore-rxradio-initialize-rxradioelement-">encore.rxRadio.initialize(rxRadioElement)</h2>
 <p><strong>Params</strong></p>
 <ul>
-<li>rxRadioElement <code>WebElement</code> - WebElement to be transformed into an rxRadioElement object.  </li>
+<li>rxRadioElement <code>WebElement</code> - WebElement to be transformed into an rxRadio page object  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the rxRadio object.<br><a name="encore.module_rxSearchBox"></a></p>
+<p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the rxRadio element<br><a name="encore.module_rxSearchBox"></a></p>
 <h1 id="encore-rxsearchbox">encore.rxSearchBox</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -381,7 +487,51 @@ it(&#39;should select the country&#39;, function () {
 <ul>
 <li>rxSearchBoxElement <code>WebElement</code> - WebElement to be transformed into an rxSearchBoxElement object.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the rxSearchBox object.<br><a name="encore.module_rxMultiSelect"></a></p>
+<p><strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the rxSearchBox object.<br><a name="encore.module_htmlSelectOption"></a></p>
+<h1 id="encore-htmlselectoption">encore.htmlSelectOption</h1>
+<p><a name="encore.module_htmlSelectOption.initialize"></a></p>
+<h2 id="encore-htmlselectoption-initialize-selectoption-">encore.htmlSelectOption.initialize(selectOption)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>selectOption <code>WebElement</code> - WebElement to be transformed into an htmlSelectOption page object  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#htmlSelectOption">htmlSelectOption</a> - Page object representing an <code>&lt;option&gt;</code> element.<br><a name="encore.module_htmlSelect"></a></p>
+<h1 id="encore-htmlselect">encore.htmlSelect</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_htmlSelect">encore.htmlSelect</a><ul>
+<li><a href="#encore.module_htmlSelect.main">encore.htmlSelect.main</a></li>
+<li><a href="#encore.module_htmlSelect.initialize">encore.htmlSelect.initialize(selectElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_htmlSelect.main"></a></p>
+<h2 id="encore-htmlselect-main">encore.htmlSelect.main</h2>
+<p><strong>Returns</strong>: <a href="#htmlSelect">htmlSelect</a> - Page object representing the <em>first</em> <code>&lt;select&gt;</code> element found on the page<br><a name="encore.module_htmlSelect.initialize"></a></p>
+<h2 id="encore-htmlselect-initialize-selectelement-">encore.htmlSelect.initialize(selectElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>selectElement <code>WebElement</code> - WebElement to be transformed into an htmlSelect page object  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#htmlSelect">htmlSelect</a> - Page object representing a <code>&lt;select&gt;</code> element<br><a name="encore.module_rxSelect"></a></p>
+<h1 id="encore-rxselect">encore.rxSelect</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxSelect">encore.rxSelect</a><ul>
+<li><a href="#encore.module_rxSelect.main">encore.rxSelect.main</a></li>
+<li><a href="#encore.module_rxSelect.initialize">encore.rxSelect.initialize(rxSelectElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxSelect.main"></a></p>
+<h2 id="encore-rxselect-main">encore.rxSelect.main</h2>
+<p><strong>Returns</strong>: <a href="#rxSelect">rxSelect</a> - Page object representing the <em>first</em> <code>&lt;select rx-select&gt;</code> element found on the page<br><a name="encore.module_rxSelect.initialize"></a></p>
+<h2 id="encore-rxselect-initialize-rxselectelement-">encore.rxSelect.initialize(rxSelectElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxSelectElement <code>WebElement</code> - WebElement to be transformed into an rxSelect page object  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxSelect">rxSelect</a> - Page object representing a <code>&lt;select rx-select&gt;</code> element.<br><a name="encore.module_rxMultiSelect"></a></p>
 <h1 id="encore-rxmultiselect">encore.rxMultiSelect</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -632,6 +782,19 @@ trailing whitespace when calculating the remaining character count.  </li>
     cssSelector: &#39;.secondary-info rx-search-box&#39;, // select one of many widgets on page
 }));
 </code></pre>
+<p><a name="encore.exercise.module_rxSelect"></a></p>
+<h1 id="encore-exercise-rxselect">encore.exercise.rxSelect</h1>
+<p>rxSelect exercises</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>String</code> - Fallback selector string to initialize widget with.  </li>
+<li>[disabled=false] <code>Boolean</code> - Determines if the select is disabled  </li>
+<li>[visible=true] <code>Boolean</code> - Determines if the select is visible  </li>
+<li>[valid=true] <code>Boolean</code> - Determines if the select is valid  </li>
+</ul>
+</li>
+</ul>
 <p><a name="encore.exercise.module_rxMultiSelect"></a></p>
 <h1 id="encore-exercise-rxmultiselect">encore.exercise.rxMultiSelect</h1>
 <p>rxMultiSelect exercises.</p>
@@ -701,19 +864,46 @@ trailing whitespace when calculating the remaining character count.  </li>
 <h2 id="rxcharactercount-isnearlimit-">rxCharacterCount.isNearLimit()</h2>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;near-limit&#39; class is displayed.<br><a name="rxCharacterCount.isOverLimit"></a></p>
 <h2 id="rxcharactercount-isoverlimit-">rxCharacterCount.isOverLimit()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="rxCheckbox"></a></p>
-<h1 id="rxcheckbox">rxCheckbox</h1>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="htmlCheckbox"></a></p>
+<h1 id="htmlcheckbox">htmlCheckbox</h1>
 <p><strong>Members</strong></p>
+<ul>
+<li><a href="#htmlCheckbox">htmlCheckbox</a><ul>
+<li><a href="#htmlCheckbox.isDisplayed">htmlCheckbox.isDisplayed()</a></li>
+<li><a href="#htmlCheckbox.isValid">htmlCheckbox.isValid()</a></li>
+<li><a href="#htmlCheckbox.isSelected">htmlCheckbox.isSelected()</a></li>
+<li><a href="#htmlCheckbox.isDisabled">htmlCheckbox.isDisabled()</a></li>
+<li><a href="#htmlCheckbox.isPresent">htmlCheckbox.isPresent()</a></li>
+<li><a href="#htmlCheckbox.select">htmlCheckbox.select()</a></li>
+<li><a href="#htmlCheckbox.deselect">htmlCheckbox.deselect()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="htmlCheckbox.isDisplayed"></a></p>
+<h2 id="htmlcheckbox-isdisplayed-">htmlCheckbox.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the checkbox is currently displayed.<br><a name="htmlCheckbox.isValid"></a></p>
+<h2 id="htmlcheckbox-isvalid-">htmlCheckbox.isValid()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the checkbox is valid.<br><a name="htmlCheckbox.isSelected"></a></p>
+<h2 id="htmlcheckbox-isselected-">htmlCheckbox.isSelected()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox is currently selected<br><a name="htmlCheckbox.isDisabled"></a></p>
+<h2 id="htmlcheckbox-isdisabled-">htmlCheckbox.isDisabled()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox is disabled<br><a name="htmlCheckbox.isPresent"></a></p>
+<h2 id="htmlcheckbox-ispresent-">htmlCheckbox.isPresent()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox exists on the page<br><a name="htmlCheckbox.select"></a></p>
+<h2 id="htmlcheckbox-select-">htmlCheckbox.select()</h2>
+<p>Make sure checkbox is selected/checked</p>
+<p><a name="htmlCheckbox.deselect"></a></p>
+<h2 id="htmlcheckbox-deselect-">htmlCheckbox.deselect()</h2>
+<p>make sure checkbox is deselected/unchecked</p>
+<p><a name="rxCheckbox"></a></p>
+<h1 id="rxcheckbox">rxCheckbox</h1>
+<p><strong>Extends</strong>: <code>htmlCheckbox</code><br><strong>Members</strong></p>
 <ul>
 <li><a href="#rxCheckbox">rxCheckbox</a><ul>
 <li><a href="#rxCheckbox.isCheckbox">rxCheckbox.isCheckbox()</a></li>
 <li><a href="#rxCheckbox.isDisplayed">rxCheckbox.isDisplayed()</a></li>
-<li><a href="#rxCheckbox.isValid">rxCheckbox.isValid()</a></li>
-<li><a href="#rxCheckbox.isSelected">rxCheckbox.isSelected()</a></li>
 <li><a href="#rxCheckbox.isDisabled">rxCheckbox.isDisabled()</a></li>
 <li><a href="#rxCheckbox.isPresent">rxCheckbox.isPresent()</a></li>
-<li><a href="#rxCheckbox.select">rxCheckbox.select()</a></li>
-<li><a href="#rxCheckbox.deselect">rxCheckbox.deselect()</a></li>
 </ul>
 </li>
 </ul>
@@ -721,21 +911,11 @@ trailing whitespace when calculating the remaining character count.  </li>
 <h2 id="rxcheckbox-ischeckbox-">rxCheckbox.isCheckbox()</h2>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether root element is of type=&quot;checkbox&quot;<br><a name="rxCheckbox.isDisplayed"></a></p>
 <h2 id="rxcheckbox-isdisplayed-">rxCheckbox.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the fake checkbox is currently displayed.<br><a name="rxCheckbox.isValid"></a></p>
-<h2 id="rxcheckbox-isvalid-">rxCheckbox.isValid()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the native checkbox element is valid.<br><a name="rxCheckbox.isSelected"></a></p>
-<h2 id="rxcheckbox-isselected-">rxCheckbox.isSelected()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox element is currently selected.<br><a name="rxCheckbox.isDisabled"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the fake checkbox is currently displayed.<br><a name="rxCheckbox.isDisabled"></a></p>
 <h2 id="rxcheckbox-isdisabled-">rxCheckbox.isDisabled()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the wrapper is disabled.<br><a name="rxCheckbox.isPresent"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the wrapper has expected disabled class name<br><a name="rxCheckbox.isPresent"></a></p>
 <h2 id="rxcheckbox-ispresent-">rxCheckbox.isPresent()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the styled element exists on the page<br><a name="rxCheckbox.select"></a></p>
-<h2 id="rxcheckbox-select-">rxCheckbox.select()</h2>
-<p>Make sure checkbox is selected/checked</p>
-<p><a name="rxCheckbox.deselect"></a></p>
-<h2 id="rxcheckbox-deselect-">rxCheckbox.deselect()</h2>
-<p>make sure checkbox is deselected/unchecked</p>
-<p><a name="rxCollapse"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the styled element exists on the page<br><a name="rxCollapse"></a></p>
 <h1 id="rxcollapse">rxCollapse</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -1203,18 +1383,36 @@ expect(optionTable.columnData(&#39;Surcharge&#39;, penniesFn)).to.eventually.eql
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable.row.unselect"></a></p>
 <h3 id="row-unselect-">row.unselect()</h3>
 <p>Unselects the current row.</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxRadio"></a></p>
-<h1 id="rxradio">rxRadio</h1>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="htmlRadio"></a></p>
+<h1 id="htmlradio">htmlRadio</h1>
 <p><strong>Members</strong></p>
+<ul>
+<li><a href="#htmlRadio">htmlRadio</a><ul>
+<li><a href="#htmlRadio.isDisplayed">htmlRadio.isDisplayed()</a></li>
+<li><a href="#htmlRadio.isValid">htmlRadio.isValid()</a></li>
+<li><a href="#htmlRadio.isSelected">htmlRadio.isSelected()</a></li>
+<li><a href="#htmlRadio.select">htmlRadio.select()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="htmlRadio.isDisplayed"></a></p>
+<h2 id="htmlradio-isdisplayed-">htmlRadio.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the radio is currently displayed<br><a name="htmlRadio.isValid"></a></p>
+<h2 id="htmlradio-isvalid-">htmlRadio.isValid()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the radio element is valid<br><a name="htmlRadio.isSelected"></a></p>
+<h2 id="htmlradio-isselected-">htmlRadio.isSelected()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the radio element is currently selected<br><a name="htmlRadio.select"></a></p>
+<h2 id="htmlradio-select-">htmlRadio.select()</h2>
+<p>Make sure radio is selected</p>
+<p><a name="rxRadio"></a></p>
+<h1 id="rxradio">rxRadio</h1>
+<p><strong>Extends</strong>: <code>htmlRadio</code><br><strong>Members</strong></p>
 <ul>
 <li><a href="#rxRadio">rxRadio</a><ul>
 <li><a href="#rxRadio.isRadio">rxRadio.isRadio()</a></li>
 <li><a href="#rxRadio.isDisplayed">rxRadio.isDisplayed()</a></li>
-<li><a href="#rxRadio.isValid">rxRadio.isValid()</a></li>
-<li><a href="#rxRadio.isSelected">rxRadio.isSelected()</a></li>
 <li><a href="#rxRadio.isDisabled">rxRadio.isDisabled()</a></li>
 <li><a href="#rxRadio.isPresent">rxRadio.isPresent()</a></li>
-<li><a href="#rxRadio.select">rxRadio.select()</a></li>
 </ul>
 </li>
 </ul>
@@ -1222,18 +1420,11 @@ expect(optionTable.columnData(&#39;Surcharge&#39;, penniesFn)).to.eventually.eql
 <h2 id="rxradio-isradio-">rxRadio.isRadio()</h2>
 <p><strong>Returns</strong>: <code>Boolean</code> - whether root element is if type=&quot;radio&quot;<br><a name="rxRadio.isDisplayed"></a></p>
 <h2 id="rxradio-isdisplayed-">rxRadio.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxRadio.isValid"></a></p>
-<h2 id="rxradio-isvalid-">rxRadio.isValid()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the native checkbox element is valid.<br><a name="rxRadio.isSelected"></a></p>
-<h2 id="rxradio-isselected-">rxRadio.isSelected()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the radio element is currently selected.<br><a name="rxRadio.isDisabled"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the styled element is currently displayed.<br><a name="rxRadio.isDisabled"></a></p>
 <h2 id="rxradio-isdisabled-">rxRadio.isDisabled()</h2>
 <p><strong>Returns</strong>: <code>Boolean</code> - whether or not the wrapper is disabled<br><a name="rxRadio.isPresent"></a></p>
 <h2 id="rxradio-ispresent-">rxRadio.isPresent()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the root element exists on the page<br><a name="rxRadio.select"></a></p>
-<h2 id="rxradio-select-">rxRadio.select()</h2>
-<p>Make sure radio is selected</p>
-<p><a name="rxSearchBox"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the styled element exists on the page<br><a name="rxSearchBox"></a></p>
 <h1 id="rxsearchbox">rxSearchBox</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -1281,7 +1472,128 @@ expect(optionTable.columnData(&#39;Surcharge&#39;, penniesFn)).to.eventually.eql
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxSearchBox.clear"></a></p>
 <h2 id="rxsearchbox-clear-">rxSearchBox.clear()</h2>
 <p>Clear the value of the search box.</p>
-<p><a name="rxMultiSelect"></a></p>
+<p><a name="htmlSelectOption"></a></p>
+<h1 id="htmlselectoption">htmlSelectOption</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#htmlSelectOption">htmlSelectOption</a><ul>
+<li><a href="#htmlSelectOption.label">htmlSelectOption.label</a></li>
+<li><a href="#htmlSelectOption.value">htmlSelectOption.value</a></li>
+<li><a href="#htmlSelectOption.select">htmlSelectOption.select()</a></li>
+<li><a href="#htmlSelectOption.isSelected">htmlSelectOption.isSelected()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="htmlSelectOption.label"></a></p>
+<h2 id="htmlselectoption-label">htmlSelectOption.label</h2>
+<p><strong>Returns</strong>: <code>string</code> - The text inside of an <code>&lt;option&gt;</code> element<br><a name="htmlSelectOption.value"></a></p>
+<h2 id="htmlselectoption-value">htmlSelectOption.value</h2>
+<p><strong>Returns</strong>: <code>string</code> - The &quot;value&quot; attribute for an <code>&lt;option&gt;</code> element<br><a name="htmlSelectOption.select"></a></p>
+<h2 id="htmlselectoption-select-">htmlSelectOption.select()</h2>
+<p>Select an <code>&lt;option&gt;</code> element within a <code>&lt;select&gt;</code></p>
+<p>  Equivalent to <code>browser.actions().mouseDown(elem).mouseUp().perform();</code>.
+  This function should be used when dealing with odd or unusual behavior while interacting with click events
+  that don&#39;t seem to work right. Either the element does not appear to respond to a normal <code>.click()</code> call, or
+  the element is responding to more than one click event. This typically happens more often in Firefox than
+  in other browsers. See <a href="#rxForm.dropdown.option.select">select</a> for an example of a function that will
+  slow click an element to achieve consistent behavior.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="htmlSelectOption.isSelected"></a></p>
+<h2 id="htmlselectoption-isselected-">htmlSelectOption.isSelected()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;option&gt;</code> is currently selected<br><a name="htmlSelect"></a></p>
+<h1 id="htmlselect">htmlSelect</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#htmlSelect">htmlSelect</a><ul>
+<li><a href="#htmlSelect.isDisabled">htmlSelect.isDisabled()</a></li>
+<li><a href="#htmlSelect.isDisplayed">htmlSelect.isDisplayed()</a></li>
+<li><a href="#htmlSelect.isPresent">htmlSelect.isPresent()</a></li>
+<li><a href="#htmlSelect.isValid">htmlSelect.isValid()</a></li>
+<li><a href="#htmlSelect.option">htmlSelect.option(optionText)</a></li>
+<li><a href="#htmlSelect.options">htmlSelect.options()</a></li>
+<li><a href="#htmlSelect.optionCount">htmlSelect.optionCount()</a></li>
+<li><a href="#htmlSelect.optionElements">htmlSelect.optionElements()</a></li>
+<li><a href="#htmlSelect.optionExists">htmlSelect.optionExists(optionText)</a></li>
+<li><a href="#htmlSelect.optionLabels">htmlSelect.optionLabels()</a></li>
+<li><a href="#htmlSelect.optionValues">htmlSelect.optionValues()</a></li>
+<li><a href="#htmlSelect.selectedOptions">htmlSelect.selectedOptions()</a></li>
+<li><a href="#htmlSelect.selectedOptionCount">htmlSelect.selectedOptionCount()</a></li>
+<li><a href="#htmlSelect.selectedOptionElements">htmlSelect.selectedOptionElements()</a></li>
+<li><a href="#htmlSelect.findOption">htmlSelect.findOption(optionText)</a></li>
+<li><a href="#htmlSelect.selectOption">htmlSelect.selectOption(optionText)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="htmlSelect.isDisabled"></a></p>
+<h2 id="htmlselect-isdisabled-">htmlSelect.isDisabled()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;select&gt;</code> element is disabled<br><a name="htmlSelect.isDisplayed"></a></p>
+<h2 id="htmlselect-isdisplayed-">htmlSelect.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the <code>&lt;select&gt;</code> element is currently displayed<br><a name="htmlSelect.isPresent"></a></p>
+<h2 id="htmlselect-ispresent-">htmlSelect.isPresent()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;select&gt;</code> element exists on the page<br><a name="htmlSelect.isValid"></a></p>
+<h2 id="htmlselect-isvalid-">htmlSelect.isValid()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the <code>&lt;select&gt;</code> element is valid<br><a name="htmlSelect.option"></a></p>
+<h2 id="htmlselect-option-optiontext-">htmlSelect.option(optionText)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionText <code>String</code> - Partial or total string to match the display value of the desired <code>&lt;option&gt;</code> element  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Page</code> - Page object representing an option<br><a name="htmlSelect.options"></a></p>
+<h2 id="htmlselect-options-">htmlSelect.options()</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;Page&gt;</code> - List of Page objects for each <code>&lt;option&gt;</code> element in the dropdown<br><a name="htmlSelect.optionCount"></a></p>
+<h2 id="htmlselect-optioncount-">htmlSelect.optionCount()</h2>
+<p><strong>Returns</strong>: <code>Integer</code> - The number of <code>&lt;option&gt;</code> elements in the dropdown<br><a name="htmlSelect.optionElements"></a></p>
+<h2 id="htmlselect-optionelements-">htmlSelect.optionElements()</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;WebElement&gt;</code> - List of all <code>&lt;option&gt;</code> elements in the dropdown<br><a name="htmlSelect.optionExists"></a></p>
+<h2 id="htmlselect-optionexists-optiontext-">htmlSelect.optionExists(optionText)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionText <code>String</code> - Partial or total string to match the display value of the desired <code>&lt;option&gt;</code> element  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the option exists<br><a name="htmlSelect.optionLabels"></a></p>
+<h2 id="htmlselect-optionlabels-">htmlSelect.optionLabels()</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - List of visible text for each <code>&lt;option&gt;</code> element in the dropdown<br><a name="htmlSelect.optionValues"></a></p>
+<h2 id="htmlselect-optionvalues-">htmlSelect.optionValues()</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - List of values for each <code>&lt;option&gt;</code> element in the dropdown<br><a name="htmlSelect.selectedOptions"></a></p>
+<h2 id="htmlselect-selectedoptions-">htmlSelect.selectedOptions()</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;Page&gt;</code> - List of Page objects for each selected <code>&lt;option&gt;</code> element in the dropdown<br><a name="htmlSelect.selectedOptionCount"></a></p>
+<h2 id="htmlselect-selectedoptioncount-">htmlSelect.selectedOptionCount()</h2>
+<p><strong>Returns</strong>: <code>Integer</code> - The number of selected <code>&lt;option&gt;</code> elements in the dropdown<br><a name="htmlSelect.selectedOptionElements"></a></p>
+<h2 id="htmlselect-selectedoptionelements-">htmlSelect.selectedOptionElements()</h2>
+<p><strong>Returns</strong>: <code>Array.&lt;WebElement&gt;</code> - List of all selected <code>&lt;option&gt;</code> elements in the dropdown.<br><a name="htmlSelect.findOption"></a></p>
+<h2 id="htmlselect-findoption-optiontext-">htmlSelect.findOption(optionText)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionText <code>String</code> - Partial or total string to match the display value of the desired <code>&lt;option&gt;</code> element.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>WebElement</code><br><a name="htmlSelect.selectOption"></a></p>
+<h2 id="htmlselect-selectoption-optiontext-">htmlSelect.selectOption(optionText)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>optionText <code>String</code> - Partial or total string to match the display value of the desired <code>&lt;option&gt;</code> element.  </li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">var dropdown = encore.htmlSelect.initialize($(&#39;#country-select&#39;));
+dropdown.selectOption(&#39;United States&#39;);
+</code></pre>
+<p><a name="rxSelect"></a></p>
+<h1 id="rxselect">rxSelect</h1>
+<p>Type of htmlSelect that includes functionality required to interact with additional markup.</p>
+<p><strong>Extends</strong>: <code>htmlSelect</code><br><strong>Members</strong></p>
+<ul>
+<li><a href="#rxSelect">rxSelect</a><ul>
+<li><a href="#rxSelect.isDisabled">rxSelect.isDisabled()</a></li>
+<li><a href="#rxSelect.isDisplayed">rxSelect.isDisplayed()</a></li>
+<li><a href="#rxSelect.isPresent">rxSelect.isPresent()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxSelect.isDisabled"></a></p>
+<h2 id="rxselect-isdisabled-">rxSelect.isDisabled()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the wrapper has expected disabled class name<br><a name="rxSelect.isDisplayed"></a></p>
+<h2 id="rxselect-isdisplayed-">rxSelect.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the styled element is currently displayed.<br><a name="rxSelect.isPresent"></a></p>
+<h2 id="rxselect-ispresent-">rxSelect.isPresent()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the styled element exists on the page<br><a name="rxMultiSelect"></a></p>
 <h1 id="rxmultiselect">rxMultiSelect</h1>
 <p><strong>Members</strong></p>
 <ul>

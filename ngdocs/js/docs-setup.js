@@ -266,6 +266,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxForm:rxSelect",
+      "shortName": "rxSelect",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "This directive is to apply styling to native &lt;select&gt; elements",
+      "keywords": "angular api apply boolean directive elements encore evaluates expression native rxform styling ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxIdentity:Identity",
       "shortName": "Identity",
       "type": "service",

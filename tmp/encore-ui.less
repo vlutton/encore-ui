@@ -2308,11 +2308,28 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
             color: @inputColorDisabled;
         }
     }
-    label {
-        // add padding to labels so they take up the entire cell's space
-        display: block;
+    .fillWrapper {
+      box-sizing: border-box;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      position: relative;
+
+      label {
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
         padding: @tableCellPadding;
         cursor: pointer;
+
+        .flexbox();
+        // vertically centered content in label
+        .align-items(center);
+
+        .alignWrapper {
+          .flex(1 1 auto);
+        }
+      }
     }
     .option-table-input {
         text-align: center;
@@ -2866,7 +2883,7 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
   display: inline-block;
   width: @rxRadio-size;
   height: @rxRadio-size;
-  background-color: @rxRadio-background-color;
+  background-color: transparent;
   position: relative;
 
   input[type="radio"],
@@ -2888,10 +2905,10 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
     height: 100%;
     .border-radius(100%);
     overflow: hidden;
-    border: 1px solid @inputBorderColor;
+    border: @rxRadio-border-width solid @inputBorderColor;
+    background-color: @rxRadio-background-color;
 
     // perfect center alignment for tick
-    // TODO: use MIXINS
     .flexbox();
     .flex-flow(row nowrap);
     .align-items(center);
@@ -2899,9 +2916,10 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 
     .tick {
       .flex(0 0 auto);
-      .border-radius(100%);
-      width: 60%;
-      height: 60%;
+      .box-sizing(border-box);
+      .border-radius(@rxRadio-tick-border-radius);
+      width: @rxRadio-tick-size;
+      height: @rxRadio-tick-size;
       background-color: transparent;
     }
   }//.fake-radio
@@ -2942,11 +2960,12 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
     &.ng-invalid {
       // enabled unchecked error
       & + .fake-radio {
-        border: 2px solid @rxRadio-color-error;
+        border: @rxRadio-border-width-invalid solid @rxRadio-color-error;
 
         .tick {
-          width: 70%;
-          height: 70%;
+          .border-radius(@rxRadio-tick-border-radius-invalid);
+          width: @rxRadio-tick-size-invalid;
+          height: @rxRadio-tick-size-invalid;
         }
       }
 
@@ -3023,6 +3042,114 @@ rx-search-box {
     }//.rxSearchBox-clear
   }//.rxSearchBox-wrapper
 }//rx-search-box
+
+/*
+ * rxSelect
+ */
+.rxSelect {
+  .box-sizing(border-box);
+  display: block;
+  overflow: hidden;
+  position: relative;
+  color: @rxSelect-color;
+  background: @rxSelect-background;
+  .border-radius(@rxSelect-border-radius);
+
+  // Element should be resizable via wrapper alone
+  min-width: @rxSelect-min-width;
+  min-height: @rxSelect-min-height;
+
+  &.rx-disabled {
+    color: @inputColorDisabled;
+    background: @inputBackgroundDisabled;
+  }
+
+  // position elements in wrapper
+  select,
+  .fake-select {
+    .box-sizing(border-box);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  select {
+    z-index: 0;
+    padding: 5px;
+    cursor: pointer;
+
+    // reset native styling
+    border: none !important;
+    outline: none !important;
+    background: transparent;
+    &:-moz-focusring {
+      // FF uses text color to draw ring. Make it transparent
+      color: transparent;
+      // However, we still need to display our select <option> text
+      text-shadow: 0 0 0 @rxSelect-color;
+    }
+
+    & + .fake-select {
+      border-color: @inputBorderColor;
+      border-width: 1px;
+    }
+
+    &.ng-invalid + .fake-select {
+      border-color: @rxSelect-border-color-invalid;
+      border-width: 2px;
+
+      .select-trigger {
+        color: @rxSelect-trigger-color-invalid;
+      }
+    }
+
+    &[disabled] {
+      cursor: not-allowed ;
+
+      & + .fake-select {
+        border-color: @rxSelect-border-color-disabled;
+        border-width: 1px;
+
+        .select-trigger {
+          background: @rxSelect-background-disabled;
+          border-left-width: 0px;
+          border-left-color: @rxSelect-color-disabled;
+          color: @rxSelect-trigger-color-disabled;
+        }
+      }
+    }//[disabled]
+  }//select
+
+  .fake-select {
+    z-index: 10;
+    border: @rxSelect-border-width solid @rxSelect-border-color;
+    overflow: hidden;
+    .border-radius(@rxSelect-border-radius);
+    .flexbox();
+    .justify-content(flex-end);
+    .flex-flow(row nowrap);
+
+    // This allow pointer events to pass THROUGH to the
+    // native <select> element
+    pointer-events: none !important;
+
+    // Custom trigger button will cover native <select> button
+    .select-trigger {
+      .box-sizing(border-box);
+      width: @rxSelect-trigger-width;
+      background: @rxSelect-trigger-background;
+      color: @rxSelect-trigger-color;
+
+      // perfectly center the trigger icon
+      .flexbox();
+      .align-items(center);
+      .justify-content(center);
+    }//.select-trigger
+  }//.fake-select
+}//.rxSelect
+
 
 /*
  * rxSelectFilter
@@ -3580,6 +3707,8 @@ Provides styling for the Angular-UI tab HTML
     border: 1px solid #ccc;
     padding: 6px 0;
     z-index: 3; // Will display over a textarea element
+    max-height: 300px;
+    overflow-y: auto;
 
     a {
         display: block;
