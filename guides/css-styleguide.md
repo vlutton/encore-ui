@@ -1,7 +1,5 @@
 # Encore CSS Coding Standards
 
-["Good CSS has a one-to-many relationship with HTML"](https://speakerdeck.com/csswizardry/big-css-1?slide=22)
-
 ## Acknowledgements:
 
 Most of these standards are based off of the guidelines provided by [SMACSS](http://smacss.com/) and [OOCSS](http://coding.smashingmagazine.com/2011/12/12/an-introduction-to-object-oriented-css-oocss/). Reading up on these materials will give you a much greater understanding of why these rules were chosen.
