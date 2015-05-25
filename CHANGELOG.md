@@ -1,3 +1,21 @@
+<a name="1.17.0"></a>
+## 1.17.0 (2015-05-25)
+
+
+#### Bug Fixes
+
+* **componentTemplate:** update to angular 1.3+ controller syntax ([809d9bf4](git@github.com:rackerlabs/encore-ui/commit/809d9bf4aded4f13cdef9bd095b9b90a59b5a2ce))
+* **rxFormOptionTable:** label fills cell height ([e568643e](git@github.com:rackerlabs/encore-ui/commit/e568643e85bca0215ed7537dc8c5a78887d5f725), closes [#249](git@github.com:rackerlabs/encore-ui/issues/249))
+* **rxRadio:** fix broken styling ([e0a7ccd8](git@github.com:rackerlabs/encore-ui/commit/e0a7ccd810c5fb27f8e1c6b277ec79ad5d28fc28))
+
+
+#### Features
+
+* **rxAutoSave:** Add keyShaping option ([9dd69eee](git@github.com:rackerlabs/encore-ui/commit/9dd69eeedf7b1da5a35a6f696ba6dc51f12edef0))
+* **rxSelect:** add rxSelect component ([b38f35a4](git@github.com:rackerlabs/encore-ui/commit/b38f35a4ac48110eaf3fba0867a38e5a6f679405))
+* **typeahead:** show options when focused ([75ed17ae](git@github.com:rackerlabs/encore-ui/commit/75ed17ae58a6630b23295d42013ffd1a510d4d28))
+
+
 <a name="1.16.0"></a>
 ## 1.16.0 (2015-05-14)
 
