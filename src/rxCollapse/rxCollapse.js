@@ -21,10 +21,40 @@ angular.module('encore.ui.rxCollapse', [])
         templateUrl: 'templates/rxCollapse.html',
         transclude: true,
         scope: {
-            title: '@'
+            title: '@',
+            toggleTitle: '&'
         },
         link: function (scope, element, attrs) {
+            scope.storedTitles = ['See Less', 'See More'];
             scope.isExpanded = (attrs.expanded === 'false') ? false : true;
+
+            
+            scope.doSeeMoreOrLess = function () {
+                
+                scope.toggleTitle = scope.storedTitles[0];
+                scope.cContainer = 'hideBorder';
+                scope.tabToShow = true;
+            };
+
+            scope.toggleTitleAndCollapse = function () {
+
+                scope.isExpanded = !scope.isExpanded;
+
+                if (scope.isExpanded) {
+                    scope.toggleTitle = scope.storedTitles[0];
+                } else {
+                    scope.toggleTitle = scope.storedTitles[1];
+                }
+            };
+
+            if (!scope.title) {
+                scope.doSeeMoreOrLess();
+                  
+            } else {
+                scope.tabToShow = false;
+            }
+            
+            
         }
     };
 });
