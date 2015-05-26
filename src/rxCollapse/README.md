@@ -4,5 +4,5 @@ The rxCollapse element can be used to display and hide content. It can be config
 
 ### Attributes
 
-- `title`: The title to display next to the toggle button.
+- `title`: The title to display next to the toggle button. Remove or leave the title blank in order to enable "See More / See Less" version of rxCollapse.
 - `expanded`: Initially expanded or collapsed.  Default is expanded.

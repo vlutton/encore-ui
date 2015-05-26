@@ -13,8 +13,8 @@ var files = [
     'demo/bower_components/html2canvas/build/html2canvas.js',
     'demo/bower_components/mousetrap/mousetrap.js',
     'demo/bower_components/angular-hotkeys/build/hotkeys.min.js',
-    'demo/bower_components/angular-mocks/angular-mocks.js',
     'demo/bower_components/ng-debounce/angular-debounce.js',
+    'demo/bower_components/angular-mocks/angular-mocks.js',
     // endbower
     'utils/browser-helpers.js',
     'utils/resource-helpers.js'

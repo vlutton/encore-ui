@@ -20,14 +20,14 @@ rx-collapse {
           display: inline-block;
           color: @white;
           font-size: 28px;
-          .chevron-mixin(-1);
+          .chevron-mixin;
         }
       }
 
       &.expanded {
         .double-chevron {
           &:after {
-            .chevron-mixin;
+            .chevron-mixin(-1);
           }
         }
       }
@@ -45,5 +45,14 @@ rx-collapse {
       margin: 0;
       padding: 10px;
     }
+  }
+  .sml-title {
+    cursor: pointer;
+    color:#898989;
+    font-size: 10pt;
+  }
+
+  .hide-border {
+      border:none;
   }
 }
