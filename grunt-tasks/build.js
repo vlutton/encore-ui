@@ -3,7 +3,7 @@ module.exports = function (grunt) {
 
         grunt.task.run(['clean:build', 'modules', 'concat:dist', 'concat:distTpls', 'concat:tmpLess',
             'concat:tmpLessResp', 'less:encore', 'less:encoreResp', 'less:styleguide', 'copy:demoreadme',
-            'copy:demohtml', 'copy:demoassets', 'imagemin', 'copy:font', 'replace:wraith', 'jsdoc2md:rxPageObjects',
-            'shell:rxPageObjectsDemoDocs']);
+            'copy:demohtml', 'copy:demoassets', 'copy:demopolyfills', 'imagemin', 'copy:font', 'replace:wraith',
+            'jsdoc2md:rxPageObjects', 'shell:rxPageObjectsDemoDocs']);
     });
 };
