@@ -45,7 +45,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
 
                 var inputField = el[0].querySelector(inputSelectors);
 
-                scope.isTextArea = _.has(inputField, 'type') && inputField.type === 'textarea';
+                scope.isTextArea = _.isObject(inputField) && inputField.type === 'textarea';
 
                 // make sure an input field is found
                 if (!_.isObject(inputField)) {
@@ -297,7 +297,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
  * getSelectedOptionForTabSet(tabsetId)
  * </pre>
  */
-.factory('rxFormUtils', function () {
+.factory('rxFormUtils', function ($document) {
 
     var rxFormUtils = {};
 
@@ -307,8 +307,9 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
     // @returns {object} The rowId of the selected option
     rxFormUtils.getSelectedOptionForTable = function (tableId) {
         var selectedRow;
-        var row = document.querySelector('rx-form-option-table#' + tableId + ' .selected input');
-        if (!_.isEmpty(row)) {
+        var row = $document[0].querySelector('rx-form-option-table#' + tableId + ' .selected input');
+
+        if (_.isObject(row) && 'value' in row) {
             selectedRow = { rowId: row.value };
         }
         return selectedRow;
@@ -321,7 +322,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
         var selectedOption;
         var xpathToTable = '//div[@id="' + tabsetId +
             '"]//tr[contains(@class, "selected")]//ancestor::rx-form-option-table';
-        var result = document.evaluate(xpathToTable, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+        var result = $document[0].evaluate(xpathToTable, $document[0], null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
         if (result.singleNodeValue) {
             var table = result.singleNodeValue;
             var fieldId = table.getAttribute('field-id');
