@@ -389,15 +389,16 @@ describe('rxFormOptionTable (Radio)', function () {
 
 describe('rxFormUtils', function () {
 
-    var rxFormUtilsSvc, rootScope;
+    var rxFormUtilsSvc, rootScope, $document;
 
     var template;
 
     beforeEach(function () {
         module('encore.ui.rxForm');
 
-        inject(function ($rootScope, rxFormUtils) {
+        inject(function ($rootScope, _$document_, rxFormUtils) {
             rootScope = $rootScope;
+            $document = _$document_;
             rxFormUtilsSvc = rxFormUtils;
         });
 
@@ -433,7 +434,7 @@ describe('rxFormUtils', function () {
                      '</div></div></div>');
 
         rootScope.$digest();
-        $(document.body).append(template);
+        $($document[0].body).append(template);
     });
 
     describe('getSelectedOptionForTable', function () {
