@@ -1,9 +1,13 @@
 /*jshint unused:false*/
 angular.module('demoApp')
 .controller('rxRadioCtrl', function ($scope) {
-    $scope.ngDisabledRadio = 1;
-    $scope.disabledRadio = 1;
-    $scope.enabledRadio = 1;
-    $scope.errRadio = 1;
+    $scope.validEnabled = 1;
+    $scope.validDisabled = 1;
+    $scope.validNgDisabled = 1;
+
+    $scope.invalidEnabled = 1;
+    $scope.invalidDisabled = 1;
+    $scope.invalidNgDisabled = 1;
+
     $scope.radCreateDestroy = 'destroyed';
 });

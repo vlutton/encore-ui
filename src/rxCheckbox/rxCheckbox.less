@@ -44,26 +44,9 @@
     }
   }//.fake-checkbox
 
-  &.rx-disabled {
-    // disabled, unchecked
-    .fake-checkbox {
-      background: @inputBackground;
-    }
-
-    input[type="checkbox"] {
-      cursor: not-allowed;
-
-      // disabled, checked
-      &:checked ~ .fake-checkbox {
-        background-color: @inputBackgroundDisabled;
-        border: none;
-      }
-    }
-
-    & + label {
-      color: @inputColorDisabled;
-    }
-  }//.rx-disabled
+  &.rx-disabled + label {
+    color: @inputColorDisabled;
+  }
 
   input[type="checkbox"] {
     z-index: 1;
@@ -73,7 +56,7 @@
     cursor: pointer;
 
     // enabled checked
-    &:checked ~ .fake-checkbox {
+    &:checked + .fake-checkbox {
       background-color: @rxCheckbox-background-color-selected;
       color: @rxCheckbox-color;
       border: none;
@@ -81,16 +64,31 @@
 
     &.ng-invalid {
       // enabled unchecked error
-      & ~ .fake-checkbox {
+      & + .fake-checkbox {
         background-color: @rxCheckbox-background-color;
         border: 2px solid @inputBackgroundError;
       }
 
       // enabled checked error
       &:checked {
-        & ~ .fake-checkbox {
+        & + .fake-checkbox {
           background-color: @inputBackgroundError;
         }
+      }
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+
+      & ~ .fake-checkbox {
+        background: @inputBackground;
+        border: 1px solid @rxCheckbox-border-color;
+      }
+
+      // disabled, checked
+      &:checked ~ .fake-checkbox {
+        background-color: @inputBackgroundDisabled;
+        border: none;
       }
     }
   }

@@ -66,19 +66,6 @@
       }
     }
 
-    &[disabled] {
-      cursor: not-allowed;
-
-      // disabled, unchecked
-      & + .fake-radio {
-        border-color: @inputBackgroundDisabled;
-      }
-
-      &:checked + .fake-radio .tick {
-        background: @inputBackgroundDisabled;
-      }
-    }//[disabled]
-
     &.ng-invalid {
       // enabled unchecked error
       & + .fake-radio {
@@ -95,5 +82,24 @@
         background: @rxRadio-color-error;
       }
     }
+
+    // disabled trumps invalid
+    &[disabled] {
+      cursor: not-allowed;
+
+      // disabled, unchecked
+      & + .fake-radio {
+        border: 1px solid @inputBackgroundDisabled;
+
+        .tick {
+          width: @rxRadio-tick-size;
+          height: @rxRadio-tick-size;
+        }
+      }
+
+      &:checked + .fake-radio .tick {
+        background: @inputBackgroundDisabled;
+      }
+    }//[disabled]
   }//input
 }//.rxRadio

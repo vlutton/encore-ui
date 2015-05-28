@@ -3,8 +3,11 @@ angular.module('demoApp')
 .controller('rxSelectCtrl', function ($scope) {
     $scope.radCreateDestroy = 'destroyed';
 
-    $scope.selOne = 'na';
-    $scope.selTwo = 'na';
-    $scope.selThree = 3;
-    $scope.selFour = 4;
+    $scope.validEnabled = 3;
+    $scope.validNgDisabled = 'na';
+    $scope.validDisabled = 'na';
+
+    $scope.invalidEnabled = 4;
+    $scope.invalidNgDisabled = 'na';
+    $scope.invalidDisabled = 'na';
 });

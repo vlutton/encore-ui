@@ -6,58 +6,86 @@ describe('rxCheckbox', function () {
         demoPage.go('#/component/rxCheckbox');
     });
 
-    describe('(State) NG-Disabled Checked', exercise.rxCheckbox({
-        cssSelector: "#checkOne",
-        disabled: true,
-        selected: true,
-        valid: true
-    }));
-
-    describe('(State) NG-Disabled Unchecked', exercise.rxCheckbox({
-        cssSelector: "#checkTwo",
-        disabled: true,
-        selected: false,
-        valid: true
-    }));
-
-    describe('(State) Disabled Checked', exercise.rxCheckbox({
-        cssSelector: "#checkSeven",
-        disabled: true,
-        selected: true,
-        valid: true
-    }));
-
-    describe('(State) Disabled Unchecked', exercise.rxCheckbox({
-        cssSelector: "#checkEight",
-        disabled: true,
-        selected: false,
-        valid: true
-    }));
-
-    describe('(State) Valid Checked', exercise.rxCheckbox({
-        cssSelector: "#checkThree",
+    describe('(State) Valid Enabled Checked', exercise.rxCheckbox({
+        cssSelector: "#chkValidEnabledOne",
         disabled: false,
         selected: true,
         valid: true
     }));
 
-    describe('(State) Valid Unchecked', exercise.rxCheckbox({
-        cssSelector: "#checkFour",
+    describe('(State) Valid Enabled UnChecked', exercise.rxCheckbox({
+        cssSelector: "#chkValidEnabledTwo",
         disabled: false,
         selected: false,
         valid: true
     }));
 
-    describe('(State) Invalid Checked', exercise.rxCheckbox({
-        cssSelector: "#checkFive",
+    describe('(State) Valid Ng-Disabled Checked', exercise.rxCheckbox({
+        cssSelector: "#chkValidNgDisabledOne",
+        disabled: true,
+        selected: true,
+        valid: true
+    }));
+
+    describe('(State) Valid Ng-Disabled Unchecked', exercise.rxCheckbox({
+        cssSelector: "#chkValidNgDisabledTwo",
+        disabled: true,
+        selected: false,
+        valid: true
+    }));
+
+    describe('(State) Valid Disabled Checked', exercise.rxCheckbox({
+        cssSelector: "#chkValidDisabledOne",
+        disabled: true,
+        selected: true,
+        valid: true
+    }));
+
+    describe('(State) Valid Disabled Unchecked', exercise.rxCheckbox({
+        cssSelector: "#chkValidDisabledTwo",
+        disabled: true,
+        selected: false,
+        valid: true
+    }));
+
+    describe('(State) Invalid Enabled Checked', exercise.rxCheckbox({
+        cssSelector: "#chkInvalidEnabledOne",
         disabled: false,
         selected: true,
         valid: false
     }));
 
-    describe('(State) Invalid Unchecked', exercise.rxCheckbox({
-        cssSelector: "#checkSix",
+    describe('(State) Invalid Enabled UnChecked', exercise.rxCheckbox({
+        cssSelector: "#chkInvalidEnabledTwo",
         disabled: false,
+        selected: false,
+        valid: false
+    }));
+
+    describe('(State) Invalid Ng-Disabled Checked', exercise.rxCheckbox({
+        cssSelector: "#chkInvalidNgDisabledOne",
+        disabled: true,
+        selected: true,
+        valid: false
+    }));
+
+    describe('(State) Invalid Ng-Disabled Unchecked', exercise.rxCheckbox({
+        cssSelector: "#chkInvalidNgDisabledTwo",
+        disabled: true,
+        selected: false,
+        valid: false
+    }));
+
+    describe('(State) Invalid Disabled Checked', exercise.rxCheckbox({
+        cssSelector: "#chkInvalidDisabledOne",
+        disabled: true,
+        selected: true,
+        valid: false
+    }));
+
+    describe('(State) Invalid Disabled Unchecked', exercise.rxCheckbox({
+        cssSelector: "#chkInvalidDisabledTwo",
+        disabled: true,
         selected: false,
         valid: false
     }));

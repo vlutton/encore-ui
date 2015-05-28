@@ -8,58 +8,86 @@ describe('rxRadio', function () {
         demoPage.go('#/component/rxRadio');
     });
 
-    describe('(State) NG-Disabled Selected', exercise.rxRadio({
-        cssSelector: '#radOne',
-        disabled: true,
-        selected: true,
-        valid: true
-    }));
-
-    describe('(State) NG-Disabled Unselected', exercise.rxRadio({
-        cssSelector: '#radTwo',
-        disabled: true,
-        selected: false,
-        valid: true
-    }));
-
-    describe('(State) Disabled Selected', exercise.rxRadio({
-        cssSelector: '#radSeven',
-        disabled: true,
-        selected: true,
-        valid: true
-    }));
-
-    describe('(State) Disabled Unselected', exercise.rxRadio({
-        cssSelector: '#radEight',
-        disabled: true,
-        selected: false,
-        valid: true
-    }));
-
-    describe('(State) Valid Selected', exercise.rxRadio({
-        cssSelector: '#radThree',
+    describe('(State) Valid Enabled Selected', exercise.rxRadio({
+        cssSelector: '#radValidEnabledOne',
         disabled: false,
         selected: true,
         valid: true
     }));
 
-    describe('(State) Valid Unselected', exercise.rxRadio({
-        cssSelector: '#radFour',
+    describe('(State) Valid Enabled Unselected', exercise.rxRadio({
+        cssSelector: '#radValidEnabledTwo',
         disabled: false,
         selected: false,
         valid: true
     }));
 
-    describe('(State) Invalid Selected', exercise.rxRadio({
-        cssSelector: '#radFive',
+    describe('(State) Valid Disabled Selected', exercise.rxRadio({
+        cssSelector: '#radValidDisabledOne',
+        disabled: true,
+        selected: true,
+        valid: true
+    }));
+
+    describe('(State) Valid Disabled Unselected', exercise.rxRadio({
+        cssSelector: '#radValidDisabledTwo',
+        disabled: true,
+        selected: false,
+        valid: true
+    }));
+
+    describe('(State) Valid NG-Disabled Selected', exercise.rxRadio({
+        cssSelector: '#radValidNgDisabledOne',
+        disabled: true,
+        selected: true,
+        valid: true
+    }));
+
+    describe('(State) Valid NG-Disabled Unselected', exercise.rxRadio({
+        cssSelector: '#radValidNgDisabledTwo',
+        disabled: true,
+        selected: false,
+        valid: true
+    }));
+
+    describe('(State) Invalid Enabled Selected', exercise.rxRadio({
+        cssSelector: '#radInvalidEnabledOne',
         disabled: false,
         selected: true,
         valid: false
     }));
 
-    describe('(State) Invalid Unselected', exercise.rxRadio({
-        cssSelector: '#radSix',
+    describe('(State) Invalid Enabled Unselected', exercise.rxRadio({
+        cssSelector: '#radInvalidEnabledTwo',
         disabled: false,
+        selected: false,
+        valid: false
+    }));
+
+    describe('(State) Invalid Disabled Selected', exercise.rxRadio({
+        cssSelector: '#radInvalidDisabledOne',
+        disabled: true,
+        selected: true,
+        valid: false
+    }));
+
+    describe('(State) Invalid Disabled Unselected', exercise.rxRadio({
+        cssSelector: '#radInvalidDisabledTwo',
+        disabled: true,
+        selected: false,
+        valid: false
+    }));
+
+    describe('(State) Invalid NG-Disabled Selected', exercise.rxRadio({
+        cssSelector: '#radInvalidNgDisabledOne',
+        disabled: true,
+        selected: true,
+        valid: false
+    }));
+
+    describe('(State) Invalid NG-Disabled Unselected', exercise.rxRadio({
+        cssSelector: '#radInvalidNgDisabledTwo',
+        disabled: true,
         selected: false,
         valid: false
     }));

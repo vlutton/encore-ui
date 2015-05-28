@@ -70,89 +70,138 @@
   <table>
     <thead>
       <tr>
+        <th></th>
+        <th>Enabled</th>
         <th>Disabled (ng-disable)</th>
         <th>Disabled (disabled)</th>
-        <th>Valid</th>
-        <th>Invalid</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <!-- NG-Disabled -->
+        <th>Valid</th>
+
+        <!-- Valid Enabled -->
         <td>
           <p>
             <input rx-radio
-                   id="radOne"
+                   id="radValidEnabledOne"
+                   value="1"
+                   ng-model="validEnabled" />
+            <label for="radValidEnabledOne">Selected</label>
+          </p>
+          <p>
+            <input rx-radio
+                   id="radValidEnabledTwo"
+                   value="2"
+                   ng-model="validEnabled" />
+            <label for="radValidEnabledTwo">Unselected</label>
+          </p>
+        </td>
+
+        <!-- Valid NG-Disabled -->
+        <td>
+          <p>
+            <input rx-radio
+                   id="radValidNgDisabledOne"
                    value="1"
                    ng-disabled="true"
-                   ng-model="ngDisabledRadio" />
-            <label for="radOne">Selected</label>
+                   ng-model="validNgDisabled" />
+            <label for="radValidNgDisabledOne">Selected</label>
           </p>
           <p>
             <input rx-radio
-                   id="radTwo"
+                   id="radValidNgDisabledTwo"
                    value="2"
                    ng-disabled="true"
-                   ng-model="ngDisabledRadio" />
-            <label for="radTwo">Unselected</label>
+                   ng-model="validNgDisabled" />
+            <label for="radValidNgDisabledTwo">Unselected</label>
           </p>
         </td>
 
-        <!-- Native Disabled -->
+        <!-- Valid Disabled -->
         <td>
           <p>
             <input rx-radio
-                   id="radSeven"
+                   id="radValidDisabledOne"
                    value="1"
                    disabled
-                   ng-model="disabledRadio" />
-            <label for="radSeven">Selected</label>
+                   ng-model="validDisabled" />
+            <label for="radValidDisabledOne">Selected</label>
           </p>
           <p>
             <input rx-radio
-                   id="radEight"
+                   id="radValidDisabledTwo"
                    value="2"
                    disabled
-                   ng-model="disabledRadio" />
-            <label for="radEight">Unselected</label>
+                   ng-model="validDisabled" />
+            <label for="radValidDisabledTwo">Unselected</label>
           </p>
         </td>
+      </tr>
+      <tr>
+        <th>Invalid</th>
 
-        <!-- Valid -->
+        <!-- Invalid Enabled -->
         <td>
           <p>
             <input rx-radio
-                   id="radThree"
+                   id="radInvalidEnabledOne"
                    value="1"
-                   ng-model="enabledRadio" />
-            <label for="radThree">Selected</label>
+                   ng-model="invalidEnabled"
+                   always-invalid />
+            <label for="radInvalidEnabledOne">Selected</label>
           </p>
           <p>
             <input rx-radio
-                   id="radFour"
+                   id="radInvalidEnabledTwo"
                    value="2"
-                   ng-model="enabledRadio" />
-            <label for="radFour">Unselected</label>
+                   ng-model="validEnabled"
+                   always-invalid />
+            <label for="radInvalidEnabledTwo">Unselected</label>
           </p>
         </td>
 
-        <!-- Invalid -->
+        <!-- Invalid NG-Disabled -->
         <td>
           <p>
             <input rx-radio
-                   id="radFive"
+                   id="radInvalidNgDisabledOne"
                    value="1"
-                   ng-model="errRadio"
+                   ng-disabled="true"
+                   ng-model="invalidNgDisabled"
                    always-invalid />
-            <label for="radFive">Selected</label>
+            <label for="radInvalidNgDisabledOne">Selected</label>
           </p>
           <p>
             <input rx-radio
-                   id="radSix"
+                   id="radInvalidNgDisabledTwo"
                    value="2"
-                   ng-model="errRadio"
+                   ng-disabled="true"
+                   ng-model="invalidNgDisabled"
                    always-invalid />
-            <label for="radSix">Unselected</label>
+            <label for="radInvalidNgDisabledTwo">Unselected</label>
+          </p>
+        </td>
+
+        <!-- Invalid Disabled -->
+        <td>
+          <p>
+            <input rx-radio
+                   id="radInvalidDisabledOne"
+                   value="1"
+                   disabled
+                   ng-model="invalidDisabled"
+                   always-invalid />
+            <label for="radInvalidDisabledOne">Selected</label>
+          </p>
+          <p>
+            <input rx-radio
+                   id="radInvalidDisabledTwo"
+                   value="2"
+                   disabled
+                   ng-model="invalidDisabled"
+                   always-invalid />
+            <label for="radInvalidDisabledTwo">Unselected</label>
           </p>
         </td>
       </tr>
