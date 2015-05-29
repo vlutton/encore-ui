@@ -6,18 +6,16 @@
 	    </div>
 	    <h3 class="rx-collapse-title title">{{title}}</h3>
 	</div>
-
-	<div class="tabStyle_2" ng-show="tabToShow">
+	
+    <div class="collapse-body" ng-show="isExpanded" ng-transclude></div>
+    <div class="tabStyle_2" ng-show="tabToShow">
 
 		<div class="ts2Wrapper" ng-click="toggleTitleAndCollapse()">
 			<h3 class="rx-collapse-title smlTitle">{{toggleTitle}}</h3>
-		    <div class="smChevWrap" ng-class="{ expanded: isExpanded }">
-	        	<a class="smChev" ></a>
-		    </div>
+		    
+	        <i ng-class="arrowChange" class="fa fa-angle-double-down"></i>
+		    
 		</div>
 	    
 	</div>
-    
-    <div class="collapse-body" ng-show="isExpanded" ng-transclude>
-    </div>
 </div>

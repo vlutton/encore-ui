@@ -56,6 +56,15 @@ angular.module('encore.ui.rxCollapse', [])
                 } else {
                     scope.toggleTitle = scope.storedTitles[1];
                 }
+                scope.setChev(scope.isExpanded);
+            };
+
+            scope.setChev = function (val) {
+                if (val === false) {
+                    scope.arrowChange = 'fa-angle-double-down';
+                } else {
+                    scope.arrowChange = 'fa-angle-double-up';
+                }
             };
 
             //Check if the title exists. If it does not, show other version
@@ -67,7 +76,7 @@ angular.module('encore.ui.rxCollapse', [])
                 scope.tabToShow = false;
             }
             
-            
+            scope.setChev(scope.isExpanded);
         }
     };
 });
