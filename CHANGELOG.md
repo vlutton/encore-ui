@@ -1,3 +1,17 @@
+<a name="1.17.1"></a>
+### 1.17.1 (2015-05-29)
+
+
+#### Bug Fixes
+
+* **rxForm:** Various fixes for Chrome ([c441c95a](git@github.com:rackerlabs/encore-ui/commit/c441c95a1c1e0b1f679f056e812b85b796690851), closes [#991](git@github.com:rackerlabs/encore-ui/issues/991))
+
+
+#### Features
+
+* **lbaas:** EN-1997 Add Label to Status Column ([120da079](git@github.com:rackerlabs/encore-ui/commit/120da0799cb18058abfd89ebeabbbbe5abc64b8a))
+
+
 <a name="1.17.0"></a>
 ## 1.17.0 (2015-05-25)
 
