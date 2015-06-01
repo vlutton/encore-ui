@@ -1,3 +1,12 @@
+<a name="1.18.0"></a>
+## 1.18.0 (2015-06-01)
+
+
+#### Features
+
+* **rxApp:** add responsive layout support ([df3d9e3d](git@github.com:rackerlabs/encore-ui/commit/df3d9e3d8dd6b503f4107b2d16449ec67368b452))
+
+
 <a name="1.17.1"></a>
 ### 1.17.1 (2015-05-29)
 
