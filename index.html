@@ -11,36 +11,11 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
 
-    <link href="dist/encore-ui-resp-1.17.1.css" rel="stylesheet" />
+    <link href="dist/encore-ui-resp-1.18.0.css" rel="stylesheet" />
     <link href="assets/prism.css" rel="stylesheet" />
     <link href="assets/generated_demo.css" rel="stylesheet" />
 
     <script src="assets/prism.js"></script>
-
-    <!-- PhantomJS doesn't support .bind, so add it here to make sure it's available -->
-    <script>
-        if (!Function.prototype.bind) {
-            Function.prototype.bind = function(oThis) {
-                if (typeof this !== 'function') {
-                    // closest thing possible to the ECMAScript 5 internal IsCallable function
-                    throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
-                }
-
-                var aArgs = Array.prototype.slice.call(arguments, 1),
-                    fToBind = this,
-                    FNOP = function() {},
-                    fBound = function() {
-                        return fToBind.apply(this instanceof FNOP && oThis ? this : oThis,
-                            aArgs.concat(Array.prototype.slice.call(arguments)));
-                    };
-
-                FNOP.prototype = this.prototype;
-                fBound.prototype = new FNOP();
-
-                return fBound;
-            };
-        }
-    </script>
 
     <!-- Content inside bower:js is auto-generated via `grunt wiredep` -->
     <!-- bower:js -->
@@ -58,9 +33,10 @@
     <script src="bower_components/ng-debounce/angular-debounce.js"></script>
     <!-- endbower -->
 
-    <script src="dist/encore-ui-tpls-1.17.1.js"></script>
+    <script src="dist/encore-ui-tpls-1.18.0.js"></script>
     <script src="demo.js"></script>
     <script src="components.js"></script>
+    <script src="browser-helpers.js"></script>
     <script src="componentControllers.js"></script>
 
     <title>Encore UI</title>
