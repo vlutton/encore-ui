@@ -21,6 +21,7 @@ results
 /node_modules/
 /demo/bower_components
 /demo/readme.html
+/demo/browser-helpers.js
 
 # config file with secrets
 /localConfig.js

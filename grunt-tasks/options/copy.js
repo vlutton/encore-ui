@@ -24,6 +24,12 @@ module.exports = {
             dest: '<%= config.docs %>'
         }]
     },
+    demopolyfills: {
+        files: [{
+            src: 'utils/browser-helpers.js',
+            dest: 'demo/browser-helpers.js'
+        }]
+    },
     demoreadme: {
         files: [{
             src: 'README.md',
