@@ -4,7 +4,6 @@
 .rxSelect {
   .box-sizing(border-box);
   display: block;
-  overflow: hidden;
   position: relative;
   color: @rxSelect-color;
   background: @rxSelect-background;
@@ -12,7 +11,7 @@
 
   // Element should be resizable via wrapper alone
   min-width: @rxSelect-min-width;
-  min-height: @rxSelect-min-height;
+  height: @rxSelect-height;
 
   &.rx-disabled {
     color: @inputColorDisabled;
@@ -21,6 +20,7 @@
 
   // position elements in wrapper
   select,
+  rx-multi-select,
   .fake-select {
     .box-sizing(border-box);
     position: absolute;
@@ -30,9 +30,9 @@
     height: 100%;
   }
 
-  select {
+  select,
+  rx-multi-select {
     z-index: 0;
-    padding: 5px;
     cursor: pointer;
 
     // reset native styling

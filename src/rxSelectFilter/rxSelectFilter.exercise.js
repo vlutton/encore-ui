@@ -44,7 +44,7 @@ exports.rxMultiSelect = function (options) {
         });
 
         it('selects no options', function () {
-            component.unselect(['Select All']);
+            component.deselect(['Select All']);
             expect(component.selectedOptions).to.eventually.be.empty;
             expect(component.preview).to.eventually.equal('None');
         });
@@ -71,8 +71,8 @@ exports.rxMultiSelect = function (options) {
             expect(component.preview).to.eventually.equal('All Selected');
         });
 
-        it('unselects all options', function () {
-            component.unselect(['Select All']);
+        it('deselects all options', function () {
+            component.deselect(['Select All']);
             expect(component.selectedOptions).to.eventually.be.empty;
             expect(component.preview).to.eventually.equal('None');
         });
