@@ -13,8 +13,6 @@ More details on these files are found in the files themselves
 
 **protractor.conf.js** - Used by our midway/E2E tests
 
-**wraith/configs/config.yaml** - Used by our UI Regression Tests
-
 
 Component Tests (aka unit tests)
 -------------
@@ -149,22 +147,3 @@ The above snippet would run a couple dozen basic tests, assuming there are no ed
 ### Handling Edge Cases in Exercises
 
 If you do have edge cases, many of the exercises support passing in an `options` argument, which should be documented in the [npm home page for rx-page-objects](https://www.npmjs.com/package/rx-page-objects). This allows you to specify aspects of a particular component's implementation to the exercise function, allowing it to skip certain tests that are not valid.
-
-UI Regression Tests
--------------
-
-*Goal: Prevent visual regressions by making it easier to compare changes*
-
-[Wraith](https://github.com/BBC-News/wraith) is used in EncoreUI for UI regression testing. Currently, it will compare the production EncoreUI demo site with your local server.
-
-### Installation
-
-Wraith is a Ruby based tool. See the [Wraith installation docs](https://github.com/BBC-News/wraith#installation) for information on getting it installed.
-
-### Running Tests
-
-Once installed, you can run your tests through `grunt wraith`. Be sure you have a local instance of `grunt server` running.
-
-`grunt wraith` will create a 'shots' folder which is the output of the regression test. To view the results, open `wraith/shots/gallery.html`.
-
-There will be some small differences between your local server and production (e.g. the rxEnvironment demo run differently, as expected). It's not a requirement that there are no changes, just that there aren't any unexpected alterations.

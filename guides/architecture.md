@@ -37,10 +37,6 @@
 
 - [SMACSS](http://smacss.com)
 
-### Regression Testing Tools
-
-- [Wraith](https://github.com/BBC-News/wraith)
-
 ### Pre-processor
 
 - [Less](http://lesscss.org)
