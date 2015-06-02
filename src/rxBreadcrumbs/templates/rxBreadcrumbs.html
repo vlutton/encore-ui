@@ -6,7 +6,7 @@
                 <rx-status-tag status="{{ breadcrumb.status }}"></rx-status-tag>
             </span>
             <span ng-switch-default>
-                <a href="{{breadcrumb.path}}" ng-class="{first: $first}" class="breadcrumb-name">
+                <a ng-href="{{breadcrumb.path}}" ng-class="{first: $first}" class="breadcrumb-name">
                     <span ng-bind-html="breadcrumb.name"></span>
                     <rx-status-tag status="{{ breadcrumb.status }}"></rx-status-tag>
                 </a>

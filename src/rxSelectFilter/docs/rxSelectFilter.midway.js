@@ -7,7 +7,7 @@ var exercise = require('../rxSelectFilter.exercise');
 describe('rxMultiSelect', function () {
 
     before(function () {
-        demoPage.go('#/component/rxSelectFilter');
+        demoPage.go('/component/rxSelectFilter');
     });
 
     describe('exercises', exercise.rxMultiSelect({
@@ -43,7 +43,7 @@ describe('rxSelectFilter', function () {
     var rxSelectFilter;
 
     before(function () {
-        demoPage.go('#/component/rxSelectFilter');
+        demoPage.go('/component/rxSelectFilter');
         rxSelectFilter = rxSelectFilterPage.main;
     });
 

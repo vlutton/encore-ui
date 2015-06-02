@@ -142,6 +142,8 @@ describe('rxFormOptionTable (Checkbox)', function () {
             return rowId === 'option1_id';
         };
 
+        checkScope.myModel = [];
+
         var checkTable = helpers.createDirective(checkboxFormTemplate, compile, checkScope);
         var checkTableScope = checkTable.isolateScope();
         expect(checkTableScope.checkDisabled({ 'id': 'option1_id' })).to.be.true;
@@ -214,7 +216,6 @@ describe('rxFormOptionTable (Checkbox)', function () {
             }
         ];
         checkScope.myModel = [true, 'unchecked'];
-
         var checkTable = helpers.createDirective(checkboxFormTemplate, compile, checkScope);
         var checkTableScope = checkTable.isolateScope();
         expect(checkTableScope.checkRequired()).to.be.false;

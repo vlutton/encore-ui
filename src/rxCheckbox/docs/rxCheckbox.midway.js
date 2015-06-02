@@ -3,7 +3,7 @@ var exercise = require('../rxCheckbox.exercise');
 
 describe('rxCheckbox', function () {
     before(function () {
-        demoPage.go('#/component/rxCheckbox');
+        demoPage.go('/component/rxCheckbox');
     });
 
     describe('(State) NG-Disabled Checked', exercise.rxCheckbox({

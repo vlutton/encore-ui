@@ -3,7 +3,7 @@ var exercise = require('../rxSearchBox.exercise');
 
 describe('rxSearchBox', function () {
     before(function () {
-        demoPage.go('#/component/rxSearchBox');
+        demoPage.go('/component/rxSearchBox');
     });
 
     describe('default rxSearchBox', exercise.rxSearchBox({

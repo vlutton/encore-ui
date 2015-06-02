@@ -1,7 +1,5 @@
-/*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxFloatingHeaderCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxFloatingHeaderCtrl', function ($scope) {
     $scope.searchText = '';
     $scope.data = [
         { name: 'A', value: 1 },
@@ -32,4 +30,4 @@ function rxFloatingHeaderCtrl ($scope) {
         $scope.searchText = '';
     };
 
-}
+});

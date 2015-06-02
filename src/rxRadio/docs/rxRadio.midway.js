@@ -5,7 +5,7 @@ describe('rxRadio', function () {
     var subject;
 
     before(function () {
-        demoPage.go('#/component/rxRadio');
+        demoPage.go('/component/rxRadio');
     });
 
     describe('(State) NG-Disabled Selected', exercise.rxRadio({

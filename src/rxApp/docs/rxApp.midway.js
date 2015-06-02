@@ -5,7 +5,7 @@ describe('rxApp', function () {
     var rxAppCustom, rxAppStandard;
 
     before(function () {
-        demoPage.go('#/component/rxApp');
+        demoPage.go('/component/rxApp');
         rxAppCustom = rxAppPage.initialize($('#custom-rxApp'));
         rxAppStandard = rxAppPage.initialize($('#standard-rxApp'));
     });
@@ -28,20 +28,23 @@ describe('rxApp', function () {
                 getUserId: function () { return 'rack0000'; }
             });
         });
-        browser.refresh()
+        browser.refresh();
 
         rxAppStandard.userId.then(function (userId) {
             expect(userId).to.equal('(rack0000)');
 
             browser.removeMockModule('encore.ui.rxSession');
-            browser.refresh()
+            browser.refresh();
         });
     });
 
     it('should logout', function () {
+        // Need this since we are going to a non-angular page on logout
+        browser.ignoreSynchronization = true;
         rxAppCustom.logout();
+
         expect(demoPage.currentUrl).to.eventually.contain('login');
-        demoPage.go('#/component/rxApp');
+        demoPage.go('/component/rxApp');
     });
 
     describe('with collapsible navigation', function () {
@@ -79,7 +82,7 @@ describe('rxPage', function () {
     var standardPage, customPage;
 
     before(function () {
-        demoPage.go('#/component/rxApp');
+        demoPage.go('/component/rxApp');
         standardPage = rxPage.initialize($('#standard-rxApp .rx-page'));
         customPage = rxPage.initialize($('#custom-rxApp .rx-page'));
     });
@@ -120,7 +123,7 @@ describe('rxPage', function () {
     describe('main title', function () {
 
         before(function () {
-            demoPage.go('#/component/configs');
+            demoPage.go('/component/configs');
         });
 
         it('should grab the main title', function () {

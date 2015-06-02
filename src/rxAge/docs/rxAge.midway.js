@@ -22,7 +22,7 @@ describe('rxAge', function () {
     ];
 
     before(function () {
-        demoPage.go('#/component/rxAge');
+        demoPage.go('/component/rxAge');
         momentsTable = $$('.component-demo ul li');
     });
 

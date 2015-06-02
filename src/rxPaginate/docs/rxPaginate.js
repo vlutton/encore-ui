@@ -1,7 +1,5 @@
-/*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTracking, rxSortUtil, SelectFilter) {
+angular.module('demoApp')
+.controller('rxPaginateCtrl', function ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTracking, rxSortUtil, SelectFilter) {
     $scope.pager = PageTracking.createInstance({ itemsPerPage: 3 });
 
     var os = ['Ubuntu 12.04', 'Red Hat Enterprise Linux 6.4', 'CentOS 6.4', 'Ubuntu 13.04'];
@@ -92,4 +90,4 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
     });
     $scope.serverInterface = serverInterface;
     $scope.pagedServers = PageTracking.createInstance({ itemsPerPage: 25 });
-}
+});

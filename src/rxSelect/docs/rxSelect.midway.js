@@ -8,7 +8,7 @@ describe('rxSelect', function () {
     var subject;
 
     before(function () {
-        demoPage.go('#/component/rxSelect');
+        demoPage.go('/component/rxSelect');
     });
 
     describe('(State) NG-Disabled', exercise.rxSelect({

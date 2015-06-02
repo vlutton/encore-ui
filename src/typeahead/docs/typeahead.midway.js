@@ -4,7 +4,7 @@ describe('typeahead', function () {
     var typeahead;
 
     before(function () {
-        demoPage.go('#/component/typeahead');
+        demoPage.go('/component/typeahead');
         typeahead = typeaheadPage.initialize($('#typeahead'));
     });
 

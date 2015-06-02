@@ -5,7 +5,7 @@ var notifications = require('../rxNotify.page').rxNotify;
 describe('rxNotify', function () {
 
     before(function () {
-        demoPage.go('#/component/rxNotify');
+        demoPage.go('/component/rxNotify');
     });
 
     describe('auto dismissal', function () {

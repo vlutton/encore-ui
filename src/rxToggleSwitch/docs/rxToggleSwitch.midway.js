@@ -4,7 +4,7 @@ describe('rxToggleSwitch', function () {
     var rxToggleSwitch;
 
     before(function () {
-        demoPage.go('#/component/rxToggleSwitch');
+        demoPage.go('/component/rxToggleSwitch');
     });
 
     describe('defaults', exercise.rxToggleSwitch({

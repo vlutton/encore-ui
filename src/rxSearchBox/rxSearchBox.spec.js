@@ -34,7 +34,7 @@ describe('rxSearchBox', function () {
         describe('given a non-empty rootScope.testModel', function () {
             beforeEach(function () {
                 rootScope.testModel = 'hiyoo';
-                scope.$digest();
+                rootScope.$digest();
             });
 
             it('should not be clearable', function () {

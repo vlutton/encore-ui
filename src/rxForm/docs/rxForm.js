@@ -1,4 +1,5 @@
-function rxFormDemoCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxFormDemoCtrl', function ($scope) {
     $scope.types = [
         {
             'value': 'SATA',
@@ -123,7 +124,7 @@ function rxFormDemoCtrl ($scope) {
         return rowId === 'option4_id';
     };
 
-}
+});
 
 // A dummy directive only used within the rxForm demo page.
 // It's used to check that some string contains 'foo', and works

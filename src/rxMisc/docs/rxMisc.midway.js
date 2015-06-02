@@ -101,7 +101,7 @@ var autoSaving = Page.create({
 describe('rxMisc', function () {
 
     before(function () {
-        demoPage.go('#/component/rxMisc');
+        demoPage.go('/component/rxMisc');
     });
 
     describe('rxAutoSave', function () {
@@ -117,8 +117,8 @@ describe('rxMisc', function () {
         };
 
         var leavePage = function () {
-            demoPage.go('#/component/rxPaginate');
-            demoPage.go('#/component/rxMisc');
+            demoPage.go('/component/rxPaginate');
+            demoPage.go('/component/rxMisc');
         };
 
         before(function () {

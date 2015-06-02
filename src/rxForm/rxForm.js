@@ -140,6 +140,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
  * @param {Object} model - Value to bind input to using ng-model
  * @param {String} fieldId - Used for label and input 'id' attribute
  * @param {Object} required - Value passed to input's 'ng-required' attribute
+ * @param {String} emtpyMessage - Message to display if table is empty
  * @param {Function} disableFn - Callback function to determine if option should be disabled.
                                  Takes tableId, fieldId, and rowId as parameters.
                                  Example:
@@ -192,7 +193,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
                             return determineMatch(val, $scope.model[idx]);
                         } else {
                             // otherwise, just return the value of the model and angular can decide
-                            return $scope.modelProxy[idx];
+                            return $scope.model[idx];
                         }
                     }
                 }
@@ -213,25 +214,12 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
                 }
             };
 
-            // Because of a bug in Angular 1.2.x, we can't use `required` and
-            // ngTrueValue/ngFalseValue simultaneously. We don't want to affect
-            // people that were already using rxFormOptionTable, so instead we'll
-            // build a `modelProxy` which is simply a mapping of $scope.model to
-            // an array of `true` / `false` values. We then have to take care
-            // of updating the actual $scope.model ourselves in `updateCheckboxes`
-            // with the correct ngTrueValue/ngFalseValue values
-            $scope.modelProxy = _.map($scope.model, function (val, index) {
-                var data = $scope.data[index];
-                var trueValue = _.has(data, 'value') ? data.value : true;
-                return val === trueValue;
-            });
-
             // If we are using checkboxes and the required attribute is set, then we
             // need an array to store the indexes of checked boxes. ng-required is
             // specifically set if required is true and the array is empty.
             var boxesChecked = 0;
-            _.forEach($scope.modelProxy, function (el) {
-                if (el) {
+            _.forEach($scope.model, function (el, index) {
+                if (!_.isEmpty($scope.data) && (el === true || $scope.data[index].value == el)) {
                     boxesChecked += 1;
                 }
             });
@@ -242,16 +230,10 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
              * @param {Integer} index - Array index of the checkbox element marked true
              */
             $scope.updateCheckboxes = function (val, index) {
-                var data = $scope.data[index];
-                var trueValue = _.has(data, 'value') ? data.value : true;
-                var falseValue = _.has(data, 'falseValue') ? data.falseValue : false;
-
-                $scope.model[index] = val ? trueValue : falseValue;
-
-                if (val) {
-                    boxesChecked += 1;
-                } else {
+                if ((val === true) || $scope.data[index].value == val) {
                     boxesChecked -= 1;
+                } else {
+                    boxesChecked += 1;
                 }
             };
 

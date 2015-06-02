@@ -23,14 +23,14 @@ angular.module('encore.ui.rxCheckbox', [])
                 // apply/remove disabled attribute so we can
                 // apply a CSS selector to style sibling elements
                 if (attrs.disabled) {
-                    wrapper.addClass(disabledClass);
+                    element.parent().addClass(disabledClass);
                 }
                 if (_.has(attrs, 'ngDisabled')) {
                     scope.$watch('ngDisabled', function (newVal) {
                         if (newVal === true) {
-                            wrapper.addClass(disabledClass);
+                            element.parent().addClass(disabledClass);
                         } else {
-                            wrapper.removeClass(disabledClass);
+                            element.parent().removeClass(disabledClass);
                         }
                     });
                 }

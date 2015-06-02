@@ -51,7 +51,7 @@ var formPageObject = Page.create({
 describe('rxForm', function () {
 
     before(function () {
-        demoPage.go('#/component/rxForm');
+        demoPage.go('/component/rxForm');
     });
 
     describe('form filling', function () {

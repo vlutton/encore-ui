@@ -7,7 +7,7 @@ describe('rxFeedback', function () {
     var defaultFeedback = 'Software Bug';
 
     before(function () {
-        demoPage.go('#/component/rxFeedback');
+        demoPage.go('/component/rxFeedback');
         successfulFeedback = feedback.initialize($('#rxFeedbackSucceeds'));
         unsuccessfulFeedback = feedback.initialize($('#rxFeedbackFails'));
     });
@@ -28,8 +28,10 @@ describe('rxFeedback', function () {
 
     it('should include the url in the subtitle', function () {
         browser.getCurrentUrl().then(function (url) {
-            var feedbackUrl = url.split('#')[1];
-            expect(successfulFeedback.subtitle).to.eventually.equal('for page: ' + feedbackUrl);
+            successfulFeedback.subtitle.getText().then(function (subtitleText) {
+                var feedbackUrl = url.substr(url.length - subtitleText.replace('for page: ', '').length);
+                expect(subtitleText).to.equal('for page: ' + feedbackUrl);
+            });
         });
     });
 

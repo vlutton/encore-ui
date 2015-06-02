@@ -3,7 +3,7 @@ var environment = require('../rxEnvironment.page').rxEnvironment;
 describe('rxEnvironment', function () {
 
     before(function () {
-        demoPage.go('#/component/rxEnvironment');
+        demoPage.go('/component/rxEnvironment');
     });
 
     it('should be on localhost', function () {
@@ -19,7 +19,7 @@ describe('rxEnvironment', function () {
     });
 
     it('should not change the original environment', function () {
-        browser.get('http://rackerlabs.github.io/encore-ui/#/overview');
+        browser.get('http://rackerlabs.github.io/encore-ui/overview');
         expect(environment.original()).to.eventually.equal('localhost');
     });
 

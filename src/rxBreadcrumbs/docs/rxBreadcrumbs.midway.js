@@ -4,7 +4,7 @@ describe('rxBreadcrumbs', function () {
     var breadcrumbs;
 
     before(function () {
-        demoPage.go('#/component/rxBreadcrumbs');
+        demoPage.go('/component/rxBreadcrumbs');
         breadcrumbs = rxBreadcrumbs.initialize($('.component-demo rx-breadcrumbs'));
     });
 
@@ -116,12 +116,12 @@ describe('rxBreadcrumbs', function () {
         });
 
         it('should visit the correct page when clicking on the breadcrumb', function () {
-            var homeHref = browser.baseUrl + '/#/overview';
+            var homeHref = browser.baseUrl + '/overview';
 
             middle.visit();
             expect(browser.getCurrentUrl()).to.eventually.equal(homeHref);
         });
-        // Note that after this test, we are now at the /#/overview page
+        // Note that after this test, we are now at the /overview page
 
     });
 
@@ -129,7 +129,7 @@ describe('rxBreadcrumbs', function () {
         var defaultBreadcrumbs;
 
         before(function () {
-            demoPage.go('#/component/configs');
+            demoPage.go('/component/configs');
             defaultBreadcrumbs = rxBreadcrumbs.main;
         });
 

@@ -5,7 +5,7 @@ describe('rxInfoPanel', function () {
     var rxInfoPanel;
 
     before(function () {
-        demoPage.go('#/component/rxInfoPanel');
+        demoPage.go('/component/rxInfoPanel');
         rxInfoPanel = rxInfoPanelPage.initialize($('.info-panel'));
     });
 

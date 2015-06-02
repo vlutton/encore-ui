@@ -1,5 +1,6 @@
 /*jshint unused:false*/
-function rxModalActionCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxModalActionCtrl', function ($scope) {
     $scope.password = 'guest';
 
     $scope.populate = function (modalScope) {
@@ -9,9 +10,9 @@ function rxModalActionCtrl ($scope) {
     $scope.changePass = function (fields) {
         $scope.password = fields.password;
     };
-}
+})
 
-function rxModalStateCtrl ($scope, $modalInstance, $timeout, rxNotify) {
+.controller('rxModalStateCtrl', function ($scope, $modalInstance, $timeout, rxNotify) {
     function complete () {
         $scope.loaded = true;
         $scope.setState('complete');
@@ -40,4 +41,4 @@ function rxModalStateCtrl ($scope, $modalInstance, $timeout, rxNotify) {
         rxNotify.clear('modal');
         $modalInstance.dismiss();
     };
-}
+});

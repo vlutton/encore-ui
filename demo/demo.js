@@ -9,9 +9,12 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
 .controller('styleguideCtrl', function (rxBreadcrumbsSvc) {
     rxBreadcrumbsSvc.set();
 })
-.config(function ($routeProvider, rxStatusTagsProvider) {
+.config(function ($routeProvider, $locationProvider, rxStatusTagsProvider) {
     $routeProvider
         .when('/', {
+            redirectTo: '/overview'
+        })
+        .when('', {
             redirectTo: '/overview'
         })
         .when('/login', {
@@ -96,6 +99,8 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         class: 'alpha-status',
         text: 'Demo Tag'
     });
+
+    $locationProvider.html5Mode(true);
 })
 .run(function ($rootScope, components, $window, $location, $anchorScroll, Environment, rxBreadcrumbsSvc, rxPageTitle) {
     var baseGithubUrl = '//rackerlabs.github.io/encore-ui/';
@@ -115,7 +120,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             title: 'EncoreUI',
             children: [
                 {
-                    href: '#/overview',
+                    href: '/overview',
                     linkText: 'Overview'
                 },
                 {
@@ -158,73 +163,73 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             title: 'Design Styleguide',
             children: [
                 {
-                    href: '#/styleguide/basics',
+                    href: '/styleguide/basics',
                     linkText: 'Basics',
                     children: [
                         {
-                            href: '#/styleguide/basics#color',
+                            href: '/styleguide/basics#color',
                             linkText: 'Color'
                         },
                         {
-                            href: '#/styleguide/basics#typography',
+                            href: '/styleguide/basics#typography',
                             linkText: 'Typography'
                         },
                         {
-                            href: '#/styleguide/basics#flexbox-grid',
+                            href: '/styleguide/basics#flexbox-grid',
                             linkText: 'Flexbox Grid'
                         },
                         {
-                            href: '#/styleguide/basics#heading-title-styles',
+                            href: '/styleguide/basics#heading-title-styles',
                             linkText: 'Header & Title Styles'
                         },
                         {
-                            href: '#/styleguide/basics#descriptions-metadata',
+                            href: '/styleguide/basics#descriptions-metadata',
                             linkText: 'Descriptions & Metadata'
                         },
                         {
-                            href: '#/styleguide/basics#lists',
+                            href: '/styleguide/basics#lists',
                             linkText: 'Lists'
                         },
                         {
-                            href: '#/styleguide/basics#collapsible',
+                            href: '/styleguide/basics#collapsible',
                             linkText: 'Collapsible Element'
                         },
                         {
-                            href: '#/styleguide/basics#wells',
+                            href: '/styleguide/basics#wells',
                             linkText: 'Wells'
                         },
                         {
-                            href: '#/styleguide/basics#helper-classes',
+                            href: '/styleguide/basics#helper-classes',
                             linkText: 'Helper classes'
                         },
                         {
-                            href: '#/styleguide/basics#progress-bars',
+                            href: '/styleguide/basics#progress-bars',
                             linkText: 'Progress bars'
                         }
                     ]
                 },
                 {
-                    href: '#/styleguide/layouts',
+                    href: '/styleguide/layouts',
                     linkText: 'Layouts',
                     children: [
                         {
-                            href: '#/styleguide/layouts',
+                            href: '/styleguide/layouts',
                             linkText: 'Grids'
                         },
                         {
-                            href: '#/styleguide/layouts',
+                            href: '/styleguide/layouts',
                             linkText: 'Sample Layouts',
                             children: [
                                 {
-                                    href: '#/styleguide/layouts/1',
+                                    href: '/styleguide/layouts/1',
                                     linkText: 'Layout 1: Detail Page'
                                 },
                                 {
-                                    href: '#/styleguide/layouts/2',
+                                    href: '/styleguide/layouts/2',
                                     linkText: 'Layout 2: Data Table'
                                 },
                                 {
-                                    href: '#/styleguide/layouts/3',
+                                    href: '/styleguide/layouts/3',
                                     linkText: 'Layout 3: Create Form'
                                 }
                             ]
@@ -232,73 +237,73 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     ]
                 },
                 {
-                    href: '#/styleguide/buttons',
+                    href: '/styleguide/buttons',
                     linkText: 'Buttons & Links',
                     children: [
                         {
-                            href: '#/styleguide/buttons',
+                            href: '/styleguide/buttons',
                             linkText: 'Customizing Buttons'
                         },
                         {
-                            href: '#/styleguide/buttons#colors',
+                            href: '/styleguide/buttons#colors',
                             linkText: 'Using Colors and Icons'
                         }
                     ]
                 },
                 {
-                    href: '#/styleguide/tables',
+                    href: '/styleguide/tables',
                     linkText: 'Tables',
                     children: [
                         {
-                            href: '#/styleguide/tables',
+                            href: '/styleguide/tables',
                             linkText: 'Basics'
                         },
                         {
-                            href: '#/styleguide/tables#directives',
+                            href: '/styleguide/tables#directives',
                             linkText: 'Directives'
                         },
                         {
-                            href: '#/styleguide/tables#designpatterns',
+                            href: '/styleguide/tables#designpatterns',
                             linkText: 'Design Patterns'
                         },
                         {
-                            href: '#/styleguide/tables#roadmap',
+                            href: '/styleguide/tables#roadmap',
                             linkText: 'UI Roadmap / Possible Future-work'
                         }
                     ]
                 },
                 {
-                    href: '#/styleguide/forms',
+                    href: '/styleguide/forms',
                     linkText: 'Forms',
                     children: [
                         {
-                            href: '#/styleguide/forms',
+                            href: '/styleguide/forms',
                             linkText: 'Directives'
                         },
                         {
-                            href: '#/styleguide/forms#designpatterns',
+                            href: '/styleguide/forms#designpatterns',
                             linkText: 'Design Patterns within Encore'
                         },
                         {
-                            href: '#/styleguide/forms#roadmap',
+                            href: '/styleguide/forms#roadmap',
                             linkText: 'UI Roadmap / Possible Future-work'
                         }
                     ]
                 },
                 {
-                    href: '#/styleguide/modals',
+                    href: '/styleguide/modals',
                     linkText: 'Modals',
                     children: [
                         {
-                            href: '#/styleguide/modals',
+                            href: '/styleguide/modals',
                             linkText: 'Basic Usage'
                         },
                         {
-                            href: '#/styleguide/modals#designpatterns',
+                            href: '/styleguide/modals#designpatterns',
                             linkText: 'Design Best Practices'
                         },
                         {
-                            href: '#/styleguide/modals#roadmap',
+                            href: '/styleguide/modals#roadmap',
                             linkText: 'UI Roadmap / Possible Future-work'
                         }
                     ]
@@ -313,7 +318,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
 
     _.each(components, function (component) {
         demoNav[2].children.push({
-            href: '#/component/' + component.name,
+            href: '/component/' + component.name,
             linkText: component.name
         });
     });

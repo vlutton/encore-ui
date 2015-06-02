@@ -5,7 +5,7 @@ describe('rxFloatingHeader', function () {
 
     describe('One header row table', function () {
         before(function () {
-            demoPage.go('#/component/rxFloatingHeader');
+            demoPage.go('/component/rxFloatingHeader');
             table = $('table[rx-floating-header].no-filter');
             tr = table.$('thead tr:first-of-type');
             middleRow = table.$('.middle-row');

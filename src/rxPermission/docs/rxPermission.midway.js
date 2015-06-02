@@ -3,7 +3,7 @@ var rxPermissionPage = require('../rxPermission.page').rxPermission;
 describe('rxPermission', function () {
 
     before(function () {
-        demoPage.go('#/component/rxPermission');
+        demoPage.go('/component/rxPermission');
     });
 
     it('rxPermission should display and hide content when appropriate', function () {

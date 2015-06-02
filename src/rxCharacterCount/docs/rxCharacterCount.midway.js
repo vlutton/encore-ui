@@ -3,7 +3,7 @@ var exercise = require('../rxCharacterCount.exercise');
 describe('rxCharacterCount', function () {
 
     before(function () {
-        demoPage.go('#/component/rxCharacterCount');
+        demoPage.go('/component/rxCharacterCount');
     });
 
     describe('defaults', exercise.rxCharacterCount({
