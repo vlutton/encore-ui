@@ -13,13 +13,14 @@ var config = {
         specs: './src/**/*.midway.js',
         shardTestFiles: true,
         maxInstances: 2
-    }, {
-        browserName: 'chrome',
-        name: 'Visual Regression -- Chrome',
-        specs: './utils/visual-regression/**/*.midway.js',
-        chromeOptions: {
-            args: ['no-sandbox']
-        }
+    // uncomment when https://github.com/rackerlabs/encore-ui/pull/951#issuecomment-108008105 is resolved
+    // }, {
+    //     browserName: 'chrome',
+    //     name: 'Visual Regression -- Chrome',
+    //     specs: './utils/visual-regression/**/*.midway.js',
+    //     chromeOptions: {
+    //         args: ['no-sandbox']
+    //     }
     }, {
         browserName: 'firefox',
         name: 'Visual Regression -- Firefox',
