@@ -178,6 +178,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                             linkText: 'Header & Title Styles'
                         },
                         {
+                            href: '#/styleguide/basics#date-formatting',
+                            linkText: 'Date Formatting'
+                        },
+                        {
                             href: '#/styleguide/basics#descriptions-metadata',
                             linkText: 'Descriptions & Metadata'
                         },
