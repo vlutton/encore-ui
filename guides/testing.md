@@ -38,7 +38,11 @@ If you wish to run them separately, use `grunt test`.
 
 When developing a specific component, you likely don't want to run the entire test suite on every change. In order to test a single set of functionality, use the 'only' function when describing your test. For example:
 
-`describe.only('Login', function () { ... tests go here ... })`
+```js
+describe.only('Login', function () {
+    // ... tests go here ...
+});
+```
 
 **Be sure to remove the `only` once you're done.**
 
@@ -185,3 +189,37 @@ Click the reference link to the encore-ui-screenshots pull request, and check ou
 ### Creating a New Baseline for Visual Regression
 
 Once a pull request has been visually signed off on, it should become the new baseline which all new pull requests are compared against. Do this by visiting the link to the encore-ui-screenshots pull request and merging it. From then on, Travis CI pull request builds will pull *those* screenshots and compare against them from now on.
+
+### Creating New Visual Regression Tests
+
+The visual regression tests are located in [the `utils/visual-regression` directory](../utils/visual-regression). Inside that, there is a directory for `layouts` (typically reserved for pages that demonstrate how a typical EncoreUI layout should look), and a directory for components.
+
+When adding a new visual regression test, remember to keep the names of the tests short. The screenshot comparison library creates the image names based on the test names, so there's no need to be very specific.
+
+Each `it()` block describes an individual visual regression test. `screenshot.snap()` is used to grab an area of the screen, and compare it to the current visual baseline, checking for changes. Any detected change will cause a visual diff to be created, with a link to it automatically added to the PR.
+
+Here's an example of a basic visual regression test for a single component.
+
+```js
+// utils/visual-regression/components/rxComponent.midway.js
+var rxComponent = exports.rxComponent;
+
+describe('demo component', function () {
+
+    before(function () {
+        demoPage.go('#/component/rxComponent');
+    });
+
+    it('default', function () {
+        // default screenshot of just the component -- no interaction yet
+        screenshot.snap(this, $('.tab-content rx-component'));
+    });
+
+    it('interactive', function () {
+        rxComponent.main.interactWith(); // trigger some click that expands something
+        // this will capture the component in its current "interacted" state
+        screenshot.snap(this, rxComponent.main.rootElement));
+    });
+
+});
+```
