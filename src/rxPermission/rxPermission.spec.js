@@ -100,5 +100,20 @@ describe('rxPermission', function () {
             expect(session.getToken).to.be.called;
         });
 
+        it('Permission service: should accept array of roles', function () {
+            expect(permission.hasRole(['Customer', 'Invalid Role'])).to.be.true;
+            expect(permission.hasRole(['Custom', 'Er Role', 'Today'])).to.be.false;
+            expect(permission.hasRole(['Test', 'Er Role', 'Today'])).to.be.true;
+            expect(session.getToken).to.be.called;
+
+        });
+
+        it('Permission service: should validate if user has all roles', function () {
+            expect(permission.hasAllRoles(['Customer', 'Invalid Role'])).to.be.false;
+            expect(permission.hasAllRoles(['Customer', 'Test'])).to.be.true;
+            expect(permission.hasAllRoles(['Customer', 'Test', 'Today'])).to.be.false;
+            expect(session.getToken).to.be.called;
+        });
+
     });
 });

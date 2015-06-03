@@ -614,18 +614,67 @@ describe('rxAppNavItem', function () {
                         linkText: '1st-4th-1st'
                     }
                 ]
+            }, {
+                linkText: 'visibilityAndRole',
+                visibility: function () {
+                    return true;
+                },
+                roles: { 'any': [ 'role1' ] }
+            }, {
+                linkText: 'noVisibilityButRolePresent',
+                roles: { 'any': [ 'role1' ] }
+            }, {
+                linkText: 'visibilityOkButRoleFails',
+                roles: { 'any': [ 'weDontHaveThisRole' ] }
+            }, {
+                linkText: 'multipleAllRolesPass',
+                roles: { 'all': [ 'role1', 'role2', 'Test' ] }
+            }, {
+                linkText: 'multipleAllRolesFailure',
+                roles: { 'all': [ 'role1', 'role2', 'ThisRoleDoesNotExist' ] }
+            }, {
+                linkText: 'failedVisibilityAndOKRoles',
+                visibility: function () {
+                    return false;
+                },
+                roles: { 'any': [ 'role1' ] }
             }
         ]
     };
 
     beforeEach(function () {
         // load module
+        var mockToken = {
+            access: {
+                token:
+                    {
+                        id: 'someid',
+                    },
+                    user: {
+                        id: 'joe.customer',
+                        'roles': [{ 'id': '9','name': 'role1' },
+                                  { 'id': '10','name': 'role2' },
+                                  { 'id': '11','name': 'Test' }]
+                    }
+                }
+            };
+
+        var SessionMock = {
+            getToken: function () {
+                return mockToken;
+            }
+        };
+
         module('encore.ui.rxApp');
         module('encore.ui.rxCompile');
 
         // load templates
         module('templates/rxAppNav.html');
         module('templates/rxAppNavItem.html');
+
+        module(function ($provide) {
+            $provide.value('Session', SessionMock);
+        });
 
         // Inject in angular constructs
         inject(function ($rootScope, $compile, $location, rxVisibility) {
@@ -725,6 +774,39 @@ describe('rxAppNavItem', function () {
 
         expect(childHeader.textContent).to.equal(menuItem.childHeader);
     });
+
+    describe('Roles visibility', function () {
+        it('should show when _all_ roles are present', function () {
+            var item = el.find('a:contains("multipleAllRolesPass")').parent();
+            expect(item.hasClass('ng-hide')).to.be.false;
+        });
+
+        it('should show if visibility and roles criteria are both true', function () {
+            var item = el.find('a:contains("visibilityAndRole")').parent();
+            expect(item.hasClass('ng-hide')).to.be.false;
+        });
+        
+        it('should show if there is no visibility criteria but roles are present and true', function () {
+            var item = el.find('a:contains("noVisibilityButRolePresent")').parent();
+            expect(item.hasClass('ng-hide')).to.be.false;
+        });
+
+        it('should not show if visibility is true but role check fails', function () {
+            var item = el.find('a:contains("visibilityOkButRoleFails")').parent();
+            expect(item.hasClass('ng-hide')).to.be.true;
+        });
+
+        it('should not show if visibility check fails but role check passes', function () {
+            var item = el.find('a:contains("failedVisibilityAndOKRoles")').parent();
+            expect(item.hasClass('ng-hide')).to.be.true;
+        });
+
+        it('should not when when not all roles are present', function () {
+            var item = el.find('a:contains("multipleAllRolesFailure")').parent();
+            expect(item.hasClass('ng-hide')).to.be.true;
+        });
+    });
+
 });
 
 describe('rxPage', function () {
