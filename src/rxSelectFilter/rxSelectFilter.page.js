@@ -1,10 +1,11 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
 var _ = require('lodash');
+var rxCheckbox = require('../rxCheckbox/rxCheckbox.page').rxCheckbox;
 
 var selectOptionFromElement = function (optionElement) {
 
-    return Page.create({
+    return Object.create(rxCheckbox.initialize(optionElement.$('input')), {
 
         /**
          * @memberof rxMultiSelect.option
@@ -17,55 +18,12 @@ var selectOptionFromElement = function (optionElement) {
         },
 
         /**
-           Selects the option in the dropdown.
-           @memberof rxMultiSelect.option
-           @function
-           @returns {undefined}
-         */
-        select: {
-            value: function () {
-                return this.isSelected().then(function (selected) {
-                    if (!selected) {
-                        optionElement.$('input').click();
-                    }
-                });
-            }
-        },
-
-        /**
-           Unselects the option in the dropdown.
-           @memberof rxMultiSelect.option
-           @function
-           @returns {undefined}
-         */
-        unselect: {
-            value: function () {
-                return this.isSelected().then(function (selected) {
-                    if (selected) {
-                        optionElement.$('input').click();
-                    }
-                });
-            }
-        },
-
-        /**
            @memberof rxMultiSelect.option
            @returns {string} The value bound to the option.
          */
         value: {
             get: function () {
                 return optionElement.getAttribute('value');
-            }
-        },
-
-        /**
-           @memberof rxMultiSelect.option
-           @function
-           @returns {Boolean} Whether or not the option is currently selected.
-         */
-        isSelected: {
-            value: function () {
-                return optionElement.$('input').isSelected();
             }
         }
 
@@ -76,6 +34,12 @@ var selectOptionFromElement = function (optionElement) {
  * @namespace
  */
 var rxMultiSelect = {
+
+    lblPreview: {
+        get: function () {
+            return this.rootElement.$('.preview');
+        }
+    },
 
     /**
        Close the menu
@@ -88,7 +52,7 @@ var rxMultiSelect = {
             var self = this;
             this.isOpen().then(function (isOpen) {
                 if (isOpen) {
-                    self.rootElement.$('.rx-multi-select').click();
+                    self.lblPreview.click();
                 }
             });
         }
@@ -105,7 +69,7 @@ var rxMultiSelect = {
             var self = this;
             this.isOpen().then(function (isOpen) {
                 if (!isOpen) {
-                    self.rootElement.$('.rx-multi-select').click();
+                    self.lblPreview.click();
                 }
             });
         }
@@ -128,10 +92,7 @@ var rxMultiSelect = {
      */
     preview: {
         get: function () {
-            // getText() will include the text of the options as well as the preview
-            return this.rootElement.getText().then(function (text) {
-                return text.split('\n')[0];
-            });
+            return this.lblPreview.getText();
         }
     },
 
@@ -214,15 +175,15 @@ var rxMultiSelect = {
     /**
        @memberof rxMultiSelect
        @function
-       @param {string[]} optionTexts - Array of partial or total strings matching the desired options to unselect.
+       @param {string[]} optionTexts - Array of partial or total strings matching the desired options to deselect.
        @returns {undefined}
      */
-    unselect: {
+    deselect: {
         value: function (optionTexts) {
             var self = this;
             this.openMenu();
             optionTexts.forEach(function (optionText) {
-                self.option(optionText).unselect();
+                self.option(optionText).deselect();
             });
         }
     }
@@ -279,7 +240,7 @@ var rxSelectFilter = {
        @function
        @param {Object} filterData - Key-value pairs of the rxMultiSelects' labels and their options to select.
                                     The value is an object, where the keys are the options and the values indicate
-                                    if the option should be selected or unselected.
+                                    if the option should be selected or deselected.
        @returns {undefined}
        @example
        ```js
@@ -300,7 +261,7 @@ var rxSelectFilter = {
                     if (shouldSelect) {
                         multiSelect.select([option]);
                     } else {
-                        multiSelect.unselect([option]);
+                        multiSelect.deselect([option]);
                     }
                 });
                 multiSelect.closeMenu();

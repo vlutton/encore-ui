@@ -45,15 +45,16 @@ describe('rxMultiSelect', function () {
             });
 
             it('toggles the visibility of the menu when clicked', function () {
-                el.children().click();
+                var previewElement = angular.element(el[0].querySelector('.preview'));
+                previewElement.click();
                 expect(isolateScope.listDisplayed).to.be.true;
 
-                el.children().click();
+                previewElement.click();
                 expect(isolateScope.listDisplayed).to.be.false;
             });
 
             it('does not toggle the visibility of the menu when a child element is clicked', function () {
-                el.children().children().click();
+                angular.element(el[0].querySelector('rx-select-option')).click();
                 expect(isolateScope.listDisplayed).to.be.false;
             });
 

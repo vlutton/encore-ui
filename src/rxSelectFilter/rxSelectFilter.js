@@ -1,4 +1,4 @@
-angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc'])
+angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSelect'])
 /**
  * @ngdoc filter
  * @name encore.ui.rxSelectFilter:Apply
@@ -99,7 +99,7 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc'])
  * @param {string} ng-model The scope property that stores the value of the input
  * @param {Array} [options] A list of the options for the dropdown
  */
-.directive('rxMultiSelect', function ($document, rxDOMHelper) {
+.directive('rxMultiSelect', function ($document, rxDOMHelper, rxSelectDirective) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxMultiSelect.html',
@@ -142,10 +142,12 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc'])
             };
         },
         link: function (scope, element, attrs, controllers) {
-            var selectElement = rxDOMHelper.find(element, '.rx-multi-select')[0];
+            rxSelectDirective[0].link.apply(this, arguments);
+
+            var previewElement = rxDOMHelper.find(element, '.preview')[0];
 
             var documentClickHandler = function (event) {
-                if (event.target !== selectElement) {
+                if (event.target !== previewElement) {
                     scope.listDisplayed = false;
                     scope.$apply();
                 }
@@ -159,7 +161,7 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc'])
             scope.listDisplayed = false;
 
             scope.toggleDisplay = function (event) {
-                if (event.target === selectElement) {
+                if (event.target === previewElement) {
                     scope.listDisplayed = !scope.listDisplayed;
                 } else {
                     event.stopPropagation();

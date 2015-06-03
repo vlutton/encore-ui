@@ -27,7 +27,7 @@ angular.module('encore.ui.rxSelect', [])
 
             // apply/remove disabled class so we have the ability to
             // apply a CSS selector for purposes of style sibling elements
-            if (attrs.disabled) {
+            if (_.has(attrs, 'disabled')) {
                 wrapper.addClass(disabledClass);
             }
             if (_.has(attrs, 'ngDisabled')) {

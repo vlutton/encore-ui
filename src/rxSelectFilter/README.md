@@ -165,4 +165,4 @@ Merely calls the `applyTo()` method of a `SelectFilter` instance to an input arr
 
 Remember to adhere to the Null Pattern for [tables](#/styleguide/tables) in Encore UI.  When there are no results to populate the table, the table content should say "No [x] were found."  However, if the table is empty because of the applied filters, the message should instead say "No results match those criteria."  This has been included in the demo below for an example implemtation.
 
-The developer is reponsible for ensuring that the multi-select input is wide enough to show the preview text. Especially for the "All except [x]" case, the text could wrap if the proper width is not set.  To facilitate this, a class is provided that adds a '-filter' suffix to the filtered property.  See the demo markup for an example.
+The developer is reponsible for ensuring that the multi-select input is wide enough to show the preview text. Especially for the "All except [x]" case, the text could clip if the proper width is not set.  To facilitate this, a class is provided that adds a '-filter' suffix to the filtered property.  See the demo markup for an example.
