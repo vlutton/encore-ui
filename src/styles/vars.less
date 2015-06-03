@@ -108,11 +108,12 @@
 @inputLabelWidth: 110px;
 @inputColor: @appTextColor;
 @inputColorDisabled: #999;
+@inputColorError: #fc0f1d;
 @inputLabelColor: @subduedTitle;
 @inputPlaceholderColor: #a9a9a9;
 @inputBackground: #fff;
 @inputBackgroundDisabled: #dededd;
-@inputBackgroundError: #fc0f1d;
+@inputBackgroundError: @inputColorError;
 @inputBorderRadius: 0px;
 @inputBorderColor: #ccc;
 @inputBorderColorInvalid: #ff2400;
@@ -208,3 +209,9 @@
 @rxSelect-trigger-color: #aaa;
 @rxSelect-trigger-color-invalid: @inputBorderColorInvalid;
 @rxSelect-trigger-color-disabled: @rxSelect-trigger-color;
+
+/*
+ * rxFieldName
+ */
+@rxFieldName-color: @inputLabelColor;
+@rxFieldName-symbol-color: @inputColorError;
