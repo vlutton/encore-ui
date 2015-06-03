@@ -2,15 +2,19 @@
 
 angular.module('demoApp')
 .controller('rxCheckboxCtrl', function ($scope) {
-    $scope.checkOne = true;
-    $scope.checkThree = true;
-    $scope.checkFive = true;
-    $scope.checkSeven = true;
+    $scope.chkValidEnabledOne = true;
+    $scope.chkValidEnabledTwo = false;
+    $scope.chkValidDisabledOne = true;
+    $scope.chkValidDisabledTwo = false;
+    $scope.chkValidNgDisabledOne = true;
+    $scope.chkValidNgDisabledTwo = false;
 
-    $scope.checkTwo = false;
-    $scope.checkFour = false;
-    $scope.checkSix = false;
-    $scope.checkEight = false;
+    $scope.chkInvalidEnabledOne = true;
+    $scope.chkInvalidEnabledTwo = false;
+    $scope.chkInvalidDisabledOne = true;
+    $scope.chkInvalidDisabledTwo = false;
+    $scope.chkInvalidNgDisabledOne = true;
+    $scope.chkInvalidNgDisabledTwo = false;
 
     $scope.amSure = false;
     $scope.amReallySure = false;

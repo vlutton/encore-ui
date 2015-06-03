@@ -45,81 +45,124 @@
   <table>
     <thead>
       <tr>
+        <th></th>
+        <th>Enabled</th>
         <th>Disabled (ng-disabled)</th>
         <th>Disabled (disabled)</th>
-        <th>Valid</th>
-        <th>Invalid</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <!-- NG-Disabled -->
+        <th>Valid</th>
+        <!-- Valid Enabled-->
         <td>
           <p>
             <input rx-checkbox
-                   id="checkOne"
+                   id="chkValidEnabledOne"
+                   ng-model="chkValidEnabledOne" />
+            <label for="chkValidEnabled">Checked</label>
+          </p>
+          <p>
+            <input rx-checkbox
+                   id="chkValidEnabledTwo"
+                   ng-model="chkValidEnabledTwo" />
+            <label for="chkValidEnabledTwo">Unchecked</label>
+          </p>
+        </td>
+
+        <!-- Valid NG-Disabled -->
+        <td>
+          <p>
+            <input rx-checkbox
+                   id="chkValidNgDisabledOne"
                    ng-disabled="true"
-                   ng-model="checkOne" />
-            <label for="checkOne">Checked</label>
+                   ng-model="chkValidNgDisabledOne" />
+            <label for="chkValidNgDisabledOne">Checked</label>
           </p>
           <p>
             <input rx-checkbox
-                   id="checkTwo"
+                   id="chkValidNgDisabledTwo"
                    ng-disabled="true"
-                   ng-model="checkTwo" />
-            <label for="checkTwo">Unchecked</label>
+                   ng-model="chkValidNgDisabledTwo" />
+            <label for="chkValidNgDisabledTwo">Unchecked</label>
           </p>
         </td>
 
-        <!-- Disabled -->
+        <!-- Valid Disabled -->
         <td>
           <p>
             <input rx-checkbox
-                   id="checkSeven"
+                   id="chkValidDisabledOne"
                    disabled
-                   ng-model="checkSeven" />
-            <label for="checkSeven">Checked</label>
+                   ng-model="chkValidDisabledOne" />
+            <label for="chkValidDisabledOne">Checked</label>
           </p>
           <p>
             <input rx-checkbox
-                   id="checkEight"
+                   id="chkValidDisabledTwo"
                    disabled
-                   ng-model="checkEight" />
-            <label for="checkEight">Unchecked</label>
+                   ng-model="chkValidDisabledTwo" />
+            <label for="chkValidDisabledTwo">Unchecked</label>
           </p>
         </td>
-
-        <!-- Valid -->
+      </tr>
+      <tr>
+        <th>Invalid</th>
+        <!-- Invalid Enabled -->
         <td>
           <p>
             <input rx-checkbox
-                   id="checkThree"
-                   ng-model="checkThree" />
-            <label for="checkThree">Checked</label>
+                   id="chkInvalidEnabledOne"
+                   ng-model="chkInvalidEnabledOne"
+                   always-invalid />
+            <label for="chkInvalidEnabledOne">Checked</label>
           </p>
           <p>
             <input rx-checkbox
-                   id="checkFour"
-                   ng-model="checkFour" />
-            <label for="checkFour">Unchecked</label>
+                   id="chkInvalidEnabledTwo"
+                   ng-model="chkInvalidEnabledTwo"
+                   always-invalid />
+            <label for="chkInvalidEnabledTwo">Unchecked</label>
           </p>
         </td>
 
-        <!-- Invalid -->
+        <!-- Invalid NG-Disabled -->
         <td>
           <p>
             <input rx-checkbox
-                   id="checkFive"
-                   ng-model="checkFive"
+                   id="chkInvalidNgDisabledOne"
+                   ng-model="chkInvalidNgDisabledOne"
+                   ng-disabled="true"
                    always-invalid />
-            <label for="checkFive">Checked</label>
+            <label for="chkInvalidNgDisabledOne">Checked</label>
           </p>
           <p>
             <input rx-checkbox
-                   id="checkSix"
-                   ng-model="checkSix"
+                   id="chkInvalidNgDisabledTwo"
+                   ng-model="chkInvalidNgDisabledTwo"
+                   ng-disabled="true"
                    always-invalid />
-            <label for="checkSix">Unchecked</label>
+            <label for="chkInvalidNgDisabledTwo">Unchecked</label>
+          </p>
+        </td>
+
+        <!-- Invalid Disabled -->
+        <td>
+          <p>
+            <input rx-checkbox
+                   id="chkInvalidDisabledOne"
+                   ng-model="chkInvalidDisabledOne"
+                   disabled
+                   always-invalid />
+            <label for="chkInvalidDisabledOne">Checked</label>
+          </p>
+          <p>
+            <input rx-checkbox
+                   id="chkInvalidDisabledTwo"
+                   ng-model="chkInvalidDisabledTwo"
+                   disabled
+                   always-invalid />
+            <label for="chkInvalidDisabledTwo">Unchecked</label>
           </p>
         </td>
       </tr>

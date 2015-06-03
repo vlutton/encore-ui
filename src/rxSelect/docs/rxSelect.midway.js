@@ -11,30 +11,44 @@ describe('rxSelect', function () {
         demoPage.go('#/component/rxSelect');
     });
 
-    describe('(State) NG-Disabled', exercise.rxSelect({
-        cssSelector: '#selOne',
-        disabled: true,
-        visible: true,
-        valid: true
-    }));
-
-    describe('(State) Disabled', exercise.rxSelect({
-        cssSelector: '#selTwo',
-        disabled: true,
-        visible: true,
-        valid: true
-    }));
-
-    describe('(State) Valid', exercise.rxSelect({
-        cssSelector: '#selThree',
+    describe('(State) Valid Enabled', exercise.rxSelect({
+        cssSelector: '#selValidEnabled',
         disabled: false,
         visible: true,
         valid: true
     }));
 
-    describe('(State) Invalid', exercise.rxSelect({
-        cssSelector: '#selFour',
+    describe('(State) Valid NG-Disabled', exercise.rxSelect({
+        cssSelector: '#selValidNgDisabled',
+        disabled: true,
+        visible: true,
+        valid: true
+    }));
+
+    describe('(State) Valid Disabled', exercise.rxSelect({
+        cssSelector: '#selValidDisabled',
+        disabled: true,
+        visible: true,
+        valid: true
+    }));
+
+    describe('(State) Invalid Enabled', exercise.rxSelect({
+        cssSelector: '#selInvalidEnabled',
         disabled: false,
+        visible: true,
+        valid: false
+    }));
+
+    describe('(State) Invalid NG-Disabled', exercise.rxSelect({
+        cssSelector: '#selInvalidNgDisabled',
+        disabled: true,
+        visible: true,
+        valid: false
+    }));
+
+    describe('(State) Invalid Disabled', exercise.rxSelect({
+        cssSelector: '#selInvalidDisabled',
+        disabled: true,
         visible: true,
         valid: false
     }));

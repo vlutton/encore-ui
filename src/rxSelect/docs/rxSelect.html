@@ -72,53 +72,83 @@
   <table>
     <thead>
       <tr>
-        <th width="150px">State</th>
-        <th>Example</th>
+        <th></th>
+        <th>Enabled</th>
+        <th>Disabled (ng-disabled)</th>
+        <th>Disabled (disabled)</th>
       </tr>
     </thead>
     <tbody>
+      <!-- Valid -->
       <tr>
-        <th>Disabled</th>
+        <th>Valid</th>
+        <!-- Valid Enabled -->
         <td>
           <select rx-select
-                  id="selOne"
-                  ng-model="selOne"
+                  id="selValidEnabled"
+                  ng-model="validEnabled">
+            <option value="1">First</option>
+            <option value="2">Second</option>
+            <option value="3">Third</option>
+            <option value="4">Fourth</option>
+          </select>
+        </td>
+        <!-- Valid Ng-Disabled -->
+        <td>
+          <select rx-select
+                  id="selValidNgDisabled"
+                  ng-model="validNgDisabled"
                   ng-disabled="true">
             <option value="na">Disabled by 'ng-disabled' attribute</option>
           </select>
-          <br />
+        </td>
+
+        <!-- Valid Disabled -->
+        <td>
           <select rx-select
-                  id="selTwo"
+                  id="selValidDisabled"
                   disabled
-                  ng-model="selTwo">
+                  ng-model="validDisabled">
             <option value="na">Disabled by 'disabled' attribute</option>
           </select>
         </td>
       </tr>
+
+      <!-- Invalid -->
       <tr>
-        <th>Valid</th>
+        <th>Invalid</th>
+        <!-- Invalid Enabled -->
         <td>
           <select rx-select
-                  id="selThree"
-                  ng-model="selThree">
+                  id="selInvalidEnabled"
+                  always-invalid
+                  ng-model="invalidEnabled">
             <option value="1">First</option>
             <option value="2">Second</option>
             <option value="3">Third</option>
             <option value="4">Fourth</option>
           </select>
         </td>
-      </tr>
-      <tr>
-        <th>Invalid</th>
+
+        <!-- Invalid Ng-Disabled -->
         <td>
           <select rx-select
-                  id="selFour"
+                  id="selInvalidNgDisabled"
                   always-invalid
-                  ng-model="selFour">
-            <option value="1">First</option>
-            <option value="2">Second</option>
-            <option value="3">Third</option>
-            <option value="4">Fourth</option>
+                  ng-model="invalidNgDisabled"
+                  ng-disabled="true">
+            <option value="na">Disabled by 'ng-disabled' attribute</option>
+          </select>
+        </td>
+
+        <!-- Invalid Disabled -->
+        <td>
+          <select rx-select
+                  id="selInvalidDisabled"
+                  disabled
+                  always-invalid
+                  ng-model="invalidDisabled">
+            <option value="na">Disabled by 'disabled' attribute</option>
           </select>
         </td>
       </tr>
