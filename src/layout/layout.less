@@ -26,11 +26,6 @@
   padding: @layout-gutter-width / 2;
 }
 
-[layout-margin],
-[layout-margin] > [flex] {
-  margin: @layout-gutter-width / 2;
-}
-
 [layout-wrap] {
   .flex-wrap(wrap);
 }
@@ -60,8 +55,25 @@
 }
 
 
+// Vertical and horizontal margins, except on outside and on flex-ordered elements
+.layout-margin-for-name(@divisor, @suffix: null) {
+  .concat-selector('flex', @suffix);
+  [layout-margin] > [@{selector}]:not([flex-order])  {
+    margin: (@layout-gutter-width / @divisor);
+    &:first-child { margin-left: 0; }
+    &:last-child { margin-right: 0; }
+  }
+}
+
+
 .flex-order-for-name(@suffix: null) {
   .concat-selector('flex-order', @suffix);
+  [@{selector}].margin-right {
+    margin-right: @layout-gutter-width / 2;
+  }
+  [@{selector}].margin-left {
+    margin-left: @layout-gutter-width / 2;
+  }
   .loop (@i) when (@i < 10) {
     [@{selector}="@{i}"] { order: @i; }
     .loop (@i + 1);
@@ -190,6 +202,7 @@
 // Flex attributes for layout children
 // ------------------------------
 
+.layout-margin-for-name(2);
 .flex-properties-for-name();
 .layout-align-for-name();
 .flex-order-for-name();
