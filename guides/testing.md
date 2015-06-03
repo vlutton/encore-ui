@@ -13,6 +13,8 @@ More details on these files are found in the files themselves
 
 **protractor.conf.js** - Used by our midway/E2E tests
 
+**protractor.travis.conf.js** - Used by our midway/E2E tests (Travis CI only -- includes visual regression tests)
+
 
 Component Tests (aka unit tests)
 -------------
@@ -137,7 +139,9 @@ describe('Home Page', function () {
     });
 
     // you can skip many tests by simply doing this instead
-    describe('search result pagination', encore.exercise.rxPaginate(homePage.resultsTable.pagination));
+    describe('search result pagination', encore.exercise.rxPaginate({
+        cssSelector: '.my-table .rx-paginate'
+    }));
 
 });
 ```
@@ -147,3 +151,42 @@ The above snippet would run a couple dozen basic tests, assuming there are no ed
 ### Handling Edge Cases in Exercises
 
 If you do have edge cases, many of the exercises support passing in an `options` argument, which should be documented in the [npm home page for rx-page-objects](https://www.npmjs.com/package/rx-page-objects). This allows you to specify aspects of a particular component's implementation to the exercise function, allowing it to skip certain tests that are not valid.
+
+UI Regression Tests
+-------------------
+
+*Goal: Prevent visual regressions by making it easier to compare changes*
+
+[encore-ui-screenshots](https://github.com/rackerlabs/encore-ui-screenshots) is used in EncoreUI for UI regression testing. Currently, it will compare the visual elements of the master branch with your branch during Travis CI pull request runs.
+
+### Running Tests
+
+Simply put, you shouldn't run these tests! They run invisibly on the Travis CI server only. This keeps contributors from checking out megabytes of image comparison files that aren't necessary for development.
+
+But if you do want to run the tests, feel free to run them by themselves to populate a fresh copy of screenshots locally:
+
+```
+cp protractor.travis.conf.js protractor.local.conf.js
+```
+
+Next, edit the section marked `multiCapabilites` by removing the *entire* capability entry with `name: 'Component Functionality'`. This will keep the test suites limited to just visual regression.
+
+```
+./node_modules/.bin/protractor protractor.local.conf.js
+```
+
+This is useful only for experimenting with what your screenshots look like *on your current operating system*, at *your current resolution*, and your *specific version of your browser*! This is why it is recommended that you refrain from running these tests locally. They are designed to run on one machine and one machine only, to ensure that any visual regressions are triggered by visual changes, and not differences in hardware or software.
+
+### Triggering Visual Regression Runs on Travis
+
+In order to get a visual regression to run against your PR, **you must push your pull request directly to the remote repository located at `rackerlabs/encore-ui`, and not a fork**. Travis CI will not expose encrypted environment variables to forks that request a build from Travis (this prevents attackers from dumping your encrypted variables to console via a pull request).
+
+Visual regressions include posting an reference link from a pull request in the encore-ui-screenshots repository to the current pull request. It looks like this:
+
+![A pull request with a screenshot mention.](https://cloud.githubusercontent.com/assets/1214609/7617973/73d8f30c-f974-11e4-9824-141138a13f30.png)
+
+Click the reference link to the encore-ui-screenshots pull request, and check out the "Files" tab to see any visual changes introduced in the pull request.
+
+### Creating a New Baseline for Visual Regression
+
+Once a pull request has been visually signed off on, it should become the new baseline which all new pull requests are compared against. Do this by visiting the link to the encore-ui-screenshots pull request and merging it. From then on, Travis CI pull request builds will pull *those* screenshots and compare against them from now on.
