@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         },
 
         screenshotsClone: {
-            command: ['[ ${TRAVIS_SECURE_ENV_VARS} = "true" ] &&',
+            command: ['[ ${ghToken} ] &&',
                       'git submodule add -f', screenshotPullTemplate, 'screenshots > /dev/null 2>&1;'].join(' '),
             options: {
                 stdout: false
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
         },
 
         screenshotsPush: {
-            command: ['[ ${TRAVIS_SECURE_ENV_VARS} = "false" ] && exit 0;',
+            command: ['[ ${ghToken} -n ] && exit 0;',
                       '[ ${TRAVIS_BRANCH} = "false" ] && exit 0;',
                       'ENCORE_SHA=`git rev-parse HEAD | cut -c-7`;',
                       'BRANCH=SHA-$ENCORE_SHA;',
@@ -52,7 +52,7 @@ module.exports = function (grunt) {
         },
 
         screenshotsPR: {
-            command: ['[ ${TRAVIS_SECURE_ENV_VARS} = "false" ] && exit 0;',
+            command: ['[ ${ghToken} -n ] && exit 0;',
                       '[ ${TRAVIS_BRANCH} = "false" ] && exit 0;',
                       'ENCORE_SHA=`git rev-parse HEAD | cut -c-7`;',
                       'BRANCH=SHA-$ENCORE_SHA;',
