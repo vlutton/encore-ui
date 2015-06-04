@@ -27,15 +27,16 @@ module.exports = function (grunt) {
         },
 
         screenshotsClone: {
-            command: ['[ ${TRAVIS_SECURE_ENV_VARS} = "true" ] &&',
+            command: ['[ ${ghToken} ] &&',
                       'git submodule add -f', screenshotPullTemplate, 'screenshots > /dev/null 2>&1;'].join(' '),
             options: {
-                stdout: false
+                stdout: false,
+                failOnError: false
             }
         },
 
         screenshotsPush: {
-            command: ['[ ${TRAVIS_SECURE_ENV_VARS} = "false" ] && exit 0;',
+            command: ['[ ${ghToken} -n ] && exit 0;',
                       '[ ${TRAVIS_BRANCH} = "false" ] && exit 0;',
                       'ENCORE_SHA=`git rev-parse HEAD | cut -c-7`;',
                       'BRANCH=SHA-$ENCORE_SHA;',
@@ -47,18 +48,22 @@ module.exports = function (grunt) {
                       '[ $? = "1" ] && NO_COMMIT="1" && exit 0;', // skip if nothing committed
                       'git push "' + screenshotPushTemplate + '" $BRANCH > /dev/null 2>&1;'].join(' '),
             options: {
-                stdout: false
+                stdout: false,
+                failOnError: false
             }
         },
 
         screenshotsPR: {
-            command: ['[ ${TRAVIS_SECURE_ENV_VARS} = "false" ] && exit 0;',
+            command: ['[ ${ghToken} -n ] && exit 0;',
                       '[ ${TRAVIS_BRANCH} = "false" ] && exit 0;',
                       'ENCORE_SHA=`git rev-parse HEAD | cut -c-7`;',
                       'BRANCH=SHA-$ENCORE_SHA;',
                       '[ $NO_COMMIT = "1" ] && exit 0;',
                       'node utils/screenshots-pr.js',
-                      '${TRAVIS_REPO_SLUG}#${TRAVIS_PULL_REQUEST} comeatmebro:$BRANCH > /dev/null 2>&1;'].join(' ')
+                      '${TRAVIS_REPO_SLUG}#${TRAVIS_PULL_REQUEST} comeatmebro:$BRANCH > /dev/null 2>&1;'].join(' '),
+            options: {
+                failOnError: false
+            }
         },
 
         npmPublish: {
