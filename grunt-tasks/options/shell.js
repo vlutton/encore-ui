@@ -30,7 +30,8 @@ module.exports = function (grunt) {
             command: ['[ ${ghToken} ] &&',
                       'git submodule add -f', screenshotPullTemplate, 'screenshots > /dev/null 2>&1;'].join(' '),
             options: {
-                stdout: false
+                stdout: false,
+                failOnError: false
             }
         },
 
@@ -47,7 +48,8 @@ module.exports = function (grunt) {
                       '[ $? = "1" ] && NO_COMMIT="1" && exit 0;', // skip if nothing committed
                       'git push "' + screenshotPushTemplate + '" $BRANCH > /dev/null 2>&1;'].join(' '),
             options: {
-                stdout: false
+                stdout: false,
+                failOnError: false
             }
         },
 
@@ -58,7 +60,10 @@ module.exports = function (grunt) {
                       'BRANCH=SHA-$ENCORE_SHA;',
                       '[ $NO_COMMIT = "1" ] && exit 0;',
                       'node utils/screenshots-pr.js',
-                      '${TRAVIS_REPO_SLUG}#${TRAVIS_PULL_REQUEST} comeatmebro:$BRANCH > /dev/null 2>&1;'].join(' ')
+                      '${TRAVIS_REPO_SLUG}#${TRAVIS_PULL_REQUEST} comeatmebro:$BRANCH > /dev/null 2>&1;'].join(' '),
+            options: {
+                failOnError: false
+            }
         },
 
         npmPublish: {
