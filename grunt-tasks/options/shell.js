@@ -27,7 +27,7 @@ module.exports = function (grunt) {
         },
 
         screenshotsClone: {
-            command: ['[ ${ghToken} ] &&',
+            command: ['[ ! -z "${ghToken}" ] &&',
                       'git submodule add -f', screenshotPullTemplate, 'screenshots > /dev/null 2>&1;'].join(' '),
             options: {
                 stdout: false,
@@ -36,9 +36,9 @@ module.exports = function (grunt) {
         },
 
         screenshotsPush: {
-            command: ['[ ${ghToken} -n ] && exit 0;',
+            command: ['[ -z "${ghToken}" ] && exit 0;',
                       '[ ${TRAVIS_BRANCH} = "false" ] && exit 0;',
-                      'ENCORE_SHA=`git rev-parse HEAD | cut -c-7`;',
+                      'ENCORE_SHA=`echo $TRAVIS_COMMIT_RANGE | cut -c44-51`',
                       'BRANCH=SHA-$ENCORE_SHA;',
                       'cd screenshots; git checkout -b $BRANCH;',
                       'git config user.email "comeatmebro@users.noreply.github.com";',
@@ -54,7 +54,7 @@ module.exports = function (grunt) {
         },
 
         screenshotsPR: {
-            command: ['[ ${ghToken} -n ] && exit 0;',
+            command: ['[ -z "${ghToken}" ] && exit 0;',
                       '[ ${TRAVIS_BRANCH} = "false" ] && exit 0;',
                       'ENCORE_SHA=`git rev-parse HEAD | cut -c-7`;',
                       'BRANCH=SHA-$ENCORE_SHA;',
