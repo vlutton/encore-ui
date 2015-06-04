@@ -48,49 +48,16 @@ rx-collapse {
   }
 
   /* BEGIN SEE MORE/ SEE LESS OPTION STYLES */
-  
-  .tabStyle_2{
+
+
+  .smlTitle{
     cursor: pointer;
+    color:#898989;
+    font-size: 12pt;
   }
-    .smlTitle{
-        color:#898989;
-    }
-    .smChevWrap{
-        background:none !important;
-        display: inline-block;
-        .box-sizing(border-box);
-        width: 30px;
-        padding: 0 10px;
-        vertical-align: middle;
-    }
-    
-    .ts2Wrapper{
-        width:150px;
-    }
 
-    .smChev{
-        margin-left:-10px !important;
-    }
+  .hideBorder{
+      border:none;
+  }
 
-    .smChev {
-        cursor: pointer;
-        &:after {
-          display: inline-block;
-          color: @borderGrey;
-          font-size: 28px;
-          .chevron-mixin(-1);
-        }
-      }
-
-      &.expanded {
-        .smChev {
-          &:after {
-            .chevron-mixin;
-          }
-        }
-      }
-    .hideBorder{
-        border:none;
-    }
-    
 }
