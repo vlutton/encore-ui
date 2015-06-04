@@ -11,6 +11,8 @@ before_install:
 - npm install -g grunt-cli bower
 install:
 - travis_retry npm install
+# keep tricky cairo dependencies for visual regression isolated to Travis builds only
+- travis_retry npm install snappit-mocha-protractor@0.0.6
 - bower install
 - ./node_modules/.bin/webdriver-manager update --standalone
 - grunt screenshots:clone

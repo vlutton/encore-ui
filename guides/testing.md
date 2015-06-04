@@ -166,6 +166,7 @@ Simply put, you shouldn't run these tests! They run invisibly on the Travis CI s
 But if you do want to run the tests, feel free to run them by themselves to populate a fresh copy of screenshots locally:
 
 ```
+npm install snappit-mocha-protractor
 cp protractor.travis.conf.js protractor.local.conf.js
 ```
 
