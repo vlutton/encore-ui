@@ -59,16 +59,7 @@ module.exports = {
                 content = content.replace(/\(\.\/(.*?)\)/g, '(' + githubPath + ')');
                 return markdown(content);
             }
-
         }
-    },
-    font: {
-        files: [{
-            expand: true,
-            src: ['*'],
-            cwd: 'build/bower_components/font-awesome/fonts',
-            dest: '<%= config.font %>'
-        }]
     },
     coverage: {
         files: [{
