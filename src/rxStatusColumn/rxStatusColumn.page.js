@@ -83,6 +83,7 @@ var rxStatusColumn = {
                 },
 
                 /**
+                   Warning: This property is known to be unstable in many Selenium end to end test runs in EncoreUI.
                    @memberof rxStatusColumn.tooltip
                    @returns {String} Tooltip text.
                 */
