@@ -15,7 +15,7 @@ angular.module('encore.ui.rxSelect', [])
         },
         link: function (scope, element, attrs) {
             var disabledClass = 'rx-disabled';
-            var wrapper = angular.element('<div class="rxSelect"></div>');
+            var wrapper = '<div class="rxSelect"></div>';
             var fakeSelect = '<div class="fake-select">' +
                     '<div class="select-trigger">' +
                         '<i class="fa fa-fw fa-caret-down"></i>' +
@@ -24,25 +24,27 @@ angular.module('encore.ui.rxSelect', [])
 
             element.wrap(wrapper);
             element.after(fakeSelect);
+            // must be defined AFTER the element is wrapped
+            var parent = element.parent();
 
             // apply/remove disabled class so we have the ability to
             // apply a CSS selector for purposes of style sibling elements
             if (_.has(attrs, 'disabled')) {
-                wrapper.addClass(disabledClass);
+                parent.addClass(disabledClass);
             }
             if (_.has(attrs, 'ngDisabled')) {
                 scope.$watch('ngDisabled', function (newVal) {
                     if (newVal === true) {
-                        wrapper.addClass(disabledClass);
+                        parent.addClass(disabledClass);
                     } else {
-                        wrapper.removeClass(disabledClass);
+                        parent.removeClass(disabledClass);
                     }
                 });
             }
 
             // remove stylistic markup when element is destroyed
             element.on('$destroy', function () {
-                wrapper[0].remove();
+                parent[0].remove();
             });
         }
     };
