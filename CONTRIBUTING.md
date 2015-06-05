@@ -101,12 +101,42 @@ Sometimes changes are urgent, and in this case, the PR should be reviewed immedi
 - Complete documentation (a docs subfolder with working examples and [ngdocs](https://github.com/angular/angular.js/wiki/Writing-AngularJS-Documentation)), along with inline code comments as beneficial
 - Unit tests with 80% line coverage
 - Midways tests for all new UI functionality
+- Screenshots highlighting design implementation
 - Proper commit logs
 - Passes JSHint & CSSLint
 
 Once a pull request has been submitted, you simply need to wait for the EncoreUI team to respond. Every pull request sends an e-mail out to the team, so there is no need to send any further communication to the team. If the pull request is urgent, that needs to be communicated before the pull request is sent.
 
 We like to at least comment on, if not accept, pull requests within three business days (and, typically, one business day). We may suggest some changes or improvements or alternatives, so **make sure there is time for review in your release plan**.
+
+### Design Review of Pull Requests
+
+Many times, pull requests will touch resources that render visually. These are still changes that must be reviewed! For the sake of simplicity and transparency, it is the responsibility of the author of a pull request to also include a comment containing screenshots of the visual changes. Here is an example of a typical pull request workflow containing designer feedback and sign off.
+
+1. A pull request author finishes some new feature that contains visual changes *already mocked-up and approved by design*.
+0. The pull request author gathers the appropriate before (master branch, usually) and after screenshots of each relevant section.
+0. A pull request is created.
+0. A comment is created [that tags an Encore-UI designer](https://github.com/blog/821). Immediately below this "@" mention, the screenshots are [uploaded in the comment interface](https://help.github.com/articles/issue-attachments/).
+0. The initial visual feedback suggestion from our team recommends changing something so it better complies with original mock-ups they provided. This change would require new screenshots!
+0. The pull request author changes something about the visual aspect of the design. They capture the new, changed screenshots (the original ones remain unchanged).
+0. New screenshots are added, exactly how they were outlined above. Copy any pre-existing "before" screenshots from the old screenshot collection. Tag the designer reviewing this pull request.
+0. Previous screenshots are edited to no longer render inline. This prevents confusion while retaining accurate historical records of visual feedback during review.
+
+#### Editing previous screenshots
+
+Here is an example of how you should edit the old screenshot comments to change them from inline rendered to non-rendered.
+
+> Before. Used to render inline.
+
+```
+![I heard you like screenshots in github](https://cloud.githubusercontent.com/assets/1214609/7869834/dcd3cada-054a-11e5-9f4f-79d35d1153db.jpg)
+```
+
+> After. Will no longer render inline.
+
+```
+[Outdated screenshot.](https://cloud.githubusercontent.com/assets/12158682/7732292/7690b012-feec-11e4-9f2c-5dd32c81ad07.png)
+```
 
 ### Finalizing a Pull Request
 
