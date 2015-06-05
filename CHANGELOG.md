@@ -1,3 +1,30 @@
+<a name="1.19.0"></a>
+## 1.19.0 (2015-06-05)
+
+
+#### Bug Fixes
+
+* **Layout:** remove redundant import ([9c9e8c5b](git@github.com:rackerlabs/encore-ui/commit/9c9e8c5b600247e6f8a59eee9458f193b1fd5100))
+* **demo:** Render breadcrumbs in clearfixed div ([63334ed0](git@github.com:rackerlabs/encore-ui/commit/63334ed042c03039442cc8b4c6690f3167c37559))
+* **fontawesome:** stop bundling fontawesome ([c28d06a0](git@github.com:rackerlabs/encore-ui/commit/c28d06a0871375793d4e8b892eb9a3f1cf22f89a))
+* **ng1dot3:** modify for angular 1.3 support ([a546cc7a](git@github.com:rackerlabs/encore-ui/commit/a546cc7a0e4bb35cf9ffcfed2a5badaadb08d61b))
+* **rxApp:** Notifications width fills on nav collapse ([51c98bda](git@github.com:rackerlabs/encore-ui/commit/51c98bda1b90b2d327f95eddcae29c0de71bf135))
+* **rxFormOptionTable:** use link instead of controller ([aa411662](git@github.com:rackerlabs/encore-ui/commit/aa411662a9ffd5ad9dba538530d09e524b208eea), closes [#841](git@github.com:rackerlabs/encore-ui/issues/841))
+* **styles:** disabled styles trump all others ([6f8a5d80](git@github.com:rackerlabs/encore-ui/commit/6f8a5d80f7ea580f5564eb3e23d2af85a2539f7e))
+* **travis:**
+  * Increases stability ([49d74839](git@github.com:rackerlabs/encore-ui/commit/49d7483924efd2755e0b82d23d0636e84a0f59b2))
+  * Don't fail the build for screenshots ([5592aca7](git@github.com:rackerlabs/encore-ui/commit/5592aca72fde801825c04d2bc51f82eba5dc453f))
+  * Isolate cairo depenedency to CI builds only ([7beffd2a](git@github.com:rackerlabs/encore-ui/commit/7beffd2adbb5a94f56afa647a528a1c9e94d8f6f))
+
+
+#### Features
+
+* **rxApp:** Add LDAP filtering in the nav ([584c201d](git@github.com:rackerlabs/encore-ui/commit/584c201d45d4c8c79a5cc5fe69774d46371912ea), closes [#958](git@github.com:rackerlabs/encore-ui/issues/958))
+* **rxFieldName:** add rxFieldName component ([4886a72a](git@github.com:rackerlabs/encore-ui/commit/4886a72a3ef6e910a0b23dc154260293bf9409db))
+* **rxSelectFilter:** Leverage new rxCheckbox and rxSelect components ([6e7232ba](git@github.com:rackerlabs/encore-ui/commit/6e7232ba63bcd13fbd510dfe40ebbb2dd305bd95))
+* **screenshots:** Compare with protractor ([09cfc8d0](git@github.com:rackerlabs/encore-ui/commit/09cfc8d02d0b44af12d1240515cf7bbe50f89675))
+
+
 <a name="1.18.1"></a>
 ### 1.18.1 (2015-06-02)
 
