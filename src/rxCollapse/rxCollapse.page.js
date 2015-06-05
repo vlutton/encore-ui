@@ -27,6 +27,17 @@ var rxCollapse = {
             return this.rootElement.$('.title');
         }
     },
+    seeMoreTitle: {
+        get: function () {
+            return element.all(by.css('.smlTitle .title')).get(1);
+        }
+    },
+
+    otherBtnToggle: {
+        get: function () {
+            return element.all(by.css('.tabStyle_2 .smlTitle')).get(2);
+        }
+    },
 
     btnToggle: {
         get: function () {

@@ -51,5 +51,19 @@ exports.rxCollapse = function (options) {
             expect(component.isExpanded).to.eventually.be.true;
         });
 
+        it('should show see more for title of other version', function () {
+            expect(component.seeMoreTitle.getText()).to.eventually.equal('See More');
+        });
+
+        it('should toggle between see more or see less as text', function () {
+            //Expand
+            component.otherBtnToggle.click();
+            expect(component.seeMoreTitle.getText()).to.eventually.equal('See Less');
+
+            //Collapse
+            component.otherBtnToggle.click();
+            expect(component.seeMoreTitle.getText()).to.eventually.equal('See More');
+        });
+
     };
 };
