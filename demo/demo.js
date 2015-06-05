@@ -186,6 +186,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                             linkText: 'Descriptions & Metadata'
                         },
                         {
+                            href: '#/styleguide/basics#no-data',
+                            linkText: 'No Data to Display'
+                        },
+                        {
                             href: '#/styleguide/basics#lists',
                             linkText: 'Lists'
                         },
