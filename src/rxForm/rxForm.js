@@ -162,7 +162,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
             emptyMessage: '@',
             disableFn: '&?'
         },
-        controller: function ($scope, $element) {
+        link: function (scope, element) {
             var determineMatch = function (val1, val2) {
                 if (_.isUndefined(val1) || _.isUndefined(val2)) {
                     return false;
@@ -171,28 +171,32 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
                 return (val1 == val2);
             };
 
-            $scope.checkDisabled = function (row) {
-                return $scope.disableFn({ tableId: $element.attr('id'), fieldId: $scope.fieldId, rowId: row.id });
+            scope.checkDisabled = function (row) {
+                return scope.disableFn({
+                    tableId: element.attr('id'),
+                    fieldId: scope.fieldId,
+                    rowId: row.id
+                });
             };
 
             // Determines whether the row is the initial choice
-            $scope.isCurrent = function (val) {
-                return determineMatch(val, $scope.selected);
+            scope.isCurrent = function (val) {
+                return determineMatch(val, scope.selected);
             };
 
             // Determines whether the row is selected
-            $scope.isSelected = function (val, idx) {
+            scope.isSelected = function (val, idx) {
                 // row can only be 'selected' if it's not the 'current' value
-                if (!$scope.isCurrent(val)) {
-                    if ($scope.type == 'radio') {
-                        return (val == $scope.model);
-                    } else if ($scope.type == 'checkbox') {
+                if (!scope.isCurrent(val)) {
+                    if (scope.type == 'radio') {
+                        return (val == scope.model);
+                    } else if (scope.type == 'checkbox') {
                         if (!_.isUndefined(val)) {
                             // if 'val' is defined, run it through our custom matcher
-                            return determineMatch(val, $scope.model[idx]);
+                            return determineMatch(val, scope.model[idx]);
                         } else {
                             // otherwise, just return the value of the model and angular can decide
-                            return $scope.modelProxy[idx];
+                            return scope.modelProxy[idx];
                         }
                     }
                 }
@@ -205,9 +209,9 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
              * Returns a true value if required="true" and there is at least one checkbox
              * checked (based on $scope.values).
              */
-            $scope.checkRequired = function () {
-                if (_.isBoolean($scope.required)) {
-                    return $scope.required && boxesChecked === 0;
+            scope.checkRequired = function () {
+                if (_.isBoolean(scope.required)) {
+                    return scope.required && boxesChecked === 0;
                 } else {
                     return false;
                 }
@@ -220,8 +224,8 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
             // an array of `true` / `false` values. We then have to take care
             // of updating the actual $scope.model ourselves in `updateCheckboxes`
             // with the correct ngTrueValue/ngFalseValue values
-            $scope.modelProxy = _.map($scope.model, function (val, index) {
-                var data = $scope.data[index];
+            scope.modelProxy = _.map(scope.model, function (val, index) {
+                var data = scope.data[index];
                 var trueValue = _.has(data, 'value') ? data.value : true;
                 return val === trueValue;
             });
@@ -230,7 +234,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
             // need an array to store the indexes of checked boxes. ng-required is
             // specifically set if required is true and the array is empty.
             var boxesChecked = 0;
-            _.forEach($scope.modelProxy, function (el) {
+            _.forEach(scope.modelProxy, function (el) {
                 if (el) {
                     boxesChecked += 1;
                 }
@@ -241,12 +245,12 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
              * @param {String|boolean} val - The checkbox value (Boolean, ng-true-value or ng-false-value per row)
              * @param {Integer} index - Array index of the checkbox element marked true
              */
-            $scope.updateCheckboxes = function (val, index) {
-                var data = $scope.data[index];
+            scope.updateCheckboxes = function (val, index) {
+                var data = scope.data[index];
                 var trueValue = _.has(data, 'value') ? data.value : true;
                 var falseValue = _.has(data, 'falseValue') ? data.falseValue : false;
 
-                $scope.model[index] = val ? trueValue : falseValue;
+                scope.model[index] = val ? trueValue : falseValue;
 
                 if (val) {
                     boxesChecked += 1;
@@ -260,7 +264,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
              * @param {Object} column - Column whose `key` is an Angular Expression or HTML to be compiled
              * @param {Object} row - Data object with data to be used against the expression
              */
-            $scope.getContent = function (column, row) {
+            scope.getContent = function (column, row) {
                 var expr = column.key;
                 // If no expression exit out;
                 if (!expr) {
@@ -277,7 +281,6 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
                 return outputHTML;
             };
         }
-
     };
 })
 /**
