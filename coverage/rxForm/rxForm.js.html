@@ -361,7 +361,10 @@
 334
 335
 336
-337</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+337
+338
+339
+340</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -539,6 +542,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">17</span>
 <span class="cline-any cline-yes">330</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -638,7 +645,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -861,7 +867,7 @@
             emptyMessage: '@',
             disableFn: '&amp;?'
         },
-        controller: function ($scope, $element) {
+        link: function (scope, element) {
             var determineMatch = function (val1, val2) {
                 if (_.isUndefined(val1) || _.isUndefined(val2)) {
                     return false;
@@ -870,28 +876,32 @@
                 return (val1 == val2);
             };
 &nbsp;
-            $scope.checkDisabled = function (row) {
-                return $scope.disableFn({ tableId: $element.attr('id'), fieldId: $scope.fieldId, rowId: row.id });
+            scope.checkDisabled = function (row) {
+                return scope.disableFn({
+                    tableId: element.attr('id'),
+                    fieldId: scope.fieldId,
+                    rowId: row.id
+                });
             };
 &nbsp;
             // Determines whether the row is the initial choice
-            $scope.isCurrent = function (val) {
-                return determineMatch(val, $scope.selected);
+            scope.isCurrent = function (val) {
+                return determineMatch(val, scope.selected);
             };
 &nbsp;
             // Determines whether the row is selected
-            $scope.isSelected = function (val, idx) {
+            scope.isSelected = function (val, idx) {
                 // row can only be 'selected' if it's not the 'current' value
-                if (!$scope.isCurrent(val)) {
-                    if ($scope.type == 'radio') {
-                        return (val == $scope.model);
-                    } else <span class="missing-if-branch" title="else path not taken" >E</span>if ($scope.type == 'checkbox') {
+                if (!scope.isCurrent(val)) {
+                    if (scope.type == 'radio') {
+                        return (val == scope.model);
+                    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (scope.type == 'checkbox') {
                         if (!_.isUndefined(val)) {
                             // if 'val' is defined, run it through our custom matcher
-                            return determineMatch(val, $scope.model[idx]);
+                            return determineMatch(val, scope.model[idx]);
                         } else {
                             // otherwise, just return the value of the model and angular can decide
-                            return $scope.modelProxy[idx];
+                            return scope.modelProxy[idx];
                         }
                     }
                 }
@@ -904,9 +914,9 @@
              * Returns a true value if required="true" and there is at least one checkbox
              * checked (based on $scope.values).
              */
-            $scope.checkRequired = function () {
-                if (_.isBoolean($scope.required)) {
-                    return $scope.required &amp;&amp; boxesChecked === 0;
+            scope.checkRequired = function () {
+                if (_.isBoolean(scope.required)) {
+                    return scope.required &amp;&amp; boxesChecked === 0;
                 } else {
                     return false;
                 }
@@ -919,8 +929,8 @@
             // an array of `true` / `false` values. We then have to take care
             // of updating the actual $scope.model ourselves in `updateCheckboxes`
             // with the correct ngTrueValue/ngFalseValue values
-            $scope.modelProxy = _.map($scope.model, function (val, index) {
-                var data = $scope.data[index];
+            scope.modelProxy = _.map(scope.model, function (val, index) {
+                var data = scope.data[index];
                 var trueValue = _.has(data, 'value') ? data.value : true;
                 return val === trueValue;
             });
@@ -929,7 +939,7 @@
             // need an array to store the indexes of checked boxes. ng-required is
             // specifically set if required is true and the array is empty.
             var boxesChecked = 0;
-            _.forEach($scope.modelProxy, function (el) {
+            _.forEach(scope.modelProxy, function (el) {
                 if (el) {
                     boxesChecked += 1;
                 }
@@ -940,12 +950,12 @@
              * @param {String|boolean} val - The checkbox value (Boolean, ng-true-value or ng-false-value per row)
              * @param {Integer} index - Array index of the checkbox element marked true
              */
-            $scope.updateCheckboxes = <span class="fstat-no" title="function not covered" >function (val, index) {</span>
-<span class="cstat-no" title="statement not covered" >                var data = $scope.data[index];</span>
+            scope.updateCheckboxes = <span class="fstat-no" title="function not covered" >function (val, index) {</span>
+<span class="cstat-no" title="statement not covered" >                var data = scope.data[index];</span>
 <span class="cstat-no" title="statement not covered" >                var trueValue = _.has(data, 'value') ? data.value : true;</span>
 <span class="cstat-no" title="statement not covered" >                var falseValue = _.has(data, 'falseValue') ? data.falseValue : false;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >                $scope.model[index] = val ? trueValue : falseValue;</span>
+<span class="cstat-no" title="statement not covered" >                scope.model[index] = val ? trueValue : falseValue;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                if (val) {</span>
 <span class="cstat-no" title="statement not covered" >                    boxesChecked += 1;</span>
@@ -959,7 +969,7 @@
              * @param {Object} column - Column whose `key` is an Angular Expression or HTML to be compiled
              * @param {Object} row - Data object with data to be used against the expression
              */
-            $scope.getContent = function (column, row) {
+            scope.getContent = function (column, row) {
                 var expr = column.key;
                 // If no expression exit out;
                 <span class="missing-if-branch" title="if path not taken" >I</span>if (!expr) {
@@ -976,7 +986,6 @@
                 return outputHTML;
             };
         }
-&nbsp;
     };
 })
 /**
@@ -1038,7 +1047,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 02 2015 09:44:49 GMT-0400 (EDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 05 2015 16:56:52 GMT-0400 (EDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

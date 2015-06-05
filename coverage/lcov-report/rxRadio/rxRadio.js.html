@@ -15,10 +15,10 @@
 <div class="header low">
     <h1>Code coverage report for <span class="entity">rxRadio/rxRadio.js</span></h1>
     <h2>
-        Statements: <span class="metric">5.26% <small>(1 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">5% <small>(1 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">0% <small>(0 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">5.26% <small>(1 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">5% <small>(1 / 20)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">rxRadio/</a> &#187; rxRadio.js</div>
@@ -70,7 +70,9 @@
 43
 44
 45
-46</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+46
+47
+48</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -90,6 +92,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,32 +133,34 @@
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            return <span class="fstat-no" title="function not covered" >function (scope, element, attrs) {</span></span>
 <span class="cstat-no" title="statement not covered" >                var disabledClass = 'rx-disabled';</span>
-<span class="cstat-no" title="statement not covered" >                var wrapper = angular.element('&lt;div class="rxRadio"&gt;&lt;/div&gt;');</span>
+<span class="cstat-no" title="statement not covered" >                var wrapper = '&lt;div class="rxRadio"&gt;&lt;/div&gt;';</span>
 <span class="cstat-no" title="statement not covered" >                var fakeRadio = '&lt;div class="fake-radio"&gt;' +</span>
                         '&lt;div class="tick"&gt;&lt;/div&gt;' +
                     '&lt;/div&gt;';
 &nbsp;
 <span class="cstat-no" title="statement not covered" >                element.wrap(wrapper);</span>
 <span class="cstat-no" title="statement not covered" >                element.after(fakeRadio);</span>
+                // must be defined AFTER the element is wrapped
+<span class="cstat-no" title="statement not covered" >                var parent = element.parent();</span>
 &nbsp;
                 // apply/remove disabled attribute so we can
                 // apply a CSS selector to style sibling elements
 <span class="cstat-no" title="statement not covered" >                if (attrs.disabled) {</span>
-<span class="cstat-no" title="statement not covered" >                    wrapper.addClass(disabledClass);</span>
+<span class="cstat-no" title="statement not covered" >                    parent.addClass(disabledClass);</span>
                 }
 <span class="cstat-no" title="statement not covered" >                if (_.has(attrs, 'ngDisabled')) {</span>
 <span class="cstat-no" title="statement not covered" >                    scope.$watch('ngDisabled', <span class="fstat-no" title="function not covered" >function (newVal) {</span></span>
 <span class="cstat-no" title="statement not covered" >                        if (newVal === true) {</span>
-<span class="cstat-no" title="statement not covered" >                            wrapper.addClass(disabledClass);</span>
+<span class="cstat-no" title="statement not covered" >                            parent.addClass(disabledClass);</span>
                         } else {
-<span class="cstat-no" title="statement not covered" >                            wrapper.removeClass(disabledClass);</span>
+<span class="cstat-no" title="statement not covered" >                            parent.removeClass(disabledClass);</span>
                         }
                     });
                 }
 &nbsp;
                 // remove stylistic markup when element is destroyed
 <span class="cstat-no" title="statement not covered" >                element.on('$destroy', <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >                    wrapper[0].remove();</span>
+<span class="cstat-no" title="statement not covered" >                    parent[0].remove();</span>
                 });
             };
         }//compile
@@ -165,7 +171,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 02 2015 09:44:49 GMT-0400 (EDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 05 2015 16:56:52 GMT-0400 (EDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

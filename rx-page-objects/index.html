@@ -21,6 +21,11 @@
 <li><a href="#encore.module_rxCollapse.initialize">encore.rxCollapse.initialize(rxCollapseElement)</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_rxFieldName">encore.rxFieldName</a><ul>
+<li><a href="#encore.module_rxFieldName.main">encore.rxFieldName.main</a></li>
+<li><a href="#encore.module_rxFieldName.initialize">encore.rxFieldName.initialize(rxFieldNameElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxOptionFormTable">encore.rxOptionFormTable</a><ul>
 <li><a href="#encore.module_rxOptionFormTable.main">encore.rxOptionFormTable.main</a></li>
 <li><a href="#encore.module_rxOptionFormTable.initialize">encore.rxOptionFormTable.initialize(rxOptionFormTableElement)</a></li>
@@ -92,6 +97,7 @@
 <li><a href="#encore.exercise.module_rxCharacterCount">encore.exercise.rxCharacterCount</a></li>
 <li><a href="#encore.exercise.module_rxCheckbox">encore.exercise.rxCheckbox</a></li>
 <li><a href="#encore.exercise.module_rxCollapse">encore.exercise.rxCollapse</a></li>
+<li><a href="#encore.exercise.module_rxFieldName">encore.exercise.rxFieldName</a></li>
 <li><a href="#encore.exercise.module_rxPaginate">encore.exercise.rxPaginate</a></li>
 <li><a href="#encore.exercise.module_rxRadio">encore.exercise.rxRadio</a></li>
 <li><a href="#encore.exercise.module_rxSearchBox">encore.exercise.rxSearchBox</a></li>
@@ -129,6 +135,13 @@
 </li>
 <li><a href="#rxCollapse">rxCollapse</a><ul>
 <li><a href="#rxCollapse.isDisplayed">rxCollapse.isDisplayed()</a></li>
+</ul>
+</li>
+<li><a href="#rxFieldName">rxFieldName</a><ul>
+<li><a href="#rxFieldName.isSymbolVisible">rxFieldName.isSymbolVisible()</a></li>
+<li><a href="#rxFieldName.isSymbolPresent">rxFieldName.isSymbolPresent()</a></li>
+<li><a href="#rxFieldName.isDisplayed">rxFieldName.isDisplayed()</a></li>
+<li><a href="#rxFieldName.isPresent">rxFieldName.isPresent()</a></li>
 </ul>
 </li>
 <li><a href="#rxForm">rxForm</a><ul>
@@ -261,13 +274,10 @@
 <li><a href="#rxMultiSelect.openMenu">rxMultiSelect.openMenu()</a></li>
 <li><a href="#rxMultiSelect.isOpen">rxMultiSelect.isOpen()</a></li>
 <li><a href="#rxMultiSelect.select">rxMultiSelect.select(optionTexts)</a></li>
-<li><a href="#rxMultiSelect.unselect">rxMultiSelect.unselect(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.deselect">rxMultiSelect.deselect(optionTexts)</a></li>
 <li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
 <li><a href="#rxMultiSelect.option.text">option.text</a></li>
 <li><a href="#rxMultiSelect.option.value">option.value</a></li>
-<li><a href="#rxMultiSelect.option.select">option.select()</a></li>
-<li><a href="#rxMultiSelect.option.unselect">option.unselect()</a></li>
-<li><a href="#rxMultiSelect.option.isSelected">option.isSelected()</a></li>
 </ul>
 </li>
 </ul>
@@ -381,7 +391,25 @@
 <ul>
 <li>rxCollapseElement <code>WebElement</code> - WebElement to be transformed into an rxCollapseElement object.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the rxCollapse object.<br><a name="encore.module_rxOptionFormTable"></a></p>
+<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the rxCollapse object.<br><a name="encore.module_rxFieldName"></a></p>
+<h1 id="encore-rxfieldname">encore.rxFieldName</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxFieldName">encore.rxFieldName</a><ul>
+<li><a href="#encore.module_rxFieldName.main">encore.rxFieldName.main</a></li>
+<li><a href="#encore.module_rxFieldName.initialize">encore.rxFieldName.initialize(rxFieldNameElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxFieldName.main"></a></p>
+<h2 id="encore-rxfieldname-main">encore.rxFieldName.main</h2>
+<p><strong>Returns</strong>: <a href="#rxFieldName">rxFieldName</a> - Page object representing the <em>first</em> rxFieldName object found on the page.<br><a name="encore.module_rxFieldName.initialize"></a></p>
+<h2 id="encore-rxfieldname-initialize-rxfieldnameelement-">encore.rxFieldName.initialize(rxFieldNameElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxFieldNameElement <code>WebElement</code> - WebElement to be transformed into an rxFieldNameElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxFieldName">rxFieldName</a> - Page object representing the rxFieldName object.<br><a name="encore.module_rxOptionFormTable"></a></p>
 <h1 id="encore-rxoptionformtable">encore.rxOptionFormTable</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -575,7 +603,7 @@ it(&#39;should select the country&#39;, function () {
 <p><strong>Params</strong></p>
 <ul>
 <li>filterData <code>Object</code> - Key-value pairs of the rxMultiSelects&#39; labels and their options to select.<pre><code>                              The value is an object, where the keys are the options and the values indicate
-                              if the option should be selected or unselected.  
+                              if the option should be selected or deselected.  
 </code></pre></li>
 </ul>
 <p><strong>Returns</strong>: <code>undefined</code><br><strong>Example</strong>  </p>
@@ -731,6 +759,19 @@ trailing whitespace when calculating the remaining character count.  </li>
     cssSelector: &#39;.secondary-info rx-paginate&#39;, // select one of many widgets on page
 }));
 </code></pre>
+<p><a name="encore.exercise.module_rxFieldName"></a></p>
+<h1 id="encore-exercise-rxfieldname">encore.exercise.rxFieldName</h1>
+<p>rxFieldName exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[visible=true] <code>string</code> - Determines if the field name is visible  </li>
+<li>[present=true] <code>string</code> - Determines if the field name is present in the DOM  </li>
+<li>[required=false] <code>string</code> - Determines if the field name displays as required  </li>
+</ul>
+</li>
+</ul>
 <p><a name="encore.exercise.module_rxPaginate"></a></p>
 <h1 id="encore-exercise-rxpaginate">encore.exercise.rxPaginate</h1>
 <p>rxPaginate exercises.</p>
@@ -926,7 +967,27 @@ trailing whitespace when calculating the remaining character count.  </li>
 </ul>
 <p><a name="rxCollapse.isDisplayed"></a></p>
 <h2 id="rxcollapse-isdisplayed-">rxCollapse.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxForm"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxFieldName"></a></p>
+<h1 id="rxfieldname">rxFieldName</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxFieldName">rxFieldName</a><ul>
+<li><a href="#rxFieldName.isSymbolVisible">rxFieldName.isSymbolVisible()</a></li>
+<li><a href="#rxFieldName.isSymbolPresent">rxFieldName.isSymbolPresent()</a></li>
+<li><a href="#rxFieldName.isDisplayed">rxFieldName.isDisplayed()</a></li>
+<li><a href="#rxFieldName.isPresent">rxFieldName.isPresent()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxFieldName.isSymbolVisible"></a></p>
+<h2 id="rxfieldname-issymbolvisible-">rxFieldName.isSymbolVisible()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - True if field name displays as required (symbol is currently displayed).<br><a name="rxFieldName.isSymbolPresent"></a></p>
+<h2 id="rxfieldname-issymbolpresent-">rxFieldName.isSymbolPresent()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the required symbol is present in the DOM.<br><a name="rxFieldName.isDisplayed"></a></p>
+<h2 id="rxfieldname-isdisplayed-">rxFieldName.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxFieldName.isPresent"></a></p>
+<h2 id="rxfieldname-ispresent-">rxFieldName.isPresent()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is present on the page.<br><a name="rxForm"></a></p>
 <h1 id="rxform">rxForm</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -1606,13 +1667,10 @@ dropdown.selectOption(&#39;United States&#39;);
 <li><a href="#rxMultiSelect.openMenu">rxMultiSelect.openMenu()</a></li>
 <li><a href="#rxMultiSelect.isOpen">rxMultiSelect.isOpen()</a></li>
 <li><a href="#rxMultiSelect.select">rxMultiSelect.select(optionTexts)</a></li>
-<li><a href="#rxMultiSelect.unselect">rxMultiSelect.unselect(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.deselect">rxMultiSelect.deselect(optionTexts)</a></li>
 <li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
 <li><a href="#rxMultiSelect.option.text">option.text</a></li>
 <li><a href="#rxMultiSelect.option.value">option.value</a></li>
-<li><a href="#rxMultiSelect.option.select">option.select()</a></li>
-<li><a href="#rxMultiSelect.option.unselect">option.unselect()</a></li>
-<li><a href="#rxMultiSelect.option.isSelected">option.isSelected()</a></li>
 </ul>
 </li>
 </ul>
@@ -1640,11 +1698,11 @@ dropdown.selectOption(&#39;United States&#39;);
 <ul>
 <li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to select.  </li>
 </ul>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.unselect"></a></p>
-<h2 id="rxmultiselect-unselect-optiontexts-">rxMultiSelect.unselect(optionTexts)</h2>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.deselect"></a></p>
+<h2 id="rxmultiselect-deselect-optiontexts-">rxMultiSelect.deselect(optionTexts)</h2>
 <p><strong>Params</strong></p>
 <ul>
-<li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to unselect.  </li>
+<li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to deselect.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option"></a></p>
 <h2 id="rxmultiselect-option">rxMultiSelect.option</h2>
@@ -1657,9 +1715,6 @@ dropdown.selectOption(&#39;United States&#39;);
 <li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
 <li><a href="#rxMultiSelect.option.text">option.text</a></li>
 <li><a href="#rxMultiSelect.option.value">option.value</a></li>
-<li><a href="#rxMultiSelect.option.select">option.select()</a></li>
-<li><a href="#rxMultiSelect.option.unselect">option.unselect()</a></li>
-<li><a href="#rxMultiSelect.option.isSelected">option.isSelected()</a></li>
 </ul>
 </li>
 </ul>
@@ -1667,15 +1722,7 @@ dropdown.selectOption(&#39;United States&#39;);
 <h3 id="option-text">option.text</h3>
 <p><strong>Returns</strong>: <code>string</code> - The text inside of the current option.<br><a name="rxMultiSelect.option.value"></a></p>
 <h3 id="option-value">option.value</h3>
-<p><strong>Returns</strong>: <code>string</code> - The value bound to the option.<br><a name="rxMultiSelect.option.select"></a></p>
-<h3 id="option-select-">option.select()</h3>
-<p>Selects the option in the dropdown.</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option.unselect"></a></p>
-<h3 id="option-unselect-">option.unselect()</h3>
-<p>Unselects the option in the dropdown.</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option.isSelected"></a></p>
-<h3 id="option-isselected-">option.isSelected()</h3>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the option is currently selected.<br><a name="rxSortableColumn"></a></p>
+<p><strong>Returns</strong>: <code>string</code> - The value bound to the option.<br><a name="rxSortableColumn"></a></p>
 <h1 id="rxsortablecolumn">rxSortableColumn</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -1791,6 +1838,7 @@ charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function 
 <p>Hovers over the current row&#39;s status column and returns whether or not a tooltip appears.</p>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not a tooltip is present.<br><a name="rxStatusColumn.tooltip.text"></a></p>
 <h3 id="tooltip-text">tooltip.text</h3>
+<p>Warning: This property is known to be unstable in many Selenium end to end test runs in EncoreUI.</p>
 <p><strong>Returns</strong>: <code>String</code> - Tooltip text.<br><a name="rxToggleSwitch"></a></p>
 <h1 id="rxtoggleswitch">rxToggleSwitch</h1>
 <p><strong>Members</strong></p>

@@ -487,15 +487,19 @@ function rxCharacterCountCtrl ($scope) {
 
 angular.module('demoApp')
 .controller('rxCheckboxCtrl', function ($scope) {
-    $scope.checkOne = true;
-    $scope.checkThree = true;
-    $scope.checkFive = true;
-    $scope.checkSeven = true;
+    $scope.chkValidEnabledOne = true;
+    $scope.chkValidEnabledTwo = false;
+    $scope.chkValidDisabledOne = true;
+    $scope.chkValidDisabledTwo = false;
+    $scope.chkValidNgDisabledOne = true;
+    $scope.chkValidNgDisabledTwo = false;
 
-    $scope.checkTwo = false;
-    $scope.checkFour = false;
-    $scope.checkSix = false;
-    $scope.checkEight = false;
+    $scope.chkInvalidEnabledOne = true;
+    $scope.chkInvalidEnabledTwo = false;
+    $scope.chkInvalidDisabledOne = true;
+    $scope.chkInvalidDisabledTwo = false;
+    $scope.chkInvalidNgDisabledOne = true;
+    $scope.chkInvalidNgDisabledTwo = false;
 
     $scope.amSure = false;
     $scope.amReallySure = false;
@@ -559,6 +563,13 @@ function rxFeedbackCtrl ($scope, rxNotify) {
         });
     };
 }
+
+
+/*jshint unused:false*/
+angular.module('demoApp')
+.controller('rxFieldNameCtrl', function ($scope) {
+    $scope.fieldRequired = false;
+});
 
 
 /*jshint unused:false*/
@@ -1085,10 +1096,14 @@ function rxPermissionCtrl ($scope, Session, rxNotify) {
 /*jshint unused:false*/
 angular.module('demoApp')
 .controller('rxRadioCtrl', function ($scope) {
-    $scope.ngDisabledRadio = 1;
-    $scope.disabledRadio = 1;
-    $scope.enabledRadio = 1;
-    $scope.errRadio = 1;
+    $scope.validEnabled = 1;
+    $scope.validDisabled = 1;
+    $scope.validNgDisabled = 1;
+
+    $scope.invalidEnabled = 1;
+    $scope.invalidDisabled = 1;
+    $scope.invalidNgDisabled = 1;
+
     $scope.radCreateDestroy = 'destroyed';
 });
 
@@ -1105,10 +1120,13 @@ angular.module('demoApp')
 .controller('rxSelectCtrl', function ($scope) {
     $scope.radCreateDestroy = 'destroyed';
 
-    $scope.selOne = 'na';
-    $scope.selTwo = 'na';
-    $scope.selThree = 3;
-    $scope.selFour = 4;
+    $scope.validEnabled = 3;
+    $scope.validNgDisabled = 'na';
+    $scope.validDisabled = 'na';
+
+    $scope.invalidEnabled = 4;
+    $scope.invalidNgDisabled = 'na';
+    $scope.invalidDisabled = 'na';
 });
 
 

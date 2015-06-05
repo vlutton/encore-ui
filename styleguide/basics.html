@@ -123,6 +123,13 @@
 
     <rx-styleguide code-url="styleguide/basics/headings.html"></rx-styleguide>
 
+    <h3 class="title clear" id="date-formatting">Date formatting</h3>
+    <ul class="list">
+        <li>Dates in any context should be formatted this way: <code>Mar 2, 2015 @ 15:40 (UTC-0600)</code>–a three-letter capitalized month abbreviation (no period), followed by the day of the month (no leading zeroes), a comma, the four-digit year, an <code>@</code> symbol, military time, and UTC in parentheses.</li>
+        <li>The only time this formatting standard would not be used is when relative dates would be helpful to the user, such as "4 hours ago" or "1 week ago".</li>
+        <li>It is recommended that relative dates be reserved for more informal settings like user notes or comments. Relative dates should not extend too far into the past. For instance, "1 week ago" may be helpful to the user, but "8 months ago" or "3 years ago" is better represented by the non-relative format detailed above, as it reveals more specific information about dates that provide better context and information to the user when comparing dates and times.</li>
+    </ul>
+
     <h3 class="title clear" id="descriptions-metadata">Descriptions / Metadata</h3>
 
     <div class="component-description clear">
@@ -133,6 +140,14 @@
     </div>
 
     <rx-styleguide code-url="styleguide/basics/metadata.html"></rx-styleguide>
+
+    <h3 class="title clear" id="no-data">When There is No Data to Display</h3>
+
+    <ul class="list">
+        <li>In table cells, metadata lists, or other displays of data, <code>N/A</code> should be used as an indicator to the user that there is no relevant data to display.</li>
+        <li>Do not use <code>–</code>, <code>Empty</code>, <code>null</code>, or no indicator to communicate this, as there may be situations where those are valid inputs or data to display to a user depending on the context.</li>
+        <li>Note that a separate style exists to communicate <a href="/#/styleguide/basics#wells">when data isn't present due to permissions</a>, or when an entire table is empty (see "Null Patterns" section of <a href="/#/styleguide/tables">Tables style guide</a>).
+    </ul>
 
     <h3 class="title" id="lists">Lists</h3>
     <div class="component-description clear">

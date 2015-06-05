@@ -220,8 +220,6 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 // Adapted from https://github.com/angular/material/commits/master/src/core/style/layout.scss
 // commit 4216d242d78f1bdadd89ebd59e1d80b9cc4f2978
 
-@import 'src/layout/layout.less';
-
 // Responsive attributes
 // ------------------------------
 
@@ -770,8 +768,6 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     float: right;
 }
 
-@import (less) 'demo/bower_components/font-awesome/less/font-awesome.less';
-@fa-font-path: 'font';
 @import 'vars';
 @import (inline) 'normalize.css';
 
@@ -1261,6 +1257,12 @@ body:hover .visually-hidden button {
         .rx-app-nav,
         .rx-app-help {
             display: none;
+        }
+
+        .page-body {
+            & > .rx-notifications {
+                left: 25px;
+            }
         }
     }
 
@@ -2056,26 +2058,9 @@ thead th .btn-link {
     }
   }//.fake-checkbox
 
-  &.rx-disabled {
-    // disabled, unchecked
-    .fake-checkbox {
-      background: @inputBackground;
-    }
-
-    input[type="checkbox"] {
-      cursor: not-allowed;
-
-      // disabled, checked
-      &:checked ~ .fake-checkbox {
-        background-color: @inputBackgroundDisabled;
-        border: none;
-      }
-    }
-
-    & + label {
-      color: @inputColorDisabled;
-    }
-  }//.rx-disabled
+  &.rx-disabled + label {
+    color: @inputColorDisabled;
+  }
 
   input[type="checkbox"] {
     z-index: 1;
@@ -2085,7 +2070,7 @@ thead th .btn-link {
     cursor: pointer;
 
     // enabled checked
-    &:checked ~ .fake-checkbox {
+    &:checked + .fake-checkbox {
       background-color: @rxCheckbox-background-color-selected;
       color: @rxCheckbox-color;
       border: none;
@@ -2093,16 +2078,31 @@ thead th .btn-link {
 
     &.ng-invalid {
       // enabled unchecked error
-      & ~ .fake-checkbox {
+      & + .fake-checkbox {
         background-color: @rxCheckbox-background-color;
         border: 2px solid @inputBackgroundError;
       }
 
       // enabled checked error
       &:checked {
-        & ~ .fake-checkbox {
+        & + .fake-checkbox {
           background-color: @inputBackgroundError;
         }
+      }
+    }
+
+    &[disabled] {
+      cursor: not-allowed;
+
+      & ~ .fake-checkbox {
+        background: @inputBackground;
+        border: 1px solid @rxCheckbox-border-color;
+      }
+
+      // disabled, checked
+      &:checked ~ .fake-checkbox {
+        background-color: @inputBackgroundDisabled;
+        border: none;
       }
     }
   }
@@ -2179,6 +2179,28 @@ rx-collapse {
         height: 10em;
     }
 }
+/*
+ * rxFieldName
+ */
+rx-field-name {
+  .box-sizing(border-box);
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  color: @rxFieldName-color;
+
+  .wrapper {
+    .box-sizing(border-box);
+    margin: 0px;
+    padding: 0px;
+
+    .required-symbol {
+      font-weight: 900;
+      color: @rxFieldName-symbol-color;
+    }
+  }
+}//rx-field-name
+
 /*
  * rxFloatingHeader
  */
@@ -3081,19 +3103,6 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
       }
     }
 
-    &[disabled] {
-      cursor: not-allowed;
-
-      // disabled, unchecked
-      & + .fake-radio {
-        border-color: @inputBackgroundDisabled;
-      }
-
-      &:checked + .fake-radio .tick {
-        background: @inputBackgroundDisabled;
-      }
-    }//[disabled]
-
     &.ng-invalid {
       // enabled unchecked error
       & + .fake-radio {
@@ -3110,6 +3119,25 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
         background: @rxRadio-color-error;
       }
     }
+
+    // disabled trumps invalid
+    &[disabled] {
+      cursor: not-allowed;
+
+      // disabled, unchecked
+      & + .fake-radio {
+        border: 1px solid @inputBackgroundDisabled;
+
+        .tick {
+          width: @rxRadio-tick-size;
+          height: @rxRadio-tick-size;
+        }
+      }
+
+      &:checked + .fake-radio .tick {
+        background: @inputBackgroundDisabled;
+      }
+    }//[disabled]
   }//input
 }//.rxRadio
 
@@ -3186,7 +3214,6 @@ rx-search-box {
 .rxSelect {
   .box-sizing(border-box);
   display: block;
-  overflow: hidden;
   position: relative;
   color: @rxSelect-color;
   background: @rxSelect-background;
@@ -3194,7 +3221,7 @@ rx-search-box {
 
   // Element should be resizable via wrapper alone
   min-width: @rxSelect-min-width;
-  min-height: @rxSelect-min-height;
+  height: @rxSelect-height;
 
   &.rx-disabled {
     color: @inputColorDisabled;
@@ -3203,6 +3230,7 @@ rx-search-box {
 
   // position elements in wrapper
   select,
+  rx-multi-select,
   .fake-select {
     .box-sizing(border-box);
     position: absolute;
@@ -3212,9 +3240,9 @@ rx-search-box {
     height: 100%;
   }
 
-  select {
+  select,
+  rx-multi-select {
     z-index: 0;
-    padding: 5px;
     cursor: pointer;
 
     // reset native styling
@@ -3242,6 +3270,7 @@ rx-search-box {
       }
     }
 
+    // Disabled Trumps All
     &[disabled] {
       cursor: not-allowed ;
 
@@ -3291,11 +3320,17 @@ rx-search-box {
 /*
  * rxSelectFilter
  */
-@import 'vars';
-
 .rx-select-filter {
+    .rxSelect {
+        display: inline-block;
+    }
+
     .select-wrapper:not(:first-child) {
         padding-left: 20px;
+    }
+
+    .rxSelect, .field-label {
+        vertical-align: middle;
     }
 
     .field-label {
@@ -3303,23 +3338,24 @@ rx-search-box {
     }
 }
 
-.rx-multi-select {
+rx-multi-select {
 
-    color: @inputColor;
-    border: 1px solid @inputBorderColor;
-    padding: 3px;
-    width: 150px;
-    position: relative;
-    font-size: 1.2em;
+    z-index: auto !important;
 
-    &:hover {
-        cursor:pointer;
+    &[disabled] .preview {
+        pointer-events: none;
+    }
+
+    .preview {
+        padding: 5px;
+        overflow: hidden;
+        white-space: nowrap;
     }
 
     ul {
+        z-index: 100;
         position: absolute;
-        top: ~"calc(-1px)";
-        z-index: 1;
+        top: -1px;
         left: -1px;
         width: 100%;
         border: 1px solid @inputBorderColor;
@@ -3337,13 +3373,19 @@ rx-search-box {
 
     label {
         display: block;
-        padding: 2px 10px;
+        padding: 4px 6px;
 
         &:hover {
             background: @optionHighlightBg;
             color: @white;
             cursor: pointer;
         }
+    }
+
+    .rxCheckbox {
+        width: @appFontSize;
+        height: @appFontSize;
+        vertical-align: middle;
     }
 }
 

@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">rxSelectFilter/rxSelectFilter.js</span></h1>
     <h2>
-        Statements: <span class="metric">87.95% <small>(73 / 83)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">88.1% <small>(74 / 84)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">76.32% <small>(29 / 38)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">79.31% <small>(23 / 29)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">87.95% <small>(73 / 83)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">88.1% <small>(74 / 84)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">rxSelectFilter/</a> &#187; rxSelectFilter.js</div>
@@ -266,7 +266,9 @@
 239
 240
 241
-242</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+242
+243
+244</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -396,10 +398,10 @@
 <span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">28</span>
-<span class="cline-any cline-yes">710</span>
-<span class="cline-any cline-yes">132</span>
+<span class="cline-any cline-yes">850</span>
+<span class="cline-any cline-yes">160</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">578</span>
+<span class="cline-any cline-yes">690</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -409,6 +411,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">28</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">28</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -496,7 +500,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">168</span>
-<span class="cline-any cline-yes">702</span>
+<span class="cline-any cline-yes">842</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">238</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -507,7 +511,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc'])
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSelect'])
 /**
  * @ngdoc filter
  * @name encore.ui.rxSelectFilter:Apply
@@ -608,7 +612,7 @@
  * @param {string} ng-model The scope property that stores the value of the input
  * @param {Array} [options] A list of the options for the dropdown
  */
-.directive('rxMultiSelect', function ($document, rxDOMHelper) {
+.directive('rxMultiSelect', function ($document, rxDOMHelper, rxSelectDirective) {
     return {
         restrict: 'E',
         templateUrl: 'templates/rxMultiSelect.html',
@@ -651,10 +655,12 @@
             };
         },
         link: function (scope, element, attrs, controllers) {
-            var selectElement = rxDOMHelper.find(element, '.rx-multi-select')[0];
+            rxSelectDirective[0].link.apply(this, arguments);
+&nbsp;
+            var previewElement = rxDOMHelper.find(element, '.preview')[0];
 &nbsp;
             var documentClickHandler = <span class="fstat-no" title="function not covered" >function (event) {</span>
-<span class="cstat-no" title="statement not covered" >                if (event.target !== selectElement) {</span>
+<span class="cstat-no" title="statement not covered" >                if (event.target !== previewElement) {</span>
 <span class="cstat-no" title="statement not covered" >                    scope.listDisplayed = false;</span>
 <span class="cstat-no" title="statement not covered" >                    scope.$apply();</span>
                 }
@@ -668,7 +674,7 @@
             scope.listDisplayed = false;
 &nbsp;
             scope.toggleDisplay = function (event) {
-                if (event.target === selectElement) {
+                if (event.target === previewElement) {
                     scope.listDisplayed = !scope.listDisplayed;
                 } else {
                     event.stopPropagation();
@@ -753,7 +759,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 02 2015 09:44:49 GMT-0400 (EDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Jun 05 2015 16:56:52 GMT-0400 (EDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>
