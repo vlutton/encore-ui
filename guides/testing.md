@@ -167,13 +167,7 @@ But if you do want to run the tests, feel free to run them by themselves to popu
 
 ```
 npm install snappit-mocha-protractor
-cp protractor.travis.conf.js protractor.local.conf.js
-```
-
-Next, edit the section marked `multiCapabilites` by removing the *entire* capability entry with `name: 'Component Functionality'`. This will keep the test suites limited to just visual regression.
-
-```
-./node_modules/.bin/protractor protractor.local.conf.js
+./node_modules/.bin/protractor protractor.visual.regression.conf.js
 ```
 
 This is useful only for experimenting with what your screenshots look like *on your current operating system*, at *your current resolution*, and your *specific version of your browser*! This is why it is recommended that you refrain from running these tests locally. They are designed to run on one machine and one machine only, to ensure that any visual regressions are triggered by visual changes, and not differences in hardware or software.

@@ -9,7 +9,6 @@ var config = {
     framework: 'mocha',
 
     specs: [
-        './src/**/*.midway.js',
         './utils/visual-regression/**/*.midway.js'
     ],
 
@@ -20,12 +19,7 @@ var config = {
 
     allScriptsTimeout: 30000,
 
-    params: {
-        environments: {
-            'http://localhost:9001': 'localhost',
-            'http://rackerlabs.github.io/encore-ui': 'staging'
-        }
-    },
+    params: {},
 
     onPrepare: function () {
         expect = require('chai').use(require('chai-as-promised')).expect;
@@ -42,7 +36,7 @@ var config = {
     mochaOpts: {
         enableTimeouts: false,
         reporter: 'spec',
-        slow: 5000,
+        slow: 10000,
         ui: 'bdd'
     },
 
