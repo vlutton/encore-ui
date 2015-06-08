@@ -1,4 +1,5 @@
-function rxFormDemoCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxFormDemoCtrl', function ($scope) {
     $scope.types = [
         {
             'value': 'SATA',
@@ -87,31 +88,35 @@ function rxFormDemoCtrl ($scope) {
         }
     ];
 
-    $scope.optionTableColumns = [{
-        'label': 'Name',
-        'key': 'name',
-        'selectedLabel': '(Already saved data)'
-    }, {
-        'label': 'Static Content',
-        'key': 'Some <strong>Text &</strong> HTML'
-    }, {
-        'label': 'Expression 2',
-        'key': '{{ value * 100 | number:2 }}'
-    }, {
-        'label': 'Expression 3',
-        'key': '{{ obj.name | uppercase }}'
-    }, {
-        'label': 'Expression 4',
-        'key': '{{ value | currency }}'
-    }];
+    $scope.optionTableColumns = [
+        {
+            'label': 'Name',
+            'key': 'name',
+            'selectedLabel': '(Already saved data)'
+        }, {
+            'label': 'Static Content',
+            'key': 'Some <strong>Text &</strong> HTML'
+        }, {
+            'label': 'Expression 2',
+            'key': '{{ value * 100 | number:2 }}'
+        }, {
+            'label': 'Expression 3',
+            'key': '{{ obj.name | uppercase }}'
+        }, {
+            'label': 'Expression 4',
+            'key': '{{ value | currency }}'
+        }
+    ];
 
-    $scope.optionTableCheckboxData = [{
-        'name': 'Item 1'
-    }, {
-        'name': 'Item 2',
-        'value': 'checked',
-        'falseValue': 'unchecked'
-    }];
+    $scope.optionTableCheckboxData = [
+        {
+            'name': 'Item 1'
+        }, {
+            'name': 'Item 2',
+            'value': 'checked',
+            'falseValue': 'unchecked'
+        }
+    ];
 
     $scope.optionTableEmptyData = [];
 
@@ -122,8 +127,7 @@ function rxFormDemoCtrl ($scope) {
     $scope.disableOption = function (tableId, fieldId, rowId) {
         return rowId === 'option4_id';
     };
-
-}
+});
 
 // A dummy directive only used within the rxForm demo page.
 // It's used to check that some string contains 'foo', and works
@@ -135,7 +139,6 @@ angular.module('encore.ui.rxForm')
     return {
         require: 'ngModel',
         link: function (scope, elm, attrs, ctrl) {
-
             // Put a new validator on the beginning
             ctrl.$parsers.unshift(function (viewValue) {
                 if (_.contains(viewValue, 'foo')) {

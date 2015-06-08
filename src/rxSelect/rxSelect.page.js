@@ -1,6 +1,7 @@
 /*jshint node:true*/
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
+var rxMisc = require('../rxMisc/rxMisc.page').rxMisc;
 
 /**
  * @namespace
@@ -9,7 +10,7 @@ var htmlSelectOption = {
     /**
      * @returns {string} The text inside of an `<option>` element
      */
-    label: {
+    text: {
         get: function () {
             return this.rootElement.getText();
         }
@@ -26,21 +27,12 @@ var htmlSelectOption = {
 
     /**
      * @function
-     * @description
-     *   Select an `<option>` element within a `<select>`
-     *
-     *   Equivalent to `browser.actions().mouseDown(elem).mouseUp().perform();`.
-     *   This function should be used when dealing with odd or unusual behavior while interacting with click events
-     *   that don't seem to work right. Either the element does not appear to respond to a normal `.click()` call, or
-     *   the element is responding to more than one click event. This typically happens more often in Firefox than
-     *   in other browsers. See {@link rxForm.dropdown.option.select} for an example of a function that will
-     *   slow click an element to achieve consistent behavior.
-     *
+     * @description Select an `<option>` element within a `<select>`
      * @returns {undefined}
      */
     select: {
         value: function () {
-            browser.actions().mouseDown(this.rootElement).mouseUp().perform();
+            rxMisc.slowClick(this.rootElement);
         }
     },
 
@@ -51,6 +43,16 @@ var htmlSelectOption = {
     isSelected: {
         value: function () {
             return this.rootElement.isSelected();
+        }
+    },
+
+    /**
+     * @function
+     * @returns {Boolean} Whether or not the `<option>` is currently present
+     */
+    isPresent: {
+        value: function () {
+            return this.rootElement.isPresent();
         }
     }
 };//htmlSelectOption
@@ -111,23 +113,23 @@ var htmlSelect = {
      * @function
      * @param {String} optionText
      *   Partial or total string to match the display value of the desired `<option>` element
-     * @returns {Page} Page object representing an option
+     * @returns {htmlSelectOption} Page object representing an option
      */
     option: {
         value: function (optionText) {
-            var optionElement = this.findOption(optionText);
+            var optionElement = this.findOptionContaining(optionText);
             return exports.htmlSelectOption.initialize(optionElement);
         }
     },
 
     /**
      * @function
-     * @returns {Page[]} List of Page objects for each `<option>` element in the dropdown
+     * @returns {String[]} List of htmlSelectOption page objects for each `<option>` element in the dropdown
      */
     options: {
         get: function () {
-            return this.optionElements.map(function (optionElement) {
-                return exports.htmlSelectOption.initialize(optionElement);
+            return this.rootElement.$$('option').map(function (optionElement) {
+                return exports.htmlSelectOption.initialize(optionElement).text;
             });
         }
     },
@@ -138,41 +140,19 @@ var htmlSelect = {
      */
     optionCount: {
         value: function () {
-            return this.optionElements.count();
-        }
-    },
-
-    /**
-     * @function
-     * @returns {WebElement[]} List of all `<option>` elements in the dropdown
-     */
-    optionElements: {
-        get: function () {
-            return this.rootElement.$$('option');
+            return this.rootElement.$$('option').count();
         }
     },
 
     /**
      * @function
      * @param {String} optionText
-     *   Partial or total string to match the display value of the desired `<option>` element
+     * Partial or total string to match the display value of the desired `<option>` element
      * @returns {Boolean} Whether or not the option exists
      */
     optionExists: {
         value: function (optionText) {
-            return this.findOption(optionText).isPresent();
-        }
-    },
-
-    /**
-     * @function
-     * @returns {String[]} List of visible text for each `<option>` element in the dropdown
-     */
-    optionLabels: {
-        get: function () {
-            return this.options.map(function (option) {
-                return option.label;
-            });
+            return this.findOptionContaining(optionText).isPresent();
         }
     },
 
@@ -180,43 +160,21 @@ var htmlSelect = {
      * @function
      * @returns {String[]} List of values for each `<option>` element in the dropdown
      */
-    optionValues: {
+    values: {
         get: function () {
-            return this.options.map(function (option) {
-                return option.value;
+            return this.rootElement.$$('option').map(function (optionElement) {
+                return exports.htmlSelectOption.initialize(optionElement).value;
             });
         }
     },
 
     /**
      * @function
-     * @returns {Page[]} List of Page objects for each selected `<option>` element in the dropdown
+     * @returns {htmlSelectOption} Page object representing the currently selected `<option>` element.
      */
-    selectedOptions: {
+    selectedOption: {
         get: function () {
-            return this.selectedOptionElements.map(function (optionElement) {
-                return exports.htmlSelectOption.initialize(optionElement);
-            });
-        }
-    },
-
-    /**
-     * @function
-     * @returns {Integer} The number of selected `<option>` elements in the dropdown
-     */
-    selectedOptionCount: {
-        value: function () {
-            return this.selectedOptionElements.count();
-        }
-    },
-
-    /**
-     * @function
-     * @returns {WebElement[]} List of all selected `<option>` elements in the dropdown.
-     */
-    selectedOptionElements: {
-        get: function () {
-            return this.rootElement.$$('option:checked');
+            return exports.htmlSelectOption.initialize(this.rootElement.$('option:checked'));
         }
     },
 
@@ -226,7 +184,7 @@ var htmlSelect = {
      *   Partial or total string to match the display value of the desired `<option>` element.
      * @returns {WebElement}
      */
-    findOption: {
+    findOptionContaining: {
         value: function (optionText) {
             return this.rootElement.element(by.cssContainingText('option', optionText));
         }
@@ -239,10 +197,10 @@ var htmlSelect = {
      * @example
      * ```js
      * var dropdown = encore.htmlSelect.initialize($('#country-select'));
-     * dropdown.selectOption('United States');
+     * dropdown.select('United States');
      * ```
      */
-    selectOption: {
+    select: {
         value: function (optionText) {
             return this.option(optionText).select();
         }
@@ -254,7 +212,7 @@ var htmlSelect = {
  * @extends htmlSelect
  * @description Type of htmlSelect that includes functionality required to interact with additional markup.
  */
-var rxSelect = {
+var rxSelect = _.defaults(htmlSelect, {
     eleWrapper: {
         get: function () {
             return this.rootElement.element(by.xpath('..'));
@@ -270,6 +228,7 @@ var rxSelect = {
     /**
      * @function
      * @override
+     * @memberOf rxSelect
      * @returns {Boolean} Whether or not the wrapper has expected disabled class name
      */
     isDisabled: {
@@ -283,6 +242,7 @@ var rxSelect = {
     /**
      * @function
      * @override
+     * @memberOf rxSelect
      * @returns {Boolean} Whether the styled element is currently displayed.
      */
     isDisplayed: {
@@ -294,6 +254,7 @@ var rxSelect = {
     /**
      * @function
      * @override
+     * @memberOf rxSelect
      * @returns {Boolean} Whether or not the styled element exists on the page
      */
     isPresent: {
@@ -301,8 +262,7 @@ var rxSelect = {
             return this.eleFakeSelect.isPresent();
         }
     }
-};
-rxSelect = _.assign(htmlSelect, rxSelect);
+});//rxSelect
 
 /**
  * @exports encore.htmlSelectOption
@@ -344,7 +304,24 @@ exports.htmlSelect = {
         htmlSelect.rootElement = {
             get: function () { return $('select')[0]; }
         };
-    })()
+    })(),
+
+    /**
+     * @function
+     * @description Generates a getter and a setter for an HTML select element on your page.
+     * @param {WebElement} elem - The WebElement for the HTML select.
+     * @returns {Object} A getter and a setter to be applied to an HTML select page object.
+     */
+    generateAccessor: function (elem) {
+        return {
+            get: function () {
+                return exports.htmlSelect.initialize(elem).selectedOption;
+            },
+            set: function (optionText) {
+                exports.htmlSelect.initialize(elem).select(optionText);
+            }
+        };
+    }
 };
 
 /**
@@ -370,5 +347,22 @@ exports.rxSelect = {
         rxSelect.rootElement = {
             get: function () { return $('select[rx-select]')[0]; }
         };
-    })()
+    })(),
+
+    /**
+     * @function
+     * @description Generates a getter and a setter for an rxSelect element on your page.
+     * @param {WebElement} elem - The WebElement for the rxSelect.
+     * @returns {Object} A getter and a setter to be applied to an rxSelect page object.
+     */
+    generateAccessor: function (elem) {
+        return {
+            get: function () {
+                return exports.rxSelect.initialize(elem).selectedOption;
+            },
+            set: function (optionText) {
+                exports.rxSelect.initialize(elem).select(optionText);
+            }
+        };
+    }
 };
