@@ -50,10 +50,10 @@ describe('rxCollapse', function () {
         expect(elTwo.find('.title').text()).to.equal('See Less');
     });
 
-    it('should show up chevron when not expanded and show down when expanded', function () {
-        expect(elOne.find('.fa').hasClass('fa-angle-double-up')).to.be.true;
-
-        elOne.find('.smlTitle .title').click();
+    it('should show down chevron when not expanded and show up when expanded', function () {
         expect(elOne.find('.fa').hasClass('fa-angle-double-up')).to.be.false;
+
+        elOne.find('.tabStyle_2 .smlTitle .title').click();
+        expect(elOne.find('.fa').hasClass('fa-angle-double-up')).to.be.true;
     });
 });

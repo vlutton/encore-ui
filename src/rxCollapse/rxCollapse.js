@@ -26,14 +26,14 @@ angular.module('encore.ui.rxCollapse', [])
             toggleTitle: '&'
         },
         link: function (scope, element, attrs) {
-            scope.storedTitles = ['See Less', 'See More'];
+            var storedTitles = ['See Less', 'See More'];
             scope.isExpanded = (attrs.expanded === 'false') ? false : true;
 
-            scope.doSeeMoreOrLess = function (expVal) {
+            var doSeeMoreOrLess = function (expVal) {
                 if (expVal) {
-                    scope.toggleTitle = scope.storedTitles[0];
+                    scope.toggleTitle = storedTitles[0];
                 } else {
-                    scope.toggleTitle = scope.storedTitles[1];
+                    scope.toggleTitle = storedTitles[1];
                 }
                 scope.cContainer = 'hideBorder';
                 scope.tabToShow = true;
@@ -42,27 +42,27 @@ angular.module('encore.ui.rxCollapse', [])
             scope.toggleTitleAndCollapse = function () {
                 scope.isExpanded = !scope.isExpanded;
                 if (scope.isExpanded) {
-                    scope.toggleTitle = scope.storedTitles[0];
+                    scope.toggleTitle = storedTitles[0];
                 } else {
-                    scope.toggleTitle = scope.storedTitles[1];
+                    scope.toggleTitle = storedTitles[1];
                 }
-                scope.setChev(scope.isExpanded);
+                setChev(scope.isExpanded);
             };
 
-            scope.setChev = function (val) {
+            var setChev = function (val) {
                 if (val === false) {
-                    scope.arrowChange = 'fa-angle-double-up';
-                } else {
                     scope.arrowChange = 'fa-angle-double-down';
+                } else {
+                    scope.arrowChange = 'fa-angle-double-up';
                 }
             };
 
             if (!scope.title) {
-                scope.doSeeMoreOrLess(scope.isExpanded);
+                doSeeMoreOrLess(scope.isExpanded);
             } else {
                 scope.tabToShow = false;
             }
-            scope.setChev(scope.isExpanded);
+            setChev(scope.isExpanded);
         }
     };
 });
