@@ -26,32 +26,23 @@ angular.module('encore.ui.rxCollapse', [])
             toggleTitle: '&'
         },
         link: function (scope, element, attrs) {
-            var storedTitles = ['See Less', 'See More'];
+            var storedTitles = ['See More', 'See Less'];
             scope.isExpanded = (attrs.expanded === 'false') ? false : true;
 
-            var doSeeMoreOrLess = function (expVal) {
-                if (expVal) {
-                    scope.toggleTitle = storedTitles[0];
-                } else {
-                    scope.toggleTitle = storedTitles[1];
-                }
+            var doSeeMoreOrLess = function () {
+                scope.toggleTitle = storedTitles[+scope.isExpanded];
                 scope.cContainer = 'hideBorder';
-                scope.ispad = '';
                 scope.tabToShow = true;
             };
 
             scope.toggleTitleAndCollapse = function () {
                 scope.isExpanded = !scope.isExpanded;
-                if (scope.isExpanded) {
-                    scope.toggleTitle = storedTitles[0];
-                } else {
-                    scope.toggleTitle = storedTitles[1];
-                }
-                setChev(scope.isExpanded);
+                scope.toggleTitle = storedTitles[+scope.isExpanded];
+                setChev();
             };
 
-            var setChev = function (val) {
-                if (val === false) {
+            var setChev = function () {
+                if (scope.isExpanded === false) {
                     scope.arrowChange = 'fa-angle-double-down';
                 } else {
                     scope.arrowChange = 'fa-angle-double-up';
@@ -59,12 +50,12 @@ angular.module('encore.ui.rxCollapse', [])
             };
 
             if (!scope.title) {
-                doSeeMoreOrLess(scope.isExpanded);
+                doSeeMoreOrLess();
             } else {
                 scope.tabToShow = false;
                 scope.ispad = 'collapse-body';
             }
-            setChev(scope.isExpanded);
+            setChev();
         }
     };
 });
