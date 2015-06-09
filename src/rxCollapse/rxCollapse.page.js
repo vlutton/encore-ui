@@ -33,12 +33,6 @@ var rxCollapse = {
         }
     },
 
-    otherBtnToggle: {
-        get: function () {
-            return element.all(by.css('.smlTitle .title')).get(1);
-        }
-    },
-
     btnToggle: {
         get: function () {
             return this.rootElement.$('.double-chevron');

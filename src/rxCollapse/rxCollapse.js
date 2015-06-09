@@ -36,6 +36,7 @@ angular.module('encore.ui.rxCollapse', [])
                     scope.toggleTitle = storedTitles[1];
                 }
                 scope.cContainer = 'hideBorder';
+                scope.ispad = '';
                 scope.tabToShow = true;
             };
 
@@ -61,6 +62,7 @@ angular.module('encore.ui.rxCollapse', [])
                 doSeeMoreOrLess(scope.isExpanded);
             } else {
                 scope.tabToShow = false;
+                scope.ispad = 'collapse-body';
             }
             setChev(scope.isExpanded);
         }

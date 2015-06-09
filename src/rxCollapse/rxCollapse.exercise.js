@@ -57,11 +57,11 @@ exports.rxCollapse = function (options) {
 
         it('should toggle between see more or see less as text', function () {
             //Expand
-            component.otherBtnToggle.click();
+            component.seeMoreTitle.click();
             expect(component.seeMoreTitle.getText()).to.eventually.equal('See Less');
 
             //Collapse
-            component.otherBtnToggle.click();
+            component.seeMoreTitle.click();
             expect(component.seeMoreTitle.getText()).to.eventually.equal('See More');
         });
 
