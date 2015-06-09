@@ -35,7 +35,7 @@ var rxCollapse = {
 
     otherBtnToggle: {
         get: function () {
-            return element.all(by.css('.tabStyle_2 .smlTitle')).get(2);
+            return element.all(by.css('.smlTitle .title')).get(1);
         }
     },
 
