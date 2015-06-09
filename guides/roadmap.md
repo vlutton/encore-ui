@@ -1,6 +1,6 @@
 # EncoreUI Roadmap and Prioritization
 
-The project is currently being run in [a "Kanban" style](http://en.wikipedia.org/wiki/Kanban_(development)). The project is focused on 'just-in-time delivery' and is built around being able to quickly iterate on features based on developer feedback.
+The Encore Framework now supports many development teams. The project is currently being run in [a "Kanban" style](http://en.wikipedia.org/wiki/Kanban_(development)). The project is focused on 'just-in-time delivery' and is built around being able to quickly iterate on features based on developer feedback.
 
 Because we want to be quick to respond to the needs of the developers, no long-term roadmap is defined for the project. This provides the project with the ability to quickly adjust priorities depending on feedback. If something urgent pops up (and it usually does), adjusting the workload won't mess up a long-term roadmap.
 
