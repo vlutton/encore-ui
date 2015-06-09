@@ -1,4 +1,4 @@
-# Getting Started
+# Using Encore Framework in your Project
 
 ## Installation
 
