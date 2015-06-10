@@ -1,6 +1,11 @@
 <h1 id="index">Index</h1>
 <p><strong>Modules</strong></p>
 <ul>
+<li><a href="#encore.module_rxBulkSelect">encore.rxBulkSelect</a><ul>
+<li><a href="#encore.module_rxBulkSelect.main">encore.rxBulkSelect.main</a></li>
+<li><a href="#encore.module_rxBulkSelect.initialize">encore.rxBulkSelect.initialize(rxBulkSelectElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxCharacterCount">encore.rxCharacterCount</a><ul>
 <li><a href="#encore.module_rxCharacterCount.main">encore.rxCharacterCount.main</a></li>
 <li><a href="#encore.module_rxCharacterCount.initialize">encore.rxCharacterCount.initialize(rxCharacterCountElement)</a></li>
@@ -94,6 +99,7 @@
 <li><a href="#encore.module_rxToggleSwitch.initialize">encore.rxToggleSwitch.initialize(rxToggleSwitchElement)</a></li>
 </ul>
 </li>
+<li><a href="#encore.exercise.module_rxBulkSelect">encore.exercise.rxBulkSelect</a></li>
 <li><a href="#encore.exercise.module_rxCharacterCount">encore.exercise.rxCharacterCount</a></li>
 <li><a href="#encore.exercise.module_rxCheckbox">encore.exercise.rxCheckbox</a></li>
 <li><a href="#encore.exercise.module_rxCollapse">encore.exercise.rxCollapse</a></li>
@@ -107,6 +113,7 @@
 </ul>
 <p><strong>Namespaces</strong></p>
 <ul>
+<li><a href="#rxBulkSelectDefaultRowFn">rxBulkSelectDefaultRowFn</a></li>
 <li><a href="#rxCharacterCount">rxCharacterCount</a><ul>
 <li><a href="#rxCharacterCount.comment">rxCharacterCount.comment</a></li>
 <li><a href="#rxCharacterCount.remaining">rxCharacterCount.remaining</a></li>
@@ -316,7 +323,25 @@
 </ul>
 </li>
 </ul>
-<p><a name="encore.module_rxCharacterCount"></a></p>
+<p><a name="encore.module_rxBulkSelect"></a></p>
+<h1 id="encore-rxbulkselect">encore.rxBulkSelect</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxBulkSelect">encore.rxBulkSelect</a><ul>
+<li><a href="#encore.module_rxBulkSelect.main">encore.rxBulkSelect.main</a></li>
+<li><a href="#encore.module_rxBulkSelect.initialize">encore.rxBulkSelect.initialize(rxBulkSelectElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxBulkSelect.main"></a></p>
+<h2 id="encore-rxbulkselect-main">encore.rxBulkSelect.main</h2>
+<p><strong>Returns</strong>: <code>rxBulkSelect</code> - Page object representing the <em>first</em> rxBulkSelect object found on the page.<br><a name="encore.module_rxBulkSelect.initialize"></a></p>
+<h2 id="encore-rxbulkselect-initialize-rxbulkselectelement-">encore.rxBulkSelect.initialize(rxBulkSelectElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxBulkSelectElement <code>WebElement</code> - WebElement to be transformed into an rxBulkSelectElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>rxBulkSelect</code> - Page object representing the rxBulkSelect object.<br><a name="encore.module_rxCharacterCount"></a></p>
 <h1 id="encore-rxcharactercount">encore.rxCharacterCount</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -707,7 +732,22 @@ it(&#39;should sort the column ascending by default&#39;, function () {
 <ul>
 <li>rxToggleSwitchElement <code>WebElement</code> - WebElement to be transformed into an rxToggleSwitchElement object.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxToggleSwitch">rxToggleSwitch</a> - Page object representing the rxToggleSwitch object.<br><a name="encore.exercise.module_rxCharacterCount"></a></p>
+<p><strong>Returns</strong>: <a href="#rxToggleSwitch">rxToggleSwitch</a> - Page object representing the rxToggleSwitch object.<br><a name="encore.exercise.module_rxBulkSelect"></a></p>
+<h1 id="encore-exercise-rxbulkselect">encore.exercise.rxBulkSelect</h1>
+<p>rxBulkSelect exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxBulkSelect({
+    cssSelector: &#39;table.servers[rx-bulk-select]&#39; // select one of many widgets on page
+}));
+</code></pre>
+<p><a name="encore.exercise.module_rxCharacterCount"></a></p>
 <h1 id="encore-exercise-rxcharactercount">encore.exercise.rxCharacterCount</h1>
 <p>rxCharacterCount exercises.</p>
 <p><strong>Params</strong></p>
@@ -868,6 +908,12 @@ trailing whitespace when calculating the remaining character count.  </li>
     cssSelector: &#39;.demo-defualt-values&#39; // select one of many widgets on page
 }));
 </code></pre>
+<p><a name="rxBulkSelectDefaultRowFn"></a></p>
+<h1 id="rxbulkselectdefaultrowfn">rxBulkSelectDefaultRowFn</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxBulkSelectDefaultRowFn">rxBulkSelectDefaultRowFn</a></li>
+</ul>
 <p><a name="rxCharacterCount"></a></p>
 <h1 id="rxcharactercount">rxCharacterCount</h1>
 <p><strong>Members</strong></p>

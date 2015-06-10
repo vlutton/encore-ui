@@ -158,6 +158,60 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxBulkSelect:NotifyProperties",
+      "shortName": "NotifyProperties",
+      "type": "service",
+      "moduleName": "encore.ui",
+      "shortDescription": "This factory provides functionality for abstracting &quot;properties&quot;, and allowing",
+      "keywords": "_numselected abstracting allowing api call called change changes child complete control controller directive directives element encore example exposted factory function functionality integer live ll method modified notification notificationfunction notifications notified notifyproperties numselected oldvalue parent plain properties property register registered registerfornumselected registrationfn require rxbulkselect scope service sets stats track ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxBulkSelect:rxBatchActions",
+      "shortName": "rxBatchActions",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "This directive is responsible for adding the batch action menu link",
+      "keywords": "action adding api batch bulk class classes colspan controller correctly directive don element encore fa fa-fw fa-power-off header html include inside items link menu modal msg-info representing responsible rxbulkselect select selected servers styled suspend suspendserversctrl table template-url templates transclude ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxBulkSelect:rxBulkSelect",
+      "shortName": "rxBulkSelect",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "A directive you place in your  element to enable bulk select.",
+      "keywords": "add api appear attribute automatically bulk bulk-select-message bulk-select-related bulksource checkbox clicked controller directive directives disappear element enable encore interact item items iterated list main ng-repeats place provide resource responsibility rxbulkselect select selected selectedkey source table track ui user"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxBulkSelect:rxBulkSelectHeaderCheck",
+      "shortName": "rxBulkSelectHeaderCheck",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "A directive you place on your  element representing the checkbox column.",
+      "keywords": "api checkbox clicked column current directive element encore header items place places representing rx-bulk-select-header-check rxbulkselect select ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxBulkSelect:rxBulkSelectMessage",
+      "shortName": "rxBulkSelectMessage",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "This directive is responsible for drawing the appearing/disappearing",
+      "keywords": "api appearing automatically buttons clear communicate controller correctly directive directly drawing drawn encore form header items message resource resourcename responsible row rxbulkselect rxfloatingheader select selected server singular support table ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxBulkSelect:rxBulkSelectRow",
+      "shortName": "rxBulkSelectRow",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "A directive you place on your  element which will contain the bulk-select",
+      "keywords": "api attribute bulk-select checkbox directive draws element encore left ng-repeat object place pointing representing row rx-bulk-select-row rxbulkselect server side takes ui"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxButton:rxButton",
       "shortName": "rxButton",
       "type": "directive",
