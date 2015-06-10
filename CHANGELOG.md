@@ -1,3 +1,18 @@
+<a name="1.20.0"></a>
+## 1.20.0 (2015-06-10)
+
+
+#### Bug Fixes
+
+* **rxSelectFilter:** correctly render preselected options ([c8d82bb0](git@github.com:rackerlabs/encore-ui/commit/c8d82bb0db4e7055e75119a59c6def08fbed8d75))
+* **rxTokenInterceptor:** Only look at hostname for token exclusion ([6ab9582f](git@github.com:rackerlabs/encore-ui/commit/6ab9582fd097af2f51fc023a9eeb8448f2bbe747), closes [#1009](git@github.com:rackerlabs/encore-ui/issues/1009))
+
+
+#### Features
+
+* **rxBulkSelect:** add rxBulkSelect component ([5c856998](git@github.com:rackerlabs/encore-ui/commit/5c85699866ba3b71ecbfb3fd593cc4aae4230b4a))
+
+
 <a name="1.19.0"></a>
 ## 1.19.0 (2015-06-05)
 
