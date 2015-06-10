@@ -1007,6 +1007,7 @@ describe('rxAccountUsers', function () {
 
             $location.url('http://server/cloud/');
             $route.current = {};
+            $route.current.originalPath = $location.url();
             $route.current.params = {
                 accountNumber: 323676,
                 user: 'hub_cap'
@@ -1014,8 +1015,8 @@ describe('rxAccountUsers', function () {
 
             scope.currentUser = 'hub_cap';
             scope.users = [
-                { username: 'testaccountuser' },
-                { username: 'hub_cap' }
+                { username: 'testaccountuser', admin: true },
+                { username: 'hub_cap', admin: false }
             ];
 
             var accountUsersHtml = $templateCache.get('templates/rxAccountUsers.html');
@@ -1024,6 +1025,11 @@ describe('rxAccountUsers', function () {
 
         userSelect = helpers.createDirective(angular.element(validTemplate), compile, scope);
         users = userSelect.find('option');
+    });
+
+    it('should switch to the admin account', function () {
+        scope.switchToAdmin();
+        expect(scope.currentUser).to.equal('testaccountuser');
     });
 
     it('should have two account users', function () {
