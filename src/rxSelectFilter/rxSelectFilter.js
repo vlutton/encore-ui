@@ -118,6 +118,14 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
             this.addOption = function (option) {
                 if (option !== 'all') {
                     this.options = _.union(this.options, [option]);
+                    this.render();
+                }
+            };
+            this.removeOption = function (option) {
+                if (option !== 'all') {
+                    this.options = _.without(this.options, option);
+                    this.unselect(option);
+                    this.render();
                 }
             };
 
@@ -172,25 +180,27 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
             var ngModelCtrl = controllers[1];
 
             ngModelCtrl.$render = function () {
-                scope.preview = (function () {
-                    function getLabel (option) {
-                        var optionElement = rxDOMHelper.find(element, '[value="' + option + '"]');
-                        return optionElement.text().trim();
-                    }
+                scope.$evalAsync(function () {
+                    scope.preview = (function () {
+                        function getLabel (option) {
+                            var optionElement = rxDOMHelper.find(element, '[value="' + option + '"]');
+                            return optionElement.text().trim();
+                        }
 
-                    if (_.isEmpty(scope.selected)) {
-                        return 'None';
-                    } else if (scope.selected.length === 1) {
-                        return getLabel(scope.selected[0]) || scope.selected[0];
-                    } else if (scope.selected.length === selectCtrl.options.length - 1) {
-                        var option = _.first(_.difference(selectCtrl.options, scope.selected));
-                        return 'All except ' + getLabel(option) || scope.selected[0];
-                    } else if (scope.selected.length === selectCtrl.options.length) {
-                        return 'All Selected';
-                    } else {
-                        return scope.selected.length + ' Selected';
-                    }
-                })();
+                        if (_.isEmpty(scope.selected)) {
+                            return 'None';
+                        } else if (scope.selected.length === 1) {
+                            return getLabel(scope.selected[0]) || scope.selected[0];
+                        } else if (scope.selected.length === selectCtrl.options.length - 1) {
+                            var option = _.first(_.difference(selectCtrl.options, scope.selected));
+                            return 'All except ' + getLabel(option) || scope.selected[0];
+                        } else if (scope.selected.length === selectCtrl.options.length) {
+                            return 'All Selected';
+                        } else {
+                            return scope.selected.length + ' Selected';
+                        }
+                    })();
+                });
             };
 
             selectCtrl.ngModelCtrl = ngModelCtrl;
@@ -237,7 +247,9 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
 
             selectCtrl.addOption(scope.value);
 
-            selectCtrl.render();
+            scope.$on('$destroy', function () {
+                selectCtrl.removeOption(scope.value);
+            });
         }
     };
 });

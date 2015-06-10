@@ -30,11 +30,18 @@ describe('rxMultiSelect', function () {
         };
     });
 
+    it('renders the preview text properly with preselected options', function () {
+        scope.types = _.without(scope.options, 'E');
+        var el = createDirective(optionsTemplate);
+        var isolateScope = el.isolateScope();
+        expect(isolateScope.preview).to.equal('All except E');
+    });
+
     [transcludedTemplate, optionsTemplate].forEach(function (template, i) {
 
         describe(i === 0 ? 'without options attribute' : 'with options attribute', function () {
             var isolateScope, el;
-           
+
             beforeEach(function () {
                 el = createDirective(template);
                 isolateScope = el.isolateScope();
@@ -69,7 +76,9 @@ describe('rxMultiSelect', function () {
                     expect(scope.types).to.eql([]);
                 });
 
-                it('tracks its options (except "all")', function () {
+                it('adds options (except "all") and renders', function () {
+                    ctrl.render = sinon.stub();
+
                     expect(ctrl.options).to.eql(['A', 'B', 'C', 'D', 'E']);
 
                     ctrl.addOption('F');
@@ -77,6 +86,30 @@ describe('rxMultiSelect', function () {
 
                     ctrl.addOption('all');
                     expect(ctrl.options).to.eql(['A', 'B', 'C', 'D', 'E', 'F']);
+
+                    expect(ctrl.render).to.have.been.calledOnce;
+                });
+
+                it('removes options (except "all") and renders', function () {
+                    var reducedOptions = ['A', 'B', 'C', 'D'];
+                    var options = reducedOptions.concat('E');
+                    scope.types = options;
+                    scope.$digest();
+                    ctrl.render = sinon.stub();
+
+                    expect(ctrl.options).to.eql(options);
+
+                    ctrl.removeOption('E');
+                    scope.$digest();
+                    expect(ctrl.options).to.eql(reducedOptions);
+                    expect(scope.types).to.eql(reducedOptions);
+
+                    ctrl.removeOption('all');
+                    scope.$digest();
+                    expect(ctrl.options).to.eql(reducedOptions);
+                    expect(scope.types).to.eql(reducedOptions);
+
+                    expect(ctrl.render).to.have.been.calledOnce;
                 });
 
                 it('selects and unselects a single option', function () {
@@ -159,6 +192,13 @@ describe('rxMultiSelect', function () {
                     ctrl.select('C');
                     scope.$digest();
                     expect(isolateScope.preview).to.equal('3 Selected');
+                });
+
+                it('rerenders when the model is changed outside the controller', function () {
+                    var label = el[0].querySelector('rx-select-option[value="A"]').textContent.trim();
+                    scope.types = ['A'];
+                    scope.$digest();
+                    expect(isolateScope.preview).to.equal(label);
                 });
 
             });
