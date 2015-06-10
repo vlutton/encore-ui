@@ -37,7 +37,7 @@ describe('rxTokenInterceptor', function () {
     it('should not inject headers for rackcdn requests', function () {
         var config = {
             headers: {},
-            url: 'foo.bar.rackcdn.com'
+            url: 'https://foo.bar.rackcdn.com'
         };
         interceptor.request(config);
         expect(config.headers).to.be.empty;
@@ -46,9 +46,18 @@ describe('rxTokenInterceptor', function () {
     it('should not inject headers for domains added to exclusionList', function () {
         var config = {
             headers: {},
-            url: 'foo.bar.abcd.com'
+            url: 'https://foo.bar.abcd.com'
         };
         interceptor.request(config);
         expect(config.headers).to.be.empty;
+    });
+
+    it('should only compare exclusionList to the hostname', function () {
+        var config = {
+            headers: {},
+            url: 'https://rackspace.com/rackcdn.com'
+        };
+        interceptor.request(config);
+        expect(config.headers).to.not.be.empty;
     });
 });
