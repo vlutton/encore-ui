@@ -45,6 +45,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             templateUrl: 'components.html',
             controller: 'componentsController as vm'
         })
+        .when('/components', {
+            templateUrl: 'components.html',
+            controller: 'componentsController as vm'
+        })
         .when('/styleguide/basics', {
             templateUrl: 'styleguide/basics.html',
             controller: genericRouteController([{
