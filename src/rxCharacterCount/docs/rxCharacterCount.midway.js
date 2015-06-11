@@ -2,7 +2,7 @@
 describe('rxCharacterCount', function () {
 
     before(function () {
-        demoPage.go('#/component/rxCharacterCount');
+        demoPage.go('#/components/rxCharacterCount');
     });
 
     describe('defaults', encore.exercise.rxCharacterCount({

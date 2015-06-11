@@ -36,7 +36,7 @@ Like `rxBulkSelectHeaderCheck`, this is an **attribute** directive that inserts 
 
 ## rxBatchActions
 
-This directive is used to provide links for the batch actions in a hideable menu in the table header, behaving similar to [rxActionMenu](#/component/rxActionMenu).  It is used as a list-wrapper element (e.g. `<ul>`), and it **must** be placed as a direct child of a `<th>` element.
+This directive is used to provide links for the batch actions in a hideable menu in the table header, behaving similar to [rxActionMenu](#/components/rxActionMenu).  It is used as a list-wrapper element (e.g. `<ul>`), and it **must** be placed as a direct child of a `<th>` element.
 
 ```html
 <tr>
@@ -55,5 +55,5 @@ This directive is used to provide links for the batch actions in a hideable menu
 
 The styles for the table are applied just by using the directives.  There are no directives provided for the modal, but it should follow a few design conventions:
 * The first view has a warning at the top, and a table listing the selected items. The table should be paginated with 8 items per page, and items may be removed via an "X" icon (see the [Delete "X" action](#/styleguide/tables)).
-* In the second view, the table has a status column with text describing the state of each item, and another column with an icon to indicate the state. A [progressbar](#/component/progressbar) should be included as well as a link that opens the current page in a new tab.
+* In the second view, the table has a status column with text describing the state of each item, and another column with an icon to indicate the state. A [progressbar](#/components/progressbar) should be included as well as a link that opens the current page in a new tab.
 * Once the process is complete a "Return to [x]" button should appear in the footer, and the progressbar should be replaced with some text indicating the process is complete.

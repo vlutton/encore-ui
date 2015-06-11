@@ -1,8 +1,11 @@
 angular.module('demoApp', ['encore.ui', 'ngRoute'])
 .controller('componentCtrl', function ($scope, rxBreadcrumbsSvc, $routeParams, component) {
     rxBreadcrumbsSvc.set([{
-        name: component.name
-    }]);
+            path: '/#/components',
+            name: 'Components'
+        }, {
+            name: component.name
+        }]);
 
     $scope.component = component;
 })
@@ -25,6 +28,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             controller: function (rxBreadcrumbsSvc) {
                 rxBreadcrumbsSvc.set();
             }
+        })
+        .when('/components', {
+            templateUrl: 'components.html',
+            controller: 'componentsController as vm'
         })
         .when('/styleguide/basics', {
             templateUrl: 'styleguide/basics.html',
@@ -78,7 +85,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 rxBreadcrumbsSvc.set();
             }
         })
-        .when('/component/:component', {
+        .when('/components/:component', {
             controller: 'componentCtrl',
             templateUrl: 'component-template.html',
             resolve: {
@@ -97,7 +104,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         text: 'Demo Tag'
     });
 })
-.run(function ($rootScope, components, $window, $location, $anchorScroll, Environment, rxBreadcrumbsSvc, rxPageTitle) {
+.run(function ($rootScope, $window, $location, $anchorScroll, Environment, rxBreadcrumbsSvc, rxPageTitle) {
     var baseGithubUrl = '//rackerlabs.github.io/encore-ui/';
     Environment.add({
         name: 'ghPages',
@@ -314,24 +321,21 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             ]
         },
         {
-            title: 'All Components',
-            children: []
+            title: 'Components',
+            children: [
+                {
+                    href: '#/components',
+                    linkText: 'All Components'
+                }
+            ]
         }
     ];
-
-    _.each(components, function (component) {
-        demoNav[2].children.push({
-            href: '#/component/' + component.name,
-            linkText: component.name
-        });
-    });
 
     $rootScope.demoNav = demoNav;
 
     rxPageTitle.setSuffix(' - EncoreUI');
 
     $rootScope.$on('$routeChangeSuccess', function() {
-
         if ($location.hash()) {
             $anchorScroll();
         } else {

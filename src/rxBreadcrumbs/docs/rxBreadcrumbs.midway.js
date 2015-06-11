@@ -4,7 +4,7 @@ describe('rxBreadcrumbs', function () {
     var breadcrumbs;
 
     before(function () {
-        demoPage.go('#/component/rxBreadcrumbs');
+        demoPage.go('#/components/rxBreadcrumbs');
         breadcrumbs = rxBreadcrumbs.initialize($('.component-demo rx-breadcrumbs'));
     });
 
@@ -129,16 +129,16 @@ describe('rxBreadcrumbs', function () {
         var defaultBreadcrumbs;
 
         before(function () {
-            demoPage.go('#/component/configs');
+            demoPage.go('#/components/configs');
             defaultBreadcrumbs = rxBreadcrumbs.main;
         });
 
         it('should find the default breadcrumbs', function () {
-            expect(defaultBreadcrumbs.count()).to.eventually.equal(2);
+            expect(defaultBreadcrumbs.count()).to.eventually.equal(3);
         });
 
         it('should have the correct names', function () {
-            expect(defaultBreadcrumbs.names).to.eventually.eql(['Home', 'configs']);
+            expect(defaultBreadcrumbs.names).to.eventually.eql(['Home', 'Components', 'configs']);
         });
     });
 

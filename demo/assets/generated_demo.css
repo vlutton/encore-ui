@@ -105,6 +105,17 @@ table.component-attributes th,
 table.component-attributes td {
   vertical-align: top;
 }
+.components-list .page-content {
+  clear: left;
+  margin-top: 60px;
+}
+.components-list table thead th {
+  cursor: pointer;
+}
+.components-list table td,
+.components-list table th {
+  padding: 7px 10px;
+}
 .component-description pre,
 .component-demo pre,
 .component-description code,

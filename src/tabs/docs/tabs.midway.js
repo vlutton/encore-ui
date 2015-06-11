@@ -5,7 +5,7 @@ describe('tabs', function () {
     var tabNames = ['Bacon Ipsum', 'Veggie Ipsum', 'Cat Ipsum (meow)', 'Tupac Ipsum'];
 
     before(function () {
-        demoPage.go('#/component/tabs');
+        demoPage.go('#/components/tabs');
         tabs = tabsPage.initialize($('#tabs'));
     });
 
@@ -82,7 +82,7 @@ describe('tabs', function () {
     describe('main tabs', function () {
 
         before(function () {
-            demoPage.go('#/component/hotkeys');
+            demoPage.go('#/components/hotkeys');
         });
 
         it('should find the only tabs on the page', function () {

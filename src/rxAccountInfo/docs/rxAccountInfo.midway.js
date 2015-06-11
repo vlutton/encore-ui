@@ -6,7 +6,7 @@ describe('rxAccountInfo', function () {
     var rxAccountInfo;
 
     before(function () {
-        demoPage.go('#/component/rxAccountInfo');
+        demoPage.go('#/components/rxAccountInfo');
         rxAccountInfo = rxAccountInfoPage.initialize($('.demo-working-account rx-account-info'));
     });
 

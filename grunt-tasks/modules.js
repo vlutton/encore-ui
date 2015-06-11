@@ -32,6 +32,20 @@ module.exports = function (grunt) {
             return markdown(text);
         }
 
+        function convertDateFormat (dateStr) {
+            if (!dateStr) {
+                return;
+            }
+
+            // dateStr recieved as "2015-02-20 13:34:24 -0600"
+            // Covert to "Fri Feb 20 2015 13:34:24 GMT-0600 (CST)" then split into array
+            var d = new Date(dateStr).toString().split(' ');
+
+            // Return as "Feb 20, 2015 @ 13:34:24 (UTC-0600)"
+            return [
+                d[1], parseInt(d[2]) + ',', d[3], '@', d[4].substr(0, 5), d[5].replace('GMT', '(UTC') + ')'].join(' ');
+        }
+
         var module = {
             name: name,
             moduleName: enquote('encore.ui.' + name),
@@ -40,6 +54,9 @@ module.exports = function (grunt) {
             tplFiles: grunt.file.expand('src/' + name + '/*.tpl.html'),
             tplJsFiles: grunt.file.expand('templates/' + name + '/templates/*.html'),
             dependencies: dependenciesForModule(name),
+            stability: stabilities[name],
+            lastModified: convertDateFormat(lastModified[name]),
+            rawLastModified: lastModified[name],
             docs: {
                 md: grunt.file.expand('src/' + name + '/*.md').map(grunt.file.read).map(parseMarkdown).join('\n'),
                 js: grunt.file.expand('src/' + name + '/docs/!(*.midway).js').map(grunt.file.read).join('\n'),
@@ -82,8 +99,65 @@ module.exports = function (grunt) {
         return deps;
     }
 
+    var lastModified = {};
+    var stabilities = {};
+    function moduleMetaData () {
+
+        // Like Math.max, but for strings too!
+        function maxString (str1, str2) {
+            return (str1 > str2 ? str1 : str2);
+        }
+
+        var execFunc = require('child_process').execSync || require('execSync').exec;
+        var command, lines, line, stability, module, dateStr;
+
+        // Run command returning stdout as array of string per line
+        function exec (command) {
+            var result = execFunc(command);
+
+            // Account for native execSync result vs execSync module result
+            result = ('stdout' in result ? result.stdout : result.toString());
+            return result.trim().split('\n');
+        }
+
+        function getStabilities () {
+            command = 'find src -name README.md | xargs grep "stability"';
+            lines = exec(command);
+
+            while ((line = lines.pop()) !== undefined) {
+                // Line looks like "src/configs/README.md:[![stable](http://badges.github.io/stability-badges/dist..."
+                line = line.split('/', 3);
+                module = line[1];
+                stability = line[2].split(']', 1)[0].split('[', 3)[2];
+
+                stabilities[module] = stability;
+            }
+        }
+
+        function getLastModified () {
+            // Get a list of directories in the branch under the 'src/' dir; These are the modules
+            command = 'ls -1 src';
+            lines = exec(command);
+
+            while ((module = lines.pop()) !== undefined) {
+
+                // Get the date of the most recently modified file
+                command = 'git log -1 --format="%ai" -- src/' + module;
+                dateStr = exec(command);
+
+                // Store the most recent date
+                lastModified[module] = maxString(lastModified[module] || '', dateStr[0]);
+            }
+        }
+
+        getLastModified();
+        getStabilities();
+    }
+
     grunt.registerTask('modules', 'Auto-discover EncoreUI modules and load their details into config', function () {
         var _ = grunt.util._;
+
+        moduleMetaData();
 
         grunt.file.expand({ filter: 'isDirectory', cwd: '.' }, 'src/!(styles)')
             .forEach(function (dir) {

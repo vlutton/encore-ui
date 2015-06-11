@@ -4,7 +4,7 @@ describe('rxLogout', function () {
     var rxLogout;
 
     before(function () {
-        demoPage.go('#/component/rxLogout');
+        demoPage.go('#/components/rxLogout');
         rxLogout = rxLogoutPage.initialize($('#rxLogout'));
     });
 

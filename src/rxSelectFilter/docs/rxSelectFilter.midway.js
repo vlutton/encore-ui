@@ -6,7 +6,7 @@ var rxSelectFilterPage = encore.rxSelectFilter;
 describe('rxMultiSelect', function () {
 
     before(function () {
-        demoPage.go('#/component/rxSelectFilter');
+        demoPage.go('#/components/rxSelectFilter');
     });
 
     describe('exercises', encore.exercise.rxMultiSelect({
@@ -42,7 +42,7 @@ describe('rxSelectFilter', function () {
     var rxSelectFilter;
 
     before(function () {
-        demoPage.go('#/component/rxSelectFilter');
+        demoPage.go('#/components/rxSelectFilter');
         rxSelectFilter = rxSelectFilterPage.main;
     });
 

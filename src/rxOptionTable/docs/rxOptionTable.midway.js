@@ -6,7 +6,7 @@ describe('rxOptionTable', function () {
     var component;
 
     before(function () {
-        demoPage.go('#/component/rxOptionTable');
+        demoPage.go('#/components/rxOptionTable');
     });
 
     describe('exercise', function () {

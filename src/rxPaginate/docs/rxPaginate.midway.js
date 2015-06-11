@@ -68,7 +68,7 @@ var table = Page.create({
 describe('rxPaginate', function () {
 
     before(function () {
-        demoPage.go('#/component/rxPaginate');
+        demoPage.go('#/components/rxPaginate');
     });
 
     describe('UI pagination exercises', encore.exercise.rxPaginate({

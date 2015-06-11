@@ -2,7 +2,7 @@ var rxSearchBoxPage = encore.rxSearchBox;
 
 describe('rxSearchBox', function () {
     before(function () {
-        demoPage.go('#/component/rxSearchBox');
+        demoPage.go('#/components/rxSearchBox');
     });
 
     describe('default rxSearchBox', encore.exercise.rxSearchBox({

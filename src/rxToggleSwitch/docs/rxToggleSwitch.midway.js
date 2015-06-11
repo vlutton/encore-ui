@@ -3,7 +3,7 @@ describe('rxToggleSwitch', function () {
     var rxToggleSwitch;
 
     before(function () {
-        demoPage.go('#/component/rxToggleSwitch');
+        demoPage.go('#/components/rxToggleSwitch');
     });
 
     describe('defaults', encore.exercise.rxToggleSwitch({
