@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 describe('rxCollapse', function () {
-    var scope, compile, rootScope, el, elOne, elTwo;
+    var scope, compile, rootScope, el, elCollapsed, elExanded;
     var validTemplate = '<rx-collapse title="Filter results"></rx-collapse>';
     var otherTemplate1 = '<rx-collapse expanded="false"></rx-collapse>';
     var otherTemplate2 = '<rx-collapse expanded="true"></rx-collapse>';
@@ -21,8 +21,8 @@ describe('rxCollapse', function () {
         });
 
         el = helpers.createDirective(validTemplate, compile, scope);
-        elOne = helpers.createDirective(otherTemplate1, compile, scope);
-        elTwo = helpers.createDirective(otherTemplate2, compile, scope);
+        elCollapsed = helpers.createDirective(otherTemplate1, compile, scope);
+        elExanded = helpers.createDirective(otherTemplate2, compile, scope);
 
     });
 
@@ -43,17 +43,17 @@ describe('rxCollapse', function () {
     });
 
     it('should show See More as the title', function () {
-        expect(elOne.find('.title').text()).to.equal('See More');
+        expect(elCollapsed.find('.title').text()).to.equal('See More');
     });
 
     it('should show See Less as title', function () {
-        expect(elTwo.find('.title').text()).to.equal('See Less');
+        expect(elExanded.find('.title').text()).to.equal('See Less');
     });
 
     it('should show down chevron when not expanded and show up when expanded', function () {
-        expect(elOne.find('.fa').hasClass('fa-angle-double-up')).to.be.false;
+        expect(elCollapsed.find('.fa').hasClass('fa-angle-double-up')).to.be.false;
 
-        elOne.find('.tabStyle_2 .smlTitle .title').click();
-        expect(elOne.find('.fa').hasClass('fa-angle-double-up')).to.be.true;
+        elCollapsed.find('.tabStyle_2 .smlTitle .title').click();
+        expect(elCollapsed.find('.fa').hasClass('fa-angle-double-up')).to.be.true;
     });
 });

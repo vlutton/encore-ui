@@ -1,9 +1,9 @@
 <div class="collapse-container" ng-class="cContainer">
 	<div class="tabStyle_1" ng-show="!tabToShow">
 		<div class="double-chevron-cell" ng-class="{ expanded: isExpanded }">
-        	<a class="double-chevron" ng-click="isExpanded = !isExpanded"></a>
-	    </div>
-	    <h3 class="rx-collapse-title title">{{title}}</h3>
+			<a class="double-chevron" ng-click="isExpanded = !isExpanded"></a>
+		</div>
+		<h3 class="rx-collapse-title title">{{title}}</h3>
 	</div>
     <div ng-show="isExpanded" ng-class="ispad" ng-transclude></div>
 	<div class="tabStyle_2" ng-show="tabToShow">

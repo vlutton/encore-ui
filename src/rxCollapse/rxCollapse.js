@@ -26,18 +26,17 @@ angular.module('encore.ui.rxCollapse', [])
             toggleTitle: '&'
         },
         link: function (scope, element, attrs) {
-            var storedTitles = ['See More', 'See Less'];
             scope.isExpanded = (attrs.expanded === 'false') ? false : true;
 
             var doSeeMoreOrLess = function () {
-                scope.toggleTitle = storedTitles[+scope.isExpanded];
+                scope.toggleTitle = (scope.isExpanded === true) ? 'See Less' : 'See More';
                 scope.cContainer = 'hideBorder';
                 scope.tabToShow = true;
             };
 
             scope.toggleTitleAndCollapse = function () {
                 scope.isExpanded = !scope.isExpanded;
-                scope.toggleTitle = storedTitles[+scope.isExpanded];
+                scope.toggleTitle = (scope.isExpanded === true) ? 'See Less' : 'See More';
                 setChev();
             };
 
