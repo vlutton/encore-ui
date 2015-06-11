@@ -7,8 +7,8 @@ angular.module('encore.ui.rxCollapse', [])
  * @description
  * Hide and show an element with a transition.
  *
- * @param {string} [title] The title to display next to the toggle button and toggle different rxCollapse
- * @param {string} [expanded] Initially expanded or collapsed.  Default is expanded.
+ * @param {string} [title] The title to display next to the toggle button. Default is "See More/See Less" toggle.
+ * @param {string} [expanded] Initially expanded or collapsed. Default is expanded.
  *
  * @example
  * <pre>
