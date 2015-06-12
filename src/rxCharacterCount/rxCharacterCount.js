@@ -2,7 +2,7 @@ angular.module('encore.ui.rxCharacterCount', [])
 /**
  *
  * @ngdoc directive
- * @name encore.ui.rxCharacterCount:rxCharacterCount
+ * @name rxCharacterCount.directive:rxCharacterCount
  * @restrict A
  * @description
  * Monitors the number of characters in a text input and compares it to the desired length.

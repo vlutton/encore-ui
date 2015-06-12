@@ -3,6 +3,8 @@
 function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
     $scope.message = 'My message';
 
+    $scope.types = [ 'info', 'success', 'warning', 'error' ];
+
     $scope.options = {
         type: 'info',
         timeout: -1,

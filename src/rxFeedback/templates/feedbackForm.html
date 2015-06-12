@@ -1,17 +1,32 @@
-<rx-modal-form title="Submit Feedback" subtitle="for page: {{ currentUrl }}" submit-text="Send Feedback" class="rx-feedback-form">
-    <rx-form-item
-        label="Report Type">
-        <select
-            ng-model="fields.type"
-            ng-options="opt as opt.label for opt in feedbackTypes"
-            ng-init="fields.type = feedbackTypes[0]"
-            required="true"></select>
-    </rx-form-item>
+<rx-modal-form rx-form title="Submit Feedback" subtitle="for page: {{ currentUrl }}" submit-text="Send Feedback" class="rx-feedback-form">
+  <rx-form-section>
+    <rx-field>
+      <rx-field-name>Report Type:</rx-field-name>
+      <rx-field-content>
+        <rx-input>
+          <select rx-select
+              id="selFeedbackType"
+              ng-model="fields.type"
+              ng-options="opt as opt.label for opt in feedbackTypes"
+              ng-init="fields.type = feedbackTypes[0]"
+              required="true"></select>
+        </rx-input>
+      </rx-field-content>
+    </rx-field>
+  </rx-form-section>
 
-    <rx-form-item
-        label="{{fields.type.prompt}}"
-        ng-show="fields.type"
-        class="feedback-description">
-        <textarea placeholder="{{fields.type.placeholder}}" required="true" ng-model="fields.description" class="feedback-textarea"></textarea>
-    </rx-form-item>
+  <rx-form-section ng-show="fields.type">
+    <rx-field>
+      <rx-field-name class="feedback-description">{{fields.type.prompt}}:</rx-field-name>
+      <rx-field-content>
+        <rx-input>
+          <textarea rows="8"
+            placeholder="{{fields.type.placeholder}}"
+            required="true"
+            ng-model="fields.description"
+            class="feedback-textarea"></textarea>
+        </rx-input>
+      </rx-field-content>
+    </rx-field>
+  </rx-form-section>
 </rx-modal-form>

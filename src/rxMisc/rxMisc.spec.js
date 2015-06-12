@@ -103,7 +103,7 @@ describe('rxAutoSave', function () {
             return url;
         }
     };
-    
+
     var initializeScope = function () {
         scope.$destroy();
         scope.$digest();
@@ -112,7 +112,7 @@ describe('rxAutoSave', function () {
         scope.formB = { foo: '' };
         scope.$digest();
     };
-    
+
     var flush = function () {
         scope.$digest();
         $timeout.flush();
@@ -122,13 +122,13 @@ describe('rxAutoSave', function () {
         module('encore.ui.rxMisc');
         module('encore.ui.rxLocalStorage');
         module('encore.ui.rxSessionStorage');
-        
+
         module(function ($provide) {
             $provide.value('$location', $location);
         });
 
         url = 'foo/bar?x=y';
-        
+
         inject(function (_$rootScope_, _$q_, _$timeout_, _rxAutoSave_, _LocalStorage_, _SessionStorage_) {
             $rootScope = _$rootScope_;
             $q = _$q_;
@@ -148,7 +148,7 @@ describe('rxAutoSave', function () {
 
         a = rxAutoSave(scope, 'formA');
         b = rxAutoSave(scope, 'formB');
-        
+
         scope.$digest();
     });
 
@@ -173,7 +173,6 @@ describe('rxAutoSave', function () {
 
         expect(scope.formA.foo).to.equal('bar');
         expect(scope.formB.foo).to.equal('baz');
-
     });
 
     it('should clear out all values for the current page with clear()', function () {
@@ -227,7 +226,7 @@ describe('rxAutoSave', function () {
 
         expect(scope.formA.foo).to.equal('bar');
     });
-    
+
     it('should not load values on creation if you pass falsely resolving promise', function () {
         var deferred = $q.defer();
         // have rxAutoSave store 'bar'
@@ -250,7 +249,6 @@ describe('rxAutoSave', function () {
         scope.formA.foo = 'bar';
         flush();
 
-        
         // Load the stored values into a new scope, and
         // tell it to clear the stored values on a successful
         // promise
@@ -261,7 +259,7 @@ describe('rxAutoSave', function () {
         });
         scope.$digest();
         expect(scope.formA.foo, 'sanity check').to.equal('bar');
-        
+
         deferred.resolve();
         scope.$digest();
 
@@ -277,7 +275,7 @@ describe('rxAutoSave', function () {
         scope.formA.foo = 'bar';
         scope.formA.keepAround = '123';
         flush();
-        
+
         initializeScope();
         a = rxAutoSave(scope, 'formA', {
             exclude: ['foo']
@@ -291,7 +289,7 @@ describe('rxAutoSave', function () {
         scope.formA.foo = 'bar';
         scope.formA.shouldMaintain = '123';
         flush();
-        
+
         initializeScope();
         a = rxAutoSave(scope, 'formA', {
             exclude: ['shouldMaintain']
@@ -305,7 +303,7 @@ describe('rxAutoSave', function () {
         // It should _not_ save this value
         scope.formA.shouldMaintain = '456';
         flush();
-        
+
         initializeScope();
         a = rxAutoSave(scope, 'formA');
         flush();
@@ -373,12 +371,12 @@ describe('rxAutoSave', function () {
         initializeScope();
         a = rxAutoSave(scope, 'formA');
         scope.$digest();
-        
+
         // Tell it to clear the stored values on a successful promise
         var deferred = $q.defer();
         a.clearOnSuccess(deferred.promise);
         expect(scope.formA.foo, 'sanity check').to.equal('bar');
-        
+
         deferred.resolve();
         scope.$digest();
 
@@ -399,7 +397,7 @@ describe('rxAutoSave', function () {
         });
         scope.formA.foo = 'bar';
         flush();
-        
+
         now.returns(3001);
         initializeScope();
         a = rxAutoSave(scope, 'formA');
@@ -414,14 +412,13 @@ describe('rxAutoSave', function () {
         });
         scope.formA.foo = 'bar';
         flush();
-        
+
         // One millisecond short of expiring
         now.returns(999);
         initializeScope();
         a = rxAutoSave(scope, 'formA');
         flush();
         expect(scope.formA.foo, 'still in localstorage').to.equal('bar');
-        
     });
 
     it('should default to clearing out values after two days', function () {
@@ -431,14 +428,14 @@ describe('rxAutoSave', function () {
         a = rxAutoSave(scope, 'formA');
         scope.formA.foo = 'bar';
         flush();
-        
+
         // Check that the value is still there in twoDays-1 seconds
         now.returns(twoDays - 1);
         initializeScope();
         a = rxAutoSave(scope, 'formA');
         flush();
         expect(scope.formA.foo, 'still in localstorage').to.equal('bar');
-        
+
         // When we "loaded" the page above, it reset the expiry time to
         // now() + ttl. So to cause an expiry, we have to set the now.returns
         // to what it was the last time, plus the twoDays
@@ -496,5 +493,83 @@ describe('rxAutoSave', function () {
         a.save();
         expect(a.getStoredValue().foo).to.equal('bar');
     });
+});
 
+describe('rxNestedElement', function () {
+    var subject, result;
+
+    beforeEach(function () {
+        module('encore.ui.rxMisc');
+
+        inject(function (rxNestedElement) {
+            subject = rxNestedElement;
+        });
+    });
+
+    it('should return a function', function () {
+        expect(subject).to.be.a.function;
+    });
+
+    describe('result when called without options', function () {
+        beforeEach(function () {
+            result = subject();
+        });
+
+        it('should be an object', function () {
+            expect(result).to.be.an.object;
+        });
+
+        it('should define "controller"', function () {
+            expect(result.controller).to.be.defined;
+        });
+
+        it('should not define "link"', function () {
+            expect(result.link).to.not.be.defined;
+        });
+
+        it('should define "restrict"', function () {
+            expect(result.restrict).to.be.defined;
+        });
+
+        it('should restrict "E"', function () {
+            expect(result.restrict).to.eq('E');
+        });
+
+        it('should not define "require"', function () {
+            expect(result.require).to.not.be.defined;
+        });
+    });
+
+    describe('result when called with options', function () {
+        var opts = {
+            parent: 'foobar',
+            // yes, this isn't valid with angular
+            // but we're only testing if it overrides the default
+            restrict: 'Z'
+        };
+
+        beforeEach(function () {
+            result = subject(opts);
+        });
+
+        it('should restrict "Z"', function () {
+            expect(result.restrict).to.eq('Z');
+        });
+
+        it('should define "require"', function () {
+            expect(result.require).to.be.defined;
+        });
+
+        it('should have expected require', function () {
+            expect(result.require).to.eq('^foobar');
+        });
+
+        it('should define "link"', function () {
+            expect(result.link).to.be.defined;
+        });
+
+        it('should define "link" as a function', function () {
+            expect(result.link).to.be.a.function;
+        });
+    });
 });

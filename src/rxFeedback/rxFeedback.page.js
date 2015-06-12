@@ -1,10 +1,8 @@
 /*jshint node:true*/
-
 var rxFeedback = {
-
     selReportType: {
         get: function () {
-            return this.rootElement.element(by.model('fields.type'));
+            return exports.rxSelect.initialize($('#selFeedbackType'));
         }
     },
 
@@ -27,19 +25,25 @@ var rxFeedback = {
 
     type: {
         get: function () {
-            return this.selReportType.$('option:checked').getText();
+            return this.selReportType.selectedOption.text;
         },
         set: function (optionText) {
-            var option = this.selReportType.element(by.cssContainingText('option', optionText));
-            browser.actions().mouseDown(option).mouseUp().perform();
+            // OK1
+            var option = this.selReportType.rootElement.element(by.cssContainingText('option', optionText));
+            /*
+             * For some reason, it seems that the slow click method in combination
+             * with an rx-select in the modal will dismiss the modal instead of
+             * selecting the dropdown option.
+             *
+             * Reverted to basic .click() functionality, for the time being.
+             */
+            option.click();
         }
     },
 
     types: {
         get: function () {
-            return this.selReportType.$$('option').map(function (option) {
-                return option.getText();
-            });
+            return this.selReportType.options;
         }
     },
 
@@ -87,7 +91,6 @@ var rxFeedback = {
                 if (confirmSuccessWithin !== undefined) {
                     page.confirmSuccess(confirmSuccessWithin, confirmSuccessFn);
                 }
-
             });
         }
     },
@@ -105,16 +108,13 @@ var rxFeedback = {
             }, within, 'feedback submission did not confirm success within ' + within + ' msecs');
         }
     }
-
-};
+};//rxFeedback
 
 exports.rxFeedback = {
-
     initialize: function (rxFeedbackElement) {
         rxFeedback.eleFeedback = {
             get: function () { return rxFeedbackElement; }
         };
         return exports.rxModalAction.initialize(rxFeedback);
     }
-
 };

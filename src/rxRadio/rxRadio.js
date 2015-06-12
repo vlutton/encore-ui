@@ -1,4 +1,19 @@
 angular.module('encore.ui.rxRadio', [])
+/**
+ * @name rxRadio.directive:rxRadio
+ * @ngdoc directive
+ * @restrict A
+ * @scope
+ * @description
+ * Attribute directive that wraps a native radio element in markup required for styling purposes.
+ *
+ * @example
+ * <pre>
+ * <input rx-radio />
+ * </pre>
+ *
+ * @param {Boolean=} [ng-disabled=false] Determines if control is disabled.
+ */
 .directive('rxRadio', function () {
     return {
         restrict: 'A',

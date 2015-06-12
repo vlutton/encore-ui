@@ -1,95 +1,135 @@
 <!-- Sample HTML goes here as a live example of how to the component can be used -->
 <div ng-controller="rxNotifyCtrl">
-    <div class="form-item">
-        <label>Message text: <input type="text" ng-model="message" /></label>
-    </div>
+  <div layout="row">
+    <div rx-form flex>
+      <rx-form-section>
+        <rx-field>
+          <rx-field-name>Message Text:</rx-field-name>
+          <rx-field-content>
+            <rx-input>
+              <input type="text" ng-model="message" />
+            </rx-input>
+          </rx-field-content>
+        </rx-field>
 
-    <div class="form-item">
-        <label>Timeout (in seconds): <input type="text" ng-model="options.timeout" /></label>
-    </div>
+        <rx-field>
+          <rx-field-name>Timeout:</rx-field-name>
+          <rx-field-content>
+            <rx-input>
+              <input type="number" min="-1" ng-model="options.timeout" />
+              <rx-suffix>seconds</rx-suffix>
+            </rx-input>
+          </rx-field-content>
+        </rx-field>
+      </rx-form-section>
 
-    <div class="form-item">
-        <fieldset>
-            <legend>Type:</legend>
-            <label><input type="radio" name="notify-type" ng-model="options.type" value="info" /> Info</label>
-            <label><input type="radio" name="notify-type" ng-model="options.type" value="success" /> Success</label>
-            <label><input type="radio" name="notify-type" ng-model="options.type" value="warning" /> Warning</label>
-            <label><input type="radio" name="notify-type" ng-model="options.type" value="error" /> Error</label>
-        </fieldset>
-    </div>
+      <rx-form-section>
+        <rx-field>
+          <rx-field-name>Type:</rx-field-name>
+          <rx-field-content>
+            <rx-input ng-repeat="type in types">
+              <input rx-radio name="notify-type" id="radType_{{$index}}" ng-model="options.type" value="{{type}}" />
+              <label for="radType_{{$index}}">{{type| rxCapitalize}}</label>
+            </rx-input>
+          </rx-field-content>
+        </rx-field>
 
-    <div class="form-item">
-        <fieldset>
-            <legend>Show:</legend>
-            <label><input type="radio" name="notify-show" ng-model="options.show" value="immediate" /> Immediately</label>
-            <label><input type="radio" name="notify-show" ng-model="options.show" value="next" /> Next</label>
-        </fieldset>
-    </div>
+        <rx-field>
+          <rx-field-name>Show:</rx-field-name>
+          <rx-field-content>
+            <rx-input>
+              <input rx-radio name="notify-show" id="radNotify_immediate" ng-model="options.show" value="immediate" />
+              <label for="radNotify_immediate">Immediately</label>
+            </rx-input>
+            <rx-input>
+              <input rx-radio name="notify-show" id="radNotify_next" ng-model="options.show" value="next" />
+              <label for="radNotify_next">Next</label>
+            </rx-input>
+          </rx-field-content>
+        </rx-field>
+      </rx-form-section>
 
-    <div class="form-item">
-        <label>Repeat: <input type="checkbox" ng-model="options.repeat" /></label>
-    </div>
+      <rx-form-section>
+        <rx-field>
+          <rx-field-name>Options:</rx-field-name>
+          <rx-field-content>
+            <rx-input>
+              <input rx-checkbox id="chkRepeat" ng-model="options.repeat" />
+              <label for="chkRepeat">Repeat</label>
+            </rx-input>
+            <rx-input>
+              <input rx-checkbox id="chkDismissable" ng-model="options.dismissable" />
+              <label for="chkDismissable">Dismissable (by user)</label>
+            </rx-input>
+            <rx-input>
+              <input rx-checkbox id="chkAlertOnDismiss" ng-model="ondismiss.should" />
+              <label for="chkAlertOnDismiss">Alert On Dismiss</label>
+            </rx-input>
+            <rx-input>
+              <input rx-checkbox id="chkLoading" ng-model="options.loading" />
+              <label for="chkLoading">Loading? (shows spinner)</label>
+            </rx-input>
+          </rx-field-content>
+        </rx-field>
+      </rx-form-section>
 
-    <div class="form-item">
-        <label>Dismissable (by user): <input type="checkbox" ng-model="options.dismissable" /></label>
-    </div>
-
-    <div class="form-item">
-        <label>Alert On Dismiss: <input type="checkbox" ng-model="ondismiss.should" /></label>
-    </div>
-
-    <div class="form-item">
-        <label>Loading? (shows spinner): <input type="checkbox" ng-model="options.loading" /></label>
-    </div>
-
-    <div>
-        <button class="button" ng-click="add('demo')">Add to Demo Stack</button>
-        <button class="button" ng-click="add('custom')">Add to Custom Stack</button>
-    </div>
-
-    <div>
-        <h3>rxPromiseNotifications</h3>
-        <button class="button" ng-click="addPromise()">Create messages</button>
-        <button class="button button-positive" ng-click="deferred.resolve();">Resolve Promise</button>
-        <button class="button button-negative" ng-click="deferred.reject();">Reject Promise</button>
-    </div>
-
-    <div>
-        <button class="button" ng-click="routeChange()">Simulate Route Change</button>
-    </div>
-
-    <div class="pure-g">
-        <div class="pure-u-1-2">
-            <h2>Demo Stack</h2>
-            <rx-notifications stack="demo"></rx-notifications>
+      <rx-form-section>
+        <div>
+          <button class="button" ng-click="add('demo')">Add to Demo Stack</button>
+          <button class="button" ng-click="add('custom')">Add to Custom Stack</button>
         </div>
+      </rx-form-section>
 
-        <div class="pure-u-1-2">
-            <h2>Custom Stack</h2>
-            <rx-notifications stack="custom"></rx-notifications>
+      <rx-form-section>
+        <div>
+          <h3>rxPromiseNotifications</h3>
+          <button class="button" ng-click="addPromise()">Create messages</button>
+          <button class="button positive" ng-click="deferred.resolve();">Resolve Promise</button>
+          <button class="button negative" ng-click="deferred.reject();">Reject Promise</button>
         </div>
+      </rx-form-section>
+
+      <rx-form-section>
+        <div>
+          <button class="button" ng-click="routeChange()">Simulate Route Change</button>
+        </div>
+      </rx-form-section>
     </div>
 
-    <p>Using rx-notification</p>
+    <div flex layout="column" layout-align="top stretch">
+      <div>
+        <h2 class="title lg">Demo Stack</h2>
+        <rx-notifications stack="demo"></rx-notifications>
+      </div>
 
-    <rx-notification type="error">Hello, world! <a href="#">This is a link.</a></rx-notification>
-    <rx-notification type="warning">Hello, world! <a href="#">This is a link.</a></rx-notification>
-    <rx-notification type="info">Hello, world! <a href="#">This is a link.</a></rx-notification>
-    <rx-notification type="success">Hello, world! <a href="#">This is a link.</a></rx-notification>
+      <div>
+        <h2 class="title lg">Custom Stack</h2>
+        <rx-notifications stack="custom"></rx-notifications>
+      </div>
+    </div>
+  </div>
 
-    <p>Using rx-notification with custom stack</p>
-    <div class="pure-g">
-        <div class="pure-u-1-2">
-            <h2>Demo Stack (demo-stack)</h2>
-            <rx-notifications stack="demo-stack"></rx-notifications>
-        </div>
+  <hr />
 
-        <div class="pure-u-1-2">
-            <h2>Custom Stack (custom-stack)</h2>
-            <rx-notifications stack="custom-stack"></rx-notifications>
-        </div>
+  <h2 class="title lg">Using rxNotification</h2>
+  <rx-notification type="error">Hello, world! <a href="#">This is a link.</a></rx-notification>
+  <rx-notification type="warning">Hello, world! <a href="#">This is a link.</a></rx-notification>
+  <rx-notification type="info">Hello, world! <a href="#">This is a link.</a></rx-notification>
+  <rx-notification type="success">Hello, world! <a href="#">This is a link.</a></rx-notification>
+
+  <h3 class="title">Using rxNotification with custom stack</h3>
+  <div layout="row">
+    <div flex>
+      <h4 class="title sm">Demo Stack (demo-stack)</h4>
+      <rx-notifications stack="demo-stack"></rx-notifications>
     </div>
 
-    <rx-notification stack="demo-stack" type="info">Hello, world in demo-stack stack!</rx-notification>
-    <rx-notification stack="custom-stack" type="warning">Hello, world in custom-stack stack!</rx-notification>
+    <div flex>
+      <h4 class="title sm">Custom Stack (custom-stack)</h4>
+      <rx-notifications stack="custom-stack"></rx-notifications>
+    </div>
+  </div>
+
+  <rx-notification stack="demo-stack" type="info">Hello, world in demo-stack stack!</rx-notification>
+  <rx-notification stack="custom-stack" type="warning">Hello, world in custom-stack stack!</rx-notification>
 </div>

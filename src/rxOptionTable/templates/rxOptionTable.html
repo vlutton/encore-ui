@@ -41,7 +41,7 @@
           <label for="{{fieldId}}_{{$parent.$index}}">
             <div class="alignWrapper">
               <span ng-bind-html="getContent(column, row)"></span>
-              <span ng-show="isCurrent(row.value)">{{column.selectedLabel}}</span>
+              <rx-help-text ng-show="isCurrent(row.value)">{{column.selectedLabel}}</rx-help-text>
             </div>
           </label>
         </div>

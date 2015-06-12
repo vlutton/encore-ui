@@ -33,6 +33,10 @@
                 .flex(1 1 auto);
             }
         }
+
+        rx-help-text {
+          margin: 0;
+        }
     }
     input[disabled] {
         cursor: not-allowed;
@@ -58,5 +62,13 @@
         // this 'double' makes it so that the border-color applies to the top border as well
         // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
         border-style: double;
+    }
+
+    thead {
+      tr {
+        th:first-child {
+          width: @rxCheckbox-size;
+        }
+      }
     }
 }

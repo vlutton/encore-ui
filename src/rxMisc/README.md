@@ -1,10 +1,14 @@
-A module for shared functionality across framework components.
+[![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
+
+A module for shared functionality across framework components.  See [API Documentation](/ngdocs/index.html#/api/rxMisc).
+
 
 ## rxDOMHelper
 A small set of functions to provide some functionality that isn't present in Angular's jQuery-lite, and other useful DOM-related functions.
 
 
 ## titleize
+See [titleize API Documentation](/ngdocs/index.html#/api/rxMisc.filter:titleize)
 
 A filter that converts a string to title case, stripping out underscores and capitalizing words.  For example,
 ```
@@ -14,32 +18,51 @@ renders the string "A Simple String".
 
 
 ## rxAutoSave
+See [rxAutoSave API Documentation](/ngdocs/index.html#/api/rxMisc.service:rxAutoSave)
+
 `rxAutoSave` provides a way to store values in a form for later. For instance, if a user is entering values into a form, then accidentally navigate to a new page, we likely want the values to be present again when they click the "Back" button in their browser. By correctly setting up an `rxAutoSave` instance for the form, this can happen automatically. By default, all saved values will be cleared after two days.
 
 `rxAutoSave` is a service intended to be used in controllers. No directives are provided. The intent is that the HTML forms themselves will have no knowledge that their values are being saved. `rxAutoSave` operates by doing a `$watch` on the model values for a given form, storing those model values whenever they change, and loading them on instantation.
 
 The stored data is keyed on the page URL. This means you can track the form state for multiple pages simultaneously. For example, say you have an "Edit" form. The user has gone to edit some values for "Server1", at `"/servers/server1/edit"`, and for "Server2" at `"/servers/server2/edit"`. The edit progress for both servers will be saved independently of each other. `rxAutoSave` will also let you independently store values for multiple forms appearing on the same page.
 
-By default, all values are stored in the browser's `LocalStorage`. This means that if a user logs into a different computer, their stored values will not be present. Use of `SessionStorage` is also supported out-of-the-box. If you wish to save form states elsewhere (for instance, to an API), see the "Storage Location" section below. 
+By default, all values are stored in the browser's `LocalStorage`. This means that if a user logs into a different computer, their stored values will not be present. Use of `SessionStorage` is also supported out-of-the-box. If you wish to save form states elsewhere (for instance, to an API), see the "Storage Location" section below.
 
 ### Setting up your template
 
 Nothing explicit needs to be done in your templates to add support for `rxAutoSave`. The only requirement is that all the `ng-model` values in a given form are stored within one object (`formData` below). For example, say you have the following form in your template:
 
 ```
-    <form name="demoForm">
-        <rx-form-item label="A checkbox field!">
-            <input type="checkbox" ng-model="formData.checkbox" />
-        </rx-form-item>
+    <form name="demoForm" rx-form>
+        <rx-form-section stacked>
+            <rx-field>
+                <rx-field-name>A checkbox field!:</rx-field-name>
+                <rx-field-content>
+                    <rx-input>
+                        <input rx-checkbox id="chkCheckbox" ng-model="formData.checkbox" />
+                        <label for="chkCheckbox">I likely don't disagree</label>
+                    </rx-input>
+                </rx-field-content>
+            </rx-field>
 
-        <rx-form-item label="Name">
-            <input type="text" ng-model="formData.name"/>
-        </rx-form-item>
+            <rx-field>
+                <rx-field-name>Name:</rx-field-name>
+                <rx-field-content>
+                    <rx-input>
+                        <input type="text" ng-model="formData.name" />
+                    </rx-input>
+                </rx-field-content>
+            </rx-field>
 
-        <rx-form-item label="Description">
-            <textarea rows="10" cols="50" ng-model="formData.description"></textarea>
-        </rx-form-item>
-
+            <rx-field>
+              <rx-field-name>Description:</rx-field-name>
+              <rx-field-content>
+                  <rx-input>
+                      <textarea rows="10" ng-model="formData.description"></textarea>
+                  </rx-input>
+              </rx-field-content>
+            </rx-field>
+        </rx-form-section>
     </form>
 ```
 
@@ -71,7 +94,7 @@ To have `rxAutoSave` automatically save values, first inject `rxAutoSave` into y
     var autosave = rxAutoSave($scope, 'formData');
 ```
 
-And that's it! Your `rxAutoSave` instance will watch for any change to `$scope.formData`, and will automatically write those changes to `LocalStorage`. 
+And that's it! Your `rxAutoSave` instance will watch for any change to `$scope.formData`, and will automatically write those changes to `LocalStorage`.
 
 A third argument can be passed to `rxAutoSave`, specifying usage options. The default values for these options are:
 
@@ -127,7 +150,7 @@ When instantiating your controller, there's a good chance that the `clearOnSucce
 
 ```
     var autosave = rxAutoSave($scope, 'formData');
-    
+
     // Take some other actions
     ...
 
@@ -192,7 +215,7 @@ Then, whenever you want your `autosave` instance to commit the current model val
 As with the `load` parameter, you can pass either a boolean or a promise to `save`.
 
 ### Storage location
-All values for `rxAutoSave` are by default stored in the browser's `LocalStorage`, and keyed on the URL of the page, with a `rxAutoSave::` prefix. For example, if the above form were present at the URL `'users/JonnyRocket/edit'`, then the form data would be saved into `LocalStorage` at location `'rxAutoSave::users/JonnyRocket/edit'` 
+All values for `rxAutoSave` are by default stored in the browser's `LocalStorage`, and keyed on the URL of the page, with a `rxAutoSave::` prefix. For example, if the above form were present at the URL `'users/JonnyRocket/edit'`, then the form data would be saved into `LocalStorage` at location `'rxAutoSave::users/JonnyRocket/edit'`
 
 If you wish to use a different storage backend (`SessionStorage`, for instance), use the `storageBackend` parameter:
 
