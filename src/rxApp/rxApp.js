@@ -438,6 +438,19 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         link: function (scope) {
             scope.isCloudProduct = false;
 
+            // This function is attached to the scope for the sole purpose of making
+            // it easier to test this functionality. A reorganization of this and/or 
+            // the tests is needed in order to pull this off the scope.
+            scope.switchToAdmin = function () {
+                // If the user in the params is not the admin swtich to the admin
+                // this causes the $route.current.params.user to become the admin user
+                var adminUser = _.first(_.where(scope.users, { admin: true }));
+                if (adminUser && ($route.current.params.user !== adminUser.username)){
+                    scope.currentUser = adminUser.username;
+                    scope.switchUser(adminUser.username);
+                }
+            };
+
             var checkCloud = function () {
                 encoreRoutes.isActiveByKey('accountLvlTools').then(function (isAccounts) {
                     if (isAccounts) {
@@ -458,6 +471,8 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
             var loadUsers = function () {
                 var success = function (account) {
                     scope.users = account.users;
+                    scope.switchToAdmin();
+
                     scope.currentUser = $route.current.params.user;
                     if (!scope.currentUser) {
                         // We're not in Cloud, but instead in Billing, or Events, or
