@@ -183,7 +183,7 @@ navJSON = [
                 "linkText": "Overview"
             }, {
                 "href": "/about",
-                "key": "about"
+                "key": "about",
                 "linkText": "About"
             },
         ]
@@ -402,7 +402,7 @@ In addition to the `visibility` criteria described above, you can also restrict 
                         "roles": { "all": ["role1", "role2"] }
                     }, {
                         "href": "/people/sue",
-                        "linkText": "Sue"
+                        "linkText": "Sue",
                         "roles": { "any": ["role1", "role2", "role3"] }
                     }
         
@@ -448,11 +448,11 @@ The solution to this is to ensure that these elements with directives _also_ hav
         "children": [
             {
                 "linkText": "People Support",
-                "directive": "people-search"
+                "directive": "people-search",
                 "href": "/support/people-support",
             }, {
                 "linkText": "Machine Support",
-                "directive": "machine-search"
+                "directive": "machine-search",
                 "href": "/support/machine-support",
             }
         ]
