@@ -1,7 +1,7 @@
 var _ = require('lodash');
 var moment = require('moment');
 
-var rxAge = require('../rxAge.page').rxAge;
+var rxAge = encore.rxAge;
 
 describe('rxAge', function () {
     var momentsTable, isoString;

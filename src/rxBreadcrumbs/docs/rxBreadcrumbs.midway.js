@@ -1,4 +1,4 @@
-var rxBreadcrumbs = require('../rxBreadcrumbs.page').rxBreadcrumbs;
+var rxBreadcrumbs = encore.rxBreadcrumbs;
 
 describe('rxBreadcrumbs', function () {
     var breadcrumbs;

@@ -1,4 +1,4 @@
-var rxInfoPanelPage = require('../rxInfoPanel.page').rxInfoPanel;
+var rxInfoPanelPage = encore.rxInfoPanel;
 var expect = require('chai').use(require('chai-as-promised')).expect;
 
 describe('rxInfoPanel', function () {

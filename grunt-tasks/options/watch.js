@@ -30,8 +30,9 @@ module.exports = {
         files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/**/*', '!demo/bower_components/**/*'],
         tasks: ['build']
     },
-    rxPageObjectsDocs: {
+    rxPageObjects: {
         files: ['src/**/*.page.js', 'src/**/*.exercise.js'],
-        tasks: ['jsdoc2md:rxPageObjects', 'shell:rxPageObjectsDemoDocs']
+        tasks: ['concat:rxPageObjects', 'concat:rxPageObjectsExercises',
+                'jsdoc2md:rxPageObjects', 'shell:rxPageObjectsDemoDocs']
     }
 };

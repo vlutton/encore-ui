@@ -1,4 +1,4 @@
-var typeaheadPage = require('../typeahead.page').typeahead;
+var typeaheadPage = encore.typeahead;
 
 describe('typeahead', function () {
     var typeahead;

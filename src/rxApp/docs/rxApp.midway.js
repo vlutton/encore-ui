@@ -1,5 +1,5 @@
-var rxAppPage = require('../rxApp.page').rxApp;
-var rxPage = require('../rxApp.page').rxPage;
+var rxAppPage = encore.rxApp;
+var rxPage = encore.rxPage;
 
 describe('rxApp', function () {
     var rxAppCustom, rxAppStandard;

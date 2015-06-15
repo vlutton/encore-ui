@@ -1,4 +1,4 @@
-var rxSortableColumn = require('../rxSortableColumn.page').rxSortableColumn;
+var rxSortableColumn = encore.rxSortableColumn;
 
 var column = function (columnName, repeaterString) {
     var columnElement = element(by.cssContainingText('rx-sortable-column', columnName));

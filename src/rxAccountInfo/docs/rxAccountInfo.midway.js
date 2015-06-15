@@ -1,5 +1,5 @@
-var rxAccountInfoPage = require('../rxAccountInfo.page').rxAccountInfo;
-var notifications = require('../../rxNotify/rxNotify.page').rxNotify;
+var rxAccountInfoPage = encore.rxAccountInfo;
+var notifications = encore.rxNotify;
 var expect = require('chai').use(require('chai-as-promised')).expect;
 
 describe('rxAccountInfo', function () {

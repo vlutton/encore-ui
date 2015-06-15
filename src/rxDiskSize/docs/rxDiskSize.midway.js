@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-var diskSize = require('../rxDiskSize.page').rxDiskSize;
+var diskSize = encore.rxDiskSize;
 
 describe('rxDiskSize', function () {
     var diskSizesTable;

@@ -1,5 +1,4 @@
-var {%= name %}Page = require('../{%= name %}.page').{%=name %};
-var exercise = require('../{%= name %}.exercise');
+var {%= name %}Page = encore.{%=name %};
 
 describe('{%= name %}', function () {
     var {%= name %};
@@ -13,6 +12,6 @@ describe('{%= name %}', function () {
         expect({%= name %}.isDisplayed()).to.eventually.be.true;
     });
 
-    describe('exercises', exercise.{%= name %}());
+    describe('exercises', encore.exercise.{%= name %}());
 
 });

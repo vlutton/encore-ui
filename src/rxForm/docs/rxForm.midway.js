@@ -1,10 +1,15 @@
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
-var rxForm = require('../rxForm.page').rxForm;
-var htmlCheckbox = require('../../rxCheckbox/rxCheckbox.page').htmlCheckbox;
-var htmlSelect = require('../../rxSelect/rxSelect.page').htmlSelect;
-var rxOptionTable = require('../../rxOptionTable/rxOptionTable.page').rxOptionTable;
+var rxForm = encore.rxForm;
+var htmlCheckbox = encore.htmlCheckbox;
+var htmlSelect = encore.htmlSelect;
+var rxOptionTable = encore.rxOptionTable;
+
+// shortens the process of selecting form elements on the page object below
+var elementByLabel = function (label) {
+    return $('rx-form-item[label="' + label + '"]');
+};
 
 // an anonymous page object to prove that form filling works
 var formPageObject = Page.create({

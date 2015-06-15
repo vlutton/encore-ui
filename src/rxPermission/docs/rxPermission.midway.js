@@ -1,4 +1,4 @@
-var rxPermissionPage = require('../rxPermission.page').rxPermission;
+var rxPermissionPage = encore.rxPermission;
 
 describe('rxPermission', function () {
 

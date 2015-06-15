@@ -1,89 +1,88 @@
-var rxCheckboxPage = require('../rxCheckbox.page').rxCheckbox;
-var exercise = require('../rxCheckbox.exercise');
+var rxCheckboxPage = encore.rxCheckbox;
 
 describe('rxCheckbox', function () {
     before(function () {
         demoPage.go('#/component/rxCheckbox');
     });
 
-    describe('(State) Valid Enabled Checked', exercise.rxCheckbox({
+    describe('(State) Valid Enabled Checked', encore.exercise.rxCheckbox({
         cssSelector: "#chkValidEnabledOne",
         disabled: false,
         selected: true,
         valid: true
     }));
 
-    describe('(State) Valid Enabled UnChecked', exercise.rxCheckbox({
+    describe('(State) Valid Enabled UnChecked', encore.exercise.rxCheckbox({
         cssSelector: "#chkValidEnabledTwo",
         disabled: false,
         selected: false,
         valid: true
     }));
 
-    describe('(State) Valid Ng-Disabled Checked', exercise.rxCheckbox({
+    describe('(State) Valid Ng-Disabled Checked', encore.exercise.rxCheckbox({
         cssSelector: "#chkValidNgDisabledOne",
         disabled: true,
         selected: true,
         valid: true
     }));
 
-    describe('(State) Valid Ng-Disabled Unchecked', exercise.rxCheckbox({
+    describe('(State) Valid Ng-Disabled Unchecked', encore.exercise.rxCheckbox({
         cssSelector: "#chkValidNgDisabledTwo",
         disabled: true,
         selected: false,
         valid: true
     }));
 
-    describe('(State) Valid Disabled Checked', exercise.rxCheckbox({
+    describe('(State) Valid Disabled Checked', encore.exercise.rxCheckbox({
         cssSelector: "#chkValidDisabledOne",
         disabled: true,
         selected: true,
         valid: true
     }));
 
-    describe('(State) Valid Disabled Unchecked', exercise.rxCheckbox({
+    describe('(State) Valid Disabled Unchecked', encore.exercise.rxCheckbox({
         cssSelector: "#chkValidDisabledTwo",
         disabled: true,
         selected: false,
         valid: true
     }));
 
-    describe('(State) Invalid Enabled Checked', exercise.rxCheckbox({
+    describe('(State) Invalid Enabled Checked', encore.exercise.rxCheckbox({
         cssSelector: "#chkInvalidEnabledOne",
         disabled: false,
         selected: true,
         valid: false
     }));
 
-    describe('(State) Invalid Enabled UnChecked', exercise.rxCheckbox({
+    describe('(State) Invalid Enabled UnChecked', encore.exercise.rxCheckbox({
         cssSelector: "#chkInvalidEnabledTwo",
         disabled: false,
         selected: false,
         valid: false
     }));
 
-    describe('(State) Invalid Ng-Disabled Checked', exercise.rxCheckbox({
+    describe('(State) Invalid Ng-Disabled Checked', encore.exercise.rxCheckbox({
         cssSelector: "#chkInvalidNgDisabledOne",
         disabled: true,
         selected: true,
         valid: false
     }));
 
-    describe('(State) Invalid Ng-Disabled Unchecked', exercise.rxCheckbox({
+    describe('(State) Invalid Ng-Disabled Unchecked', encore.exercise.rxCheckbox({
         cssSelector: "#chkInvalidNgDisabledTwo",
         disabled: true,
         selected: false,
         valid: false
     }));
 
-    describe('(State) Invalid Disabled Checked', exercise.rxCheckbox({
+    describe('(State) Invalid Disabled Checked', encore.exercise.rxCheckbox({
         cssSelector: "#chkInvalidDisabledOne",
         disabled: true,
         selected: true,
         valid: false
     }));
 
-    describe('(State) Invalid Disabled Unchecked', exercise.rxCheckbox({
+    describe('(State) Invalid Disabled Unchecked', encore.exercise.rxCheckbox({
         cssSelector: "#chkInvalidDisabledTwo",
         disabled: true,
         selected: false,

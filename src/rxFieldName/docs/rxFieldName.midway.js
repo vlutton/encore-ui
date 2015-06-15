@@ -1,6 +1,5 @@
-var rxFieldNamePage = require('../rxFieldName.page').rxFieldName;
-var rxCheckboxPage = require('../../rxCheckbox/rxCheckbox.page').rxCheckbox;
-var exercise = require('../rxFieldName.exercise');
+var rxFieldNamePage = encore.rxFieldName;
+var rxCheckboxPage = encore.rxCheckbox;
 
 describe('rxFieldName', function () {
     var subject;
@@ -9,13 +8,13 @@ describe('rxFieldName', function () {
         demoPage.go('#/component/rxFieldName');
     });
 
-    describe('(State) Required', exercise.rxFieldName({
+    describe('(State) Required', encore.exercise.rxFieldName({
         cssSelector: '#eleFieldNameStateRequired',
         visible: true,
         required: true
     }));
 
-    describe('(State) Optional', exercise.rxFieldName({
+    describe('(State) Optional', encore.exercise.rxFieldName({
         cssSelector: '#eleFieldNameStateOptional',
         visible: true,
         required: false

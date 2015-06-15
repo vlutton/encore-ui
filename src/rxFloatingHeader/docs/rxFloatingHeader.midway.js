@@ -1,4 +1,4 @@
-var rxFloatingHeader = require('../rxFloatingHeader.page').rxFloatingHeader;
+var rxFloatingHeader = encore.rxFloatingHeader;
 
 describe('rxFloatingHeader', function () {
     var table, tr, middleRow, middleRowY, initialY;

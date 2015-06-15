@@ -1,4 +1,4 @@
-var rxButtonPage = require('../rxButton.page').rxButton;
+var rxButtonPage = encore.rxButton;
 
 describe('rxButton', function () {
     var rxButton;

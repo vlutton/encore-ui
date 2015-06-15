@@ -1,11 +1,10 @@
 /*jshint node:true*/
 var Page = require('astrolabe').Page;
 var _ = require('lodash');
-var rxCheckbox = require('../rxCheckbox/rxCheckbox.page').rxCheckbox;
 
 var selectOptionFromElement = function (optionElement) {
 
-    return Object.create(rxCheckbox.initialize(optionElement.$('input')), {
+    return Object.create(exports.rxCheckbox.initialize(optionElement.$('input')), {
 
         /**
          * @memberof rxMultiSelect.option

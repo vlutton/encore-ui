@@ -1,8 +1,6 @@
-var rxSelect = require('../rxSelect.page').rxSelect;
-var htmlCheckbox = require('../../rxCheckbox/rxCheckbox.page').htmlCheckbox;
-var htmlRadio = require('../../rxRadio/rxRadio.page').htmlRadio;
-
-var exercise = require('../rxSelect.exercise');
+var rxSelect = encore.rxSelect;
+var htmlCheckbox = encore.htmlCheckbox;
+var htmlRadio = encore.htmlRadio;
 
 describe('rxSelect', function () {
     var subject;
@@ -11,42 +9,42 @@ describe('rxSelect', function () {
         demoPage.go('#/component/rxSelect');
     });
 
-    describe('(State) Valid Enabled', exercise.rxSelect({
+    describe('(State) Valid Enabled', encore.exercise.rxSelect({
         cssSelector: '#selValidEnabled',
         disabled: false,
         visible: true,
         valid: true
     }));
 
-    describe('(State) Valid NG-Disabled', exercise.rxSelect({
+    describe('(State) Valid NG-Disabled', encore.exercise.rxSelect({
         cssSelector: '#selValidNgDisabled',
         disabled: true,
         visible: true,
         valid: true
     }));
 
-    describe('(State) Valid Disabled', exercise.rxSelect({
+    describe('(State) Valid Disabled', encore.exercise.rxSelect({
         cssSelector: '#selValidDisabled',
         disabled: true,
         visible: true,
         valid: true
     }));
 
-    describe('(State) Invalid Enabled', exercise.rxSelect({
+    describe('(State) Invalid Enabled', encore.exercise.rxSelect({
         cssSelector: '#selInvalidEnabled',
         disabled: false,
         visible: true,
         valid: false
     }));
 
-    describe('(State) Invalid NG-Disabled', exercise.rxSelect({
+    describe('(State) Invalid NG-Disabled', encore.exercise.rxSelect({
         cssSelector: '#selInvalidNgDisabled',
         disabled: true,
         visible: true,
         valid: false
     }));
 
-    describe('(State) Invalid Disabled', exercise.rxSelect({
+    describe('(State) Invalid Disabled', encore.exercise.rxSelect({
         cssSelector: '#selInvalidDisabled',
         disabled: true,
         visible: true,

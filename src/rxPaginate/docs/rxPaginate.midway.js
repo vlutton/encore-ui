@@ -1,7 +1,6 @@
-var exercise = require('../rxPaginate.exercise.js');
-var rxSortableColumn = require('../../rxSortableColumn/rxSortableColumn.page').rxSortableColumn;
-var rxSelectFilter = require('../../rxSelectFilter/rxSelectFilter.page').rxSelectFilter;
-var rxSearchBox = require('../../rxSearchBox/rxSearchBox.page').rxSearchBox;
+var rxSortableColumn = encore.rxSortableColumn;
+var rxSelectFilter = encore.rxSelectFilter;
+var rxSearchBox = encore.rxSearchBox;
 var Page = require('astrolabe').Page;
 
 // rowFromElement and table are anonymous page objects to assist with table data
@@ -72,13 +71,13 @@ describe('rxPaginate', function () {
         demoPage.go('#/component/rxPaginate');
     });
 
-    describe('UI pagination exercises', exercise.rxPaginate({
+    describe('UI pagination exercises', encore.exercise.rxPaginate({
         pageSizes: [3, 50, 200, 350, 500],
         defaultPageSize: 3,
         cssSelector: '.demo-ui-pagination .rx-paginate'
     }));
 
-    describe('API pagination exercises', exercise.rxPaginate({
+    describe('API pagination exercises', encore.exercise.rxPaginate({
         pageSizes: [25, 50, 200, 350, 500],
         defaultPageSize: 25,
         pages: 30,

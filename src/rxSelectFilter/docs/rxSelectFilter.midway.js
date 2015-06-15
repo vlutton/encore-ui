@@ -1,8 +1,7 @@
 var Page = require('astrolabe').Page;
 var _ = require('lodash');
-var rxMultiSelectPage = require('../rxSelectFilter.page').rxMultiSelect;
-var rxSelectFilterPage = require('../rxSelectFilter.page').rxSelectFilter;
-var exercise = require('../rxSelectFilter.exercise');
+var rxMultiSelectPage = encore.rxMultiSelect;
+var rxSelectFilterPage = encore.rxSelectFilter;
 
 describe('rxMultiSelect', function () {
 
@@ -10,7 +9,7 @@ describe('rxMultiSelect', function () {
         demoPage.go('#/component/rxSelectFilter');
     });
 
-    describe('exercises', exercise.rxMultiSelect({
+    describe('exercises', encore.exercise.rxMultiSelect({
         cssSelector: '#classification',
         inputs: ['Type A', 'Type B', 'Type C', 'Type D']
     }));
