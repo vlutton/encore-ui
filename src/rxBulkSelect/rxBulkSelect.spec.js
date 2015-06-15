@@ -37,6 +37,7 @@ describe('rxBulkSelect', function () {
     };
 
     beforeEach(function () {
+        module('encore.ui.rxMisc');
         module('encore.ui.rxBulkSelect', function ($provide) {
             $provide.value('rxBulkSelectUtils', rxBulkSelectUtils);
         });
