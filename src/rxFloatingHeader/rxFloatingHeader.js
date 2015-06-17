@@ -5,7 +5,7 @@
  * Turns a tableheader into a floating persistent header
  */
 angular.module('encore.ui.rxFloatingHeader', ['encore.ui.rxMisc'])
-.directive('rxFloatingHeader', function (rxDOMHelper) {
+.directive('rxFloatingHeader', function ($document, rxDOMHelper) {
     return {
         restrict: 'A',
         controller: function ($scope) {
@@ -185,7 +185,7 @@ angular.module('encore.ui.rxFloatingHeader', ['encore.ui.rxMisc'])
                         // we re-dock the header, otherwise the browser will scroll
                         // the screen back up ot the input
                         _.each(inputs, function (input) {
-                            if (rxDOMHelper.scrollTop() > rxDOMHelper.offset(input).top) {
+                            if ($document[0].activeElement === input[0]) {
                                 input[0].blur();
                             }
                         });

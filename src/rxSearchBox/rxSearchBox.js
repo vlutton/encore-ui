@@ -2,7 +2,7 @@ angular.module('encore.ui.rxSearchBox', [])
 .directive('rxSearchBox', function () {
     return {
         restrict: 'E',
-        require: 'ngModel',
+        require: ['ngModel', '?^rxFloatingHeader'],
         templateUrl: 'templates/rxSearchBox.html',
         scope: {
             searchVal: '=ngModel',
@@ -24,6 +24,12 @@ angular.module('encore.ui.rxSearchBox', [])
             $scope.clearSearch = function () {
                 $scope.searchVal = '';
             };
+        },
+        link: function (scope, element, attrs, controllers) {
+            var rxFloatingHeaderCtrl = controllers[1];
+            if (!_.isUndefined(rxFloatingHeaderCtrl)) {
+                rxFloatingHeaderCtrl.update();
+            }
         }
     };
 });

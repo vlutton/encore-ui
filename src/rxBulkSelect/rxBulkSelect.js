@@ -320,13 +320,16 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
  *       </rx-batch-actions>
  *   </th>
  */
-.directive('rxBatchActions', function () {
+.directive('rxBatchActions', function (rxDOMHelper) {
     return {
         restrict: 'E',
-        require: '^rxBulkSelect',
+        require: ['^rxBulkSelect', '?^rxFloatingHeader'],
         templateUrl: 'templates/rxBatchActions.html',
         transclude: true,
-        link: function (scope, element, attrs, rxBulkSelectCtrl) {
+        link: function (scope, element, attrs, controllers) {
+
+            var rxBulkSelectCtrl = controllers[0],
+                rxFloatingHeaderCtrl = controllers[1];
 
             // We need to add the class onto the parent <tr>, so rxFloatingHeader can
             // easily identify this <tr>
@@ -345,6 +348,18 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
                 }
             };
             rxBulkSelectCtrl.registerForNumSelected(numSelectedChange);
+
+            if (!_.isUndefined(rxFloatingHeaderCtrl)) {
+                // When rxBatchActions lives inside of an rxFloatingHeader enabled table,
+                // the element will be cloned by rxFloatingHeader. The issue is that a normal
+                // .clone() does not clone Angular bindings, and thus the cloned element doesn't
+                // have `ng-show="displayed"` on it. We can manually add `ng-hide` on startup, to
+                // ensure that class is present in the clone. After that, everything will work as expected.
+                if (!scope.displayed) {
+                    rxDOMHelper.find(element, '.batch-action-menu-container').addClass('ng-hide');
+                }
+                rxFloatingHeaderCtrl.update();
+            }
 
         }
     };
