@@ -27,9 +27,13 @@ angular.module('encore.ui.rxCollapse', [])
         link: function (scope, element, attrs) {
             scope.isExpanded = (attrs.expanded === 'false') ? false : true;
 
+            var getTitle = function () {
+                return (scope.isExpanded === true) ? 'See Less' : 'See More';
+            };
+
             scope.toggleTitleAndCollapse = function () {
                 scope.isExpanded = !scope.isExpanded;
-                scope.toggleTitle = (scope.isExpanded === true) ? 'See Less' : 'See More';
+                scope.toggleTitle = getTitle();
                 setChev();
             };
 
@@ -42,7 +46,7 @@ angular.module('encore.ui.rxCollapse', [])
             };
 
             if (!scope.title) {
-                scope.toggleTitle = (scope.isExpanded === true) ? 'See Less' : 'See More';
+                scope.toggleTitle = getTitle();
                 scope.cContainer = 'hideBorder';
                 scope.hasTitle = false;
             } else {

@@ -54,7 +54,7 @@ var rxCollapse = {
     // "See More"/"See Less" text
     eleDefaultTitle: {
         get: function () {
-            return this.rootElement.$('.smlTitle').getText();
+            return this.rootElement.$('.smlTitle');
 
         }
     },

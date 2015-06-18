@@ -19,7 +19,7 @@ exports.rxCollapse = function (options) {
     }
 
     options = _.defaults(options, {
-        hasTitle: true,
+        title: undefined,
         expanded: true,
     });
 
@@ -50,9 +50,9 @@ exports.rxCollapse = function (options) {
             expect(component.isExpanded).to.eventually.eq(options.expanded);
         });
         
-        if (options.hasTitle) {
+        if (!_.isUndefined(options.title)) {
             it('should show a custom title', function () {
-                expect(component.titleText()).to.eventually.equal('A Custom Title');
+                expect(component.titleText()).to.eventually.equal(options.title);
             });
         } else {
             it('should show see more for title of other version', function () {
