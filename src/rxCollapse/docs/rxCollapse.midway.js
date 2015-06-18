@@ -7,6 +7,15 @@ describe('rxCollapse', function () {
         demoPage.go('#/component/rxCollapse');
     });
 
-    describe('exercises', exercise.rxCollapse());
+    describe('custom title', exercise.rxCollapse({
+        cssSelector: '.demo-with-title',
+        hasTitle: true,
+        expanded: true,
+    }));
 
+    describe('default title', exercise.rxCollapse({
+        cssSelector: '.demo-no-title',
+        hasTitle: false,
+        expanded: false
+    }));
 });

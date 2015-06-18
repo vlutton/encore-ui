@@ -1,14 +1,14 @@
 <div class="collapse-container" ng-class="cContainer">
-	<div class="tabStyle_1" ng-show="!tabToShow">
+	<div ng-if="hasTitle" class="collapse-title-wrap collapse-title-wrap-custom">
 		<div class="double-chevron-cell" ng-class="{ expanded: isExpanded }">
 			<a class="double-chevron" ng-click="isExpanded = !isExpanded"></a>
 		</div>
-		<h3 class="rx-collapse-title title">{{title}}</h3>
+		<h3 class="rx-collapse-title">{{title}}</h3>
 	</div>
 	<div ng-show="isExpanded" ng-class="ispad" ng-transclude></div>
-	<div class="tabStyle_2" ng-show="tabToShow">
-		<span class="smlTitle" ng-click="toggleTitleAndCollapse()">
-			<span class="title" >{{toggleTitle}}</span>
+	<div ng-if="!hasTitle" class="collapse-title-wrap collapse-title-wrap-default">
+		<span class="smlTitle" ng-click="toggleTitleAndCollapse()" ng-class="{ expanded: isExpanded }">
+			<span class="toggle-title">{{toggleTitle}}</span>
 			<i ng-class="arrowChange" class="fa"></i>
 		</span>
 	</div>

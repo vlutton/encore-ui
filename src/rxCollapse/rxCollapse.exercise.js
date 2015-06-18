@@ -18,7 +18,10 @@ exports.rxCollapse = function (options) {
         options = {};
     }
 
-    options = _.defaults(options, { /* defaults go here */ });
+    options = _.defaults(options, {
+        hasTitle: true,
+        expanded: true,
+    });
 
     return function () {
         var component;
@@ -35,35 +38,37 @@ exports.rxCollapse = function (options) {
             expect(component.isDisplayed()).to.eventually.be.true;
         });
 
-        it('should show a custom title', function () {
-            expect(component.title.getText()).to.eventually.equal('A Custom Title');
-        });
-
         it('should expand and collapse with toggle', function () {
-            expect(component.isExpanded).to.eventually.be.true;
+            expect(component.isExpanded).to.eventually.eq(options.expanded);
 
             // Collapse
-            component.btnToggle.click();
-            expect(component.isExpanded).to.eventually.be.false;
+            component.toggle();
+            expect(component.isExpanded).to.eventually.eq(!options.expanded);
 
             // Expand
-            component.btnToggle.click();
-            expect(component.isExpanded).to.eventually.be.true;
+            component.toggle();
+            expect(component.isExpanded).to.eventually.eq(options.expanded);
         });
+        
+        if (options.hasTitle) {
+            it('should show a custom title', function () {
+                expect(component.titleText()).to.eventually.equal('A Custom Title');
+            });
+        } else {
+            it('should show see more for title of other version', function () {
+                expect(component.titleText()).to.eventually.equal('See More');
+            });
 
-        it('should show see more for title of other version', function () {
-            expect(component.seeMoreTitle.getText()).to.eventually.equal('See More');
-        });
+            it('should toggle between see more or see less as text', function () {
+                //Expand
+                component.toggle();
+                expect(component.titleText()).to.eventually.equal('See Less');
 
-        it('should toggle between see more or see less as text', function () {
-            //Expand
-            component.seeMoreTitle.click();
-            expect(component.seeMoreTitle.getText()).to.eventually.equal('See Less');
-
-            //Collapse
-            component.seeMoreTitle.click();
-            expect(component.seeMoreTitle.getText()).to.eventually.equal('See More');
-        });
+                //Collapse
+                component.toggle();
+                expect(component.titleText()).to.eventually.equal('See More');
+            });
+        }
 
     };
 };

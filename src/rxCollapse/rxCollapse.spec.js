@@ -39,21 +39,21 @@ describe('rxCollapse', function () {
     });
 
     it('should show custom title', function () {
-        expect(el.find('.title').text()).to.equal('Filter results');
+        expect(el.find('.rx-collapse-title').text()).to.equal('Filter results');
+    });
+    
+    it('should show See Less as default title', function () {
+        expect(elExanded.find('.toggle-title').text()).to.equal('See Less');
     });
 
     it('should show See More as the title', function () {
-        expect(elCollapsed.find('.title').text()).to.equal('See More');
-    });
-
-    it('should show See Less as title', function () {
-        expect(elExanded.find('.title').text()).to.equal('See Less');
+        expect(elCollapsed.find('.toggle-title').text()).to.equal('See More');
     });
 
     it('should show down chevron when not expanded and show up when expanded', function () {
         expect(elCollapsed.find('.fa').hasClass('fa-angle-double-up')).to.be.false;
 
-        elCollapsed.find('.tabStyle_2 .smlTitle .title').click();
+        elCollapsed.find('.smlTitle').click();
         expect(elCollapsed.find('.fa').hasClass('fa-angle-double-up')).to.be.true;
     });
 });

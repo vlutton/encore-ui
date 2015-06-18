@@ -22,17 +22,10 @@ angular.module('encore.ui.rxCollapse', [])
         templateUrl: 'templates/rxCollapse.html',
         transclude: true,
         scope: {
-            title: '@',
-            toggleTitle: '&'
+            title: '@'
         },
         link: function (scope, element, attrs) {
             scope.isExpanded = (attrs.expanded === 'false') ? false : true;
-
-            var doSeeMoreOrLess = function () {
-                scope.toggleTitle = (scope.isExpanded === true) ? 'See Less' : 'See More';
-                scope.cContainer = 'hideBorder';
-                scope.tabToShow = true;
-            };
 
             scope.toggleTitleAndCollapse = function () {
                 scope.isExpanded = !scope.isExpanded;
@@ -49,9 +42,11 @@ angular.module('encore.ui.rxCollapse', [])
             };
 
             if (!scope.title) {
-                doSeeMoreOrLess();
+                scope.toggleTitle = (scope.isExpanded === true) ? 'See Less' : 'See More';
+                scope.cContainer = 'hideBorder';
+                scope.hasTitle = false;
             } else {
-                scope.tabToShow = false;
+                scope.hasTitle = true;
                 scope.ispad = 'collapse-body';
             }
             setChev();
