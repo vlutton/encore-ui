@@ -1,7 +1,6 @@
 var _ = require('lodash');
-var rxOptionTablePage = require('../rxOptionTable.page').rxOptionTable;
-var rxMisc = require('../../rxMisc/rxMisc.page').rxMisc;
-var exercise = require('../rxOptionTable.exercise');
+var rxOptionTablePage = encore.rxOptionTable;
+var rxMisc = encore.rxMisc;
 
 describe('rxOptionTable', function () {
     var component;
@@ -11,19 +10,19 @@ describe('rxOptionTable', function () {
     });
 
     describe('exercise', function () {
-        describe('radio table', exercise.rxOptionTable({
+        describe('radio table', encore.exercise.rxOptionTable({
             cssSelector: "#radioOptionTable",
             visible: true,
             empty: false
         }));
 
-        describe('checkbox table', exercise.rxOptionTable({
+        describe('checkbox table', encore.exercise.rxOptionTable({
             cssSelector: "#checkboxOptionTable",
             visible: true,
             empty: false
         }));
 
-        describe('empty table', exercise.rxOptionTable({
+        describe('empty table', encore.exercise.rxOptionTable({
             cssSelector: "#emptyOptionTable",
             visible: true,
             empty: true

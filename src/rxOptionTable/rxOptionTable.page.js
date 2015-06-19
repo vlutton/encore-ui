@@ -2,8 +2,6 @@
 var Page = require('astrolabe').Page;
 var _ = require('lodash');
 
-var rxCheckbox = require('../rxCheckbox/rxCheckbox.page').rxCheckbox;
-
 /**
  * @private
  * @description Shared function in both one row's `isSelected`, and `selections` getter.
@@ -83,7 +81,7 @@ var optionRowFromElement = function (eleOptionRow) {
         selectInput: {
             get: function () {
                 var inputElement = this.rootElement.$('input');
-                return rxCheckbox.initialize(inputElement);
+                return exports.rxCheckbox.initialize(inputElement);
             }
         },
 
