@@ -53,28 +53,80 @@ describe('rxSelect', function () {
         valid: false
     }));
 
-    describe('With Validation', function () {
+    describe('How do you like your bacon?', function () {
         before(function () {
             subject = rxSelect.initialize($('#selBaconPrep'));
         });
 
-        it('should not be valid', function () {
+        it('should be invalid', function () {
             expect(subject.isValid()).to.eventually.be.false;
         });
 
-        describe('Selecting "Thick (borderline jerky)"', function () {
-            before(function () {
-                subject.selectOption('Thick (borderline jerky)');
+        it('should have 5 options', function () {
+            expect(subject.optionCount()).to.eventually.equal(5);
+        });
+
+        it('should contain desired option', function () {
+            expect(subject.optionExists('Thick (borderline jerky)')).to.eventually.be.true;
+        });
+
+        it('should not contain undesired option', function () {
+            expect(subject.optionExists('no preference')).to.eventually.be.false;
+        });
+
+        it('should not report a different option as selected', function () {
+            expect(subject.option('Thick (borderline jerky)').isSelected()).to.eventually.be.false
+        });
+
+        it('should have expected options', function () {
+            var opts = [
+                'I do not like bacon',
+                'Thin (light and crispy)',
+                'Medium (perfect balance of flavor)',
+                'Thick (borderline jerky)',
+                'Crumbled (great on salads)',
+            ];
+            expect(subject.options).to.eventually.eql(opts);
+        });
+
+        it('should have expected values', function () {
+            var vals = [ '', 'thin', 'medium', 'thick', 'crumbled' ];
+            expect(subject.values).to.eventually.eql(vals);
+        });
+
+        it('should have a selected option by default', function () {
+            /* redundant test, but moved from rxForm.midway.js */
+            expect(subject.selectedOption.isSelected()).to.eventually.be.true;
+        });
+
+        describe('selecting "Thin (light and crispy)"', function () {
+            var txt = 'Thin (light and crispy)';
+            var val = 'thin';
+
+            beforeEach(function () {
+                subject.select(txt);
+            });
+
+            afterEach(function () {
+                subject.select('I do not like bacon');
             });
 
             it('should be valid', function () {
                 expect(subject.isValid()).to.eventually.be.true;
             });
+
+            it('should display correct text', function () {
+                expect(subject.selectedOption.text).to.eventually.eq(txt);
+            });
+
+            it('should have correct value', function () {
+                expect(subject.selectedOption.value).to.eventually.eq(val);
+            });
         });
 
         describe('Selecting "I do not like bacon"', function () {
             before(function () {
-                subject.selectOption('I do not like bacon');
+                subject.select('I do not like bacon');
             });
 
             it('should not be valid', function () {

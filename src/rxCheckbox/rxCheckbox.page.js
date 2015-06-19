@@ -76,6 +76,20 @@ var htmlCheckbox = {
     },
 
     /**
+     * @deprecated
+     * @function
+     * @description
+     * **DEPRECATED**: Use {@link htmlCheckbox.deselect} instead.
+     * This function will be removed in a future release of the EncoreUI framework.
+     * @returns {undefined}
+     */
+    unselect: {
+        value: function () {
+            return this.deselect();
+        }
+    },
+
+    /**
      * @function
      * @description make sure checkbox is deselected/unchecked
      */
@@ -182,7 +196,25 @@ exports.htmlCheckbox = {
             get: function () { return $('input[type="checkbox"]'); }
         };
         return Page.create(htmlCheckbox);
-    })()
+    })(),
+
+    /**
+     * @function
+     * @description Generates a getter and a setter for a checkbox element.
+     * @param {WebElement} elem - The WebElement for the checkbox.
+     * @returns {Object} A getter and a setter to be applied to a checkbox in a page object.
+     */
+    generateAccessor: function (elem) {
+        return {
+            get: function () {
+                return exports.htmlCheckbox.initialize(elem).isSelected();
+            },
+            set: function (enable) {
+                var checkbox = exports.htmlCheckbox.initialize(elem);
+                enable ? checkbox.select() : checkbox.deselect();
+            }
+        };
+    }
 };
 
 /**
@@ -210,5 +242,23 @@ exports.rxCheckbox = {
             get: function () { return $('input[rx-checkbox]'); }
         };
         return Page.create(rxCheckbox);
-    })()
+    })(),
+
+    /**
+     * @function
+     * @description Generates a getter and a setter for an rxCheckbox element on your page.
+     * @param {WebElement} elem - The WebElement for the rxCheckbox.
+     * @returns {Object} A getter and a setter to be applied to a rxCheckbox page object.
+     */
+    generateAccessor: function (elem) {
+        return {
+            get: function () {
+                return exports.rxCheckbox.initialize(elem).isSelected();
+            },
+            set: function (enable) {
+                var checkbox = exports.rxCheckbox.initialize(elem);
+                enable ? checkbox.select() : checkbox.deselect();
+            }
+        };
+    }
 };

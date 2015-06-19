@@ -6,7 +6,7 @@
         <h3 class="title">Text inputs</h3>
 
         <rx-form-item label="Plain textbox">
-            <input type="text" />
+            <input type="text" id="txtPlain" />
         </rx-form-item>
 
         <rx-form-item label="Text area">
@@ -19,7 +19,7 @@
         </rx-form-item>
 
         <rx-form-item label="Require Name?" description="Check and uncheck with empty volume name to see border">
-            <input type="checkbox" ng-model="volume.isNameRequired" />
+            <input type="checkbox" id="chkNameRequired" ng-model="volume.isNameRequired" />
         </rx-form-item>
 
         <p class="clear">Bound Value: {{volume.name}}</p>
@@ -47,7 +47,7 @@
         <h4 class="title sm">Example of default select box</h4>
         <rx-form-item label="Type" description="Bound Value: {{volume.type}}">
             <span class="field-select">
-                <select ng-model="volume.type" ng-required="true">
+                <select ng-model="volume.type" id="selVolumeType" ng-required="true">
                     <option
                         ng-repeat="type in types"
                         value="{{type.value}}"
@@ -59,11 +59,11 @@
 
         <hr>
 
-        <h3 class="title">rxFormOptionTable</h3>
+        <h3 class="title">rxOptionTable</h3>
 
         <rx-form-fieldset legend="Option Table (radio w/full-width class)">
-            <rx-form-option-table
-                id="optionTableRadio"
+            <rx-option-table
+                id="radioOptionTable"
                 data="optionTableData"
                 columns="optionTableColumns"
                 type="radio"
@@ -72,34 +72,36 @@
                 selected="0"
                 class="full-width"
                 disable-fn="disableOption(tableId, fieldId, rowId)"
-                ></rx-form-option-table>
+                ></rx-option-table>
         </rx-form-fieldset>
 
         <p>Bound Value: {{volume.data}}</p>
 
         <rx-form-fieldset legend="Option Table (checkboxes)">
-            <rx-form-option-table
+            <rx-option-table
                 columns="optionTableColumns"
                 type="checkbox"
+                id="checkboxOptionTable"
                 model="volume.checked"
                 field-id="optionCheckboxTable"
                 data="optionTableCheckboxData"
                 required="true"
-                ></rx-form-option-table>
+                ></rx-option-table>
         </rx-form-fieldset>
 
         <p>Item 1 Value: {{volume.checked[0]}}</p>
         <p>Item 2 Value: {{volume.checked[1]}}</p>
 
         <rx-form-fieldset legend="Option Table (empty)">
-            <rx-form-option-table
+            <rx-option-table
                 columns="optionTableColumns"
                 type="checkbox"
+                id="emptyOptionTable"
                 model="volume.checked"
                 field-id="optionCheckboxTable"
                 data="optionTableEmptyData"
                 empty-message="You don't have any data!"
-                ></rx-form-option-table>
+                ></rx-option-table>
         </rx-form-fieldset>
 
         <div class="form-actions">

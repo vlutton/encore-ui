@@ -30,7 +30,8 @@ var htmlRadio = {
 
     /**
      * @function
-     * @returns {Boolean} Whether or not the radio element is currently selected
+     * @description Abstraction over `htmlRadio.rootElement.isSelected()` to keep things shorter.
+     * @returns {boolean} Whether or not the radio button is currently selected.
      */
     isSelected: {
         value: function () {

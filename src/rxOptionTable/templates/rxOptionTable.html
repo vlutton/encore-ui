@@ -1,0 +1,54 @@
+<table class="table-striped rx-option-table" ng-show="data.length > 0 || emptyMessage ">
+  <thead>
+    <tr>
+      <th><!-- control column --></th>
+      <th class="column" ng-repeat="column in columns">{{column.label}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="row in data"
+        class="datum-row"
+        ng-class="{current: isCurrent(row.value), selected: isSelected(row.value, $index), disabled: checkDisabled(row)}">
+      <td class="option-table-input">
+        <div class="fillWrapper">
+          <label ng-switch="type">
+            <div class="alignWrapper">
+              <input rx-radio
+                 ng-switch-when="radio"
+                 id="{{fieldId}}_{{$index}}"
+                 ng-model="$parent.$parent.model"
+                 value="{{row.value}}"
+                 name="{{fieldId}}"
+                 class="option-input"
+                 ng-disabled="checkDisabled(row)"
+                 rx-attributes="{'ng-required': required}">
+
+              <input rx-checkbox
+                 ng-switch-when="checkbox"
+                 id="{{fieldId}}_{{$index}}"
+                 class="option-input"
+                 ng-model="$parent.modelProxy[$index]"
+                 ng-change="updateCheckboxes($parent.modelProxy[$index], $index)"
+                 ng-required="checkRequired()">
+            </div>
+          </label>
+        </div>
+      </td>
+      <td ng-repeat="column in columns"
+          data-column="{{column.label}}"
+          data-row-number="{{$parent.$index}}">
+        <div class="fillWrapper">
+          <label for="{{fieldId}}_{{$parent.$index}}">
+            <div class="alignWrapper">
+              <span ng-bind-html="getContent(column, row)"></span>
+              <span ng-show="isCurrent(row.value)">{{column.selectedLabel}}</span>
+            </div>
+          </label>
+        </div>
+      </td>
+    </tr>
+    <tr ng-if="data.length === 0 && emptyMessage" class="empty-message-row">
+      <td colspan="{{columns.length + 1}}" class="empty-message">{{emptyMessage}}</td>
+    </tr>
+  </tbody>
+</table>

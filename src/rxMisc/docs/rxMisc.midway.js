@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
+var rxMisc = require('../rxMisc.page').rxMisc;
 var rxForm = require('../../rxForm/rxForm.page').rxForm;
 var rxNotify = require('../../rxNotify/rxNotify.page').rxNotify;
 
@@ -11,7 +12,6 @@ var forAutoSaveToClear = function () {
 
 // anonymous page object
 var autoSaving = Page.create({
-
     form: {
         set: function (formData) {
             rxForm.form.fill(this, formData);
@@ -95,11 +95,9 @@ var autoSaving = Page.create({
             browser.wait(forAutoSaveToClear);
         }
     }
-
 });
 
 describe('rxMisc', function () {
-
     before(function () {
         demoPage.go('#/component/rxMisc');
     });
@@ -166,7 +164,37 @@ describe('rxMisc', function () {
             });
 
         });
-
     });
 
+    describe('convenience functions', function () {
+        var fn;
+
+        describe('currencyToPennies', function () {
+            fn = rxMisc.currencyToPennies;
+
+            it('should convert a single penny to the integer one', function () {
+                expect(fn('$0.01')).to.equal(1);
+            });
+
+            it('should lose precision when converting a fraction of a penny to an int', function () {
+                expect(fn('$0.019')).to.equal(1);
+            });
+
+            it('should ignore any dollar type indicators (CAN, AUS, USD)', function () {
+                expect(fn('$100 CAN')).to.equal(10000);
+            });
+
+            it('should convert negative currency notation to a negative integer', function () {
+                expect(fn('($100 AUS)')).to.equal(-10000);
+            });
+
+            it('should lose precision when converting negative fractions of a penny to an int', function () {
+                expect(fn('($1.011)')).to.equal(-101);
+            });
+
+            it('should not incur any binary rounding errors', function () {
+                expect(fn('$1.10')).to.equal(110);
+            });
+        });
+    });
 });
