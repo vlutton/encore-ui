@@ -14,10 +14,26 @@ describe('rxBulkSelect', function () {
                     '<th>Name</th>' +
                 '</tr>' +
             '</thead>' +
-            '<tbody>' +
-                '<tr ng-repeat="server in servers">' +
+            '<tbody ng-repeat="server in servers">' +
+                '<tr>' +
                     '<td rx-bulk-select-row row="server"></td>' +
                     '<td>{{ server.name }}</td>' +
+                '</tr>' +
+                '<tr>' +
+                    '<td colspan="2">' +
+                        '<table>' +
+                            '<thead>' +
+                                '<tr>' +
+                                    '<th>Title</th>' +
+                                '</tr>' +
+                            '</thead>' +
+                            '<tbody>' +
+                                '<tr>' +
+                                    '<td>Content</td>' +
+                                '</tr>' +
+                            '</tbody>' +
+                        '</table>' +
+                    '</td>' +
                 '</tr>' +
             '</tbody>' +
         '</table>';
