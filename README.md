@@ -67,5 +67,4 @@ A breaking change is one that *requires* users of the changed component to modif
  - [Testing](./guides/testing.md)
  - [CSS Style Guide](./guides/css-styleguide.md)
  - [JS Style Guide](./guides/js-styleguide.md)
- - [Architecture](./guides/architecture.md)
  - [Task Board](https://waffle.io/rackerlabs/encore-ui)
