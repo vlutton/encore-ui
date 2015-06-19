@@ -37,9 +37,13 @@ angular.module('encore.ui.rxRadio', [])
                     });
                 }
 
+                var removeParent = function () {
+                    parent.remove();
+                };
+
                 // remove stylistic markup when element is destroyed
                 element.on('$destroy', function () {
-                    parent[0].remove();
+                    scope.$evalAsync(removeParent);
                 });
             };
         }//compile
