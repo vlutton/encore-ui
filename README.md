@@ -4,9 +4,9 @@
 
 EncoreUI is a library of reusable AngularJS widgets for internal Rackspace projects. While a few components are specific to Rackspace, most are generic enough to be used by any app.
 
-# Getting Started
+# Using EncoreUI In Your Own Project
 
-[A 'Getting Started' guide](./guides/getting-started.md) is available to help new projects get off the ground quickly.
+To help guide you in getting a new project off the ground quickly, please reference ["Using EncoreUI In Your Own Project"](./guides/using-encoreui.md)
 
 # Demo App
 

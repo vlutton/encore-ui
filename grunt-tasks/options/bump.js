@@ -4,7 +4,7 @@ module.exports = {
         updateConfigs: ['pkg'],
         commit: true,
         commitMessage: 'chore(version): v%VERSION% [skip ci]',
-        commitFiles: ['package.json', 'bower.json', 'CHANGELOG.md', 'guides/getting-started.md', 'guides/testing.md',
+        commitFiles: ['package.json', 'bower.json', 'CHANGELOG.md', 'guides/using-encoreui.md', 'guides/testing.md',
             'utils/rx-page-objects/package.json'],
         createTag: true,
         tagName: 'v%VERSION%',

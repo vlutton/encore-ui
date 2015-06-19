@@ -3,7 +3,7 @@ var _ = require('lodash');
 
 module.exports = {
     'readme': {
-        src: ['guides/getting-started.md', 'guides/testing.md'],
+        src: ['guides/using-encoreui.md', 'guides/testing.md'],
         overwrite: true,
         replacements: [{
             from: config.versionRegEx,
