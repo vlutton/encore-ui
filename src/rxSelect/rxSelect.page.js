@@ -304,6 +304,7 @@ exports.htmlSelect = {
         htmlSelect.rootElement = {
             get: function () { return $('select')[0]; }
         };
+        return Page.create(htmlSelect);
     })(),
 
     /**
@@ -347,6 +348,7 @@ exports.rxSelect = {
         rxSelect.rootElement = {
             get: function () { return $('select[rx-select]')[0]; }
         };
+        return Page.create(rxSelect);
     })(),
 
     /**
