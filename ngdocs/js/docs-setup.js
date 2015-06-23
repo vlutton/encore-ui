@@ -311,15 +311,6 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxForm:rxFormOptionTable",
-      "shortName": "rxFormOptionTable",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive is used to build a table of radio/checkbox inputs",
-      "keywords": "api array attribute bind build callback columns data determine directive disable-fn disabled disablefn disableoption encore example fieldid function input inputs item key label match model ng-model ng-required objects option parameters passed populate properties radio required rowid rxform selected table tableid takes type ui values"
-    },
-    {
-      "section": "api",
       "id": "encore.ui.rxForm:rxSelect",
       "shortName": "rxSelect",
       "type": "directive",
@@ -740,6 +731,32 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Simple injector which will intercept http responses. If a 401 is returned,",
       "keywords": "$httpprovider $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
+    },
+    {
+      "section": "api",
+      "id": "rxOptionTable",
+      "shortName": "rxOptionTable",
+      "type": "overview",
+      "moduleName": "rxOptionTable",
+      "keywords": "api overview rxoptiontable"
+    },
+    {
+      "section": "api",
+      "id": "rxOptionTable.directive:rxFormOptionTable",
+      "shortName": "rxFormOptionTable",
+      "type": "directive",
+      "moduleName": "rxOptionTable",
+      "shortDescription": "DEPRECATED: Please use rxOptionTable",
+      "keywords": "api directive rxoptiontable stand-in-replacement"
+    },
+    {
+      "section": "api",
+      "id": "rxOptionTable.directive:rxOptionTable",
+      "shortName": "rxOptionTable",
+      "type": "directive",
+      "moduleName": "rxOptionTable",
+      "shortDescription": "This directive is used to build a table of radio/checkbox inputs",
+      "keywords": "allowed alongside angularjs api array attribute attributes base build callback checkbox checkboxes checked column columns data default demonstration determine directive disable-fn disabled disableoption display empty empty-message example excluded expressions falsevalue field-id fieldid function generated identifiers include initial input inputs js key label load markup match message model ng-required object objects option optional parameters passed populate preselected preselection preseleted-values properties radio radios required rowid rxoptiontable samples selected table tableid tie true type unique values"
     }
   ],
   "apis": {

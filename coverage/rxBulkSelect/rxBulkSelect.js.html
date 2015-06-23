@@ -15,10 +15,10 @@
 <div class="header high">
     <h1>Code coverage report for <span class="entity">rxBulkSelect/rxBulkSelect.js</span></h1>
     <h2>
-        Statements: <span class="metric">93.85% <small>(122 / 130)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">95.83% <small>(23 / 24)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">91.85% <small>(124 / 135)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">85.71% <small>(24 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Functions: <span class="metric">89.8% <small>(44 / 49)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">93.8% <small>(121 / 129)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">91.79% <small>(123 / 134)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">rxBulkSelect/</a> &#187; rxBulkSelect.js</div>
@@ -453,7 +453,22 @@
 426
 427
 428
-429</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -783,6 +798,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15</span>
@@ -800,6 +818,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -912,7 +942,7 @@
 &nbsp;
             // We add the `&lt;tr rx-bulk-select-message&gt;` row to the header here to save the devs
             // from having to do it themselves. 
-            var thead = elem.find('thead');
+            var thead = elem.find('thead').eq(0);
             var messageElem = angular.element(elemString);
             messageElem.attr('resource-name', attrs.resourceName || attrs.bulkSource.replace(/s$/, ''));
             thead.append(messageElem);
@@ -1203,13 +1233,16 @@
  *       &lt;/rx-batch-actions&gt;
  *   &lt;/th&gt;
  */
-.directive('rxBatchActions', function () {
+.directive('rxBatchActions', function (rxDOMHelper) {
     return {
         restrict: 'E',
-        require: '^rxBulkSelect',
+        require: ['^rxBulkSelect', '?^rxFloatingHeader'],
         templateUrl: 'templates/rxBatchActions.html',
         transclude: true,
-        link: function (scope, element, attrs, rxBulkSelectCtrl) {
+        link: function (scope, element, attrs, controllers) {
+&nbsp;
+            var rxBulkSelectCtrl = controllers[0],
+                rxFloatingHeaderCtrl = controllers[1];
 &nbsp;
             // We need to add the class onto the parent &lt;tr&gt;, so rxFloatingHeader can
             // easily identify this &lt;tr&gt;
@@ -1228,6 +1261,18 @@
                 }
             };
             rxBulkSelectCtrl.registerForNumSelected(numSelectedChange);
+&nbsp;
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!_.isUndefined(rxFloatingHeaderCtrl)) {
+                // When rxBatchActions lives inside of an rxFloatingHeader enabled table,
+                // the element will be cloned by rxFloatingHeader. The issue is that a normal
+                // .clone() does not clone Angular bindings, and thus the cloned element doesn't
+                // have `ng-show="displayed"` on it. We can manually add `ng-hide` on startup, to
+                // ensure that class is present in the clone. After that, everything will work as expected.
+<span class="cstat-no" title="statement not covered" >                if (!scope.displayed) {</span>
+<span class="cstat-no" title="statement not covered" >                    rxDOMHelper.find(element, '.batch-action-menu-container').addClass('ng-hide');</span>
+                }
+<span class="cstat-no" title="statement not covered" >                rxFloatingHeaderCtrl.update();</span>
+            }
 &nbsp;
         }
     };
@@ -1314,7 +1359,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Jun 10 2015 16:02:24 GMT-0400 (EDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jun 23 2015 15:32:06 GMT-0400 (EDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

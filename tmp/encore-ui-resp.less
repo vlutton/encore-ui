@@ -47,11 +47,6 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   padding: @layout-gutter-width / 2;
 }
 
-[layout-margin],
-[layout-margin] > [flex] {
-  margin: @layout-gutter-width / 2;
-}
-
 [layout-wrap] {
   .flex-wrap(wrap);
 }
@@ -81,8 +76,25 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 }
 
 
+// Vertical and horizontal margins, except on outside and on flex-ordered elements
+.layout-margin-for-name(@divisor, @suffix: null) {
+  .concat-selector('flex', @suffix);
+  [layout-margin] > [@{selector}]:not([flex-order])  {
+    margin: (@layout-gutter-width / @divisor);
+    &:first-child { margin-left: 0; }
+    &:last-child { margin-right: 0; }
+  }
+}
+
+
 .flex-order-for-name(@suffix: null) {
   .concat-selector('flex-order', @suffix);
+  [@{selector}].margin-right {
+    margin-right: @layout-gutter-width / 2;
+  }
+  [@{selector}].margin-left {
+    margin-left: @layout-gutter-width / 2;
+  }
   .loop (@i) when (@i < 10) {
     [@{selector}="@{i}"] { order: @i; }
     .loop (@i + 1);
@@ -211,6 +223,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 // Flex attributes for layout children
 // ------------------------------
 
+.layout-margin-for-name(2);
 .flex-properties-for-name();
 .layout-align-for-name();
 .flex-order-for-name();
@@ -240,21 +253,13 @@ https://github.com/yui/pure/blob/master/LICENSE.md
   padding: @layout-gutter-width / 1;
 }
 
-[layout-margin] > [flex-sm],
-[layout-margin] > [flex-lt-md]
-{
-  margin: @layout-gutter-width / 4;
-}
-[layout-margin] > [flex-gt-sm],
-[layout-margin] > [flex-md],
-[layout-margin] > [flex-lt-lg] {
-  margin: @layout-gutter-width / 2;
-}
-[layout-margin] > [flex-gt-md],
-[layout-margin] > [flex-lg]
-{
-  margin: @layout-gutter-width / 1;
-}
+.layout-margin-for-name(4, sm);
+.layout-margin-for-name(4, lt-md);
+.layout-margin-for-name(2, gt-sm);
+.layout-margin-for-name(2, md);
+.layout-margin-for-name(2, lt-lg);
+.layout-margin-for-name(1, gt-md);
+.layout-margin-for-name(1, lg);
 
 
 /**
@@ -2355,7 +2360,7 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 
 .rx-form-fieldset > fieldset {
     width: 100%;
-    .full-width .option-table {
+    .full-width .rx-option-table {
         width: 100%;
     }
 }
@@ -2541,68 +2546,6 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
     width: 50%;
     select {
         .border-radius(0px);
-    }
-}
-
-.option-table {
-    // we want the table to not look ugly when stretched across the screen
-    width: auto;
-    // we also want a semi-consistent width, but not too wide for modals
-    min-width: 39em;
-
-    td:not(.empty-data) {
-        // remove default padding from td's so that we can make the label take up the full room
-        padding: 0;
-    }
-    input[disabled] {
-        cursor: not-allowed;
-    }
-    .disabled {
-        label {
-            cursor: default;
-        }
-        span {
-            color: @inputColorDisabled;
-        }
-    }
-    .fillWrapper {
-      box-sizing: border-box;
-      display: inline-block;
-      height: 100%;
-      width: 100%;
-      position: relative;
-
-      label {
-        box-sizing: border-box;
-        width: 100%;
-        height: 100%;
-        padding: @tableCellPadding;
-        cursor: pointer;
-
-        .flexbox();
-        // vertically centered content in label
-        .align-items(center);
-
-        .alignWrapper {
-          .flex(1 1 auto);
-        }
-      }
-    }
-    .option-table-input {
-        text-align: center;
-        line-height: 0;
-    }
-    .current td {
-        color: #3AB661;
-    }
-    // @note KL: I'd like to stick with just adding the background to the <tr>, but
-    // we need to make the selector more specific to override the table-stripe styles.
-    .selected td {
-        background: @tableRowSelected;
-        border-color: #bad4bb;
-        // this 'double' makes it so that the border-color applies to the top border as well
-        // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
-        border-style: double;
     }
 }
 
@@ -2951,6 +2894,69 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 .animate-fade.ng-leave,
 .animate-fade.ng-enter.ng-enter-active {
     opacity:1;
+}
+
+/*
+ * rxOptionTable
+ */
+.rx-option-table {
+    // we want the table to not look ugly when stretched across the screen
+    width: auto;
+    // we also want a semi-consistent width, but not too wide for modals
+    min-width: 39em;
+
+    td:not(.empty-data) {
+        // remove default padding from td's so that we can make the label take up the full room
+        padding: 0;
+    }
+    .fillWrapper {
+        box-sizing: border-box;
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+        label {
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            padding: @tableCellPadding;
+            cursor: pointer;
+
+            .flexbox();
+            // vertically centered content in label
+            .align-items(center);
+
+            .alignWrapper {
+                .flex(1 1 auto);
+            }
+        }
+    }
+    input[disabled] {
+        cursor: not-allowed;
+    }
+    .disabled {
+        label {
+            cursor: default;
+            color: @inputColorDisabled;
+        }
+    }
+    .option-table-input {
+        text-align: center;
+        line-height: 0;
+    }
+    .current td {
+        color: #3AB661;
+    }
+    // @note KL: I'd like to stick with just adding the background to the <tr>, but
+    // we need to make the selector more specific to override the table-stripe styles.
+    .selected td {
+        background: @tableRowSelected;
+        border-color: #bad4bb;
+        // this 'double' makes it so that the border-color applies to the top border as well
+        // @see http://stackoverflow.com/questions/7942212/css-table-row-border-color-with-border-collapse
+        border-style: double;
+    }
 }
 
 /*
