@@ -1,5 +1,7 @@
 # EncoreUI Developer Setup
 
+This document is intended for developers that wish to make changes to EncoreUI itself, not for people who wish to use EncoreUI with their projects.
+
 If this is your first time, you'll need to set up your coding environment to be able to build EncoreUI and work with git.
 
 ## Preparing your environment
@@ -26,13 +28,7 @@ If this is your first time, you'll need to set up your coding environment to be 
             [Grunt](http://gruntjs.com/) is used to automate the UI build and test tasks for Encore. Run `npm install -g grunt-cli` to install Grunt.
     * **Note:** in order to run the midway tests, you must pin your protractor & mocha installs to the versions above.
 
-5. Install Selenium Server:
-    * Mac
-     - `brew install selenium-server-standalone` to install, `selenium-server` to run it.
-
-    Additionally, you could allow Protractor to manage this for you, using [Protractor's built-in `webdriver-manager`](https://github.com/angular/protractor/blob/master/docs/server-setup.md#standalone-selenium-server). This is the preferred option.
-
-6. Install PhantomJS
+5. Install PhantomJS
     * Follow [the install instructions for your OS](http://phantomjs.org/download.html).
 
 ## Initial Encore Build
@@ -70,7 +66,33 @@ Warning: EMFILE, too many open files 'src'
 Run `launchctl limit maxfiles 10480 10480` in your terminal. Depending on your operating system, sometimes `launchctl limit maxfiles 2048 2048 && ulimit -n 2048` will work instead. You might also want to add that to your .bash_profile script.
 
 
-## Creating a New Component
+## Creating a New Module
+
+All functionality in EncoreUI is separated into different modules, with each module getting its own directory in the `src/` directory.
+
+The best way to ensure you're adding a module that meets our requirements is by using our [Component Scaffolding](#component-scaffolding), which will take care of generating the initial module layout for you.
+
+There is an expected file structure and filename scheme for module directories, which our [Component Scaffolding](#component-scaffolding) follows. For example, the `rxSearchBox` directory looks like this:
+
+```
+src/rxSearchBox
+├── README.md
+├── docs
+│   ├── rxSearchBox.html
+│   ├── rxSearchBox.js
+│   └── rxSearchBox.midway.js
+├── rxSearchBox.exercise.js
+├── rxSearchBox.js
+├── rxSearchBox.less
+├── rxSearchBox.page.js
+├── rxSearchBox.spec.js
+└── templates
+    └── rxSearchBox.html
+```
+
+If you are going to add a new module to EncoreUI, it must follow this structure. And not only is there an expected file, but some of these files have required "boilerplate" that must be present. The [Component Scaffolding](#component-scaffolding) not only generates these files, but also inserts the necessary boilerplate into them.
+
+Make sure that you've added the necessary tests (to the `.midway.js` and `.spec.js` files), run the tests, and verify that your changes haven't broken anything. Please see our [EncoreUI Testing guide](./testing.md) guide for more details.
 
 ### Component Scaffolding
 
@@ -87,3 +109,49 @@ Then create a new component folder and navigate into it, **with the name of your
 Once created, from that folder, run `grunt-init ../../grunt-tasks/component-template/`
 
 Answer the questions prompted, let the task complete, and your new component folder should be ready for you to start coding away at. That's it.
+
+
+## Modifying Existing Modules
+
+If you are planning on modifying an existing module, either to add functionality or to fix a bug, keep the following in mind:
+
+ * [Add tests!](./testing.md) Any new functionality needs corresponding tests, and a bug fix should first have a new test written that illustrates the error
+ * Add documentation! New functionality _requires_ matching documentation.
+
+## Testing Local EncoreUI Changes Against Applications
+
+If you've made local changes to EncoreUI, you likely have an Encore application where you're hoping to use these changes, and you likely want to test those changes against a local instance of your application.
+
+Depending on when your application was first created, it'll either be grunt-based or gulp-based. If it was created from the [EncoreUI Template (deprecated)](https://github.com/rackerlabs/encore-ui-template) or the [Encore Generator](https://github.com/rackerlabs/generator-encore), then it's gulp based.
+
+### grunt-based applications
+
+In our older EncoreUI-based applications, all Javascript and CSS dependencies had to be manually referenced in the application's `index.html` file. This usually looks like
+
+```
+<link rel="stylesheet" href="bower_components/encore-ui/encore-ui.css">
+...
+<script src="bower_components/encore-ui/encore-ui-tpls.min.js"></script>
+```
+
+When you've made local changes to EncoreUI, you want to tell the local instance of your application to get these resources from the EncoreUI development server, and _not_ from Bower.
+
+ 1. Make sure your EncoreUI development server is running, `grunt server`
+ 2. In Chrome, navigate to `http://localhost:9001`, open the Inspector, and click on the "Sources" tab
+ 3. Expand `localhost:9001 -> dist`, and you should see `encore-ui-resp-X.Y.Z.css` and `encore-ui-tpls-X.Y.Z` listed.
+ 4. Right-click on the `.css` file, select "Copy Link Address", and then replace the Bower CSS file in your `index.html` with this value
+ 5. Do the same for the `.js` file
+
+You can now re-start your local application, and it will bring in the EncoreUI Javascript and CSS files directly from the EncoreUI development server, allow you to test your changes immediately.
+
+### gulp-based applications
+
+If your application is gulp-based (i.e. created with the EncoreUI Template or Encore Generator), then it will be much smarter about how to bring in these dependencies. Namely, the `index.html` file is auto-generated for these projects, no manual manipulation necessary. What we will do instead is provide a new "global symlink" for Bower to use when it's asked for `encore-ui`
+
+ 1. Go to `encore-ui/bower` in your EncoreUI directory
+ 2. Run `bower link`. Behind the scenes, this will create a global symlink in `~/.local/share/bower/links/`
+ 3. In your local application's directory, run `bower link encore-ui`. This will tell your application to grab EncoreUI from the local bower links, instead of from the official bower repositories. Restart your application.
+ 4. When you are done testing your EncoreUI changes in your local project, run `bower update` from your project directory. This will tell it to start using the offical bower repositories once again.
+
+Note that if you make further changes in your EncoreUI directory, you'll have to run `grunt copy:bower` from within the EncoreUI directory to cause these changes to become visible in the local symlink directory. Requiring this step is a failure on our part, and in the future we'll modify our EncoreUI `watch` task to make sure this happens automatically.
+
