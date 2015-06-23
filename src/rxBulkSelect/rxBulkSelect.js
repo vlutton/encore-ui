@@ -29,7 +29,7 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
 
             // We add the `<tr rx-bulk-select-message>` row to the header here to save the devs
             // from having to do it themselves. 
-            var thead = elem.find('thead');
+            var thead = elem.find('thead').eq(0);
             var messageElem = angular.element(elemString);
             messageElem.attr('resource-name', attrs.resourceName || attrs.bulkSource.replace(/s$/, ''));
             thead.append(messageElem);
