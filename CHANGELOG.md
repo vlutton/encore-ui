@@ -1,3 +1,20 @@
+<a name="1.21.0"></a>
+## 1.21.0 (2015-06-23)
+
+
+#### Bug Fixes
+
+* **rxBulkSelect:** only add bulk message to root table ([1824e35e](git@github.com:rackerlabs/encore-ui/commit/1824e35e5f533a4ee2394f49ae0e122d713fe265))
+* **rxFloatingHeader:** rxSearchBox and rxBulkSelect fixes ([e4fb9402](git@github.com:rackerlabs/encore-ui/commit/e4fb940241d2288d837d3b658452bb292fb6bc5a), closes [#1038](git@github.com:rackerlabs/encore-ui/issues/1038), [#1047](git@github.com:rackerlabs/encore-ui/issues/1047))
+* **rxFormElements:** Work around for removing parent elements ([ca620f94](git@github.com:rackerlabs/encore-ui/commit/ca620f94d570ae499ff97cdd7706635e2d064468))
+
+
+#### Features
+
+* **FlexGrid:** remove outter margins on layout-margin; fix offset ([57931b4f](git@github.com:rackerlabs/encore-ui/commit/57931b4fa2d611bfd2c4ffc310f31c50193faed7))
+* **rxApp:** EN-1912 default to an accounts admin user ([2c4e90de](git@github.com:rackerlabs/encore-ui/commit/2c4e90dec69450ce7b82e22e4654f01293631fbc))
+
+
 <a name="1.20.0"></a>
 ## 1.20.0 (2015-06-10)
 
