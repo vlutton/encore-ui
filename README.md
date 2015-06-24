@@ -24,13 +24,6 @@ Our team can usually provide general assistance with using the Framework, but we
 
 To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open). To view the issues we're currently working on, check out the [EncoreUI Task Board](https://waffle.io/rackerlabs/encore-ui). For high-level questions and requests, you can e-mail the [EncoreUI mailing list](mailto:encoreui@lists.rackspace.com). Expect a response within one working day.
 
-# Prioritization
-
-As a small team with limited resources, Encore relies on prioritization to drive development. However, EncoreUI is open source and new components or functionality may be submitted in a pull request. Still, there are times when EncoreUI's team must review or tweak design and functionality of features before they are ready to be brought in.
-
-Those looking to have new features or designs prioritized by the team should attend the Encore Stakeholder Meeting, where developers, designers, contributors, and consumers of EncoreUI meet weekly to review recent releases, current work, and upcoming needs. This meeting is the best way to request support from EncoreUI for designs and features you need that haven't been developed yet.
-
-E-mail the [EncoreUI mailing list](mailto:encoreui@lists.rackspace.com) if you need an invitation to the meeting.
 
 # Common Questions about EncoreUI
 
@@ -57,9 +50,16 @@ For versioning, we rougly follow the [Semantic Versioning system](http://semver.
 
 A breaking change is one that *requires* users of the changed component to modify their own code.
 
+### How are issues prioritized?
+
+As a small team with limited resources, Encore relies on prioritization to drive development. However, EncoreUI is open source and new components or functionality may be submitted in a pull request. Still, there are times when EncoreUI's team must review or tweak design and functionality of features before they are ready to be brought in. Please see our [Contribution Guide](./CONTRIBUTING.md) if you are planning on submitting a pull request.
+
+Those looking to have new features or designs prioritized by the team should attend the Encore Stakeholder Meeting, where developers, designers, contributors, and consumers of EncoreUI meet weekly to review recent releases, current work, and upcoming needs. This meeting is the best way to request support from EncoreUI for designs and features you need that haven't been developed yet.
+
+E-mail the [EncoreUI mailing list](mailto:encoreui@lists.rackspace.com) if you need an invitation to the meeting.
+
 # Further Reading
 
- - [Roadmap](./guides/roadmap.md)
  - [Contribution Guide](./CONTRIBUTING.md)
  - [Versioning Guide](./guides/versioning.md)
  - [Changelog](./CHANGELOG.md)
