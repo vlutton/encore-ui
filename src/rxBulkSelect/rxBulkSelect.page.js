@@ -1,13 +1,12 @@
 /*jshint node:true*/
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
-var rxCheckbox = require('../rxCheckbox/rxCheckbox.page').rxCheckbox;
 
 /**
    @namespace
  */
 var rxBulkSelectDefaultRowFn = function (rowElement) {
-    return rxCheckbox.initialize(rowElement.$('input[type="checkbox"]'));
+    return exports.rxCheckbox.initialize(rowElement.$('input[type="checkbox"]'));
 };
 
 var rxBulkSelect = {
@@ -32,7 +31,7 @@ var rxBulkSelect = {
 
     selectAllCheckbox: {
         get: function () {
-            return rxCheckbox.initialize(
+            return exports.rxCheckbox.initialize(
                 this.rootElement.$('[rx-bulk-select-header-check]').$('input[type="checkbox"]')
             );
         }

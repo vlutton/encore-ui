@@ -1,4 +1,4 @@
-var rxSpinnerPage = require('../rxSpinner.page').rxSpinner;
+var rxSpinnerPage = encore.rxSpinner;
 
 describe('rxSpinner', function () {
 

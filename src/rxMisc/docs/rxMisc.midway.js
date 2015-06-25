@@ -1,9 +1,9 @@
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
-var rxMisc = require('../rxMisc.page').rxMisc;
-var rxForm = require('../../rxForm/rxForm.page').rxForm;
-var rxNotify = require('../../rxNotify/rxNotify.page').rxNotify;
+var rxMisc = encore.rxMisc;
+var rxForm = encore.rxForm;
+var rxNotify = encore.rxNotify;
 
 // "wait" for autosave to clear -- function passed to `browser.wait`
 var forAutoSaveToClear = function () {

@@ -1,4 +1,4 @@
-var tabsPage = require('../tabs.page').tabs;
+var tabsPage = encore.tabs;
 
 describe('tabs', function () {
     var tabs;

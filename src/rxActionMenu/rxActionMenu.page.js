@@ -21,8 +21,7 @@ var action = function (actionElement) {
             */
             value: function (customFunctionality) {
                 actionElement.$('.modal-link').click();
-                var rxModal = exports.rxModalAction || require('../rxModalAction/rxModalAction.page').rxModalAction;
-                return rxModal.initialize(customFunctionality);
+                return exports.rxModalAction.initialize(customFunctionality);
             }
         },
 

@@ -111,13 +111,19 @@ Keep in mind you'll need to register a global variable declaration in your linti
 
 ### Some odd patterns in the page object source code...
 
-In some of the page object source code, you may notice something like the following line
+If you see a page object asking for another component, it will do so using this.
 
 ```js
-var helperComponent = exports.rxHelper || require('../rxHelper/rxHelper.page.js').rxHelper;
+var otherComponent = exports.otherComponent.intialize(/*...*/);
 ```
 
-Since the publish step of the page objects concatenates all pages together into one large zipped file, there isn't a reliable way to know if the import is happening in the "one large file", or in the `src/` directory (where UI smoke tests are run on Travis). This simply catches both cases, so that importing components can happen in either situation.
+It does this because as a part of the publishing step of the rx-page-objects module, all files in `src/**/*/page.js` are concatenated together, meaning the `exports` call will be valid during end to end test runs. The reason this is done this way is because in the past, requiring a component in a page object meant traversing the library's directory to find the component.
+
+```js
+var otherComponent = require('../../otherComponent/otherComponent.page').otherComponent;
+```
+
+Not only is this very verbose, it lead to errors when end to end tests would pass during development (the directory structure is there to support this if you develop on the component library) but would fail when another team would pull in rx-page-objects into their project! Now, all end to end test runs (even local ones during development) rely on the concatenated version of the rx-page-objects module. If you see the global `encore` variable used throughout the midway tests, this is because the concatenated file is pulled into this global variable. Use it when referring to anything that should be tested in your midways. In almost all cases, it's best to follow the existing [component-template](../grunt-tasks/component-template/root/docs/component.midway.js) when creating new midway tests.
 
 Speaking of concatenating all page object files together, the code located at the top of the [grunt concat](../grunt-tasks/options/concat.js) task includes a list of third-party node modules used throughout the page objects and exercises. When requiring a new dependency into a page object or exercise, check that list and make sure it is included! It will make sure that the `index.js` and `exercise.js` files that get published by `grunt rxPageObjects` does not have duplicate `require` calls scattered throughout it.
 

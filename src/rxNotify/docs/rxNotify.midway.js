@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-var notifications = require('../rxNotify.page').rxNotify;
+var notifications = encore.rxNotify;
 
 describe('rxNotify', function () {
 

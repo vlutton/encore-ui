@@ -1,11 +1,6 @@
 /*jshint node:true*/
 var _ = require('lodash');
 
-var rxMisc = require('../rxMisc/rxMisc.page').rxMisc;
-var htmlCheckbox = require('../rxCheckbox/rxCheckbox.page').htmlCheckbox;
-var htmlRadio = require('../rxRadio/rxRadio.page').htmlRadio;
-var htmlSelect = require('../rxSelect/rxSelect.page').htmlSelect;
-
 /**
  * @exports encore.rxForm
  */
@@ -106,44 +101,54 @@ exports.rxForm = {
 
     /**
      * @namespace
-     * @deprecated
      * @description
-     * **DEPRECATED** Please use `encore.htmlCheckbox` or `encore.rxCheckbox` instead.
-     * This item will be removed in a future release of the EncoreUI framework.
+     * **ALISED** Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.
      */
-    checkbox: htmlCheckbox,
+    checkbox: {
+        get main() { return exports.rxCheckbox.main; },
+        get initialize() { return exports.rxCheckbox.initialize; },
+        get generateAccessor() { return exports.rxCheckbox.generateAccessor; }
+    },
 
     /**
      * @namespace
-     * @deprecated
      * @description
-     * **DEPRECATED** Please use `encore.htmlRadio` or `encore.rxRadio` instead.
-     * This item will be removed in a future release of the EncoreUI framework.
+     * **ALISED** Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.
      */
-    radioButton: htmlRadio,
+    radioButton: {
+        get main() { return exports.rxRadio.main; },
+        get initialize() { return exports.rxRadio.initialize; },
+        get generateAccessor() { return exports.rxRadio.generateAccessor; }
+    },
 
     /**
      * @namespace
-     * @deprecated
      * @description
-     * **DEPRECATED** Please use `encore.htmlSelect` or `encore.rxSelect` instead.
-     * This item will be removed in a future release of the EncoreUI framework.
+     * **ALIASED** Directly uses <a href="#encore.module_rxSelect">encore.rxSelect</a>.
      */
-    dropdown: htmlSelect,
+    dropdown: {
+        get main() { return exports.rxSelect.main; },
+        get initialize() { return exports.rxSelect.initialize; },
+        get generateAccessor() { return exports.rxSelect.generateAccessor; }
+    },
 
     /**
      * @deprecated
      * @description
-     * **DEPRECATED**: Please use `rxMisc.currencyToPennies` instead.
+     * **ALISED**: Please use {@link rxMisc.currencyToPennies} instead.
      * This function will be removed in a future release of the EncoreUI framework.
      */
-    currencyToPennies: rxMisc.currencyToPennies,
+    currencyToPennies: function (currencyString) {
+        return exports.rxMisc.currencyToPennies(currencyString);
+    },
 
     /**
      * @deprecated
      * @description
-     * **DEPRECATED**: Please use `rxMisc.slowClick` instead.
+     * **ALIASED**: Please use {@link rxMisc.slowClick} instead.
      * This function will be removed in a future release of the EncoreUI framework.
      */
-    slowClick: rxMisc.slowClick
+    slowClick: function (elem) {
+        return exports.rxMisc.slowClick(elem);
+    }
 };

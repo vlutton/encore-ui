@@ -46,7 +46,7 @@ var htmlRadio = {
     select: {
         value: function () {
             var radio = this.rootElement;
-            return this.isSelected(). then(function (selected) {
+            return this.isSelected().then(function (selected) {
                 if (!selected) {
                     radio.click();
                 }
@@ -169,5 +169,25 @@ exports.rxRadio = {
             get: function () { return $('input[rx-radio]'); }
         };
         return Page.create(rxRadio);
-    })()
+    })(),
+
+    /**
+     * @function
+     * @description Generates a getter and a setter for an rxRadio element on your page.
+     * @param {WebElement} elem - The WebElement for the rxRadio.
+     * @returns {Object} A getter and a setter to be applied to a rxRadio page object.
+     */
+    generateAccessor: function (elem) {
+        return {
+            get: function () {
+                return exports.rxRadio.initialize(elem).isSelected();
+            },
+            // passing `false` to this will do nothing.
+            set: function (enable) {
+                if (enable) {
+                    exports.rxRadio.initialize(elem).select();
+                }
+            }
+        };
+    }
 };

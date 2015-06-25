@@ -1,4 +1,3 @@
-var exercise = require('../rxToggleSwitch.exercise');
 
 describe('rxToggleSwitch', function () {
     var rxToggleSwitch;
@@ -7,19 +6,19 @@ describe('rxToggleSwitch', function () {
         demoPage.go('#/component/rxToggleSwitch');
     });
 
-    describe('defaults', exercise.rxToggleSwitch({
+    describe('defaults', encore.exercise.rxToggleSwitch({
         cssSelector: '.demo-default-values'
     }));
 
-    describe('specific model values', exercise.rxToggleSwitch({
+    describe('specific model values', encore.exercise.rxToggleSwitch({
         cssSelector: '.demo-model-values'
     }));
 
-    describe('post hook', exercise.rxToggleSwitch({
+    describe('post hook', encore.exercise.rxToggleSwitch({
         cssSelector: '.demo-post-hook'
     }));
 
-    describe('disabled', exercise.rxToggleSwitch({
+    describe('disabled', encore.exercise.rxToggleSwitch({
         cssSelector: '.demo-disabled',
         disabled: true
     }));

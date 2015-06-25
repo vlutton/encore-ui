@@ -1,7 +1,6 @@
 /*jshint node:true*/
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
-var rxMisc = require('../rxMisc/rxMisc.page').rxMisc;
 
 /**
  * @namespace
@@ -32,7 +31,7 @@ var htmlSelectOption = {
      */
     select: {
         value: function () {
-            rxMisc.slowClick(this.rootElement);
+            exports.rxMisc.slowClick(this.rootElement);
         }
     },
 

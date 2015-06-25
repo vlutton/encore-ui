@@ -1,5 +1,5 @@
-var modal = require('../rxModalAction.page').rxModalAction;
-var rxForm = require('../../rxForm/rxForm.page').rxForm;
+var modal = encore.rxModalAction;
+var rxForm = encore.rxForm;
 
 describe('rxModalAction', function () {
     var changePasswordModal, triggerModal;

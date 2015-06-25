@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-var feedback = require('../rxFeedback.page').rxFeedback;
+var feedback = encore.rxFeedback;
 
 describe('rxFeedback', function () {
     var successfulFeedback, unsuccessfulFeedback;

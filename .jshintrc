@@ -37,6 +37,7 @@
         "demoPage": true,
         "describe": false,
         "element": false,
+        "encore": true,
         "expect": true,
         "exports": false,
         "helpers": true,

@@ -1,8 +1,8 @@
 var Page = require('astrolabe').Page;
 
-var actionMenu = require('../rxActionMenu.page').rxActionMenu;
-var rxForm = require('../../rxForm/rxForm.page').rxForm;
-var notifications = require('../../rxNotify/rxNotify.page').rxNotify;
+var actionMenu = encore.rxActionMenu;
+var rxForm = encore.rxForm;
+var notifications = encore.rxNotify;
 
 describe('rxActionMenu', function () {
     var globalDismiss, localDismiss, customActions;

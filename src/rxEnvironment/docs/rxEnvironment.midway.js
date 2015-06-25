@@ -1,4 +1,4 @@
-var environment = require('../rxEnvironment.page').rxEnvironment;
+var environment = encore.rxEnvironment;
 
 describe('rxEnvironment', function () {
 

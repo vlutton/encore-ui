@@ -1,4 +1,3 @@
-var exercise = require('../rxCollapse.exercise');
 
 describe('rxCollapse', function () {
     var rxCollapse;
@@ -7,6 +6,6 @@ describe('rxCollapse', function () {
         demoPage.go('#/component/rxCollapse');
     });
 
-    describe('exercises', exercise.rxCollapse());
+    describe('exercises', encore.exercise.rxCollapse());
 
 });

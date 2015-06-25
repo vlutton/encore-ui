@@ -1,4 +1,4 @@
-var rxLogoutPage = require('../rxLogout.page').rxLogout;
+var rxLogoutPage = encore.rxLogout;
 
 describe('rxLogout', function () {
     var rxLogout;
