@@ -1,3 +1,13 @@
+<a name="1.21.1"></a>
+### 1.21.1 (2015-06-25)
+
+
+#### Bug Fixes
+
+* **demo:** Use rxOptionTable for layouts ([61d30520](git@github.com:rackerlabs/encore-ui/commit/61d3052073e3aaff682e24c61c0d75f7c5cc7322))
+* **e2e:** Use published version for testing ([372736fc](git@github.com:rackerlabs/encore-ui/commit/372736fc8074682830da3c5567beafed2cc6cd81), closes [#1041](git@github.com:rackerlabs/encore-ui/issues/1041), [#1044](git@github.com:rackerlabs/encore-ui/issues/1044))
+
+
 <a name="1.21.0"></a>
 ## 1.21.0 (2015-06-23)
 
