@@ -34,16 +34,16 @@
 </ul>
 </li>
 <li><a href="#encore.module_rxForm">encore.rxForm</a><ul>
-<li><a href="#encore.module_rxForm.currencyToPennies"><del>encore.rxForm.currencyToPennies</del></a></li>
-<li><a href="#encore.module_rxForm.slowClick"><del>encore.rxForm.slowClick</del></a></li>
 <li><a href="#encore.module_rxForm.fill">encore.rxForm.fill(reference, formData)</a></li>
+<li><a href="#encore.module_rxForm.currencyToPennies"><del>encore.rxForm.currencyToPennies()</del></a></li>
+<li><a href="#encore.module_rxForm.slowClick"><del>encore.rxForm.slowClick()</del></a></li>
 <li><a href="#encore.module_rxForm.textField">encore.rxForm.textField</a><ul>
 <li><a href="#encore.module_rxForm.textField.generateAccessor">textField.generateAccessor(elem)</a></li>
 </ul>
 </li>
-<li><a href="#encore.module_rxForm.checkbox"><del>encore.rxForm.checkbox</del></a></li>
-<li><a href="#encore.module_rxForm.radioButton"><del>encore.rxForm.radioButton</del></a></li>
-<li><a href="#encore.module_rxForm.dropdown"><del>encore.rxForm.dropdown</del></a></li>
+<li><a href="#encore.module_rxForm.checkbox">encore.rxForm.checkbox</a></li>
+<li><a href="#encore.module_rxForm.radioButton">encore.rxForm.radioButton</a></li>
+<li><a href="#encore.module_rxForm.dropdown">encore.rxForm.dropdown</a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxOptionTable">encore.rxOptionTable</a><ul>
@@ -66,6 +66,7 @@
 <li><a href="#encore.module_rxRadio">encore.rxRadio</a><ul>
 <li><a href="#encore.module_rxRadio.main">encore.rxRadio.main</a></li>
 <li><a href="#encore.module_rxRadio.initialize">encore.rxRadio.initialize(rxRadioElement)</a></li>
+<li><a href="#encore.module_rxRadio.generateAccessor">encore.rxRadio.generateAccessor(elem)</a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxSearchBox">encore.rxSearchBox</a><ul>
@@ -442,28 +443,20 @@
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxForm">encore.rxForm</a><ul>
-<li><a href="#encore.module_rxForm.currencyToPennies"><del>encore.rxForm.currencyToPennies</del></a></li>
-<li><a href="#encore.module_rxForm.slowClick"><del>encore.rxForm.slowClick</del></a></li>
 <li><a href="#encore.module_rxForm.fill">encore.rxForm.fill(reference, formData)</a></li>
+<li><a href="#encore.module_rxForm.currencyToPennies"><del>encore.rxForm.currencyToPennies()</del></a></li>
+<li><a href="#encore.module_rxForm.slowClick"><del>encore.rxForm.slowClick()</del></a></li>
 <li><a href="#encore.module_rxForm.textField">encore.rxForm.textField</a><ul>
 <li><a href="#encore.module_rxForm.textField.generateAccessor">textField.generateAccessor(elem)</a></li>
 </ul>
 </li>
-<li><a href="#encore.module_rxForm.checkbox"><del>encore.rxForm.checkbox</del></a></li>
-<li><a href="#encore.module_rxForm.radioButton"><del>encore.rxForm.radioButton</del></a></li>
-<li><a href="#encore.module_rxForm.dropdown"><del>encore.rxForm.dropdown</del></a></li>
+<li><a href="#encore.module_rxForm.checkbox">encore.rxForm.checkbox</a></li>
+<li><a href="#encore.module_rxForm.radioButton">encore.rxForm.radioButton</a></li>
+<li><a href="#encore.module_rxForm.dropdown">encore.rxForm.dropdown</a></li>
 </ul>
 </li>
 </ul>
-<p><a name="encore.module_rxForm.currencyToPennies"></a></p>
-<h2 id="-encore-rxform-currencytopennies-"><del>encore.rxForm.currencyToPennies</del></h2>
-<p><strong>DEPRECATED</strong>: Please use <code>rxMisc.currencyToPennies</code> instead.
-This function will be removed in a future release of the EncoreUI framework.</p>
-<p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxForm.slowClick"></a></p>
-<h2 id="-encore-rxform-slowclick-"><del>encore.rxForm.slowClick</del></h2>
-<p><strong>DEPRECATED</strong>: Please use <code>rxMisc.slowClick</code> instead.
-This function will be removed in a future release of the EncoreUI framework.</p>
-<p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxForm.fill"></a></p>
+<p><a name="encore.module_rxForm.fill"></a></p>
 <h2 id="encore-rxform-fill-reference-formdata-">encore.rxForm.fill(reference, formData)</h2>
 <p>Set <code>value</code> in <code>formData</code> to the page object&#39;s current method <code>key</code>.
 Aids in filling out form data via javascript objects.
@@ -494,7 +487,15 @@ yourPage.form = {
     }
 };
 </code></pre>
-<p><a name="encore.module_rxForm.textField"></a></p>
+<p><a name="encore.module_rxForm.currencyToPennies"></a></p>
+<h2 id="-encore-rxform-currencytopennies-"><del>encore.rxForm.currencyToPennies()</del></h2>
+<p><strong>ALISED</strong>: Please use <a href="#rxMisc.currencyToPennies">currencyToPennies</a> instead.
+This function will be removed in a future release of the EncoreUI framework.</p>
+<p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxForm.slowClick"></a></p>
+<h2 id="-encore-rxform-slowclick-"><del>encore.rxForm.slowClick()</del></h2>
+<p><strong>ALIASED</strong>: Please use <a href="#rxMisc.slowClick">slowClick</a> instead.
+This function will be removed in a future release of the EncoreUI framework.</p>
+<p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxForm.textField"></a></p>
 <h2 id="encore-rxform-textfield">encore.rxForm.textField</h2>
 <p><strong>Members</strong></p>
 <ul>
@@ -522,28 +523,25 @@ it(&#39;should fill out the text box&#39;, function () {
 });
 </code></pre>
 <p><a name="encore.module_rxForm.checkbox"></a></p>
-<h2 id="-encore-rxform-checkbox-"><del>encore.rxForm.checkbox</del></h2>
-<p><strong>DEPRECATED</strong> Please use <code>encore.htmlCheckbox</code> or <code>encore.rxCheckbox</code> instead.
-This item will be removed in a future release of the EncoreUI framework.</p>
-<p><strong><em>Deprecated</em></strong><br><strong>Members</strong></p>
+<h2 id="encore-rxform-checkbox">encore.rxForm.checkbox</h2>
+<p><strong>ALISED</strong> Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.</p>
+<p><strong>Members</strong></p>
 <ul>
-<li><a href="#encore.module_rxForm.checkbox"><del>encore.rxForm.checkbox</del></a></li>
+<li><a href="#encore.module_rxForm.checkbox">encore.rxForm.checkbox</a></li>
 </ul>
 <p><a name="encore.module_rxForm.radioButton"></a></p>
-<h2 id="-encore-rxform-radiobutton-"><del>encore.rxForm.radioButton</del></h2>
-<p><strong>DEPRECATED</strong> Please use <code>encore.htmlRadio</code> or <code>encore.rxRadio</code> instead.
-This item will be removed in a future release of the EncoreUI framework.</p>
-<p><strong><em>Deprecated</em></strong><br><strong>Members</strong></p>
+<h2 id="encore-rxform-radiobutton">encore.rxForm.radioButton</h2>
+<p><strong>ALISED</strong> Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.</p>
+<p><strong>Members</strong></p>
 <ul>
-<li><a href="#encore.module_rxForm.radioButton"><del>encore.rxForm.radioButton</del></a></li>
+<li><a href="#encore.module_rxForm.radioButton">encore.rxForm.radioButton</a></li>
 </ul>
 <p><a name="encore.module_rxForm.dropdown"></a></p>
-<h2 id="-encore-rxform-dropdown-"><del>encore.rxForm.dropdown</del></h2>
-<p><strong>DEPRECATED</strong> Please use <code>encore.htmlSelect</code> or <code>encore.rxSelect</code> instead.
-This item will be removed in a future release of the EncoreUI framework.</p>
-<p><strong><em>Deprecated</em></strong><br><strong>Members</strong></p>
+<h2 id="encore-rxform-dropdown">encore.rxForm.dropdown</h2>
+<p><strong>ALIASED</strong> Directly uses <a href="#encore.module_rxSelect">encore.rxSelect</a>.</p>
+<p><strong>Members</strong></p>
 <ul>
-<li><a href="#encore.module_rxForm.dropdown"><del>encore.rxForm.dropdown</del></a></li>
+<li><a href="#encore.module_rxForm.dropdown">encore.rxForm.dropdown</a></li>
 </ul>
 <p><a name="encore.module_rxOptionTable"></a></p>
 <h1 id="encore-rxoptiontable">encore.rxOptionTable</h1>
@@ -642,6 +640,7 @@ it(&#39;should select the country&#39;, function () {
 <li><a href="#encore.module_rxRadio">encore.rxRadio</a><ul>
 <li><a href="#encore.module_rxRadio.main">encore.rxRadio.main</a></li>
 <li><a href="#encore.module_rxRadio.initialize">encore.rxRadio.initialize(rxRadioElement)</a></li>
+<li><a href="#encore.module_rxRadio.generateAccessor">encore.rxRadio.generateAccessor(elem)</a></li>
 </ul>
 </li>
 </ul>
@@ -653,7 +652,14 @@ it(&#39;should select the country&#39;, function () {
 <ul>
 <li>rxRadioElement <code>WebElement</code> - WebElement to be transformed into an rxRadio page object  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the rxRadio element<br><a name="encore.module_rxSearchBox"></a></p>
+<p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the rxRadio element<br><a name="encore.module_rxRadio.generateAccessor"></a></p>
+<h2 id="encore-rxradio-generateaccessor-elem-">encore.rxRadio.generateAccessor(elem)</h2>
+<p>Generates a getter and a setter for an rxRadio element on your page.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>elem <code>WebElement</code> - The WebElement for the rxRadio.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to a rxRadio page object.<br><a name="encore.module_rxSearchBox"></a></p>
 <h1 id="encore-rxsearchbox">encore.rxSearchBox</h1>
 <p><strong>Members</strong></p>
 <ul>
