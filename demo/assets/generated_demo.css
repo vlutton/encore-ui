@@ -98,17 +98,27 @@ ul.colors .action-delete {
 .component-description ol li {
   list-style: decimal;
 }
-table.component-attributes th,
-table.component-attributes td {
-  vertical-align: top;
-  text-align: center;
+.overview-column {
+  width: 300px;
+  margin-right: 100px;
+}
+.overview-column h4 {
+  font-weight: 600;
+}
+.overview-column a + p {
+  margin-top: 5px;
+}
+table.component-attributes tbody tr th {
+  white-space: nowrap;
 }
 table.component-attributes tr th:last-child,
 table.component-attributes tr td:last-child {
   text-align: left;
 }
-table.component-attributes tbody tr th {
-  white-space: nowrap;
+table.component-attributes th,
+table.component-attributes td {
+  vertical-align: top;
+  text-align: center;
 }
 .components-list .page-content {
   clear: left;
@@ -123,24 +133,29 @@ table.component-attributes tbody tr th {
 }
 .component-description pre,
 .component-demo pre,
+.markdown pre,
 .component-description code,
-.component-demo code {
+.component-demo code,
+.markdown code {
   color: #404040;
   background-color: #D0D0D0;
   border: 1px solid #BABABA;
   border-radius: 2px;
 }
 .component-description code,
-.component-demo code {
+.component-demo code,
+.markdown code {
   padding: 0 2px;
   margin: 0 1px;
 }
 .component-description pre,
-.component-demo pre {
+.component-demo pre,
+.markdown pre {
   padding: 10px;
 }
 .component-description pre code,
-.component-demo pre code {
+.component-demo pre code,
+.markdown pre code {
   border: none;
   padding: 0;
   margin: 0;
@@ -148,4 +163,24 @@ table.component-attributes tbody tr th {
 }
 p {
   line-height: 1.5;
+}
+.rx-app .page-body .page-titles {
+  float: initial;
+}
+.markdown ul,
+.markdown ol {
+  display: inline;
+  margin: 0;
+}
+.markdown ul p,
+.markdown ol p {
+  display: inline-block;
+}
+.markdown ol li {
+  list-style: decimal inside;
+}
+.markdown ul li {
+  list-style: disc inside;
+  margin: 10px 10px 10px 23px;
+  text-indent: -13px;
 }

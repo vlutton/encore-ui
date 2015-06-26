@@ -40,7 +40,7 @@ Currently, when adding a new component, our most precious resource is the time o
 
 ## PR Steps
 * **Prerequisites**:
-    * New Components _must_ be created using our [Component Scaffolding](./guides/ui-setup.md#creating-a-new-component)
+    * New Components _must_ be created using our [Component Scaffolding](./guides/ui-setup.md#creating-a-new-module)
     * A corresponding [Issue should be present](#preparing-an-issue-for-development)
 * **Step 1**: Submitter includes screenshot of new component in PR description (See ["Design Review of Pull Requests"](#design-review-of-pull-requests) below)
 * **Step 2**: Comment with Design Sign-Off on final product - Design LGTM

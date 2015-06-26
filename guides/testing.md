@@ -238,7 +238,7 @@ var rxComponent = exports.rxComponent;
 describe('demo component', function () {
 
     before(function () {
-        demoPage.go('#/component/rxComponent');
+        demoPage.go('#/components/rxComponent');
     });
 
     it('default', function () {

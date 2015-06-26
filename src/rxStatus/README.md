@@ -2,7 +2,7 @@
 
 # Description
 
-This service is provided as a compliment to the [`rxNotify` service](#/component/rxNotify).  It abstracts out some of the raw functionality provided by `rxNotify` to make the addition and removal of single messages easier.
+This service is provided as a compliment to the [`rxNotify` service](#/components/rxNotify).  It abstracts out some of the raw functionality provided by `rxNotify` to make the addition and removal of single messages easier.
 
 # Usage
 

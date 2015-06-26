@@ -1,5 +1,80 @@
+var _ = require('lodash');
 var path = require('path');
 var config = require('../util/config');
+var marked = require('marked');
+var renderer = new marked.Renderer();
+var classes = {
+    2: ' class="page-title title lg"',
+    3: ' class="title"',
+    4: ' class="title sm"'
+};
+
+renderer.heading = function (text, level) {
+    // level - Increment and append to <h> with class by lookup, or reinsert level if no class found
+    // id - Anchor link target; Take out non-alphanumeric characters from header ex. '(', then kebab case
+    var compiled = _.template('<h${ lvl } id="${ id }">${ txt }</h${ lvl }>');
+    return compiled({
+        lvl: ++level + (classes[level] || ''),
+        id: text.toLowerCase().replace(/[^\w ]/g, '').replace(/ /g, '-'),
+        txt: text
+    });
+};
+
+// To be rewritten to hit README.md
+var readme = new RegExp(/https:\/\/github\.com\/rackerlabs\/encore-ui(?:$|#[\w-]*$)/);
+renderer.link = function (href, title, text) {
+    var click = '';
+
+    // In case <a> with no href
+    href = href || '';
+
+    // Rewrite relative link md files for use with the guides controller
+    if (href.substr(0, 1) === '.' && href.indexOf('.md') !== -1) {
+        href = '#/guides' + href.substr(href.lastIndexOf('/')).replace('.md', '');
+    }
+
+    // Rewrite Github root doc to README
+    else if (readme.test(href)) {
+        href = href.replace('https://github.com/rackerlabs/encore-ui', '#/guides/README');
+    }
+
+    // Overwrite local anchor link ids so they match custom rendered header ids
+    else if (href.indexOf('#') === 0) {
+        // Add angular click handler
+        // `id` is href stripped of everything except alpha, numeric, and hypens
+        // Keep empty href to get link style
+        click = ' ng-click="vm.scrollTo(\'' + href.replace(/[^\w-]/g, '') +'\')"';
+        href = '';
+    }
+
+    // Rewrite any other relative links
+    else if (href.substr(0, 1) === '.') {
+        href = 'https://github.com/rackerlabs/encore-ui/blob/master' + href.substr(href.indexOf('/'));
+    }
+
+    var compiled = _.template('<a href="${ href }"${ click }>${ text }</a>');
+    return compiled({
+        href: href,
+        click: click,
+        text: text
+    });
+};
+
+function convertMarkdown (content) {
+
+    // Replace the [![Build Status...]] line with an empty string
+    // (note that /m makes $ match newlines
+    content = content.replace(/\[\!\[Build Status(.*)$/m, '');
+
+    // The README contains a link to the demo app, which leads the user off
+    // this page and to the github demo app. Let's remove that. Strip out "# Demo App",
+    // and everything that follows it until the next section header "#"
+    // (Note that .* won't work because . doesn't match newlines. [\s\S] is equivalent
+    content = content.replace(/# Demo App[\s\S]*?(#[\s\S]*)/mg, '$1');
+
+    // Renderer handles custom link and header writing
+    return marked(content, { renderer: renderer });
+}
 
 module.exports = {
     demohtml: {
@@ -30,35 +105,24 @@ module.exports = {
             dest: 'demo/browser-helpers.js'
         }]
     },
-    demoreadme: {
+    demomarkdown: {
         files: [{
             src: 'README.md',
             dest: 'demo/readme.html'
+        }, {
+            expand: true,
+            src: '*.md',
+            dest: 'demo/guides/rendered',
+            ext: '.html'
+        }, {
+            expand: true,
+            cwd: 'guides',
+            src: '*.md',
+            dest: 'demo/guides/rendered',
+            ext: '.html'
         }],
         options: {
-            process: function (content) {
-                var markdown = require('marked');
-
-                // Replace the [![Build Status...]] line with an empty string
-                // (note that /m makes $ match newlines
-                content = content.replace(/\[\!\[Build Status(.*)$/m, '');
-
-                // The README contains a link to the demo app, which leads the user off
-                // this page and to the github demo app. Let's remove that. Strip out "# Demo App",
-                // and everything that follows it until the next section header "#"
-                // (Note that .* won't work because . doesn't match newlines. [\s\S] is equivalent
-                content = content.replace(/# Demo App[\s\S]*?(#[\s\S]*)/mg, '$1');
-
-                // Our README.md has a bunch of relative URLs for use on github, for example,
-                // [Roadmap](./guides/roadmap.md)
-                // They all start with "(./", so replace all occurrences of that with the full path
-                // The \(\.\( matches (./
-                // The (.*?) then grabs 'guides/roadmap.md'
-                // The final \) matches the closing round bracket for the markdown link
-                var githubPath = 'https://github.com/rackerlabs/encore-ui/blob/master/$1';
-                content = content.replace(/\(\.\/(.*?)\)/g, '(' + githubPath + ')');
-                return markdown(content);
-            }
+            process: convertMarkdown
         }
     },
     coverage: {
