@@ -2,12 +2,9 @@ language: node_js
 node_js:
 - '0.10'
 before_install:
-- sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
 - npm install -g grunt-cli bower
 install:
 - travis_retry npm install
-# keep tricky cairo dependencies for visual regression isolated to Travis builds only
-- travis_retry npm install snappit-mocha-protractor@0.0.6
 - bower install
 - ./node_modules/.bin/webdriver-manager update --standalone
 before_script:
