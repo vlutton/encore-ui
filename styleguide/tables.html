@@ -15,7 +15,7 @@
     <h3 class="title">Cog Menus via rxActionMenu</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li><a href="http://rackerlabs.github.io/encore-ui/#/component/rxActionMenu">See the rxActionMenu directive</a> for implementation and examples.</li>
+            <li><a href="#/component/rxActionMenu">See the rxActionMenu directive</a> for implementation and examples.</li>
             <li><span class="msg-info">ENCORE-SPECIFIC:</span> In Encore, we usually use cogs if there are actionable items for every row. As an example, most main table listings show cog menus with actionable items, such as <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/servers/Servers.html#L135-L146">Cloud Server pages showing FirstGen/NextGen actions</a> or <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/cbs/Volumes.html#L115-L145">Cloud Block Storage Volumes</a>.</li>
             <li>For general advice as to what icons and colors to use, consult <a href="#/styleguide/buttons">the section on icons and colors</a>.
             <li>There may be cases where an action is not available on a particular row. In this case, those particular links were disabled using the <code>.disabled</code> class rather than not having them appear at all.</li>
@@ -28,7 +28,7 @@
     <h3 class="title">Table Footer Pagination via rxPaginate</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li><a href="http://rackerlabs.github.io/encore-ui/#/component/rxPaginate">See the rxPaginate directive</a> for implementation and examples.</li>
+            <li><a href="#/component/rxPaginate">See the rxPaginate directive</a> for implementation and examples.</li>
             <li><span class="msg-info">ENCORE-SPECIFIC:</span> The pagination is visible in this example to show how mark-up will be implemented. Generally, the pagination directive does not display if there is only one page of data available. We use angular.js to make sure this doesn't display.</li>
             <li><span class="msg-warn">HEADS UP:</span> It's a known issue that the footer wraps into a second line if the table is 50% of the screen. In cases like those, we've used the <code>display:none</code> CSS property for elements to hide all elements not directly related to pagination. See the <a href="https://github.com/rackerlabs/supportservice-ui/blob/master/app/styles/table.less#L40-L50">LESS of narrow tables used in Support Services</a> for an example of this. Note that this has not been implemented in EncoreUI yet.</li>
         </ul>
@@ -55,6 +55,7 @@
     <div class="component-description clear">
         <ul class="list">
             <li><span class="msg-info">ENCORE-SPECIFIC:</span> For data tables involving objects that only require deleting (Examples: tables related to LBaaS connection nodes and Support Service user tables) there's a design pattern that replaces the cog with an X.</li>
+            <li>Add the <code>delete-x</code> class to the icon element to automatically apply the red hover style.  This should always be done when using this design pattern</li>
             <li>View <a href="https://github.com/rackerlabs/supportservice-ui/search?utf8=%E2%9C%93&q=times">these set of tables used in Support Services</a> for examples.</li>
         </ul>
     </div>
@@ -71,7 +72,7 @@
 
     <h3 class="title">Status columns</h3>
     <ul>
-        <li><span class="msg-info">ENCORE-SPECIFIC:</span> We provide a standardized mechanism for color coding of status columns, via <a href="http://rackerlabs.github.io/encore-ui/#/component/rxStatusColumn">rxStatusColumn</a>. Ticket Queues has their own styling that predates this, and can be seen in <a href="https://github.com/rackerlabs/encore-tq-ui/blob/master/app/styles/tickets.less">their tickets.less file.</a> For consistency, new projects should use <code>rxStatusColumn</code>. If it doesn't satisfy your needs, please let us know and we'll see what we can do.</li>
+        <li><span class="msg-info">ENCORE-SPECIFIC:</span> We provide a standardized mechanism for color coding of status columns, via <a href="#/component/rxStatusColumn">rxStatusColumn</a>. Ticket Queues has their own styling that predates this, and can be seen in <a href="https://github.com/rackerlabs/encore-tq-ui/blob/master/app/styles/tickets.less">their tickets.less file.</a> For consistency, new projects should use <code>rxStatusColumn</code>. If it doesn't satisfy your needs, please let us know and we'll see what we can do.</li>
     </ul>
 
     <h3 class="title">Filters</h3>
@@ -84,7 +85,7 @@
               <li>Billing (Filtering by billing data and transactional status)</li>
           </ul>
           </li>
-          <li>With the addition of <a href="http://rackerlabs.github.io/encore-ui/#/component/rxFloatingHeader">rxFloatingHeader</a> to the framework, we now have a standard way of adding table filters. In short, we add a new <code>&lt;tr&gt;</code> into the <code>&lt;thead&gt;</code> of the table. <code>rxFloatingHeader</code> will take care of the styling, by adding the appropriate classes on its own (namely <a href="https://github.com/rackerlabs/encore-ui/blob/master/src/rxFloatingHeader/rxFloatingHeader.less#L12"><code>th.filter-header</code></a>)</li>
+          <li>With the addition of <a href="#/component/rxFloatingHeader">rxFloatingHeader</a> to the framework, we now have a standard way of adding table filters. In short, we add a new <code>&lt;tr&gt;</code> into the <code>&lt;thead&gt;</code> of the table. <code>rxFloatingHeader</code> will take care of the styling, by adding the appropriate classes on its own (namely <a href="https://github.com/rackerlabs/encore-ui/blob/master/src/rxFloatingHeader/rxFloatingHeader.less#L12"><code>th.filter-header</code></a>)</li>
       </ul>
     </div>
     <rx-styleguide code-url="styleguide/tables/with-filtering.html"></rx-styleguide>

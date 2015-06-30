@@ -28,11 +28,6 @@
 <li><a href="#encore.module_rxCollapse.initialize">encore.rxCollapse.initialize(rxCollapseElement)</a></li>
 </ul>
 </li>
-<li><a href="#encore.module_rxFieldName">encore.rxFieldName</a><ul>
-<li><a href="#encore.module_rxFieldName.main">encore.rxFieldName.main</a></li>
-<li><a href="#encore.module_rxFieldName.initialize">encore.rxFieldName.initialize(rxFieldNameElement)</a></li>
-</ul>
-</li>
 <li><a href="#encore.module_rxForm">encore.rxForm</a><ul>
 <li><a href="#encore.module_rxForm.fill">encore.rxForm.fill(reference, formData)</a></li>
 <li><a href="#encore.module_rxForm.currencyToPennies"><del>encore.rxForm.currencyToPennies()</del></a></li>
@@ -41,7 +36,12 @@
 <li><a href="#encore.module_rxForm.textField.generateAccessor">textField.generateAccessor(elem)</a></li>
 </ul>
 </li>
-<li><a href="#encore.module_rxForm.checkbox">encore.rxForm.checkbox</a></li>
+<li><a href="#encore.module_rxForm.fieldName">encore.rxForm.fieldName</a><ul>
+<li><a href="#encore.module_rxForm.fieldName.main">fieldName.main</a></li>
+<li><a href="#encore.module_rxForm.fieldName.initialize">fieldName.initialize(rxFieldNameElement)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxForm.checkbox"><del>encore.rxForm.checkbox</del></a></li>
 <li><a href="#encore.module_rxForm.radioButton">encore.rxForm.radioButton</a></li>
 <li><a href="#encore.module_rxForm.dropdown">encore.rxForm.dropdown</a></li>
 </ul>
@@ -420,25 +420,7 @@
 <ul>
 <li>rxCollapseElement <code>WebElement</code> - WebElement to be transformed into an rxCollapseElement object.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the rxCollapse object.<br><a name="encore.module_rxFieldName"></a></p>
-<h1 id="encore-rxfieldname">encore.rxFieldName</h1>
-<p><strong>Members</strong></p>
-<ul>
-<li><a href="#encore.module_rxFieldName">encore.rxFieldName</a><ul>
-<li><a href="#encore.module_rxFieldName.main">encore.rxFieldName.main</a></li>
-<li><a href="#encore.module_rxFieldName.initialize">encore.rxFieldName.initialize(rxFieldNameElement)</a></li>
-</ul>
-</li>
-</ul>
-<p><a name="encore.module_rxFieldName.main"></a></p>
-<h2 id="encore-rxfieldname-main">encore.rxFieldName.main</h2>
-<p><strong>Returns</strong>: <a href="#rxFieldName">rxFieldName</a> - Page object representing the <em>first</em> rxFieldName object found on the page.<br><a name="encore.module_rxFieldName.initialize"></a></p>
-<h2 id="encore-rxfieldname-initialize-rxfieldnameelement-">encore.rxFieldName.initialize(rxFieldNameElement)</h2>
-<p><strong>Params</strong></p>
-<ul>
-<li>rxFieldNameElement <code>WebElement</code> - WebElement to be transformed into an rxFieldNameElement object.  </li>
-</ul>
-<p><strong>Returns</strong>: <a href="#rxFieldName">rxFieldName</a> - Page object representing the rxFieldName object.<br><a name="encore.module_rxForm"></a></p>
+<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the rxCollapse object.<br><a name="encore.module_rxForm"></a></p>
 <h1 id="encore-rxform">encore.rxForm</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -450,7 +432,12 @@
 <li><a href="#encore.module_rxForm.textField.generateAccessor">textField.generateAccessor(elem)</a></li>
 </ul>
 </li>
-<li><a href="#encore.module_rxForm.checkbox">encore.rxForm.checkbox</a></li>
+<li><a href="#encore.module_rxForm.fieldName">encore.rxForm.fieldName</a><ul>
+<li><a href="#encore.module_rxForm.fieldName.main">fieldName.main</a></li>
+<li><a href="#encore.module_rxForm.fieldName.initialize">fieldName.initialize(rxFieldNameElement)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxForm.checkbox"><del>encore.rxForm.checkbox</del></a></li>
 <li><a href="#encore.module_rxForm.radioButton">encore.rxForm.radioButton</a></li>
 <li><a href="#encore.module_rxForm.dropdown">encore.rxForm.dropdown</a></li>
 </ul>
@@ -489,7 +476,7 @@ yourPage.form = {
 </code></pre>
 <p><a name="encore.module_rxForm.currencyToPennies"></a></p>
 <h2 id="-encore-rxform-currencytopennies-"><del>encore.rxForm.currencyToPennies()</del></h2>
-<p><strong>ALISED</strong>: Please use <a href="#rxMisc.currencyToPennies">currencyToPennies</a> instead.
+<p><strong>ALIASED</strong>: Please use <a href="#rxMisc.currencyToPennies">currencyToPennies</a> instead.
 This function will be removed in a future release of the EncoreUI framework.</p>
 <p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxForm.slowClick"></a></p>
 <h2 id="-encore-rxform-slowclick-"><del>encore.rxForm.slowClick()</del></h2>
@@ -522,16 +509,34 @@ it(&#39;should fill out the text box&#39;, function () {
     expect(yourPage.plainTextbox).to.eventually.equal(&#39;My Username&#39;); // getter
 });
 </code></pre>
-<p><a name="encore.module_rxForm.checkbox"></a></p>
-<h2 id="encore-rxform-checkbox">encore.rxForm.checkbox</h2>
-<p><strong>ALISED</strong> Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.</p>
+<p><a name="encore.module_rxForm.fieldName"></a></p>
+<h2 id="encore-rxform-fieldname">encore.rxForm.fieldName</h2>
 <p><strong>Members</strong></p>
 <ul>
-<li><a href="#encore.module_rxForm.checkbox">encore.rxForm.checkbox</a></li>
+<li><a href="#encore.module_rxForm.fieldName">encore.rxForm.fieldName</a><ul>
+<li><a href="#encore.module_rxForm.fieldName.main">fieldName.main</a></li>
+<li><a href="#encore.module_rxForm.fieldName.initialize">fieldName.initialize(rxFieldNameElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxForm.fieldName.main"></a></p>
+<h3 id="fieldname-main">fieldName.main</h3>
+<p><strong>Returns</strong>: <a href="#rxFieldName">rxFieldName</a> - Page object representing the <em>first</em> rxFieldName object found on the page.<br><a name="encore.module_rxForm.fieldName.initialize"></a></p>
+<h3 id="fieldname-initialize-rxfieldnameelement-">fieldName.initialize(rxFieldNameElement)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxFieldNameElement <code>WebElement</code> - WebElement to be transformed into an rxFieldNameElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxFieldName">rxFieldName</a> - Page object representing the rxFieldName object.<br><a name="encore.module_rxForm.checkbox"></a></p>
+<h2 id="-encore-rxform-checkbox-"><del>encore.rxForm.checkbox</del></h2>
+<p><strong>ALIASED</strong> Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.</p>
+<p><strong><em>Deprecated</em></strong><br><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxForm.checkbox"><del>encore.rxForm.checkbox</del></a></li>
 </ul>
 <p><a name="encore.module_rxForm.radioButton"></a></p>
 <h2 id="encore-rxform-radiobutton">encore.rxForm.radioButton</h2>
-<p><strong>ALISED</strong> Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.</p>
+<p><strong>ALIASED</strong> Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.</p>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxForm.radioButton">encore.rxForm.radioButton</a></li>

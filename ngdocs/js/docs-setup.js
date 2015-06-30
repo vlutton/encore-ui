@@ -212,24 +212,6 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxButton:rxButton",
-      "shortName": "rxButton",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Renders a button which will disable when clicked and show a loading message",
-      "keywords": "api attributes button class classes clicked complete default defaultmsg directive disable disabled display displayed encore instance loading loadingmsg message operation passed progress renable renders rxbutton set text toggle true ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxCharacterCount:rxCharacterCount",
-      "shortName": "rxCharacterCount",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Monitors the number of characters in a text input and compares it to the desired length.",
-      "keywords": "allowed api characters compares desired directive encore enter highlighted input length limit maximum model monitors ng-model number rx-character-count rxcharactercount text ui warning"
-    },
-    {
-      "section": "api",
       "id": "encore.ui.rxCollapse:rxCollapse",
       "shortName": "rxCollapse",
       "type": "directive",
@@ -293,33 +275,6 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxForm:rxFormFieldset",
-      "shortName": "rxFormFieldset",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive is used to wrap a set of input fields in the proper HTML",
-      "keywords": "api description directive encore fields html input legend place proper rxform set text ui wrap"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxForm:rxFormItem",
-      "shortName": "rxFormItem",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive is used to wrap input fields and select boxes in the proper HTML.",
-      "keywords": "api attach attribute boxes content create description directive encore exists fields html include input label left place prefix proper rxform select suffix text transcluded ui wrap"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxForm:rxSelect",
-      "shortName": "rxSelect",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive is to apply styling to native &lt;select&gt; elements",
-      "keywords": "angular api apply boolean directive elements encore evaluates expression native rxform styling ui"
-    },
-    {
-      "section": "api",
       "id": "encore.ui.rxIdentity:Identity",
       "shortName": "Identity",
       "type": "service",
@@ -356,24 +311,6 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxMisc:rxAutoSave",
-      "shortName": "rxAutoSave",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A factory that controllers can use to help automatically save and load",
-      "keywords": "api automatically controllers encore factory forms help load localstorage rxmisc save service ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxMisc:rxDOMHelper",
-      "shortName": "rxDOMHelper",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A small set of functions to provide some functionality",
-      "keywords": "angular api arguments dom-related elements encore functionality functions isn jquery-lite methods provide rxmisc service set small ui wrapped"
-    },
-    {
-      "section": "api",
       "id": "encore.ui.rxModalAction:rxModalAction",
       "shortName": "rxModalAction",
       "type": "directive",
@@ -407,15 +344,6 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Responsible for creating the HTML necessary for modal form",
       "keywords": "api button cancel creating default defaults directive element encore firsttabbable focus form html is-loading modal responsible return rxmodalaction spinner submit submit-text subtitle text title true ui window"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxModalForm:rxFormUtils",
-      "shortName": "rxFormUtils",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Set of utility functions used by rxForm to access form data",
-      "keywords": "access api data encore fieldid form functions getselectedoptionfortable getselectedoptionfortabset option returns rowid rxform rxformoptiontable rxmodalform selected service set tableid tabset tabsetid ui utility"
     },
     {
       "section": "api",
@@ -707,15 +635,6 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxToggleSwitch:rxToggleSwitch",
-      "shortName": "rxToggleSwitch",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Displays an on/off switch toggle",
-      "keywords": "api bind directive disabled displays encore foo function indicates input ng-model property rxtoggleswitch scope switch toggle toggled ui"
-    },
-    {
-      "section": "api",
       "id": "encore.ui.rxTokenInjector:TokenInjector",
       "shortName": "TokenInjector",
       "type": "service",
@@ -731,6 +650,204 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Simple injector which will intercept http responses. If a 401 is returned,",
       "keywords": "$httpprovider $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
+    },
+    {
+      "section": "api",
+      "id": "rxButton.directive:rxButton",
+      "shortName": "rxButton",
+      "type": "directive",
+      "moduleName": "rxButton",
+      "shortDescription": "Renders a button which will disable when clicked and show a loading message",
+      "keywords": "api attributes button class classes clicked complete default defaultmsg directive disable disabled display displayed instance loading loadingmsg message operation passed progress renable renders rxbutton set text true"
+    },
+    {
+      "section": "api",
+      "id": "rxCharacterCount.directive:rxCharacterCount",
+      "shortName": "rxCharacterCount",
+      "type": "directive",
+      "moduleName": "rxCharacterCount",
+      "shortDescription": "Monitors the number of characters in a text input and compares it to the desired length.",
+      "keywords": "allowed api characters compares desired directive enter highlighted input length limit maximum model monitors ng-model number rx-character-count rxcharactercount text warning"
+    },
+    {
+      "section": "api",
+      "id": "rxCheckbox.directive:rxCheckbox",
+      "shortName": "rxCheckbox",
+      "type": "directive",
+      "moduleName": "rxCheckbox",
+      "shortDescription": "Attribute directive that wraps a native checkbox element in markup required for styling purposes.",
+      "keywords": "api attribute checkbox control demovalue determines directive disabled element markup native ng-model purposes required rx-checkbox rxcheckbox styling wraps"
+    },
+    {
+      "section": "api",
+      "id": "rxForm",
+      "shortName": "rxForm",
+      "type": "overview",
+      "moduleName": "rxForm",
+      "shortDescription": "rxForm Component",
+      "keywords": "accessibility api common component components create creating deprecated directive directives easier elements encore ensure form forms helps html layout overview provide rxbutton rxcharactercount rxcheckbox rxfield rxfieldcontent rxfieldname rxform rxformfieldset rxformitem rxformsection rxformutils rxhelptext rxinlineerror rxinput rxoptiontable rxprefix rxradio rxselect rxsuffix rxtoggleswitch service services set style"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxField",
+      "shortName": "rxField",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Structural element directive used for layout of sub-elements.",
+      "keywords": "api directive div element elements equally html layout rx-form rxfield rxfieldcontent rxfieldname rxform rxformsection sibling structural sub-elements width"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxFieldContent",
+      "shortName": "rxFieldContent",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Structural element directive used for layout of sub-elements.",
+      "keywords": "actual api class content controls directive element error fa fa-exclamation field help html labels layout markup messages parent rx-form rxfield rxfieldname rxform rxinput structural sub-elements text width wrap"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxFieldName",
+      "shortName": "rxFieldName",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Stylistic element directive that provides a standardized UI for",
+      "keywords": "add api directive element field form html left names parent required rx-form rxfield rxfieldcontent rxform standardized stylistic symbol ui width"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxForm",
+      "shortName": "rxForm",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "The rxForm directive is an attribute directive meant to be used for",
+      "keywords": "api attribute desired directive div dom element elements form-related hierarchical html meant parent rx-form rxform rxformsection validation width"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxFormFieldset",
+      "shortName": "rxFormFieldset",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "DEPRECATED - This directive has been marked as deprecated and will be removed in a future",
+      "keywords": "api current deprecated description directive documentation encoreui fields framework functionality future html input legend marked place proper release removed rxform set text updated wrap"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxFormItem",
+      "shortName": "rxFormItem",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "DEPRECATED - This directive has been marked as deprecated and will be removed in a future",
+      "keywords": "api attach attribute boxes content create current deprecated description directive documentation encoreui exists fields framework functionality future html include input label left marked place prefix proper release removed rxform select suffix text transcluded updated wrap"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxFormSection",
+      "shortName": "rxFormSection",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Structural element directive used for layout of sub-elements.",
+      "keywords": "api attribute children default directive display div element elements horizontally html inline layout manner parent place rx-form rx-form-section rxfield rxform stack stacked structural sub-elements vertically width"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxHelpText",
+      "shortName": "rxHelpText",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Stylistic element directive used to wrap form input help text.",
+      "keywords": "$1 $errors api best demoform directive element elements form greater help input minimum ng-show number parent rx-form rxform rxinlineerror rxinput salary sibling stylistic text type width wrap"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxInlineError",
+      "shortName": "rxInlineError",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Stylistic element directive used to wrap an error message.",
+      "keywords": "$1 $errors api best demoform directive element elements error message min ng-model ng-show number parent rx-form rxform rxhelptext rxinput salary sibling stylistic type width wrap"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxInput",
+      "shortName": "rxInput",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Structural element directive used for layout of sub-elements.",
+      "keywords": "api control directive element elements html layout number parent place rx-form rxcheckbox rxfieldcontent rxform rxoptiontable rxprefix rxradio rxselect rxsuffix rxtoggleswitch structural sub-elements type width"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxPrefix",
+      "shortName": "rxPrefix",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Structural element directive used to wrap content to be placed",
+      "keywords": "api best block content control directive element form html inline number rx-form rxform rxinput rxsuffix structural type wide wrap"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.directive:rxSuffix",
+      "shortName": "rxSuffix",
+      "type": "directive",
+      "moduleName": "rxForm",
+      "shortDescription": "Structural element directive used to wrap content to be placed",
+      "keywords": "api best block content control directive element form html inline number rx-form rxform rxinput rxprefix structural type wide wrap"
+    },
+    {
+      "section": "api",
+      "id": "rxForm.service:rxFormUtils",
+      "shortName": "rxFormUtils",
+      "type": "service",
+      "moduleName": "rxForm",
+      "shortDescription": "Set of utility functions used by rxForm to access form data",
+      "keywords": "access api data fieldid form functions getselectedoptionfortable getselectedoptionfortabset option returns rowid rxform rxformoptiontable selected service set tableid tabset tabsetid utility"
+    },
+    {
+      "section": "api",
+      "id": "rxMisc",
+      "shortName": "rxMisc",
+      "type": "overview",
+      "moduleName": "rxMisc",
+      "shortDescription": "A module for shared functionality across framework components.",
+      "keywords": "api components filter filters framework functionality module overview rxautosave rxdomhelper rxmisc rxnestedelement service services shared titleize"
+    },
+    {
+      "section": "api",
+      "id": "rxMisc.filter:titleize",
+      "shortName": "titleize",
+      "type": "filter",
+      "moduleName": "rxMisc",
+      "shortDescription": "Convert a string to title case, stripping out underscores and capitalizing words.",
+      "keywords": "$filter api capitalizing case convert credit examples filter https inputstring js result rxmisc simple simple_string string stripping title titleize titleized underscores version"
+    },
+    {
+      "section": "api",
+      "id": "rxMisc.service:rxAutoSave",
+      "shortName": "rxAutoSave",
+      "type": "service",
+      "moduleName": "rxMisc",
+      "shortDescription": "A factory that controllers can use to help automatically save and load",
+      "keywords": "$watch addition api apply appropriate automatic automatically autosave backends background boolean caching calculated card case change changes check clear cleared clearonsuccess continuous controllers corresponding credit custom data days defaults desired encoreui example exclude expiration expire expired expiring expiry expression factory false flags form formdata formed freshly function getobject help hours ignore interface key keyshaping live load loaded localstorage long manually methods modify names numbers object options parameter pass password passwords prepending prevent process promise property provided replace resolution resolves return running rxautosave rxmisc save saved saving scope seconds sensitive service sessionstorage set setobject specific storage storagebackend string successful support supports time ttl turn url usage user val var variable visits watched"
+    },
+    {
+      "section": "api",
+      "id": "rxMisc.service:rxDOMHelper",
+      "shortName": "rxDOMHelper",
+      "type": "service",
+      "moduleName": "rxMisc",
+      "shortDescription": "A small set of functions to provide some functionality",
+      "keywords": "angular api arguments dom-related elements functionality functions isn jquery-lite methods provide rxmisc service set small wrapped"
+    },
+    {
+      "section": "api",
+      "id": "rxMisc.service:rxNestedElement",
+      "shortName": "rxNestedElement",
+      "type": "service",
+      "moduleName": "rxMisc",
+      "shortDescription": "Helper function to aid in the creation of boilerplate DDO definitions",
+      "keywords": "aid angular api boilerplate child childelement creation custom ddo default defined definition definitions directive element elements function helper merge module myapp nested nestedelement object options opts parent parentelement required return rxmisc rxnestedelement service validate"
     },
     {
       "section": "api",
@@ -757,6 +874,33 @@ NG_DOCS={
       "moduleName": "rxOptionTable",
       "shortDescription": "This directive is used to build a table of radio/checkbox inputs",
       "keywords": "allowed alongside angularjs api array attribute attributes base build callback checkbox checkboxes checked column columns data default demonstration determine directive disable-fn disabled disableoption display empty empty-message example excluded expressions falsevalue field-id fieldid function generated identifiers include initial input inputs js key label load markup match message model ng-required object objects option optional parameters passed populate preselected preselection preseleted-values properties radio radios required rowid rxoptiontable samples selected table tableid tie true type unique values"
+    },
+    {
+      "section": "api",
+      "id": "rxRadio.directive:rxRadio",
+      "shortName": "rxRadio",
+      "type": "directive",
+      "moduleName": "rxRadio",
+      "shortDescription": "Attribute directive that wraps a native radio element in markup required for styling purposes.",
+      "keywords": "api attribute control determines directive disabled element markup native purposes radio required rx-radio rxradio styling wraps"
+    },
+    {
+      "section": "api",
+      "id": "rxSelect.directive:rxSelect",
+      "shortName": "rxSelect",
+      "type": "directive",
+      "moduleName": "rxSelect",
+      "shortDescription": "This directive is to apply styling to native &lt;select&gt; elements",
+      "keywords": "api apply control demoitem determines directive disabled elements native ng-model rx-select rxselect styling"
+    },
+    {
+      "section": "api",
+      "id": "rxToggleSwitch.directive:rxToggleSwitch",
+      "shortName": "rxToggleSwitch",
+      "type": "directive",
+      "moduleName": "rxToggleSwitch",
+      "shortDescription": "Displays an on/off switch toggle",
+      "keywords": "api bind directive disabled displays foo function indicates input ng-model property rxtoggleswitch scope switch toggle toggled"
     }
   ],
   "apis": {
