@@ -1,6 +1,6 @@
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-[API Documentation](/ngdocs/index.html#/api/rxButton.directive:rxButton)
+[API Documentation](ngdocs/index.html#/api/rxButton.directive:rxButton)
 
 Provides styling for various types of buttons. See the .less file for examples.
 

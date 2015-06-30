@@ -7,7 +7,7 @@ with the `rxBreadcrumbsSvc.setHome()` method. It takes the new path as the first
 second argument. If you don't pass the second argument, it will reuse whatever name is already there (i.e. `'Home'`).
 The breadcrumb name can contain HTML (ie. `'<strong>Home</strong>'`).
 
-The argument `status` is also an optional argument to breadcrumbs. This leverages the tags defined in [rxApp](./#/component/rxApp) to display status tags directly inside of breadcrumbs. The demo shows the use of the custom `"demo"` tag.
+The argument `status` is also an optional argument to breadcrumbs. This leverages the tags defined in [rxApp](#/component/rxApp) to display status tags directly inside of breadcrumbs. The demo shows the use of the custom `"demo"` tag.
 
 A final optional argument is the boolean `usePageStatusTag`, which defaults to `false`. If you set it to `true`, then the breadcrumb will use whatever
 status tag was passed to page, i.e.:
