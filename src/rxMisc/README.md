@@ -1,6 +1,6 @@
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-A module for shared functionality across framework components.  See [API Documentation](/ngdocs/index.html#/api/rxMisc).
+A module for shared functionality across framework components.  See [API Documentation](ngdocs/index.html#/api/rxMisc).
 
 
 ## rxDOMHelper
@@ -8,7 +8,7 @@ A small set of functions to provide some functionality that isn't present in Ang
 
 
 ## titleize
-See [titleize API Documentation](/ngdocs/index.html#/api/rxMisc.filter:titleize)
+See [titleize API Documentation](ngdocs/index.html#/api/rxMisc.filter:titleize)
 
 A filter that converts a string to title case, stripping out underscores and capitalizing words.  For example,
 ```
@@ -18,7 +18,7 @@ renders the string "A Simple String".
 
 
 ## rxAutoSave
-See [rxAutoSave API Documentation](/ngdocs/index.html#/api/rxMisc.service:rxAutoSave)
+See [rxAutoSave API Documentation](ngdocs/index.html#/api/rxMisc.service:rxAutoSave)
 
 `rxAutoSave` provides a way to store values in a form for later. For instance, if a user is entering values into a form, then accidentally navigate to a new page, we likely want the values to be present again when they click the "Back" button in their browser. By correctly setting up an `rxAutoSave` instance for the form, this can happen automatically. By default, all saved values will be cleared after two days.
 

@@ -98,7 +98,7 @@ This will create a new status tag called `"gamma"`, which you can pass to `rx-pa
 
 And the title will appear with a `Hello World!` tag beside it, styled the same way as our `"alpha"` status tag is styled. You can also define your own CSS style in your application and use those instead, passing it as the `class` value to `addStatus()`.
 
-All the tags are accessible inside of [rxBreadcrumbs](./#/component/rxBreadcrumbs) as well. Any breadcrumb that was created with `useStatusTag: true` will automatically receive the same status tag as you passed to `<rx-page>`.
+All the tags are accessible inside of [rxBreadcrumbs](#/component/rxBreadcrumbs) as well. Any breadcrumb that was created with `useStatusTag: true` will automatically receive the same status tag as you passed to `<rx-page>`.
 
 ### .page-actions
 
@@ -143,7 +143,7 @@ Each section specified in this array is required to have a `title` attribute, i.
 navJSON = [
     {
         "title": "Section 1"
-    }, { 
+    }, {
         "title": "Section 2"
     }
 ]
@@ -157,7 +157,7 @@ navJSON = [
     {
         "title": "Section 1",
         "type": "highlight"
-    }, { 
+    }, {
         "title": "Section 2"
     }
 ]
@@ -187,7 +187,7 @@ navJSON = [
                 "linkText": "About"
             },
         ]
-    }, { 
+    }, {
         "title": "Section 2",
         "children": [
             {
@@ -293,7 +293,7 @@ If an item doesn't have an `href` attribute, it's probably because it has child 
                         "href": "/people/sue",
                         "linkText": "Sue"
                     }
-        
+
                 ]
             }
         ]
@@ -319,14 +319,14 @@ This expression would be evaluated, checking if the user is currently viewing th
 
 *Note*: Using an expression for environment checking use has somewhat tailed off. We now have different JSON files for each environment, so checking the current environment is not necessary.
 
-Another technique for visibility is to use a predefined set of visibility functions that exist in the framework. These include `rxPathParams` and `rxHideIfUkAccount`. 
+Another technique for visibility is to use a predefined set of visibility functions that exist in the framework. These include `rxPathParams` and `rxHideIfUkAccount`.
 
 To use these, you pass an array to `visibility`, with the first argument being the name of the function to use (as a string), and the second argument as an optional object describing the parameters to pass to the function.
 
 For instance, `rxPathParams` is used to check if a particular parameter is present in the current route. The syntax is as follows:
 
 ```
-"visibility": ["rxPathParams", { "param": "accountNumber" }], 
+"visibility": ["rxPathParams", { "param": "accountNumber" }],
 ```
 
 This means "only show this item if `accountNumber` is present in the current route.
@@ -363,7 +363,7 @@ The `childHeader` attribute is used to specify an HTML header to be placed above
                         "href": "/people/sue",
                         "linkText": "Sue"
                     }
-        
+
                 ]
             }
         ]
@@ -405,7 +405,7 @@ In addition to the `visibility` criteria described above, you can also restrict 
                         "linkText": "Sue",
                         "roles": { "any": ["role1", "role2", "role3"] }
                     }
-        
+
                 ]
             }
         ]

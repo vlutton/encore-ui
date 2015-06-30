@@ -1,6 +1,6 @@
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-[API Documentation](/ngdocs/index.html#/api/rxForm)
+[API Documentation](ngdocs/index.html#/api/rxForm)
 
 The rxForm component is a set of directives used to create forms throughout
 Encore.  These directives provide a common HTML layout and style for all form
@@ -24,35 +24,35 @@ If you do not nest these elements properly, Angular will throw an error (this is
 
 These directives must be nested in the following hierarchy (*parens denote how many items can be nested within its parent*):
 
-* [rxForm](/ngdocs/index.html#/api/rxForm.directive:rxForm)
-  * [rxFormSection](/ngdocs/index.html#/api/rxForm.directive:rxFormSection) (0..N)
-    * [rxField](/ngdocs/index.html#/api/rxForm.directive:rxField) (0..N)
-      * [rxFieldName](/ngdocs/index.html#/api/rxForm.directive:rxFieldName) (0..1)
-      * [rxFieldContent](/ngdocs/index.html#/api/rxForm.directive:rxFieldContent) (0..1)
-        * [rxInput](/ngdocs/index.html#/api/rxForm.directive:rxInput) (0..N)
-          * [rxPrefix](/ngdocs/index.html#/api/rxForm.directive:rxPrefix) (0..1)
-          * [rxSuffix](/ngdocs/index.html#/api/rxForm.directive:rxSuffix) (0..1)
+* [rxForm](ngdocs/index.html#/api/rxForm.directive:rxForm)
+  * [rxFormSection](ngdocs/index.html#/api/rxForm.directive:rxFormSection) (0..N)
+    * [rxField](ngdocs/index.html#/api/rxForm.directive:rxField) (0..N)
+      * [rxFieldName](ngdocs/index.html#/api/rxForm.directive:rxFieldName) (0..1)
+      * [rxFieldContent](ngdocs/index.html#/api/rxForm.directive:rxFieldContent) (0..1)
+        * [rxInput](ngdocs/index.html#/api/rxForm.directive:rxInput) (0..N)
+          * [rxPrefix](ngdocs/index.html#/api/rxForm.directive:rxPrefix) (0..1)
+          * [rxSuffix](ngdocs/index.html#/api/rxForm.directive:rxSuffix) (0..1)
 
 ## Free-Range
 These directives are not limited to their placement and can be used anywhere:
 
-* [rxHelpText](/ngdocs/index.html#/api/rxForm.directive:rxHelpText)
+* [rxHelpText](ngdocs/index.html#/api/rxForm.directive:rxHelpText)
   * Designed to style form control help text.
-* [rxInlineError](/ngdocs/index.html#/api/rxForm.directive:rxInlineError)
+* [rxInlineError](ngdocs/index.html#/api/rxForm.directive:rxInlineError)
   * Designed to style form control error messages.
 
 ## Compatible Components
 These components work well with rxForm.
 
-* [rxButton](/#/component/rxButton)
-* [rxCharacterCount](/#/component/rxCharacterCount)
-* [rxCheckbox](/#/component/rxCheckbox)
-* [rxMultiSelect](/#/component/rxSelectFilter) *(defined in `rxSelectFilter`)*
-* [rxOptionTable](/#/component/rxOptionTable)
-* [rxRadio](/#/component/rxRadio)
-* [rxSelect](/#/component/rxSelect)
-* [rxToggleSwitch](/#/component/rxToggleSwitch)
-* [typeahead](/#/component/typeahead)
+* [rxButton](#/component/rxButton)
+* [rxCharacterCount](#/component/rxCharacterCount)
+* [rxCheckbox](#/component/rxCheckbox)
+* [rxMultiSelect](#/component/rxSelectFilter) *(defined in `rxSelectFilter`)*
+* [rxOptionTable](#/component/rxOptionTable)
+* [rxRadio](#/component/rxRadio)
+* [rxSelect](#/component/rxSelect)
+* [rxToggleSwitch](#/component/rxToggleSwitch)
+* [typeahead](#/component/typeahead)
 
 
 # Layout
@@ -82,7 +82,7 @@ attribute for rxFieldName.  When the value evaluates to true, an asterisk will
 display to the left of the field name.  You can see an example of this with the
 "Required Textare" field name in the demo.
 
-See [rxFieldName](/ngdocs/index.html#/api/rxForm.directive:rxFieldName)
+See [rxFieldName](ngdocs/index.html#/api/rxForm.directive:rxFieldName)
 API Documentation for more information.
 
 ## Custom Validators
@@ -109,7 +109,7 @@ release of the EncoreUI framework.** They are still functional, but **WILL displ
 a warning in the javascript console** to let you know you should upgrade your code.
 
 ### **rxFormOptionTable**
-Please use [`rxOptionTable`](/#/component/rxOptionTable) as a stand-in replacement.
+Please use [`rxOptionTable`](#/component/rxOptionTable) as a stand-in replacement.
 
 ### **rxFormItem**
 See "Before & After" below

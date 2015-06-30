@@ -1,6 +1,6 @@
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-[API Documenation](/ngdocs/index.html#/api/rxToggleSwitch.directive:rxToggleSwitch)
+[API Documentation](ngdocs/index.html#/api/rxToggleSwitch.directive:rxToggleSwitch)
 
 A simple boolean toggle switch.
 
