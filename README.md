@@ -64,7 +64,7 @@ E-mail the [EncoreUI mailing list](mailto:encoreui@lists.rackspace.com) if you n
  - [Versioning Guide](./guides/versioning.md)
  - [Changelog](./CHANGELOG.md)
  - [Developer Setup](./guides/ui-setup.md)
- - [Testing](./guides/testing.md)
+ - [Introduction to Testing](./guides/testing.md)
  - [CSS Style Guide](./guides/css-styleguide.md)
  - [JS Styleguide](./guides/js-styleguide.md)
  - [Task Board](https://waffle.io/rackerlabs/encore-ui)

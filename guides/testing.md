@@ -1,19 +1,17 @@
-# Testing
+# Introduction to Testing
 
-Goal: Ability to deliver features *quickly* to production with high *reliability* and *quality*
-
-In order to support continuous development/integration, taking advantage of automated testing is a must. While the goal of automated testing is to provide full coverage, it also needs to be seemlessly integrated into the developer environment.
+In order to support continuous development/integration, taking advantage of automated testing is a must. While the goal of automated testing is to provide full coverage, it also needs to be seemlessly integrated into the developer environment. This document describes the testing setup for EncoreUI.
 
 Configuration Files
 -------------
 
 More details on these files are found in the files themselves
 
-**karma.conf.js** - Used by our component tests
+**karma.conf.js** - Used by component unit tests
 
 **protractor.conf.js** - Used by our midway/E2E tests
 
-**protractor.travis.conf.js** - Used by our midway/E2E tests (Travis CI only -- includes visual regression tests)
+**protractor.visual.regression.js** - Used by our visual regression tests (Travis CI only)
 
 
 Component Tests (aka unit tests)
@@ -32,7 +30,7 @@ Component Tests (aka unit tests)
 
 Unit tests automatically execute when running `grunt server`. It's best to run your tests in this fashion, as they automatically re-run on file changes.
 
-If you wish to run them separately, use `grunt test`.
+If you wish to run them separately, use `grunt test`. To aid in debugging unit tests, you can use `grunt test:debug`. [Details on this are explained below](#debugging-unit-tests).
 
 ### Testing Individual Components
 
@@ -50,6 +48,17 @@ describe.only('Login', function () {
 
 Code coverage stats for our component tests are generated every time the test suite is executed. To view the stats, simply open the index.html file in any of the browser directories in the 'coverage' directory. **Note**: the coverage directory only exists when the server is running.
 
+### Debugging Unit Tests
+
+When writing or debugging unit tests and code, it can be helpful to enter the Chrome debugger to step through lines of code and inspect variables. The command `grunt test:debug` configures your environment to do this. To use it:
+
+ 1. Run `grunt test:debug`. This will open a new Chrome window and runs all the tests
+ 2. Open the Inspector in Chrome (`Command-Option-i` on a Mac), and reload the Chrome page (`Command-R` / `Ctrl-R` / etc.). This will re-run all the tests
+ 3. Insert a `debugger` statement somewhere in your code or your tests. The tests will automatically re-run when you save your file.  Now when the tests re-run, they will pause in the Inspector at the `debugger` statement (automatically switching to the "Sources" tab), allowing you to step through and inspect!
+
+Especially when debugging tests, it can be useful to use the [individual component testing](#testing-individual-components) technique above, so you don't have to wait for all 600+ tests to run every time you save a file or reload the Chrome page.
+
+
 
 Midway Tests
 -------------
@@ -63,30 +72,45 @@ Midway Tests
 
 ### Running Tests
 
-In order to run the midway test suite, you will need a selenium server running. To install and run selenium, execute the webdriver-manager. For Example:
+In order to run the midway test suite, you will need a Selenium server running. To install and run Selenium, execute the webdriver-manager. To do this, open a new terminal window and run the following from the `encore-ui` directory:
 
 ```
 ./node_modules/.bin/webdriver-manager update # First time only
 ./node_modules/.bin/webdriver-manager start
 ```
 
-To run all tests, enter `./node_modules/.bin/protractor` in a terminal. You need to ensure that you already have a development server running. If you haven't already, run `grunt server` in a separate tab. You will need to keep this running in the background through the entirety of the midway tests.
+This will launch the selenium server. It can sometimes take 25-30 seconds to fully launch, and you'll know it's ready when you see this at the bottom of the terminal:
+
+```
+INFO - Started SocketListener on 0.0.0.0:4444
+INFO - Started org.openqa.jetty.jetty.Server@401363ff
+```
+
+Make sure you keep this terminal window running!
+
+To run all tests, enter `./node_modules/.bin/protractor` from the `encore-ui` directory, in a different terminal. You need to ensure that you already have a development server running. If you haven't already, run `grunt server` in a separate terminal. You will need to keep this running in the background through the entirety of the midway tests.
+
+In other words, to run the tests, you need a total of _three_ terminal windows. 
+
+ * One terminal running the Selenium server
+ * One terminal running `./node_modules/.bin/protractor`
+ * One terminal running `grunt server`
 
 #### Testing Individual Components
 
-When developing a specific components, it's much quicker to run tests only for that component (rather than run through the entire suite every time). To do this, pass in path to the file as a 'specs' option in your protractor command. For example:
+When developing a specific component, it's much quicker to run tests only for that component (rather than run through the entire suite every time). To do this, pass in path to the file as a 'specs' option in your protractor command. For example:
 
 ```
-./node_modules/.bin/protractor --specs=src/rxComponent/**/*.midway.js
+./node_modules/.bin/protractor --specs=src/rxComponent/docs/rxComponent.midway.js
 ```
 
 ### Convienience Page Objects
 
-In order to help developers more easily test their app, each component should provide a page object file for itself. This file will provide convenience methods for the tester to use when writing midway tests for their app.
+In order to help developers more easily test their own apps/projects, each EncoreUI component should provide a page object file for itself. This file will provide convenience methods for the tester to use when writing midway tests for their app.
 
-The file name for this page objects follows the `componentName.page.js` convention and is included with the [Component Scaffolding](./ui-setup.md#component-scaffolding)
+The filename for these page objects follows the `componentName.page.js` convention, and will automatically be generated if you create a new EncoreUI component with the [Component Scaffolding](./ui-setup.md#component-scaffolding)
 
-On build, all page object files are concatanated and tarballed into the `dist` directory. They are then published either manually or via Travis. To use these page objects, developers should include the following dependency in their `package.json` file:
+On a build of EncoreUI, all page object files are concatenated and tarballed into the `dist` directory. They are then published either manually or via Travis. To use these page objects, developers should include the following dependency in their app's `package.json` file:
 
     "rx-page-objects": "rx-page-objects-1.21.1.tgz"
 
@@ -97,9 +121,9 @@ Alternatively, they can install the file using this command:
 Once installed, the page objects can be pulled in to any midway test via:
 
 ```js
-var myComponent = require('rx-page-objects').myComponent;
+var someEncoreUIComponent = require('rx-page-objects').someEncoreUIComponent;
 // ...
-expect(myComponent.main.rootElement.isDisplayed()).to.eventually.be.true;
+expect(someEncoreUIComponent.main.rootElement.isDisplayed()).to.eventually.be.true;
 ```
 
 Alternatively, you could place this helper library in the global scope of all tests. This is the recommended way. In your project's protractor config file, add this to your `onPrepare` section.
@@ -121,9 +145,10 @@ If you see a page object asking for another component, it will do so using this.
 var otherComponent = exports.otherComponent.intialize(/*...*/);
 ```
 
-It does this because as a part of the publishing step of the rx-page-objects module, all files in `src/**/*/page.js` are concatenated together, meaning the `exports` call will be valid during end to end test runs. The reason this is done this way is because in the past, requiring a component in a page object meant traversing the library's directory to find the component.
+It does this because as a part of the publishing step of the rx-page-objects module, all files in `src/**/*/page.js` are concatenated together, meaning the `exports` call will be valid during end to end test runs. The reason this is done this way is because *in the past*, requiring a component in a page object meant traversing the library's directory to find the component.
 
 ```js
+// Old way of requiring a component
 var otherComponent = require('../../otherComponent/otherComponent.page').otherComponent;
 ```
 
