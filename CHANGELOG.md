@@ -1,3 +1,18 @@
+<a name="1.22.0"></a>
+## 1.22.0 (2015-06-30)
+
+
+#### Bug Fixes
+
+* **links:** use correct relative link URLs ([72e48396](git@github.com:rackerlabs/encore-ui/commit/72e48396eceaca9d001c2906b94e0b5a9bd734b4))
+* **travis:** Valid visual regression installs only ([080d3bd9](git@github.com:rackerlabs/encore-ui/commit/080d3bd9c3d90ff1fe35f372a21867b2e07c3eaa))
+
+
+#### Features
+
+* **rxForm:** rxForm 2.0 ([03d86aa9](git@github.com:rackerlabs/encore-ui/commit/03d86aa990d8a875dcf228951ff256f3bec94d9e))
+
+
 <a name="1.21.1"></a>
 ### 1.21.1 (2015-06-25)
 
