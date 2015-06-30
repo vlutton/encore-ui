@@ -1,5 +1,64 @@
 /*jshint node:true*/
+var Page = require('astrolabe').Page;
 var _ = require('lodash');
+
+/**
+ * @namespace
+ */
+var rxFieldName = {
+    eleRequiredSymbol: {
+        get: function () {
+            return this.rootElement.$('.required-symbol');
+        }
+    },
+
+    eleContent: {
+        get: function () {
+            return this.rootElement.$('.rx-field-name-content');
+        }
+    },
+
+    /**
+     * @function
+     * @returns {Boolean}
+     *   True if field name displays as required (symbol is currently displayed).
+     */
+    isSymbolVisible: {
+        value: function () {
+            return this.eleRequiredSymbol.isDisplayed();
+        }
+    },
+
+    /**
+     * @function
+     * @returns {Boolean} Whether the required symbol is present in the DOM.
+     */
+    isSymbolPresent: {
+        value: function () {
+            return this.eleRequiredSymbol.isPresent();
+        }
+    },
+
+    /**
+     * @function
+     * @returns {Boolean} Whether the root element is currently displayed.
+     */
+    isDisplayed: {
+        value: function () {
+            return this.rootElement.isDisplayed();
+        }
+    },
+
+    /**
+     * @function
+     * @returns {Boolean} Whether the root element is present on the page.
+     */
+    isPresent: {
+        value: function () {
+            return this.rootElement.isPresent();
+        }
+    }
+};//rxFieldName
 
 /**
  * @exports encore.rxForm
@@ -101,8 +160,36 @@ exports.rxForm = {
 
     /**
      * @namespace
+     */
+    fieldName: {
+        /**
+         * @function
+         * @param {WebElement} rxFieldNameElement - WebElement to be transformed into an rxFieldNameElement object.
+         * @returns {rxFieldName} Page object representing the rxFieldName object.
+         */
+        initialize: function (rxFieldNameElement) {
+            rxFieldName.rootElement = {
+                get: function () { return rxFieldNameElement; }
+            };
+            return Page.create(rxFieldName);
+        },
+
+        /**
+         * @returns {rxFieldName} Page object representing the _first_ rxFieldName object found on the page.
+         */
+        main: (function () {
+            rxFieldName.rootElement = {
+                get: function () { return $('rx-field-name')[0]; }
+            };
+            return Page.create(rxFieldName);
+        })()
+    },
+
+    /**
+     * @namespace
+     * @deprecated
      * @description
-     * **ALISED** Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.
+     * **ALIASED** Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.
      */
     checkbox: {
         get main() { return exports.rxCheckbox.main; },
@@ -113,7 +200,7 @@ exports.rxForm = {
     /**
      * @namespace
      * @description
-     * **ALISED** Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.
+     * **ALIASED** Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.
      */
     radioButton: {
         get main() { return exports.rxRadio.main; },
@@ -135,7 +222,7 @@ exports.rxForm = {
     /**
      * @deprecated
      * @description
-     * **ALISED**: Please use {@link rxMisc.currencyToPennies} instead.
+     * **ALIASED**: Please use {@link rxMisc.currencyToPennies} instead.
      * This function will be removed in a future release of the EncoreUI framework.
      */
     currencyToPennies: function (currencyString) {

@@ -1,11 +1,6 @@
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
-// shortens the process of selecting form elements on the page object below
-var elementByLabel = function (label) {
-    return $('rx-form-item[label="' + label + '"]');
-};
-
 // an anonymous page object to prove that form filling works
 var formPageObject = Page.create({
     form: {
@@ -16,13 +11,13 @@ var formPageObject = Page.create({
 
     plainTextbox: encore.rxForm.textField.generateAccessor($('#txtPlain')),
 
-    requireName: encore.rxForm.checkbox.generateAccessor($('#chkNameRequired')),
+    requireName: encore.rxForm.checkbox.generateAccessor($('#chkVolumeNameRequired')),
 
     options: {
         get: function () {
             return Page.create({
-                first: encore.rxForm.radioButton.generateAccessor($('#first-option')),
-                second: encore.rxForm.radioButton.generateAccessor($('#second-option'))
+                first: encore.rxForm.radioButton.generateAccessor($('#favBeatle_0')),
+                second: encore.rxForm.radioButton.generateAccessor($('#favBeatle_1'))
             });
         }
     },
@@ -34,12 +29,54 @@ var formPageObject = Page.create({
             });
         }
     }
-
 });
 
 describe('rxForm', function () {
     before(function () {
         demoPage.go('#/component/rxForm');
+    });
+
+    describe('rxFieldName', function () {
+        describe('"Plain Textbox"', encore.exercise.rxFieldName({
+            cssSelector: '#fieldNamePlainTextbox',
+            visible: true,
+            required: false
+        }));
+
+        describe('"Required Textarea"', encore.exercise.rxFieldName({
+            cssSelector: '#fieldNameRequiredTextarea',
+            visible: true,
+            required: true
+        }));
+
+        describe('Example', function () {
+            var checkbox, subject;
+
+            before(function () {
+                checkbox = encore.rxForm.checkbox.initialize($('#chkVolumeNameRequired'));
+                subject = encore.rxForm.fieldName.initialize($('#fieldNameVolumeName'));
+            });
+
+            describe('when checkbox checked', function () {
+                before(function () {
+                    checkbox.select();
+                });
+
+                it('symbol should be visible', function () {
+                    expect(subject.isSymbolVisible()).to.eventually.be.true;
+                });
+            });
+
+            describe('when checkbox unchecked', function () {
+                before(function () {
+                    checkbox.deselect();
+                });
+
+                it('symbol should not be visible', function () {
+                    expect(subject.isSymbolVisible()).to.eventually.be.false;
+                });
+            });
+        });
     });
 
     describe('form filling', function () {

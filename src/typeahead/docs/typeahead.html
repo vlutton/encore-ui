@@ -1,11 +1,32 @@
 <div ng-controller="typeaheadCtrl">
+  <div rx-form>
     <h3 class="title">Standard Use</h3>
-    <rx-form-item label="States">
-        <input type="text" ng-model="selected1" typeahead="state for state in states | filter:$viewValue | limitTo:8">
-    </rx-form-item>
+    <rx-form-section stacked>
+      <rx-field>
+        <rx-field-name>States:</rx-field-name>
+        <rx-field-content>
+          <rx-input>
+            <input type="text"
+              ng-model="selected1"
+              typeahead="state for state in states | filter:$viewValue | limitTo:8" />
+          </rx-input>
+        </rx-field-content>
+      </rx-field>
+    </rx-form-section>
 
     <h3 class="title">Show List on Focus</h3>
-    <rx-form-item label="States">
-        <input type="text" ng-model="selected2" typeahead="state for state in states | filter:$viewValue:allowEmpty" id="typeahead">
-    </rx-form-item>
+    <rx-form-section stacked>
+      <rx-field>
+        <rx-field-name>States:</rx-field-name>
+        <rx-field-content>
+          <rx-input>
+            <input type="text"
+              id="typeahead"
+              ng-model="selected2"
+              typeahead="state for state in states | filter:$viewValue:allowEmpty" />
+          </rx-input>
+        </rx-field-content>
+      </rx-field>
+    </rx-form-section>
+  </div>
 </div>

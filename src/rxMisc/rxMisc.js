@@ -1,7 +1,23 @@
+/**
+ * @ngdoc overview
+ * @name rxMisc
+ * @description
+ * A module for shared functionality across framework components.
+ *
+ * ## Filters
+ *
+ * * {@link rxMisc.filter:titleize titleize}
+ *
+ * ## Services
+ *
+ * * {@link rxMisc.service:rxAutoSave rxAutoSave}
+ * * {@link rxMisc.service:rxDOMHelper rxDOMHelper}
+ * * {@link rxMisc.service:rxNestedElement rxNestedElement}
+ */
 angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
 /**
  * @ngdoc service
- * @name encore.ui.rxMisc:rxDOMHelper
+ * @name rxMisc.service:rxDOMHelper
  * @description
  * A small set of functions to provide some functionality
  * that isn't present in Angular's jQuery-lite, and other
@@ -10,7 +26,6 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  * All methods take jquery-lite wrapped elements as arguments
  */
 .factory('rxDOMHelper', function ($document, $window) {
-
     var scrollTop = function () {
         // Safari and Chrome both use body.scrollTop, but Firefox needs
         // documentElement.scrollTop
@@ -62,7 +77,6 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
     // a single element or an array of elements) into it. It then places
     // `newParent` in the location that elms[0] was originally in
     var wrapAll = function (newParent, elms) {
-
         // Figure out if it's one element or an array
         var isGroupParent = ['SELECT', 'FORM'].indexOf(elms.tagName) !== -1;
         var el = (elms.length && !isGroupParent) ? elms[0] : elms;
@@ -115,38 +129,167 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
         wrapAll: wrapAll
     };
 })
-
-/*
+/**
  * @ngdoc filter
- * @name encore.ui.rxMisc:titleize
+ * @name rxMisc.filter:titleize
  * @description
- * Convert a string to a title case, stripping out symbols and capitalizing words.
+ * Convert a string to title case, stripping out underscores and capitalizing words.
  *
  * Credit where it's due: https://github.com/epeli/underscore.string/blob/master/titleize.js
  *
- * @param {string} str The string to convert
- * @returns {string} The titleized version of the string
+ * @param {String} inputString - The string to convert
+ * @returns {String} The titleized version of the string
+ *
+ * @example
+ * Both examples result in a string of `"A Simple String"`.
+ * <pre>
+ * {{ 'a simple_STRING' | titleize }}
+ * </pre>
+ *
+ * <pre>
+ * $filter('titleize')('a simple_STRING');
+ * </pre>
  */
 .filter('titleize', function () {
-    return function (str) {
-        return str.toLowerCase().replace(/_/g, ' ').replace(/(?:^|\s)\S/g, function (c) {
-            return c.toUpperCase();
-        });
+    return function (inputString) {
+        return inputString
+            .toLowerCase()
+            .replace(/_/g, ' ')
+            .replace(/(?:^|\s)\S/g, function (character) {
+                return character.toUpperCase();
+            });
     };
 })
-
 /**
  * @ngdoc service
- * @name encore.ui.rxMisc:rxAutoSave
+ * @name rxMisc.service:rxNestedElement
+ * @description
+ * Helper function to aid in the creation of boilerplate DDO definitions
+ * required to validate nested custom elements.
+ *
+ * @param {Object=} opts - Options to merge with default DDO definitions
+ * @param {String} opts.parent - Parent directive name
+ * (i.e. defined NestedElement is an immediate child of this parent element)
+ *
+ * @return {Object} Directive Definition Object for a rxNestedElement
+ *
+ * @example
+ * <pre>
+ * angular.module('myApp', [])
+ * .directive('parentElement', function (rxNestedElement) {
+ *   return rxNestedElement();
+ * })
+ * .directive('childElement', function (rxNestedElement) {
+ *   return rxNestedElement({
+ *      parent: 'parentElement'
+ *   });
+ * });
+ * </pre>
+ */
+.factory('rxNestedElement', function () {
+    return function (opts) {
+        opts = opts || {};
+
+        var defaults = {
+            restrict: 'E',
+            /*
+             * must be defined for a child element to verify
+             * correct hierarchy
+             */
+            controller: angular.noop
+        };
+
+        if (angular.isDefined(opts.parent)) {
+            opts.require = '^' + opts.parent;
+            /*
+             * bare minimum function definition needed for "require"
+             * validation logic
+             *
+             * NOTE: `angular.noop` and `_.noop` WILL NOT trigger validation
+             */
+            opts.link = function () {};
+        }
+
+        return _.defaults(opts, defaults);
+    };
+})
+/**
+ * @ngdoc service
+ * @name rxMisc.service:rxAutoSave
  * @description
  * A factory that controllers can use to help automatically save and load
- * (from LocalStorage) forms on any given page.
+ * form data (via LocalStorage) on any given page.
+ *
+ * @param {Object} scope scope to apply a `$watch` expression
+ * @param {String} variable
+ * variable name corresponding to an object on the given scope
+ * @param {Object=} options usage options
+ * @param {Promise} [options.clearOnSuccess=null] *optional* -
+ * Clear saved data on successful resolution of given promise.
+ *
+ * @param {Function} [options.keyShaping]
+ * Sometimes, it may be necessary to change how a key is formed for the specified
+ * `storageBackend`.  Keys are calculated by prepending `'rxAutoSave::'` before the
+ * url. Your custom `keyShaping` function will take one parameter (`key`), to which
+ * you may modify to your specific needs.
+ *
+ * The below example will ignore any caching flags in the url.
+ * <pre>
+ * var autosave = rxAutoSave($scope, 'formData', {
+ *     keyShaping: function (key) {
+ *         return key.replace('?cache=false', '');
+ *     }
+ * });
+ * </pre>
+ *
+ * @param {Integer} [options.ttl=172800] *optional* -
+ * Time to Live (in seconds) - defaults to 2 days
+ *
+ * Whenever data changes in the watched variable, the expiry time will be freshly set
+ * In addition, we freshly set the expiry time whenever the data is loaded. If the data
+ * is 12 hours away from expiring and a user visits the page again, the expiry will be
+ * freshly set to a new 48 hours, whether or not the user makes a change.
+ *
+ * If a user visits a page after the data has expired, the data will be cleared from
+ * storage and not automatically loaded.
+ * * A continuous background process is not running to look for expired data.
+ * * We only check for expiration the next time `rxAutoSave` tries to load the data.
+ *
+ * To turn off automatic expiry for a given form, pass a value of `{ ttl: 0 }`.
+ * In this case, the data will never expire and you will have to clear it manually at
+ * an appropriate time by using one of the following:
+ *
+ * * `clear()`
+ * * `clearOnSuccess()`
+ *
+ * @param {Boolean|Promise} [options.load=true] *optional* -
+ * If false, will prevent data from being automatically loaded onto the scope.
+ *
+ * You may use a promise that resolves to a boolean, if desired.
+ * @param {Boolean|Promise} [options.save=true] *optional* -
+ * If false, will prevent data from being automatically saved on change.
+ *
+ * You may use a promise that resolves to a boolean, if desired.
+ * @param {String[]} [options.exclude] *optional* -
+ * A string of property names to exclude from automatic save. This is useful to
+ * exclude saving any sensitive information like passwords, credit card numbers, etc.
+ *
+ * <pre>
+ * var autosave = rxAutoSave($scope, 'formData', { exclude: ['password'] });
+ * </pr>
+ *
+ * @param {Object} [options.storageBackend=LocalStorage] *optional* -
+ * Must be an object which has `getObject(key)` and `setObject(key, val)` methods.
+ * `LocalStorage` and `SessionStorage` are both provided by EncoreUI, and support
+ * this interface.
+ *
+ * You can use your own custom backends as well, as long as it supports `getObject(key)`
+ * and `setObject(key, val)`.
  */
 .factory('rxAutoSave', function ($location, $q, debounce, LocalStorage) {
-
-    /* 
+    /*
      * We'll version the schema for the stored data, so if we need to change
-     * the schema in the future, we can do automatic migrations. Never 
+     * the schema in the future, we can do automatic migrations. Never
      * delete any of these documented schemas. If you have to add a new version,
      * then add it on top, but keep the documentation for the old one around.
      * VERSION 1
@@ -177,7 +320,7 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
     var version = 1;
 
     // This will be used by the rxAutoSave instance to interact with
-    // LocalStorage. 
+    // LocalStorage.
     //
     // @param watchVar - the string name of the
     //                   object that's being watched, representing the model for the form.
@@ -279,7 +422,6 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
     // This is what we return from rxAutoSave, and calling this
     // function will return an instance
     return function (scope, watchVar, opts) {
-
         opts = opts || {};
         _.defaults(opts, {
             load: true,
@@ -292,7 +434,7 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
         });
 
         opts.ttl = opts.ttl * 1000; // convert back to milliseconds
-        
+
         var api = new StorageAPI(watchVar, opts.storageBackend, opts.keyShaping);
 
         var updateExpiryTime = function () {
@@ -355,7 +497,7 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
             // Update the expiry time whenever we modify data
             updateExpiryTime();
         };
-        
+
         // We don't want to write to LocalStorage every time the model changes,
         // because that would turn typing into a textarea into an expensive operation.
         // We'll instead debounce the the writes for 1 second

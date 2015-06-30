@@ -1,5 +1,6 @@
 var _ = require('lodash');
-var rxFieldName = require('./rxFieldName.page').rxFieldName;
+
+var rxForm = require('./rxForm.page').rxForm;
 
 /**
  * rxFieldName exercises.
@@ -26,9 +27,9 @@ exports.rxFieldName = function (options) {
 
         before(function () {
             if (options.cssSelector === undefined) {
-                component = rxFieldName.main;
+                component = rxForm.fieldName.main;
             } else {
-                component = rxFieldName.initialize($(options.cssSelector));
+                component = rxForm.fieldName.initialize($(options.cssSelector));
             }
         });
 

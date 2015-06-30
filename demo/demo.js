@@ -471,6 +471,30 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     ];
 })
 
+.controller('formsDisabledExamplesCtrl', function ($scope) {
+    // intentionally left blank
+    $scope.txtDisabled = 'Disabled Text Input';
+    $scope.selDisabled = 'disabled';
+    $scope.radDisabled = 1;
+    $scope.chkDisabledOne = true;
+    $scope.chkDisabledTwo = false;
+    $scope.togDisabledOn = true;
+    $scope.togDisabledOff = false;
+    $scope.txtAreaDisabled = 'Disabled Textarea';
+})
+
+.controller('formsInvalidExamplesCtrl', function ($scope) {
+    // intentionally left blank
+    $scope.txtInvalid = 'Invalid text input';
+    $scope.selInvalid = 'invalid';
+    $scope.radInvalid = 1;
+    $scope.chkInvalidOne = true;
+    $scope.chkInvalidTwo = false;
+    $scope.togInvalidOn = true;
+    $scope.togInvalidOff = false;
+    $scope.txtAreaInvalid = 'Invalid Value';
+})
+
 .controller('formsAutoSaveExampleController', function ($scope, rxAutoSave) {
     $scope.forms = { autosave: '' };
     rxAutoSave($scope, 'forms');

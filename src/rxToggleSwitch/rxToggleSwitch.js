@@ -1,8 +1,7 @@
 angular.module('encore.ui.rxToggleSwitch', [])
 /**
- *
  * @ngdoc directive
- * @name encore.ui.rxToggleSwitch:rxToggleSwitch
+ * @name rxToggleSwitch.directive:rxToggleSwitch
  * @restrict E
  * @description
  * Displays an on/off switch toggle

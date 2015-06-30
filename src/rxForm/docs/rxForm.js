@@ -1,6 +1,7 @@
 angular.module('demoApp')
 .controller('rxFormDemoCtrl', function ($scope) {
-    $scope.types = [
+    /* ========== DATA ========== */
+    $scope.volumeTypes = [
         {
             'value': 'SATA',
             'label': 'SATA'
@@ -47,12 +48,42 @@ angular.module('demoApp')
         }
     ];
 
-    $scope.volume = {
-        data: 0,
-        isNameRequired: true,
-        type: _.first($scope.types).value, // select the first type by default
-        checked: [true, 'unchecked'] //example with first checkbox automatically checked
-    };
+    $scope.services = [
+        {
+            'value': 'good',
+            'label': 'Good Service'
+        },
+        {
+            'value': 'cheap',
+            'label': 'Cheap Service'
+        },
+        {
+            'value': 'fast',
+            'label': 'Fast Service'
+        },
+        {
+            'value': 'custom',
+            'label': 'Custom Service'
+        }
+    ];
+
+    $scope.beatles = [
+        'Paul McCartney',
+        'John Lennon',
+        'Ringo Starr',
+        'George Harrison'
+    ];
+
+    $scope.nevers = [
+        'Give you up',
+        'Let you down',
+        'Run around',
+        'Desert you',
+        'Make you cry',
+        'Say goodbye',
+        'Tell a lie',
+        'Hurt you'
+    ];
 
     $scope.optionTableData = [
         {
@@ -86,12 +117,70 @@ angular.module('demoApp')
         }
     ];
 
-    $scope.compressedLayout = { value: false };
+    $scope.optionTableColumns = [
+        {
+            'label': 'Name',
+            'key': 'name',
+            'selectedLabel': '(Already saved data)'
+        }, {
+            'label': 'Static Content',
+            'key': 'Some <strong>Text &</strong> HTML'
+        }, {
+            'label': 'Expression 2',
+            'key': '{{ value * 100 | number:2 }}'
+        }, {
+            'label': 'Expression 3',
+            'key': '{{ obj.name | uppercase }}'
+        }, {
+            'label': 'Expression 4',
+            'key': '{{ value | currency }}'
+        }
+    ];
 
-    $scope.details = { email: '' };
+    $scope.optionTableCheckboxData = [
+        {
+            'name': 'Item 1'
+        }, {
+            'name': 'Item 2',
+            'value': 'checked',
+            'falseValue': 'unchecked'
+        }
+    ];
 
+    $scope.optionTableEmptyData = [];
+
+    /* ========== FUNCTIONS ========== */
     $scope.disableOption = function (tableId, fieldId, rowId) {
         return rowId === 'option4_id';
+    };
+
+    /* ========== FORM MODELS ========== */
+    $scope.simple = {
+        userEmail: '',
+        isNameRequired: true, // TODO: use this for rxFieldName "required" midway tests // TODO: remove this comment after completed
+        volumeName: ''
+    };
+
+    $scope.intermediate = {
+        volumeType: _.first($scope.volumeTypes).value, // select the first type by default
+        services: [],
+        favoriteBeatle: 'all',
+        settings: {
+            first: true,
+            second: false,
+            third: true,
+            fourth: false
+        },
+        table: {
+            radio: 0,
+            checkbox: [true, 'unchecked'], // example with first checkbox automatically checked
+            empty: [true, 'unchecked']
+        }
+    };
+
+    $scope.advanced = {
+        radChoice: 'default',
+        inputEnabled: false
     };
 });
 

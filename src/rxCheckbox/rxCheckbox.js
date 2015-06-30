@@ -1,4 +1,19 @@
 angular.module('encore.ui.rxCheckbox', [])
+/**
+ * @name rxCheckbox.directive:rxCheckbox
+ * @ngdoc directive
+ * @restrict A
+ * @scope
+ * @description
+ * Attribute directive that wraps a native checkbox element in markup required for styling purposes.
+ *
+ * @example
+ * <pre>
+ * <input rx-checkbox ng-model="demoValue" />
+ * </pre>
+ *
+ * @param {Boolean=} [ng-disabled=false] Determines if the control is disabled.
+ */
 .directive('rxCheckbox', function () {
     return {
         restrict: 'A',

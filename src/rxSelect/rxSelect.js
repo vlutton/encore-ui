@@ -1,11 +1,20 @@
 angular.module('encore.ui.rxSelect', [])
 /**
- *
  * @ngdoc directive
- * @name encore.ui.rxForm:rxSelect
+ * @name rxSelect.directive:rxSelect
  * @restrict A
- * @param {Boolean} [ngDisabled=""] - Angular expression that evaluates to a Boolean
  * @description This directive is to apply styling to native `<select>` elements
+ *
+ * @example
+ * <pre>
+ * <select rx-select ng-model="demoItem">
+ *   <option value="1">First</option>
+ *   <option value="2">Second</option>
+ *   <option value="3">Third</option>
+ * </select>
+ * </pre>
+ *
+ * @param {Boolean=} [ngDisabled=false] Determines if control is disabled.
  */
 .directive('rxSelect', function () {
     return {
