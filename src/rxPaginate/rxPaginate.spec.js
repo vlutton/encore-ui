@@ -628,40 +628,6 @@ describe('Pagination', function () {
             expect(tracking.createInstance({ itemsPerPage: 45 }).itemSizeList).to.contain(45);
         });
 
-        it('should allow for global stickiness of the user selected itemsPerPage', function () {
-            var firstTable = tracking.createInstance();
-            expect(firstTable.itemsPerPage, 'default check').to.be.eq(200);
-            tracking.userSelectedItemsPerPage(50);
-
-            var secondTable = tracking.createInstance();
-            expect(secondTable.itemsPerPage, 'checking second table').to.be.eq(50);
-
-            tracking.userSelectedItemsPerPage(500);
-            var thirdTable = tracking.createInstance();
-            expect(thirdTable.itemsPerPage, 'checking third table').to.be.eq(500);
-        });
-
-        it('should ignore the user selected itemsPerPage if it is not in itemSizeList', function () {
-            var firstTable = tracking.createInstance({ itemsPerPage: 73 });
-            expect(firstTable.itemsPerPage, 'default check').to.be.eq(73);
-
-            // switch to 200 and then immediately back to 73
-            tracking.userSelectedItemsPerPage(200);
-            tracking.userSelectedItemsPerPage(73);
-
-            // 73 isn't an option in this new pagination, so it should go back
-            // to the default value of 200
-            expect(tracking.createInstance().itemsPerPage, 'new pagination instance').to.equal(200);
-            
-        });
-
-        it('should prefer the specified itemsPerPage over the globally configured one', function () {
-            tracking.userSelectedItemsPerPage(50);
-
-            var table = tracking.createInstance({ itemsPerPage: 350 });
-            expect(table.itemsPerPage, 'options check').to.be.eq(350);
-        });
-
         describe('pager methods -', function () {
             var $q, scope, pager, getItems, spy, lastPage, itemsPerPage;
 
@@ -894,6 +860,57 @@ describe('Pagination', function () {
                     scope.$apply();
                     expect(pager.itemsPerPage).to.equal(2);
                 });
+
+                it('should allow for global stickiness of the user selected itemsPerPage', function () {
+                    var firstTable = tracking.createInstance();
+                    expect(firstTable.itemsPerPage, 'default check').to.be.eq(200);
+                    firstTable.setItemsPerPage(50);
+                    scope.$apply();
+
+                    var secondTable = tracking.createInstance();
+                    expect(secondTable.itemsPerPage, 'checking second table').to.be.eq(50);
+
+                    firstTable.setItemsPerPage(500);
+                    scope.$apply();
+                    var thirdTable = tracking.createInstance();
+                    expect(thirdTable.itemsPerPage, 'checking third table').to.be.eq(500);
+                });
+
+                it('should ignore the user selected itemsPerPage if it is not in itemSizeList', function () {
+                    var firstTable = tracking.createInstance({ itemsPerPage: 73 });
+                    expect(firstTable.itemsPerPage, 'default check').to.be.eq(73);
+
+                    // switch to 200 and then immediately back to 73
+                    firstTable.setItemsPerPage(200);
+                    scope.$apply();
+                    firstTable.setItemsPerPage(73);
+                    scope.$apply();
+
+                    // 73 isn't an option in this new pagination, so it should go back
+                    // to the default value of 200
+                    expect(tracking.createInstance().itemsPerPage, 'new pagination instance').to.equal(200);
+                    
+                });
+
+                it('should not persist itemsPerPage if persistItemsPerPage is false', function () {
+                    var firstTable = tracking.createInstance({ persistItemsPerPage: false });
+                    expect(firstTable.itemsPerPage, 'default check').to.be.eq(200);
+                    firstTable.setItemsPerPage(50);
+                    scope.$apply();
+                    
+                    var secondTable = tracking.createInstance();
+                    expect(secondTable.itemsPerPage, 'checking second table').to.be.eq(200);
+                    
+                });
+
+                it('should prefer an explicitly specified itemsPerPage over the globally configured one', function () {
+                    pager.setItemsPerPage(50);
+                    scope.$apply();
+
+                    var table = tracking.createInstance({ itemsPerPage: 350 });
+                    expect(table.itemsPerPage, 'options check').to.be.eq(350);
+                });
+
             });
 
             it('should check isItemsPerPage()', function () {

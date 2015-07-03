@@ -47,6 +47,10 @@ The user's preference for the number of items to display per page will be persis
 
 This applies to both UI-based pagination and API-based pagination.
 
+*NOTE*: If `itemsPerPage` is explicitly specified in the `opts` you pass to `PageTracking.createInstance()`, then that pager instance will load using the `itemsPerPage` you specified, and _not_ the globally persisted value.
+
+*NOTE*: If you don't want a specific pager to have its `itemsPerPage` persisted to other pagers, pass `persistItemsPerPage: false` with the `opts` to `createInstance()`.
+
 ## Hiding the pagination
 
 In some instances, the pagination should be hidden if there isn't enough data to require it. For example, if you have `itemsPerPage` set to 10, but only have 7 items of data (so only one page). Hiding the pagination is pretty simple:

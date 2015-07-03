@@ -59,15 +59,6 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
 
             var table = parentElement;
 
-            scope.updateItemsPerPage = function (itemsPerPage) {
-                return scope.pageTracking.setItemsPerPage(itemsPerPage).then(function () {
-
-                    // Set itemsPerPage as the new default value for
-                    // all future pagination tables
-                    PageTracking.userSelectedItemsPerPage(itemsPerPage);
-                });
-            };
-
             scope.scrollToTop = function () {
                 table[0].scrollIntoView(true);
             };
@@ -224,28 +215,6 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
 * This is the data service that can be used in conjunction with the pagination
 * objects to store/control page display of data tables and other items.
 *
-* @property {number} itemsPerPage This is the current setting for the number
-* of items to display per page.
-* @property {number} pagesToShow This is the number of pages to show
-* in the pagination controls
-* @property {number} pageNumber This is where the current page number is
-* stored.
-* @property {boolean} pageInit This is used to determine if the page has been
-* initialzed before.
-* @property {number} total This is the total number of items that are in the
-* data set
-* @property {boolean} showAll This is used to determine whether or not to use
-* the pagination or not.
-*
-* @method createInstance This is used to generate the instance of the
-* PageTracking object. Enables the ability to override default pager.
-* If you choose to override the default `itemsPerPage`, and it isn't
-* a value in itemSizeList, then it will automatically be added to itemSizeList
-* at the right spot.
-*
-* @method userSelectedItemsPerPage Call this when a user chooses a new value for
-* itemsPerPage, and all future instances of PageTracking will default to that value,
-* assuming that the value exists in itemSizeList
 * 
 *
 * @example
@@ -258,6 +227,7 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
     function PageTrackingObject (opts) {
         var pager = _.defaults(_.cloneDeep(opts), {
             itemsPerPage: 200,
+            persistItemsPerPage: true,
             pagesToShow: 5,
             pageNumber: 0,
             pageInit: false,
@@ -439,6 +409,11 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
                 // Now that we've "officially" changed the itemsPerPage,
                 // we have to update all the cache values
                 updateCache(pager, data.pageNumber, data.items);
+
+                // Persist this itemsPerPage as the new global value
+                if (pager.persistItemsPerPage) {
+                    PageTracking.userSelectedItemsPerPage(numItems);
+                }
             });
         };
 
@@ -452,17 +427,44 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
 
     }
 
-    return {
+    var PageTracking = {
+        /**
+        * @property {number} itemsPerPage This is the current setting for the number
+        * of items to display per page.
+        * @property {boolean} [persistItemsPerPage=true] Whether or not a change to this pager's itemsPerPage
+        * should be persisted globally to all other pagers
+        * @property {number} pagesToShow This is the number of pages to show
+        * in the pagination controls
+        * @property {number} pageNumber This is where the current page number is
+        * stored.
+        * @property {boolean} pageInit This is used to determine if the page has been
+        * initialzed before.
+        * @property {number} total This is the total number of items that are in the
+        * data set
+        * @property {boolean} showAll This is used to determine whether or not to use
+        * the pagination or not.
+        *
+        * @method createInstance This is used to generate the instance of the
+        * PageTracking object. Enables the ability to override default pager.
+        * If you choose to override the default `itemsPerPage`, and it isn't
+        * a value in itemSizeList, then it will automatically be added to itemSizeList
+        * at the right spot.
+        */
         createInstance: function (options) {
             options = options ? options : {};
             var tracking = new PageTrackingObject(options);
             return tracking.pager;
         },
 
+        /*
+        * @method userSelectedItemsPerPage This method sets a new global itemsPerPage value
+        */
         userSelectedItemsPerPage: function (itemsPerPage) {
             LocalStorage.setItem('rxItemsPerPage', itemsPerPage);
         }
     };
+
+    return PageTracking;
 })
 
 /**
