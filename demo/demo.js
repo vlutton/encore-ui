@@ -137,8 +137,8 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                                     linkText: 'EncoreUI'
                                 },
                                 {
-                                    href: 'https://github.com/rackerlabs/encore-ui-template',
-                                    linkText: 'App Template (Private Repo)'
+                                    href: 'https://github.com/rackerlabs/generator-encore',
+                                    linkText: 'Yeoman Generator (Private Repo)'
                                 },
                                 {
                                     href: 'https://github.com/rackerlabs/encore-ui-login',

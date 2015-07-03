@@ -20,7 +20,7 @@ Component Tests (aka unit tests)
 *Goal: Tests smallest piece of functionality or method*
 
  - Code level tests
- - Uses [Karma](http://karma-runner.github.io) + [Mocha](http://visionmedia.github.io/mocha/) + [Chai](http://chaijs.com/) + [Sinon](http://sinonjs.org/)
+ - Uses [Karma](http://karma-runner.github.io) + [Mocha](http://mochajs.org/) + [Chai](http://chaijs.com/) + [Sinon](http://sinonjs.org/)
  - Stored in same location as code (separate file with \*.spec.js)
  - Best for testing services, classes and objects
  - Does contain "functional" tests (can test browser interactions like 'click')
