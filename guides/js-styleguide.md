@@ -76,7 +76,7 @@ All errors from these tools must be resolved before a Pull Request can be accept
 Testing is just as much about code quality as it is about building a robust regression test suite. Code that is testable is usually more module, less tightly-coupled and more robust.
 
 * All new functionality must have proper unit tests
-* Line covereage should be at 80% or higher
+* Line coverage should be at 80% or higher
 
 # Midway Testing
 

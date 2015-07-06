@@ -2,7 +2,7 @@
 
 In order to help prevent regressions and allow applications time to incorporate any breaking changes, EncoreUI uses a 'pull' model for versioning. In order to get the latest version of EncoreUI, the application must update their version reference (versus EncoreUI automatically pushing down the latest version).
 
-Encore follows the [Semanatic Versioning](http://semver.org/) model for releases.
+Encore follows the [Semantic Versioning](http://semver.org/) model for releases.
 
 ## Starting a new version
 
@@ -12,7 +12,7 @@ This does mean that the master branch will contain updates not available in the 
 
 ## Releasing a version
 
-A new version is released everytime a push to production (our CDN and to Bower) occurs. This will normally happen at least once per week. There is no specific criteria for a version to be released, other than features being ready for deployment.
+A new version is released every time a push to production (our CDN and to Bower) occurs. This will normally happen at least once per week. There is no specific criteria for a version to be released, other than features being ready for deployment.
 
 Production deploys are done manually through the command line. To push to production, run `grunt shipit:[versionType]:updateDemo` (replacing [versionType] with 'major', 'minor' or 'patch').
 
@@ -26,7 +26,7 @@ The `updateDemo` argument tells `shipit` that it should update our demo applicat
 
 ### Releasing hotfix versions
 
-Normally when we do a release, it will be some version number incremement over the latest version. If v0.1.0 is our latest, then the next version will be v0.1.1, or v0.2.0 or v1.0.0, depending on whether we use `patch`, `minor` or `major` with `shipit`.
+Normally when we do a release, it will be some version number increment over the latest version. If v0.1.0 is our latest, then the next version will be v0.1.1, or v0.2.0 or v1.0.0, depending on whether we use `patch`, `minor` or `major` with `shipit`.
 
 In rare circumstances, we will need to perform an update to an _old_ version of EncoreUI.
 
@@ -43,7 +43,7 @@ The procedure for doing this is as follows:
  7. Now that you have the fix locally, do `grunt shipit:patch:hotfix`
  8. Make sure you also port that fix into the latest version of EncoreUI, either with `git cherry-pick`, or by hand
 
-This will cause `v1.8.1` to be released. The diffences from a normal release are that:
+This will cause `v1.8.1` to be released. The differences from a normal release are that:
 
  1. There is no chance to pass the `updateDemo` value, so we know the demo application will not be updated
  2. When the new `v.1.8.1` of `rxPageObjects` is pushed to `npm`, `shipit` will explicitly tell `npm` _not_ to set this as the `latest` version
@@ -64,7 +64,7 @@ In particular, we support:
 
 All of these follow the rules from [`grunt-bump`](https://github.com/vojtajina/grunt-bump#usage-examples)
 
-In short, once all your desired PRs are merged to `master`, do one of the first three commands above. This will update the version number appropriately and append a `-0` to the end. i.e. if we are currently on version `1.10.0`, and you run `grunt:shipit:preminor`, a new version will be created at `1.11.0-0`. If this prerelease is deemed correct, do `grunt:shipit:minor` to "officially" release it as `1.11.0`. If instead more work is needed, merge in the PRs for that extra work, and run `grunt:shipit:prerelease`. This will take us from `1.11.0-0` to `1.11.0-1`. You can do as many `grunt:shipit:prerelease` versions as necessary, it will incremement the trailing `-X` each time. And as before, finish with `grunt:shipit:minor` when you are ready for the official release.
+In short, once all your desired PRs are merged to `master`, do one of the first three commands above. This will update the version number appropriately and append a `-0` to the end. i.e. if we are currently on version `1.10.0`, and you run `grunt:shipit:preminor`, a new version will be created at `1.11.0-0`. If this prerelease is deemed correct, do `grunt:shipit:minor` to "officially" release it as `1.11.0`. If instead more work is needed, merge in the PRs for that extra work, and run `grunt:shipit:prerelease`. This will take us from `1.11.0-0` to `1.11.0-1`. You can do as many `grunt:shipit:prerelease` versions as necessary, it will increment the trailing `-X` each time. And as before, finish with `grunt:shipit:minor` when you are ready for the official release.
 
 ## Production CDN and Bower
 
