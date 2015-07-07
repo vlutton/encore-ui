@@ -28,7 +28,7 @@ describe('rxModalForm', function () {
     });
 
     it('should inject the modal footers into the template', function () {
-        var formHtml = _.template(rxModalForm, {
+        var formHtml = _.template(rxModalForm)({
             fields: textInput + textarea
         });
 
@@ -38,7 +38,7 @@ describe('rxModalForm', function () {
     });
 
     it('should focus on first tabbable element', function () {
-        var formHtml = _.template(rxModalForm, {
+        var formHtml = _.template(rxModalForm)({
             fields: textInput + textarea
         });
 
@@ -62,7 +62,7 @@ describe('rxModalForm', function () {
         // going to re-use this for our different elements
         var focusable;
 
-        var formHtml = _.template(rxModalForm, {
+        var formHtml = _.template(rxModalForm)({
             fields: textarea
         });
 
@@ -77,7 +77,7 @@ describe('rxModalForm', function () {
         expect(focusable.focus).to.be.calledOnce;
 
         // now check the select box
-        formHtml = _.template(rxModalForm, {
+        formHtml = _.template(rxModalForm)({
             fields: selectBox
         });
 
@@ -93,7 +93,7 @@ describe('rxModalForm', function () {
     });
 
     it('should not focus on hidden input element', function () {
-        var formHtml = _.template(rxModalForm, {
+        var formHtml = _.template(rxModalForm)({
             fields: hiddenInput + textInput
         });
 
@@ -111,7 +111,7 @@ describe('rxModalForm', function () {
     });
 
     it('should not focus on disabled input element', function () {
-        var formHtml = _.template(rxModalForm, {
+        var formHtml = _.template(rxModalForm)({
             fields: disabledInput + textInput
         });
 
@@ -129,7 +129,7 @@ describe('rxModalForm', function () {
     });
 
     it('should prioritize elements with an autofocus attribute', function () {
-        var formHtml = _.template(rxModalForm, {
+        var formHtml = _.template(rxModalForm)({
             fields: textInput + autofocusInput
         });
 
@@ -159,7 +159,7 @@ describe('rxModalForm', function () {
 
         it('should focus on cancel button when specified', function () {
             var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
-            var formHtml = _.template(rxModalForm, {
+            var formHtml = _.template(rxModalForm)({
                 fields: textInput + textarea + selectBox,
                 defaultFocus: 'cancel'
             });
@@ -179,7 +179,7 @@ describe('rxModalForm', function () {
 
         it('should focus on submit button when specified', function () {
             var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
-            var formHtml = _.template(rxModalForm, {
+            var formHtml = _.template(rxModalForm)({
                 fields: textInput + textarea + selectBox,
                 defaultFocus: 'submit'
             });
@@ -199,7 +199,7 @@ describe('rxModalForm', function () {
 
         it('should focus on First Tabbable when anything else is specified', function () {
             var rxModalForm = '<rx-modal-form default-focus="${defaultFocus}">${ fields }</rx-modal-form>';
-            var formHtml = _.template(rxModalForm, {
+            var formHtml = _.template(rxModalForm)({
                 fields: textInput + textarea + selectBox,
                 defaultFocus: 'foo'
             });
@@ -217,7 +217,7 @@ describe('rxModalForm', function () {
     });
 
     it('should not throw errors if no focusable elements are found', function () {
-        var formHtml = _.template(rxModalForm, {
+        var formHtml = _.template(rxModalForm)({
             fields: ''
         });
 
@@ -234,7 +234,7 @@ describe('rxModalFooterTemplates', function () {
     var rxModalFooterTemplates;
 
     function wrap (html) {
-        return _.template('<div ng-switch="state">${html}</div>', {
+        return _.template('<div ng-switch="state">${html}</div>')({
             html: html
         });
     }

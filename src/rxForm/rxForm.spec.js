@@ -21,7 +21,7 @@ describe('rxForm', function () {
 
         var createDirective = function (inputTemplate) {
             var formItemTemplate = '<rx-form-item label="Name"><%= input %></rx-form-item>';
-            var html = _.template(formItemTemplate, {
+            var html = _.template(formItemTemplate)({
                 input: inputTemplate
             });
 

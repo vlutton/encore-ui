@@ -221,7 +221,7 @@ angular.module('encore.ui.rxStatus', ['encore.ui.rxNotify'])
             if (!_.has(error, 'message')) {
                 error.message = _.has(error, 'statusText') ? error.statusText : 'Unknown error';
             }
-            return _.template(formatString, error);
+            return _.template(formatString)(error);
         };
 
         return {

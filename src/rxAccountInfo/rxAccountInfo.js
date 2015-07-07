@@ -47,7 +47,7 @@ angular.module('encore.ui.rxAccountInfo', [])
                 scope.showCurrentUser = isCloud;
             });
 
-            scope.accountPageUrl = _.template('/accounts/<%= accountNumber %>', scope);
+            scope.accountPageUrl = _.template('/accounts/<%= accountNumber %>')(scope);
 
             SupportAccount.getBadges({ accountNumber: scope.accountNumber }, function (badges) {
                 scope.badges = scope.badges.concat(badges);

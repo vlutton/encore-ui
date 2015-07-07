@@ -567,7 +567,7 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
             template = '<%= total %>';
         }
         var firstAndLast = rxPaginateUtils.firstAndLast(pager.currentPage(), pager.itemsPerPage, pager.total);
-        return _.template(template, {
+        return _.template(template)({
             first: firstAndLast.first + 1,
             last: firstAndLast.last,
             total: pager.total
