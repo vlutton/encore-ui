@@ -334,7 +334,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                 if (!_.isUndefined(roles.any)) {
                     return Permission.hasRole(roles.any);
                 }
-                
+
                 if (!_.isUndefined(roles.all)) {
                     return Permission.hasAllRoles(roles.all);
                 }
@@ -373,7 +373,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                     // in $scope.$eval
                     visibility = rxVisibility.getMethod(methodName) || 'false';
                 }
-                
+
                 // If `visibility` isn't defined, then default it to `true` (i.e. visible)
                 var visible = _.isUndefined(visibility) ? true : $scope.$eval(visibility, locals),
                     hasRole = true;
@@ -439,7 +439,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
             scope.isCloudProduct = false;
 
             // This function is attached to the scope for the sole purpose of making
-            // it easier to test this functionality. A reorganization of this and/or 
+            // it easier to test this functionality. A reorganization of this and/or
             // the tests is needed in order to pull this off the scope.
             scope.switchToAdmin = function () {
                 // If the user in the params is not the admin swtich to the admin
@@ -484,7 +484,11 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                         encoreRoutes.rebuildUrls({ user: account.users[0].username });
                     }
                 };
-                Encore.getAccountUsers({ id: $route.current.params.accountNumber }, success);
+
+                var accountNumber = parseInt($route.current.params.accountNumber, 10);
+                if (accountNumber) {
+                    Encore.getAccountUsers({ id: accountNumber }, success);
+                }
             };
 
             checkCloud();

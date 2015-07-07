@@ -785,7 +785,7 @@ describe('rxAppNavItem', function () {
             var item = el.find('a:contains("visibilityAndRole")').parent();
             expect(item.hasClass('ng-hide')).to.be.false;
         });
-        
+
         it('should show if there is no visibility criteria but roles are present and true', function () {
             var item = el.find('a:contains("noVisibilityButRolePresent")').parent();
             expect(item.hasClass('ng-hide')).to.be.false;
@@ -1026,6 +1026,22 @@ describe('rxAccountUsers', function () {
         userSelect = helpers.createDirective(angular.element(validTemplate), compile, scope);
         users = userSelect.find('option');
     });
+
+    it('should only make external call on good account number', inject(function ($route, Encore) {
+        sinon.spy(Encore, 'getAccountUsers');
+
+        $route.current = { params: { accountNumber: 12345 }};
+        helpers.createDirective(angular.element(validTemplate), compile, scope);
+        expect(Encore.getAccountUsers.called).to.eq(true);
+
+        Encore.getAccountUsers.reset();
+
+        $route.current = { params: { accountNumber: 'nope' }};
+        helpers.createDirective(angular.element(validTemplate), compile, scope);
+        expect(Encore.getAccountUsers.called).to.eq(false);
+
+        Encore.getAccountUsers.restore();
+    }));
 
     it('should switch to the admin account', function () {
         scope.switchToAdmin();
