@@ -2,7 +2,7 @@
 
 # Description
 
-This service is provided as a compliment to [`rxNotify` rxNotify service](#/component/rxNotify).  It abstracts out some of the raw functionality provided by rxNotify to make the addition and removal of single messages easier.
+This service is provided as a compliment to the [`rxNotify` service](#/component/rxNotify).  It abstracts out some of the raw functionality provided by `rxNotify` to make the addition and removal of single messages easier.
 
 # Usage
 
@@ -14,11 +14,11 @@ In order to use the `Status` service, one has to instantiate it with a proper `$
 
 ## Success cases
 
-The `Status` service is provided as a wrapper to rxNotify.  As such, the status types supported by `rxNotify` are still used and have been wrapped into utility functions.  For example, on page load it is usually necessary to inform the user of pending data retrieval.  This can be accomplished by:
+The `Status` service is provided as a wrapper to `rxNotify`.  As such, the status types supported by `rxNotify` are still used and have been wrapped into utility functions.  For example, on page load it is usually necessary to inform the user of pending data retrieval.  This can be accomplished by:
 
         Status.setLoading('Retrieving users');
 
-This will call rxNotify in the following manner:
+This will call `rxNotify` in the following manner:
 
         rxNotify.add('Retrieving users', {
             stack: 'page',
@@ -26,12 +26,12 @@ This will call rxNotify in the following manner:
             loading: true
         });
 
-Similarly, the following call using the Status service:
+Similarly, the following call using the `Status` service:
 
         Status.setSuccess('Successfully deleted questionable ' +
             'browsing history');
 
-results in a call to rxNotify as such:
+results in a call to `rxNotify` as such:
 
         rxNotify.add('Successfully deleted questionable ' +
             'browsing history',
@@ -43,13 +43,13 @@ results in a call to rxNotify as such:
 
 Note: For `success` and `error` messages, the `repeat` attribute is set to false. Messages of `success` will also automatically timeout after 5 seconds. Both of these defaults were design decisions made at this level for usability and consistency across all Encore products.
 
-Each of the wrapper functions to the different rxNotify message types support receiving an `options:{}` parameter that can override defaults for the respective wrapper. For example, instead of showing a success message on next route change, it can be shown immediately:
+Each of the wrapper functions to the different `rxNotify` message types support receiving an `options:{}` parameter that can override defaults for the respective wrapper. For example, instead of showing a success message on next route change, it can be shown immediately:
 
         Status.setSuccess('Please show immediately', {
             show: 'immediate'
         });
 
-Please note that the `options` are of the same type as one would provide to rxNotify.  This should allow for maximum flexibility when necessary.  However, as a bonus, some common behaviours expected to be overriden have been provided as their own wrapper functions.  For example:
+Please note that the `options` are of the same type as one would provide to `rxNotify`.  This should allow for maximum flexibility when necessary.  However, as a bonus, some common behaviours expected to be overriden have been provided as their own wrapper functions.  For example:
 
         Status.setSuccessImmediate('Please show immediately')
 
