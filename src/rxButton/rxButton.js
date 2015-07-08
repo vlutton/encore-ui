@@ -13,6 +13,7 @@ angular.module('encore.ui.rxButton', [])
 * @param {String} defaultMsg Text to be displayed by default an no operation is in progress.
 * @param {Boolean=} [toggle=false] When true, the button will display the loading text.
 * @param {Boolean=} [disable=false] When true, the button will be disabled.
+* @param {String=} [classes=""] The class names to be applied to the button.
 */
 .directive('rxButton', function () {
     return {
