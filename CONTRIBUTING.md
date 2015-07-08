@@ -6,7 +6,7 @@ We want to keep it as easy as possible to contribute changes to EncoreUI, while 
 
 Please submit any bugs you encounter when using EncoreUI to our [Github Issues Tracker](https://github.com/rackerlabs/encore-ui/issues).
 
-When submiting a bug report, please **include a set of steps to reproduce the issue** and any related information (browser, OS, etc). If we can't reproduce the issue then it makes fixing it much more difficult.
+When submitting a bug report, please **include a set of steps to reproduce the issue** and any related information (browser, OS, etc). If we can't reproduce the issue then it makes fixing it much more difficult.
 
 ### Preparing an Issue for development
 When an Issue is ready to move to development, make sure it includes the following:
@@ -44,7 +44,7 @@ Currently, when adding a new component, our most precious resource is the time o
 * **Step 2**: Comment with Design Sign-Off on final product - Design LGTM
 * **Step 3**: Checklist
     * [Unit Tests](./guides/testing.md#component-tests-aka-unit-tests)
-    * [Page Objects updated](./guides/testing.md#convienience-page-objects)
+    * [Page Objects updated](./guides/testing.md#convenience-page-objects)
     * [Functional/Midway Tests updated](./guides/testing.md#midway-tests)
     * [CSS Best Practices (this document needs an update)](./guides/css-styleguide.md)
     * Component Documentation Updated (i.e. the `README.md` for the component)

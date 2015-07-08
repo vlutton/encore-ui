@@ -10,7 +10,7 @@ Most of these standards are based off of the guidelines provided by [SMACSS](htt
 
     Many style guides focus around preventing classitis by depending on HTML elements for selectors. While using only "semantic" HTML is a neat idea, [it doesn't scale well](http://www.stubbornella.org/content/2011/04/28/our-best-practices-are-killing-us/).
 
-    Therefore, use of HTML elements or id's in a selector is strongly discouraged, as they create uneccesssary specificity.
+    Therefore, use of HTML elements or id's in a selector is strongly discouraged, as they create unnecessary specificity.
 
     *Scenario #1*
 
@@ -40,7 +40,7 @@ Most of these standards are based off of the guidelines provided by [SMACSS](htt
 
     Nothing reduces the re-usability and flexibility of your CSS like using `!important`. Chances are, if you're finding yourself needing to use it, the CSS you're overriding is too specific and needs to be refactored using the previous rules.
 
-    If you simply can't avoid using `!important`, you **MUST** include a comment adjascent to its use explaining why it's necessary. This comment should explain what selectors !important is overriding and why those selectors can't be changed to be less specific.
+    If you simply can't avoid using `!important`, you **MUST** include a comment adjacent to its use explaining why it's necessary. This comment should explain what selectors !important is overriding and why those selectors can't be changed to be less specific.
 
 4. Use CSS Lint
 
@@ -102,7 +102,7 @@ In order to create consistent class names, it's encouraged to use the naming def
 
 EncoreUI currently does not prescribe a specific grid system that apps should use. We leave the choice of framework up to the developers of the app and what fits them best.
 
-For layout needs (e.g. rxApp and rxForm), Encore uses either `flexbox` and `floats`, respectively. While relatively new, flexbox has proven to be very powerful and will likely replace floats as the defacto solution for layouts in the EncoreUI framework.
+For layout needs (e.g. rxApp and rxForm), Encore uses either `flexbox` and `floats`, respectively. While relatively new, flexbox has proven to be very powerful and will likely replace floats as the de facto solution for layouts in the EncoreUI framework.
 
 ### Recommended Libraries
 

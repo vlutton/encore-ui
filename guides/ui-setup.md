@@ -151,7 +151,7 @@ If your application is gulp-based (i.e. created with the EncoreUI Template or En
  1. Go to `encore-ui/bower` in your EncoreUI directory
  2. Run `bower link`. Behind the scenes, this will create a global symlink in `~/.local/share/bower/links/`
  3. In your local application's directory, run `bower link encore-ui`. This will tell your application to grab EncoreUI from the local bower links, instead of from the official bower repositories. Restart your application.
- 4. When you are done testing your EncoreUI changes in your local project, run `bower update` from your project directory. This will tell it to start using the offical bower repositories once again.
+ 4. When you are done testing your EncoreUI changes in your local project, run `bower update` from your project directory. This will tell it to start using the official bower repositories once again.
 
 Note that if you make further changes in your EncoreUI directory, you'll have to run `grunt copy:bower` from within the EncoreUI directory to cause these changes to become visible in the local symlink directory. Requiring this step is a failure on our part, and in the future we'll modify our EncoreUI `watch` task to make sure this happens automatically.
 

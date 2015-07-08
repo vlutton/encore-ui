@@ -1,6 +1,6 @@
 # Introduction to Testing
 
-In order to support continuous development/integration, taking advantage of automated testing is a must. While the goal of automated testing is to provide full coverage, it also needs to be seemlessly integrated into the developer environment. This document describes the testing setup for EncoreUI.
+In order to support continuous development/integration, taking advantage of automated testing is a must. While the goal of automated testing is to provide full coverage, it also needs to be seamlessly integrated into the developer environment. This document describes the testing setup for EncoreUI.
 
 Configuration Files
 -------------
@@ -90,7 +90,7 @@ Make sure you keep this terminal window running!
 
 To run all tests, enter `./node_modules/.bin/protractor` from the `encore-ui` directory, in a different terminal. You need to ensure that you already have a development server running. If you haven't already, run `grunt server` in a separate terminal. You will need to keep this running in the background through the entirety of the midway tests.
 
-In other words, to run the tests, you need a total of _three_ terminal windows. 
+In other words, to run the tests, you need a total of _three_ terminal windows.
 
  * One terminal running the Selenium server
  * One terminal running `./node_modules/.bin/protractor`
@@ -104,7 +104,7 @@ When developing a specific component, it's much quicker to run tests only for th
 ./node_modules/.bin/protractor --specs=src/rxComponent/docs/rxComponent.midway.js
 ```
 
-### Convienience Page Objects
+### Convenience Page Objects
 
 In order to help developers more easily test their own apps/projects, each EncoreUI component should provide a page object file for itself. This file will provide convenience methods for the tester to use when writing midway tests for their app.
 
