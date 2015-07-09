@@ -146,23 +146,33 @@ table.component-attributes {
   }
 }
 
-pre, code {
-    color: #404040;
-    background-color: #D0D0D0;
-    border: 1px solid #BABABA;
-    border-radius: 2px;
+.component-description,
+.component-demo {
+  pre,
+  code {
+      color: #404040;
+      background-color: #D0D0D0;
+      border: 1px solid #BABABA;
+      border-radius: 2px;
+  }
+
+  code {
+      padding: 0 2px;
+      margin: 0 1px;
+  }
+
+  pre {
+      padding: 10px;
+
+      code {
+          border: none;
+          padding: 0;
+          margin: 0;
+          border-radius: 0;
+      }
+  }
 }
 
-pre {
-    padding: 10px;
-}
-
-code {
-    padding: 2px 4px;
-}
-
-pre code {
-    padding: 0;
-    border: 0;
-    border-radius: 0;
+p {
+    line-height: 1.5;
 }
