@@ -1,5 +1,6 @@
 <div class="rx-feedback">
     <rx-modal-action
+        pre-hook="setCurrentUrl(this)"
         post-hook="sendFeedback(fields)"
         template-url="templates/feedbackForm.html">
         Submit Feedback

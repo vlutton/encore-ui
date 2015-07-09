@@ -94,8 +94,11 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
             sendFeedback: '=?onSubmit'
         },
         link: function (scope) {
-            scope.currentUrl = $location.url();
             scope.feedbackTypes = feedbackTypes;
+
+            scope.setCurrentUrl = function (modalScope) {
+                modalScope.currentUrl = $location.url();
+            };
 
             var showSuccessMessage = function (response) {
                 var message = _.isString(response.message) ? response.message : 'Thanks for your feedback!';
