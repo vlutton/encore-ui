@@ -1,0 +1,21 @@
+
+<div ng-controller="rxSortableTableCtrl">
+    <table rx-sortable-table keys="name, jobTitle">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Occupation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="resource in talentPool">
+                    <td class="talent-name">
+                        {{resource.name}}
+                    </td>
+                    <td class="talent-job">
+                        {{resource.jobTitle}}
+                    </td>
+                </tr>
+            </tbody>
+    </table>
+</div>

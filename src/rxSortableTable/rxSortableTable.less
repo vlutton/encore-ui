@@ -1,0 +1,26 @@
+/*
+ * rxSortableTable
+ */
+[rx-sortable-table] {
+    thead th:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+    .arrow {
+        content: '';
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        float: right;
+        top: 5px;
+        position: relative;
+    }
+    .asc {
+        border-bottom: 5px solid #4a4a4a;
+    }
+    .desc {
+        border-top: 5px solid #4a4a4a;
+    }
+}
