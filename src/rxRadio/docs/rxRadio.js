@@ -10,4 +10,5 @@ angular.module('demoApp')
     $scope.invalidNgDisabled = 1;
 
     $scope.radCreateDestroy = 'destroyed';
+    $scope.plainHtmlRadio = 'isChecked';
 });

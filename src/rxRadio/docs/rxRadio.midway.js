@@ -91,6 +91,27 @@ describe('rxRadio', function () {
         valid: false
     }));
 
+    describe('plain HTML radio buttons', function () {
+        describe('Valid Enabled Unchecked', encore.exercise.rxRadio({
+            cssSelector: "#plainHtmlNormal",
+            disabled: false,
+            selected: false
+        }));
+
+        describe('Valid Disabled Unchecked', encore.exercise.rxRadio({
+            cssSelector: "#plainHtmlDisabled",
+            disabled: true,
+            selected: false
+        }));
+
+        describe('Valid Enabled Checked', encore.exercise.rxRadio({
+            cssSelector: "#plainHtmlChecked",
+            disabled: false,
+            selected: true
+        }));
+
+    });
+
     describe('Show/Hide Input', function () {
         var radHate, radLike, radLove;
 
@@ -171,6 +192,34 @@ describe('rxRadio', function () {
                 });
             });
         });
+
+        describe('plain HTML radio buttons', function () {
+            var willHide;
+            var willBeHidden;
+            var otherRadio;
+
+            before(function () {
+                willHide = encore.rxRadio.initialize($('#plainRadRemoveRadio'));
+                willBeHidden = encore.rxRadio.initialize($('#plainRadRemoveable'));
+                otherRadio = encore.rxRadio.initialize($('#plainHtmlNormal'));
+            });
+
+            it('should show the checkbox by default', function () {
+                expect(willBeHidden.isPresent()).to.eventually.be.false;
+            });
+
+            it('should remove the checkbox from the DOM', function () {
+                willHide.select();
+                expect(willBeHidden.isDisplayed()).to.eventually.be.true;
+                expect(willBeHidden.isPresent()).to.eventually.be.true;
+            });
+
+            it('should put the checkbox back', function () {
+                otherRadio.select();
+                expect(willBeHidden.isPresent()).to.eventually.be.false;
+            });
+
+        });
     });//Show/Hide Input
 
     describe('Destroy Input', function () {
@@ -225,4 +274,5 @@ describe('rxRadio', function () {
             });
         });
     });//Destroy Input
+
 });
