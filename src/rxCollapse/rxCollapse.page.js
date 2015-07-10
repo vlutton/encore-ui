@@ -17,87 +17,59 @@ var rxCollapse = {
         }
     },
 
+    /**
+       @function
+       @returns {Boolean} Whether or no the component is currently expanded.
+     */
     isExpanded: {
-        get: function () {
+        value: function () {
             return this.rootElement.$('.expanded').isPresent();
         }
     },
 
+    /**
+       @function
+       @returns {Boolean} Whether or not the component has a custom title.
+     */
     hasCustomTitle: {
         value: function () {
-            return this.elemWrapper.getAttribute('class').then(function (classes) {
-                classes = classes.split(' ');
-                if (_.contains(classes, 'collapse-title-wrap-custom')) {
-                    return true;
-                } else {
-                    return false;
-                }
+            return this.rootElement.$('.collapse-title-wrap').getAttribute('class').then(function (classes) {
+                return _.contains(classes.split(' '), 'collapse-title-wrap-custom');
             });
-
         }
     },
 
-    elemWrapper: {
-        get: function () {
-            return this.rootElement.$('.collapse-title-wrap');
-        }
-    },
-
-    // This is the "custom" title element
+    /**
+       Will return the custom title's text if the component uses one. Otherwise, it'll return
+       the default title, found in the `.sml-title` (see-more-less-title) class.
+       @returns {String} Either the custom title's text, or the default title.
+     */
     title: {
         get: function () {
-            return this.rootElement.$('.rx-collapse-title');
-        }
-    },
-
-    // This is the "default" title element, used for the
-    // "See More"/"See Less" text
-    eleDefaultTitle: {
-        get: function () {
-            return this.rootElement.$('.sml-title');
-
-        }
-    },
-
-    titleText: {
-        value: function () {
             var page = this;
             return this.hasCustomTitle().then(function (hasCustomTitle) {
                 if (hasCustomTitle) {
-                    return page.title.getText();
+                    return page.rootElement.$('.rx-collapse-title').getText();
                 } else {
-                    return page.eleDefaultTitle.getText();
+                    return page.rootElement.$('.sml-title').getText();
                 }
             });
         }
     },
 
-    btnToggle: {
-        get: function () {
-            return this.rootElement.$('.double-chevron');
-        }
-    },
-
-    btnSeeMoreLess: {
-        get: function () {
-            return this.rootElement.$('.sml-title');
-        }
-    },
-
-    elBody: {
-        get: function () {
-            return this.rootElement.$('.collapse-body');
-        }
-    },
-
+    /**
+       Will expand the component if collapsed, or will collapse it if it's expanded.
+       @function
+       @returns {undefined}
+     */
     toggle: {
         value: function () {
             var page = this;
             return this.hasCustomTitle().then(function (hasCustomTitle) {
                 if (hasCustomTitle) {
-                    return page.btnToggle.click();
+                    return page.rootElement.$('.double-chevron').click();
                 } else {
-                    return page.btnSeeMoreLess.click();
+                    return page.rootElement.$('.sml-title').click();
                 }
             });
         }
