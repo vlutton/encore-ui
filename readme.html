@@ -2,32 +2,9 @@
 <p>EncoreUI is a library of reusable AngularJS widgets for internal Rackspace projects. While a few components are specific to Rackspace, most are generic enough to be used by any app.</p>
 <h1>Using EncoreUI In Your Own Project</h1>
 <p>To help guide you in getting a new project off the ground quickly, please reference <a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/using-encoreui.md">&quot;Using EncoreUI In Your Own Project&quot;</a></p>
-<h1>Getting your tool in Encore</h1>
-<p>To receive support from the EncoreUI team, you must first be vetted through our application process. This provides us vital data that we need to understand your project, needs, resources, and deadlines. Without this information, our small team cannot adequately support you. Submit an application <a href="https://one.rackspace.com/display/rackertools/Submit+an+Encore+UI+Request">through this request form on OneWiki</a>.</p>
-<p>Once you have submitted an application, we will contact you and begin our intake process. Due to limited resources on our end, the intake process and subsequent support from our team requires prioritization and may take several weeks. We require a minimum of two weeks lead time.</p>
 <h1>General Support</h1>
 <p>Our team can usually provide general assistance with using the Framework, but we do not create mock-ups of design for projects consuming the EncoreUI Framework.</p>
 <p>To discuss bugs and features, please use <a href="https://github.com/rackerlabs/encore-ui/issues?state=open">the GitHub Issues Page</a>. To view the issues we&#39;re currently working on, check out the <a href="https://waffle.io/rackerlabs/encore-ui">EncoreUI Task Board</a>. For high-level questions and requests, you can e-mail the <a href="mailto:encoreui@lists.rackspace.com">EncoreUI mailing list</a>. Expect a response within one working day.</p>
-<h1>Common Questions about EncoreUI</h1>
-<h3>Why doesn&#39;t EncoreUI utilize Twitter Bootstrap?</h3>
-<p>EncoreUI is meant to serve as a framework—both architecturally and visually speaking—for all products and projects within Encore. While on occasion we have consumed a few components from Angular Bootstrap, we try to keep that to a minimum. In cases where we do utilize Angular Bootstrap, we only bring in CSS for the component we want to add, which our designers heavily modify to ensure it has an Encore look and feel.</p>
-<p>Bringing in Bootstrap as a whole would necessitate overriding styles to customize appearance for Encore standards, which adds to page load time. We also had concerns about Bootstrap&#39;s reliance on non-semantic classes and possible collisions with other libraries. We also felt the weight of bringing in Bootstrap CSS and Javascript when not all of it is needed for Encore. Building our own style guide, CSS, and visual design means that we can address needs as they arise in a way that suits Encore and our needs.</p>
-<h3>Why hasn&#39;t EncoreUI switched from Grunt to using Gulp?</h3>
-<p>We have a fairly extensive build system built with grunt. Converting to gulp would require a lot of effort, and it would be difficult to validate whether all the functionality is ported correctly, so there&#39;s no obvious benefit to making the switch.</p>
-<h3>When do releases happen? What versioning system is used?</h3>
-<p>We try to release every Friday, but depending on the number of PRs ready for release (or ones that aren&#39;t quite ready), sometimes it doesn&#39;t happen and we release early the next week. If a team has an urgent need for a release, we are open to accommodating them.</p>
-<p>For versioning, we rougly follow the <a href="http://semver.org/">Semantic Versioning system</a>:</p>
-<ul>
-<li>MAJOR version when you make incompatible API changes</li>
-<li>MINOR version when you add functionality in a backwards-compatible manner</li>
-<li>PATCH version when you make backwards-compatible bug fixes</li>
-</ul>
-<h3>What constitutes a &#39;breaking change&#39;?</h3>
-<p>A breaking change is one that <em>requires</em> users of the changed component to modify their own code.</p>
-<h3>How are issues prioritized?</h3>
-<p>As a small team with limited resources, Encore relies on prioritization to drive development. However, EncoreUI is open source and new components or functionality may be submitted in a pull request. Still, there are times when EncoreUI&#39;s team must review or tweak design and functionality of features before they are ready to be brought in. Please see our <a href="https://github.com/rackerlabs/encore-ui/blob/master/CONTRIBUTING.md">Contribution Guide</a> if you are planning on submitting a pull request.</p>
-<p>Those looking to have new features or designs prioritized by the team should attend the Encore Stakeholder Meeting, where developers, designers, contributors, and consumers of EncoreUI meet weekly to review recent releases, current work, and upcoming needs. This meeting is the best way to request support from EncoreUI for designs and features you need that haven&#39;t been developed yet.</p>
-<p>E-mail the <a href="mailto:encoreui@lists.rackspace.com">EncoreUI mailing list</a> if you need an invitation to the meeting.</p>
 <h1>Further Reading</h1>
 <ul>
 <li><a href="https://github.com/rackerlabs/encore-ui/blob/master/CONTRIBUTING.md">Contribution Guide</a></li>
@@ -35,6 +12,7 @@
 <li><a href="https://github.com/rackerlabs/encore-ui/blob/master/CHANGELOG.md">Changelog</a></li>
 <li><a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/ui-setup.md">Developer Setup</a></li>
 <li><a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/testing.md">Introduction to Testing</a></li>
+<li><a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/common-questions.md">Common Questions</a></li>
 <li><a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/css-styleguide.md">CSS Style Guide</a></li>
 <li><a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/js-styleguide.md">JS Styleguide</a></li>
 <li><a href="https://waffle.io/rackerlabs/encore-ui">Task Board</a></li>

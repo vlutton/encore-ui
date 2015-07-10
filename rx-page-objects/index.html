@@ -1,6 +1,13 @@
 <h1 id="index">Index</h1>
 <p><strong>Modules</strong></p>
 <ul>
+<li><a href="#encore.module_rxAccountInfo">encore.rxAccountInfo</a><ul>
+<li><a href="#encore.module_rxAccountInfo.main">encore.rxAccountInfo.main</a></li>
+<li><a href="#encore.module_rxAccountInfo.initialize">encore.rxAccountInfo.initialize(rxAccountInfoElement)</a></li>
+<li><a href="#encore.module_rxAccountInfo.statuses">const: encore.rxAccountInfo.statuses</a></li>
+<li><a href="#encore.module_rxAccountInfo.statusTypes">const: encore.rxAccountInfo.statusTypes</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxBulkSelect">encore.rxBulkSelect</a><ul>
 <li><a href="#encore.module_rxBulkSelect.main">encore.rxBulkSelect.main</a></li>
 <li><a href="#encore.module_rxBulkSelect.initialize">encore.rxBulkSelect.initialize(rxBulkSelectElement)</a></li>
@@ -138,6 +145,27 @@
 </ul>
 <p><strong>Namespaces</strong></p>
 <ul>
+<li><a href="#rxAccountInfo">rxAccountInfo</a><ul>
+<li><a href="#rxAccountInfo.name">rxAccountInfo.name</a></li>
+<li><a href="#rxAccountInfo.number">rxAccountInfo.number</a></li>
+<li><a href="#rxAccountInfo.status">rxAccountInfo.status</a></li>
+<li><a href="#rxAccountInfo.statusType">rxAccountInfo.statusType</a></li>
+<li><a href="#rxAccountInfo.isDisplayed">rxAccountInfo.isDisplayed()</a></li>
+<li><a href="#rxAccountInfo.badge">rxAccountInfo.badge</a><ul>
+<li><a href="#rxAccountInfo.badge.names">badge.names</a></li>
+<li><a href="#rxAccountInfo.badge.byIndex">badge.byIndex(index)</a></li>
+<li><a href="#rxAccountInfo.badge.exists">badge.exists(badgeName)</a></li>
+<li><a href="#rxAccountInfo.badge.byName">badge.byName(badgeName)</a></li>
+<li><a href="#rxAccountInfo.badge.badge">badge.badge</a><ul>
+<li><a href="#rxAccountInfo.badge.badge.src">badge.src</a></li>
+<li><a href="#rxAccountInfo.badge.badge.name">badge.name</a></li>
+<li><a href="#rxAccountInfo.badge.badge.description">badge.description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#rxBulkSelectDefaultRowFn">rxBulkSelectDefaultRowFn</a></li>
 <li><a href="#rxCharacterCount">rxCharacterCount</a><ul>
 <li><a href="#rxCharacterCount.comment">rxCharacterCount.comment</a></li>
@@ -167,7 +195,11 @@
 </ul>
 </li>
 <li><a href="#rxCollapse">rxCollapse</a><ul>
+<li><a href="#rxCollapse.title">rxCollapse.title</a></li>
 <li><a href="#rxCollapse.isDisplayed">rxCollapse.isDisplayed()</a></li>
+<li><a href="#rxCollapse.isExpanded">rxCollapse.isExpanded()</a></li>
+<li><a href="#rxCollapse.hasCustomTitle">rxCollapse.hasCustomTitle()</a></li>
+<li><a href="#rxCollapse.toggle">rxCollapse.toggle()</a></li>
 </ul>
 </li>
 <li><a href="#rxFieldName">rxFieldName</a><ul>
@@ -311,6 +343,40 @@
 </ul>
 </li>
 </ul>
+<p><strong>Functions</strong></p>
+<ul>
+<li><a href="#count">count()</a></li>
+</ul>
+<p><a name="encore.module_rxAccountInfo"></a></p>
+<h1 id="encore-rxaccountinfo">encore.rxAccountInfo</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxAccountInfo">encore.rxAccountInfo</a><ul>
+<li><a href="#encore.module_rxAccountInfo.main">encore.rxAccountInfo.main</a></li>
+<li><a href="#encore.module_rxAccountInfo.initialize">encore.rxAccountInfo.initialize(rxAccountInfoElement)</a></li>
+<li><a href="#encore.module_rxAccountInfo.statuses">const: encore.rxAccountInfo.statuses</a></li>
+<li><a href="#encore.module_rxAccountInfo.statusTypes">const: encore.rxAccountInfo.statusTypes</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxAccountInfo.main"></a></p>
+<h2 id="encore-rxaccountinfo-main">encore.rxAccountInfo.main</h2>
+<p><strong>Returns</strong>: <a href="#rxAccountInfo">rxAccountInfo</a> - Page object representing the <em>first</em> rxAccountInfo object found on the page.<br><a name="encore.module_rxAccountInfo.initialize"></a></p>
+<h2 id="encore-rxaccountinfo-initialize-rxaccountinfoelement-">encore.rxAccountInfo.initialize(rxAccountInfoElement)</h2>
+<p><strong>Params</strong></p>
+<ul>
+<li>rxAccountInfoElement <code>WebElement</code> - WebElement to be transformed into an rxAccountInfoElement object  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxAccountInfo">rxAccountInfo</a> - Page object representing the rxAccountInfo object.<br><a name="encore.module_rxAccountInfo.statuses"></a></p>
+<h2 id="const-encore-rxaccountinfo-statuses">const: encore.rxAccountInfo.statuses</h2>
+<p><strong>Returns</strong>: <code>Object</code> - Lookup of account statuses from status text. Used for comparisons in tests.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">expect(encore.rxAccountInfo.main.status).to.eventually.equal(encore.rxAccountInfo.statuses.delinquent);
+</code></pre>
+<p><a name="encore.module_rxAccountInfo.statusTypes"></a></p>
+<h2 id="const-encore-rxaccountinfo-statustypes">const: encore.rxAccountInfo.statusTypes</h2>
+<p><strong>Returns</strong>: <code>Object</code> - Lookup of status types from a human-readable class name. Used for comparisons in tests.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">expect(encore.rxAccountInfo.main.statusType).to.eventually.equal(encore.rxAccountInfo.statusTypes.warning);
+</code></pre>
 <p><a name="encore.module_rxBulkSelect"></a></p>
 <h1 id="encore-rxbulkselect">encore.rxBulkSelect</h1>
 <p><strong>Members</strong></p>
@@ -951,10 +1017,14 @@ trailing whitespace when calculating the remaining character count.  </li>
 <li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
 </ul>
 </li>
+<li>title <code>String</code> - The title of the rxCollapse element.  </li>
+<li>expanded <code>Boolean</code> - Whether or not the rxCollapse element is currently expanded.  </li>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxCollapse({
-    cssSelector: &#39;.secondary-info rx-paginate&#39;, // select one of many widgets on page
+    cssSelector: &#39;.secondary-info rx-collapse&#39;, // select one of many widgets on page
+    title: &#39;My Custom rxCollapse Element&#39;,
+    expanded: true
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxFieldName"></a></p>
@@ -1078,7 +1148,109 @@ trailing whitespace when calculating the remaining character count.  </li>
     cssSelector: &#39;.demo-defualt-values&#39; // select one of many widgets on page
 }));
 </code></pre>
-<p><a name="rxBulkSelectDefaultRowFn"></a></p>
+<p><a name="rxAccountInfo"></a></p>
+<h1 id="rxaccountinfo">rxAccountInfo</h1>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxAccountInfo">rxAccountInfo</a><ul>
+<li><a href="#rxAccountInfo.name">rxAccountInfo.name</a></li>
+<li><a href="#rxAccountInfo.number">rxAccountInfo.number</a></li>
+<li><a href="#rxAccountInfo.status">rxAccountInfo.status</a></li>
+<li><a href="#rxAccountInfo.statusType">rxAccountInfo.statusType</a></li>
+<li><a href="#rxAccountInfo.isDisplayed">rxAccountInfo.isDisplayed()</a></li>
+<li><a href="#rxAccountInfo.badge">rxAccountInfo.badge</a><ul>
+<li><a href="#rxAccountInfo.badge.names">badge.names</a></li>
+<li><a href="#rxAccountInfo.badge.byIndex">badge.byIndex(index)</a></li>
+<li><a href="#rxAccountInfo.badge.exists">badge.exists(badgeName)</a></li>
+<li><a href="#rxAccountInfo.badge.byName">badge.byName(badgeName)</a></li>
+<li><a href="#rxAccountInfo.badge.badge">badge.badge</a><ul>
+<li><a href="#rxAccountInfo.badge.badge.src">badge.src</a></li>
+<li><a href="#rxAccountInfo.badge.badge.name">badge.name</a></li>
+<li><a href="#rxAccountInfo.badge.badge.description">badge.description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="rxAccountInfo.name"></a></p>
+<h2 id="rxaccountinfo-name">rxAccountInfo.name</h2>
+<p><strong>Returns</strong>: <code>String</code> - The name of the account.<br><a name="rxAccountInfo.number"></a></p>
+<h2 id="rxaccountinfo-number">rxAccountInfo.number</h2>
+<p><strong>Returns</strong>: <code>String</code> - The account number.<br><a name="rxAccountInfo.status"></a></p>
+<h2 id="rxaccountinfo-status">rxAccountInfo.status</h2>
+<p>The resulting status is lowercased so that it is easy to use with
+       <a href="#encore.module_rxAccountInfo.statuses">encore.rxAccountInfo.statuses</a>.</p>
+<p><strong>Returns</strong>: <code>String</code> - The account status, to lower case.<br><a name="rxAccountInfo.statusType"></a></p>
+<h2 id="rxaccountinfo-statustype">rxAccountInfo.statusType</h2>
+<p>Parses a class name from the DOM to determine what the status of the account is.
+       Designed to be easily compared with
+       <a href="#encore.module_rxAccountInfo.statusTypes">encore.rxAccountInfo.statusTypes</a>.</p>
+<p><strong>Returns</strong>: <code>String</code> - The status type of the account.<br><a name="rxAccountInfo.isDisplayed"></a></p>
+<h2 id="rxaccountinfo-isdisplayed-">rxAccountInfo.isDisplayed()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxAccountInfo.badge"></a></p>
+<h2 id="rxaccountinfo-badge">rxAccountInfo.badge</h2>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxAccountInfo.badge">rxAccountInfo.badge</a><ul>
+<li><a href="#rxAccountInfo.badge.names">badge.names</a></li>
+<li><a href="#rxAccountInfo.badge.byIndex">badge.byIndex(index)</a></li>
+<li><a href="#rxAccountInfo.badge.exists">badge.exists(badgeName)</a></li>
+<li><a href="#rxAccountInfo.badge.byName">badge.byName(badgeName)</a></li>
+<li><a href="#rxAccountInfo.badge.badge">badge.badge</a><ul>
+<li><a href="#rxAccountInfo.badge.badge.src">badge.src</a></li>
+<li><a href="#rxAccountInfo.badge.badge.name">badge.name</a></li>
+<li><a href="#rxAccountInfo.badge.badge.description">badge.description</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="rxAccountInfo.badge.names"></a></p>
+<h3 id="badge-names">badge.names</h3>
+<p><strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - All badge names.<br><a name="rxAccountInfo.badge.byIndex"></a></p>
+<h3 id="badge-byindex-index-">badge.byIndex(index)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>index <code>Number</code> - The badge to return at position <code>index</code>.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxAccountInfo.badge.badge">badge</a> - A single badge object at position <code>index</code>.<br><a name="rxAccountInfo.badge.exists"></a></p>
+<h3 id="badge-exists-badgename-">badge.exists(badgeName)</h3>
+<p><strong>Params</strong></p>
+<ul>
+<li>badgeName <code>String</code> - The name of the badge to check if present.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the badge <code>badgeName</code> is present.<br><a name="rxAccountInfo.badge.byName"></a></p>
+<h3 id="badge-byname-badgename-">badge.byName(badgeName)</h3>
+<p>Accepts a string for a fast, exact match only. Matches on the <code>img[data-name]</code> attribute.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>badgeName <code>String</code> - Badge name to match against.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxAccountInfo.badge.badge">badge</a> - A single badge objects by name <code>badgeName</code>.<br><a name="rxAccountInfo.badge.badge"></a></p>
+<h3 id="badge-badge">badge.badge</h3>
+<p>The specific information about a single badge.
+   Returned from <a href="#rxAccountInfo.badge">badge</a></p>
+<p><strong>Members</strong></p>
+<ul>
+<li><a href="#rxAccountInfo.badge.badge">badge.badge</a><ul>
+<li><a href="#rxAccountInfo.badge.badge.src">badge.src</a></li>
+<li><a href="#rxAccountInfo.badge.badge.name">badge.name</a></li>
+<li><a href="#rxAccountInfo.badge.badge.description">badge.description</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxAccountInfo.badge.badge.src"></a></p>
+<h4 id="badge-src">badge.src</h4>
+<p>A link to the image source for the badge.</p>
+<p><strong>Returns</strong>: <code>String</code> - The attribute under <code>ng-src</code> for the badge.<br><a name="rxAccountInfo.badge.badge.name"></a></p>
+<h4 id="badge-name">badge.name</h4>
+<p>Will get the <code>data-name</code> attribute from the badge.</p>
+<p><strong>Returns</strong>: <code>String</code> - The name of the badge.<br><a name="rxAccountInfo.badge.badge.description"></a></p>
+<h4 id="badge-description">badge.description</h4>
+<p>Will get the <code>data-description</code> attribute from the badge.</p>
+<p><strong>Returns</strong>: <code>String</code> - The description of the badge.<br><a name="rxBulkSelectDefaultRowFn"></a></p>
 <h1 id="rxbulkselectdefaultrowfn">rxBulkSelectDefaultRowFn</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -1182,13 +1354,28 @@ This function will be removed in a future release of the EncoreUI framework.</p>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#rxCollapse">rxCollapse</a><ul>
+<li><a href="#rxCollapse.title">rxCollapse.title</a></li>
 <li><a href="#rxCollapse.isDisplayed">rxCollapse.isDisplayed()</a></li>
+<li><a href="#rxCollapse.isExpanded">rxCollapse.isExpanded()</a></li>
+<li><a href="#rxCollapse.hasCustomTitle">rxCollapse.hasCustomTitle()</a></li>
+<li><a href="#rxCollapse.toggle">rxCollapse.toggle()</a></li>
 </ul>
 </li>
 </ul>
-<p><a name="rxCollapse.isDisplayed"></a></p>
+<p><a name="rxCollapse.title"></a></p>
+<h2 id="rxcollapse-title">rxCollapse.title</h2>
+<p>Will return the custom title&#39;s text if the component uses one. Otherwise, it&#39;ll return
+       the default title, found in the <code>.sml-title</code> (see-more-less-title) class.</p>
+<p><strong>Returns</strong>: <code>String</code> - Either the custom title&#39;s text, or the default title.<br><a name="rxCollapse.isDisplayed"></a></p>
 <h2 id="rxcollapse-isdisplayed-">rxCollapse.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxFieldName"></a></p>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxCollapse.isExpanded"></a></p>
+<h2 id="rxcollapse-isexpanded-">rxCollapse.isExpanded()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or no the component is currently expanded.<br><a name="rxCollapse.hasCustomTitle"></a></p>
+<h2 id="rxcollapse-hascustomtitle-">rxCollapse.hasCustomTitle()</h2>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the component has a custom title.<br><a name="rxCollapse.toggle"></a></p>
+<h2 id="rxcollapse-toggle-">rxCollapse.toggle()</h2>
+<p>Will expand the component if collapsed, or will collapse it if it&#39;s expanded.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxFieldName"></a></p>
 <h1 id="rxfieldname">rxFieldName</h1>
 <p><strong>Members</strong></p>
 <ul>
@@ -1825,4 +2012,6 @@ charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function 
 <h2 id="rxtoggleswitch-isdisabled-">rxToggleSwitch.isDisabled()</h2>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the switch component is currently disabled.<br><a name="rxToggleSwitch.disable"></a></p>
 <h2 id="rxtoggleswitch-disable-">rxToggleSwitch.disable()</h2>
-<p><strong>Returns</strong>: <code>undefined</code>  </p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="count"></a></p>
+<h1 id="count-">count()</h1>
+<p><strong>Returns</strong>: <code>Number</code> - The total number of badges for the account.  </p>
