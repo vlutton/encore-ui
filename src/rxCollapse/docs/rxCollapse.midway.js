@@ -2,7 +2,7 @@
 describe('rxCollapse', function () {
 
     before(function () {
-        demoPage.go('#/component/rxCollapse');
+        demoPage.go('#/components/rxCollapse');
     });
 
     describe('custom title', encore.exercise.rxCollapse({

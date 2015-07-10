@@ -5,7 +5,7 @@ describe('rxApp', function () {
     var rxAppCustom, rxAppStandard;
 
     before(function () {
-        demoPage.go('#/component/rxApp');
+        demoPage.go('#/components/rxApp');
         rxAppCustom = rxAppPage.initialize($('#custom-rxApp'));
         rxAppStandard = rxAppPage.initialize($('#standard-rxApp'));
     });
@@ -41,7 +41,7 @@ describe('rxApp', function () {
     it('should logout', function () {
         rxAppCustom.logout();
         expect(demoPage.currentUrl).to.eventually.contain('login');
-        demoPage.go('#/component/rxApp');
+        demoPage.go('#/components/rxApp');
     });
 
     describe('with collapsible navigation', function () {
@@ -79,7 +79,7 @@ describe('rxPage', function () {
     var standardPage, customPage;
 
     before(function () {
-        demoPage.go('#/component/rxApp');
+        demoPage.go('#/components/rxApp');
         standardPage = rxPage.initialize($('#standard-rxApp .rx-page'));
         customPage = rxPage.initialize($('#custom-rxApp .rx-page'));
     });
@@ -120,7 +120,7 @@ describe('rxPage', function () {
     describe('main title', function () {
 
         before(function () {
-            demoPage.go('#/component/configs');
+            demoPage.go('#/components/configs');
         });
 
         it('should grab the main title', function () {

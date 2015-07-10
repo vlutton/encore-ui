@@ -5,7 +5,7 @@ describe('rxFloatingHeader', function () {
 
     describe('One header row table', function () {
         before(function () {
-            demoPage.go('#/component/rxFloatingHeader');
+            demoPage.go('#/components/rxFloatingHeader');
             table = $('table[rx-floating-header].no-filter');
             tr = table.$('thead tr:first-of-type');
             middleRow = table.$('.middle-row');
@@ -31,9 +31,16 @@ describe('rxFloatingHeader', function () {
     });
 
     describe('Multi header row table', function () {
-        var filterHeader, titlesHeader, initialFilterY, filterHeight;
+        var filterHeader, titlesHeader, initialFilterY, filterHeight, windowSize;
+        var window = browser.driver.manage().window();
 
         before(function () {
+            // Set the height smaller so the header can float no matter the screen size
+            window.getSize().then(function (size) {
+                windowSize = size;
+                window.setSize(windowSize.width, 400);
+            });
+
             table = $('table[rx-floating-header].filter');
             var trs = table.$$('thead tr');
             filterHeader = trs.get(0);
@@ -46,6 +53,11 @@ describe('rxFloatingHeader', function () {
                 filterHeight = locations[2].height;
             });
         });
+
+        after(function () {
+            // Return window to original size
+            window.setSize(windowSize.width, windowSize.height);
+        })
 
         it('should float header after scrolling to middle of table', function () {
             rxFloatingHeader.scrollToElement(middleRow);

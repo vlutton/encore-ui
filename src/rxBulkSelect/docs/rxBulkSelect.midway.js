@@ -1,7 +1,7 @@
 describe('rxBulkSelect', function () {
 
     before(function () {
-        demoPage.go('#/component/rxBulkSelect');
+        demoPage.go('#/components/rxBulkSelect');
     });
 
     describe('exercises', encore.exercise.rxBulkSelect());

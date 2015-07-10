@@ -3,7 +3,7 @@ var rxPermissionPage = encore.rxPermission;
 describe('rxPermission', function () {
 
     before(function () {
-        demoPage.go('#/component/rxPermission');
+        demoPage.go('#/components/rxPermission');
     });
 
     it('rxPermission should display and hide content when appropriate', function () {

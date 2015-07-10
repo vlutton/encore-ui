@@ -3,7 +3,7 @@ var rxSpinnerPage = encore.rxSpinner;
 describe('rxSpinner', function () {
 
     before(function () {
-        demoPage.go('#/component/rxSpinner');
+        demoPage.go('#/components/rxSpinner');
     });
 
     it.skip('should show element', function () {

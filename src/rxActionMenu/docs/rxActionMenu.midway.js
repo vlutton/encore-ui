@@ -23,7 +23,7 @@ describe('rxActionMenu', function () {
     };
 
     before(function () {
-        demoPage.go('#/component/rxActionMenu');
+        demoPage.go('#/components/rxActionMenu');
         globalDismiss = actionMenu.initialize($('rx-action-menu#globalDismissal'));
         localDismiss = actionMenu.initialize($('rx-action-menu[global-dismiss="false"]'));
         customActions = actionMenu.initialize($('rx-action-menu#custom'), customActionMenuItem);

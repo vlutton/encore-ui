@@ -462,5 +462,3 @@ The solution to this is to ensure that these elements with directives _also_ hav
 In fact, recall that we said all items _must_ have one of `href` or `children`, so the `href` is necessary anyway. But they key here is that by having an `href`, the browser will navigate to `/support/people-support` / `/support/machine-support`, which should be defined in Angular apps that have `people-search` and `machine-search` available as directives.
 
 With this configuration, clicking on `Support` will expand the `children`, and the user will see `People Support` and `Machine Support`, but they will not see the directives. But if they then click on one of `People Support` or `Machine Support`, then the `/support` Angular application will be loaded, the and the directives will become available.
-
-

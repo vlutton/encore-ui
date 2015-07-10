@@ -3,7 +3,7 @@ var environment = encore.rxEnvironment;
 describe('rxEnvironment', function () {
 
     before(function () {
-        demoPage.go('#/component/rxEnvironment');
+        demoPage.go('#/components/rxEnvironment');
     });
 
     it('should be on localhost', function () {

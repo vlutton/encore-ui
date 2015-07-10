@@ -1,6 +1,6 @@
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-# Directives 
+# Directives
 This component provides directives and styles for putting status columns into tables.
 
 ## rx-status-header
@@ -9,7 +9,7 @@ For the `<th>` component representing the status column, add the `rx-status-head
 
     <th rx-status-header></th>
 
-Note that status columns are sortable with <a href="#/component/rxSortableColumn">rxSortableColumn</a>, just like any other column. The demo below shows an example of this.
+Note that status columns are sortable with <a href="#/components/rxSortableColumn">rxSortableColumn</a>, just like any other column. The demo below shows an example of this.
 
 One few things to note about the demo: The <code>&lt;th&gt;<code> is defined as:
 <pre><code>
@@ -64,11 +64,11 @@ To accommodate different statuses, the `rxStatusMappings` factory includes metho
         'FAILURE': 'ERROR'
     })
 
-These mappings will be used throughout all instances of `rx-status-column` in your code. 
+These mappings will be used throughout all instances of `rx-status-column` in your code.
 
 ## addAPI()
 
-Say that you are using three APIs in your product, `X`, `Y` and `Z`. Both `X` and `Y` define a status `"FOO"`, which you want to map to encore-ui's `"WARNING"`. You can declare this  mapping with `rxStatusMappings.addGlobal({ 'FOO': 'WARNING' })`. But your API `Z` also returns a `"FOO"` status, which you need mapped to encore-ui's `"ERROR"` status. 
+Say that you are using three APIs in your product, `X`, `Y` and `Z`. Both `X` and `Y` define a status `"FOO"`, which you want to map to encore-ui's `"WARNING"`. You can declare this  mapping with `rxStatusMappings.addGlobal({ 'FOO': 'WARNING' })`. But your API `Z` also returns a `"FOO"` status, which you need mapped to encore-ui's `"ERROR"` status.
 
 You _could_ do a transformation in your product to convert the `"FOO"` from `Z` into something else, or you can make use of `rxStatusMappings.addAPI()`, as follows:
 

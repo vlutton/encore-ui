@@ -5,7 +5,7 @@ describe('rxModalAction', function () {
     var changePasswordModal, triggerModal;
 
     before(function () {
-        demoPage.go('#/component/rxModalAction');
+        demoPage.go('#/components/rxModalAction');
         triggerModal = function () {
             rxForm.slowClick($('.component-demo .modal-link'));
         };

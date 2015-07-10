@@ -2,7 +2,7 @@ var rxCheckboxPage = encore.rxCheckbox;
 
 describe('rxCheckbox', function () {
     before(function () {
-        demoPage.go('#/component/rxCheckbox');
+        demoPage.go('#/components/rxCheckbox');
     });
 
     describe('(State) Valid Enabled Checked', encore.exercise.rxCheckbox({

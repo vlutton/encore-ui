@@ -2,7 +2,7 @@
 
 # Notice!
 
-This feature will soon be deprecated in favor of the [responsive layout module](#/component/layout). This new module implements a more intuitive, semantic, attribute-based syntax for creating responsive designs making use of flexbox.
+This feature will soon be deprecated in favor of the [responsive layout module](#/components/layout). This new module implements a more intuitive, semantic, attribute-based syntax for creating responsive designs making use of flexbox.
 
 # Description
 

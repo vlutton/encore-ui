@@ -7,7 +7,7 @@ describe('rxFeedback', function () {
     var defaultFeedback = 'Software Bug';
 
     before(function () {
-        demoPage.go('#/component/rxFeedback');
+        demoPage.go('#/components/rxFeedback');
         successfulFeedback = feedback.initialize($('#rxFeedbackSucceeds'));
         unsuccessfulFeedback = feedback.initialize($('#rxFeedbackFails'));
     });

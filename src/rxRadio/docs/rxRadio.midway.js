@@ -4,7 +4,7 @@ describe('rxRadio', function () {
     var subject;
 
     before(function () {
-        demoPage.go('#/component/rxRadio');
+        demoPage.go('#/components/rxRadio');
     });
 
     describe('(State) Valid Enabled Selected', encore.exercise.rxRadio({

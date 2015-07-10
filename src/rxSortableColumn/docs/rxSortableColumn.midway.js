@@ -11,7 +11,7 @@ describe('rxSortableColumn', function () {
     var columns, nameColumn, roleColumn;
 
     before(function () {
-        demoPage.go('#/component/rxSortableColumn');
+        demoPage.go('#/components/rxSortableColumn');
         columns = rxSortableColumn.byTable($('.component-demo table'));
         nameColumn = column('Name', 'resource in talentPool');
         roleColumn = column('Occupation');
