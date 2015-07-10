@@ -1,11 +1,18 @@
 
 describe('rxCollapse', function () {
-    var rxCollapse;
 
     before(function () {
         demoPage.go('#/component/rxCollapse');
     });
 
-    describe('exercises', encore.exercise.rxCollapse());
+    describe('custom title', encore.exercise.rxCollapse({
+        cssSelector: '.demo-with-title',
+        title: 'A Custom Title',
+        expanded: true,
+    }));
 
+    describe('default title', encore.exercise.rxCollapse({
+        cssSelector: '.demo-no-title',
+        expanded: false
+    }));
 });

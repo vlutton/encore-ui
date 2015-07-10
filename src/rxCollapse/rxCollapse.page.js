@@ -1,4 +1,5 @@
 /*jshint node:true*/
+var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
 /**
@@ -16,27 +17,61 @@ var rxCollapse = {
         }
     },
 
+    /**
+       @function
+       @returns {Boolean} Whether or no the component is currently expanded.
+     */
     isExpanded: {
-        get: function () {
+        value: function () {
             return this.rootElement.$('.expanded').isPresent();
         }
     },
 
+    /**
+       @function
+       @returns {Boolean} Whether or not the component has a custom title.
+     */
+    hasCustomTitle: {
+        value: function () {
+            return this.rootElement.$('.collapse-title-wrap').getAttribute('class').then(function (classes) {
+                return _.contains(classes.split(' '), 'collapse-title-wrap-custom');
+            });
+        }
+    },
+
+    /**
+       Will return the custom title's text if the component uses one. Otherwise, it'll return
+       the default title, found in the `.sml-title` (see-more-less-title) class.
+       @returns {String} Either the custom title's text, or the default title.
+     */
     title: {
         get: function () {
-            return this.rootElement.$('.title');
+            var page = this;
+            return this.hasCustomTitle().then(function (hasCustomTitle) {
+                if (hasCustomTitle) {
+                    return page.rootElement.$('.rx-collapse-title').getText();
+                } else {
+                    return page.rootElement.$('.sml-title').getText();
+                }
+            });
         }
     },
 
-    btnToggle: {
-        get: function () {
-            return this.rootElement.$('.double-chevron');
-        }
-    },
-
-    elBody: {
-        get: function () {
-            return this.rootElement.$('.collapse-body');
+    /**
+       Will expand the component if collapsed, or will collapse it if it's expanded.
+       @function
+       @returns {undefined}
+     */
+    toggle: {
+        value: function () {
+            var page = this;
+            return this.hasCustomTitle().then(function (hasCustomTitle) {
+                if (hasCustomTitle) {
+                    return page.rootElement.$('.double-chevron').click();
+                } else {
+                    return page.rootElement.$('.sml-title').click();
+                }
+            });
         }
     }
 

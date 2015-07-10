@@ -6,10 +6,14 @@ var rxCollapse = require('./rxCollapse.page').rxCollapse;
    @exports encore.exercise.rxCollapse
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
+   @param {String} title - The title of the rxCollapse element.
+   @param {Boolean} expanded - Whether or not the rxCollapse element is currently expanded.
    @example
    ```js
    describe('default exercises', encore.exercise.rxCollapse({
-       cssSelector: '.secondary-info rx-paginate', // select one of many widgets on page
+       cssSelector: '.secondary-info rx-collapse', // select one of many widgets on page
+       title: 'My Custom rxCollapse Element',
+       expanded: true
    }));
    ```
  */
@@ -18,7 +22,10 @@ exports.rxCollapse = function (options) {
         options = {};
     }
 
-    options = _.defaults(options, { /* defaults go here */ });
+    options = _.defaults(options, {
+        title: undefined,
+        expanded: false,
+    });
 
     return function () {
         var component;
@@ -35,21 +42,33 @@ exports.rxCollapse = function (options) {
             expect(component.isDisplayed()).to.eventually.be.true;
         });
 
-        it('should show a custom title', function () {
-            expect(component.title.getText()).to.eventually.equal('A Custom Title');
-        });
-
         it('should expand and collapse with toggle', function () {
-            expect(component.isExpanded).to.eventually.be.true;
+            expect(component.isExpanded()).to.eventually.eq(options.expanded);
 
-            // Collapse
-            component.btnToggle.click();
-            expect(component.isExpanded).to.eventually.be.false;
+            component.toggle();
+            expect(component.isExpanded()).to.eventually.eq(!options.expanded);
 
-            // Expand
-            component.btnToggle.click();
-            expect(component.isExpanded).to.eventually.be.true;
+            component.toggle();
+            expect(component.isExpanded()).to.eventually.eq(options.expanded);
         });
+
+        if (!_.isUndefined(options.title)) {
+            it('should show a custom title', function () {
+                expect(component.title).to.eventually.equal(options.title);
+            });
+        } else {
+            it('should show "See More" for the title', function () {
+                expect(component.title).to.eventually.equal('See More');
+            });
+
+            it('should toggle between "See More" and "See Less"', function () {
+                component.toggle();
+                expect(component.title).to.eventually.equal('See Less');
+
+                component.toggle();
+                expect(component.title).to.eventually.equal('See More');
+            });
+        }
 
     };
 };
