@@ -85,6 +85,11 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 rxBreadcrumbsSvc.set();
             }
         })
+        .when('/component/:component', {
+            redirectTo: function (routeParams) {
+                return '/components/' + routeParams.component;
+            }
+        })
         .when('/components/:component', {
             controller: 'componentCtrl',
             templateUrl: 'component-template.html',
