@@ -1,7 +1,3 @@
-var rxSelect = encore.rxSelect;
-var htmlCheckbox = encore.htmlCheckbox;
-var htmlRadio = encore.htmlRadio;
-
 describe('rxSelect', function () {
     var subject;
 
@@ -13,47 +9,77 @@ describe('rxSelect', function () {
         cssSelector: '#selValidEnabled',
         disabled: false,
         visible: true,
-        valid: true
+        valid: true,
+        selectedText: 'Third'
     }));
 
     describe('(State) Valid NG-Disabled', encore.exercise.rxSelect({
         cssSelector: '#selValidNgDisabled',
         disabled: true,
         visible: true,
-        valid: true
+        valid: true,
+        selectedText: "Disabled by 'ng-disabled' attribute"
     }));
 
     describe('(State) Valid Disabled', encore.exercise.rxSelect({
         cssSelector: '#selValidDisabled',
         disabled: true,
         visible: true,
-        valid: true
+        valid: true,
+        selectedText: "Disabled by 'disabled' attribute"
     }));
 
     describe('(State) Invalid Enabled', encore.exercise.rxSelect({
         cssSelector: '#selInvalidEnabled',
         disabled: false,
         visible: true,
-        valid: false
+        valid: false,
+        selectedText: "Fourth"
     }));
 
     describe('(State) Invalid NG-Disabled', encore.exercise.rxSelect({
         cssSelector: '#selInvalidNgDisabled',
         disabled: true,
         visible: true,
-        valid: false
+        valid: false,
+        selectedText: "Disabled by 'ng-disabled' attribute"
     }));
 
     describe('(State) Invalid Disabled', encore.exercise.rxSelect({
         cssSelector: '#selInvalidDisabled',
         disabled: true,
         visible: true,
-        valid: false
+        valid: false,
+        selectedText: "Disabled by 'disabled' attribute"
     }));
+
+    describe('plain HTML select elements', function () {
+        describe('Enabled Default Starting Value', encore.exercise.rxSelect({
+            cssSelector: "#plainHtmlNormal",
+            disabled: false,
+            valid: false,
+            selectedText: "Plain HTML Select Option"
+        }));
+
+        describe('Disabled', encore.exercise.rxSelect({
+            cssSelector: "#plainHtmlDisabled",
+            disabled: true,
+            valid: false,
+            selectedText: "Disabled HTML Select Option"
+        }));
+
+        describe('Valid Enabled Non-Default Starting Value', encore.exercise.rxSelect({
+            cssSelector: "#plainHtmlSecondSelected",
+            disabled: false,
+            valid: true,
+            selectedText: "Non Default Starting Option"
+        }));
+
+    });
 
     describe('How do you like your bacon?', function () {
         before(function () {
-            subject = rxSelect.initialize($('#selBaconPrep'));
+            subject = encore.rxSelect.initialize($('#selBaconPrep'));
         });
 
         it('should be invalid', function () {
@@ -131,14 +157,41 @@ describe('rxSelect', function () {
                 expect(subject.isValid()).to.eventually.be.false;
             });
         });
+
+        describe('plain HTML select elements', function () {
+            var willHide;
+            var willBeHidden;
+
+            before(function () {
+                willHide = encore.rxSelect.initialize($('#plainSelShowSelect'));
+                willBeHidden = encore.rxSelect.initialize($('#plainSelRemoveable'));
+            });
+
+            it('should show the select element by default', function () {
+                expect(willBeHidden.isPresent()).to.eventually.be.true;
+                expect(willBeHidden.isDisplayed()).to.eventually.be.true;
+            });
+
+            it('should remove the select element to the DOM', function () {
+                willHide.select('Hide Next Select Box');
+                expect(willBeHidden.isPresent()).to.eventually.be.false;
+            });
+
+            it('should add the select element back', function () {
+                willHide.select('Show Next Select Box');
+                expect(willBeHidden.isPresent()).to.eventually.be.true;
+                expect(willBeHidden.isDisplayed()).to.eventually.be.true;
+            });
+
+        });
     });
 
     describe('Show/Hide Select', function () {
         var checkbox;
 
         before(function () {
-            checkbox = htmlCheckbox.initialize($('#chkShow'));
-            subject = rxSelect.initialize($('#selTargetShow'));
+            checkbox = encore.rxCheckbox.initialize($('#chkShow'));
+            subject = encore.rxSelect.initialize($('#selTargetShow'));
         });
 
         describe('when checkbox checked', function () {
@@ -166,9 +219,9 @@ describe('rxSelect', function () {
         var radDestroyed, radCreated;
 
         before(function () {
-            radDestroyed = htmlRadio.initialize($('#radDestroyed'));
-            radCreated = htmlRadio.initialize($('#radCreated'));
-            subject = rxSelect.initialize($('#selTargetCreated'));
+            radDestroyed = encore.rxRadio.initialize($('#radDestroyed'));
+            radCreated = encore.rxRadio.initialize($('#radCreated'));
+            subject = encore.rxSelect.initialize($('#selTargetCreated'));
         });
 
         describe('when created', function () {

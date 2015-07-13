@@ -3,92 +3,137 @@ var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
 /**
- * @namespace
+ * The specific information about a single select element option.
+ * Returned from {@link rxSelect.option}
+ * @namespace rxSelect.option.option
  */
-var htmlSelectOption = {
-    /**
-     * @returns {string} The text inside of an `<option>` element
-     */
-    text: {
-        get: function () {
-            return this.rootElement.getText();
-        }
-    },
+var rxSelectOptionFromElement = function (rootElement) {
 
-    /**
-     * @returns {string} The "value" attribute for an `<option>` element
-     */
-    value: {
-        get: function () {
-            return this.rootElement.getAttribute('value');
-        }
-    },
+    return Page.create({
 
-    /**
-     * @function
-     * @description Select an `<option>` element within a `<select>`
-     * @returns {undefined}
-     */
-    select: {
-        value: function () {
-            exports.rxMisc.slowClick(this.rootElement);
-        }
-    },
+        /**
+         * @memberof rxSelect.option.option
+         * @returns {string} The text inside of an `<option>` element
+         */
+        text: {
+            get: function () {
+                return rootElement.getText();
+            }
+        },
 
-    /**
-     * @function
-     * @returns {Boolean} Whether or not the `<option>` is currently selected
-     */
-    isSelected: {
-        value: function () {
-            return this.rootElement.isSelected();
-        }
-    },
+        /**
+         * @memberof rxSelect.option.option
+         * @returns {string} The "value" attribute for an `<option>` element
+         */
+        value: {
+            get: function () {
+                return rootElement.getAttribute('value');
+            }
+        },
 
-    /**
-     * @function
-     * @returns {Boolean} Whether or not the `<option>` is currently present
-     */
-    isPresent: {
-        value: function () {
-            return this.rootElement.isPresent();
+        /**
+         * @memberof rxSelect.option.option
+         * @function
+         * @description Select an `<option>` element within a `<select>`
+         * @returns {undefined}
+         */
+        select: {
+            value: function () {
+                exports.rxMisc.slowClick(rootElement);
+            }
+        },
+
+        /**
+         * @memberof rxSelect.option.option
+         * @function
+         * @returns {Boolean} Whether or not the `<option>` is currently selected
+         */
+        isSelected: {
+            value: function () {
+                return rootElement.isSelected();
+            }
+        },
+
+        /**
+         * @memberof rxSelect.option.option
+         * @function
+         * @returns {Boolean} Whether or not the `<option>` is currently present
+         */
+        isPresent: {
+            value: function () {
+                return rootElement.isPresent();
+            }
         }
-    }
-};//htmlSelectOption
+    });
+
+};//rxSelectOptionFromElement
 
 /**
  * @namespace
  */
-var htmlSelect = {
+var rxSelect = {
+    eleWrapper: {
+        get: function () {
+            return this.rootElement.element(by.xpath('..'));
+        }
+    },
+
+    eleFakeSelect: {
+        get: function () {
+            return this.eleWrapper.$('.fake-select');
+        }
+    },
+
     /**
      * @function
-     * @returns {Boolean} Whether or not the `<select>` element is disabled
+     * @memberOf rxSelect
+     * @returns {Boolean} Whether or not the select element contains the disabled class name.
      */
     isDisabled: {
         value: function () {
-            return this.rootElement.getAttribute('disabled').then(function (disabled) {
-                return (disabled ? true : false);
+            var page = this;
+            return this.eleFakeSelect.isPresent().then(function (isFakeSelect) {
+                if (isFakeSelect) {
+                    return page.eleWrapper.getAttribute('class').then(function (classes) {
+                        return _.contains(classes.split(' '), 'rx-disabled');
+                    });
+                }
+                return page.rootElement.getAttribute('disabled').then(function (disabled) {
+                    return disabled === null ? false : true;
+                });
             });
         }
     },
 
     /**
      * @function
-     * @returns {Boolean} Whether the `<select>` element is currently displayed
+     * @memberOf rxSelect
+     * @returns {Boolean} Whether the select element is currently displayed.
      */
     isDisplayed: {
         value: function () {
-            return this.rootElement.isDisplayed();
+            var page = this;
+            return this.eleFakeSelect.isPresent().then(function (isFakeSelect) {
+                if (isFakeSelect) {
+                    var checks = [page.rootElement.isDisplayed(), page.eleFakeSelect.isDisplayed()];
+                    return protractor.promise.all(checks).then(_.every);
+                }
+                return page.rootElement.isDisplayed();
+            });
         }
     },
 
     /**
      * @function
-     * @returns {Boolean} Whether or not the `<select>` element exists on the page
+     * @memberOf rxSelect
+     * @returns {Boolean} Whether or not the select element exists on the page.
      */
     isPresent: {
         value: function () {
-            return this.rootElement.isPresent();
+            var page = this;
+            return this.eleFakeSelect.isPresent().then(function (isFakeSelect) {
+                return isFakeSelect || page.rootElement.isPresent();
+            });
         }
     },
 
@@ -109,26 +154,31 @@ var htmlSelect = {
      * ======================================== */
 
     /**
-     * @function
+     * @namespace rxSelect.option
      * @param {String} optionText
      *   Partial or total string to match the display value of the desired `<option>` element
-     * @returns {htmlSelectOption} Page object representing an option
+     * @returns {rxSelectOption.option.option} Page object representing an option
+     * @example
+     * ```js
+     * var homeState = encore.rxSelect.main.option('Indiana');
+     * homeState.select();
+     * expect(homeState.isSelected()).to.eventually.be.true;
+     * ```
      */
     option: {
         value: function (optionText) {
             var optionElement = this.findOptionContaining(optionText);
-            return exports.htmlSelectOption.initialize(optionElement);
+            return rxSelectOptionFromElement(optionElement);
         }
     },
 
     /**
-     * @function
-     * @returns {String[]} List of htmlSelectOption page objects for each `<option>` element in the dropdown
+     * @returns {String[]} List of rxSelectOption page objects for each `<option>` element in the dropdown
      */
     options: {
         get: function () {
             return this.rootElement.$$('option').map(function (optionElement) {
-                return exports.htmlSelectOption.initialize(optionElement).text;
+                return rxSelectOptionFromElement(optionElement).text;
             });
         }
     },
@@ -156,24 +206,22 @@ var htmlSelect = {
     },
 
     /**
-     * @function
      * @returns {String[]} List of values for each `<option>` element in the dropdown
      */
     values: {
         get: function () {
             return this.rootElement.$$('option').map(function (optionElement) {
-                return exports.htmlSelectOption.initialize(optionElement).value;
+                return rxSelectOptionFromElement(optionElement).value;
             });
         }
     },
 
     /**
-     * @function
-     * @returns {htmlSelectOption} Page object representing the currently selected `<option>` element.
+     * @returns {rxSelectOption} Page object representing the currently selected `<option>` element.
      */
     selectedOption: {
         get: function () {
-            return exports.htmlSelectOption.initialize(this.rootElement.$('option:checked'));
+            return rxSelectOptionFromElement(this.rootElement.$('option:checked'));
         }
     },
 
@@ -204,125 +252,8 @@ var htmlSelect = {
             return this.option(optionText).select();
         }
     }
-};//htmlSelect
 
-/**
- * @namespace
- * @extends htmlSelect
- * @description Type of htmlSelect that includes functionality required to interact with additional markup.
- */
-var rxSelect = _.defaults(htmlSelect, {
-    eleWrapper: {
-        get: function () {
-            return this.rootElement.element(by.xpath('..'));
-        }
-    },
-
-    eleFakeSelect: {
-        get: function () {
-            return this.eleWrapper.$('.fake-select');
-        }
-    },
-
-    /**
-     * @function
-     * @override
-     * @memberOf rxSelect
-     * @returns {Boolean} Whether or not the wrapper has expected disabled class name
-     */
-    isDisabled: {
-        value: function () {
-            return this.eleWrapper.getAttribute('class').then(function (classes) {
-                return _.contains(classes.split(' '), 'rx-disabled');
-            });
-        }
-    },
-
-    /**
-     * @function
-     * @override
-     * @memberOf rxSelect
-     * @returns {Boolean} Whether the styled element is currently displayed.
-     */
-    isDisplayed: {
-        value: function () {
-            return this.rootElement.isDisplayed() && this.eleFakeSelect.isDisplayed();
-        }
-    },
-
-    /**
-     * @function
-     * @override
-     * @memberOf rxSelect
-     * @returns {Boolean} Whether or not the styled element exists on the page
-     */
-    isPresent: {
-        value: function () {
-            return this.eleFakeSelect.isPresent();
-        }
-    }
-});//rxSelect
-
-/**
- * @exports encore.htmlSelectOption
- */
-exports.htmlSelectOption = {
-    /**
-     * @function
-     * @param {WebElement} selectOption - WebElement to be transformed into an htmlSelectOption page object
-     * @returns {htmlSelectOption} Page object representing an `<option>` element.
-     */
-    initialize: function (selectOptionElement) {
-        htmlSelectOption.rootElement = {
-            get: function () { return selectOptionElement; }
-        };
-        return Page.create(htmlSelectOption);
-    }
-};
-
-/**
- * @exports encore.htmlSelect
- */
-exports.htmlSelect = {
-    /**
-     * @function
-     * @param {WebElement} selectElement - WebElement to be transformed into an htmlSelect page object
-     * @returns {htmlSelect} Page object representing a `<select>` element
-     */
-    initialize: function (selectElement) {
-        htmlSelect.rootElement = {
-            get: function () { return selectElement; }
-        };
-        return Page.create(htmlSelect);
-    },
-
-    /**
-     * @returns {htmlSelect} Page object representing the _first_ `<select>` element found on the page
-     */
-    main: (function () {
-        htmlSelect.rootElement = {
-            get: function () { return $('select')[0]; }
-        };
-        return Page.create(htmlSelect);
-    })(),
-
-    /**
-     * @function
-     * @description Generates a getter and a setter for an HTML select element on your page.
-     * @param {WebElement} elem - The WebElement for the HTML select.
-     * @returns {Object} A getter and a setter to be applied to an HTML select page object.
-     */
-    generateAccessor: function (elem) {
-        return {
-            get: function () {
-                return exports.htmlSelect.initialize(elem).selectedOption;
-            },
-            set: function (optionText) {
-                exports.htmlSelect.initialize(elem).select(optionText);
-            }
-        };
-    }
-};
+};//rxSelect
 
 /**
  * @exports encore.rxSelect
@@ -341,11 +272,13 @@ exports.rxSelect = {
     },
 
     /**
+     * Don't use this if you're expecting a regular html select element on the page. This only checks for Encore
+     * specific rxForm-style select elements.
      * @returns {rxSelect} Page object representing the _first_ `<select rx-select>` element found on the page
      */
     main: (function () {
         rxSelect.rootElement = {
-            get: function () { return $('select[rx-select]')[0]; }
+            get: function () { return $('select[rx-select]'); }
         };
         return Page.create(rxSelect);
     })(),

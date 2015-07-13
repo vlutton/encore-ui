@@ -10,4 +10,6 @@ angular.module('demoApp')
     $scope.invalidEnabled = 4;
     $scope.invalidNgDisabled = 'na';
     $scope.invalidDisabled = 'na';
+
+    $scope.htmlSelectAlternativeValue = 'second';
 });

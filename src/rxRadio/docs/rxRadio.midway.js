@@ -204,17 +204,17 @@ describe('rxRadio', function () {
                 otherRadio = encore.rxRadio.initialize($('#plainHtmlNormal'));
             });
 
-            it('should show the checkbox by default', function () {
+            it('should show the radio button by default', function () {
                 expect(willBeHidden.isPresent()).to.eventually.be.false;
             });
 
-            it('should remove the checkbox from the DOM', function () {
+            it('should remove the radio button from the DOM', function () {
                 willHide.select();
                 expect(willBeHidden.isDisplayed()).to.eventually.be.true;
                 expect(willBeHidden.isPresent()).to.eventually.be.true;
             });
 
-            it('should put the checkbox back', function () {
+            it('should put the radio button back', function () {
                 otherRadio.select();
                 expect(willBeHidden.isPresent()).to.eventually.be.false;
             });
