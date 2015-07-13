@@ -1,3 +1,12 @@
+<a name="1.23.1"></a>
+### 1.23.1 (2015-07-13)
+
+
+#### Bug Fixes
+
+* **demo:** add redirect for legacy component routes ([3d62c627](git@github.com:rackerlabs/encore-ui/commit/3d62c627c35f4d618ba6ce634990e5df611fb99f))
+
+
 <a name="1.23.0"></a>
 ## 1.23.0 (2015-07-10)
 
