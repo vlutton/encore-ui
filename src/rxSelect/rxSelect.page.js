@@ -272,18 +272,6 @@ exports.rxSelect = {
     },
 
     /**
-     * Don't use this if you're expecting a regular html select element on the page. This only checks for Encore
-     * specific rxForm-style select elements.
-     * @returns {rxSelect} Page object representing the _first_ `<select rx-select>` element found on the page
-     */
-    main: (function () {
-        rxSelect.rootElement = {
-            get: function () { return $('select[rx-select]'); }
-        };
-        return Page.create(rxSelect);
-    })(),
-
-    /**
      * @function
      * @description Generates a getter and a setter for an rxSelect element on your page.
      * @param {WebElement} elem - The WebElement for the rxSelect.

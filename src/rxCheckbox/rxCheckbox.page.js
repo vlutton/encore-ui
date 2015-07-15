@@ -161,18 +161,6 @@ exports.rxCheckbox = {
     },
 
     /**
-       Don't use this if you're expecting a regular html checkbox on the page. This only checks for Encore
-       specific rxForm-style checkboxes.
-       @returns {rxCheckbox} Page object representing the _first_ `<input rx-checkbox />` element found on the page.
-     */
-    main: (function () {
-        rxCheckbox.rootElement = {
-            get: function () { return $('input[rx-checkbox]'); }
-        };
-        return Page.create(rxCheckbox);
-    })(),
-
-    /**
      * @function
      * @description Generates a getter and a setter for an rxCheckbox element on your page.
      * @param {WebElement} elem - The WebElement for the rxCheckbox.

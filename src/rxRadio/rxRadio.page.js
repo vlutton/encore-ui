@@ -129,18 +129,6 @@ exports.rxRadio = {
     },
 
     /**
-     * Don't use this if you're expecting a regular html radio button on the page. This only checks for Encore
-     * specific rxForm-style radio buttons.
-     * @returns {rxRadio} Page object representing the _first_ `<input rx-radio />` element found on the page
-     */
-    main: (function () {
-        rxRadio.rootElement = {
-            get: function () { return $('input[rx-radio]'); }
-        };
-        return Page.create(rxRadio);
-    })(),
-
-    /**
      * @function
      * @description Generates a getter and a setter for an rxRadio element on your page.
      * @param {WebElement} elem - The WebElement for the rxRadio.
