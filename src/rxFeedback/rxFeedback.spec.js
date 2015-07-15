@@ -1,7 +1,7 @@
 /* jshint node: true */
 describe('rxFeedback', function () {
     var scope, compile, rootScope, el, feedbackSvc, apiUrl, httpMock,
-        notifySvcMock, screenshotSvcMock, elScope, sessionSvcMock;
+        notifySvcMock, screenshotSvcMock, elScope, sessionSvcMock, locationMock;
     var validTemplate = '<rx-feedback></rx-feedback>';
     var theScreenshot = 'the screenshot';
 
@@ -33,6 +33,10 @@ describe('rxFeedback', function () {
             getUserId: sinon.stub()
         };
 
+        locationMock = {
+            url: sinon.stub()
+        };
+
         // load module
         module('encore.ui.configs');
         module('encore.ui.rxFeedback');
@@ -44,10 +48,11 @@ describe('rxFeedback', function () {
             $provide.value('rxNotify', notifySvcMock);
             $provide.value('rxScreenshotSvc', screenshotSvcMock);
             $provide.value('Session', sessionSvcMock);
+            $provide.value('$location', locationMock);
         });
 
         // Inject in angular constructs
-        inject(function ($location, $rootScope, $compile, rxFeedbackSvc, $httpBackend, feedbackApi) {
+        inject(function ($rootScope, $compile, rxFeedbackSvc, $httpBackend, feedbackApi) {
             rootScope = $rootScope;
             scope = $rootScope.$new();
             compile = $compile;
@@ -62,6 +67,13 @@ describe('rxFeedback', function () {
         el = helpers.createDirective(validTemplate, compile, scope);
         elScope = el.isolateScope();
 
+    });
+
+    it('should set the current url of the page on the modal\'s scope', function () {
+        var modalScope = {};
+        locationMock.url.returns('/path');
+        elScope.setCurrentUrl(modalScope);
+        expect(modalScope.currentUrl).to.equal('/path');
     });
 
     it('should submit data to feedback api', function () {
