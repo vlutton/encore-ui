@@ -132,7 +132,8 @@ describe('rxSelect', function () {
             });
 
             afterEach(function () {
-                subject.select('I do not like bacon');
+                var slowClick = false;
+                subject.select('I do not like bacon', slowClick);
             });
 
             it('should be valid', function () {
@@ -173,7 +174,8 @@ describe('rxSelect', function () {
             });
 
             it('should remove the select element to the DOM', function () {
-                willHide.select('Hide Next Select Box');
+                var slowClick = false;
+                willHide.select('Hide Next Select Box', slowClick);
                 expect(willBeHidden.isPresent()).to.eventually.be.false;
             });
 

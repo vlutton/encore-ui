@@ -38,8 +38,8 @@ var rxSelectOptionFromElement = function (rootElement) {
          * @returns {undefined}
          */
         select: {
-            value: function () {
-                exports.rxMisc.slowClick(rootElement);
+            value: function (slowClick) {
+                slowClick ? exports.rxMisc.slowClick(rootElement) : rootElement.click();
             }
         },
 
@@ -248,8 +248,11 @@ var rxSelect = {
      * ```
      */
     select: {
-        value: function (optionText) {
-            return this.option(optionText).select();
+        value: function (optionText, slowClick) {
+            if (slowClick === undefined) {
+                slowClick = true;
+            }
+            return this.option(optionText).select(slowClick);
         }
     }
 
@@ -272,18 +275,49 @@ exports.rxSelect = {
     },
 
     /**
+     * An important note: when setting the value of the rxSelect, you can set it to either
+     * the text value of the option in the dropdown you'd like selected, or you can pass in
+     * an object. See the example below for more information about the differences between
+     * these two input types.
      * @function
      * @description Generates a getter and a setter for an rxSelect element on your page.
      * @param {WebElement} elem - The WebElement for the rxSelect.
+     * @param {Boolean} [slowClick=true] - Whether to use slow click globally for all accessor interactions.
      * @returns {Object} A getter and a setter to be applied to an rxSelect page object.
+     * @example
+     ```js
+     var form = Page.create({
+         state: encore.rxSelect.generateAccessor(element(by.model('states'))),
+         // you can also specify a single dropdown's slow clicking globally this way
+         county: encore.rxSelect.generateAccessor(element(by.model('county')), false)
+     });
+
+     it('should select a new state normally', function () {
+         form.state = 'Indiana';
+         expect(form.state).to.eventually.equal('Indiana');
+     });
+
+     it('should select a new state and county without using `rxMisc.slowClick()`', function () {
+         form.state = { option: 'Texas', slowClick: false };
+         form.county = 'Bexar'; // automatically uses `false` for slow clicking
+         expect(form.state).to.eventually.equal('Texas');
+         expect(form.county).to.eventually.equal('Bexar');
+     });
+     ```
      */
-    generateAccessor: function (elem) {
+    generateAccessor: function (elem, slowClick) {
         return {
             get: function () {
                 return exports.rxSelect.initialize(elem).selectedOption;
             },
-            set: function (optionText) {
-                exports.rxSelect.initialize(elem).select(optionText);
+            set: function (options) {
+                if (_.isObject(options)) {
+                    // More specific requirements for this dropdown have been specified
+                    exports.rxSelect.initialize(elem).select(options.option, options.slowClick);
+                } else {
+                    // Select the option matching text using `slowClick`
+                    exports.rxSelect.initialize(elem).select(options, slowClick);
+                }
             }
         };
     }

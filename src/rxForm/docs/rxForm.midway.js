@@ -24,8 +24,9 @@ var formPageObject = Page.create({
 
     volumeTypeSelect: {
         get: function () {
+            var slowClick = false;
             return Page.create({
-                type: encore.rxForm.dropdown.generateAccessor($('#selVolumeType'))
+                type: encore.rxForm.dropdown.generateAccessor($('#selVolumeType'), slowClick)
             });
         }
     }
