@@ -1,86 +1,26 @@
 var _ = require('lodash');
 var Page = require('astrolabe').Page;
 
-var rxMisc = encore.rxMisc;
-var rxForm = encore.rxForm;
-var rxNotify = encore.rxNotify;
-
 // "wait" for autosave to clear -- function passed to `browser.wait`
 var forAutoSaveToClear = function () {
-    return rxNotify.all.exists('rxAutoSave data has been cleared!');
+    return encore.rxNotify.all.exists('rxAutoSave data has been cleared!');
 };
 
 // anonymous page object
 var autoSaving = Page.create({
     form: {
         set: function (formData) {
-            rxForm.form.fill(this, formData);
+            encore.rxForm.fill(this, formData);
         }
     },
 
-    chkAutoSaves: {
-        get: function () {
-            return element(by.model('formData.checkbox'));
-        }
-    },
+    checkbox: encore.rxForm.checkbox.generateAccessor(element(by.model('formData.checkbox'))),
 
-    checkbox: {
-        get: function () {
-            return rxForm.checkbox.initialize(this.chkAutoSaves).isSelected();
-        },
-        set: function (enable) {
-            var checkbox = rxForm.checkbox.initialize(this.chkAutoSaves);
-            enable ? checkbox.select() : checkbox.unselect();
-        }
-    },
+    name: encore.rxForm.textField.generateAccessor(element(by.model('formData.name'))),
 
-    txtName: {
-        get: function () {
-            return element(by.model('formData.name'));
-        }
-    },
+    description: encore.rxForm.textField.generateAccessor(element(by.model('formData.description'))),
 
-    name: {
-        get: function () {
-            return this.txtName.getAttribute('value');
-        },
-        set: function (input) {
-            this.txtName.clear();
-            this.txtName.sendKeys(input);
-        }
-    },
-
-    txtDescription: {
-        get: function () {
-            return element(by.model('formData.description'));
-        }
-    },
-
-    description: {
-        get: function () {
-            return this.txtDescription.getAttribute('value');
-        },
-        set: function (input) {
-            this.txtDescription.clear();
-            this.txtDescription.sendKeys(input);
-        }
-    },
-
-    txtSensitive: {
-        get: function () {
-            return element(by.model('formData.sensitive'));
-        }
-    },
-
-    sensitiveData: {
-        get: function () {
-            return this.txtSensitive.getAttribute('value');
-        },
-        set: function (input) {
-            this.txtSensitive.clear();
-            this.txtSensitive.sendKeys(input);
-        }
-    },
+    sensitiveData: encore.rxForm.textField.generateAccessor(element(by.model('formData.sensitive'))),
 
     clearAutoSave: {
         value: function () {
@@ -170,7 +110,7 @@ describe('rxMisc', function () {
         var fn;
 
         describe('currencyToPennies', function () {
-            fn = rxMisc.currencyToPennies;
+            fn = encore.rxMisc.currencyToPennies;
 
             it('should convert a single penny to the integer one', function () {
                 expect(fn('$0.01')).to.equal(1);
