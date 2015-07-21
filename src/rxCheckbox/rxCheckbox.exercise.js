@@ -34,12 +34,12 @@ exports.rxCheckbox = function (options) {
             }
         });
 
-        it('should be a checkbox type', function () {
-            expect(component.isCheckbox()).to.eventually.be.true;
-        });
-
         it('should be present', function () {
             expect(component.isPresent()).to.eventually.be.true;
+        });
+
+        it('should be a checkbox', function () {
+            expect(component.isCheckbox()).to.eventually.be.true;
         });
 
         it('should ' + (options.visible ? 'be' : 'not be') + ' visible', function () {
@@ -53,6 +53,32 @@ exports.rxCheckbox = function (options) {
         it('should ' + (options.selected ? 'be' : 'not be') + ' selected', function () {
             expect(component.isSelected()).to.eventually.eq(options.selected);
         });
+
+        if (options.disabled) {
+            it('should not respond to selecting and unselecting', function () {
+                component.isSelected().then(function (selected) {
+                    selected ? component.deselect() : component.select();
+                    expect(component.isSelected()).to.eventually.equal(selected);
+                    // even though it "doesn't respond to selecting and unselecting"
+                    // attempt to put it back anyway in case it did actually respond.
+                    // that way nobody accidentally submits a swapped checkbox after
+                    // running these exercises.
+                    selected ? component.select() : component.deselect();
+                    expect(component.isSelected()).to.eventually.equal(selected);
+                });
+            });
+        } else {
+            it('should respond to selecting and unselecting', function () {
+                component.isSelected().then(function (selected) {
+                    selected ? component.deselect() : component.select();
+                    expect(component.isSelected()).to.eventually.not.equal(selected);
+                    // exercises should never alter the state of a page.
+                    // always put it back when you're done.
+                    selected ? component.select() : component.deselect();
+                    expect(component.isSelected()).to.eventually.equal(selected);
+                });
+            });
+        }
 
         it('should ' + (options.valid ? 'be' : 'not be') + ' valid', function () {
             expect(component.isValid()).to.eventually.eq(options.valid);

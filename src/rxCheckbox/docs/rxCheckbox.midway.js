@@ -89,6 +89,30 @@ describe('rxCheckbox', function () {
         valid: false
     }));
 
+    describe('plain HTML checkboxes', function () {
+        describe('Valid Enabled Unchecked', encore.exercise.rxCheckbox({
+            cssSelector: "#plainHtmlNormal",
+            disabled: false,
+            selected: false,
+            valid: false
+        }));
+
+        describe('Valid Disabled Unchecked', encore.exercise.rxCheckbox({
+            cssSelector: "#plainHtmlDisabled",
+            disabled: true,
+            selected: false,
+            valid: false
+        }));
+
+        describe('Valid Enabled Checked', encore.exercise.rxCheckbox({
+            cssSelector: "#plainHtmlChecked",
+            disabled: false,
+            selected: true,
+            valid: false
+        }));
+
+    });
+
     describe('Show/Hide Input', function () {
         var chkSure, chkReallySure;
 
@@ -129,6 +153,33 @@ describe('rxCheckbox', function () {
                     expect(chkReallySure.isDisplayed()).to.eventually.be.false;
                 });
             });
+        });
+
+        describe('plain HTML checkboxes', function () {
+            var willHide;
+            var willBeHidden;
+
+            before(function () {
+                willHide = encore.rxCheckbox.initialize($('#plainChkRemoveCheckbox'));
+                willBeHidden = encore.rxCheckbox.initialize($('#plainChkRemoveable'));
+            });
+
+            it('should show the checkbox by default', function () {
+                expect(willBeHidden.isDisplayed()).to.eventually.be.true;
+                expect(willBeHidden.isPresent()).to.eventually.be.true;
+            });
+
+            it('should remove the checkbox from the DOM', function () {
+                willHide.select();
+                expect(willBeHidden.isPresent()).to.eventually.be.false;
+            });
+
+            it('should put the checkbox back', function () {
+                willHide.deselect();
+                expect(willBeHidden.isDisplayed()).to.eventually.be.true;
+                expect(willBeHidden.isPresent()).to.eventually.be.true;
+            });
+
         });
     });
 

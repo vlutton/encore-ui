@@ -172,17 +172,7 @@ exports.rxForm = {
                 get: function () { return rxFieldNameElement; }
             };
             return Page.create(rxFieldName);
-        },
-
-        /**
-         * @returns {rxFieldName} Page object representing the _first_ rxFieldName object found on the page.
-         */
-        main: (function () {
-            rxFieldName.rootElement = {
-                get: function () { return $('rx-field-name')[0]; }
-            };
-            return Page.create(rxFieldName);
-        })()
+        }
     },
 
     /**
@@ -192,7 +182,6 @@ exports.rxForm = {
      * **ALIASED** Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.
      */
     checkbox: {
-        get main() { return exports.rxCheckbox.main; },
         get initialize() { return exports.rxCheckbox.initialize; },
         get generateAccessor() { return exports.rxCheckbox.generateAccessor; }
     },
@@ -203,7 +192,6 @@ exports.rxForm = {
      * **ALIASED** Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.
      */
     radioButton: {
-        get main() { return exports.rxRadio.main; },
         get initialize() { return exports.rxRadio.initialize; },
         get generateAccessor() { return exports.rxRadio.generateAccessor; }
     },
@@ -214,7 +202,6 @@ exports.rxForm = {
      * **ALIASED** Directly uses <a href="#encore.module_rxSelect">encore.rxSelect</a>.
      */
     dropdown: {
-        get main() { return exports.rxSelect.main; },
         get initialize() { return exports.rxSelect.initialize; },
         get generateAccessor() { return exports.rxSelect.generateAccessor; }
     },

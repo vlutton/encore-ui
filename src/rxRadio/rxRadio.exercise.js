@@ -34,12 +34,12 @@ exports.rxRadio = function (options) {
             }
         });
 
-        it('should be a radio type', function () {
-            expect(component.isRadio()).to.eventually.be.true;
-        });
-
         it('should be present', function () {
             expect(component.isPresent()).to.eventually.be.true;
+        });
+
+        it('should be a radio button', function () {
+            expect(component.isRadio()).to.eventually.be.true;
         });
 
         it('should ' + (options.visible ? 'be' : 'not be') + ' visible', function () {

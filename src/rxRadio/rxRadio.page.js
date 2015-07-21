@@ -5,60 +5,6 @@ var Page = require('astrolabe').Page;
 /**
  * @namespace
  */
-var htmlRadio = {
-    /**
-     * @function
-     * @returns {Boolean} Whether the radio is currently displayed
-     */
-    isDisplayed: {
-        value: function () {
-            return this.rootElement.isDisplayed();
-        }
-    },
-
-    /**
-     * @function
-     * @returns {Boolean} Whether the radio element is valid
-     */
-    isValid: {
-        value: function () {
-            return this.rootElement.getAttribute('class').then(function (classes) {
-                return _.contains(classes.split(' '), 'ng-valid');
-            });
-        }
-    },
-
-    /**
-     * @function
-     * @description Abstraction over `htmlRadio.rootElement.isSelected()` to keep things shorter.
-     * @returns {boolean} Whether or not the radio button is currently selected.
-     */
-    isSelected: {
-        value: function () {
-            return this.rootElement.isSelected();
-        }
-    },
-
-    /**
-     * @function
-     * @description Make sure radio is selected
-     */
-    select: {
-        value: function () {
-            var radio = this.rootElement;
-            return this.isSelected().then(function (selected) {
-                if (!selected) {
-                    radio.click();
-                }
-            });
-        }
-    }
-};
-
-/**
- * @namespace
- * @extends htmlRadio
- */
 var rxRadio = {
     eleWrapper: {
         get: function () {
@@ -73,76 +19,97 @@ var rxRadio = {
     },
 
     /**
-     * @function
-     * @returns {Boolean} whether root element is if type="radio"
+       Useful for situations where input types might change in the future, ensuring that the expected one is being used.
+       @returns {Boolean} Whether or not the element in question is a radio button.
      */
     isRadio: {
         value: function () {
-            return this.rootElement.getAttribute('type').then(function (ilk) {
-                return ilk === 'radio';
+            return this.rootElement.getAttribute('type').then(function (type) {
+                return type === 'radio';
             });
         }
     },
 
     /**
      * @function
-     * @returns {Boolean} Whether the styled element is currently displayed.
+     * @returns {Boolean} Whether the radio button is valid
+     */
+    isValid: {
+        value: function () {
+            return this.rootElement.getAttribute('class').then(function (classes) {
+                return _.contains(classes.split(' '), 'ng-valid');
+            });
+        }
+    },
+
+    /**
+     * @function
+     * @returns {Boolean} Whether the radio element is currently displayed.
      */
     isDisplayed: {
         value: function () {
-            return this.eleFakeRadio.isDisplayed();
-        }
-    },
-
-    /**
-     * @function
-     * @return {Boolean} whether or not the wrapper is disabled
-     */
-    isDisabled: {
-        value: function () {
-            return this.eleWrapper.getAttribute('class').then(function (classes) {
-                return _.contains(classes.split(' '), 'rx-disabled');
+            var page = this;
+            return this.eleFakeRadio.isPresent().then(function (isFakeRadio) {
+                return isFakeRadio ? page.eleFakeRadio.isDisplayed() : page.rootElement.isDisplayed();
             });
         }
     },
 
     /**
      * @function
-     * @returns {Boolean} Whether or not the styled element exists on the page
+     * @returns {Boolean} Whether or not the radio button is present.
      */
     isPresent: {
         value: function () {
-            return this.eleFakeRadio.isPresent();
+            return this.rootElement.isPresent();
         }
-    }
-};
-rxRadio = _.assign(htmlRadio, rxRadio);
-
-/**
- * @exports encore.htmlRadio
- */
-exports.htmlRadio = {
-    /**
-     * @function
-     * @param {WebElement} radioElement - WebElement to be transformed into an htmlRadio page object.
-     * @returns {htmlRadio} Page object representing the radio element
-     */
-    initialize: function (radioElement) {
-        htmlRadio.rootElement = {
-            get: function () { return radioElement; }
-        };
-        return Page.create(htmlRadio);
     },
 
     /**
-     * @returns {htmlRadio} Page object representing the _first_ `<input type="radio" />` element found on the page
+     * @function
+     * @return {Boolean} whether or not the radio element is disabled
      */
-    main: (function () {
-        htmlRadio.rootElement = {
-            get: function () { return $('input[type="radio"]'); }
-        };
-        return Page.create(htmlRadio);
-    })()
+    isDisabled: {
+        value: function () {
+            var page = this;
+            return this.eleFakeRadio.isPresent().then(function (isFakeRadio) {
+                if (isFakeRadio) {
+                    return page.eleWrapper.getAttribute('class').then(function (classes) {
+                        return _.contains(classes.split(' '), 'rx-disabled');
+                    });
+                }
+                return page.rootElement.getAttribute('disabled').then(function (disabled) {
+                    return disabled === null ? false : true;
+                });
+            });
+        }
+    },
+
+    /**
+     * @function
+     * @returns {boolean} Whether or not the radio button is currently selected.
+     */
+    isSelected: {
+        value: function () {
+            return this.rootElement.isSelected();
+        }
+    },
+
+    /**
+     * @function
+     * @returns {undefined}
+     * @description Makes sure that the radio button is selected.
+     */
+    select: {
+        value: function () {
+            var radio = this.rootElement;
+            return this.isSelected().then(function (selected) {
+                if (!selected) {
+                    radio.click();
+                }
+            });
+        }
+    }
 };
 
 /**
@@ -160,16 +127,6 @@ exports.rxRadio = {
         };
         return Page.create(rxRadio);
     },
-
-    /**
-     * @returns {rxRadio} Page object representing the _first_ `<input rx-radio />` element found on the page
-     */
-    main: (function () {
-        rxRadio.rootElement = {
-            get: function () { return $('input[rx-radio]'); }
-        };
-        return Page.create(rxRadio);
-    })(),
 
     /**
      * @function

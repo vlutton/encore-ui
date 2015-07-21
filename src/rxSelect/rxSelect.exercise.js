@@ -9,6 +9,7 @@ var rxSelect = require('./rxSelect.page').rxSelect;
  * @param {Boolean} [options.disabled=false] - Determines if the select is disabled
  * @param {Boolean} [options.visible=true] - Determines if the select is visible
  * @param {Boolean} [options.valid=true] - Determines if the select is valid
+ * @param {String} selectedText - The expected selected text of the dropdown.
  */
 exports.rxSelect = function (options) {
     if (options === undefined) {
@@ -47,5 +48,11 @@ exports.rxSelect = function (options) {
         it('should ' + (options.valid ? 'be' : 'not be') + ' valid', function () {
             expect(component.isValid()).to.eventually.eq(options.valid);
         });
+
+        if (options.selectedText) {
+            it('should have the correct selected option already chosen', function () {
+                expect(component.selectedOption.text).to.eventually.equal(options.selectedText);
+            });
+        }
     };
 };

@@ -64,10 +64,6 @@
     <br />
   </div>
 
-  <!-- END OF DEMO -->
-  <!-- END OF DEMO -->
-  <!-- END OF DEMO -->
-
   <h3 class="title">Select States</h3>
   <table>
     <thead>
@@ -154,4 +150,47 @@
       </tr>
     </tbody>
   </table>
+
+    <h3 class="title">Plain HTML Select Boxes (for comparison)</h3>
+  <p>
+    <select id="plainHtmlNormal" ng-required="true">
+      <option value="">Plain HTML Select Option</option>
+      <option value="first">First Option</option>
+      <option value="second">Second Option</option>
+      <option value="third">Third Option</option>
+      <option value="fourth">Fourth Option</option>
+    </select>
+  </p>
+  <p>
+    <select id="plainHtmlDisabled" disabled>
+      <option value="">Disabled HTML Select Option</option>
+      <option value="first">First Option</option>
+      <option value="second">Second Option</option>
+      <option value="third">Third Option</option>
+      <option value="fourth">Fourth Option</option>
+    </select>
+  </p>
+  <p>
+    <select id="plainHtmlSecondSelected"
+            ng-model="htmlSelectAlternativeValue">
+      <option value="">Starts on Second Option</option>
+      <option value="first">First Option</option>
+      <option value="second">Non Default Starting Option</option>
+      <option value="third">Third Option</option>
+      <option value="fourth">Fourth Option</option>
+    </select>
+  </p>
+  <p>
+    <select id="plainSelShowSelect"
+            ng-model="plainHtmlSelect">
+      <option value="hide">Hide Next Select Box</option>
+      <option value="show">Show Next Select Box</option>
+    </select>
+
+    <select id="plainSelRemoveable"
+            value="hidden"
+            ng-if="plainHtmlSelect !== 'hide'">
+      <option value="">Is Present</option>
+    </select>
+  </p>
 </div>

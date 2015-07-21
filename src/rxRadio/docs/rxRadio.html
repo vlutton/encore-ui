@@ -154,7 +154,7 @@
             <input rx-radio
                    id="radInvalidEnabledTwo"
                    value="2"
-                   ng-model="validEnabled"
+                   ng-model="invalidEnabled"
                    always-invalid />
             <label for="radInvalidEnabledTwo">Unselected</label>
           </p>
@@ -206,4 +206,41 @@
       </tr>
     </tbody>
   </table>
+
+  <h3 class="title">Plain HTML Radios (for comparison)</h3>
+  <p>
+    <input type="radio"
+           id="plainHtmlNormal"
+           ng-model="plainHtmlRadio"
+           value="plain"
+           ng-required="true" />
+    <label for="plainHtmlNormal">A plain radio</label>
+  </p>
+  <p>
+    <input type="radio"
+           id="plainHtmlDisabled"
+           value="disabled"
+           ng-model="plainHtmlRadio"
+           disabled />
+    <label for="plainHtmlDisabled">A plain radio (disabled)</label>
+  </p>
+  <p>
+    <input type="radio"
+           id="plainHtmlChecked"
+           value="isChecked"
+           ng-model="plainHtmlRadio" />
+    <label for="plainHtmlChecked">A plain radio (checked)</label>
+  </p>
+  <p>
+    <input type="radio"
+           id="plainRadRemoveRadio"
+           value="shows"
+           ng-model="plainHtmlRadio"/>
+    <label for="plainRadRemoveRadio">Add Following Radio:</label>
+
+    <input type="radio"
+           id="plainRadRemoveable"
+           value="hidden"
+           ng-if="plainHtmlRadio === 'shows'" />
+  </p>
 </div>
