@@ -1,10 +1,8 @@
 /*jshint node:true */
 
 var config = {
-    // A base URL for your application under test. Calls to protractor.get()
-    // with relative paths will be prepended with this.
+
     baseUrl: 'http://localhost:9001',
-    directConnect: true,
 
     framework: 'mocha',
 
@@ -15,7 +13,6 @@ var config = {
     capabilities: {
         browserName: 'firefox'
     },
-
 
     allScriptsTimeout: 30000,
 
@@ -32,7 +29,6 @@ var config = {
         });
     },
 
-    // Options to be passed to mocha
     mochaOpts: {
         enableTimeouts: false,
         reporter: 'spec',
