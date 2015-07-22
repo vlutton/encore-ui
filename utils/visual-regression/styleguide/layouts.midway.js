@@ -1,5 +1,3 @@
-var tabs = require('../../../src/tabs/tabs.page').tabs;
-
 describe('layouts', function () {
 
     describe('details', function () {
@@ -47,7 +45,7 @@ describe('layouts', function () {
         });
 
         it('second tab', function () {
-            tabs.main.byName('Tab 2').visit();
+            encore.tabs.main.byName('Tab 2').visit();
             screenshot.snap(this, $('.tab-area'));
         });
 
