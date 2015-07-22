@@ -24,6 +24,14 @@
               <input rx-checkbox id="chkCheckbox" ng-model="formData.checkbox" />
               <label for="chkCheckbox">I likely don't disagree</label>
             </rx-input>
+            <div class="subdued">
+              <div ng-if="formData.checkbox" ng-hide="formData.hideCheckbox">
+                I am possibly not un-authorizing the above: {{ formData.checkbox }}
+              </div>
+              <a id="hideCheckbox" ng-click="formData.hideCheckbox = !formData.hideCheckbox" ng-if="formData.checkbox">
+                ({{ formData.hideCheckbox ? 'Show' : 'Hide this' }} message)
+              </a>
+            </div>
           </rx-field-content>
         </rx-field>
 

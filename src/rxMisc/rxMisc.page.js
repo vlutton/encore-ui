@@ -45,5 +45,79 @@ exports.rxMisc = {
         }
 
         return parseInt(resFloat * 100, 10);
+    },
+
+    /**
+       A list of common strings that appear in the UI that represent `null` to a page object.
+       Add to this list yourself or create a new one in this namespace for your application.
+       @constant
+       @example
+       ```js
+       it('should return null for the user email preferences', function () {
+           encore.rxMisc.nullValueMatches.push('Unregistered'); // this is permanent for the test run
+           // this element's inner text is "Unregistered", triggering a `null` response
+           expect(userPage.emailPreferences).to.eventually.be.null;
+       });
+       ```
+     */
+    nullValueMatches: ['(Not found in account)', 'Loading...', 'N/A', 'No'],
+
+    /**
+       If the `elem` is found, invoke `innerFn` on the resulting element's text.
+       If there is no element found (or displayed), return `null`.
+       If the element is found and displayed, but the text matches something in {@link rxMisc.nullValueMatches},
+       then return `null`.
+       This is useful when applications feature use of `ng-if` to control various messages to the user.
+       @function
+       @param {WebElement} elem - The web element that may or may not be present, or displayed, or valid.
+       @param {Function} innerFn - Function to call on the element's text should it be present, displayed, and valid.
+       @param {*} [fallbackReturnValue=null] - Returned if the web element is not present, or not displayed, or invalid.
+       @example
+       ```js
+       // given this html
+       <span class="accent-text">
+         <span ng-if="balance.currentBalance">
+           {{balance.currentBalance | currency }} {{balance.currency}}
+         </span>
+         <span ng-if="!balance.currentBalance">
+           N/A
+         </span>
+       </span>
+
+       // this would be your page object
+       var balancePage = Page.create({
+           balance: {
+               get: function () {
+                   var elem = element(by.binding('currentBalance'));
+                   // will return `null` if "N/A". Otherwise, will transform to Number.
+                   return encore.rxMisc.unless(elem, encore.rxMisc.currencyToPennies);
+               }
+           }
+       });
+       ```
+     */
+    unless: function (elem, innerFn, fallbackReturnValue) {
+        if (fallbackReturnValue === undefined) {
+            fallbackReturnValue = null;
+        }
+
+        return elem.isPresent().then(function (present) {
+            if (present) {
+                return elem.isDisplayed().then(function (displayed) {
+                    if (displayed) {
+                        return elem.getText().then(function (text) {
+                            if (exports.rxMisc.nullValueMatches.indexOf(text.trim()) > -1) {
+                                return fallbackReturnValue;
+                            }
+                            return innerFn === undefined ? text : innerFn(text);
+                        });
+                    }
+                    // not displayed
+                    return fallbackReturnValue;
+                });
+            }
+            // not present
+            return fallbackReturnValue;
+        });
     }
 };
