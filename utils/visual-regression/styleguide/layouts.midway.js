@@ -39,7 +39,7 @@ describe('layouts', function () {
         });
 
         it('form area', function () {
-            screenshot.snap(this, $('.form-area'));
+            screenshot.snap(this, $('#form-area'));
         });
 
         it('first tab', function () {
