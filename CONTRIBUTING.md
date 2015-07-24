@@ -37,7 +37,7 @@ The most complex PRs are usually "New Components". The "PR Steps" below describe
 Currently, when adding a new component, our most precious resource is the time of our designers. We want to ensure that the PR process is as streamlined for them as possible, and this is made explicit below.
 
 ## PR Steps
-* **Prerequisites**: 
+* **Prerequisites**:
     * New Components _must_ be created using our [Component Scaffolding](./guides/ui-setup.md#creating-a-new-component)
     * A corresponding [Issue should be present](#preparing-an-issue-for-development)
 * **Step 1**: Submitter includes screenshot of new component in PR description (See ["Design Review of Pull Requests"](#design-review-of-pull-requests) below)
@@ -79,8 +79,8 @@ There are certain things we look for in PR Feedback, and certain items that can 
 Create an issue for non-requested feedback & tag with types, for example:
 
  * visual design
- * architecture 
- * feature request 
+ * architecture
+ * feature request
  * etc.
 
 Topics outside of the scope of the PR should be left for later. If a component already has design sign-off, the PR is not the place to question the design or ask for design changes
@@ -191,7 +191,7 @@ Once we are happy with the final state of the PR, we will write "LGTM" or "Looks
   1. You may run into a merge conflict. In that case, open the conflicting file(s) and modify it so that it reflects the desired final state.
   2. `git add <filename>` will include the corrected file into the rebase
   3. `git rebase --continue` will conclude the rebase now that the conflict has been resolved
- 4. `git push -f` to force push your branch up to Github
+ 4. `git push -f origin <branch_name>` to force push your branch up to Github. Please don't push to master branch.
 
 Once Travis completes the tests on the rebased branch, we'll merge in the PR.
 
