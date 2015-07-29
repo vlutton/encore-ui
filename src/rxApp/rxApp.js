@@ -438,19 +438,6 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
         link: function (scope) {
             scope.isCloudProduct = false;
 
-            // This function is attached to the scope for the sole purpose of making
-            // it easier to test this functionality. A reorganization of this and/or
-            // the tests is needed in order to pull this off the scope.
-            scope.switchToAdmin = function () {
-                // If the user in the params is not the admin swtich to the admin
-                // this causes the $route.current.params.user to become the admin user
-                var adminUser = _.first(_.where(scope.users, { admin: true }));
-                if (adminUser && ($route.current.params.user !== adminUser.username)){
-                    scope.currentUser = adminUser.username;
-                    scope.switchUser(adminUser.username);
-                }
-            };
-
             var checkCloud = function () {
                 encoreRoutes.isActiveByKey('accountLvlTools').then(function (isAccounts) {
                     if (isAccounts) {
@@ -463,17 +450,21 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                     }
                 });
             };
-
+            
             // We use $route.current.params instead of $routeParams because
             // the former is always available, while $routeParams only gets populated
             // after the route has successfully resolved. See the Angular docs on $routeParams
             // for more details.
             var loadUsers = function () {
                 var success = function (account) {
+                    
+                    // Sort the list so admins are at the top of the array
+                    account.users = _.sortBy(account.users, 'admin');
+
                     scope.users = account.users;
-                    scope.switchToAdmin();
 
                     scope.currentUser = $route.current.params.user;
+
                     if (!scope.currentUser) {
                         // We're not in Cloud, but instead in Billing, or Events, or
                         // one of the other Accounts menu items that doesn't use a username as
@@ -481,6 +472,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                         // But we need the URLs for the Cloud items to be valid, so grab a
                         // default username for this account, and rebuild the Cloud URLs with
                         // it
+                        
                         encoreRoutes.rebuildUrls({ user: account.users[0].username });
                     }
                 };

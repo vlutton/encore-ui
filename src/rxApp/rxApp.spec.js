@@ -1043,11 +1043,6 @@ describe('rxAccountUsers', function () {
         Encore.getAccountUsers.restore();
     }));
 
-    it('should switch to the admin account', function () {
-        scope.switchToAdmin();
-        expect(scope.currentUser).to.equal('testaccountuser');
-    });
-
     it('should have two account users', function () {
         expect(users).to.have.length(2);
         expect(users[0].text).to.equal('testaccountuser');
