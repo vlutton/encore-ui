@@ -1,4 +1,4 @@
-# Encore CSS Coding Standards
+# CSS Styleguide
 
 ## Acknowledgements:
 
@@ -11,16 +11,23 @@ Most of these standards are based off of the guidelines provided by [SMACSS](htt
     Many style guides focus around preventing classitis by depending on HTML elements for selectors. While using only "semantic" HTML is a neat idea, [it doesn't scale well](http://www.stubbornella.org/content/2011/04/28/our-best-practices-are-killing-us/).
 
     Therefore, use of HTML elements or id's in a selector is strongly discouraged, as they create unnecessary specificity.
+    **The only time it is acceptable to use elements as selectors is when applying styles to a specific component (`rxApp`, `rxButton`, etc).**
 
     *Scenario #1*
 
     Use `.blog-article {}` instead of `article {}`.
 
-    Yes, sometimes it's "uglier" to use article as a class, but it's much more re-usable than relying on the specific HTML `article` element. Along that same logic, [don't style heading elements](http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/), but [use class names instead](http://blog.kevinlamping.com/post/46259129477/normalize-css-and-default-heading-styles).
+    Yes, sometimes it's "uglier" to use `blog-article` as a class, but it's much more re-usable than relying on the specific HTML `article` element.
+    Along that same logic, [don't style heading elements](http://www.stubbornella.org/content/2011/09/06/style-headings-using-html5-sections/),
+    but use class names instead.
 
-        <h1 class="alpha">My Big Site Title</h1>
-        <h2 class="alpha">My Just as Big Site Tagline</h2>
-        http://csswizardry.com/2012/11/code-smells-in-css/
+    ```html
+    <h1 class="alpha">My Big Site Title</h1>
+    <h2 class="alpha">My Just as Big Site Tagline</h2>
+    http://csswizardry.com/2012/11/code-smells-in-css/
+    ```
+
+    **The only time it is acceptable to style heading elements is when defining their base styles.**
 
     *Scenario #2*
 
@@ -34,7 +41,8 @@ Most of these standards are based off of the guidelines provided by [SMACSS](htt
 
     CSS selectors should have no more than 3 qualifiers.
 
-    Since we use LESS, it's easy to create long selectors without realizing it (through too much nesting of CSS). As a general rule, [**don't nest selectors more than 2 deep**](http://www.youtube.com/watch?v=GhX8iPcDSsI).
+    Since we use LESS, it's easy to create long selectors without realizing it (through too much nesting of CSS).
+    As a general rule, [**don't nest selectors more than 2 deep**](http://www.youtube.com/watch?v=GhX8iPcDSsI).
 
 3. Avoid `!important` AT ALL COSTS
 
@@ -48,28 +56,22 @@ Most of these standards are based off of the guidelines provided by [SMACSS](htt
 
 ## Format
 
-**Note: This section pulled from [The Principles of writing consistent, idiomatic CSS](https://github.com/necolas/idiomatic-css/blob/master/README.md#format)
+**Note**: This section inspired by [The Principles of writing consistent, idiomatic CSS](https://github.com/necolas/idiomatic-css/blob/master/README.md#format)
 
-This code format ensures that code is: easy to read; easy to clearly
-comment; minimizes the chance of accidentally introducing errors; and results
-in useful diffs and blames.
+This code format ensures that code is easy to read, easy to clearly comment, minimizes the chance of accidentally introducing errors, and results in useful diffs and blames.
 
+* 4 spaces for one level of indentation. No tabs.
 * Use one discrete selector per line in multi-selector rulesets.
 * Include a single space before the opening brace of a ruleset.
 * Include one declaration per line in a declaration block.
-* Use one level of indentation for each declaration.
 * Include a single space after the colon of a declaration.
 * Use lowercase and shorthand hex values, e.g., `#aaa`.
-* Use double quotes consistently.
-  e.g., `content: ""` or [type="text"]
-* Quote attribute values in selectors, e.g., `input[type="checkbox"]`.
-* _Where allowed_, avoid specifying units for zero-values, e.g., `margin: 0`.
-* Include a space after each comma in comma-separated property or function
-  values.
-* Include a semi-colon at the end of the last declaration in a declaration
-  block.
-* Place the closing brace of a ruleset in the same column as the first
-  character of the ruleset.
+* Use double quotes consistently. (e.g. `content: ""` or `[type="text"]`)
+* Quote attribute values in selectors (e.g. `input[type="checkbox"]`)
+* _Where allowed_, avoid specifying units for zero-values (e.g. `margin: 0;`)
+* Include a space after each comma in comma-separated property or function values.
+* Include a semi-colon at the end of the last declaration in a declaration block.
+* Place the closing brace of a ruleset in the same column as the first character of the ruleset.
 * Separate each ruleset by a blank line.
 
 ```css
@@ -96,15 +98,32 @@ in useful diffs and blames.
 
 In order to create consistent class names, it's encouraged to use the naming defined at [semantic-ui.com](http://semantic-ui.com). This is especially true for components that are meant to be re-usable like icons or alert boxes.
 
-## Frameworks
+## Scoping Styles to Directives
 
-### Grids/Layout
+CSS selectors used to scope styles for a specific directive may differ depending on how the directive behaves.
 
-EncoreUI currently does not prescribe a specific grid system that apps should use. We leave the choice of framework up to the developers of the app and what fits them best.
+### Element Directives
 
-For layout needs (e.g. rxApp and rxForm), Encore uses either `flexbox` and `floats`, respectively. While relatively new, flexbox has proven to be very powerful and will likely replace floats as the de facto solution for layouts in the EncoreUI framework.
+For element directives, use the element name selector.
 
-### Recommended Libraries
+```css
+rx-field-name { ... }
+rx-help-text { ... }
+```
 
-- http://purecss.io/grids/
-- http://flexboxgrid.com/
+### Attribute Directives
+
+For attribute directives that *wrap* their target element in custom markup (e.g. `rx-checkbox`, `rx-radio`, `rx-select`), we don't have a semantic element or attribute to use for the root CSS selector.
+In this case, it is best to use the angular-normalized CSS class name so that it is not confused with an element selector (`.rxCheckbox` vs `rx-checkbox`).
+
+```css
+.rxCheckbox { ... }
+.rxSelect { ... }
+.rxRadio { ... }
+```
+
+For attribute directives that do not wrap their target element, use the attribute name selector.
+
+```css
+[rx-form] { ... }
+```
