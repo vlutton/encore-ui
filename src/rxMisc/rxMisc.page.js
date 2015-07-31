@@ -70,7 +70,7 @@ exports.rxMisc = {
        This is useful when applications feature use of `ng-if` to control various messages to the user.
        @function
        @param {WebElement} elem - The web element that may or may not be present, or displayed, or valid.
-       @param {Function} innerFn - Function to call on the element should it be present, displayed, and valid.
+       @param {Function} [innerFn] - Function to call on the element should it be present, displayed, and valid.
        @param {*} [fallbackReturnValue=null] - Returned if the web element is not present, or not displayed, or invalid.
        @example
        ```js
