@@ -60,7 +60,7 @@ exports.rxMisc = {
        });
        ```
      */
-    nullValueMatches: ['(Not found in account)', 'Loading...', 'N/A', 'No'],
+    nullValueMatches: [],
 
     /**
        If the `elem` is found, invoke `innerFn` on the resulting element's text.
@@ -70,7 +70,7 @@ exports.rxMisc = {
        This is useful when applications feature use of `ng-if` to control various messages to the user.
        @function
        @param {WebElement} elem - The web element that may or may not be present, or displayed, or valid.
-       @param {Function} innerFn - Function to call on the element's text should it be present, displayed, and valid.
+       @param {Function} innerFn - Function to call on the element should it be present, displayed, and valid.
        @param {*} [fallbackReturnValue=null] - Returned if the web element is not present, or not displayed, or invalid.
        @example
        ```js
@@ -88,9 +88,11 @@ exports.rxMisc = {
        var balancePage = Page.create({
            balance: {
                get: function () {
-                   var elem = element(by.binding('currentBalance'));
+                   var balanceElement = element(by.binding('currentBalance'));
                    // will return `null` if "N/A". Otherwise, will transform to Number.
-                   return encore.rxMisc.unless(elem, encore.rxMisc.currencyToPennies);
+                   return encore.rxMisc.unless(balanceElement, function (elem) {
+                       return elem.getText().then(encore.rxMisc.currencyToPennies);
+                   });
                }
            }
        });
@@ -109,7 +111,7 @@ exports.rxMisc = {
                             if (exports.rxMisc.nullValueMatches.indexOf(text.trim()) > -1) {
                                 return fallbackReturnValue;
                             }
-                            return innerFn === undefined ? text : innerFn(text);
+                            return innerFn === undefined ? text : innerFn(elem);
                         });
                     }
                     // not displayed

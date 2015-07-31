@@ -174,8 +174,10 @@ describe('rxMisc', function () {
             });
 
             it('should return the result of a custom function', function () {
-                var reverseIt = function (text) {
-                    return text.split('').reverse().join('');
+                var reverseIt = function (elem) {
+                    return elem.getText().then(function (text) {
+                        return text.split('').reverse().join('');
+                    });
                 };
                 expect(unless(elem, reverseIt)).to.eventually.equal(message.split('').reverse().join(''));
             });
