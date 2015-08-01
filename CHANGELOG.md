@@ -1,3 +1,33 @@
+<a name="1.24.0"></a>
+## 1.24.0 (2015-07-31)
+
+
+#### Bug Fixes
+
+* **accountUsers:** fixing looping switch to admin issue ([738bb396](git@github.com:rackerlabs/encore-ui/commit/738bb3969d769aae6fcc41ea95f6f9578d6c3745))
+* **rxFeedback:** Show url of current page. ([31306410](git@github.com:rackerlabs/encore-ui/commit/313064100a04be077c079b5a2e9e953dfbfc31b3))
+* **visualRegression:** travis_retry is not global ([a8736d95](git@github.com:rackerlabs/encore-ui/commit/a8736d95466284250751b86e70834d3956844e80))
+
+
+#### Features
+
+* **rxMetadata:** add rxMetadata component ([fc2b888d](git@github.com:rackerlabs/encore-ui/commit/fc2b888d043e30eed4266c782fe508ca7e65079e))
+* **rxPaginate:** Add ability to disable itemsPerPage persistence ([03fed21e](git@github.com:rackerlabs/encore-ui/commit/03fed21e5ab1c32202943db3299db414aa9d1ec3), closes [#1074](git@github.com:rackerlabs/encore-ui/issues/1074))
+
+
+#### Breaking Changes
+
+* All instances of `encore.htmlSelect` in your end to end
+tests will need to moved to `encore.rxSelect`.
+ ([26551a40](git@github.com:rackerlabs/encore-ui/commit/26551a404c13d1c209cd3d18b0dca19bdf4a8811))
+* All instances of `encore.htmlRadio` in your end to end
+tests will need to moved to `encore.rxRadio`.
+ ([b9aa5b16](git@github.com:rackerlabs/encore-ui/commit/b9aa5b16b19140f52d0a3d4cf0efb324c969f87f))
+* All instances of `encore.htmlCheckbox` in your end to end
+tests will need to moved to `encore.rxCheckbox`.
+ ([c51162e0](git@github.com:rackerlabs/encore-ui/commit/c51162e04daeae3078e4de557c7f582910af4861))
+
+
 <a name="1.23.1"></a>
 ### 1.23.1 (2015-07-13)
 
