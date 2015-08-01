@@ -134,15 +134,24 @@ ul.colors {
 }
 
 table.component-attributes {
+  th, td {
+    vertical-align: top;
+    text-align: center;
+  }
+  tr {
+    th, td {
+      &:last-child {
+        text-align: left;
+      }
+    }
+  }
+
   tbody {
     tr {
       th {
         white-space: nowrap;
       }
     }
-  }
-  th, td {
-    vertical-align: top;
   }
 }
 

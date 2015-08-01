@@ -2755,6 +2755,50 @@ rx-field-name {
     }
 }
 
+/*
+ * rxMetadata
+ */
+rx-metadata {
+  box-sizing: border-box;
+  padding: 0px;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  rx-meta {
+    display: block;
+    margin: 0 0 22px;
+
+    .label {
+      color: @rxMetadata-label-color;
+      font-size: @rxMetadata-label-font-size;
+      margin: 0 0 6px;
+    }
+
+    .definition {
+      color: @rxMetadata-definition-color;
+      font-size: @rxMetadata-definition-font-size;
+      font-weight: 700;
+    }
+  }
+
+  section {
+    box-sizing: border-box;
+    display: block;
+    padding: 0px;
+    margin: 0px (@rxMetadata-gutter / 2) 22px;
+    flex: 0 0 300px; // no grow, no shrink, always 300px wide;
+
+    & > rx-meta {
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
 @import 'mixins';
 @import 'vars';
 

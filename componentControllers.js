@@ -913,6 +913,14 @@ function rxLocalStorageCtrl ($scope, LocalStorage) {
 
 
 
+/*jshint unused:false*/
+angular.module('demoApp')
+.controller('rxMetadataCtrl', function ($scope) {
+    $scope.someDate = new Date('January 6 1989');
+    $scope.someAmount = 192.68;
+});
+
+
 function rxMiscCtrl ($scope, $timeout, $q, rxNotify, rxAutoSave) {
     $scope.formData = {
         checkbox: false,
@@ -1299,6 +1307,7 @@ angular.module('demoApp')
     $scope.invalidNgDisabled = 1;
 
     $scope.radCreateDestroy = 'destroyed';
+    $scope.plainHtmlRadio = 'isChecked';
 });
 
 
@@ -1321,6 +1330,8 @@ angular.module('demoApp')
     $scope.invalidEnabled = 4;
     $scope.invalidNgDisabled = 'na';
     $scope.invalidDisabled = 'na';
+
+    $scope.htmlSelectAlternativeValue = 'second';
 });
 
 

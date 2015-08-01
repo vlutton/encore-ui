@@ -406,7 +406,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "encore.ui",
       "shortDescription": "This is the data service that can be used in conjunction with the pagination",
-      "keywords": "ability api assuming automatically call choose chooses class conjunction controls createinstance current data default determine display enables encore encore-ui-rxpaginate-page encore-ui-rxpaginate-pagetracking-page exists future generate initialzed instance instances isn items itemsizelist itemsperpage number object objects override pageinit pagenumber pager pagestoshow pagetracking pagination rxpaginate service set setting showall spot store stored tables total true ui user userselecteditemsperpage"
+      "keywords": "api conjunction createinstance data display encore items itemsperpage objects pagetracking pagination rxpaginate service store tables true ui"
     },
     {
       "section": "api",
@@ -658,7 +658,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxButton",
       "shortDescription": "Renders a button which will disable when clicked and show a loading message",
-      "keywords": "api attributes button class classes clicked complete default defaultmsg directive disable disabled display displayed instance loading loadingmsg message operation passed progress renable renders rxbutton set text true"
+      "keywords": "api applied attributes button class classes clicked complete default defaultmsg directive disable disabled display displayed instance loading loadingmsg message names operation passed progress renable renders rxbutton set text true"
     },
     {
       "section": "api",
@@ -803,6 +803,33 @@ NG_DOCS={
       "moduleName": "rxForm",
       "shortDescription": "Set of utility functions used by rxForm to access form data",
       "keywords": "access api data fieldid form functions getselectedoptionfortable getselectedoptionfortabset option returns rowid rxform rxformoptiontable selected service set tableid tabset tabsetid utility"
+    },
+    {
+      "section": "api",
+      "id": "rxMetadata",
+      "shortName": "rxMetadata",
+      "type": "overview",
+      "moduleName": "rxMetadata",
+      "shortDescription": "rxMetadata Component",
+      "keywords": "api component consistent directive directives display metadata overview provide rxmeta rxmetadata styling"
+    },
+    {
+      "section": "api",
+      "id": "rxMetadata.directive:rxMeta",
+      "shortName": "rxMeta",
+      "type": "directive",
+      "moduleName": "rxMetadata",
+      "shortDescription": "",
+      "keywords": "api damaged definition directive element fubar html irreparably label metadata order parent rxmetadata seriously width working"
+    },
+    {
+      "section": "api",
+      "id": "rxMetadata.directive:rxMetadata",
+      "shortName": "rxMetadata",
+      "type": "directive",
+      "moduleName": "rxMetadata",
+      "shortDescription": "Parent directive used for styling and arranging metadata information.",
+      "keywords": "accommodate api arranging bang blocks columns container damaged directive element enought foo fubar highly html irreparably isn label metadata order parent purposes recommended row rxmeta rxmetadata sections seriously single stack styling vertically wide width working wrap"
     },
     {
       "section": "api",
