@@ -29,7 +29,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
     $scope.addServers = function () {
         $scope.servers = $scope.servers.concat(makeServers(2));
     };
-    
+
     var allLazyServers = makeServers(701);
 
     var serverInterface = {
@@ -59,7 +59,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
                 // Return 100 items more than the user's `itemsPerPage`. i.e. if the
                 // user is asking for 25 items per page, return 125 in total
                 var lazyServers = filteredServers.slice(first, last + 100);
-                    
+
                 var response = {
                     items: lazyServers,
                     pageNumber: pageNumber,
@@ -71,7 +71,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
                 } else {
                     deferred.resolve(response);
                 }
-            }, 1000);
+            }, 300);
             return deferred.promise;
         }
     };
