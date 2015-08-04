@@ -5,6 +5,10 @@ exports.rxFloatingHeader = {
 
     scrollToElement: function (elem) {
         return elem.getLocation().then(function (loc) {
+            if (_.isArray(loc)) {
+                loc = _.min(loc, 'y');
+            }
+
             var command = ['window.scrollTo(0, ', loc.y.toString(), ');'].join('');
             browser.executeScript(command);
         });

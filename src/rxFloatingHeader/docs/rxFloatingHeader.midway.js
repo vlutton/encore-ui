@@ -33,6 +33,7 @@ describe('rxFloatingHeader', function () {
     describe('Multi header row table', function () {
         var filterHeader, titlesHeader, initialFilterY, filterHeight, windowSize;
         var window = browser.driver.manage().window();
+        var trs;
 
         before(function () {
             // Set the height smaller so the header can float no matter the screen size
@@ -42,7 +43,7 @@ describe('rxFloatingHeader', function () {
             });
 
             table = $('table[rx-floating-header].filter');
-            var trs = table.$$('thead tr');
+            trs = table.$$('thead tr');
             filterHeader = trs.get(0);
             titlesHeader = trs.get(1);
             middleRow = table.$('.middle-row');
@@ -54,12 +55,7 @@ describe('rxFloatingHeader', function () {
             });
         });
 
-        after(function () {
-            // Return window to original size
-            window.setSize(windowSize.width, windowSize.height);
-        })
-
-        it('should float header after scrolling to middle of table', function () {
+        it('should float to the header after scrolling to middle of table', function () {
             rxFloatingHeader.scrollToElement(middleRow);
             expect(rxFloatingHeader.compareYLocations(filterHeader, middleRowY)).to.eventually.be.true;
         });
@@ -68,14 +64,19 @@ describe('rxFloatingHeader', function () {
             expect(rxFloatingHeader.compareYLocations(titlesHeader, middleRowY + filterHeight)).to.eventually.be.true;
         });
 
-        it('should put the header back when scrolling to the top', function () {
-            rxFloatingHeader.scrollToElement($('.page-titles'));
+        it('should scroll to the first element when given an ElementArrayFinder', function () {
+            rxFloatingHeader.scrollToElement(trs);
             expect(rxFloatingHeader.compareYLocations(filterHeader, initialFilterY)).to.eventually.be.true;
         });
 
         it('should have the right distance between the title header and the initial starting point', function () {
             expect(rxFloatingHeader.compareYLocations(titlesHeader, initialFilterY + filterHeight))
                 .to.eventually.be.true;
+        });
+
+        after(function () {
+            // Return window to original size
+            window.setSize(windowSize.width, windowSize.height);
         });
 
     });
