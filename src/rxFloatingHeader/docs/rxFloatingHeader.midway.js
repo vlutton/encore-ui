@@ -55,7 +55,7 @@ describe('rxFloatingHeader', function () {
             });
         });
 
-        it('should float to the header after scrolling to middle of table', function () {
+        it('should float the header after scrolling to middle of table', function () {
             rxFloatingHeader.scrollToElement(middleRow);
             expect(rxFloatingHeader.compareYLocations(filterHeader, middleRowY)).to.eventually.be.true;
         });
