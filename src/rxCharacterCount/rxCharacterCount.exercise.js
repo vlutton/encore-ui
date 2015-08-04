@@ -5,6 +5,7 @@ var rxCharacterCount = require('./rxCharacterCount.page').rxCharacterCount;
    rxCharacterCount exercises.
    @exports encore.exercise.rxCharacterCount
    @param {Object} [options=] - Test options. Used to build valid tests.
+   @param {rxCharacterCount} [options.instance=] - Component to exercise.
    @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
    @param {Number} [options.maxCharacters=254] - The total number of characters allowed.
    @param {Number} [options.nearLimit=10] - The number of remaining characters needed to trigger the "near-limit" class.
@@ -14,7 +15,7 @@ var rxCharacterCount = require('./rxCharacterCount.page').rxCharacterCount;
    @example
    ```js
    describe('default exercises', encore.exercise.rxCharacterCount({
-       cssSelector: '.demo-custom-max-characters', // select one of many widgets on page
+       instance: myPage.submission // select one of many widgets from your page objects
        maxCharacters: 25,
        nearLimit: 12,
        ignoreInsignificantWhitespace: false
@@ -37,9 +38,13 @@ exports.rxCharacterCount = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxCharacterCount.main;
+            if (options.instance !== undefined) {
+                component = options.instance;
             } else {
+                component = rxCharacterCount.main;
+            }
+
+            if (options.cssSelector !== undefined) {
                 component = rxCharacterCount.initialize($(options.cssSelector));
             }
         });

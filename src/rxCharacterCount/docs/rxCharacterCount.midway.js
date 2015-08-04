@@ -1,4 +1,3 @@
-
 describe('rxCharacterCount', function () {
 
     before(function () {
@@ -6,26 +5,26 @@ describe('rxCharacterCount', function () {
     });
 
     describe('defaults', encore.exercise.rxCharacterCount({
-        cssSelector: '.demo-default-values'
+        instance: encore.rxCharacterCount.initialize($('.demo-default-values'))
     }));
 
     describe('low max characters', encore.exercise.rxCharacterCount({
-        cssSelector: '.demo-custom-max-characters',
+        instance: encore.rxCharacterCount.initialize($('.demo-custom-max-characters')),
         maxCharacters: 25
     }));
 
     describe('high near limit level', encore.exercise.rxCharacterCount({
-        cssSelector: '.demo-custom-low-boundary',
+        instance: encore.rxCharacterCount.initialize($('.demo-custom-low-boundary')),
         nearLimit: 250
     }));
 
     describe('count insignificant whitespace', encore.exercise.rxCharacterCount({
-        cssSelector: '.demo-custom-do-not-trim',
+        instance: encore.rxCharacterCount.initialize($('.demo-custom-do-not-trim')),
         ignoreInsignificantWhitespace: false
     }));
 
     describe('initial value', encore.exercise.rxCharacterCount({
-        cssSelector: '.demo-initial-value'
+        instance: encore.rxCharacterCount.initialize($('.demo-initial-value'))
     }));
 
     describe('with highlighting', encore.exercise.rxCharacterCount({
