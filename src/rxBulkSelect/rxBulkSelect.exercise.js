@@ -5,11 +5,12 @@ var _ = require('lodash');
    rxBulkSelect exercises.
    @exports encore.exercise.rxBulkSelect
    @param {Object} [options=] - Test options. Used to build valid tests.
+   @param {rxBulkSelect} [options.instance=] - Component to exercise.
    @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
    @example
    ```js
    describe('default exercises', encore.exercise.rxBulkSelect({
-       cssSelector: 'table.servers[rx-bulk-select]' // select one of many widgets on page
+       instance: myPage.bulkSelect // select one of many widgets from your page objects
    }));
    ```
  */
@@ -24,9 +25,13 @@ exports.rxBulkSelect = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxBulkSelect.main;
+            if (options.instance !== undefined) {
+                component = options.instance;
             } else {
+                component = rxBulkSelect.main;
+            }
+
+            if (options.cssSelector !== undefined) {
                 component = rxBulkSelect.initialize($(options.cssSelector));
             }
         });
