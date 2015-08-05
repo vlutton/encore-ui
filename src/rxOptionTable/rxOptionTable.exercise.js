@@ -5,6 +5,7 @@ var rxOptionTable = require('./rxOptionTable.page').rxOptionTable;
  * rxOptionTable exercises.
  * @exports encore.exercise.rxOptionTable
  * @param {Object} [options=] - Test options. Used to build valid tests.
+ * @param {rxOptionTable} [options.instance=] - Component to exercise.
  * @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
  * @param {string} [options.visible=true] - Determines if the option table is visible
  * @param {string} [options.empty=false] - Determines if the option table is empty
@@ -23,9 +24,13 @@ exports.rxOptionTable = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxOptionTable.main;
+            if (options.instance !== undefined) {
+                component = options.instance;
             } else {
+                component = rxOptionTable.main;
+            }
+
+            if (options.cssSelector !== undefined) {
                 component = rxOptionTable.initialize($(options.cssSelector));
             }
         });
