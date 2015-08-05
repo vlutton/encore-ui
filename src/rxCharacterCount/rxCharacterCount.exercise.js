@@ -45,6 +45,7 @@ exports.rxCharacterCount = function (options) {
             }
 
             if (options.cssSelector !== undefined) {
+                console.warn('Deprecated exercise option `cssSelector` will be removed in favor of `instance`');
                 component = rxCharacterCount.initialize($(options.cssSelector));
             }
         });

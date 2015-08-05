@@ -37,6 +37,7 @@ exports.rxSearchBox = function (options) {
             }
 
             if (options.cssSelector !== undefined) {
+                console.warn('Deprecated exercise option `cssSelector` will be removed in favor of `instance`');
                 component = rxSearchBox.initialize($(options.cssSelector));
             }
         });
