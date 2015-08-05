@@ -5,12 +5,13 @@ var rxToggleSwitch = require('./rxToggleSwitch.page').rxToggleSwitch;
    rxToggleSwitch exercises.
    @exports encore.exercise.rxToggleSwitch
    @param {Object} [options] - Test options. Used to build valid tests.
+   @param {rxToggleSwitch} [options.instance=] - Component to exercise.
    @param {string} [options.cssSelector] - Fallback selector string to initialize widget with.
    @param {boolean} [options.disabled=false] - Determines if the switch can be toggled
    @example
    ```js
    describe('default exercises', encore.exercise.rxToggleSwitch({
-       cssSelector: '.demo-defualt-values' // select one of many widgets on page
+       cssSelector: myPage.emailPreference // select one of many widgets from your page objects
    }));
    ```
  */
@@ -38,11 +39,16 @@ exports.rxToggleSwitch = function (options) {
         };
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxToggleSwitch.main;
+            if (options.instance !== undefined) {
+                component = options.instance;
             } else {
+                component = rxToggleSwitch.main;
+            }
+
+            if (options.cssSelector !== undefined) {
                 component = rxToggleSwitch.initialize($(options.cssSelector));
             }
+
             component.isEnabled().then(function (isEnabled) {
                 initialState = isEnabled;
             });
