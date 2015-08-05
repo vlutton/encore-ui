@@ -39,7 +39,7 @@ describe('rxForm', function () {
 
     describe('rxFieldName', function () {
         describe('"Plain Textbox"', encore.exercise.rxFieldName({
-            cssSelector: '#fieldNamePlainTextbox',
+            instance: encore.rxForm.fieldName.initialize($('#fieldNamePlainTextbox')),
             visible: true,
             required: false
         }));
