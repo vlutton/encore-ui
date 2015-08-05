@@ -6,7 +6,7 @@ var rxRadio = require('./rxRadio.page').rxRadio;
  * @exports encore.exercise.rxRadio
  * @param {Object} [options=] - Test options. Used to build valid tests.
  * @param {rxRadio} [options.instance=] - Component to exercise.
- * @param {String} [options.cssSelector=] - Fallback selector string with which to initialize widget.
+ * @param {String} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
  * @param {Boolean} [options.disabled=false] - Determines if the radio is disabled.
  * @param {Boolean} [options.selected=false] - Determines if the radio is selected.
  * @param {Boolean} [options.visible=true] - Determines if the radio is visible.

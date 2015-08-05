@@ -6,7 +6,7 @@ var rxToggleSwitch = require('./rxToggleSwitch.page').rxToggleSwitch;
    @exports encore.exercise.rxToggleSwitch
    @param {Object} [options] - Test options. Used to build valid tests.
    @param {rxToggleSwitch} [options.instance=] - Component to exercise.
-   @param {string} [options.cssSelector] - Fallback selector string to initialize widget with.
+   @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {boolean} [options.disabled=false] - Determines if the switch can be toggled
    @example
    ```js

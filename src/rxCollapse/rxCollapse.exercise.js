@@ -6,7 +6,7 @@ var rxCollapse = require('./rxCollapse.page').rxCollapse;
    @exports encore.exercise.rxCollapse
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {rxCollapse} [options.instance=] - Component to exercise.
-   @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
+   @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {String} title - The title of the rxCollapse element.
    @param {Boolean} expanded - Whether or not the rxCollapse element is currently expanded.
    @example

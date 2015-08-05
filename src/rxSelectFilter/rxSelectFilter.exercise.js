@@ -6,7 +6,7 @@ var _ = require('lodash');
    @exports encore.exercise.rxMultiSelect
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {rxMultiSelect} [options.instance=] - Component to exercise.
-   @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
+   @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {Object} [options.inputs=[]] - The options of the select input.
    @example
    ```js

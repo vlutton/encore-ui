@@ -6,7 +6,7 @@ var rxSearchBox = require('./rxSearchBox.page').rxSearchBox;
    @exports encore.exercise.rxSearchBox
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {rxSearchBox} [options.instance=] - Component to exercise.
-   @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
+   @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {boolean} [options.disabled=false] - Determines if the search box is disabled
    @param {string} [options.placeholder='Search...'] - Expected placeholder value
    @example

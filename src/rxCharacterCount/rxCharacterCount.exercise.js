@@ -6,7 +6,7 @@ var rxCharacterCount = require('./rxCharacterCount.page').rxCharacterCount;
    @exports encore.exercise.rxCharacterCount
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {rxCharacterCount} [options.instance=] - Component to exercise.
-   @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
+   @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {Number} [options.maxCharacters=254] - The total number of characters allowed.
    @param {Number} [options.nearLimit=10] - The number of remaining characters needed to trigger the "near-limit" class.
    @param {Boolean} [options.ignoreInsignificantWhitespace=false] - Whether or not the textbox ignores leading and
