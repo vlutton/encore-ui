@@ -1,16 +1,14 @@
-var rxSearchBoxPage = encore.rxSearchBox;
-
 describe('rxSearchBox', function () {
     before(function () {
         demoPage.go('#/components/rxSearchBox');
     });
 
     describe('default rxSearchBox', encore.exercise.rxSearchBox({
-        cssSelector: '.default-search-box'
+        instance: encore.rxSearchBox.initialize($('.default-search-box'))
     }));
 
     describe('disabled rxSearchBox', encore.exercise.rxSearchBox({
-        cssSelector: '.disabled-search-box',
+        instance: encore.rxSearchBox.initialize($('.disabled-search-box')),
         disabled: true
     }));
 
@@ -18,4 +16,4 @@ describe('rxSearchBox', function () {
         cssSelector: '.wide-search-box',
         placeholder: 'Filter by any...'
     }));
-});//rxSearchBox
+});
