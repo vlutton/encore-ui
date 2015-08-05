@@ -1,7 +1,5 @@
 var Page = require('astrolabe').Page;
 var _ = require('lodash');
-var rxMultiSelectPage = encore.rxMultiSelect;
-var rxSelectFilterPage = encore.rxSelectFilter;
 
 describe('rxMultiSelect', function () {
 
@@ -10,7 +8,7 @@ describe('rxMultiSelect', function () {
     });
 
     describe('exercises', encore.exercise.rxMultiSelect({
-        cssSelector: '#classification',
+        instance: encore.rxMultiSelect.initialize($('#classification')),
         inputs: ['Type A', 'Type B', 'Type C', 'Type D']
     }));
 
@@ -43,7 +41,7 @@ describe('rxSelectFilter', function () {
 
     before(function () {
         demoPage.go('#/components/rxSelectFilter');
-        rxSelectFilter = rxSelectFilterPage.main;
+        rxSelectFilter = encore.rxSelectFilter.main;
     });
 
     it('shows all the table data', function () {
