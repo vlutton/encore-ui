@@ -8,70 +8,70 @@ describe('rxRadio', function () {
     });
 
     describe('(State) Valid Enabled Selected', encore.exercise.rxRadio({
-        cssSelector: '#radValidEnabledOne',
+        instance: encore.rxRadio.initialize($('#radValidEnabledOne')),
         disabled: false,
         selected: true,
         valid: true
     }));
 
     describe('(State) Valid Enabled Unselected', encore.exercise.rxRadio({
-        cssSelector: '#radValidEnabledTwo',
+        instance: encore.rxRadio.initialize($('#radValidEnabledTwo')),
         disabled: false,
         selected: false,
         valid: true
     }));
 
     describe('(State) Valid Disabled Selected', encore.exercise.rxRadio({
-        cssSelector: '#radValidDisabledOne',
+        instance: encore.rxRadio.initialize($('#radValidDisabledOne')),
         disabled: true,
         selected: true,
         valid: true
     }));
 
     describe('(State) Valid Disabled Unselected', encore.exercise.rxRadio({
-        cssSelector: '#radValidDisabledTwo',
+        instance: encore.rxRadio.initialize($('#radValidDisabledTwo')),
         disabled: true,
         selected: false,
         valid: true
     }));
 
     describe('(State) Valid NG-Disabled Selected', encore.exercise.rxRadio({
-        cssSelector: '#radValidNgDisabledOne',
+        instance: encore.rxRadio.initialize($('#radValidNgDisabledOne')),
         disabled: true,
         selected: true,
         valid: true
     }));
 
     describe('(State) Valid NG-Disabled Unselected', encore.exercise.rxRadio({
-        cssSelector: '#radValidNgDisabledTwo',
+        instance: encore.rxRadio.initialize($('#radValidNgDisabledTwo')),
         disabled: true,
         selected: false,
         valid: true
     }));
 
     describe('(State) Invalid Enabled Selected', encore.exercise.rxRadio({
-        cssSelector: '#radInvalidEnabledOne',
+        instance: encore.rxRadio.initialize($('#radInvalidEnabledOne')),
         disabled: false,
         selected: true,
         valid: false
     }));
 
     describe('(State) Invalid Enabled Unselected', encore.exercise.rxRadio({
-        cssSelector: '#radInvalidEnabledTwo',
+        instance: encore.rxRadio.initialize($('#radInvalidEnabledTwo')),
         disabled: false,
         selected: false,
         valid: false
     }));
 
     describe('(State) Invalid Disabled Selected', encore.exercise.rxRadio({
-        cssSelector: '#radInvalidDisabledOne',
+        instance: encore.rxRadio.initialize($('#radInvalidDisabledOne')),
         disabled: true,
         selected: true,
         valid: false
     }));
 
     describe('(State) Invalid Disabled Unselected', encore.exercise.rxRadio({
-        cssSelector: '#radInvalidDisabledTwo',
+        instance: encore.rxRadio.initialize($('#radInvalidDisabledTwo')),
         disabled: true,
         selected: false,
         valid: false
@@ -93,7 +93,7 @@ describe('rxRadio', function () {
 
     describe('plain HTML radio buttons', function () {
         describe('Valid Enabled Unchecked', encore.exercise.rxRadio({
-            cssSelector: "#plainHtmlNormal",
+            instance: encore.rxRadio.initialize($("#plainHtmlNormal")),
             disabled: false,
             selected: false
         }));

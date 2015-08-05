@@ -5,6 +5,7 @@ var rxRadio = require('./rxRadio.page').rxRadio;
  * @description rxRadio exercises
  * @exports encore.exercise.rxRadio
  * @param {Object} [options=] - Test options. Used to build valid tests.
+ * @param {rxRadio} [options.instance=] - Component to exercise.
  * @param {String} [options.cssSelector=] - Fallback selector string with which to initialize widget.
  * @param {Boolean} [options.disabled=false] - Determines if the radio is disabled.
  * @param {Boolean} [options.selected=false] - Determines if the radio is selected.
@@ -27,9 +28,11 @@ exports.rxRadio = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxRadio.main;
-            } else {
+            if (options.instance !== undefined) {
+                component = options.instance;
+            }
+
+            if (options.cssSelector !== undefined) {
                 component = rxRadio.initialize($(options.cssSelector));
             }
         });
