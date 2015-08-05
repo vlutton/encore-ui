@@ -5,13 +5,14 @@ var rxCollapse = require('./rxCollapse.page').rxCollapse;
    rxCollapse exercises.
    @exports encore.exercise.rxCollapse
    @param {Object} [options=] - Test options. Used to build valid tests.
+   @param {rxCollapse} [options.instance=] - Component to exercise.
    @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
    @param {String} title - The title of the rxCollapse element.
    @param {Boolean} expanded - Whether or not the rxCollapse element is currently expanded.
    @example
    ```js
    describe('default exercises', encore.exercise.rxCollapse({
-       cssSelector: '.secondary-info rx-collapse', // select one of many widgets on page
+       instance: myPage.hiddenSection, // select one of many widgets from your page objects
        title: 'My Custom rxCollapse Element',
        expanded: true
    }));
@@ -31,9 +32,13 @@ exports.rxCollapse = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxCollapse.main;
+            if (options.instance !== undefined) {
+                component = options.instance;
             } else {
+                component = rxCollapse.main;
+            }
+
+            if (options.cssSelector !== undefined) {
                 component = rxCollapse.initialize($(options.cssSelector));
             }
         });
