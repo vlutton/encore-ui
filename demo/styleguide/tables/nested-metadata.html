@@ -17,12 +17,11 @@
         <tr ng-if="person.expanded">
             <td colspan="3" class="expanded-container">
               <div class="expanded-content">
-                <div class="metadata">
-                  <dl ng-repeat="(attr, val) in person.pets[0]">
-                    <dt>{{ attr | rxCapitalize }}:</dt>
-                    <dd>{{ val }}</dd>
-                  </dl>
-                </div>
+                <rx-metadata>
+                  <section ng-repeat="(attr, val) in person.pets[0]">
+                    <rx-meta label="{{ attr | rxCapitalize}}">{{val}}</rx-meta>
+                  </section>
+                </rx-metadata>
               </div>
             </td>
         </tr>
