@@ -44,15 +44,15 @@ These directives are not limited to their placement and can be used anywhere:
 ## Compatible Components
 These components work well with rxForm.
 
-* [rxButton](#/component/rxButton)
-* [rxCharacterCount](#/component/rxCharacterCount)
-* [rxCheckbox](#/component/rxCheckbox)
-* [rxMultiSelect](#/component/rxSelectFilter) *(defined in `rxSelectFilter`)*
-* [rxOptionTable](#/component/rxOptionTable)
-* [rxRadio](#/component/rxRadio)
-* [rxSelect](#/component/rxSelect)
-* [rxToggleSwitch](#/component/rxToggleSwitch)
-* [typeahead](#/component/typeahead)
+* [rxButton](#/components/rxButton)
+* [rxCharacterCount](#/components/rxCharacterCount)
+* [rxCheckbox](#/components/rxCheckbox)
+* [rxMultiSelect](#/components/rxSelectFilter) *(defined in `rxSelectFilter`)*
+* [rxOptionTable](#/components/rxOptionTable)
+* [rxRadio](#/components/rxRadio)
+* [rxSelect](#/components/rxSelect)
+* [rxToggleSwitch](#/components/rxToggleSwitch)
+* [typeahead](#/components/typeahead)
 
 
 # Layout
@@ -109,7 +109,7 @@ release of the EncoreUI framework.** They are still functional, but **WILL displ
 a warning in the javascript console** to let you know you should upgrade your code.
 
 ### **rxFormOptionTable**
-Please use [`rxOptionTable`](#/component/rxOptionTable) as a stand-in replacement.
+Please use [`rxOptionTable`](#/components/rxOptionTable) as a stand-in replacement.
 
 ### **rxFormItem**
 See "Before & After" below

@@ -71,11 +71,11 @@ In either case (`title` or `unsafe-html-title`), the document title (i.e. visibl
 
 ### Account Info below Breadcrumbs
 
-`rxPage` integrates the [rxAccountInfo](#/component/rxAccountInfo) component, to draw the Account Info box directly underneath the `rxBreadcrumbs`. This is opt-in. By default, it will not appear. To enable it, pass the `account-number="..."` attribute to `<rx-page>` in your template, i.e
+`rxPage` integrates the [rxAccountInfo](#/components/rxAccountInfo) component, to draw the Account Info box directly underneath the `rxBreadcrumbs`. This is opt-in. By default, it will not appear. To enable it, pass the `account-number="..."` attribute to `<rx-page>` in your template, i.e
 
     <rx-page account-number="{{ accountNumber }}">
 
-As noted on the [rxAccountInfo](#/component/rxAccountInfo) demo page, this directive requires that `SupportAccount`, `Encore` and `Teams` services are available to the Angular Dependency Injection system. These are *not* provided by EncoreUI, but are available in an internal Rackspace repository.
+As noted on the [rxAccountInfo](#/components/rxAccountInfo) demo page, this directive requires that `SupportAccount`, `Encore` and `Teams` services are available to the Angular Dependency Injection system. These are *not* provided by EncoreUI, but are available in an internal Rackspace repository.
 
 
 ### Status tags
@@ -98,7 +98,7 @@ This will create a new status tag called `"gamma"`, which you can pass to `rx-pa
 
 And the title will appear with a `Hello World!` tag beside it, styled the same way as our `"alpha"` status tag is styled. You can also define your own CSS style in your application and use those instead, passing it as the `class` value to `addStatus()`.
 
-All the tags are accessible inside of [rxBreadcrumbs](#/component/rxBreadcrumbs) as well. Any breadcrumb that was created with `useStatusTag: true` will automatically receive the same status tag as you passed to `<rx-page>`.
+All the tags are accessible inside of [rxBreadcrumbs](#/components/rxBreadcrumbs) as well. Any breadcrumb that was created with `useStatusTag: true` will automatically receive the same status tag as you passed to `<rx-page>`.
 
 ### .page-actions
 
@@ -337,7 +337,7 @@ This means "only show this item if `accountNumber` is present in the current rou
 
 The `childHeader` attribute is used to specify an HTML header to be placed above the `children` in an expanded area (and thus having a `childHeader` attribute requires having a `children` attribute).
 
-`childHeader` receives HTML content as a string, and uses [rxCompile](#/component/rxCompile) to compile and insert the content above the `children` items. The compiled content will be linked against the current scope, allowing you to do things like:
+`childHeader` receives HTML content as a string, and uses [rxCompile](#/components/rxCompile) to compile and insert the content above the `children` items. The compiled content will be linked against the current scope, allowing you to do things like:
 
 ```
     {
