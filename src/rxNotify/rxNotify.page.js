@@ -136,6 +136,10 @@ exports.rxNotify = {
         return Page.create(rxNotify);
     },
 
+    main: (function () {
+        return notification($('.rx-notifications .rx-notification'));
+    })(),
+
     all: (function () {
         rxNotify.rootElement = {
             get: function () {
