@@ -75,9 +75,32 @@ The entire project is also installable via `bower`, registered as `encore-ui`.
 
 See [the main readme](../README.md) for a link to the latest build.
 
+### Github Permissions for Release
+You'll need to be a member of the `encore-ui-admin` team in github to have proper permissions to release.
+
 ### Secret Files Needed to Release
 
 For `grunt rxPageObjects`, you'll need to put the contents of the EncoreUI password safe entry for NPM in the project-local `.npmrc` file. This is located in the root of the project, and is ignored by git.
+
+#### `localConfig.js`
+Used for CDN configuration/credentials, you'll need a `localConfig.js` file in the root of your repo with the following format:
+
+```javascript
+module.export = {
+  cloudUsername: ‘encorecloudfiles’,
+  apiKey: GET_FROM_PASSWORDSAFE,
+  baseUrl: 'https://95c7050854423f809e66-6999ba0e7a4f47d417515fb3f08fa9b8.ssl.cf1.rackcdn.com'
+}
+```
+
+#### `.npmrc`
+To publish `rx-page-objects` to the public npm registry.
+
+0. `npm get registry` should return `https://registry.npmjs.org/`
+1. `npm adduser`
+  * Username: `encore-ui`
+  * Password: Get from PasswordSafe > "Encore UI" > "npm" > "Node Package Manager Deploys"
+2. From `~/.npmrc` move the line beginning with `//registry.npmjs.org` to a `.npmrc` file in the root of the repo.
 
 ## Stability Index
 
