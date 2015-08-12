@@ -95,10 +95,6 @@ describe('rxMetadata', function () {
             expect(metadata.term('Witty 2015 Pop Culture Reference')).to.eventually.be.null;
         });
 
-        it('should report back null for definitions that are not displayed', function () {
-            expect(metadata.term('First Hidden')).to.eventually.be.null;
-        });
-
         it('should report back custom return values for definitions that are not present', function () {
             expect(metadata.term('Witty 2015 Pop Culture Reference', false)).to.eventually.be.false;
         });
