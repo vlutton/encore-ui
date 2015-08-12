@@ -196,6 +196,7 @@ describe('user list table', function () {
 ```js
 describe('user list table', function () {
     describe('pagination', encore.exercise.rxPaginate({
+        instance: somePageObject.pagination,
         pageSizes: [3, 50, 200, 350, 500],
         defaultPageSize: 3
     }));
