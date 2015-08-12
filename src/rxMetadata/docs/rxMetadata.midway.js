@@ -29,6 +29,20 @@ var transformFns = {
         return protractor.promise.all(promises).then(function (results) {
             return { text: results[0], href: results[1] };
         });
+    },
+
+    'Data and Link Field': function (elem) {
+        var promises = [elem.getText(), elem.$('a').getAttribute('href')];
+        return protractor.promise.all(promises).then(function (results) {
+            // 'Some data (Link)' -> ['Some data', 'link']
+            var text = results[0].split('(')[0].trim();
+            var linkText = results[0].split('(')[1].replace(')', '');
+            return {
+                text: text,
+                href: results[1],
+                linkText: linkText
+            };
+        });
     }
 }
 
@@ -57,7 +71,12 @@ describe('rxMetadata', function () {
             'Amount': 19268,
             'Phone Number Field': '888 - 888 - 8888',
             'Date Field': new Date('January 6, 1989'),
-            'Link Field': { text: 'Link', href: browser.baseUrl + '/#' }
+            'Link Field': { text: 'Link', href: browser.baseUrl + '/#' },
+            'Data and Link Field': {
+                text: 'Some data',
+                href: browser.baseUrl + '/#',
+                linkText: 'Link'
+            }
         }
     }));
 
@@ -69,7 +88,7 @@ describe('rxMetadata', function () {
             'Field Name': 'Field Value Example',
             'Another Field Name': 'Another Field Value Example',
             'Third Field Name': 'The Third Field Value Example',
-            'Fourth Field Name': 'The Fourth Field Value Example',
+            'Super Long Value': 'A super long data value with anunseeminglyunbreakablewordthatcouldoverflowtothenextcolumn',
             'Short Field Name': 'A long field value given here to show line break style.',
             'Status': 'Active',
             'RCN': 'RCN-555-555-555',
