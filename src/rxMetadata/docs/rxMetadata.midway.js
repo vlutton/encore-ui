@@ -61,6 +61,29 @@ describe('rxMetadata', function () {
         }
     }));
 
+    describe('Status (Empty Transform Functions)', exercise.rxMetadata({
+        present: true,
+        visible: true,
+
+        terms: {
+            'Field Name': 'Field Value Example',
+            'Another Field Name': 'Another Field Value Example',
+            'Third Field Name': 'The Third Field Value Example',
+            'Fourth Field Name': 'The Fourth Field Value Example',
+            'Short Field Name': 'A long field value given here to show line break style.',
+            'Status': 'Active',
+            'RCN': 'RCN-555-555-555',
+            'Type': 'Cloud',
+            'Service Level': 'Managed → Managed',
+            'Service Type': 'DevOps → SysOps',
+            'Amount': '$192.68',
+            'Phone Number Field': '888 - 888 - 8888',
+            'Date Field': 'Friday, January 6, 1989',
+            'Link Field': 'Link',
+            'Data and Link Field': 'Some data (Link)'
+        }
+    }));
+
     describe('rxMetadata', function () {
         var metadata;
 

@@ -87,6 +87,10 @@ exports.rxMetadata = {
      * ```
      */
     initialize: function (rxMetadataElement, transformFns) {
+        if (transformFns === undefined) {
+            transformFns = {};
+        }
+
         rxMetadata.transformFns = {
             get: function () { return transformFns; }
         };
@@ -103,7 +107,7 @@ exports.rxMetadata = {
      */
     main: (function () {
         rxMetadata.transformFns = {
-            get: function () { return undefined; }
+            get: function () { return {}; }
         };
 
         rxMetadata.rootElement = {
