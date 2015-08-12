@@ -34,7 +34,7 @@ For example, say that the latest version is v1.10.0. Any bugs we find will norma
 
 The procedure for doing this is as follows:
 
- 1. `git checkout -b version1.8.0 v1.8.0` This checks out a new branch against our release tag `v1.8.0`.
+ 1. `git checkout -b version1.8.0 v1.8.0` (This checks out a new branch against our release tag `v1.8.0`.)
  2. Push this to github, `git push -u origin`
  3. Check out a fix branch, `git co -b fix_some_bug`
  4. Once the necessary fixes are made on this branch, push it to github, `git push -u origin`
