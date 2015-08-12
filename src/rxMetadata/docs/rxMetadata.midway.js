@@ -47,7 +47,7 @@ describe('rxMetadata', function () {
             'Field Name': 'Field Value Example',
             'Another Field Name': 'Another Field Value Example',
             'Third Field Name': 'The Third Field Value Example',
-            'Fourth Field Name': 'The Fourth Field Value Example',
+            'Super Long Value': 'A super long data value with anunseeminglyunbreakablewordthatcouldoverflowtothenextcolumn',
             'Short Field Name': 'A long field value given here to show line break style.',
             'Status': 'Active',
             'RCN': 'RCN-555-555-555',
