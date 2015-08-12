@@ -133,26 +133,36 @@ ul.colors {
     }
 }
 
-table.component-attributes {
-  th, td {
-    vertical-align: top;
-    text-align: center;
-  }
-  tr {
-    th, td {
-      &:last-child {
-        text-align: left;
-      }
+.overview-column {
+    width: 300px;
+    margin-right: 100px;
+    h4 {
+        font-weight: 600;
     }
-  }
+    a + p {
+        margin-top: 5px;
+    }
+}
 
-  tbody {
-    tr {
-      th {
-        white-space: nowrap;
-      }
+table.component-attributes {
+    tbody {
+        tr {
+            th {
+                white-space: nowrap;
+            }
+        }
     }
-  }
+    tr {
+        th, td {
+            &:last-child {
+              text-align: left;
+            }
+        }
+    }
+    th, td {
+        vertical-align: top;
+        text-align: center;
+    }
 }
 
 .components-list {
@@ -173,32 +183,55 @@ table.component-attributes {
 
 
 .component-description,
-.component-demo {
-  pre,
-  code {
-      color: #404040;
-      background-color: #D0D0D0;
-      border: 1px solid #BABABA;
-      border-radius: 2px;
-  }
+.component-demo,
+.markdown {
+    pre,
+    code {
+        color: #404040;
+        background-color: #D0D0D0;
+        border: 1px solid #BABABA;
+        border-radius: 2px;
+    }
 
-  code {
-      padding: 0 2px;
-      margin: 0 1px;
-  }
+    code {
+        padding: 0 2px;
+        margin: 0 1px;
+    }
 
-  pre {
-      padding: 10px;
+    pre {
+        padding: 10px;
 
-      code {
-          border: none;
-          padding: 0;
-          margin: 0;
-          border-radius: 0;
-      }
-  }
+        code {
+            border: none;
+            padding: 0;
+            margin: 0;
+            border-radius: 0;
+        }
+    }
 }
 
 p {
     line-height: 1.5;
+}
+
+.rx-app .page-body .page-titles {
+    float: initial;
+}
+
+.markdown {
+    ul, ol {
+        display: inline;
+        margin: 0;
+        p {
+            display: inline-block;
+        }
+    }
+    ol li {
+        list-style: decimal inside;
+    }
+    ul li {
+        list-style: disc inside;
+        margin: 10px 10px 10px 23px;
+        text-indent: -13px;
+    }
 }

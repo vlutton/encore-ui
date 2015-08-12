@@ -36,8 +36,8 @@
                   <ul>
                     <li>This allows developers/designers to style the label based on the state of the control.</li>
                     <li>
-                      See <a href="#/component/rxCheckbox">rxCheckbox</a>, <a href="#/component/rxRadio">rxRadio</a>,
-                      and <a href="#/component/rxForm">rxForm</a> for markup examples.
+                      See <a href="#/components/rxCheckbox">rxCheckbox</a>, <a href="#/components/rxRadio">rxRadio</a>,
+                      and <a href="#/components/rxForm">rxForm</a> for markup examples.
                     </li>
                   </ul>
                 </li>
@@ -49,7 +49,7 @@
           In contrast to its predecessor (rxFormItem), rxField and children provide the flexibility to create form field inputs that make use
           of one or more controls.
           <ul>
-            <li>See "Advanced Controls" in <a href="#/component/rxForm">rxForm</a> demo for examples.</li>
+            <li>See "Advanced Controls" in <a href="#/components/rxForm">rxForm</a> demo for examples.</li>
           </ul>
         </li>
       </ul>
@@ -93,15 +93,15 @@
     <h3 class="title clear">Selects</h3>
     <div class="component-description">
       <ul>
-        <li>For single item selection, please use the <a href="#/component/rxSelect">rxSelect</a> component.</li>
-        <li>For multi-item selection, please use the rxMultiSelect element defined in the <a href="#/component/rxSelectFilter">rxSelectFilter</a> component.</li>
+        <li>For single item selection, please use the <a href="#/components/rxSelect">rxSelect</a> component.</li>
+        <li>For multi-item selection, please use the rxMultiSelect element defined in the <a href="#/components/rxSelectFilter">rxSelectFilter</a> component.</li>
       </ul>
     </div>
 
     <h3 class="title clear">Checkboxes</h3>
     <div class="component-description">
       <ul>
-        <li>Please use the <a href="#/component/rxCheckbox">rxCheckbox</a> component for checkbox controls.</li>
+        <li>Please use the <a href="#/components/rxCheckbox">rxCheckbox</a> component for checkbox controls.</li>
         <li>
           If you intend to use a label element, place it <strong>immediately after the rxCheckbox</strong>
           so that CSS rules may style the label when the control is disabled.
@@ -113,7 +113,7 @@
     <h3 class="title clear">Toggle Switches</h3>
     <div class="component-description">
       <ul>
-        <li>Please use the <a href="#/component/rxToggleSwitch">rxToggleSwitch</a> component for toggle switch controls.</li>
+        <li>Please use the <a href="#/components/rxToggleSwitch">rxToggleSwitch</a> component for toggle switch controls.</li>
         <li>
           If you intend to use a label element, place it <strong>immediately after the rxToggleSwitch</strong>
           so that CSS rules may style the label when the control is disabled.
@@ -131,7 +131,7 @@
     <h3 class="title clear">Radios</h3>
     <div class="component-description">
       <ul>
-        <li>Please use the <a href="#/component/rxRadio">rxRadio</a> component for radio controls.</li>
+        <li>Please use the <a href="#/components/rxRadio">rxRadio</a> component for radio controls.</li>
         <li>
           If you intend to use a label element, place it <strong>immediately after the rxRadio</strong>
           so that CSS rules may style the label when the control is disabled.
@@ -162,7 +162,7 @@
           Please test your code heavily before shipping.
         </li>
         <li>
-          See <a href="#/component/rxCharacterCount/">rxCharacterCount</a> for more specific documentation about
+          See <a href="#/components/rxCharacterCount/">rxCharacterCount</a> for more specific documentation about
           implementing a counter on a textarea or text input field.
         </li>
       </ul>
@@ -210,7 +210,7 @@
           rxAutoSave service.
         </li>
         <li>rxAutoSave interacts exclusively with your model layer. Your UI/template code will be unaware that its state is being saved.</li>
-        <li>See <a href="#/component/rxMisc/">rxAutoSave</a> (which lives within the rxMisc component) for further details.</li>
+        <li>See <a href="#/components/rxMisc/">rxAutoSave</a> (which lives within the rxMisc component) for further details.</li>
       </ul>
     </div>
     <rx-styleguide code-url="styleguide/forms/autosave.html"></rx-styleguide>
@@ -218,9 +218,9 @@
     <h3 class="title">Manual Form Saving</h3>
     <div class="component-description">
       <ul class="list">
-        <li>When an entity is being edited in place, rather than submitting an edit or create form, a notification with a save button is used.</li>
+        <li>When an entity is being edited in place, rather than submitting an edit or create form, an informative notification and a save button are used.</li>
         <li>The notification should be put in the page stack and should only be shown after a change has been made to the form (e.g. not on page load).</li>
-        <li>The subtitle of the page should indicate when the form was last saved.</li>
+        <li>The subtitle of the page should indicate when the form was last saved and contain the save button.</li>
       </ul>
     </div>
     <rx-styleguide code-url="styleguide/forms/manual-saving.html"></rx-styleguide>

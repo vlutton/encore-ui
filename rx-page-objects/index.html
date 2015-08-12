@@ -1,4 +1,4 @@
-<h1 id="index">Index</h1>
+<p>#Index</p>
 <p><strong>Modules</strong></p>
 <ul>
 <li><a href="#encore.module_rxAccountInfo">encore.rxAccountInfo</a><ul>
@@ -30,6 +30,12 @@
 <li><a href="#encore.module_rxCollapse">encore.rxCollapse</a><ul>
 <li><a href="#encore.module_rxCollapse.main">encore.rxCollapse.main</a></li>
 <li><a href="#encore.module_rxCollapse.initialize">encore.rxCollapse.initialize(rxCollapseElement)</a></li>
+</ul>
+</li>
+<li><a href="#encore.module_rxFloatingHeader">encore.rxFloatingHeader</a><ul>
+<li><a href="#encore.module_rxFloatingHeader.scrollToElement">encore.rxFloatingHeader.scrollToElement(elem)</a></li>
+<li><a href="#encore.module_rxFloatingHeader.compareYLocations">encore.rxFloatingHeader.compareYLocations(e1, e2)</a></li>
+<li><a href="#encore.module_rxFloatingHeader.compareXLocations">encore.rxFloatingHeader.compareXLocations(e1, e2)</a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxForm">encore.rxForm</a><ul>
@@ -82,7 +88,7 @@
 </li>
 <li><a href="#encore.module_rxSelect">encore.rxSelect</a><ul>
 <li><a href="#encore.module_rxSelect.initialize">encore.rxSelect.initialize(rxSelectElement)</a></li>
-<li><a href="#encore.module_rxSelect.generateAccessor">encore.rxSelect.generateAccessor(elem)</a></li>
+<li><a href="#encore.module_rxSelect.generateAccessor">encore.rxSelect.generateAccessor(elem, [slowClick])</a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
@@ -358,8 +364,8 @@
 <li><a href="#count">count()</a></li>
 </ul>
 <p><a name="encore.module_rxAccountInfo"></a></p>
-<h1 id="encore-rxaccountinfo">encore.rxAccountInfo</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxAccountInfo
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxAccountInfo">encore.rxAccountInfo</a><ul>
 <li><a href="#encore.module_rxAccountInfo.main">encore.rxAccountInfo.main</a></li>
@@ -370,28 +376,28 @@
 </li>
 </ul>
 <p><a name="encore.module_rxAccountInfo.main"></a></p>
-<h2 id="encore-rxaccountinfo-main">encore.rxAccountInfo.main</h2>
-<p><strong>Returns</strong>: <a href="#rxAccountInfo">rxAccountInfo</a> - Page object representing the <em>first</em> rxAccountInfo object found on the page.<br><a name="encore.module_rxAccountInfo.initialize"></a></p>
-<h2 id="encore-rxaccountinfo-initialize-rxaccountinfoelement-">encore.rxAccountInfo.initialize(rxAccountInfoElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxAccountInfo.main
+<strong>Returns</strong>: <a href="#rxAccountInfo">rxAccountInfo</a> - Page object representing the <em>first</em> rxAccountInfo object found on the page.<br><a name="encore.module_rxAccountInfo.initialize"></a></p>
+<p>##encore.rxAccountInfo.initialize(rxAccountInfoElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxAccountInfoElement <code>WebElement</code> - WebElement to be transformed into an rxAccountInfoElement object  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxAccountInfo">rxAccountInfo</a> - Page object representing the rxAccountInfo object.<br><a name="encore.module_rxAccountInfo.statuses"></a></p>
-<h2 id="const-encore-rxaccountinfo-statuses">const: encore.rxAccountInfo.statuses</h2>
-<p><strong>Returns</strong>: <code>Object</code> - Lookup of account statuses from status text. Used for comparisons in tests.<br><strong>Example</strong>  </p>
+<p>##const: encore.rxAccountInfo.statuses
+<strong>Returns</strong>: <code>Object</code> - Lookup of account statuses from status text. Used for comparisons in tests.<br><strong>Example</strong>  </p>
 <pre><code class="lang-js">expect(encore.rxAccountInfo.main.status).to.eventually.equal(encore.rxAccountInfo.statuses.delinquent);
 </code></pre>
 <p><a name="encore.module_rxAccountInfo.statusTypes"></a></p>
-<h2 id="const-encore-rxaccountinfo-statustypes">const: encore.rxAccountInfo.statusTypes</h2>
-<p><strong>Returns</strong>: <code>Object</code> - Lookup of status types from a human-readable class name. Used for comparisons in tests.<br><strong>Example</strong>  </p>
+<p>##const: encore.rxAccountInfo.statusTypes
+<strong>Returns</strong>: <code>Object</code> - Lookup of status types from a human-readable class name. Used for comparisons in tests.<br><strong>Example</strong>  </p>
 <pre><code class="lang-js">expect(encore.rxAccountInfo.main.statusType).to.eventually.equal(encore.rxAccountInfo.statusTypes.warning);
 </code></pre>
 <p><a name="encore.module_rxActionMenu"></a></p>
-<h1 id="encore-rxactionmenu">encore.rxActionMenu</h1>
-<p><a name="encore.module_rxActionMenu.initialize"></a></p>
-<h2 id="encore-rxactionmenu-initialize-rxactionmenuelement-actionconstructorfn-">encore.rxActionMenu.initialize(rxActionMenuElement, [actionConstructorFn])</h2>
-<p>Passing in an <code>actionConstructorFn</code> will default to calling that for any
+<p>#encore.rxActionMenu
+<a name="encore.module_rxActionMenu.initialize"></a></p>
+<p>##encore.rxActionMenu.initialize(rxActionMenuElement, [actionConstructorFn])
+Passing in an <code>actionConstructorFn</code> will default to calling that for any
       calls made to <code>rxActionMenu.action(&#39;Action Name&#39;)</code>. If it&#39;s not defined, it defaults to a function
       that creates a page object represented by <a href="#rxActionMenu.action.action">action</a>.
       Most times you&#39;ll want to leave this <code>undefined</code>.</p>
@@ -401,8 +407,8 @@
 <li>[actionConstructorFn] <code>function</code> - Function to invoke on calling <a href="#rxActionMenu.action">action</a>.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxActionMenu">rxActionMenu</a> - Page object representing the rxActionMenu object.<br><a name="encore.module_rxBulkSelect"></a></p>
-<h1 id="encore-rxbulkselect">encore.rxBulkSelect</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxBulkSelect
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxBulkSelect">encore.rxBulkSelect</a><ul>
 <li><a href="#encore.module_rxBulkSelect.main">encore.rxBulkSelect.main</a></li>
@@ -411,16 +417,16 @@
 </li>
 </ul>
 <p><a name="encore.module_rxBulkSelect.main"></a></p>
-<h2 id="encore-rxbulkselect-main">encore.rxBulkSelect.main</h2>
-<p><strong>Returns</strong>: <code>rxBulkSelect</code> - Page object representing the <em>first</em> rxBulkSelect object found on the page.<br><a name="encore.module_rxBulkSelect.initialize"></a></p>
-<h2 id="encore-rxbulkselect-initialize-rxbulkselectelement-">encore.rxBulkSelect.initialize(rxBulkSelectElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxBulkSelect.main
+<strong>Returns</strong>: <code>rxBulkSelect</code> - Page object representing the <em>first</em> rxBulkSelect object found on the page.<br><a name="encore.module_rxBulkSelect.initialize"></a></p>
+<p>##encore.rxBulkSelect.initialize(rxBulkSelectElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxBulkSelectElement <code>WebElement</code> - WebElement to be transformed into an rxBulkSelectElement object.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>rxBulkSelect</code> - Page object representing the rxBulkSelect object.<br><a name="encore.module_rxCharacterCount"></a></p>
-<h1 id="encore-rxcharactercount">encore.rxCharacterCount</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxCharacterCount
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxCharacterCount">encore.rxCharacterCount</a><ul>
 <li><a href="#encore.module_rxCharacterCount.main">encore.rxCharacterCount.main</a></li>
@@ -429,16 +435,16 @@
 </li>
 </ul>
 <p><a name="encore.module_rxCharacterCount.main"></a></p>
-<h2 id="encore-rxcharactercount-main">encore.rxCharacterCount.main</h2>
-<p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the <em>first</em> rxCharacterCount object found on the page.<br><a name="encore.module_rxCharacterCount.initialize"></a></p>
-<h2 id="encore-rxcharactercount-initialize-rxcharactercountelement-">encore.rxCharacterCount.initialize(rxCharacterCountElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxCharacterCount.main
+<strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the <em>first</em> rxCharacterCount object found on the page.<br><a name="encore.module_rxCharacterCount.initialize"></a></p>
+<p>##encore.rxCharacterCount.initialize(rxCharacterCountElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxCharacterCountElement <code>WebElement</code> - WebElement to be transformed into an rxCharacterCountElement object  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxCharacterCount">rxCharacterCount</a> - Page object representing the rxCharacterCount object.<br><a name="encore.module_rxCheckbox"></a></p>
-<h1 id="encore-rxcheckbox">encore.rxCheckbox</h1>
-<p>Page object for interacting with rxCheckbox elements</p>
+<p>#encore.rxCheckbox
+Page object for interacting with rxCheckbox elements</p>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxCheckbox">encore.rxCheckbox</a><ul>
@@ -448,21 +454,21 @@
 </li>
 </ul>
 <p><a name="encore.module_rxCheckbox.initialize"></a></p>
-<h2 id="encore-rxcheckbox-initialize-rxcheckboxelement-">encore.rxCheckbox.initialize(rxCheckboxElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxCheckbox.initialize(rxCheckboxElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxCheckboxElement <code>WebElement</code> - WebElement to be transformed into an rxCheckbox page object  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxCheckbox">rxCheckbox</a> - Page object representing the rxCheckbox element<br><a name="encore.module_rxCheckbox.generateAccessor"></a></p>
-<h2 id="encore-rxcheckbox-generateaccessor-elem-">encore.rxCheckbox.generateAccessor(elem)</h2>
-<p>Generates a getter and a setter for an rxCheckbox element on your page.</p>
+<p>##encore.rxCheckbox.generateAccessor(elem)
+Generates a getter and a setter for an rxCheckbox element on your page.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>elem <code>WebElement</code> - The WebElement for the rxCheckbox.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to a rxCheckbox page object.<br><a name="encore.module_rxCollapse"></a></p>
-<h1 id="encore-rxcollapse">encore.rxCollapse</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxCollapse
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxCollapse">encore.rxCollapse</a><ul>
 <li><a href="#encore.module_rxCollapse.main">encore.rxCollapse.main</a></li>
@@ -471,16 +477,50 @@
 </li>
 </ul>
 <p><a name="encore.module_rxCollapse.main"></a></p>
-<h2 id="encore-rxcollapse-main">encore.rxCollapse.main</h2>
-<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the <em>first</em> rxCollapse object found on the page.<br><a name="encore.module_rxCollapse.initialize"></a></p>
-<h2 id="encore-rxcollapse-initialize-rxcollapseelement-">encore.rxCollapse.initialize(rxCollapseElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxCollapse.main
+<strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the <em>first</em> rxCollapse object found on the page.<br><a name="encore.module_rxCollapse.initialize"></a></p>
+<p>##encore.rxCollapse.initialize(rxCollapseElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxCollapseElement <code>WebElement</code> - WebElement to be transformed into an rxCollapseElement object.  </li>
 </ul>
-<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the rxCollapse object.<br><a name="encore.module_rxForm"></a></p>
-<h1 id="encore-rxform">encore.rxForm</h1>
-<p><strong>Members</strong></p>
+<p><strong>Returns</strong>: <a href="#rxCollapse">rxCollapse</a> - Page object representing the rxCollapse object.<br><a name="encore.module_rxFloatingHeader"></a></p>
+<p>#encore.rxFloatingHeader
+<strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxFloatingHeader">encore.rxFloatingHeader</a><ul>
+<li><a href="#encore.module_rxFloatingHeader.scrollToElement">encore.rxFloatingHeader.scrollToElement(elem)</a></li>
+<li><a href="#encore.module_rxFloatingHeader.compareYLocations">encore.rxFloatingHeader.compareYLocations(e1, e2)</a></li>
+<li><a href="#encore.module_rxFloatingHeader.compareXLocations">encore.rxFloatingHeader.compareXLocations(e1, e2)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxFloatingHeader.scrollToElement"></a></p>
+<p>##encore.rxFloatingHeader.scrollToElement(elem)
+Accepts an ElementArrayFinder, which can have several locations. Should the
+       list of elements be stacked vertically (say, in a list of table rows),
+       the element with the smallest Y coordinate will be scrolled to.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>elem <code>WebElement</code> - An element, or a list of elements to scroll to  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="encore.module_rxFloatingHeader.compareYLocations"></a></p>
+<p>##encore.rxFloatingHeader.compareYLocations(e1, e2)
+<strong>Params</strong></p>
+<ul>
+<li>e1 <code>WebElement</code> - First element to compare Y locations against.  </li>
+<li>e2 <code>WebElement</code> - Second element to compare Y locations against.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not <code>e1</code> and <code>e2</code> have the same Y coordinates.<br><a name="encore.module_rxFloatingHeader.compareXLocations"></a></p>
+<p>##encore.rxFloatingHeader.compareXLocations(e1, e2)
+<strong>Params</strong></p>
+<ul>
+<li>e1 <code>WebElement</code> - First element to compare X locations against.  </li>
+<li>e2 <code>WebElement</code> - Second element to compare X locations against.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not <code>e1</code> and <code>e2</code> have the same X coordinates.<br><a name="encore.module_rxForm"></a></p>
+<p>#encore.rxForm
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxForm">encore.rxForm</a><ul>
 <li><a href="#encore.module_rxForm.fill">encore.rxForm.fill(reference, formData)</a></li>
@@ -501,8 +541,8 @@
 </li>
 </ul>
 <p><a name="encore.module_rxForm.fill"></a></p>
-<h2 id="encore-rxform-fill-reference-formdata-">encore.rxForm.fill(reference, formData)</h2>
-<p>Set <code>value</code> in <code>formData</code> to the page object&#39;s current method <code>key</code>.
+<p>##encore.rxForm.fill(reference, formData)
+Set <code>value</code> in <code>formData</code> to the page object&#39;s current method <code>key</code>.
 Aids in filling out form data via javascript objects.
 For an example of this in use, see <a href="http://goo.gl/R7Frwv">encore-ui&#39;s end to end tests</a>.</p>
 <p><strong>Params</strong></p>
@@ -532,16 +572,16 @@ yourPage.form = {
 };
 </code></pre>
 <p><a name="encore.module_rxForm.currencyToPennies"></a></p>
-<h2 id="-encore-rxform-currencytopennies-"><del>encore.rxForm.currencyToPennies()</del></h2>
-<p><strong>ALIASED</strong>: Please use <a href="#rxMisc.currencyToPennies">currencyToPennies</a> instead.
+<p>##<del>encore.rxForm.currencyToPennies()</del>
+<strong>ALIASED</strong>: Please use <a href="#rxMisc.currencyToPennies">currencyToPennies</a> instead.
 This function will be removed in a future release of the EncoreUI framework.</p>
 <p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxForm.slowClick"></a></p>
-<h2 id="-encore-rxform-slowclick-"><del>encore.rxForm.slowClick()</del></h2>
-<p><strong>ALIASED</strong>: Please use <a href="#rxMisc.slowClick">slowClick</a> instead.
+<p>##<del>encore.rxForm.slowClick()</del>
+<strong>ALIASED</strong>: Please use <a href="#rxMisc.slowClick">slowClick</a> instead.
 This function will be removed in a future release of the EncoreUI framework.</p>
 <p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxForm.textField"></a></p>
-<h2 id="encore-rxform-textfield">encore.rxForm.textField</h2>
-<p><strong>Members</strong></p>
+<p>##encore.rxForm.textField
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxForm.textField">encore.rxForm.textField</a><ul>
 <li><a href="#encore.module_rxForm.textField.generateAccessor">textField.generateAccessor(elem)</a></li>
@@ -549,8 +589,8 @@ This function will be removed in a future release of the EncoreUI framework.</p>
 </li>
 </ul>
 <p><a name="encore.module_rxForm.textField.generateAccessor"></a></p>
-<h3 id="textfield-generateaccessor-elem-">textField.generateAccessor(elem)</h3>
-<p>Generates a getter and a setter for a text field on your page.
+<p>###textField.generateAccessor(elem)
+Generates a getter and a setter for a text field on your page.
 Text fields include text boxes, text areas, anything that responds to <code>.clear()</code> and <code>.sendKeys()</code>.</p>
 <p><strong>Params</strong></p>
 <ul>
@@ -567,8 +607,8 @@ it(&#39;should fill out the text box&#39;, function () {
 });
 </code></pre>
 <p><a name="encore.module_rxForm.fieldName"></a></p>
-<h2 id="encore-rxform-fieldname">encore.rxForm.fieldName</h2>
-<p><strong>Members</strong></p>
+<p>##encore.rxForm.fieldName
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxForm.fieldName">encore.rxForm.fieldName</a><ul>
 <li><a href="#encore.module_rxForm.fieldName.initialize">fieldName.initialize(rxFieldNameElement)</a></li>
@@ -576,35 +616,35 @@ it(&#39;should fill out the text box&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxForm.fieldName.initialize"></a></p>
-<h3 id="fieldname-initialize-rxfieldnameelement-">fieldName.initialize(rxFieldNameElement)</h3>
-<p><strong>Params</strong></p>
+<p>###fieldName.initialize(rxFieldNameElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxFieldNameElement <code>WebElement</code> - WebElement to be transformed into an rxFieldNameElement object.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxFieldName">rxFieldName</a> - Page object representing the rxFieldName object.<br><a name="encore.module_rxForm.checkbox"></a></p>
-<h2 id="-encore-rxform-checkbox-"><del>encore.rxForm.checkbox</del></h2>
-<p><strong>ALIASED</strong> Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.</p>
+<p>##<del>encore.rxForm.checkbox</del>
+<strong>ALIASED</strong> Directly uses <a href="#encore.module_rxCheckbox">encore.rxCheckbox</a>.</p>
 <p><strong><em>Deprecated</em></strong><br><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxForm.checkbox"><del>encore.rxForm.checkbox</del></a></li>
 </ul>
 <p><a name="encore.module_rxForm.radioButton"></a></p>
-<h2 id="encore-rxform-radiobutton">encore.rxForm.radioButton</h2>
-<p><strong>ALIASED</strong> Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.</p>
+<p>##encore.rxForm.radioButton
+<strong>ALIASED</strong> Directly uses <a href="#encore.module_rxRadio">encore.rxRadio</a>.</p>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxForm.radioButton">encore.rxForm.radioButton</a></li>
 </ul>
 <p><a name="encore.module_rxForm.dropdown"></a></p>
-<h2 id="encore-rxform-dropdown">encore.rxForm.dropdown</h2>
-<p><strong>ALIASED</strong> Directly uses <a href="#encore.module_rxSelect">encore.rxSelect</a>.</p>
+<p>##encore.rxForm.dropdown
+<strong>ALIASED</strong> Directly uses <a href="#encore.module_rxSelect">encore.rxSelect</a>.</p>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxForm.dropdown">encore.rxForm.dropdown</a></li>
 </ul>
 <p><a name="encore.module_rxMetadata"></a></p>
-<h1 id="encore-rxmetadata">encore.rxMetadata</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxMetadata
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxMetadata">encore.rxMetadata</a><ul>
 <li><a href="#encore.module_rxMetadata.main">encore.rxMetadata.main</a></li>
@@ -613,11 +653,11 @@ it(&#39;should fill out the text box&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxMetadata.main"></a></p>
-<h2 id="encore-rxmetadata-main">encore.rxMetadata.main</h2>
-<p>There is no way to configure <code>transformFns</code> from the main instance of an rxMetadata component.</p>
+<p>##encore.rxMetadata.main
+There is no way to configure <code>transformFns</code> from the main instance of an rxMetadata component.</p>
 <p><strong>Returns</strong>: <a href="#rxMetadata">rxMetadata</a> - Page object representing the <em>first</em> rxMetadata object found on the page.<br><a name="encore.module_rxMetadata.initialize"></a></p>
-<h2 id="encore-rxmetadata-initialize-rxmetadataelement-transformfns-">encore.rxMetadata.initialize(rxMetadataElement, transformFns)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxMetadata.initialize(rxMetadataElement, transformFns)
+<strong>Params</strong></p>
 <ul>
 <li>rxMetadataElement <code>WebElement</code> - WebElement to be transformed into an rxMetadata page object.  </li>
 <li>transformFns <code>Object</code> - An object defining which metadata entries should be transformed, and how.  </li>
@@ -652,10 +692,10 @@ it(&#39;should fill out the text box&#39;, function () {
 });
 </code></pre>
 <p><a name="encore.module_rxModalAction"></a></p>
-<h1 id="encore-rxmodalaction">encore.rxModalAction</h1>
-<p><a name="encore.module_rxModalAction.initialize"></a></p>
-<h2 id="encore-rxmodalaction-initialize-customfunctionality-">encore.rxModalAction.initialize([customFunctionality])</h2>
-<p>By default, every modal will have a title, subtitle, a submit button, a cancel button, and more.
+<p>#encore.rxModalAction
+<a name="encore.module_rxModalAction.initialize"></a></p>
+<p>##encore.rxModalAction.initialize([customFunctionality])
+By default, every modal will have a title, subtitle, a submit button, a cancel button, and more.
        However, you will likely have some custom form elements in a modal, and you&#39;ll need to define those
        as a page object ahead of time. Pass in an object that represents your modal&#39;s custom elements
        and it&#39;ll be included with the rest of the modal page object here.</p>
@@ -696,8 +736,8 @@ it(&#39;should fill out the text box&#39;, function () {
  changePasswordModal = modal.initialize(customFunctionalty);
 </code></pre>
 <p><a name="encore.module_rxOptionTable"></a></p>
-<h1 id="encore-rxoptiontable">encore.rxOptionTable</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxOptionTable
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxOptionTable">encore.rxOptionTable</a><ul>
 <li><a href="#encore.module_rxOptionTable.main">encore.rxOptionTable.main</a></li>
@@ -707,16 +747,16 @@ it(&#39;should fill out the text box&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxOptionTable.main"></a></p>
-<h2 id="encore-rxoptiontable-main">encore.rxOptionTable.main</h2>
-<p><strong>Returns</strong>: <a href="#rxOptionTable">rxOptionTable</a> - Page object representing the <em>first</em> rxOptionTable object found on the page.<br><a name="encore.module_rxOptionTable.initialize"></a></p>
-<h2 id="encore-rxoptiontable-initialize-rxoptiontableelement-">encore.rxOptionTable.initialize(rxOptionTableElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxOptionTable.main
+<strong>Returns</strong>: <a href="#rxOptionTable">rxOptionTable</a> - Page object representing the <em>first</em> rxOptionTable object found on the page.<br><a name="encore.module_rxOptionTable.initialize"></a></p>
+<p>##encore.rxOptionTable.initialize(rxOptionTableElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxOptionTableElement <code>WebElement</code> - WebElement to be transformed into an rxOptionTableElement object.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxOptionTable">rxOptionTable</a> - Page object representing the rxOptionTable object.<br><a name="encore.module_rxOptionTable.generateAccessor"></a></p>
-<h2 id="encore-rxoptiontable-generateaccessor-elem-">encore.rxOptionTable.generateAccessor(elem)</h2>
-<p>Generates a getter and a setter for an option table on your page, no matter if that
+<p>##encore.rxOptionTable.generateAccessor(elem)
+Generates a getter and a setter for an option table on your page, no matter if that
 rxOptionTable contains radio buttons or checkboxes. They will both function identically.
 This function is very much tied to the <a href="#rxOptionTable">rxOptionTable</a> page object. When using this,
 consider exposing a raw rxOptionTable component on your page object as well. This
@@ -747,8 +787,8 @@ it(&#39;should select the country&#39;, function () {
 });
 </code></pre>
 <p><a name="encore.module_rxOptionFormTable"></a></p>
-<h1 id="-encore-rxoptionformtable-"><del>encore.rxOptionFormTable</del></h1>
-<p><strong>DEPRECATED</strong>: Please use <code>encore.rxOptionTable</code> as a stand-in replacement.</p>
+<p>#<del>encore.rxOptionFormTable</del>
+<strong>DEPRECATED</strong>: Please use <code>encore.rxOptionTable</code> as a stand-in replacement.</p>
 <p><strong><em>Deprecated</em></strong><br><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxOptionFormTable"><del>encore.rxOptionFormTable</del></a><ul>
@@ -759,17 +799,17 @@ it(&#39;should select the country&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxOptionFormTable.initialize"></a></p>
-<h2 id="-encore-rxoptionformtable-initialize-"><del>encore.rxOptionFormTable.initialize</del></h2>
-<p><strong>DEPRECATED</strong>: Please use <code>encore.rxOptionTable.initialize</code> as a stand-in replacement.</p>
+<p>##<del>encore.rxOptionFormTable.initialize</del>
+<strong>DEPRECATED</strong>: Please use <code>encore.rxOptionTable.initialize</code> as a stand-in replacement.</p>
 <p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxOptionFormTable.main"></a></p>
-<h2 id="-encore-rxoptionformtable-main-"><del>encore.rxOptionFormTable.main</del></h2>
-<p><strong>DEPRECATED</strong>: Please use <code>encore.rxOptionTable.main</code> as a stand-in replacement.</p>
+<p>##<del>encore.rxOptionFormTable.main</del>
+<strong>DEPRECATED</strong>: Please use <code>encore.rxOptionTable.main</code> as a stand-in replacement.</p>
 <p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxOptionFormTable.generateAccessor"></a></p>
-<h2 id="-encore-rxoptionformtable-generateaccessor-"><del>encore.rxOptionFormTable.generateAccessor</del></h2>
-<p><strong>DEPRECATED</strong>: Please use <code>encore.rxOptionTable.generateAccessor</code> as a stand-in replacement.</p>
+<p>##<del>encore.rxOptionFormTable.generateAccessor</del>
+<strong>DEPRECATED</strong>: Please use <code>encore.rxOptionTable.generateAccessor</code> as a stand-in replacement.</p>
 <p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxRadio"></a></p>
-<h1 id="encore-rxradio">encore.rxRadio</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxRadio
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxRadio">encore.rxRadio</a><ul>
 <li><a href="#encore.module_rxRadio.initialize">encore.rxRadio.initialize(rxRadioElement)</a></li>
@@ -778,21 +818,21 @@ it(&#39;should select the country&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxRadio.initialize"></a></p>
-<h2 id="encore-rxradio-initialize-rxradioelement-">encore.rxRadio.initialize(rxRadioElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxRadio.initialize(rxRadioElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxRadioElement <code>WebElement</code> - WebElement to be transformed into an rxRadio page object  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxRadio">rxRadio</a> - Page object representing the rxRadio element<br><a name="encore.module_rxRadio.generateAccessor"></a></p>
-<h2 id="encore-rxradio-generateaccessor-elem-">encore.rxRadio.generateAccessor(elem)</h2>
-<p>Generates a getter and a setter for an rxRadio element on your page.</p>
+<p>##encore.rxRadio.generateAccessor(elem)
+Generates a getter and a setter for an rxRadio element on your page.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>elem <code>WebElement</code> - The WebElement for the rxRadio.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to a rxRadio page object.<br><a name="encore.module_rxSearchBox"></a></p>
-<h1 id="encore-rxsearchbox">encore.rxSearchBox</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxSearchBox
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxSearchBox">encore.rxSearchBox</a><ul>
 <li><a href="#encore.module_rxSearchBox.main">encore.rxSearchBox.main</a></li>
@@ -801,39 +841,59 @@ it(&#39;should select the country&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxSearchBox.main"></a></p>
-<h2 id="encore-rxsearchbox-main">encore.rxSearchBox.main</h2>
-<p><strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the <em>first</em> rxSearchBox object found on the page.<br><a name="encore.module_rxSearchBox.initialize"></a></p>
-<h2 id="encore-rxsearchbox-initialize-rxsearchboxelement-">encore.rxSearchBox.initialize(rxSearchBoxElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxSearchBox.main
+<strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the <em>first</em> rxSearchBox object found on the page.<br><a name="encore.module_rxSearchBox.initialize"></a></p>
+<p>##encore.rxSearchBox.initialize(rxSearchBoxElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxSearchBoxElement <code>WebElement</code> - WebElement to be transformed into an rxSearchBoxElement object.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxSearchBox">rxSearchBox</a> - Page object representing the rxSearchBox object.<br><a name="encore.module_rxSelect"></a></p>
-<h1 id="encore-rxselect">encore.rxSelect</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxSelect
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxSelect">encore.rxSelect</a><ul>
 <li><a href="#encore.module_rxSelect.initialize">encore.rxSelect.initialize(rxSelectElement)</a></li>
-<li><a href="#encore.module_rxSelect.generateAccessor">encore.rxSelect.generateAccessor(elem)</a></li>
+<li><a href="#encore.module_rxSelect.generateAccessor">encore.rxSelect.generateAccessor(elem, [slowClick])</a></li>
 </ul>
 </li>
 </ul>
 <p><a name="encore.module_rxSelect.initialize"></a></p>
-<h2 id="encore-rxselect-initialize-rxselectelement-">encore.rxSelect.initialize(rxSelectElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxSelect.initialize(rxSelectElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxSelectElement <code>WebElement</code> - WebElement to be transformed into an rxSelect page object  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxSelect">rxSelect</a> - Page object representing a <code>&lt;select rx-select&gt;</code> element.<br><a name="encore.module_rxSelect.generateAccessor"></a></p>
-<h2 id="encore-rxselect-generateaccessor-elem-">encore.rxSelect.generateAccessor(elem)</h2>
-<p>Generates a getter and a setter for an rxSelect element on your page.</p>
+<p>##encore.rxSelect.generateAccessor(elem, [slowClick])
+Generates a getter and a setter for an rxSelect element on your page.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>elem <code>WebElement</code> - The WebElement for the rxSelect.  </li>
+<li>[slowClick=true] <code>Boolean</code> - Whether to use slow click globally for all accessor interactions.  </li>
 </ul>
-<p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to an rxSelect page object.<br><a name="encore.module_rxMultiSelect"></a></p>
-<h1 id="encore-rxmultiselect">encore.rxMultiSelect</h1>
-<p><strong>Members</strong></p>
+<p><strong>Returns</strong>: <code>Object</code> - A getter and a setter to be applied to an rxSelect page object.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">var form = Page.create({
+    state: encore.rxSelect.generateAccessor(element(by.model(&#39;states&#39;))),
+    // you can also specify a single dropdown&#39;s slow clicking globally this way
+    county: encore.rxSelect.generateAccessor(element(by.model(&#39;county&#39;)), false)
+});
+
+it(&#39;should select a new state normally&#39;, function () {
+    form.state = &#39;Indiana&#39;;
+    expect(form.state).to.eventually.equal(&#39;Indiana&#39;);
+});
+
+it(&#39;should select a new state and county without using `rxMisc.slowClick()`&#39;, function () {
+    form.state = { option: &#39;Texas&#39;, slowClick: false };
+    form.county = &#39;Bexar&#39;; // automatically uses `false` for slow clicking
+    expect(form.state).to.eventually.equal(&#39;Texas&#39;);
+    expect(form.county).to.eventually.equal(&#39;Bexar&#39;);
+});
+</code></pre>
+<p><a name="encore.module_rxMultiSelect"></a></p>
+<p>#encore.rxMultiSelect
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
 <li><a href="#encore.module_rxMultiSelect.main">encore.rxMultiSelect.main</a></li>
@@ -847,16 +907,16 @@ it(&#39;should select the country&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxMultiSelect.main"></a></p>
-<h2 id="encore-rxmultiselect-main">encore.rxMultiSelect.main</h2>
-<p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the <em>first</em> rxMultiSelect object found on the page.<br><a name="encore.module_rxMultiSelect.initialize"></a></p>
-<h2 id="encore-rxmultiselect-initialize-rxmultiselectelement-">encore.rxMultiSelect.initialize(rxMultiSelectElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxMultiSelect.main
+<strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the <em>first</em> rxMultiSelect object found on the page.<br><a name="encore.module_rxMultiSelect.initialize"></a></p>
+<p>##encore.rxMultiSelect.initialize(rxMultiSelectElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxMultiSelectElement <code>WebElement</code> - WebElement to be transformed into an rxMultiSelectElement object.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxMultiSelect..rxSelectFilter"></a></p>
-<h2 id="encore-rxmultiselect-rxselectfilter">encore.rxMultiSelect~rxSelectFilter</h2>
-<p><strong>Scope</strong>: inner namespace of <a href="#encore.module_rxMultiSelect">rxMultiSelect</a><br><strong>Members</strong></p>
+<p>##encore.rxMultiSelect~rxSelectFilter
+<strong>Scope</strong>: inner namespace of <a href="#encore.module_rxMultiSelect">rxMultiSelect</a><br><strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxMultiSelect..rxSelectFilter">encore.rxMultiSelect~rxSelectFilter</a><ul>
 <li><a href="#encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
@@ -865,14 +925,14 @@ it(&#39;should select the country&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel"></a></p>
-<h3 id="rxselectfilter-multiselectbylabel-label-">rxSelectFilter.multiSelectByLabel(label)</h3>
-<p><strong>Params</strong></p>
+<p>###rxSelectFilter.multiSelectByLabel(label)
+<strong>Params</strong></p>
 <ul>
 <li>label <code>string</code> - The label of the rxMultiSelect dropdown.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxMultiSelect..rxSelectFilter.apply"></a></p>
-<h3 id="rxselectfilter-apply-filterdata-">rxSelectFilter.apply(filterData)</h3>
-<p><strong>Params</strong></p>
+<p>###rxSelectFilter.apply(filterData)
+<strong>Params</strong></p>
 <ul>
 <li>filterData <code>Object</code> - Key-value pairs of the rxMultiSelects&#39; labels and their options to select.<pre><code>                              The value is an object, where the keys are the options and the values indicate
                               if the option should be selected or deselected.  
@@ -887,8 +947,8 @@ it(&#39;should select the country&#39;, function () {
  });
 </code></pre>
 <p><a name="encore.module_rxSelectFilter"></a></p>
-<h1 id="encore-rxselectfilter">encore.rxSelectFilter</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxSelectFilter
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxSelectFilter">encore.rxSelectFilter</a><ul>
 <li><a href="#encore.module_rxSelectFilter.main">encore.rxSelectFilter.main</a></li>
@@ -897,16 +957,16 @@ it(&#39;should select the country&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxSelectFilter.main"></a></p>
-<h2 id="encore-rxselectfilter-main">encore.rxSelectFilter.main</h2>
-<p><strong>Returns</strong>: <code>rxSelectFilter</code> - Page object representing the <em>first</em> rxSelectFilter object found on the page.<br><a name="encore.module_rxSelectFilter.initialize"></a></p>
-<h2 id="encore-rxselectfilter-initialize-rxselectfilterelement-">encore.rxSelectFilter.initialize(rxSelectFilterElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxSelectFilter.main
+<strong>Returns</strong>: <code>rxSelectFilter</code> - Page object representing the <em>first</em> rxSelectFilter object found on the page.<br><a name="encore.module_rxSelectFilter.initialize"></a></p>
+<p>##encore.rxSelectFilter.initialize(rxSelectFilterElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxSelectFilterElement <code>WebElement</code> - WebElement to be transformed into an rxSelectFilterElement object.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>rxSelectFilter</code> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxSortableColumn"></a></p>
-<h1 id="encore-rxsortablecolumn">encore.rxSortableColumn</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxSortableColumn
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxSortableColumn">encore.rxSortableColumn</a><ul>
 <li><a href="#encore.module_rxSortableColumn.initialize">encore.rxSortableColumn.initialize(rxSortableColumnElement, [repeaterString])</a></li>
@@ -916,21 +976,21 @@ it(&#39;should select the country&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxSortableColumn.initialize"></a></p>
-<h2 id="encore-rxsortablecolumn-initialize-rxsortablecolumnelement-repeaterstring-">encore.rxSortableColumn.initialize(rxSortableColumnElement, [repeaterString])</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxSortableColumn.initialize(rxSortableColumnElement, [repeaterString])
+<strong>Params</strong></p>
 <ul>
 <li>rxSortableColumnElement <code>WebElement</code> - WebElement to be transformed into an rxSortableColumn object.  </li>
 <li>[repeaterString] <code>String</code> - Repeater string from the table. Required for <a href="#rxSortableColumn.data">data</a>  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Page</code> - Page object representing the <a href="#rxSortableColumn">rxSortableColumn</a> object.<br><a name="encore.module_rxSortableColumn.byTable"></a></p>
-<h2 id="encore-rxsortablecolumn-bytable-tableelement-">encore.rxSortableColumn.byTable(tableElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxSortableColumn.byTable(tableElement)
+<strong>Params</strong></p>
 <ul>
 <li>tableElement <code>WebElement</code> - Web element of the entire <code>&lt;table&gt;</code> node.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Page</code> - rxSortableColumns Page object representing the <a href="#rxSortableColumns">rxSortableColumns</a> object.<br><a name="encore.module_rxSortableColumn.sortDirections"></a></p>
-<h2 id="const-encore-rxsortablecolumn-sortdirections">const: encore.rxSortableColumn.sortDirections</h2>
-<p><strong>Returns</strong>: <code>Object</code> - sortDirections Lookup of integer codes for sort directions from human-readable ones.<br><strong>Example</strong>  </p>
+<p>##const: encore.rxSortableColumn.sortDirections
+<strong>Returns</strong>: <code>Object</code> - sortDirections Lookup of integer codes for sort directions from human-readable ones.<br><strong>Example</strong>  </p>
 <pre><code class="lang-js">var sorts = encore.rxSortableColumn.sorts;
 // ...
 it(&#39;should sort the column ascending by default&#39;, function () {
@@ -938,8 +998,8 @@ it(&#39;should sort the column ascending by default&#39;, function () {
 });
 </code></pre>
 <p><a name="encore.module_rxStatusColumn"></a></p>
-<h1 id="encore-rxstatuscolumn">encore.rxStatusColumn</h1>
-<p><strong>Members</strong></p>
+<p>#encore.rxStatusColumn
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxStatusColumn">encore.rxStatusColumn</a><ul>
 <li><a href="#encore.module_rxStatusColumn.initialize">encore.rxStatusColumn.initialize(rxStatusCellElement)</a></li>
@@ -950,20 +1010,20 @@ it(&#39;should sort the column ascending by default&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxStatusColumn.initialize"></a></p>
-<h2 id="encore-rxstatuscolumn-initialize-rxstatuscellelement-">encore.rxStatusColumn.initialize(rxStatusCellElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxStatusColumn.initialize(rxStatusCellElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxStatusCellElement <code>WebElement</code> - Status cell element from a table row.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Page</code> - Page object representing an <a href="#rxStatusColumn">rxStatusColumn</a>.<br><a name="encore.module_rxStatusColumn.statuses"></a></p>
-<h2 id="const-encore-rxstatuscolumn-statuses">const: encore.rxStatusColumn.statuses</h2>
-<p><strong>Returns</strong>: <code>Object</code> - Lookup of status strings from human-readable statuses.<br><a name="encore.module_rxStatusColumn.icons"></a></p>
-<h2 id="const-encore-rxstatuscolumn-icons">const: encore.rxStatusColumn.icons</h2>
-<p><strong>Returns</strong>: <code>Object</code> - Lookup of icon class names from a human-readable version.<br><a name="encore.module_rxStatusColumn.colors"></a></p>
-<h2 id="const-encore-rxstatuscolumn-colors">const: encore.rxStatusColumn.colors</h2>
-<p><strong>Returns</strong>: <code>Object</code> - Lookup of color class names from a human-readable class name.<br><a name="encore.module_rxToggleSwitch"></a></p>
-<h1 id="encore-rxtoggleswitch">encore.rxToggleSwitch</h1>
-<p><strong>Members</strong></p>
+<p>##const: encore.rxStatusColumn.statuses
+<strong>Returns</strong>: <code>Object</code> - Lookup of status strings from human-readable statuses.<br><a name="encore.module_rxStatusColumn.icons"></a></p>
+<p>##const: encore.rxStatusColumn.icons
+<strong>Returns</strong>: <code>Object</code> - Lookup of icon class names from a human-readable version.<br><a name="encore.module_rxStatusColumn.colors"></a></p>
+<p>##const: encore.rxStatusColumn.colors
+<strong>Returns</strong>: <code>Object</code> - Lookup of color class names from a human-readable class name.<br><a name="encore.module_rxToggleSwitch"></a></p>
+<p>#encore.rxToggleSwitch
+<strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxToggleSwitch">encore.rxToggleSwitch</a><ul>
 <li><a href="#encore.module_rxToggleSwitch.main">encore.rxToggleSwitch.main</a></li>
@@ -972,16 +1032,16 @@ it(&#39;should sort the column ascending by default&#39;, function () {
 </li>
 </ul>
 <p><a name="encore.module_rxToggleSwitch.main"></a></p>
-<h2 id="encore-rxtoggleswitch-main">encore.rxToggleSwitch.main</h2>
-<p><strong>Returns</strong>: <a href="#rxToggleSwitch">rxToggleSwitch</a> - Page object representing the <em>first</em> rxToggleSwitch object found on the page.<br><a name="encore.module_rxToggleSwitch.initialize"></a></p>
-<h2 id="encore-rxtoggleswitch-initialize-rxtoggleswitchelement-">encore.rxToggleSwitch.initialize(rxToggleSwitchElement)</h2>
-<p><strong>Params</strong></p>
+<p>##encore.rxToggleSwitch.main
+<strong>Returns</strong>: <a href="#rxToggleSwitch">rxToggleSwitch</a> - Page object representing the <em>first</em> rxToggleSwitch object found on the page.<br><a name="encore.module_rxToggleSwitch.initialize"></a></p>
+<p>##encore.rxToggleSwitch.initialize(rxToggleSwitchElement)
+<strong>Params</strong></p>
 <ul>
 <li>rxToggleSwitchElement <code>WebElement</code> - WebElement to be transformed into an rxToggleSwitchElement object.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxToggleSwitch">rxToggleSwitch</a> - Page object representing the rxToggleSwitch object.<br><a name="encore.exercise.module_rxBulkSelect"></a></p>
-<h1 id="encore-exercise-rxbulkselect">encore.exercise.rxBulkSelect</h1>
-<p>rxBulkSelect exercises.</p>
+<p>#encore.exercise.rxBulkSelect
+rxBulkSelect exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -995,8 +1055,8 @@ it(&#39;should sort the column ascending by default&#39;, function () {
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxCharacterCount"></a></p>
-<h1 id="encore-exercise-rxcharactercount">encore.exercise.rxCharacterCount</h1>
-<p>rxCharacterCount exercises.</p>
+<p>#encore.exercise.rxCharacterCount
+rxCharacterCount exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1018,8 +1078,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxCheckbox"></a></p>
-<h1 id="encore-exercise-rxcheckbox">encore.exercise.rxCheckbox</h1>
-<p>rxCheckbox exercises</p>
+<p>#encore.exercise.rxCheckbox
+rxCheckbox exercises</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1032,8 +1092,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="encore.exercise.module_rxCollapse"></a></p>
-<h1 id="encore-exercise-rxcollapse">encore.exercise.rxCollapse</h1>
-<p>rxCollapse exercises.</p>
+<p>#encore.exercise.rxCollapse
+rxCollapse exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1051,8 +1111,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxFieldName"></a></p>
-<h1 id="encore-exercise-rxfieldname">encore.exercise.rxFieldName</h1>
-<p>rxFieldName exercises.</p>
+<p>#encore.exercise.rxFieldName
+rxFieldName exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1064,8 +1124,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="encore.exercise.module_rxMetadata"></a></p>
-<h1 id="encore-exercise-rxmetadata">encore.exercise.rxMetadata</h1>
-<p>rxMetadata exercises</p>
+<p>#encore.exercise.rxMetadata
+rxMetadata exercises</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1108,8 +1168,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxOptionTable"></a></p>
-<h1 id="encore-exercise-rxoptiontable">encore.exercise.rxOptionTable</h1>
-<p>rxOptionTable exercises.</p>
+<p>#encore.exercise.rxOptionTable
+rxOptionTable exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1120,8 +1180,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="encore.exercise.module_rxPaginate"></a></p>
-<h1 id="encore-exercise-rxpaginate">encore.exercise.rxPaginate</h1>
-<p>rxPaginate exercises.</p>
+<p>#encore.exercise.rxPaginate
+rxPaginate exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1140,8 +1200,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxRadio"></a></p>
-<h1 id="encore-exercise-rxradio">encore.exercise.rxRadio</h1>
-<p>rxRadio exercises</p>
+<p>#encore.exercise.rxRadio
+rxRadio exercises</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1154,8 +1214,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="encore.exercise.module_rxSearchBox"></a></p>
-<h1 id="encore-exercise-rxsearchbox">encore.exercise.rxSearchBox</h1>
-<p>rxSearchBox exercises.</p>
+<p>#encore.exercise.rxSearchBox
+rxSearchBox exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1171,8 +1231,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxSelect"></a></p>
-<h1 id="encore-exercise-rxselect">encore.exercise.rxSelect</h1>
-<p>rxSelect exercises</p>
+<p>#encore.exercise.rxSelect
+rxSelect exercises</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1185,8 +1245,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 <li>selectedText <code>String</code> - The expected selected text of the dropdown.  </li>
 </ul>
 <p><a name="encore.exercise.module_rxMultiSelect"></a></p>
-<h1 id="encore-exercise-rxmultiselect">encore.exercise.rxMultiSelect</h1>
-<p>rxMultiSelect exercises.</p>
+<p>#encore.exercise.rxMultiSelect
+rxMultiSelect exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1201,8 +1261,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxToggleSwitch"></a></p>
-<h1 id="encore-exercise-rxtoggleswitch">encore.exercise.rxToggleSwitch</h1>
-<p>rxToggleSwitch exercises.</p>
+<p>#encore.exercise.rxToggleSwitch
+rxToggleSwitch exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1217,8 +1277,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 }));
 </code></pre>
 <p><a name="rxAccountInfo"></a></p>
-<h1 id="rxaccountinfo">rxAccountInfo</h1>
-<p><strong>Members</strong></p>
+<p>#rxAccountInfo
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxAccountInfo">rxAccountInfo</a><ul>
 <li><a href="#rxAccountInfo.name">rxAccountInfo.name</a></li>
@@ -1243,23 +1303,23 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="rxAccountInfo.name"></a></p>
-<h2 id="rxaccountinfo-name">rxAccountInfo.name</h2>
-<p><strong>Returns</strong>: <code>String</code> - The name of the account.<br><a name="rxAccountInfo.number"></a></p>
-<h2 id="rxaccountinfo-number">rxAccountInfo.number</h2>
-<p><strong>Returns</strong>: <code>String</code> - The account number.<br><a name="rxAccountInfo.status"></a></p>
-<h2 id="rxaccountinfo-status">rxAccountInfo.status</h2>
-<p>The resulting status is lowercased so that it is easy to use with
+<p>##rxAccountInfo.name
+<strong>Returns</strong>: <code>String</code> - The name of the account.<br><a name="rxAccountInfo.number"></a></p>
+<p>##rxAccountInfo.number
+<strong>Returns</strong>: <code>String</code> - The account number.<br><a name="rxAccountInfo.status"></a></p>
+<p>##rxAccountInfo.status
+The resulting status is lowercased so that it is easy to use with
        <a href="#encore.module_rxAccountInfo.statuses">encore.rxAccountInfo.statuses</a>.</p>
 <p><strong>Returns</strong>: <code>String</code> - The account status, to lower case.<br><a name="rxAccountInfo.statusType"></a></p>
-<h2 id="rxaccountinfo-statustype">rxAccountInfo.statusType</h2>
-<p>Parses a class name from the DOM to determine what the status of the account is.
+<p>##rxAccountInfo.statusType
+Parses a class name from the DOM to determine what the status of the account is.
        Designed to be easily compared with
        <a href="#encore.module_rxAccountInfo.statusTypes">encore.rxAccountInfo.statusTypes</a>.</p>
 <p><strong>Returns</strong>: <code>String</code> - The status type of the account.<br><a name="rxAccountInfo.isDisplayed"></a></p>
-<h2 id="rxaccountinfo-isdisplayed-">rxAccountInfo.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxAccountInfo.badge"></a></p>
-<h2 id="rxaccountinfo-badge">rxAccountInfo.badge</h2>
-<p><strong>Members</strong></p>
+<p>##rxAccountInfo.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxAccountInfo.badge"></a></p>
+<p>##rxAccountInfo.badge
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxAccountInfo.badge">rxAccountInfo.badge</a><ul>
 <li><a href="#rxAccountInfo.badge.names">badge.names</a></li>
@@ -1276,29 +1336,29 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="rxAccountInfo.badge.names"></a></p>
-<h3 id="badge-names">badge.names</h3>
-<p><strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - All badge names.<br><a name="rxAccountInfo.badge.byIndex"></a></p>
-<h3 id="badge-byindex-index-">badge.byIndex(index)</h3>
-<p><strong>Params</strong></p>
+<p>###badge.names
+<strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - All badge names.<br><a name="rxAccountInfo.badge.byIndex"></a></p>
+<p>###badge.byIndex(index)
+<strong>Params</strong></p>
 <ul>
 <li>index <code>Number</code> - The badge to return at position <code>index</code>.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxAccountInfo.badge.badge">badge</a> - A single badge object at position <code>index</code>.<br><a name="rxAccountInfo.badge.exists"></a></p>
-<h3 id="badge-exists-badgename-">badge.exists(badgeName)</h3>
-<p><strong>Params</strong></p>
+<p>###badge.exists(badgeName)
+<strong>Params</strong></p>
 <ul>
 <li>badgeName <code>String</code> - The name of the badge to check if present.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the badge <code>badgeName</code> is present.<br><a name="rxAccountInfo.badge.byName"></a></p>
-<h3 id="badge-byname-badgename-">badge.byName(badgeName)</h3>
-<p>Accepts a string for a fast, exact match only. Matches on the <code>img[data-name]</code> attribute.</p>
+<p>###badge.byName(badgeName)
+Accepts a string for a fast, exact match only. Matches on the <code>img[data-name]</code> attribute.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>badgeName <code>String</code> - Badge name to match against.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxAccountInfo.badge.badge">badge</a> - A single badge objects by name <code>badgeName</code>.<br><a name="rxAccountInfo.badge.badge"></a></p>
-<h3 id="badge-badge">badge.badge</h3>
-<p>The specific information about a single badge.
+<p>###badge.badge
+The specific information about a single badge.
    Returned from <a href="#rxAccountInfo.badge">badge</a></p>
 <p><strong>Members</strong></p>
 <ul>
@@ -1310,17 +1370,17 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="rxAccountInfo.badge.badge.src"></a></p>
-<h4 id="badge-src">badge.src</h4>
-<p>A link to the image source for the badge.</p>
+<p>####badge.src
+A link to the image source for the badge.</p>
 <p><strong>Returns</strong>: <code>String</code> - The attribute under <code>ng-src</code> for the badge.<br><a name="rxAccountInfo.badge.badge.name"></a></p>
-<h4 id="badge-name">badge.name</h4>
-<p>Will get the <code>data-name</code> attribute from the badge.</p>
+<p>####badge.name
+Will get the <code>data-name</code> attribute from the badge.</p>
 <p><strong>Returns</strong>: <code>String</code> - The name of the badge.<br><a name="rxAccountInfo.badge.badge.description"></a></p>
-<h4 id="badge-description">badge.description</h4>
-<p>Will get the <code>data-description</code> attribute from the badge.</p>
+<p>####badge.description
+Will get the <code>data-description</code> attribute from the badge.</p>
 <p><strong>Returns</strong>: <code>String</code> - The description of the badge.<br><a name="rxActionMenu"></a></p>
-<h1 id="rxactionmenu">rxActionMenu</h1>
-<p><strong>Members</strong></p>
+<p>#rxActionMenu
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxActionMenu">rxActionMenu</a><ul>
 <li><a href="#rxActionMenu.isExpanded">rxActionMenu.isExpanded()</a></li>
@@ -1341,28 +1401,28 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="rxActionMenu.isExpanded"></a></p>
-<h2 id="rxactionmenu-isexpanded-">rxActionMenu.isExpanded()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the action cog is showing its underlying menu.<br><a name="rxActionMenu.isCollapsed"></a></p>
-<h2 id="rxactionmenu-iscollapsed-">rxActionMenu.isCollapsed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the action cog is hiding its underlying menu.<br><a name="rxActionMenu.expand"></a></p>
-<h2 id="rxactionmenu-expand-">rxActionMenu.expand()</h2>
-<p>Clicks the action cog to expand the action menu, unless it&#39;s already open.</p>
+<p>##rxActionMenu.isExpanded()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the action cog is showing its underlying menu.<br><a name="rxActionMenu.isCollapsed"></a></p>
+<p>##rxActionMenu.isCollapsed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the action cog is hiding its underlying menu.<br><a name="rxActionMenu.expand"></a></p>
+<p>##rxActionMenu.expand()
+Clicks the action cog to expand the action menu, unless it&#39;s already open.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxActionMenu.collapse"></a></p>
-<h2 id="rxactionmenu-collapse-">rxActionMenu.collapse()</h2>
-<p>Clicks the action cog to collapse the action menu, unless it&#39;s already closed.</p>
+<p>##rxActionMenu.collapse()
+Clicks the action cog to collapse the action menu, unless it&#39;s already closed.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxActionMenu.hasAction"></a></p>
-<h2 id="rxactionmenu-hasaction-actionname-">rxActionMenu.hasAction(actionName)</h2>
-<p>Will expand the action menu to determine if the action is available.</p>
+<p>##rxActionMenu.hasAction(actionName)
+Will expand the action menu to determine if the action is available.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>actionName <code>String</code> - The name of the action menu item to check for existence.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the action menu has an item matching the text <code>actionName</code>.<br><a name="rxActionMenu.actionCount"></a></p>
-<h2 id="rxactionmenu-actioncount-">rxActionMenu.actionCount()</h2>
-<p>Does not expand the action menu to determine the count of menu items.</p>
+<p>##rxActionMenu.actionCount()
+Does not expand the action menu to determine the count of menu items.</p>
 <p><strong>Returns</strong>: <code>Number</code> - The number of action items present in the action menu.<br><a name="rxActionMenu.action"></a></p>
-<h2 id="rxactionmenu-action">rxActionMenu.action</h2>
-<p><strong>Params</strong></p>
+<p>##rxActionMenu.action
+<strong>Params</strong></p>
 <ul>
 <li>actionName <code>String</code> - Name of the action item to return an <a href="#rxActionMenu.action.action">action</a> object for.  </li>
 </ul>
@@ -1380,8 +1440,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="rxActionMenu.action.action"></a></p>
-<h3 id="action-action">action.action</h3>
-<p>Clicking an action menu item will trigger this function.
+<p>###action.action
+Clicking an action menu item will trigger this function.
    By default, it returns the page object outlined below.</p>
 <p><strong>Members</strong></p>
 <ul>
@@ -1392,10 +1452,10 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="rxActionMenu.action.action.text"></a></p>
-<h4 id="action-text">action.text</h4>
-<p><strong>Returns</strong>: <code>String</code> - The trimmed text of the action menu item.<br><a name="rxActionMenu.action.action.openModal"></a></p>
-<h4 id="action-openmodal-customfunctionality-">action.openModal(customFunctionality)</h4>
-<p>Returns a modal object to manipulate later, with given <code>customFunctionality</code>.
+<p>####action.text
+<strong>Returns</strong>: <code>String</code> - The trimmed text of the action menu item.<br><a name="rxActionMenu.action.action.openModal"></a></p>
+<p>####action.openModal(customFunctionality)
+Returns a modal object to manipulate later, with given <code>customFunctionality</code>.
            See <a href="#encore.module_rxModalAction.initialize">rxModalAction.initialize</a>
            for more information about what <code>customFunctionality</code> means here.
            Using a modal object is the default action since many instances of the action menu serve to launch
@@ -1407,14 +1467,14 @@ trailing whitespace when calculating the remaining character count.  </li>
 <li>customFunctionality <code>Object</code> - Custom functionality of the modal, should you use one.  </li>
 </ul>
 <p><strong>Returns</strong>: <a href="#rxModalAction">rxModalAction</a> - A modal that gets opened by clicking the action menu item.<br><a name="rxBulkSelectDefaultRowFn"></a></p>
-<h1 id="rxbulkselectdefaultrowfn">rxBulkSelectDefaultRowFn</h1>
-<p><strong>Members</strong></p>
+<p>#rxBulkSelectDefaultRowFn
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxBulkSelectDefaultRowFn">rxBulkSelectDefaultRowFn</a></li>
 </ul>
 <p><a name="rxCharacterCount"></a></p>
-<h1 id="rxcharactercount">rxCharacterCount</h1>
-<p><strong>Members</strong></p>
+<p>#rxCharacterCount
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxCharacterCount">rxCharacterCount</a><ul>
 <li><a href="#rxCharacterCount.comment">rxCharacterCount.comment</a></li>
@@ -1427,8 +1487,8 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="rxCharacterCount.comment"></a></p>
-<h2 id="rxcharactercount-comment">rxCharacterCount.comment</h2>
-<p>Get and set the comment&#39;s textual content. Will erase the current text when setting new text.</p>
+<p>##rxCharacterCount.comment
+Get and set the comment&#39;s textual content. Will erase the current text when setting new text.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>text <code>String</code> - The desired comment to be sent via <code>.sendKeys(text)</code>.  </li>
@@ -1440,18 +1500,18 @@ trailing whitespace when calculating the remaining character count.  </li>
 });
 </code></pre>
 <p><a name="rxCharacterCount.remaining"></a></p>
-<h2 id="rxcharactercount-remaining">rxCharacterCount.remaining</h2>
-<p><strong>Returns</strong>: <code>Number</code> - The remaining number of characters that can be entered.<br><a name="rxCharacterCount.overLimitText"></a></p>
-<h2 id="rxcharactercount-overlimittext">rxCharacterCount.overLimitText</h2>
-<p><strong>Returns</strong>: <code>String</code> - The characters that are over the limit.<br><a name="rxCharacterCount.isDisplayed"></a></p>
-<h2 id="rxcharactercount-isdisplayed-">rxCharacterCount.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxCharacterCount.isNearLimit"></a></p>
-<h2 id="rxcharactercount-isnearlimit-">rxCharacterCount.isNearLimit()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;near-limit&#39; class is displayed.<br><a name="rxCharacterCount.isOverLimit"></a></p>
-<h2 id="rxcharactercount-isoverlimit-">rxCharacterCount.isOverLimit()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="rxCheckbox"></a></p>
-<h1 id="rxcheckbox">rxCheckbox</h1>
-<p><strong>Members</strong></p>
+<p>##rxCharacterCount.remaining
+<strong>Returns</strong>: <code>Number</code> - The remaining number of characters that can be entered.<br><a name="rxCharacterCount.overLimitText"></a></p>
+<p>##rxCharacterCount.overLimitText
+<strong>Returns</strong>: <code>String</code> - The characters that are over the limit.<br><a name="rxCharacterCount.isDisplayed"></a></p>
+<p>##rxCharacterCount.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxCharacterCount.isNearLimit"></a></p>
+<p>##rxCharacterCount.isNearLimit()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;near-limit&#39; class is displayed.<br><a name="rxCharacterCount.isOverLimit"></a></p>
+<p>##rxCharacterCount.isOverLimit()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the &#39;over-limit&#39; class is displayed.<br><a name="rxCheckbox"></a></p>
+<p>#rxCheckbox
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxCheckbox">rxCheckbox</a><ul>
 <li><a href="#rxCheckbox.isCheckbox">rxCheckbox.isCheckbox</a></li>
@@ -1467,31 +1527,31 @@ trailing whitespace when calculating the remaining character count.  </li>
 </li>
 </ul>
 <p><a name="rxCheckbox.isCheckbox"></a></p>
-<h2 id="rxcheckbox-ischeckbox">rxCheckbox.isCheckbox</h2>
-<p>Useful for situations where input types might change in the future, ensuring that the expected one is being used.</p>
+<p>##rxCheckbox.isCheckbox
+Useful for situations where input types might change in the future, ensuring that the expected one is being used.</p>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the element in question is a checkbox.<br><a name="rxCheckbox.isDisplayed"></a></p>
-<h2 id="rxcheckbox-isdisplayed-">rxCheckbox.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the checkbox is currently displayed.<br><a name="rxCheckbox.isDisabled"></a></p>
-<h2 id="rxcheckbox-isdisabled-">rxCheckbox.isDisabled()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox is disabled.<br><a name="rxCheckbox.isPresent"></a></p>
-<h2 id="rxcheckbox-ispresent-">rxCheckbox.isPresent()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox is present on the page.<br><a name="rxCheckbox.isValid"></a></p>
-<h2 id="rxcheckbox-isvalid-">rxCheckbox.isValid()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the checkbox is valid.<br><a name="rxCheckbox.isSelected"></a></p>
-<h2 id="rxcheckbox-isselected-">rxCheckbox.isSelected()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox is selected.<br><a name="rxCheckbox.select"></a></p>
-<h2 id="rxcheckbox-select-">rxCheckbox.select()</h2>
-<p>Make sure checkbox is selected/checked</p>
+<p>##rxCheckbox.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the checkbox is currently displayed.<br><a name="rxCheckbox.isDisabled"></a></p>
+<p>##rxCheckbox.isDisabled()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox is disabled.<br><a name="rxCheckbox.isPresent"></a></p>
+<p>##rxCheckbox.isPresent()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox is present on the page.<br><a name="rxCheckbox.isValid"></a></p>
+<p>##rxCheckbox.isValid()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the checkbox is valid.<br><a name="rxCheckbox.isSelected"></a></p>
+<p>##rxCheckbox.isSelected()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the checkbox is selected.<br><a name="rxCheckbox.select"></a></p>
+<p>##rxCheckbox.select()
+Make sure checkbox is selected/checked</p>
 <p><a name="rxCheckbox.unselect"></a></p>
-<h2 id="-rxcheckbox-unselect-"><del>rxCheckbox.unselect()</del></h2>
-<p><strong>DEPRECATED</strong>: Use <a href="#rxCheckbox.deselect">deselect</a> instead.
+<p>##<del>rxCheckbox.unselect()</del>
+<strong>DEPRECATED</strong>: Use <a href="#rxCheckbox.deselect">deselect</a> instead.
 This function will be removed in a future release of the EncoreUI framework.</p>
 <p><strong><em>Deprecated</em></strong><br><strong>Returns</strong>: <code>undefined</code><br><a name="rxCheckbox.deselect"></a></p>
-<h2 id="rxcheckbox-deselect-">rxCheckbox.deselect()</h2>
-<p>make sure checkbox is deselected/unchecked</p>
+<p>##rxCheckbox.deselect()
+make sure checkbox is deselected/unchecked</p>
 <p><a name="rxCollapse"></a></p>
-<h1 id="rxcollapse">rxCollapse</h1>
-<p><strong>Members</strong></p>
+<p>#rxCollapse
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxCollapse">rxCollapse</a><ul>
 <li><a href="#rxCollapse.title">rxCollapse.title</a></li>
@@ -1503,21 +1563,21 @@ This function will be removed in a future release of the EncoreUI framework.</p>
 </li>
 </ul>
 <p><a name="rxCollapse.title"></a></p>
-<h2 id="rxcollapse-title">rxCollapse.title</h2>
-<p>Will return the custom title&#39;s text if the component uses one. Otherwise, it&#39;ll return
+<p>##rxCollapse.title
+Will return the custom title&#39;s text if the component uses one. Otherwise, it&#39;ll return
        the default title, found in the <code>.sml-title</code> (see-more-less-title) class.</p>
 <p><strong>Returns</strong>: <code>String</code> - Either the custom title&#39;s text, or the default title.<br><a name="rxCollapse.isDisplayed"></a></p>
-<h2 id="rxcollapse-isdisplayed-">rxCollapse.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxCollapse.isExpanded"></a></p>
-<h2 id="rxcollapse-isexpanded-">rxCollapse.isExpanded()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or no the component is currently expanded.<br><a name="rxCollapse.hasCustomTitle"></a></p>
-<h2 id="rxcollapse-hascustomtitle-">rxCollapse.hasCustomTitle()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the component has a custom title.<br><a name="rxCollapse.toggle"></a></p>
-<h2 id="rxcollapse-toggle-">rxCollapse.toggle()</h2>
-<p>Will expand the component if collapsed, or will collapse it if it&#39;s expanded.</p>
+<p>##rxCollapse.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxCollapse.isExpanded"></a></p>
+<p>##rxCollapse.isExpanded()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or no the component is currently expanded.<br><a name="rxCollapse.hasCustomTitle"></a></p>
+<p>##rxCollapse.hasCustomTitle()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the component has a custom title.<br><a name="rxCollapse.toggle"></a></p>
+<p>##rxCollapse.toggle()
+Will expand the component if collapsed, or will collapse it if it&#39;s expanded.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxFieldName"></a></p>
-<h1 id="rxfieldname">rxFieldName</h1>
-<p><strong>Members</strong></p>
+<p>#rxFieldName
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxFieldName">rxFieldName</a><ul>
 <li><a href="#rxFieldName.isSymbolVisible">rxFieldName.isSymbolVisible()</a></li>
@@ -1528,16 +1588,16 @@ This function will be removed in a future release of the EncoreUI framework.</p>
 </li>
 </ul>
 <p><a name="rxFieldName.isSymbolVisible"></a></p>
-<h2 id="rxfieldname-issymbolvisible-">rxFieldName.isSymbolVisible()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - True if field name displays as required (symbol is currently displayed).<br><a name="rxFieldName.isSymbolPresent"></a></p>
-<h2 id="rxfieldname-issymbolpresent-">rxFieldName.isSymbolPresent()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the required symbol is present in the DOM.<br><a name="rxFieldName.isDisplayed"></a></p>
-<h2 id="rxfieldname-isdisplayed-">rxFieldName.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxFieldName.isPresent"></a></p>
-<h2 id="rxfieldname-ispresent-">rxFieldName.isPresent()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is present on the page.<br><a name="rxMetadata"></a></p>
-<h1 id="rxmetadata">rxMetadata</h1>
-<p><strong>Members</strong></p>
+<p>##rxFieldName.isSymbolVisible()
+<strong>Returns</strong>: <code>Boolean</code> - True if field name displays as required (symbol is currently displayed).<br><a name="rxFieldName.isSymbolPresent"></a></p>
+<p>##rxFieldName.isSymbolPresent()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the required symbol is present in the DOM.<br><a name="rxFieldName.isDisplayed"></a></p>
+<p>##rxFieldName.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxFieldName.isPresent"></a></p>
+<p>##rxFieldName.isPresent()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the root element is present on the page.<br><a name="rxMetadata"></a></p>
+<p>#rxMetadata
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxMetadata">rxMetadata</a><ul>
 <li><a href="#rxMetadata.term">rxMetadata.term(metadataTerm)</a></li>
@@ -1547,18 +1607,18 @@ This function will be removed in a future release of the EncoreUI framework.</p>
 </li>
 </ul>
 <p><a name="rxMetadata.term"></a></p>
-<h2 id="rxmetadata-term-metadataterm-">rxMetadata.term(metadataTerm)</h2>
-<p><strong>Params</strong></p>
+<p>##rxMetadata.term(metadataTerm)
+<strong>Params</strong></p>
 <ul>
 <li>metadataTerm <code>String</code> - The term to lookup in the metadata component.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>*</code> - The web element of the metadata term, unless a <code>transformFn</code> is provided, or <code>null</code> if not found.<br><a name="rxMetadata.isDisplayed"></a></p>
-<h2 id="rxmetadata-isdisplayed-">rxMetadata.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the root element is currently displayed.<br><a name="rxMetadata.isPresent"></a></p>
-<h2 id="rxmetadata-ispresent-">rxMetadata.isPresent()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the root element is present.<br><a name="rxMisc"></a></p>
-<h1 id="rxmisc">rxMisc</h1>
-<p><strong>Members</strong></p>
+<p>##rxMetadata.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the root element is currently displayed.<br><a name="rxMetadata.isPresent"></a></p>
+<p>##rxMetadata.isPresent()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the root element is present.<br><a name="rxMisc"></a></p>
+<p>#rxMisc
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxMisc">rxMisc</a><ul>
 <li><a href="#rxMisc.slowClick">rxMisc.slowClick(elem)</a></li>
@@ -1569,8 +1629,8 @@ This function will be removed in a future release of the EncoreUI framework.</p>
 </li>
 </ul>
 <p><a name="rxMisc.slowClick"></a></p>
-<h2 id="rxmisc-slowclick-elem-">rxMisc.slowClick(elem)</h2>
-<p>Equivalent to <code>browser.actions().mouseDown(elem).mouseUp().perform();</code>.
+<p>##rxMisc.slowClick(elem)
+Equivalent to <code>browser.actions().mouseDown(elem).mouseUp().perform();</code>.
 This function should be used when dealing with odd or unusual behavior while interacting with click events
 that don&#39;t seem to work right. Either the element does not appear to respond to a normal <code>.click()</code> call, or
 the element is responding to more than one click event. This typically happens more often in Firefox than
@@ -1581,8 +1641,8 @@ to achieve consistent behavior.</p>
 <li>elem <code>WebElement</code> - Web element to &quot;slow click&quot;.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMisc.currencyToPennies"></a></p>
-<h2 id="rxmisc-currencytopennies-currencystring-">rxMisc.currencyToPennies(currencyString)</h2>
-<p>Transform <code>currencyString</code> (USD) to an integer representing pennies. Built to reverse
+<p>##rxMisc.currencyToPennies(currencyString)
+Transform <code>currencyString</code> (USD) to an integer representing pennies. Built to reverse
 Angular&#39;s &#39;currency&#39; filter. If your currency string includes fractions of a penny,
 that precision will be lost!</p>
 <p><strong>Params</strong></p>
@@ -1598,8 +1658,8 @@ encore.rxMisc.currencyToPennies(&#39;($1.011)&#39;)   == -101
 encore.rxMisc.currencyToPennies(&#39;$1.10&#39;)      ==  110
 </code></pre>
 <p><a name="rxMisc.unless"></a></p>
-<h2 id="rxmisc-unless-elem-innerfn-fallbackreturnvalue-">rxMisc.unless(elem, [innerFn], [fallbackReturnValue])</h2>
-<p>If the <code>elem</code> is found, invoke <code>innerFn</code> on the resulting element&#39;s text.
+<p>##rxMisc.unless(elem, [innerFn], [fallbackReturnValue])
+If the <code>elem</code> is found, invoke <code>innerFn</code> on the resulting element&#39;s text.
        If there is no element found (or displayed), return <code>null</code>.
        If the element is found and displayed, but the text matches something in <a href="#rxMisc.nullValueMatches">nullValueMatches</a>,
        then return <code>null</code>.
@@ -1635,8 +1695,8 @@ var balancePage = Page.create({
 });
 </code></pre>
 <p><a name="rxMisc.nullValueMatches"></a></p>
-<h2 id="const-rxmisc-nullvaluematches">const: rxMisc.nullValueMatches</h2>
-<p>A list of common strings that appear in the UI that represent <code>null</code> to a page object.
+<p>##const: rxMisc.nullValueMatches
+A list of common strings that appear in the UI that represent <code>null</code> to a page object.
        Add to this list yourself or create a new one in this namespace for your application.</p>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">it(&#39;should return null for the user email preferences&#39;, function () {
@@ -1646,8 +1706,8 @@ var balancePage = Page.create({
 });
 </code></pre>
 <p><a name="rxModalAction"></a></p>
-<h1 id="rxmodalaction">rxModalAction</h1>
-<p><strong>Members</strong></p>
+<p>#rxModalAction
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxModalAction">rxModalAction</a><ul>
 <li><a href="#rxModalAction.title">rxModalAction.title</a></li>
@@ -1661,25 +1721,25 @@ var balancePage = Page.create({
 </li>
 </ul>
 <p><a name="rxModalAction.title"></a></p>
-<h2 id="rxmodalaction-title">rxModalAction.title</h2>
-<p><strong>Returns</strong>: <code>String</code> - The modal&#39;s title.<br><a name="rxModalAction.subtitle"></a></p>
-<h2 id="rxmodalaction-subtitle">rxModalAction.subtitle</h2>
-<p><strong>Returns</strong>: <code>String</code> - The modal&#39;s subtitle.<br><a name="rxModalAction.isDisplayed"></a></p>
-<h2 id="rxmodalaction-isdisplayed-">rxModalAction.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the modal is currently displayed.<br><a name="rxModalAction.close"></a></p>
-<h2 id="rxmodalaction-close-">rxModalAction.close()</h2>
-<p>Closes the modal by clicking the little &quot;x&quot; in the top right corner.</p>
+<p>##rxModalAction.title
+<strong>Returns</strong>: <code>String</code> - The modal&#39;s title.<br><a name="rxModalAction.subtitle"></a></p>
+<p>##rxModalAction.subtitle
+<strong>Returns</strong>: <code>String</code> - The modal&#39;s subtitle.<br><a name="rxModalAction.isDisplayed"></a></p>
+<p>##rxModalAction.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the modal is currently displayed.<br><a name="rxModalAction.close"></a></p>
+<p>##rxModalAction.close()
+Closes the modal by clicking the little &quot;x&quot; in the top right corner.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxModalAction.canSubmit"></a></p>
-<h2 id="rxmodalaction-cansubmit-">rxModalAction.canSubmit()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the modal can be submitted in its current state.<br><a name="rxModalAction.submit"></a></p>
-<h2 id="rxmodalaction-submit-">rxModalAction.submit()</h2>
-<p>Clicks the &quot;submit&quot; button. This isn&#39;t exactly what you think it is in a multi-step modal!</p>
+<p>##rxModalAction.canSubmit()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the modal can be submitted in its current state.<br><a name="rxModalAction.submit"></a></p>
+<p>##rxModalAction.submit()
+Clicks the &quot;submit&quot; button. This isn&#39;t exactly what you think it is in a multi-step modal!</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxModalAction.cancel"></a></p>
-<h2 id="rxmodalaction-cancel-">rxModalAction.cancel()</h2>
-<p>Cancels out of the current modal by clicking the &quot;cancel&quot; button</p>
+<p>##rxModalAction.cancel()
+Cancels out of the current modal by clicking the &quot;cancel&quot; button</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionTable"></a></p>
-<h1 id="rxoptiontable">rxOptionTable</h1>
-<p><strong>Members</strong></p>
+<p>#rxOptionTable
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxOptionTable">rxOptionTable</a><ul>
 <li><a href="#rxOptionTable.emptyMessage">rxOptionTable.emptyMessage</a></li>
@@ -1708,28 +1768,28 @@ var balancePage = Page.create({
 </li>
 </ul>
 <p><a name="rxOptionTable.emptyMessage"></a></p>
-<h2 id="rxoptiontable-emptymessage">rxOptionTable.emptyMessage</h2>
-<p><strong>Returns</strong>: <code>string</code> | <code>null</code> - The currently displayed empty message label text, or <code>null</code> if not present.<br><a name="rxOptionTable.selectedRow"></a></p>
-<h2 id="rxoptiontable-selectedrow">rxOptionTable.selectedRow</h2>
-<p>Will default to the first selected row if many are selected.
+<p>##rxOptionTable.emptyMessage
+<strong>Returns</strong>: <code>string</code> | <code>null</code> - The currently displayed empty message label text, or <code>null</code> if not present.<br><a name="rxOptionTable.selectedRow"></a></p>
+<p>##rxOptionTable.selectedRow
+Will default to the first selected row if many are selected.
 Be certain you have a selected row before calling this, or a
 NoSuchElementError will be thrown.</p>
 <p><strong>Returns</strong>: <a href="#rxOptionTable.row">row</a> - Page object representing a row.<br><a name="rxOptionTable.columnNames"></a></p>
-<h2 id="rxoptiontable-columnnames">rxOptionTable.columnNames</h2>
-<p><strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - Every column heading&#39;s text, as an array.<br><a name="rxOptionTable.selections"></a></p>
-<h2 id="rxoptiontable-selections">rxOptionTable.selections</h2>
-<p>Return a list of row indexes that are currently selected.
+<p>##rxOptionTable.columnNames
+<strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - Every column heading&#39;s text, as an array.<br><a name="rxOptionTable.selections"></a></p>
+<p>##rxOptionTable.selections
+Return a list of row indexes that are currently selected.
 Get the row yourself if you need more information about the row&#39;s contents.</p>
 <p><strong>Returns</strong>: <code>Array.&lt;number&gt;</code> - All selected rows&#39; indexes from the rxOptionTable.<br><a name="rxOptionTable.disabledOptions"></a></p>
-<h2 id="rxoptiontable-disabledoptions">rxOptionTable.disabledOptions</h2>
-<p>Return a list of row indexes that are currently disabled.</p>
+<p>##rxOptionTable.disabledOptions
+Return a list of row indexes that are currently disabled.</p>
 <p><strong>Returns</strong>: <code>Array.&lt;number&gt;</code> - All disabled row indexes from the rxOptionTable<br><a name="rxOptionTable.isDisplayed"></a></p>
-<h2 id="rxoptiontable-isdisplayed-">rxOptionTable.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxOptionTable.isEmpty"></a></p>
-<h2 id="rxoptiontable-isempty-">rxOptionTable.isEmpty()</h2>
-<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the table&#39;s  the empty message label is currently present.<br><a name="rxOptionTable.columnData"></a></p>
-<h2 id="rxoptiontable-columndata-columnname-customfn-">rxOptionTable.columnData(columnName, [customFn])</h2>
-<p>Return the value of the cells found under <code>columnName</code>, using <code>getText</code> by default.
+<p>##rxOptionTable.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxOptionTable.isEmpty"></a></p>
+<p>##rxOptionTable.isEmpty()
+<strong>Returns</strong>: <code>boolean</code> - Whether or not the table&#39;s  the empty message label is currently present.<br><a name="rxOptionTable.columnData"></a></p>
+<p>##rxOptionTable.columnData(columnName, [customFn])
+Return the value of the cells found under <code>columnName</code>, using <code>getText</code> by default.
 For more control, pass in a <code>customFn</code>.</p>
 <p><strong>Params</strong></p>
 <ul>
@@ -1749,11 +1809,11 @@ var penniesFn = function (cellElements) {
 expect(optionTable.columnData(&#39;Surcharge&#39;, penniesFn)).to.eventually.eql(penniesData);
 </code></pre>
 <p><a name="rxOptionTable.unselectAll"></a></p>
-<h2 id="rxoptiontable-unselectall-">rxOptionTable.unselectAll()</h2>
-<p>Unselects every row in the rxOptionTable.</p>
+<p>##rxOptionTable.unselectAll()
+Unselects every row in the rxOptionTable.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionTable.unselectByColumnText"></a></p>
-<h2 id="rxoptiontable-unselectbycolumntext-columnname-columntext-">rxOptionTable.unselectByColumnText(columnName, columnText)</h2>
-<p>Unselect a row by the <code>columnName</code> that contains <code>columnText</code>.
+<p>##rxOptionTable.unselectByColumnText(columnName, columnText)
+Unselect a row by the <code>columnName</code> that contains <code>columnText</code>.
 This function uses cssContainingText, be certain your column name and text is unique.</p>
 <p><strong>Params</strong></p>
 <ul>
@@ -1761,8 +1821,8 @@ This function uses cssContainingText, be certain your column name and text is un
 <li>columnText <code>string</code> - Cell text that uniquely identifies the selection.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionTable.unselectMany"></a></p>
-<h2 id="rxoptiontable-unselectmany-selections-">rxOptionTable.unselectMany(selections)</h2>
-<p>Unselect options where each <code>{ columnName: columnText }</code> in <code>selections</code> is passed to
+<p>##rxOptionTable.unselectMany(selections)
+Unselect options where each <code>{ columnName: columnText }</code> in <code>selections</code> is passed to
 <a href="#rxOptionTable.unselectByColumnText">unselectByColumnText</a>.</p>
 <p><strong>Params</strong></p>
 <ul>
@@ -1773,8 +1833,8 @@ This function uses cssContainingText, be certain your column name and text is un
               { &#39;Name&#39;: &#39;Item 2&#39; }]);
 </code></pre>
 <p><a name="rxOptionTable.selectByColumnText"></a></p>
-<h2 id="rxoptiontable-selectbycolumntext-columnname-columntext-">rxOptionTable.selectByColumnText(columnName, columnText)</h2>
-<p>Select a row by the <code>columnName</code> that contains <code>columnText</code>.
+<p>##rxOptionTable.selectByColumnText(columnName, columnText)
+Select a row by the <code>columnName</code> that contains <code>columnText</code>.
 This function uses cssContainingText, be certain your column name and text is unique.</p>
 <p><strong>Params</strong></p>
 <ul>
@@ -1782,8 +1842,8 @@ This function uses cssContainingText, be certain your column name and text is un
 <li>columnText <code>string</code> - Cell text that uniquely identifies the selection.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionTable.selectMany"></a></p>
-<h2 id="rxoptiontable-selectmany-selections-">rxOptionTable.selectMany(selections)</h2>
-<p>Select options where each <code>{ columnName: columnText }</code> in <code>selections</code> is passed to
+<p>##rxOptionTable.selectMany(selections)
+Select options where each <code>{ columnName: columnText }</code> in <code>selections</code> is passed to
 <a href="#rxOptionTable.selectByColumnText">selectByColumnText</a>.</p>
 <p><strong>Params</strong></p>
 <ul>
@@ -1794,8 +1854,8 @@ This function uses cssContainingText, be certain your column name and text is un
             { &#39;Name&#39;: &#39;Item 2&#39; }]);
 </code></pre>
 <p><a name="rxOptionTable.row"></a></p>
-<h2 id="rxoptiontable-row">rxOptionTable.row</h2>
-<p><strong>Params</strong></p>
+<p>##rxOptionTable.row
+<strong>Params</strong></p>
 <ul>
 <li>rowIndex <code>number</code> - Index of the row in the table.  </li>
 </ul>
@@ -1812,15 +1872,15 @@ This function uses cssContainingText, be certain your column name and text is un
 </li>
 </ul>
 <p><a name="rxOptionTable.row.selectInput"></a></p>
-<h3 id="row-selectinput">row.selectInput</h3>
-<p>Since checkboxes are a superset of radio input elements, a checkbox is used.</p>
+<p>###row.selectInput
+Since checkboxes are a superset of radio input elements, a checkbox is used.</p>
 <p><strong>Returns</strong>: <a href="#rxCheckbox">rxCheckbox</a> - Page object representing a checkbox.<br><a name="rxOptionTable.row.isSelected"></a></p>
-<h3 id="row-isselected-">row.isSelected()</h3>
-<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the row is currently selected.<br><a name="rxOptionTable.row.isCurrent"></a></p>
-<h3 id="row-iscurrent-">row.isCurrent()</h3>
-<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the row is visually marked as &quot;current&quot;.<br><a name="rxOptionTable.row.cell"></a></p>
-<h3 id="row-cell-columnname-customfn-">row.cell(columnName, [customFn])</h3>
-<p>Return the value of the cell by <code>columnName</code>, using <code>getText</code> by default.
+<p>###row.isSelected()
+<strong>Returns</strong>: <code>boolean</code> - Whether or not the row is currently selected.<br><a name="rxOptionTable.row.isCurrent"></a></p>
+<p>###row.isCurrent()
+<strong>Returns</strong>: <code>boolean</code> - Whether or not the row is visually marked as &quot;current&quot;.<br><a name="rxOptionTable.row.cell"></a></p>
+<p>###row.cell(columnName, [customFn])
+Return the value of the cell by <code>columnName</code>, using <code>getText</code> by default.
 For more control, pass in a <code>customFn</code>.
 The reason <code>columnName</code> is used, as opposed to by binding, is due to some
 complexity contained within the <code>getContent</code> function in the rxOptionTable directive.
@@ -1836,21 +1896,21 @@ be located by querying the column name via CSS selector, so that&#39;s used inst
 <li>[customFn=getText()] <code>function</code> - Special work to be done to the resulting <code>cellElement</code>.  </li>
 </ul>
 <p><a name="rxOptionTable.row.select"></a></p>
-<h3 id="row-select-">row.select()</h3>
-<p>Selects the current row.</p>
+<p>###row.select()
+Selects the current row.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionTable.row.unselect"></a></p>
-<h3 id="row-unselect-">row.unselect()</h3>
-<p>Unselects the current row.</p>
+<p>###row.unselect()
+Unselects the current row.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionFormTable"></a></p>
-<h1 id="-rxoptionformtable-"><del>rxOptionFormTable</del></h1>
-<p><strong>DEPRECATED</strong>: Please use <a href="#rxOptionTable">rxOptionTable</a> as a stand-in replacement.</p>
+<p>#<del>rxOptionFormTable</del>
+<strong>DEPRECATED</strong>: Please use <a href="#rxOptionTable">rxOptionTable</a> as a stand-in replacement.</p>
 <p><strong><em>Deprecated</em></strong><br><strong>Members</strong></p>
 <ul>
 <li><a href="#rxOptionFormTable"><del>rxOptionFormTable</del></a></li>
 </ul>
 <p><a name="rxRadio"></a></p>
-<h1 id="rxradio">rxRadio</h1>
-<p><strong>Members</strong></p>
+<p>#rxRadio
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxRadio">rxRadio</a><ul>
 <li><a href="#rxRadio.isRadio">rxRadio.isRadio</a></li>
@@ -1864,24 +1924,24 @@ be located by querying the column name via CSS selector, so that&#39;s used inst
 </li>
 </ul>
 <p><a name="rxRadio.isRadio"></a></p>
-<h2 id="rxradio-isradio">rxRadio.isRadio</h2>
-<p>Useful for situations where input types might change in the future, ensuring that the expected one is being used.</p>
+<p>##rxRadio.isRadio
+Useful for situations where input types might change in the future, ensuring that the expected one is being used.</p>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the element in question is a radio button.<br><a name="rxRadio.isValid"></a></p>
-<h2 id="rxradio-isvalid-">rxRadio.isValid()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the radio button is valid<br><a name="rxRadio.isDisplayed"></a></p>
-<h2 id="rxradio-isdisplayed-">rxRadio.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the radio element is currently displayed.<br><a name="rxRadio.isPresent"></a></p>
-<h2 id="rxradio-ispresent-">rxRadio.isPresent()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the radio button is present.<br><a name="rxRadio.isDisabled"></a></p>
-<h2 id="rxradio-isdisabled-">rxRadio.isDisabled()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - whether or not the radio element is disabled<br><a name="rxRadio.isSelected"></a></p>
-<h2 id="rxradio-isselected-">rxRadio.isSelected()</h2>
-<p><strong>Returns</strong>: <code>boolean</code> - Whether or not the radio button is currently selected.<br><a name="rxRadio.select"></a></p>
-<h2 id="rxradio-select-">rxRadio.select()</h2>
-<p>Makes sure that the radio button is selected.</p>
+<p>##rxRadio.isValid()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the radio button is valid<br><a name="rxRadio.isDisplayed"></a></p>
+<p>##rxRadio.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the radio element is currently displayed.<br><a name="rxRadio.isPresent"></a></p>
+<p>##rxRadio.isPresent()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the radio button is present.<br><a name="rxRadio.isDisabled"></a></p>
+<p>##rxRadio.isDisabled()
+<strong>Returns</strong>: <code>Boolean</code> - whether or not the radio element is disabled<br><a name="rxRadio.isSelected"></a></p>
+<p>##rxRadio.isSelected()
+<strong>Returns</strong>: <code>boolean</code> - Whether or not the radio button is currently selected.<br><a name="rxRadio.select"></a></p>
+<p>##rxRadio.select()
+Makes sure that the radio button is selected.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSearchBox"></a></p>
-<h1 id="rxsearchbox">rxSearchBox</h1>
-<p><strong>Members</strong></p>
+<p>#rxSearchBox
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxSearchBox">rxSearchBox</a><ul>
 <li><a href="#rxSearchBox.term">rxSearchBox.term</a></li>
@@ -1894,42 +1954,42 @@ be located by querying the column name via CSS selector, so that&#39;s used inst
 </li>
 </ul>
 <p><a name="rxSearchBox.term"></a></p>
-<h2 id="rxsearchbox-term">rxSearchBox.term</h2>
-<p>getter/setter for the search value</p>
+<p>##rxSearchBox.term
+getter/setter for the search value</p>
 <p><strong>Properties</strong></p>
 <ul>
 <li>term <code>string</code> - getter/setter for search value  </li>
 </ul>
 <p><a name="rxSearchBox.placeholder"></a></p>
-<h2 id="rxsearchbox-placeholder">rxSearchBox.placeholder</h2>
-<p><strong>Properties</strong></p>
+<p>##rxSearchBox.placeholder
+<strong>Properties</strong></p>
 <ul>
 <li>placeholder <code>string</code> - retrieve placeholder value  </li>
 </ul>
 <p><a name="rxSearchBox.isClearable"></a></p>
-<h2 id="rxsearchbox-isclearable">rxSearchBox.isClearable</h2>
-<p><strong>Properties</strong></p>
+<p>##rxSearchBox.isClearable
+<strong>Properties</strong></p>
 <ul>
 <li>isClearable <code>boolean</code> - whether the element can be cleared  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Boolean</code><br><a name="rxSearchBox.isSearchable"></a></p>
-<h2 id="rxsearchbox-issearchable">rxSearchBox.isSearchable</h2>
-<p><strong>Properties</strong></p>
+<p>##rxSearchBox.isSearchable
+<strong>Properties</strong></p>
 <ul>
 <li>isSearchable <code>boolean</code> - true unless disabled  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Boolean</code><br><a name="rxSearchBox.isDisplayed"></a></p>
-<h2 id="rxsearchbox-isdisplayed">rxSearchBox.isDisplayed</h2>
-<p><strong>Properties</strong></p>
+<p>##rxSearchBox.isDisplayed
+<strong>Properties</strong></p>
 <ul>
 <li>isDisplayed <code>boolean</code> - whether the element is displayed  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxSearchBox.clear"></a></p>
-<h2 id="rxsearchbox-clear-">rxSearchBox.clear()</h2>
-<p>Clear the value of the search box.</p>
+<p>##rxSearchBox.clear()
+Clear the value of the search box.</p>
 <p><a name="rxSelect"></a></p>
-<h1 id="rxselect">rxSelect</h1>
-<p><strong>Members</strong></p>
+<p>#rxSelect
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxSelect">rxSelect</a><ul>
 <li><a href="#rxSelect.options">rxSelect.options</a></li>
@@ -1958,36 +2018,36 @@ be located by querying the column name via CSS selector, so that&#39;s used inst
 </li>
 </ul>
 <p><a name="rxSelect.options"></a></p>
-<h2 id="rxselect-options">rxSelect.options</h2>
-<p><strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - List of rxSelectOption page objects for each <code>&lt;option&gt;</code> element in the dropdown<br><a name="rxSelect.values"></a></p>
-<h2 id="rxselect-values">rxSelect.values</h2>
-<p><strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - List of values for each <code>&lt;option&gt;</code> element in the dropdown<br><a name="rxSelect.selectedOption"></a></p>
-<h2 id="rxselect-selectedoption">rxSelect.selectedOption</h2>
-<p><strong>Returns</strong>: <code>rxSelectOption</code> - Page object representing the currently selected <code>&lt;option&gt;</code> element.<br><a name="rxSelect.isDisabled"></a></p>
-<h2 id="rxselect-isdisabled-">rxSelect.isDisabled()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the select element contains the disabled class name.<br><a name="rxSelect.isDisplayed"></a></p>
-<h2 id="rxselect-isdisplayed-">rxSelect.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the select element is currently displayed.<br><a name="rxSelect.isPresent"></a></p>
-<h2 id="rxselect-ispresent-">rxSelect.isPresent()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the select element exists on the page.<br><a name="rxSelect.isValid"></a></p>
-<h2 id="rxselect-isvalid-">rxSelect.isValid()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the <code>&lt;select&gt;</code> element is valid<br><a name="rxSelect.optionCount"></a></p>
-<h2 id="rxselect-optioncount-">rxSelect.optionCount()</h2>
-<p><strong>Returns</strong>: <code>Integer</code> - The number of <code>&lt;option&gt;</code> elements in the dropdown<br><a name="rxSelect.optionExists"></a></p>
-<h2 id="rxselect-optionexists-optiontext-">rxSelect.optionExists(optionText)</h2>
-<p><strong>Params</strong></p>
+<p>##rxSelect.options
+<strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - List of rxSelectOption page objects for each <code>&lt;option&gt;</code> element in the dropdown<br><a name="rxSelect.values"></a></p>
+<p>##rxSelect.values
+<strong>Returns</strong>: <code>Array.&lt;String&gt;</code> - List of values for each <code>&lt;option&gt;</code> element in the dropdown<br><a name="rxSelect.selectedOption"></a></p>
+<p>##rxSelect.selectedOption
+<strong>Returns</strong>: <code>rxSelectOption</code> - Page object representing the currently selected <code>&lt;option&gt;</code> element.<br><a name="rxSelect.isDisabled"></a></p>
+<p>##rxSelect.isDisabled()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the select element contains the disabled class name.<br><a name="rxSelect.isDisplayed"></a></p>
+<p>##rxSelect.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the select element is currently displayed.<br><a name="rxSelect.isPresent"></a></p>
+<p>##rxSelect.isPresent()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the select element exists on the page.<br><a name="rxSelect.isValid"></a></p>
+<p>##rxSelect.isValid()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the <code>&lt;select&gt;</code> element is valid<br><a name="rxSelect.optionCount"></a></p>
+<p>##rxSelect.optionCount()
+<strong>Returns</strong>: <code>Integer</code> - The number of <code>&lt;option&gt;</code> elements in the dropdown<br><a name="rxSelect.optionExists"></a></p>
+<p>##rxSelect.optionExists(optionText)
+<strong>Params</strong></p>
 <ul>
 <li>optionText <code>String</code> - Partial or total string to match the display value of the desired <code>&lt;option&gt;</code> element  </li>
 </ul>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the option exists<br><a name="rxSelect.findOptionContaining"></a></p>
-<h2 id="rxselect-findoptioncontaining-optiontext-">rxSelect.findOptionContaining(optionText)</h2>
-<p><strong>Params</strong></p>
+<p>##rxSelect.findOptionContaining(optionText)
+<strong>Params</strong></p>
 <ul>
 <li>optionText <code>String</code> - Partial or total string to match the display value of the desired <code>&lt;option&gt;</code> element.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>WebElement</code><br><a name="rxSelect.select"></a></p>
-<h2 id="rxselect-select-optiontext-">rxSelect.select(optionText)</h2>
-<p><strong>Params</strong></p>
+<p>##rxSelect.select(optionText)
+<strong>Params</strong></p>
 <ul>
 <li>optionText <code>String</code> - Partial or total string to match the display value of the desired <code>&lt;option&gt;</code> element.  </li>
 </ul>
@@ -1996,8 +2056,8 @@ be located by querying the column name via CSS selector, so that&#39;s used inst
 dropdown.select(&#39;United States&#39;);
 </code></pre>
 <p><a name="rxSelect.option"></a></p>
-<h2 id="rxselect-option">rxSelect.option</h2>
-<p><strong>Params</strong></p>
+<p>##rxSelect.option
+<strong>Params</strong></p>
 <ul>
 <li>optionText <code>String</code> - Partial or total string to match the display value of the desired <code>&lt;option&gt;</code> element  </li>
 </ul>
@@ -2021,8 +2081,8 @@ expect(homeState.isSelected()).to.eventually.be.true;
 </li>
 </ul>
 <p><a name="rxSelect.option.option"></a></p>
-<h3 id="option-option">option.option</h3>
-<p>The specific information about a single select element option.
+<p>###option.option
+The specific information about a single select element option.
 Returned from <a href="#rxSelect.option">option</a></p>
 <p><strong>Members</strong></p>
 <ul>
@@ -2036,19 +2096,19 @@ Returned from <a href="#rxSelect.option">option</a></p>
 </li>
 </ul>
 <p><a name="rxSelect.option.option.text"></a></p>
-<h4 id="option-text">option.text</h4>
-<p><strong>Returns</strong>: <code>string</code> - The text inside of an <code>&lt;option&gt;</code> element<br><a name="rxSelect.option.option.value"></a></p>
-<h4 id="option-value">option.value</h4>
-<p><strong>Returns</strong>: <code>string</code> - The &quot;value&quot; attribute for an <code>&lt;option&gt;</code> element<br><a name="rxSelect.option.option.select"></a></p>
-<h4 id="option-select-">option.select()</h4>
-<p>Select an <code>&lt;option&gt;</code> element within a <code>&lt;select&gt;</code></p>
+<p>####option.text
+<strong>Returns</strong>: <code>string</code> - The text inside of an <code>&lt;option&gt;</code> element<br><a name="rxSelect.option.option.value"></a></p>
+<p>####option.value
+<strong>Returns</strong>: <code>string</code> - The &quot;value&quot; attribute for an <code>&lt;option&gt;</code> element<br><a name="rxSelect.option.option.select"></a></p>
+<p>####option.select()
+Select an <code>&lt;option&gt;</code> element within a <code>&lt;select&gt;</code></p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSelect.option.option.isSelected"></a></p>
-<h4 id="option-isselected-">option.isSelected()</h4>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;option&gt;</code> is currently selected<br><a name="rxSelect.option.option.isPresent"></a></p>
-<h4 id="option-ispresent-">option.isPresent()</h4>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;option&gt;</code> is currently present<br><a name="rxMultiSelect"></a></p>
-<h1 id="rxmultiselect">rxMultiSelect</h1>
-<p><strong>Members</strong></p>
+<p>####option.isSelected()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;option&gt;</code> is currently selected<br><a name="rxSelect.option.option.isPresent"></a></p>
+<p>####option.isPresent()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;option&gt;</code> is currently present<br><a name="rxMultiSelect"></a></p>
+<p>#rxMultiSelect
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxMultiSelect">rxMultiSelect</a><ul>
 <li><a href="#rxMultiSelect.preview">rxMultiSelect.preview</a></li>
@@ -2069,36 +2129,36 @@ Returned from <a href="#rxSelect.option">option</a></p>
 </li>
 </ul>
 <p><a name="rxMultiSelect.preview"></a></p>
-<h2 id="rxmultiselect-preview">rxMultiSelect.preview</h2>
-<p><strong>Returns</strong>: <code>string</code> - The preview text for the dropdown.<br><a name="rxMultiSelect.options"></a></p>
-<h2 id="rxmultiselect-options">rxMultiSelect.options</h2>
-<p><strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The text of each option element in the dropdown.<br><a name="rxMultiSelect.values"></a></p>
-<h2 id="rxmultiselect-values">rxMultiSelect.values</h2>
-<p><strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The value of each option element in the dropdown.<br><a name="rxMultiSelect.selectedOptions"></a></p>
-<h2 id="rxmultiselect-selectedoptions">rxMultiSelect.selectedOptions</h2>
-<p><strong>Returns</strong>: <code>Array.&lt;optionTexts&gt;</code> - Array of strings representing the currently selected options.<br><a name="rxMultiSelect.closeMenu"></a></p>
-<h2 id="rxmultiselect-closemenu-">rxMultiSelect.closeMenu()</h2>
-<p>Close the menu</p>
+<p>##rxMultiSelect.preview
+<strong>Returns</strong>: <code>string</code> - The preview text for the dropdown.<br><a name="rxMultiSelect.options"></a></p>
+<p>##rxMultiSelect.options
+<strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The text of each option element in the dropdown.<br><a name="rxMultiSelect.values"></a></p>
+<p>##rxMultiSelect.values
+<strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The value of each option element in the dropdown.<br><a name="rxMultiSelect.selectedOptions"></a></p>
+<p>##rxMultiSelect.selectedOptions
+<strong>Returns</strong>: <code>Array.&lt;optionTexts&gt;</code> - Array of strings representing the currently selected options.<br><a name="rxMultiSelect.closeMenu"></a></p>
+<p>##rxMultiSelect.closeMenu()
+Close the menu</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.openMenu"></a></p>
-<h2 id="rxmultiselect-openmenu-">rxMultiSelect.openMenu()</h2>
-<p>Open the menu</p>
+<p>##rxMultiSelect.openMenu()
+Open the menu</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.isOpen"></a></p>
-<h2 id="rxmultiselect-isopen-">rxMultiSelect.isOpen()</h2>
-<p><strong>Returns</strong>: <code>boolean</code> - - Whether or not the menu is visible.<br><a name="rxMultiSelect.select"></a></p>
-<h2 id="rxmultiselect-select-optiontexts-">rxMultiSelect.select(optionTexts)</h2>
-<p><strong>Params</strong></p>
+<p>##rxMultiSelect.isOpen()
+<strong>Returns</strong>: <code>boolean</code> - - Whether or not the menu is visible.<br><a name="rxMultiSelect.select"></a></p>
+<p>##rxMultiSelect.select(optionTexts)
+<strong>Params</strong></p>
 <ul>
 <li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to select.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.deselect"></a></p>
-<h2 id="rxmultiselect-deselect-optiontexts-">rxMultiSelect.deselect(optionTexts)</h2>
-<p><strong>Params</strong></p>
+<p>##rxMultiSelect.deselect(optionTexts)
+<strong>Params</strong></p>
 <ul>
 <li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to deselect.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option"></a></p>
-<h2 id="rxmultiselect-option">rxMultiSelect.option</h2>
-<p><strong>Params</strong></p>
+<p>##rxMultiSelect.option
+<strong>Params</strong></p>
 <ul>
 <li>optionText <code>string</code> - Partial or total string matching the desired option.  </li>
 </ul>
@@ -2111,12 +2171,12 @@ Returned from <a href="#rxSelect.option">option</a></p>
 </li>
 </ul>
 <p><a name="rxMultiSelect.option.text"></a></p>
-<h3 id="option-text">option.text</h3>
-<p><strong>Returns</strong>: <code>string</code> - The text inside of the current option.<br><a name="rxMultiSelect.option.value"></a></p>
-<h3 id="option-value">option.value</h3>
-<p><strong>Returns</strong>: <code>string</code> - The value bound to the option.<br><a name="rxSortableColumn"></a></p>
-<h1 id="rxsortablecolumn">rxSortableColumn</h1>
-<p><strong>Members</strong></p>
+<p>###option.text
+<strong>Returns</strong>: <code>string</code> - The text inside of the current option.<br><a name="rxMultiSelect.option.value"></a></p>
+<p>###option.value
+<strong>Returns</strong>: <code>string</code> - The value bound to the option.<br><a name="rxSortableColumn"></a></p>
+<p>#rxSortableColumn
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxSortableColumn">rxSortableColumn</a><ul>
 <li><a href="#rxSortableColumn.sort">rxSortableColumn.sort</a></li>
@@ -2129,13 +2189,13 @@ Returned from <a href="#rxSelect.option">option</a></p>
 </li>
 </ul>
 <p><a name="rxSortableColumn.sort"></a></p>
-<h2 id="rxsortablecolumn-sort">rxSortableColumn.sort</h2>
-<p>Prefer using <a href="#rxSortableColumn.sortAscending">sortAscending</a> and <a href="#rxSortableColumn.sortDescending">sortDescending</a> over this.</p>
+<p>##rxSortableColumn.sort
+Prefer using <a href="#rxSortableColumn.sortAscending">sortAscending</a> and <a href="#rxSortableColumn.sortDescending">sortDescending</a> over this.</p>
 <p><a name="rxSortableColumn.data"></a></p>
-<h2 id="rxsortablecolumn-data">rxSortableColumn.data</h2>
-<p><strong>Returns</strong>: <code>Array</code> - A list of all cell text in this column.<br><a name="rxSortableColumn.getDataUsing"></a></p>
-<h2 id="rxsortablecolumn-getdatausing">rxSortableColumn.getDataUsing</h2>
-<p>Return a list of all cell contents in this column.
+<p>##rxSortableColumn.data
+<strong>Returns</strong>: <code>Array</code> - A list of all cell text in this column.<br><a name="rxSortableColumn.getDataUsing"></a></p>
+<p>##rxSortableColumn.getDataUsing
+Return a list of all cell contents in this column.
        Passes all cell elements to <code>customFn</code>, or if undefined, will return just the text of each cell.
        The second argument, <code>allByCssSelectorString</code> is used when your column&#39;s binding
        (which is used by <code>by.repeater().column</code>) is for some reason unreachable by protractor.
@@ -2163,21 +2223,21 @@ charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function 
 });
 </code></pre>
 <p><a name="rxSortableColumn.currentSortDirection"></a></p>
-<h2 id="rxsortablecolumn-currentsortdirection">rxSortableColumn.currentSortDirection</h2>
-<p>The current sort direction of the column.</p>
+<p>##rxSortableColumn.currentSortDirection
+The current sort direction of the column.</p>
 <pre><code>   - Ascending sort:  (1)  means the arrow is pointed down. [0-9, a-z]
    - Descending sort: (0)  means the arrow is pointed up.   [z-a, 9-0]
    - Not sorted:     (-1)  means there is no arrow for this column.
 </code></pre><p><strong>Returns</strong>: <code>Integer</code> - : 1, 0, or -1 based on direction.
        Use <a href="#encore.module_rxSortableColumn.sortDirections">sortDirections</a> when testing your columns.<br><a name="rxSortableColumn.sortAscending"></a></p>
-<h2 id="rxsortablecolumn-sortascending-">rxSortableColumn.sortAscending()</h2>
-<p>Will repeatedly click the sort button until the column is sorted ascending.</p>
+<p>##rxSortableColumn.sortAscending()
+Will repeatedly click the sort button until the column is sorted ascending.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSortableColumn.sortDescending"></a></p>
-<h2 id="rxsortablecolumn-sortdescending-">rxSortableColumn.sortDescending()</h2>
-<p>Will repeatedly click the sort button until the column is sorted descending.</p>
+<p>##rxSortableColumn.sortDescending()
+Will repeatedly click the sort button until the column is sorted descending.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxSortableColumns"></a></p>
-<h1 id="rxsortablecolumns">rxSortableColumns</h1>
-<p><strong>Members</strong></p>
+<p>#rxSortableColumns
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxSortableColumns">rxSortableColumns</a><ul>
 <li><a href="#rxSortableColumns.names">rxSortableColumns.names</a></li>
@@ -2185,12 +2245,12 @@ charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function 
 </li>
 </ul>
 <p><a name="rxSortableColumns.names"></a></p>
-<h2 id="rxsortablecolumns-names">rxSortableColumns.names</h2>
-<p>Return all column names in <code>tableElement</code>.
+<p>##rxSortableColumns.names
+Return all column names in <code>tableElement</code>.
        If any special work needs to be done, pass in a custom <code>mapFn</code> to <code>getNamesUsing</code> instead.</p>
 <p><strong>Returns</strong>: <code>Array</code> - : An array of strings representing text in each column in the table.<br><a name="rxStatusColumn"></a></p>
-<h1 id="rxstatuscolumn">rxStatusColumn</h1>
-<p><strong>Members</strong></p>
+<p>#rxStatusColumn
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxStatusColumn">rxStatusColumn</a><ul>
 <li><a href="#rxStatusColumn.byType">rxStatusColumn.byType</a></li>
@@ -2205,18 +2265,18 @@ charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function 
 </li>
 </ul>
 <p><a name="rxStatusColumn.byType"></a></p>
-<h2 id="rxstatuscolumn-bytype">rxStatusColumn.byType</h2>
-<p>Represents the custom defined status type.
+<p>##rxStatusColumn.byType
+Represents the custom defined status type.
        This has no relation to the tooltip text, the icon chosen, or the color used to represent it.</p>
 <p><strong>Returns</strong>: <code>String</code> - Status cell&#39;s custom defined status type.<br><a name="rxStatusColumn.byIcon"></a></p>
-<h2 id="rxstatuscolumn-byicon">rxStatusColumn.byIcon</h2>
-<p>Represents the status as summarized by the icon selection alone. Extracted from the font-awesome icon used.</p>
+<p>##rxStatusColumn.byIcon
+Represents the status as summarized by the icon selection alone. Extracted from the font-awesome icon used.</p>
 <p><strong>Returns</strong>: <code>String</code> - Status cell&#39;s font-awesome icon name.<br><a name="rxStatusColumn.byColor"></a></p>
-<h2 id="rxstatuscolumn-bycolor">rxStatusColumn.byColor</h2>
-<p>Represents the status as summarized by the color selection alone. Extracted from the class name.</p>
+<p>##rxStatusColumn.byColor
+Represents the status as summarized by the color selection alone. Extracted from the class name.</p>
 <p><strong>Returns</strong>: <code>String</code> - Status cell&#39;s color class name.<br><a name="rxStatusColumn.tooltip"></a></p>
-<h2 id="rxstatuscolumn-tooltip">rxStatusColumn.tooltip</h2>
-<p>Will appear on hover.</p>
+<p>##rxStatusColumn.tooltip
+Will appear on hover.</p>
 <p><strong>Members</strong></p>
 <ul>
 <li><a href="#rxStatusColumn.tooltip">rxStatusColumn.tooltip</a><ul>
@@ -2226,14 +2286,14 @@ charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function 
 </li>
 </ul>
 <p><a name="rxStatusColumn.tooltip.exists"></a></p>
-<h3 id="tooltip-exists">tooltip.exists</h3>
-<p>Hovers over the current row&#39;s status column and returns whether or not a tooltip appears.</p>
+<p>###tooltip.exists
+Hovers over the current row&#39;s status column and returns whether or not a tooltip appears.</p>
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not a tooltip is present.<br><a name="rxStatusColumn.tooltip.text"></a></p>
-<h3 id="tooltip-text">tooltip.text</h3>
-<p>Warning: This property is known to be unstable in many Selenium end to end test runs in EncoreUI.</p>
+<p>###tooltip.text
+Warning: This property is known to be unstable in many Selenium end to end test runs in EncoreUI.</p>
 <p><strong>Returns</strong>: <code>String</code> - Tooltip text.<br><a name="rxToggleSwitch"></a></p>
-<h1 id="rxtoggleswitch">rxToggleSwitch</h1>
-<p><strong>Members</strong></p>
+<p>#rxToggleSwitch
+<strong>Members</strong></p>
 <ul>
 <li><a href="#rxToggleSwitch">rxToggleSwitch</a><ul>
 <li><a href="#rxToggleSwitch.text">rxToggleSwitch.text</a></li>
@@ -2246,17 +2306,17 @@ charges.column(&#39;Usage Charges&#39;).getDataUsing(sumCurrency).then(function 
 </li>
 </ul>
 <p><a name="rxToggleSwitch.text"></a></p>
-<h2 id="rxtoggleswitch-text">rxToggleSwitch.text</h2>
-<p><strong>Returns</strong>: <code>String</code> - The current text of the switch.<br><a name="rxToggleSwitch.isDisplayed"></a></p>
-<h2 id="rxtoggleswitch-isdisplayed-">rxToggleSwitch.isDisplayed()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxToggleSwitch.isEnabled"></a></p>
-<h2 id="rxtoggleswitch-isenabled-">rxToggleSwitch.isEnabled()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the switch component is currently enabled.<br><a name="rxToggleSwitch.enable"></a></p>
-<h2 id="rxtoggleswitch-enable-">rxToggleSwitch.enable()</h2>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxToggleSwitch.isDisabled"></a></p>
-<h2 id="rxtoggleswitch-isdisabled-">rxToggleSwitch.isDisabled()</h2>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not the switch component is currently disabled.<br><a name="rxToggleSwitch.disable"></a></p>
-<h2 id="rxtoggleswitch-disable-">rxToggleSwitch.disable()</h2>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="count"></a></p>
-<h1 id="count-">count()</h1>
-<p><strong>Returns</strong>: <code>Number</code> - The total number of badges for the account.  </p>
+<p>##rxToggleSwitch.text
+<strong>Returns</strong>: <code>String</code> - The current text of the switch.<br><a name="rxToggleSwitch.isDisplayed"></a></p>
+<p>##rxToggleSwitch.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxToggleSwitch.isEnabled"></a></p>
+<p>##rxToggleSwitch.isEnabled()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the switch component is currently enabled.<br><a name="rxToggleSwitch.enable"></a></p>
+<p>##rxToggleSwitch.enable()
+<strong>Returns</strong>: <code>undefined</code><br><a name="rxToggleSwitch.isDisabled"></a></p>
+<p>##rxToggleSwitch.isDisabled()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the switch component is currently disabled.<br><a name="rxToggleSwitch.disable"></a></p>
+<p>##rxToggleSwitch.disable()
+<strong>Returns</strong>: <code>undefined</code><br><a name="count"></a></p>
+<p>#count()
+<strong>Returns</strong>: <code>Number</code> - The total number of badges for the account.  </p>

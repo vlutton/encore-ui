@@ -1,3 +1,11 @@
+function genericRouteController (breadcrumbTitle) {
+    return function (rxBreadcrumbsSvc) {
+        rxBreadcrumbsSvc.set([{
+            name: breadcrumbTitle || ''
+        }]);
+    }
+}
+
 angular.module('demoApp', ['encore.ui', 'ngRoute'])
 .controller('componentCtrl', function ($scope, rxBreadcrumbsSvc, $routeParams, component) {
     rxBreadcrumbsSvc.set([{
@@ -19,15 +27,11 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         })
         .when('/login', {
             templateUrl: 'login.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/overview', {
             templateUrl: 'overview.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController('Overview')
         })
         .when('/components', {
             templateUrl: 'components.html',
@@ -39,51 +43,35 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         })
         .when('/styleguide/layouts', {
             templateUrl: 'styleguide/layouts.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/styleguide/layouts/1', {
             templateUrl: 'styleguide/layout-1.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/styleguide/layouts/2', {
             templateUrl: 'styleguide/layout-2.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/styleguide/layouts/3', {
             templateUrl: 'styleguide/layout-3.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/styleguide/buttons', {
             templateUrl: 'styleguide/buttons.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/styleguide/tables', {
             templateUrl: 'styleguide/tables.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/styleguide/forms', {
             templateUrl: 'styleguide/forms.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/styleguide/modals', {
             templateUrl: 'styleguide/modals.html',
-            controller: function (rxBreadcrumbsSvc) {
-                rxBreadcrumbsSvc.set();
-            }
+            controller: genericRouteController()
         })
         .when('/component/:component', {
             redirectTo: function (routeParams) {
@@ -100,6 +88,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     });
                 }
             }
+        })
+        .when('/guides/:guide', {
+            controller: 'guideController as vm',
+            templateUrl: 'guides/guideViewer.html'
         });
 
     // Define a custom status tag for use in the rxBreadcrumbs demo
@@ -507,4 +499,19 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
 .controller('formsAutoSaveExampleController', function ($scope, rxAutoSave) {
     $scope.forms = { autosave: '' };
     rxAutoSave($scope, 'forms');
+})
+
+.controller('formsManualSaveExampleController', function ($scope, $timeout, rxNotify) {
+    $scope.saving = false;
+    $scope.save = function () {
+        $scope.saving = true;
+        rxNotify.clear('page');
+        $timeout(function () {
+            $scope.saving = false;
+            $scope.lastSaved = Date.now();
+            rxNotify.add('Data successfully saved!', {
+                type: 'success'
+            });
+        }, 1000);
+    };
 });

@@ -1834,6 +1834,10 @@ thead th[rx-bulk-select-header-check] {
         background: @buttonDisabledBg;
     }
 
+    &.inline {
+        vertical-align: middle;
+    }
+
 
 // Spinner styles
     .spinner {
@@ -2574,7 +2578,7 @@ rx-field-name {
 }//rx-field-name
 
 [rx-form] {
-  font-size: 14px;
+  font-size: @rxForm-font-size;
 
   input:not([type="checkbox"]):not([type="radio"]) {
     min-height: @rxForm-input-min-height;
