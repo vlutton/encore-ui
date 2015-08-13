@@ -97,7 +97,7 @@ module.export = {
 To publish `rx-page-objects` to the public npm registry.
 
 0. `npm get registry` should return `https://registry.npmjs.org/`
-1. `npm adduser`
+1. `npm adduser --registry=https://registry.npmjs.org/`
   * Username: `encore-ui`
   * Password: Get from PasswordSafe > "Encore UI" > "npm" > "Node Package Manager Deploys"
 2. From `~/.npmrc` move the line beginning with `//registry.npmjs.org` to a `.npmrc` file in the root of the repo.
