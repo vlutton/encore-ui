@@ -1,8 +1,5 @@
-<div class="rx-paginate" ng-switch="loadingState">
-    <ul ng-switch-when="loading" class="loading-row">
-        <li><span class="page-link" style="z-index: 5; position: relative">Loading...<span class="fa fa-fw fa-sm fa-spin fa-circle-o-notch"></span></span></li>
-    </ul>
-    <ul ng-switch-default class="pagination">
+<div class="rx-paginate">
+    <ul class="pagination">
         <li><a tabindex="0" ng-click="scrollToTop()">Back to top</a></li>
         <li>Showing {{ pageTracking | PaginatedItemsSummary}} items</li>
         <span class="page-links">

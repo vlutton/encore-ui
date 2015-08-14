@@ -238,15 +238,17 @@ describe('Pagination', function () {
     });
 
     describe('rxPaginate (API-pagination)', function () {
-        var el, items, item, link, scope, compile, deferred, ul, $timeout,
-            validTemplate = '<rx-paginate ' +
-                                'page-tracking="pager" ' +
-                                'server-interface="api" ' +
-                                'filter-text="d.filter" ' +
-                                'selections="selected" ' +
-                                'sort-column="sort.predicate" ' +
-                                'sort-direction="sort.reverse" ' +
-                            '></rx-paginate>',
+        var el, items, item, link, scope, overlayScope, compile, deferred, ul, $timeout,
+            validTemplate = '<div rx-loading-overlay>' +
+                                '<rx-paginate ' +
+                                    'page-tracking="pager" ' +
+                                    'server-interface="api" ' +
+                                    'filter-text="d.filter" ' +
+                                    'selections="selected" ' +
+                                    'sort-column="sort.predicate" ' +
+                                    'sort-direction="sort.reverse" ' +
+                                '></rx-paginate>' +
+                            '</div>',
             api = {};
 
         var response = {
@@ -266,7 +268,6 @@ describe('Pagination', function () {
             // Load the directive's module
             module('encore.ui.rxPaginate');
             module('templates/rxPaginate.html');
-            module('encore.ui.rxMisc');
             module('encore.ui.rxNotify');
 
             // Inject in angular constructs
@@ -299,9 +300,10 @@ describe('Pagination', function () {
             
             ul = el.find('ul');
             items = el.find('li');
+            overlayScope = el.children().eq(-1).scope();
         });
         
-        it('should set loadingState to "loading" and clear on resolve', function () {
+        it('should show the loading overlay and hide on resolve', function () {
             // click second page link
             item = items.filter('.pagination-page').eq(1);
             link = item.find('a').eq(0);
@@ -315,19 +317,15 @@ describe('Pagination', function () {
             helpers.clickElement(link[0]);
 
             scope.$apply();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row')).to.be.true;
+            expect(overlayScope.showLoadingOverlay).to.be.true;
 
             deferred.resolve(response);
             
             scope.$apply();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row')).to.be.false;
+            expect(overlayScope.showLoadingOverlay).to.be.false;
         });
         
-        it('should set loadingState to "loading" and clear on reject', function () {
+        it('should show the loading overlay and hide on reject', function () {
             // click second page link
             item = items.filter('.pagination-page').eq(1);
             link = item.find('a').eq(0);
@@ -336,67 +334,51 @@ describe('Pagination', function () {
             helpers.clickElement(link[0]);
 
             scope.$apply();
-            ul = el.find('ul');
+            expect(overlayScope.showLoadingOverlay).to.be.true;
 
-            expect(ul.hasClass('loading-row')).to.be.true;
-
-            deferred.resolve(response);
+            deferred.reject(response);
             
             scope.$apply();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row')).to.be.false;
+            expect(overlayScope.showLoadingOverlay).to.be.false;
         });
 
-        it('should set loadingState when filterText changes', function () {
+        it('should show the loading overlay when filterText changes', function () {
             scope.d.filter = 'some search';
             scope.$apply();
             $timeout.flush();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row'), 'should show Loading').to.be.true;
+            expect(overlayScope.showLoadingOverlay).to.be.true;
 
             deferred.resolve(response);
             
             scope.$apply();
             $timeout.flush();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row'), 'should hide Loading').to.be.false;
+            expect(overlayScope.showLoadingOverlay).to.be.false;
         });
 
-        it('should set loadingState when selections changes', function () {
+        it('should show the loading overlay when selections changes', function () {
             scope.selected.os = _.first(scope.selected.os);
             scope.$apply();
             $timeout.flush();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row'), 'should show Loading').to.be.true;
+            expect(overlayScope.showLoadingOverlay).to.be.true;
 
             deferred.resolve(response);
 
             scope.$apply();
             $timeout.flush();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row'), 'should hide Loading').to.be.false;
+            expect(overlayScope.showLoadingOverlay).to.be.false;
         });
         
-        it('should set loadingState when sortColumn changes', function () {
+        it('should show the loading overlay when sortColumn changes', function () {
             scope.sort.predicate = 'os';
             scope.$apply();
             $timeout.flush();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row')).to.be.true;
+            expect(overlayScope.showLoadingOverlay).to.be.true;
 
             deferred.resolve(response);
             
             scope.$apply();
             $timeout.flush();
-            ul = el.find('ul');
-
-            expect(ul.hasClass('loading-row')).to.be.false;
+            expect(overlayScope.showLoadingOverlay).to.be.false;
         });
 
         it('should pass the current filter and sort values to getItems', function () {
