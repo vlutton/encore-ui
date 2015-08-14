@@ -5,8 +5,10 @@
         <rx-modal-action
             pre-hook="populate(this)"
             post-hook="changePass(fields)"
+            dismiss-hook="notifyDismissal()"
             classes="button"
-            template-url="changePassword.html">
+            template-url="changePassword.html"
+            id="modChangePassword">
             Change Password
         </rx-modal-action>
     </p>

@@ -10,17 +10,34 @@ Due to the complex nature of the information passed into modal windows, HTML is 
 
 One benefit is that this allows for multiple actions to re-use the same template. It also allows modal content to live in a separate file, which can be helpful for maintainability if the modal HTML is complex. While this can be done via `ng-include`, it would be a little extra work for a common scenario.
 
-## Pre/Post Hooks
+## Hooks
 
-`rxModalAction` allows you to take actions before and after the modal window is shown. They are optional, and the modal window is fully functional without either being defined. Both are passed in as functions that are called on open and close of the modal window.
+`rxModalAction` allows you to define functions to be called at different points of the modal lifecycle.
+These hooks are optional and the modal window is fully functional without any being defined.
 
 ### Pre-hook
 
-Use a `pre-hook` to populate field information inside of the modal. This is useful when you have information you don't want loaded when the page is first opened, but do need for the modal. It's also useful for dynamic information that's based on actions taken
+The `pre-hook` function is called before the modal window is shown.  Use a this to populate field information inside of the modal.
+This is useful when you have information you don't want loaded when the page is first opened, but do need for the modal.
+It is also useful for dynamic information that is based on actions taken.
 
 ### Post-hook
 
-A `post-hook` is useful to take actions based upon input in the modal. For example, you can use the user input that gets entered to send API requests with specific JSON data. Or you can simply run a pre-defined API call (assuming the modal is a simple confirmation dialog).
+The `post-hook` function is called after the modal is submitted.  A `post-hook` is useful to take actions based upon input in the modal.
+For example, you can use the user input that gets entered to send API requests with specific JSON data.
+Or you can simply run a pre-defined API call (assuming the modal is a simple confirmation dialog).
+
+### Dismiss-hook
+
+The `dismiss-hook` function is called after the modal is closed without submitting.
+This may happen via any of the following scenarios:
+
+* Clicking the "Cancel" button
+* Clicking the "X" button in the top right
+* Pressing `ESC`
+* Explicitly calling `$modalInstance.dismiss()` in your javascript logic
+
+This hook is useful for making changes to UI state when the user wants to cancel the given action.  For example, you may use this to return an indeterminate component to a previous state (e.g. toggle switches).
 
 ## rxModalForm
 

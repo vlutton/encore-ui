@@ -211,9 +211,7 @@ describe('rxModalForm', function () {
             // should only focus the specified element
             expect(focus).to.have.been.calledOnce;
             expect(focus.firstCall.thisValue.tagName).to.equal('INPUT');
-
         });
-
     });
 
     it('should not throw errors if no focusable elements are found', function () {
@@ -271,7 +269,6 @@ describe('rxModalFooterTemplates', function () {
         rxModalFooterTemplates.add(state, localHtml, { global: false });
         expect(rxModalFooterTemplates.flush()).to.equal(wrap(localHtml));
     });
-
 });
 
 describe('rxModalFooter', function () {
@@ -317,7 +314,6 @@ describe('rxModalFooter', function () {
         helpers.createDirective(footerHtml , compile, scope);
         expect(addFooter.firstCall.args[2]).to.eql({ global: true });
     });
-
 });
 
 describe('rxModalAction', function () {
@@ -326,6 +322,7 @@ describe('rxModalAction', function () {
                             'template-url="test.html" ' +
                             'post-hook="post()" ' +
                             'pre-hook="pre()" ' +
+                            'dismiss-hook="dismiss()" ' +
                             '>Title</rx-modal-action>';
 
     var setupModalCtrl = function (ctrl) {
@@ -500,12 +497,25 @@ describe('rxModalAction', function () {
         expect(scope.post.callCount).to.equal(1);
     });
 
+    it('should run dismiss-hook function after cancel', function () {
+        scope.dismiss = sinon.spy();
+
+        el.scope().showModal({ preventDefault: function () {}});
+
+        setupModalCtrl(modalApi.open.getCall(0).args[0].controller);
+
+        scope.cancel();
+
+        expect(scope.dismiss.callCount).to.equal(1);
+    });
+
     it('should update callCounts but not close the modal', function () {
         var overridingTemplate = '<rx-modal-action ' +
                                      'controller="rxTestCtrl" ' +
                                      'template-url="test.html" ' +
                                      'post-hook="post()" ' +
                                      'pre-hook="pre()" ' +
+                                     'dismiss-hook="dismiss()"' +
                                      '>Title</rx-modal-action>';
 
         scope.rxTestCtrl = function ($scope) {

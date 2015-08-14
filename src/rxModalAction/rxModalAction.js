@@ -183,6 +183,7 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 *
 * @param {function} [preHook] Function to call when a modal is opened
 * @param {function} [postHook] Function to call when a modal is submitted (not called when cancelled out of)
+* @param {function} [dismissHook] Function to call when a modal is dismissed (not called when submitted)
 * @param {string} [templateUrl] URL of template to use for modal content
 * @param {string} [disable-esc] If the `disable-esc` attribute is present, then "Press Esc to close" will be disabled
 *                               for the modal. This attribute takes no values.
@@ -224,6 +225,14 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
                 element.find('a')[0].focus();
             };
 
+            var handleDismiss = function () {
+                focusLink();
+
+                // Since we don't want to isolate the scope, we have to eval our attr instead of using `&`
+                // The eval will execute function (if it exists)
+                scope.$eval(attrs.dismissHook);
+            };
+
             var handleSubmit = function () {
                 focusLink();
 
@@ -254,7 +263,7 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 
                 var modal = createModal(attrs, scope);
 
-                modal.result.then(handleSubmit, focusLink);
+                modal.result.then(handleSubmit, handleDismiss);
             };
         }
     };
