@@ -1,3 +1,18 @@
+/* README */
+.component-description {
+  border: 1px solid #aaa;
+  background: #fff;
+  padding: 10px;
+  margin-bottom: 2em;
+}
+.component-description h1,
+.component-description h2,
+.component-description h3,
+.component-description h4,
+.component-description h5,
+.component-description h6 {
+  margin-bottom: 0;
+}
 .component-description h1 {
   font-size: 1.6em;
   border-bottom: 1px solid #333;
@@ -17,11 +32,17 @@
   font-weight: bold;
   color: #777;
 }
-.component-description {
-  border: 1px solid #aaa;
-  background: #fff;
-  padding: 10px;
-  margin-bottom: 2em;
+.component-description ul li,
+.component-description ol li {
+  display: list-item;
+  margin: 5px 0 0 30px;
+}
+.component-description ul li,
+.component-description ul .item {
+  list-style: disc;
+}
+.component-description ol li {
+  list-style: decimal;
 }
 .component-description .readme-title {
   margin-top: 0;
@@ -85,18 +106,6 @@ ul.colors .action-delete {
 .styleguide-character-count .counted-input-wrapper .input-highlighting,
 .styleguide-character-count .counted-input-wrapper textarea {
   width: 328px;
-}
-.component-description ul li,
-.component-description ol li {
-  display: list-item;
-  margin: 5px 0 0 30px;
-}
-.component-description ul li,
-.component-description ul .item {
-  list-style: disc;
-}
-.component-description ol li {
-  list-style: decimal;
 }
 .overview-column {
   width: 300px;
@@ -183,4 +192,20 @@ p {
   list-style: disc inside;
   margin: 10px 10px 10px 23px;
   text-indent: -13px;
+}
+.component-demo h1:first-child,
+.component-demo h2:first-child,
+.component-demo h3:first-child,
+.component-demo h4:first-child,
+.component-demo h5:first-child,
+.component-demo h6:first-child {
+  margin-top: 0;
+}
+rx-page.styleguide h1,
+rx-page.styleguide h2,
+rx-page.styleguide h3,
+rx-page.styleguide h4,
+rx-page.styleguide h5,
+rx-page.styleguide h6 {
+  margin-top: 2.0em;
 }
