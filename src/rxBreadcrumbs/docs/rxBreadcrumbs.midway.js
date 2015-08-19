@@ -31,16 +31,16 @@ describe('rxBreadcrumbs', function () {
             expect(first.isLast()).to.eventually.be.false;
         });
 
-        it('should have the name "Home"', function () {
-            expect(first.name).to.eventually.equal('Home');
+        it('should have the name "Overview"', function () {
+            expect(first.name).to.eventually.equal('Overview');
         });
 
         it('should not have a tag', function () {
             expect(first.lblTag.isPresent()).to.eventually.be.false;
         });
 
-        it('should have the href "/"', function () {
-            expect(first.href).to.eventually.equal(browser.baseUrl + '/');
+        it('should have the href "/#/overview"', function () {
+            expect(first.href).to.eventually.equal(browser.baseUrl + '/#/overview');
         });
 
     });
@@ -138,7 +138,7 @@ describe('rxBreadcrumbs', function () {
         });
 
         it('should have the correct names', function () {
-            expect(defaultBreadcrumbs.names).to.eventually.eql(['Home', 'Components', 'configs']);
+            expect(defaultBreadcrumbs.names).to.eventually.eql(['Overview', 'Components', 'configs']);
         });
     });
 

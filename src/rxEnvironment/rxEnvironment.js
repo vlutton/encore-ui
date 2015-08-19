@@ -102,15 +102,15 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
     };
 
     /*
-     * Adds an environment to the stack
+     * Adds an environment to the front of the stack, ensuring it will be matched first
      * @public
      * @param {object} environment The environment to add. See 'environments' array for required properties
      */
     this.add = function (environment) {
         // do some sanity checks here
         if (isValidEnvironment(environment)) {
-            // add environment
-            environments.push(environment);
+            // add environment, over riding all others created previously
+            environments.unshift(environment);
         } else {
             $log.error('Unable to add Environment: defined incorrectly');
         }
@@ -130,7 +130,7 @@ angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
     };
 
     /*
-     * Given an environment name, check if any of our registered environments 
+     * Given an environment name, check if any of our registered environments
      * match it
      * @public
      * @param {string} [name] Environment name to check
