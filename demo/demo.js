@@ -1,8 +1,19 @@
-function genericRouteController (breadcrumbTitle) {
-    return function (rxBreadcrumbsSvc) {
-        rxBreadcrumbsSvc.set([{
-            name: breadcrumbTitle || ''
-        }]);
+function genericRouteController (breadcrumbs) {
+    return function (rxBreadcrumbsSvc, Environment, $interpolate) {
+        if (breadcrumbs === undefined) {
+            breadcrumbs = [{
+                name: '',
+                path: ''
+            }]
+        }
+
+        breadcrumbs.forEach(function (breadcrumb) {
+            if (breadcrumb.path) {
+                breadcrumb.path = $interpolate(Environment.get().url)({ path: breadcrumb.path });
+            }
+        });
+
+        rxBreadcrumbsSvc.set(breadcrumbs);
     }
 }
 
@@ -17,9 +28,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
 
     $scope.component = component;
 })
-.controller('styleguideCtrl', function (rxBreadcrumbsSvc) {
-    rxBreadcrumbsSvc.set();
-})
 .config(function ($routeProvider, rxStatusTagsProvider) {
     $routeProvider
         .when('/', {
@@ -31,7 +39,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         })
         .when('/overview', {
             templateUrl: 'overview.html',
-            controller: genericRouteController('Overview')
+            controller: genericRouteController()
         })
         .when('/components', {
             templateUrl: 'components.html',
@@ -39,39 +47,71 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         })
         .when('/styleguide/basics', {
             templateUrl: 'styleguide/basics.html',
-            controller: 'styleguideCtrl'
+            controller: genericRouteController([{
+                name: 'Style Guide'
+            }])
         })
         .when('/styleguide/layouts', {
             templateUrl: 'styleguide/layouts.html',
-            controller: genericRouteController()
+            controller: genericRouteController([{
+                name: 'Layouts'
+            }])
         })
         .when('/styleguide/layouts/1', {
             templateUrl: 'styleguide/layout-1.html',
-            controller: genericRouteController()
+            controller: genericRouteController([{
+                name: 'Layouts', path: '#/styleguide/layouts'
+            }, {
+                name: 'Detail Page'
+            }])
         })
         .when('/styleguide/layouts/2', {
             templateUrl: 'styleguide/layout-2.html',
-            controller: genericRouteController()
+            controller: genericRouteController([{
+                name: 'Layouts', path: '#/styleguide/layouts'
+            }, {
+                name: 'Data Table'
+            }])
         })
         .when('/styleguide/layouts/3', {
             templateUrl: 'styleguide/layout-3.html',
-            controller: genericRouteController()
+            controller: genericRouteController([{
+                name: 'Layouts', path: '#/styleguide/layouts'
+            }, {
+                name: 'Create Form'
+            }])
         })
         .when('/styleguide/buttons', {
             templateUrl: 'styleguide/buttons.html',
-            controller: genericRouteController()
+            controller: genericRouteController([{
+                name: 'Style Guide', path: '#/styleguide/basics'
+            }, {
+                name: 'Buttons'
+            }])
         })
         .when('/styleguide/tables', {
             templateUrl: 'styleguide/tables.html',
-            controller: genericRouteController()
+            controller: genericRouteController([{
+                name: 'Style Guide', path: '#/styleguide/basics'
+            }, {
+                name: 'Tables'
+            }])
         })
         .when('/styleguide/forms', {
             templateUrl: 'styleguide/forms.html',
-            controller: genericRouteController()
+            controller: genericRouteController([{
+                name: 'Style Guide', path: '#/styleguide/basics'
+            }, {
+                name: 'Forms'
+            }])
         })
         .when('/styleguide/modals', {
             templateUrl: 'styleguide/modals.html',
-            controller: genericRouteController()
+            controller: genericRouteController([{
+                name: 'Style Guide', path: '#/styleguide/basics'
+            }, {
+                name: 'Modals'
+            }])
         })
         .when('/component/:component', {
             redirectTo: function (routeParams) {
@@ -101,17 +141,16 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         text: 'Demo Tag'
     });
 })
-.run(function ($rootScope, $window, $location, $anchorScroll, Environment, rxBreadcrumbsSvc, rxPageTitle) {
+.run(function ($rootScope, $window, $location, $anchorScroll, $interpolate,
+               Environment, rxBreadcrumbsSvc, rxPageTitle) {
     var baseGithubUrl = '//rackerlabs.github.io/encore-ui/';
     Environment.add({
         name: 'ghPages',
-        pattern: '//rackerlabs.github.io',
+        pattern: /\/\/rackerlabs.github.io/,
         url: baseGithubUrl + '{{path}}'
     });
 
-    if (Environment.envCheck('ghPages')) {
-        rxBreadcrumbsSvc.setHome(baseGithubUrl);
-    }
+    rxBreadcrumbsSvc.setHome($interpolate(Environment.get().url)({ path: '#/overview' }), 'Overview');
 
     var demoNav = [
         {
@@ -123,15 +162,16 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'Overview'
                 },
                 {
-                    href: 'ngdocs/index.html',
+                    href: '/ngdocs/index.html',
                     linkText: 'JS Docs'
                 },
                 {
-                    href: 'rx-page-objects/index.html',
+                    href: '/rx-page-objects/index.html',
                     linkText: 'Test Docs'
                 },
                 {
                     linkText: 'Other Links',
+                    href: '',
                     children: [
                         {
                             linkText: 'GitHub Repos',
