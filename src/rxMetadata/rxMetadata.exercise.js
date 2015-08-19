@@ -70,6 +70,10 @@ exports.rxMetadata = function (options) {
             expect(component.isDisplayed()).to.eventually.eq(options.visible);
         });
 
+        it('should have every term present and in the correct order', function () {
+            expect(component.terms).to.eventually.eql(Object.keys(options.terms));
+        });
+
         _.forEach(options.terms, function (definition, term) {
             it('should have the correct definition for ' + term, function () {
                 if (_.isObject(definition) || _.isArray(definition)) {

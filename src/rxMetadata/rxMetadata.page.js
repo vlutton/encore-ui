@@ -25,6 +25,17 @@ var rxMetadata = {
         }
     },
 
+    terms: {
+        get: function () {
+            return this.rootElement.$$('div.label').map(function (keyElem) {
+                return keyElem.getText().then(function (key) {
+                    // strip ending colon character
+                    return key.slice(0, -1);
+                });
+            });
+        }
+    },
+
     /**
      * @function
      * @returns {Boolean} Whether or not the root element is currently displayed.
@@ -87,6 +98,10 @@ exports.rxMetadata = {
      * ```
      */
     initialize: function (rxMetadataElement, transformFns) {
+        if (transformFns === undefined) {
+            transformFns = {};
+        }
+
         rxMetadata.transformFns = {
             get: function () { return transformFns; }
         };
@@ -103,7 +118,7 @@ exports.rxMetadata = {
      */
     main: (function () {
         rxMetadata.transformFns = {
-            get: function () { return undefined; }
+            get: function () { return {}; }
         };
 
         rxMetadata.rootElement = {
