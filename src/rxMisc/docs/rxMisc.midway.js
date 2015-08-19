@@ -192,5 +192,32 @@ describe('rxMisc', function () {
             });
 
         });
+
+        describe('newDate', function () {
+            var date;
+
+            before(function () {
+                demoPage.go('#/components/rxMetadata');
+                var transformFns = {
+                    'Date Field': function (elem) {
+                        return elem.getText().then(encore.rxMisc.newDate);
+                    }
+                };
+
+                encore.rxMetadata.initialize('rx-metadata', transformFns).term('Date Field').then(function (dateField) {
+                    date = dateField;
+                });
+            });
+
+            it('should parse a date', function () {
+                expect(date instanceof Date).to.be.true;
+            });
+
+            it('should match the date exactly', function () {
+                var explicitDate = new Date('January 6, 1989 @ 00:00 (UTC-0600)');
+                expect(date.valueOf()).to.equal(explicitDate.valueOf());
+            });
+
+        });
     });
 });

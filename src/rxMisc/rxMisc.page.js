@@ -48,6 +48,38 @@ exports.rxMisc = {
     },
 
     /**
+       A convenience function to pass to `.then` when a date is needed from text.
+       If there is any manipulation of the text needed to render a valid date in
+       javascript, then you shouldn't use this function. If that is the case,
+       please see http://rackerlabs.github.io/encore-ui/#/styleguide/basics#date-formatting.
+       There should be no need to manipulate a date's text to create a valid date object
+       if you are following the styleguide.
+       @param {String} dateText - Text that represents the date object in the UI.
+       @returns {Date} A date object, returned from `new Date(dateText)`.
+       @example
+       ```js
+       // instead of doing this
+       startDate: {
+           get: function () {
+               return element(by.binding('startDate')).getText().then(function (text) {
+                   return new Date(text);
+               });
+           }
+       },
+
+       // use this instead
+       endDate: {
+           get: function () {
+               return element(by.binding('endDate')).getText().then(encore.rxMisc.newDate);
+           }
+       }
+       ```
+     */
+    newDate: function (dateText) {
+        return new Date(dateText);
+    },
+
+    /**
        A list of common strings that appear in the UI that represent `null` to a page object.
        Add to this list yourself or create a new one in this namespace for your application.
        @constant
