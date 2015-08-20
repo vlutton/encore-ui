@@ -162,11 +162,11 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'Overview'
                 },
                 {
-                    href: '/ngdocs/index.html',
+                    href: 'ngdocs/index.html',
                     linkText: 'JS Docs'
                 },
                 {
-                    href: '/rx-page-objects/index.html',
+                    href: 'rx-page-objects/index.html',
                     linkText: 'Test Docs'
                 },
                 {
