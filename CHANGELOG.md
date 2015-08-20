@@ -1,3 +1,13 @@
+<a name="1.26.1"></a>
+### 1.26.1 (2015-08-20)
+
+
+#### Bug Fixes
+
+* **demo:** Relative links to docs ([1b35aa47](git@github.com:rackerlabs/encore-ui/commit/1b35aa47a961c84123c929a403b1d999f6d09e66))
+* **rxMetadata:** fix broken midway ([31e0d3c1](git@github.com:rackerlabs/encore-ui/commit/31e0d3c1ade05d8dd0bee464d050950f74bc3d85))
+
+
 <a name="1.26.0"></a>
 ## 1.26.0 (2015-08-20)
 
