@@ -1,3 +1,15 @@
+<a name="1.26.0"></a>
+## 1.26.0 (2015-08-20)
+
+
+#### Bug Fixes
+
+* **demo:** Breadcrumbs work with new overview ([16f3cdee](git@github.com:rackerlabs/encore-ui/commit/16f3cdee2ae14b6418526834ef613a86a2204a59))
+* **grunt:** Back port _.repeat for squirrel task ([d06d8ea4](git@github.com:rackerlabs/encore-ui/commit/d06d8ea4c78a260841c374a204ccf2b34c157e2b))
+* **rxEnvironment:** New environments match first ([37d9e67a](git@github.com:rackerlabs/encore-ui/commit/37d9e67a02f04c6449b67b22fe659353c0b35879))
+* **rxMetadata:** provide correction to unbreakable data values ([8698fb42](git@github.com:rackerlabs/encore-ui/commit/8698fb4261e05ce02919187dd0a6a9ccb3443775))
+
+
 <a name="1.25.2"></a>
 ### 1.25.2 (2015-08-12)
 
