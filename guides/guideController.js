@@ -28,14 +28,9 @@ angular
         function setTitle () {
             var title = document.querySelector('rx-page').querySelector('h1, h2, h3, h4, h5')
             vm.title = title.innerText;
-            rxBreadcrumbsSvc.set([
-                {
-                    path: '/#/overview',
-                    name: 'Overview'
-                }, {
-                    name: vm.title
-                }
-            ]);
+            rxBreadcrumbsSvc.set([{
+                name: vm.title
+            }]);
 
             // Remove the now redundant title
             title.remove();

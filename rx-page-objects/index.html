@@ -224,6 +224,7 @@
 <li><a href="#rxMisc">rxMisc</a><ul>
 <li><a href="#rxMisc.slowClick">rxMisc.slowClick(elem)</a></li>
 <li><a href="#rxMisc.currencyToPennies">rxMisc.currencyToPennies(currencyString)</a></li>
+<li><a href="#rxMisc.newDate">rxMisc.newDate(dateText)</a></li>
 <li><a href="#rxMisc.unless">rxMisc.unless(elem, [innerFn], [fallbackReturnValue])</a></li>
 <li><a href="#rxMisc.nullValueMatches">const: rxMisc.nullValueMatches</a></li>
 </ul>
@@ -1623,6 +1624,7 @@ Will expand the component if collapsed, or will collapse it if it&#39;s expanded
 <li><a href="#rxMisc">rxMisc</a><ul>
 <li><a href="#rxMisc.slowClick">rxMisc.slowClick(elem)</a></li>
 <li><a href="#rxMisc.currencyToPennies">rxMisc.currencyToPennies(currencyString)</a></li>
+<li><a href="#rxMisc.newDate">rxMisc.newDate(dateText)</a></li>
 <li><a href="#rxMisc.unless">rxMisc.unless(elem, [innerFn], [fallbackReturnValue])</a></li>
 <li><a href="#rxMisc.nullValueMatches">const: rxMisc.nullValueMatches</a></li>
 </ul>
@@ -1656,6 +1658,35 @@ encore.rxMisc.currencyToPennies(&#39;$100 CAN&#39;)   ==  10000
 encore.rxMisc.currencyToPennies(&#39;($100 AUS)&#39;) == -10000
 encore.rxMisc.currencyToPennies(&#39;($1.011)&#39;)   == -101
 encore.rxMisc.currencyToPennies(&#39;$1.10&#39;)      ==  110
+</code></pre>
+<p><a name="rxMisc.newDate"></a></p>
+<p>##rxMisc.newDate(dateText)
+A convenience function to pass to <code>.then</code> when a date is needed from text.
+       If there is any manipulation of the text needed to render a valid date in
+       javascript, then you shouldn&#39;t use this function. If that is the case,
+       please see <a href="http://rackerlabs.github.io/encore-ui/#/styleguide/basics#date-formatting">http://rackerlabs.github.io/encore-ui/#/styleguide/basics#date-formatting</a>.
+       There should be no need to manipulate a date&#39;s text to create a valid date object
+       if you are following the styleguide.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>dateText <code>String</code> - Text that represents the date object in the UI.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Date</code> - A date object, returned from <code>new Date(dateText)</code>.<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">// instead of doing this
+startDate: {
+    get: function () {
+        return element(by.binding(&#39;startDate&#39;)).getText().then(function (text) {
+            return new Date(text);
+        });
+    }
+},
+
+// use this instead
+endDate: {
+    get: function () {
+        return element(by.binding(&#39;endDate&#39;)).getText().then(encore.rxMisc.newDate);
+    }
+}
 </code></pre>
 <p><a name="rxMisc.unless"></a></p>
 <p>##rxMisc.unless(elem, [innerFn], [fallbackReturnValue])
