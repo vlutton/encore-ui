@@ -5,13 +5,12 @@ rx-search-box {
   display: inline-block;
   width: @rxSearchBox-width;
   min-width: @rxSearchBox-min-width;
-  font-size: 1.2em;
 
   // wrapper fits full width
   .rxSearchBox-wrapper {
     .box-sizing(border-box);
     border: @rxSearchBox-border;
-    height: auto;
+    min-height: @rxSearchBox-min-height;
     min-width: @rxSearchBox-min-width;
     padding: 0px;
 

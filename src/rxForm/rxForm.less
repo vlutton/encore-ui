@@ -372,10 +372,6 @@ rx-field-name {
 [rx-form] {
   font-size: @rxForm-font-size;
 
-  input:not([type="checkbox"]):not([type="radio"]) {
-    min-height: @rxForm-input-min-height;
-  }
-
   rx-field-name,
   rx-help-text,
   rx-inline-error,
@@ -412,7 +408,9 @@ rx-field-name {
         flex: 1 0 auto; // as flex item
         margin-bottom: @rxForm-gutter;
 
-        &:last-child { margin-bottom: 0px; }
+        &:last-child {
+          margin-bottom: 0px;
+        }
 
         rx-input {
           // as a flex container
@@ -421,9 +419,11 @@ rx-field-name {
           justify-content: flex-start;
           align-items: stretch;
 
-          input:not([type="checkbox"]):not([type="radio"]),
-          textarea {
+          & > input,
+          & > textarea {
             flex: 1 1 auto; // as dynamic flex item
+
+            min-height: @rxForm-input-min-height;
 
             &, &.ng-valid {
               padding: 3px 5px;
@@ -499,6 +499,10 @@ rx-field-name {
             textarea {
               width: 100%;
             }
+          }
+
+          rx-search-box {
+            flex: 1 1;
           }
         }//rx-input
       }//rx-field-content
