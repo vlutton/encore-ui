@@ -1,5 +1,6 @@
 /*jshint unused:false*/
-function rxModalActionCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxModalActionCtrl', function ($scope, rxNotify) {
     $scope.password = 'guest';
 
     $scope.populate = function (modalScope) {
@@ -8,18 +9,26 @@ function rxModalActionCtrl ($scope) {
 
     $scope.changePass = function (fields) {
         $scope.password = fields.password;
+        rxNotify.add('Password Updated!', {
+            type: 'success'
+        });
     };
-}
 
-function rxModalStateCtrl ($scope, $modalInstance, $timeout, rxNotify) {
-    function complete () {
+    $scope.notifyDismissal = function () {
+        rxNotify.add('Password Unchanged', {
+            type: 'info'
+        });
+    };
+})
+.controller('rxModalStateCtrl', function ($scope, $modalInstance, $timeout, rxNotify) {
+    var complete = function () {
         $scope.loaded = true;
         $scope.setState('complete');
         rxNotify.add('Operation Success!', {
             stack: 'modal',
             type: 'success'
         });
-    }
+    };
 
     $scope.submit = function () {
         $scope.setState('confirm');
@@ -38,6 +47,13 @@ function rxModalStateCtrl ($scope, $modalInstance, $timeout, rxNotify) {
 
     $scope.cancel = function () {
         rxNotify.clear('modal');
+
+        /*
+         * You may place custom dismiss logic here,
+         * if you do not wish to use a `dismiss-hook` function.
+         **/
+
+        // This must be called to dismiss the modal.
         $modalInstance.dismiss();
     };
-}
+});
