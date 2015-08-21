@@ -964,6 +964,8 @@ describe('rxHideIfUkAccount', function () {
 describe('rxAccountUsers', function () {
     var rootScope, scope, compile, q, userSelect, users, encoreRoutesMock;
     var validTemplate = '<rx-account-users></rx-account-users>';
+    var unregisterCheckCloud = sinon.spy();
+    var rootScopeStub = null;
 
     beforeEach(function () {
 
@@ -1002,6 +1004,7 @@ describe('rxAccountUsers', function () {
             rootScope = $rootScope;
             compile = $compile;
             scope = $rootScope.$new();
+            rootScopeStub = sinon.stub(rootScope, '$on').returns(unregisterCheckCloud);
             q = $q;
             encoreRoutesMock = encoreRoutes;
 
@@ -1059,6 +1062,15 @@ describe('rxAccountUsers', function () {
         expect(userSelect.find('select')).to.have.length(0);
     });
 
+    it('should unregister the watcher when the element is removed from the DOM', function () {
+        userSelect = helpers.createDirective(angular.element(validTemplate), compile, scope);
+        userSelect.remove();
+        expect(unregisterCheckCloud.called).to.eq(true);
+    });
+
+    afterEach(function () {
+        rootScopeStub.restore();
+    });
 });
 
 describe('rxStatusTags - custom status tags', function () {
