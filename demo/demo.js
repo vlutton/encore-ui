@@ -20,7 +20,7 @@ function genericRouteController (breadcrumbs) {
 angular.module('demoApp', ['encore.ui', 'ngRoute'])
 .controller('componentCtrl', function ($scope, rxBreadcrumbsSvc, $routeParams, component) {
     rxBreadcrumbsSvc.set([{
-            path: '/#/components',
+            path: '#/components',
             name: 'Components'
         }, {
             name: component.name
