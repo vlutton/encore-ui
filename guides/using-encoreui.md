@@ -1,5 +1,9 @@
 # Using EncoreUI In Your Own Project
 
+We have provided a [full tutorial on getting started with Encore](https://pages.github.rackspace.com/EncoreUI/encore-tutorial/index.html) (accessible only to Rackspace employees). If this is your first time using EncoreUI, we *highly* recommend you start there.
+
+Otherwise, the basic steps to install EncoreUI can be found below.
+
 ## Installation
 
 ### Easy Setup: Encore Generator
