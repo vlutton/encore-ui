@@ -435,7 +435,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
     return {
         restrict: 'E',
         templateUrl: 'templates/rxAccountUsers.html',
-        link: function (scope) {
+        link: function (scope, element) {
             scope.isCloudProduct = false;
 
             var checkCloud = function () {
@@ -450,14 +450,14 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                     }
                 });
             };
-            
+
             // We use $route.current.params instead of $routeParams because
             // the former is always available, while $routeParams only gets populated
             // after the route has successfully resolved. See the Angular docs on $routeParams
             // for more details.
             var loadUsers = function () {
                 var success = function (account) {
-                    
+
                     // Sort the list so admins are at the top of the array
                     account.users = _.sortBy(account.users, 'admin');
 
@@ -472,7 +472,7 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                         // But we need the URLs for the Cloud items to be valid, so grab a
                         // default username for this account, and rebuild the Cloud URLs with
                         // it
-                        
+
                         encoreRoutes.rebuildUrls({ user: account.users[0].username });
                     }
                 };
@@ -500,7 +500,13 @@ angular.module('encore.ui.rxApp', ['encore.ui.rxAppRoutes', 'encore.ui.rxEnviron
                 }
             };
 
-            $rootScope.$on('$routeChangeSuccess', checkCloud);
+            var unregisterCheckCloud = $rootScope.$on('$routeChangeSuccess', checkCloud);
+
+            // We need to register a function to cleanup the watcher, this avoids multiple calls
+            //Ecore.getAccountUsers every time we load a page in cloud.
+            element.on('$destroy', function () {
+                unregisterCheckCloud();
+            });
         }
     };
 })
