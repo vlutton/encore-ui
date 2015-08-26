@@ -1,3 +1,19 @@
+<a name="1.27.0"></a>
+## 1.27.0 (2015-08-26)
+
+
+#### Bug Fixes
+
+* **components:** correct 'Components' breadcrumb path ([540da6e7](git@github.com:rackerlabs/encore-ui/commit/540da6e7a16eeb5e1b7e0f809b4561d8c2010d20))
+* **rxAccountUsers:** Fix ever increasing user calls ([9516346d](git@github.com:rackerlabs/encore-ui/commit/9516346dc93524a707a8299e44dcef3a31870ed6))
+* **rxButtonDemo:** close H3 tag ([ed469a4f](git@github.com:rackerlabs/encore-ui/commit/ed469a4f9e3fe80d011015859022b1574561ab3a))
+
+
+#### Features
+
+* **rxModalAction:** add dismiss-hook support ([4e0a3314](git@github.com:rackerlabs/encore-ui/commit/4e0a33147316ed7118712c060cab793699607dbe))
+
+
 <a name="1.26.1"></a>
 ### 1.26.1 (2015-08-20)
 
