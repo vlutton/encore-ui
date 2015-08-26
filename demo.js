@@ -20,7 +20,7 @@ function genericRouteController (breadcrumbs) {
 angular.module('demoApp', ['encore.ui', 'ngRoute'])
 .controller('componentCtrl', function ($scope, rxBreadcrumbsSvc, $routeParams, component) {
     rxBreadcrumbsSvc.set([{
-            path: '/#/components',
+            path: '#/components',
             name: 'Components'
         }, {
             name: component.name
@@ -155,46 +155,11 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
     var demoNav = [
         {
             type: 'highlight',
-            title: 'EncoreUI',
+            type: 'no-title',
             children: [
                 {
                     href: '#/overview',
                     linkText: 'Overview'
-                },
-                {
-                    href: 'ngdocs/index.html',
-                    linkText: 'JS Docs'
-                },
-                {
-                    href: 'rx-page-objects/index.html',
-                    linkText: 'Test Docs'
-                },
-                {
-                    linkText: 'Other Links',
-                    href: '',
-                    children: [
-                        {
-                            linkText: 'GitHub Repos',
-                            children: [
-                                {
-                                    href: 'https://github.com/rackerlabs/encore-ui',
-                                    linkText: 'EncoreUI'
-                                },
-                                {
-                                    href: 'https://github.com/rackerlabs/generator-encore',
-                                    linkText: 'Yeoman Generator (Private Repo)'
-                                },
-                                {
-                                    href: 'https://github.com/rackerlabs/encore-ui-login',
-                                    linkText: 'Common Login (Private Repo)'
-                                }
-                            ]
-                        },
-                        {
-                            href: 'coverage/index.html',
-                            linkText: 'Unit Test Coverage'
-                        }
-                    ]
                 }
             ]
         },

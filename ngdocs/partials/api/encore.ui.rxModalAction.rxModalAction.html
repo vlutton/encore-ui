@@ -1,4 +1,4 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxModalAction/rxModalAction.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/3568c29/src/rxModalAction/rxModalAction.js#L199" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxModalAction</code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxModalAction/rxModalAction.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/b2b2ca6/src/rxModalAction/rxModalAction.js#L200" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxModalAction</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">encore.ui</code>
 </span>
 </div>
@@ -10,6 +10,7 @@
 <div class="usage">as element:<pre class="prettyprint linenums">&lt;rx-modal-action
        [pre-hook]="{function}"
        [post-hook]="{function}"
+       [dismiss-hook]="{function}"
        [template-url]="{string}"
        [disable-esc]="{string}"&gt;
 &lt;/rx-modal-action&gt;</pre>
@@ -19,6 +20,7 @@
 </div>
 <h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>[preHook]</td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="encore-ui-rxmodalaction-page encore-ui-rxmodalaction-rxmodalaction-page"><p>Function to call when a modal is opened</p>
 </div></td></tr><tr><td>[postHook]</td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="encore-ui-rxmodalaction-page encore-ui-rxmodalaction-rxmodalaction-page"><p>Function to call when a modal is submitted (not called when cancelled out of)</p>
+</div></td></tr><tr><td>[dismissHook]</td><td><a href="" class="label type-hint type-hint-function">function</a></td><td><div class="encore-ui-rxmodalaction-page encore-ui-rxmodalaction-rxmodalaction-page"><p>Function to call when a modal is dismissed (not called when submitted)</p>
 </div></td></tr><tr><td>[templateUrl]</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="encore-ui-rxmodalaction-page encore-ui-rxmodalaction-rxmodalaction-page"><p>URL of template to use for modal content</p>
 </div></td></tr><tr><td>[disable-esc]</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="encore-ui-rxmodalaction-page encore-ui-rxmodalaction-rxmodalaction-page"><p>If the <code>disable-esc</code> attribute is present, then &quot;Press Esc to close&quot; will be disabled
 for the modal. This attribute takes no values.</p>
