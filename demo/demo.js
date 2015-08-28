@@ -41,10 +41,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             templateUrl: 'overview.html',
             controller: genericRouteController()
         })
-        .when('/components', {
-            templateUrl: 'components.html',
-            controller: 'componentsController as vm'
-        })
+        /* Legacy Styleguide */
         .when('/styleguide/basics', {
             templateUrl: 'styleguide/basics.html',
             controller: genericRouteController([{
@@ -113,6 +110,18 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 name: 'Modals'
             }])
         })
+        /* Style Pages */
+        .when('/styles/color', {
+            templateUrl: 'styles/color.html',
+            controller: genericRouteController([{
+                name: 'Color'
+            }])
+        })
+        /* Component Pages */
+        .when('/components', {
+            templateUrl: 'components.html',
+            controller: 'componentsController as vm'
+        })
         .when('/component/:component', {
             redirectTo: function (routeParams) {
                 return '/components/' + routeParams.component;
@@ -129,6 +138,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 }
             }
         })
+        /* Guide Pages */
         .when('/guides/:guide', {
             controller: 'guideController as vm',
             templateUrl: 'guides/guideViewer.html'
@@ -154,7 +164,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
 
     var demoNav = [
         {
-            type: 'highlight',
             type: 'no-title',
             children: [
                 {
@@ -170,10 +179,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     href: '#/styleguide/basics',
                     linkText: 'Basics',
                     children: [
-                        {
-                            href: '#/styleguide/basics#color',
-                            linkText: 'Color'
-                        },
                         {
                             href: '#/styleguide/basics#typography',
                             linkText: 'Typography'
@@ -319,6 +324,15 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                             linkText: 'UI Roadmap / Possible Future-work'
                         }
                     ]
+                }
+            ]
+        },
+        {
+            title: 'Style',
+            children: [
+                {
+                    href: '#/styles/color',
+                    linkText: 'Color'
                 }
             ]
         },
