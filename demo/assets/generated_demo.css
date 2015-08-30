@@ -1,3 +1,31 @@
+/* Code Styles */
+/* Remove background color from syntax highlighted code (prism.css) */
+pre[class*="language-"],
+pre[class*="language-"] code {
+  background: transparent;
+  border: 0;
+}
+/* Custom Coloring (outside of prism syntax-highlighting) */
+pre,
+code {
+  color: #404040;
+  background-color: #d0d0d0;
+  border: 1px solid #bababa;
+  border-radius: 2px;
+}
+code {
+  padding: 0 2px;
+  margin: 0 1px;
+}
+pre {
+  padding: 10px;
+}
+pre code {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+}
 /* README */
 .component-description {
   border: 1px solid #aaa;
@@ -47,10 +75,6 @@
 .component-description .readme-title {
   margin-top: 0;
 }
-/* Remove background color from syntax highlighted code (prism.css) */
-pre[class*="language-"] {
-  background: transparent;
-}
 .styleguide-character-count .counted-input-wrapper {
   width: 328px;
 }
@@ -90,36 +114,6 @@ table.component-attributes td {
 .components-list table td,
 .components-list table th {
   padding: 7px 10px;
-}
-.component-description pre,
-.component-demo pre,
-.markdown pre,
-.component-description code,
-.component-demo code,
-.markdown code {
-  color: #404040;
-  background-color: #d0d0d0;
-  border: 1px solid #bababa;
-  border-radius: 2px;
-}
-.component-description code,
-.component-demo code,
-.markdown code {
-  padding: 0 2px;
-  margin: 0 1px;
-}
-.component-description pre,
-.component-demo pre,
-.markdown pre {
-  padding: 10px;
-}
-.component-description pre code,
-.component-demo pre code,
-.markdown pre code {
-  border: 0;
-  padding: 0;
-  margin: 0;
-  border-radius: 0;
 }
 p {
   line-height: 1.5;
