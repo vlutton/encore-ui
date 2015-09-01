@@ -1,6 +1,6 @@
 /*jshint unused:false*/
-function rxActionMenuCtrl ($scope, rxNotify) {
-
+angular.module('demoApp')
+.controller('rxActionMenuCtrl', function ($scope, rxNotify) {
     $scope.add = function () {
         rxNotify.add('Added!', {
             type: 'success',
@@ -16,5 +16,4 @@ function rxActionMenuCtrl ($scope, rxNotify) {
             timeout: 3
         });
     };
-
-}
+});

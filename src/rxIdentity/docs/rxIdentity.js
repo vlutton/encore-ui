@@ -1,5 +1,6 @@
 /*jshint unused:false*/
-function rxIdentityCtrl ($scope, Identity) {
+angular.module('demoApp')
+.controller('rxIdentityCtrl', function ($scope, Identity) {
     $scope.user = {};
     $scope.login = function () {
         $scope.toggle = true;
@@ -13,4 +14,4 @@ function rxIdentityCtrl ($scope, Identity) {
                 alert('Login attempt failed.');
             });
     };
-}
+});

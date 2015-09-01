@@ -1,4 +1,5 @@
 /*jshint unused:false*/
-function rxEnvironmentCtrl ($scope, Environment) {
+angular.module('demoApp')
+.controller('rxEnvironmentCtrl', function ($scope, Environment) {
     $scope.Environment = Environment;
-}
+});

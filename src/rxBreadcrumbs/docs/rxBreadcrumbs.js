@@ -1,5 +1,6 @@
 /*jshint unused:false*/
-function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
+angular.module('demoApp')
+.controller('rxBreadcrumbsCtrl', function ($scope, rxBreadcrumbsSvc) {
     rxBreadcrumbsSvc.set([{
         path: '/',
         name: 'Components',
@@ -7,4 +8,4 @@ function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
         name: '<strong>All Components</strong>',
         status: 'demo'
     }]);
-}
+});

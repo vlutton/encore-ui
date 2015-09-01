@@ -1,4 +1,5 @@
-function rxPermissionCtrl ($scope, Session, rxNotify) {
+angular.module('demoApp')
+.controller('rxPermissionCtrl', function ($scope, Session, rxNotify) {
     rxNotify.add('Respect My Authority!!', {
         stack: 'permission',
         type: 'warning'
@@ -11,4 +12,4 @@ function rxPermissionCtrl ($scope, Session, rxNotify) {
     $scope.clearToken = function () {
         Session.logout();
     };
-}
+});

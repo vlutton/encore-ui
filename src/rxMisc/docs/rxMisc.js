@@ -1,4 +1,5 @@
-function rxMiscCtrl ($scope, $timeout, $q, rxNotify, rxAutoSave) {
+angular.module('demoApp')
+.controller('rxMiscCtrl', function ($scope, $timeout, $q, rxNotify, rxAutoSave) {
     $scope.formData = {
         checkbox: false,
         name: '',
@@ -45,4 +46,4 @@ function rxMiscCtrl ($scope, $timeout, $q, rxNotify, rxAutoSave) {
             });
         }, 1000);
     };
-}
+});

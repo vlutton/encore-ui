@@ -206,5 +206,4 @@ angular.module('encore.ui.rxForm')
             });
         }
     };
-
 });

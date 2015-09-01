@@ -1,4 +1,5 @@
-function rxLocalStorageCtrl ($scope, LocalStorage) {
+angular.module('demoApp')
+.controller('rxLocalStorageCtrl', function ($scope, LocalStorage) {
     $scope.setSideKick = function () {
         LocalStorage.setObject('joker', { name: 'Harley Quinn' });
     };
@@ -7,4 +8,4 @@ function rxLocalStorageCtrl ($scope, LocalStorage) {
         var sidekick = LocalStorage.getObject('joker');
         alert(sidekick.name);
     };
-}
+});

@@ -1,6 +1,6 @@
 /*jshint unused:false*/
-
-function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
+angular.module('demoApp')
+.controller('rxNotifyCtrl', function ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
     $scope.message = 'My message';
 
     $scope.types = [ 'info', 'success', 'warning', 'error' ];
@@ -69,4 +69,4 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
             error: 'Error Message'
         }, 'demo');
     };
-}
+});

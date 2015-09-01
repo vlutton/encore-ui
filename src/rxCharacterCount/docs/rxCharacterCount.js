@@ -1,7 +1,6 @@
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxCharacterCountCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxCharacterCountCtrl', function ($scope) {
     $scope.data = {
         comment1: '',
         comment2: '',
@@ -10,4 +9,4 @@ function rxCharacterCountCtrl ($scope) {
         comment5: 'I have an initial value',
         comment6: ''
     };
-}
+});

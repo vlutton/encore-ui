@@ -1,7 +1,6 @@
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxSelectFilterCtrl ($scope, SelectFilter) {
+angular.module('demoApp')
+.controller('rxSelectFilterCtrl', function ($scope, SelectFilter) {
     $scope.data = {
         classification: []
     };
@@ -20,4 +19,4 @@ function rxSelectFilterCtrl ($scope, SelectFilter) {
         { account: 'B', status: 'VENDOR', description: 'Hold on to that feeling' },
         { account: 'A', status: 'TRANSFERRED', description: 'qwertyuiop' }
     ];
-}
+});
