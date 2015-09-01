@@ -1,7 +1,7 @@
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTracking, rxSortUtil, SelectFilter) {
+angular.module('demoApp')
+.controller('rxPaginateCtrl', function ($scope, $q, $timeout, $filter, rxPaginateUtils,
+                                        PageTracking, rxSortUtil, SelectFilter) {
     $scope.pager = PageTracking.createInstance({ itemsPerPage: 3 });
 
     var os = ['Ubuntu 12.04', 'Red Hat Enterprise Linux 6.4', 'CentOS 6.4', 'Ubuntu 13.04'];
@@ -29,7 +29,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
     $scope.addServers = function () {
         $scope.servers = $scope.servers.concat(makeServers(2));
     };
-    
+
     var allLazyServers = makeServers(701);
 
     var serverInterface = {
@@ -59,7 +59,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
                 // Return 100 items more than the user's `itemsPerPage`. i.e. if the
                 // user is asking for 25 items per page, return 125 in total
                 var lazyServers = filteredServers.slice(first, last + 100);
-                    
+
                 var response = {
                     items: lazyServers,
                     pageNumber: pageNumber,
@@ -92,4 +92,4 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
     });
     $scope.serverInterface = serverInterface;
     $scope.pagedServers = PageTracking.createInstance({ itemsPerPage: 25 });
-}
+});

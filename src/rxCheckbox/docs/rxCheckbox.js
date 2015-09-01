@@ -1,5 +1,4 @@
 /*jshint unused:false*/
-
 angular.module('demoApp')
 .controller('rxCheckboxCtrl', function ($scope) {
     $scope.chkValidEnabledOne = true;

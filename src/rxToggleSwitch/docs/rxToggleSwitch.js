@@ -1,6 +1,4 @@
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
 angular.module('demoApp')
 .controller('rxToggleSwitchCtrl', function ($scope, $timeout, rxNotify) {
     $scope.toggle3 = true;

@@ -1,7 +1,6 @@
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
+angular.module('demoApp')
+.controller('rxStatusColumnCtrl', function ($scope, rxStatusMappings, rxSortUtil) {
     $scope.servers = [
         { status: 'ACTIVE', title: 'ACTIVE status' },
         { status: 'ERROR', title: 'ERROR status' },
@@ -30,4 +29,4 @@ function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
         return rxSortUtil.sortCol($scope, predicate);
     };
     $scope.sort = rxSortUtil.getDefault('status');
-}
+});
