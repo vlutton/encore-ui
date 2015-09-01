@@ -21,7 +21,7 @@
 .component-description h2 {
   font-size: 1.4em;
   border-bottom: 1px solid #ccc;
-  margin-top: .5em;
+  margin-top: 0.5em;
 }
 .component-description h3 {
   font-size: 1.2em;
@@ -50,55 +50,6 @@
 /* Remove background color from syntax highlighted code (prism.css) */
 pre[class*="language-"] {
   background: transparent;
-}
-ul.colors {
-  overflow: hidden;
-}
-ul.colors li.color-swatch {
-  clear: both;
-  float: left;
-  margin: 10px 0;
-  list-style: none;
-  border: 1px solid #c0c0c0;
-  width: 79px;
-}
-ul.colors .swatch {
-  margin: 2px;
-  width: 75px;
-  height: 75px;
-}
-ul.colors .color-logic {
-  float: left;
-  margin: 20px 10px;
-  max-width: 80%;
-}
-ul.colors .hexcode {
-  text-align: center;
-  font-weight: 900;
-}
-ul.colors .action-accept {
-  background-color: #24b56a;
-}
-ul.colors .status-success {
-  background-color: #c8e5bf;
-}
-ul.colors .action-edit {
-  background-color: #4881c0;
-}
-ul.colors .status-info {
-  background-color: #86cafd;
-}
-ul.colors .action-cancel {
-  background-color: #898989;
-}
-ul.colors .status-disabled {
-  background-color: #cfd2d4;
-}
-ul.colors .action-system {
-  background-color: #db7820;
-}
-ul.colors .action-delete {
-  background-color: #fc0f1d;
 }
 .styleguide-character-count .counted-input-wrapper {
   width: 328px;
@@ -147,8 +98,8 @@ table.component-attributes td {
 .component-demo code,
 .markdown code {
   color: #404040;
-  background-color: #D0D0D0;
-  border: 1px solid #BABABA;
+  background-color: #d0d0d0;
+  border: 1px solid #bababa;
   border-radius: 2px;
 }
 .component-description code,
@@ -165,7 +116,7 @@ table.component-attributes td {
 .component-description pre code,
 .component-demo pre code,
 .markdown pre code {
-  border: none;
+  border: 0;
   padding: 0;
   margin: 0;
   border-radius: 0;
@@ -207,5 +158,65 @@ rx-page.styleguide h3,
 rx-page.styleguide h4,
 rx-page.styleguide h5,
 rx-page.styleguide h6 {
-  margin-top: 2.0em;
+  margin-top: 2em;
+}
+rx-page.styleguide .swatch {
+  flex: 0 0 auto;
+  height: 250px;
+  width: 275px;
+  margin: 10px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border: 1px solid #dededd;
+  padding: 0;
+  box-shadow: 0 3px 5px -2px #898989;
+}
+rx-page.styleguide .swatch .swatch-heading,
+rx-page.styleguide .swatch .swatch-body {
+  padding: 15px;
+}
+rx-page.styleguide .swatch .swatch-heading {
+  height: 30px;
+  font-weight: bold;
+  font-size: 14px;
+}
+rx-page.styleguide .swatch .swatch-body ul.list,
+rx-page.styleguide .swatch .swatch-body ol.list {
+  margin: 0 0 0 20px;
+}
+rx-page.styleguide .swatch .swatch-body ul.list li,
+rx-page.styleguide .swatch .swatch-body ol.list li {
+  margin-left: 0;
+}
+rx-page.styleguide .swatch .swatch-green {
+  background-color: #24b56a;
+  color: #fff;
+}
+rx-page.styleguide .swatch .swatch-light-green {
+  background-color: #c8e5bf;
+  color: #000;
+}
+rx-page.styleguide .swatch .swatch-blue {
+  background-color: #4881c0;
+  color: #fff;
+}
+rx-page.styleguide .swatch .swatch-light-blue {
+  background-color: #86cafd;
+  color: #000;
+}
+rx-page.styleguide .swatch .swatch-disabled-gray {
+  background-color: #dededd;
+  color: #000;
+}
+rx-page.styleguide .swatch .swatch-cancel-gray {
+  background-color: #898989;
+  color: #fff;
+}
+rx-page.styleguide .swatch .swatch-orange {
+  background-color: #db7820;
+  color: #fff;
+}
+rx-page.styleguide .swatch .swatch-red {
+  background-color: #fc0f1d;
+  color: #fff;
 }

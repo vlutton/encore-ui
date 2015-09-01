@@ -27,6 +27,9 @@ module.exports = {
     },
 
     styleguide: {
+        options: {
+            paths: ['src/styles/']
+        },
         files: {
             '<%= config.styleguideCss %>': '<%= config.styleguideLess %>'
         }

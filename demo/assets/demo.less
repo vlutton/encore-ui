@@ -1,3 +1,5 @@
+@import (reference) "vars";
+
 /* README */
 .component-description {
     border: 1px solid #aaa;
@@ -5,8 +7,12 @@
     padding: 10px;
     margin-bottom: 2em;
 
-    // TODO: can we do something about this?
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         margin-bottom: 0;
     }
 
@@ -19,7 +25,7 @@
     h2 {
         font-size: 1.4em;
         border-bottom: 1px solid #ccc;
-        margin-top: .5em;
+        margin-top: 0.5em;
     }
 
     h3 {
@@ -64,75 +70,12 @@ pre[class*="language-"] {
     background: transparent;
 }
 
-// Colors
-ul.colors {
-    overflow: hidden;
-
-    li.color-swatch {
-        clear: both;
-        float: left;
-        margin: 10px 0;
-        list-style: none;
-        border: 1px solid #c0c0c0;
-        width: 79px;
-    }
-
-    .swatch {
-        margin: 2px;
-        width: 75px;
-        height: 75px;
-    }
-
-    .color-logic {
-        float: left;
-        margin: 20px 10px;
-        max-width: 80%;
-    }
-
-    .hexcode {
-        text-align: center;
-        font-weight: 900;
-    }
-
-    // These should all be set via LESS vars
-    .action-accept {
-        background-color: #24b56a;
-    }
-
-    .status-success {
-        background-color: #c8e5bf;
-    }
-
-    .action-edit {
-        background-color: #4881c0;
-    }
-
-    .status-info {
-        background-color: #86cafd;
-    }
-
-    .action-cancel {
-        background-color: #898989;
-    }
-
-    .status-disabled {
-        background-color: #cfd2d4;
-    }
-
-    .action-system {
-        background-color: #db7820;
-    }
-
-    .action-delete {
-        background-color: #fc0f1d;
-    }
-}
-
 .styleguide-character-count {
     .counted-input-wrapper {
         width: 328px;
 
-        .input-highlighting, textarea {
+        .input-highlighting,
+        textarea {
             width: 328px;
         }
     }
@@ -187,12 +130,12 @@ table.component-attributes {
         thead th {
             cursor: pointer;
         }
-        td, th {
+        td,
+        th {
             padding: 7px 10px;
         }
     }
 }
-
 
 .component-description,
 .component-demo,
@@ -200,8 +143,8 @@ table.component-attributes {
     pre,
     code {
         color: #404040;
-        background-color: #D0D0D0;
-        border: 1px solid #BABABA;
+        background-color: #d0d0d0;
+        border: 1px solid #bababa;
         border-radius: 2px;
     }
 
@@ -214,7 +157,7 @@ table.component-attributes {
         padding: 10px;
 
         code {
-            border: none;
+            border: 0;
             padding: 0;
             margin: 0;
             border-radius: 0;
@@ -253,7 +196,12 @@ p {
 }
 
 .component-demo {
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         &:first-child {
             margin-top: 0;
         }
@@ -261,7 +209,89 @@ p {
 }
 
 rx-page.styleguide {
-    h1, h2, h3, h4, h5, h6 {
-        margin-top: 2.0em;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: 2em;
+    }
+
+    .swatch {
+        flex: 0 0 auto;
+        height: 250px;
+        width: 275px;
+        margin: 10px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid #dededd;
+        padding: 0;
+
+        box-shadow: 0 3px 5px -2px #898989;
+
+        .swatch-heading,
+        .swatch-body {
+            padding: 15px;
+        }
+
+        .swatch-heading {
+            height: 30px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .swatch-body {
+            ul,
+            ol {
+                &.list {
+                    margin: 0 0 0 20px;
+
+                    li {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }//.swatch-body
+
+        .swatch-green {
+            background-color: @green;
+            color: #fff;
+        }
+
+        .swatch-light-green {
+            background-color: @light-green;
+            color: #000;
+        }
+
+        .swatch-blue {
+            background-color: @blue;
+            color: #fff;
+        }
+
+        .swatch-light-blue {
+            background-color: @light-blue;
+            color: #000;
+        }
+
+        .swatch-disabled-gray {
+            background-color: @disabled-gray;
+            color: #000;
+        }
+
+        .swatch-cancel-gray {
+            background-color: @cancel-gray;
+            color: #fff;
+        }
+
+        .swatch-orange {
+            background-color: @orange;
+            color: #fff;
+        }
+
+        .swatch-red {
+            background-color: @red;
+            color: #fff;
+        }
     }
 }
