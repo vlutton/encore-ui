@@ -19,11 +19,23 @@ var rxCollapse = {
 
     /**
        @function
-       @returns {Boolean} Whether or no the component is currently expanded.
+       @returns {Boolean} Whether or not the component is currently expanded.
      */
     isExpanded: {
         value: function () {
             return this.rootElement.$('.expanded').isPresent();
+        }
+    },
+
+    /**
+       @function
+       @returns {Boolean} Whether or not the component is currently collapsed.
+     */
+    isCollapsed: {
+        value: function () {
+            return this.isExpanded().then(function (expanded) {
+                return !expanded;
+            });
         }
     },
 
@@ -70,6 +82,36 @@ var rxCollapse = {
                     return page.rootElement.$('.double-chevron').click();
                 } else {
                     return page.rootElement.$('.sml-title').click();
+                }
+            });
+        }
+    },
+
+    /**
+       Will toggle the component *only* if it's currently collapsed.
+       @returns {undefined}
+     */
+    expand: {
+        value: function () {
+            var page = this;
+            return this.isCollapsed().then(function (collapsed) {
+                if (collapsed) {
+                    page.toggle();
+                }
+            });
+        }
+    },
+
+    /**
+       Will toggle the component *only* if it's currently expanded.
+       @returns {undefined}
+     */
+    collapse: {
+        value: function () {
+            var page = this;
+            return this.isExpanded().then(function (expanded) {
+                if (expanded) {
+                    page.toggle();
                 }
             });
         }
