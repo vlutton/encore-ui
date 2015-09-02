@@ -48,14 +48,34 @@ exports.rxCollapse = function (options) {
             expect(component.isDisplayed()).to.eventually.be.true;
         });
 
-        it('should expand and collapse with toggle', function () {
-            expect(component.isExpanded()).to.eventually.eq(options.expanded);
+        it('should expand', function () {
+            component.expand();
+            expect(component.isCollapsed()).to.eventually.be.false;
+            expect(component.isExpanded()).to.eventually.be.true;
+        });
 
-            component.toggle();
-            expect(component.isExpanded()).to.eventually.eq(!options.expanded);
+        it('should not expand again', function () {
+            component.expand();
+            expect(component.isCollapsed()).to.eventually.be.false;
+            expect(component.isExpanded()).to.eventually.be.true;
+        });
 
+        it('should collapse', function () {
+            component.collapse();
+            expect(component.isCollapsed()).to.eventually.be.true;
+            expect(component.isExpanded()).to.eventually.be.false;
+        });
+
+        it('should not collapse again', function () {
+            component.collapse();
+            expect(component.isCollapsed()).to.eventually.be.true;
+            expect(component.isExpanded()).to.eventually.be.false;
+        });
+
+        it('should toggle', function () {
             component.toggle();
-            expect(component.isExpanded()).to.eventually.eq(options.expanded);
+            expect(component.isCollapsed()).to.eventually.be.false;
+            expect(component.isExpanded()).to.eventually.be.true;
         });
 
         if (!_.isUndefined(options.title)) {
@@ -64,17 +84,25 @@ exports.rxCollapse = function (options) {
             });
         } else {
             it('should show "See More" for the title', function () {
+                component.collapse();
                 expect(component.title).to.eventually.equal('See More');
             });
 
             it('should toggle between "See More" and "See Less"', function () {
-                component.toggle();
+                component.expand();
                 expect(component.title).to.eventually.equal('See Less');
+            });
 
-                component.toggle();
+            it('should toggle between "See Less" and "See More"', function () {
+                component.collapse();
                 expect(component.title).to.eventually.equal('See More');
             });
         }
+
+        after(function () {
+            // put it back according to the options
+            options.expanded ? component.expand() : component.collapse();
+        });
 
     };
 };
