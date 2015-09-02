@@ -6,7 +6,8 @@ var rxPaginate = require('./rxPaginate.page').rxPaginate;
    rxPaginate exercises.
    @exports encore.exercise.rxPaginate
    @param {Object} [options=] - Test options. Used to build valid tests.
-   @param {string} [options.cssSelector=] - Fallback selector string to initialize pagination widget with.
+   @param {rxPaginate} [options.instance=] - Component to exercise.
+   @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {string} [options.pages=6] - Estimated page size in the pagination widget.
    @param {number[]} [options.pageSizes=50, 200, 350, 500] - Page sizes to validate.
    @param {number} [options.defaultPageSize=50] - Default page size on page load.
@@ -14,7 +15,7 @@ var rxPaginate = require('./rxPaginate.page').rxPaginate;
    @example
    ```js
    describe('default exercises', encore.exercise.rxPaginate({
-       cssSelector: '.secondary-info rx-paginate', // select one of many pagination tables
+       instance: myPage.pagination, // select one of many pagination instances from your page objects
        pages: 20 // will exercise full functionality at 6, limited functionality at 2
    }));
    ```
@@ -35,9 +36,14 @@ exports.rxPaginate = function (options) {
         var pagination;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                pagination = rxPaginate.main;
+            if (options.instance !== undefined) {
+                pagination = options.instance;
             } else {
+                pagination = rxPaginate.main;
+            }
+
+            if (options.cssSelector !== undefined) {
+                console.warn('Deprecated exercise option `cssSelector` will be removed in favor of `instance`');
                 pagination = rxPaginate.initialize($(options.cssSelector));
             }
         });

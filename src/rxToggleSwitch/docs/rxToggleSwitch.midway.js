@@ -1,4 +1,3 @@
-
 describe('rxToggleSwitch', function () {
     var rxToggleSwitch;
 
@@ -7,15 +6,15 @@ describe('rxToggleSwitch', function () {
     });
 
     describe('defaults', encore.exercise.rxToggleSwitch({
-        cssSelector: '.demo-default-values'
+        instance: encore.rxToggleSwitch.initialize($('.demo-default-values'))
     }));
 
     describe('specific model values', encore.exercise.rxToggleSwitch({
-        cssSelector: '.demo-model-values'
+        instance: encore.rxToggleSwitch.initialize($('.demo-model-values'))
     }));
 
     describe('post hook', encore.exercise.rxToggleSwitch({
-        cssSelector: '.demo-post-hook'
+        instance: encore.rxToggleSwitch.initialize($('.demo-post-hook'))
     }));
 
     describe('disabled', encore.exercise.rxToggleSwitch({

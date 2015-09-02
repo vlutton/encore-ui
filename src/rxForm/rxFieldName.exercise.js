@@ -6,7 +6,8 @@ var rxForm = require('./rxForm.page').rxForm;
  * rxFieldName exercises.
  * @exports encore.exercise.rxFieldName
  * @param {Object} [options=] - Test options. Used to build valid tests.
- * @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
+ * @param {rxFieldName} [options.instance=] - Component to exercise.
+ * @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
  * @param {string} [options.visible=true] - Determines if the field name is visible
  * @param {string} [options.present=true] - Determines if the field name is present in the DOM
  * @param {string} [options.required=false] - Determines if the field name displays as required
@@ -26,9 +27,12 @@ exports.rxFieldName = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxForm.fieldName.main;
-            } else {
+            if (options.instance !== undefined) {
+                component = options.instance;
+            }
+
+            if (options.cssSelector !== undefined) {
+                console.warn('Deprecated exercise option `cssSelector` will be removed in favor of `instance`');
                 component = rxForm.fieldName.initialize($(options.cssSelector));
             }
         });
@@ -42,7 +46,7 @@ exports.rxFieldName = function (options) {
                 expect(component.isPresent()).to.eventually.be.true;
             });
 
-            it('symbol should be present', function () {
+            it('should have a symbol present', function () {
                 expect(component.isSymbolPresent()).to.eventually.be.true;
             });
         } else {
@@ -50,17 +54,17 @@ exports.rxFieldName = function (options) {
                 expect(component.isPresent()).to.eventually.be.false;
             });
 
-            it('symbol should not be present', function () {
+            it('should not have a symbol present', function () {
                 expect(component.isSymbolPresent()).to.eventually.be.false;
             });
         }
 
         if (options.required === true) {
-            it('symbol should be visible', function () {
+            it('should have a symbol visible', function () {
                 expect(component.isSymbolVisible()).to.eventually.be.true;
             });
         } else {
-            it('symbol should not be visible', function () {
+            it('should not have a symbol visible', function () {
                 expect(component.isSymbolVisible()).to.eventually.be.false;
             });
         }

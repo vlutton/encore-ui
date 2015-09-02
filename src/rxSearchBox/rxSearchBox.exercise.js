@@ -5,13 +5,14 @@ var rxSearchBox = require('./rxSearchBox.page').rxSearchBox;
    rxSearchBox exercises.
    @exports encore.exercise.rxSearchBox
    @param {Object} [options=] - Test options. Used to build valid tests.
-   @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
+   @param {rxSearchBox} [options.instance=] - Component to exercise.
+   @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {boolean} [options.disabled=false] - Determines if the search box is disabled
    @param {string} [options.placeholder='Search...'] - Expected placeholder value
    @example
    ```js
    describe('default exercises', encore.exercise.rxSearchBox({
-       cssSelector: '.secondary-info rx-search-box', // select one of many widgets on page
+       instance: myPage.searchText, // select one of many widgets from your page objects
    }));
    ```
  */
@@ -29,9 +30,14 @@ exports.rxSearchBox = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxSearchBox.main;
+            if (options.instance !== undefined) {
+                component = options.instance;
             } else {
+                component = rxSearchBox.main;
+            }
+
+            if (options.cssSelector !== undefined) {
+                console.warn('Deprecated exercise option `cssSelector` will be removed in favor of `instance`');
                 component = rxSearchBox.initialize($(options.cssSelector));
             }
         });

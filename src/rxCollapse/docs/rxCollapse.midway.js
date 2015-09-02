@@ -1,4 +1,3 @@
-
 describe('rxCollapse', function () {
 
     before(function () {
@@ -6,9 +5,9 @@ describe('rxCollapse', function () {
     });
 
     describe('custom title', encore.exercise.rxCollapse({
-        cssSelector: '.demo-with-title',
+        instance: encore.rxCollapse.initialize($('.demo-with-title')),
         title: 'A Custom Title',
-        expanded: true,
+        expanded: true
     }));
 
     describe('default title', encore.exercise.rxCollapse({

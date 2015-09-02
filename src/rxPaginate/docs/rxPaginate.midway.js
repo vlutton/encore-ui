@@ -1,6 +1,3 @@
-var rxSortableColumn = encore.rxSortableColumn;
-var rxSelectFilter = encore.rxSelectFilter;
-var rxSearchBox = encore.rxSearchBox;
 var Page = require('astrolabe').Page;
 
 // rowFromElement and table are anonymous page objects to assist with table data
@@ -20,6 +17,7 @@ var rowFromElement = function (rowElement) {
         },
     });
 };
+
 var repeaterString = 'server in pagedServers.items';
 var tableSelector = '.demo-api-pagination';
 var table = Page.create({
@@ -45,24 +43,31 @@ var table = Page.create({
     column: {
         value: function (columnName) {
             var column = element(by.cssContainingText(tableSelector + ' rx-sortable-column', columnName));
-            return rxSortableColumn.initialize(column, repeaterString);
+            return encore.rxSortableColumn.initialize(column, repeaterString);
         }
     },
 
     textFilter: {
         get: function () {
-            return rxSearchBox.main.term;
+            return encore.rxSearchBox.main.term;
         },
         set: function (filterTerm) {
-            rxSearchBox.main.term = filterTerm;
+            encore.rxSearchBox.main.term = filterTerm;
         }
     },
 
     selectFilter: {
         value: function (filterData) {
-            rxSelectFilter.main.apply(filterData);
+            encore.rxSelectFilter.main.apply(filterData);
+        }
+    },
+
+    pagination: {
+        get: function () {
+            return encore.rxPaginate.initialize($('.demo-api-pagination .rx-paginate'));
         }
     }
+
 });
 
 describe('rxPaginate', function () {
@@ -81,13 +86,15 @@ describe('rxPaginate', function () {
         pageSizes: [25, 50, 200, 350, 500],
         defaultPageSize: 25,
         pages: 30,
-        cssSelector: '.demo-api-pagination .rx-paginate'
+        instance: table.pagination
     }));
+
     describe('Filter and sort tests', function () {
         var nameColumn = table.column('Name');
         var osColumn = table.column('OS');
 
         beforeEach(function () {
+            encore.rxFloatingHeader.scrollToElement(table.tblResults);
             table.textFilter = '';
             table.selectFilter({
                 Os: { All: true }

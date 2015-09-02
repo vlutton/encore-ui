@@ -6,7 +6,7 @@ describe('rxSelect', function () {
     });
 
     describe('(State) Valid Enabled', encore.exercise.rxSelect({
-        cssSelector: '#selValidEnabled',
+        instance: encore.rxSelect.initialize($('#selValidEnabled')),
         disabled: false,
         visible: true,
         valid: true,
@@ -14,7 +14,7 @@ describe('rxSelect', function () {
     }));
 
     describe('(State) Valid NG-Disabled', encore.exercise.rxSelect({
-        cssSelector: '#selValidNgDisabled',
+        instance: encore.rxSelect.initialize($('#selValidNgDisabled')),
         disabled: true,
         visible: true,
         valid: true,
@@ -22,7 +22,7 @@ describe('rxSelect', function () {
     }));
 
     describe('(State) Valid Disabled', encore.exercise.rxSelect({
-        cssSelector: '#selValidDisabled',
+        instance: encore.rxSelect.initialize($('#selValidDisabled')),
         disabled: true,
         visible: true,
         valid: true,
@@ -30,15 +30,15 @@ describe('rxSelect', function () {
     }));
 
     describe('(State) Invalid Enabled', encore.exercise.rxSelect({
-        cssSelector: '#selInvalidEnabled',
+        instance: encore.rxSelect.initialize($('#selInvalidEnabled')),
         disabled: false,
         visible: true,
         valid: false,
-        selectedText: "Fourth"
+        selectedText: 'Fourth'
     }));
 
     describe('(State) Invalid NG-Disabled', encore.exercise.rxSelect({
-        cssSelector: '#selInvalidNgDisabled',
+        instance: encore.rxSelect.initialize($('#selInvalidNgDisabled')),
         disabled: true,
         visible: true,
         valid: false,
@@ -46,7 +46,7 @@ describe('rxSelect', function () {
     }));
 
     describe('(State) Invalid Disabled', encore.exercise.rxSelect({
-        cssSelector: '#selInvalidDisabled',
+        instance: encore.rxSelect.initialize($('#selInvalidDisabled')),
         disabled: true,
         visible: true,
         valid: false,
@@ -55,24 +55,24 @@ describe('rxSelect', function () {
 
     describe('plain HTML select elements', function () {
         describe('Enabled Default Starting Value', encore.exercise.rxSelect({
-            cssSelector: "#plainHtmlNormal",
+            instance: encore.rxSelect.initialize($('#plainHtmlNormal')),
             disabled: false,
             valid: false,
-            selectedText: "Plain HTML Select Option"
+            selectedText: 'Plain HTML Select Option'
         }));
 
         describe('Disabled', encore.exercise.rxSelect({
-            cssSelector: "#plainHtmlDisabled",
+            instance: encore.rxSelect.initialize($('#plainHtmlDisabled')),
             disabled: true,
             valid: false,
-            selectedText: "Disabled HTML Select Option"
+            selectedText: 'Disabled HTML Select Option'
         }));
 
         describe('Valid Enabled Non-Default Starting Value', encore.exercise.rxSelect({
-            cssSelector: "#plainHtmlSecondSelected",
+            cssSelector: '#plainHtmlSecondSelected',
             disabled: false,
             valid: true,
-            selectedText: "Non Default Starting Option"
+            selectedText: 'Non Default Starting Option'
         }));
 
     });

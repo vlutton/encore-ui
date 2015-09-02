@@ -5,12 +5,13 @@ var _ = require('lodash');
    rxMultiSelect exercises.
    @exports encore.exercise.rxMultiSelect
    @param {Object} [options=] - Test options. Used to build valid tests.
-   @param {string} [options.cssSelector=] - Fallback selector string to initialize widget with.
+   @param {rxMultiSelect} [options.instance=] - Component to exercise.
+   @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {Object} [options.inputs=[]] - The options of the select input.
    @example
    ```js
    describe('default exercises', encore.exercise.rxMultiSelect({
-       cssSelector: '.my-form rx-multi-select', // select one of many widgets on page
+       instance: myPage.subscriptionList, // select one of many widgets from your page objects
    }));
    ```
  */
@@ -27,9 +28,14 @@ exports.rxMultiSelect = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxMultiSelect.main;
+            if (options.instance !== undefined) {
+                component = options.instance;
             } else {
+                component = rxMultiSelect.main;
+            }
+
+            if (options.cssSelector !== undefined) {
+                console.warn('Deprecated exercise option `cssSelector` will be removed in favor of `instance`');
                 component = rxMultiSelect.initialize($(options.cssSelector));
             }
         });

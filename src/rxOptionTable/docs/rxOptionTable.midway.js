@@ -11,19 +11,19 @@ describe('rxOptionTable', function () {
 
     describe('exercise', function () {
         describe('radio table', encore.exercise.rxOptionTable({
-            cssSelector: "#radioOptionTable",
+            instance: encore.rxOptionTable.initialize($('#radioOptionTable')),
             visible: true,
             empty: false
         }));
 
         describe('checkbox table', encore.exercise.rxOptionTable({
-            cssSelector: "#checkboxOptionTable",
+            instance: encore.rxOptionTable.initialize($('#checkboxOptionTable')),
             visible: true,
             empty: false
         }));
 
         describe('empty table', encore.exercise.rxOptionTable({
-            cssSelector: "#emptyOptionTable",
+            cssSelector: '#emptyOptionTable',
             visible: true,
             empty: true
         }));

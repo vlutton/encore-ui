@@ -71,7 +71,7 @@ angular.module('demoApp')
                 } else {
                     deferred.resolve(response);
                 }
-            }, 1000);
+            }, 300);
             return deferred.promise;
         }
     };

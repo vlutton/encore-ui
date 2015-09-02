@@ -5,7 +5,8 @@ var rxCheckbox = require('./rxCheckbox.page').rxCheckbox;
  * @description rxCheckbox exercises
  * @exports encore.exercise.rxCheckbox
  * @param {Object} [options=] - Test options. Used to build valid tests.
- * @param {String} [options.cssSelector=] - Fallback selector string with which to initialize widget.
+ * @param {rxCheckbox} [options.instance=] - Component to exercise.
+ * @param {String} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
  * @param {Boolean} [options.disabled=false] - Determines if the checkbox is disabled
  * @param {Boolean} [options.selected=false] - Determines if the checkbox is selected
  * @param {Boolean} [options.visible=true] - Determines if the checkbox is visible
@@ -27,9 +28,12 @@ exports.rxCheckbox = function (options) {
         var component;
 
         before(function () {
-            if (options.cssSelector === undefined) {
-                component = rxCheckbox.main;
-            } else {
+            if (options.instance !== undefined) {
+                component = options.instance;
+            }
+
+            if (options.cssSelector !== undefined) {
+                console.warn('Deprecated exercise option `cssSelector` will be removed in favor of `instance`');
                 component = rxCheckbox.initialize($(options.cssSelector));
             }
         });
