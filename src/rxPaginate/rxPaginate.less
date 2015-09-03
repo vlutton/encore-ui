@@ -155,7 +155,12 @@
 }
 
 .loading-overlay {
+    z-index: 100;
     position: absolute;
+    top: -1px;
+    left: -1px;
+    width: ~"calc(100% + 2px)";
+    height: ~"calc(100% + 2px)";
     background: rgba(222, 222, 221, 0.8);
     .loading-text-wrapper {
         width: 100px;
@@ -172,8 +177,4 @@
         margin-left: 25px;
         color: #777;
     }
-}
-
-.loading-row {
-    padding: 10px;
 }

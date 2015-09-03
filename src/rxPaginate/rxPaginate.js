@@ -77,7 +77,6 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
                 };
 
                 var getItems = function (pageNumber, itemsPerPage) {
-                    scope.loadingState = 'loading';
                     var response = scope.serverInterface.getItems(pageNumber,
                                                    itemsPerPage,
                                                    params());
@@ -88,9 +87,7 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
                             error: errorMessage
                         });
                     }
-                    return response.finally(function () {
-                        scope.loadingState = '';
-                    });
+                    return response;
                 };
         
                 // Register the getItems function with the PageTracker
@@ -158,7 +155,7 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
  * @method showAndHide(promise) - Shows the overlay, and automatically
  * hides it when the given promise either resolves or rejects
  */
-.directive('rxLoadingOverlay', function ($compile, rxDOMHelper) {
+.directive('rxLoadingOverlay', function ($compile) {
     var loadingBlockHTML = '<div ng-show="showLoadingOverlay" class="loading-overlay">' +
                                 '<div class="loading-text-wrapper">' +
                                     '<i class="fa fa-fw fa-lg fa-spin fa-circle-o-notch"></i>' +
@@ -169,19 +166,8 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
     return {
         restrict: 'A',
         scope: true,
-        controller: function ($scope, $element) {
+        controller: function ($scope) {
             this.show = function () {
-                var offset = rxDOMHelper.offset($element);
-                var width = rxDOMHelper.width($element);
-                var height = rxDOMHelper.height($element);
-                if (!_.isUndefined($scope.loadingBlock)) {
-                    $scope.loadingBlock.css({
-                        top: offset.top + 'px',
-                        left: offset.left + 'px',
-                        width: width,
-                        height: height,
-                    });
-                }
                 $scope.showLoadingOverlay = true;
             };
 
@@ -201,8 +187,7 @@ angular.module('encore.ui.rxPaginate', ['encore.ui.rxLocalStorage', 'debounce'])
             scope.showLoadingOverlay = false;
 
             $compile(loadingBlockHTML)(scope, function (clone) {
-                scope.loadingBlock = clone;
-                element.after(clone);
+                element.append(clone);
             });
         }
     };
