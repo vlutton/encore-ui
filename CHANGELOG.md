@@ -1,3 +1,12 @@
+<a name="1.28.1"></a>
+### 1.28.1 (2015-09-03)
+
+
+#### Bug Fixes
+
+* **docs:** wells style page ([cd5945d6](git@github.com:rackerlabs/encore-ui/commit/cd5945d679aa4c3c315a3a21df519e686ede6d3d))
+
+
 <a name="1.28.0"></a>
 ## 1.28.0 (2015-09-03)
 
