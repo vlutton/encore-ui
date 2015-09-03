@@ -1,118 +1,47 @@
-.component-description h1 {
-    font-size: 1.6em;
-    border-bottom: 1px solid #333;
-    margin-top: 1.2em;
-}
+@import (reference) "vars";
+@import "_code";
 
-.component-description h2 {
-    font-size: 1.4em;
-    border-bottom: 1px solid #ccc;
-    margin-top: .5em;
-}
-
-.component-description h3 {
-    font-size: 1.2em;
-    font-weight: bold;
-}
-
-.component-description h4 {
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #777;
-}
-
+/* README */
 .component-description {
     border: 1px solid #aaa;
     background: #fff;
     padding: 10px;
     margin-bottom: 2em;
-}
 
-.component-description .readme-title {
-    margin-top: 0;
-}
-
-/* Remove background color from syntax highlighted code (prism.css) */
-pre[class*="language-"] {
-    background: transparent;
-}
-
-// Colors
-
-ul.colors {
-    overflow: hidden;
-
-    li.color-swatch {
-        clear: both;
-        float: left;
-        margin: 10px 0;
-        list-style: none;
-        border: 1px solid #c0c0c0;
-        width: 79px;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-bottom: 0;
     }
 
-    .swatch {
-        margin: 2px;
-        width: 75px;
-        height: 75px;
+    h1 {
+        font-size: 1.6em;
+        border-bottom: 1px solid #333;
+        margin-top: 1.2em;
     }
 
-    .color-logic {
-        float: left;
-        margin: 20px 10px;
-        max-width: 80%;
+    h2 {
+        font-size: 1.4em;
+        border-bottom: 1px solid #ccc;
+        margin-top: 0.5em;
     }
 
-    .hexcode {
-        text-align: center;
-        font-weight: 900;
+    h3 {
+        font-size: 1.2em;
+        font-weight: bold;
     }
 
-    .action-accept {
-        background-color: #24b56a;
+    h4 {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #777;
     }
 
-    .status-success {
-        background-color: #c8e5bf;
-    }
-
-    .action-edit {
-        background-color: #4881c0;
-    }
-
-    .status-info {
-        background-color: #86cafd;
-    }
-
-    .action-cancel {
-        background-color: #898989;
-    }
-
-    .status-disabled {
-        background-color: #cfd2d4;
-    }
-
-    .action-system {
-        background-color: #db7820;
-    }
-
-    .action-delete {
-        background-color: #fc0f1d;
-    }
-}
-
-.styleguide-character-count {
-    .counted-input-wrapper {
-        width: 328px;
-
-        .input-highlighting, textarea {
-            width: 328px;
-        }
-    }
-}
-
-.component-description {
-    ul,ol {
+    ul,
+    ol {
         li {
             display: list-item;
             margin: 5px 0 0 30px;
@@ -131,19 +60,37 @@ ul.colors {
             list-style: decimal;
         }
     }
+
+    .readme-title {
+        margin-top: 0;
+    }
+}//.component-description
+
+.styleguide-character-count {
+    .counted-input-wrapper {
+        width: 328px;
+
+        .input-highlighting,
+        textarea {
+            width: 328px;
+        }
+    }
 }
 
 .overview-column {
     width: 300px;
     margin-right: 100px;
+
     h4 {
         font-weight: 600;
     }
+
     a + p {
         margin-top: 5px;
     }
 }
 
+// TODO: Deprecate (attribute documentation belongs in API documentation)
 table.component-attributes {
     tbody {
         tr {
@@ -152,14 +99,18 @@ table.component-attributes {
             }
         }
     }
+
     tr {
-        th, td {
+        th,
+        td {
             &:last-child {
               text-align: left;
             }
         }
     }
-    th, td {
+
+    th,
+    td {
         vertical-align: top;
         text-align: center;
     }
@@ -175,37 +126,9 @@ table.component-attributes {
         thead th {
             cursor: pointer;
         }
-        td, th {
+        td,
+        th {
             padding: 7px 10px;
-        }
-    }
-}
-
-
-.component-description,
-.component-demo,
-.markdown {
-    pre,
-    code {
-        color: #404040;
-        background-color: #D0D0D0;
-        border: 1px solid #BABABA;
-        border-radius: 2px;
-    }
-
-    code {
-        padding: 0 2px;
-        margin: 0 1px;
-    }
-
-    pre {
-        padding: 10px;
-
-        code {
-            border: none;
-            padding: 0;
-            margin: 0;
-            border-radius: 0;
         }
     }
 }
@@ -219,19 +142,124 @@ p {
 }
 
 .markdown {
-    ul, ol {
+    ul,
+    ol {
         display: inline;
         margin: 0;
+
         p {
             display: inline-block;
         }
     }
+
     ol li {
         list-style: decimal inside;
     }
+
     ul li {
         list-style: disc inside;
         margin: 10px 10px 10px 23px;
         text-indent: -13px;
+    }
+}
+
+.component-demo {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        &:first-child {
+            margin-top: 0;
+        }
+    }
+}
+
+rx-page.styleguide {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin-top: 2em;
+    }
+
+    .swatch {
+        flex: 0 0 auto;
+        height: 250px;
+        width: 275px;
+        margin: 10px;
+        box-sizing: border-box;
+        background-color: #fff;
+        border: 1px solid #dededd;
+        padding: 0;
+
+        box-shadow: 0 3px 5px -2px #898989;
+
+        .swatch-heading,
+        .swatch-body {
+            padding: 15px;
+        }
+
+        .swatch-heading {
+            height: 30px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .swatch-body {
+            ul,
+            ol {
+                &.list {
+                    margin: 0 0 0 20px;
+
+                    li {
+                        margin-left: 0;
+                    }
+                }
+            }
+        }//.swatch-body
+
+        .swatch-green {
+            background-color: @green;
+            color: #fff;
+        }
+
+        .swatch-light-green {
+            background-color: @light-green;
+            color: #000;
+        }
+
+        .swatch-blue {
+            background-color: @blue;
+            color: #fff;
+        }
+
+        .swatch-light-blue {
+            background-color: @light-blue;
+            color: #000;
+        }
+
+        .swatch-disabled-gray {
+            background-color: @disabled-gray;
+            color: #000;
+        }
+
+        .swatch-cancel-gray {
+            background-color: @cancel-gray;
+            color: #fff;
+        }
+
+        .swatch-orange {
+            background-color: @orange;
+            color: #fff;
+        }
+
+        .swatch-red {
+            background-color: @red;
+            color: #fff;
+        }
     }
 }

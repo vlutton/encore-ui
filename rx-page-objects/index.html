@@ -202,8 +202,11 @@
 </li>
 <li><a href="#rxCollapse">rxCollapse</a><ul>
 <li><a href="#rxCollapse.title">rxCollapse.title</a></li>
+<li><a href="#rxCollapse.expand">rxCollapse.expand</a></li>
+<li><a href="#rxCollapse.collapse">rxCollapse.collapse</a></li>
 <li><a href="#rxCollapse.isDisplayed">rxCollapse.isDisplayed()</a></li>
 <li><a href="#rxCollapse.isExpanded">rxCollapse.isExpanded()</a></li>
+<li><a href="#rxCollapse.isCollapsed">rxCollapse.isCollapsed()</a></li>
 <li><a href="#rxCollapse.hasCustomTitle">rxCollapse.hasCustomTitle()</a></li>
 <li><a href="#rxCollapse.toggle">rxCollapse.toggle()</a></li>
 </ul>
@@ -1046,13 +1049,14 @@ rxBulkSelect exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code>rxBulkSelect</code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 </ul>
 </li>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxBulkSelect({
-    cssSelector: &#39;table.servers[rx-bulk-select]&#39; // select one of many widgets on page
+    instance: myPage.bulkSelect // select one of many widgets from your page objects
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxCharacterCount"></a></p>
@@ -1061,7 +1065,8 @@ rxCharacterCount exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code><a href="#rxCharacterCount">rxCharacterCount</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[maxCharacters=254] <code>Number</code> - The total number of characters allowed.  </li>
 <li>[nearLimit=10] <code>Number</code> - The number of remaining characters needed to trigger the &quot;near-limit&quot; class.  </li>
 <li>[ignoreInsignificantWhitespace=false] <code>Boolean</code> - Whether or not the textbox ignores leading and
@@ -1072,7 +1077,7 @@ trailing whitespace when calculating the remaining character count.  </li>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxCharacterCount({
-    cssSelector: &#39;.demo-custom-max-characters&#39;, // select one of many widgets on page
+    instance: myPage.submission // select one of many widgets from your page objects
     maxCharacters: 25,
     nearLimit: 12,
     ignoreInsignificantWhitespace: false
@@ -1084,7 +1089,8 @@ rxCheckbox exercises</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>String</code> - Fallback selector string with which to initialize widget.  </li>
+<li>[instance=] <code><a href="#rxCheckbox">rxCheckbox</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>String</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[disabled=false] <code>Boolean</code> - Determines if the checkbox is disabled  </li>
 <li>[selected=false] <code>Boolean</code> - Determines if the checkbox is selected  </li>
 <li>[visible=true] <code>Boolean</code> - Determines if the checkbox is visible  </li>
@@ -1098,7 +1104,8 @@ rxCollapse exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code><a href="#rxCollapse">rxCollapse</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 </ul>
 </li>
 <li>title <code>String</code> - The title of the rxCollapse element.  </li>
@@ -1106,7 +1113,7 @@ rxCollapse exercises.</p>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxCollapse({
-    cssSelector: &#39;.secondary-info rx-collapse&#39;, // select one of many widgets on page
+    instance: myPage.hiddenSection, // select one of many widgets from your page objects
     title: &#39;My Custom rxCollapse Element&#39;,
     expanded: true
 }));
@@ -1117,7 +1124,8 @@ rxFieldName exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code><a href="#rxFieldName">rxFieldName</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[visible=true] <code>string</code> - Determines if the field name is visible  </li>
 <li>[present=true] <code>string</code> - Determines if the field name is present in the DOM  </li>
 <li>[required=false] <code>string</code> - Determines if the field name displays as required  </li>
@@ -1174,7 +1182,8 @@ rxOptionTable exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code><a href="#rxOptionTable">rxOptionTable</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[visible=true] <code>string</code> - Determines if the option table is visible  </li>
 <li>[empty=false] <code>string</code> - Determines if the option table is empty  </li>
 </ul>
@@ -1186,7 +1195,8 @@ rxPaginate exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize pagination widget with.  </li>
+<li>[instance=] <code>rxPaginate</code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[pages=6] <code>string</code> - Estimated page size in the pagination widget.  </li>
 <li>[pageSizes=50, 200, 350, 500] <code>Array.&lt;number&gt;</code> - Page sizes to validate.  </li>
 <li>[defaultPageSize=50] <code>number</code> - Default page size on page load.  </li>
@@ -1196,7 +1206,7 @@ rxPaginate exercises.</p>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxPaginate({
-    cssSelector: &#39;.secondary-info rx-paginate&#39;, // select one of many pagination tables
+    instance: myPage.pagination, // select one of many pagination instances from your page objects
     pages: 20 // will exercise full functionality at 6, limited functionality at 2
 }));
 </code></pre>
@@ -1206,7 +1216,8 @@ rxRadio exercises</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>String</code> - Fallback selector string with which to initialize widget.  </li>
+<li>[instance=] <code><a href="#rxRadio">rxRadio</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>String</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[disabled=false] <code>Boolean</code> - Determines if the radio is disabled.  </li>
 <li>[selected=false] <code>Boolean</code> - Determines if the radio is selected.  </li>
 <li>[visible=true] <code>Boolean</code> - Determines if the radio is visible.  </li>
@@ -1220,7 +1231,8 @@ rxSearchBox exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code><a href="#rxSearchBox">rxSearchBox</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[disabled=false] <code>boolean</code> - Determines if the search box is disabled  </li>
 <li>[placeholder=&#39;Search...&#39;] <code>string</code> - Expected placeholder value  </li>
 </ul>
@@ -1228,7 +1240,7 @@ rxSearchBox exercises.</p>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxSearchBox({
-    cssSelector: &#39;.secondary-info rx-search-box&#39;, // select one of many widgets on page
+    instance: myPage.searchText, // select one of many widgets from your page objects
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxSelect"></a></p>
@@ -1237,7 +1249,8 @@ rxSelect exercises</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>String</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code><a href="#rxSelect">rxSelect</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[disabled=false] <code>Boolean</code> - Determines if the select is disabled  </li>
 <li>[visible=true] <code>Boolean</code> - Determines if the select is visible  </li>
 <li>[valid=true] <code>Boolean</code> - Determines if the select is valid  </li>
@@ -1251,14 +1264,15 @@ rxMultiSelect exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector=] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code><a href="#rxMultiSelect">rxMultiSelect</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[inputs=[]] <code>Object</code> - The options of the select input.  </li>
 </ul>
 </li>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxMultiSelect({
-    cssSelector: &#39;.my-form rx-multi-select&#39;, // select one of many widgets on page
+    instance: myPage.subscriptionList, // select one of many widgets from your page objects
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxToggleSwitch"></a></p>
@@ -1267,14 +1281,15 @@ rxToggleSwitch exercises.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options] <code>Object</code> - Test options. Used to build valid tests.  <ul>
-<li>[cssSelector] <code>string</code> - Fallback selector string to initialize widget with.  </li>
+<li>[instance=] <code><a href="#rxToggleSwitch">rxToggleSwitch</a></code> - Component to exercise.  </li>
+<li>[cssSelector=] <code>string</code> - DEPRECATED: Fallback selector string to initialize widget with.  </li>
 <li>[disabled=false] <code>boolean</code> - Determines if the switch can be toggled  </li>
 </ul>
 </li>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxToggleSwitch({
-    cssSelector: &#39;.demo-defualt-values&#39; // select one of many widgets on page
+    cssSelector: myPage.emailPreference // select one of many widgets from your page objects
 }));
 </code></pre>
 <p><a name="rxAccountInfo"></a></p>
@@ -1556,8 +1571,11 @@ make sure checkbox is deselected/unchecked</p>
 <ul>
 <li><a href="#rxCollapse">rxCollapse</a><ul>
 <li><a href="#rxCollapse.title">rxCollapse.title</a></li>
+<li><a href="#rxCollapse.expand">rxCollapse.expand</a></li>
+<li><a href="#rxCollapse.collapse">rxCollapse.collapse</a></li>
 <li><a href="#rxCollapse.isDisplayed">rxCollapse.isDisplayed()</a></li>
 <li><a href="#rxCollapse.isExpanded">rxCollapse.isExpanded()</a></li>
+<li><a href="#rxCollapse.isCollapsed">rxCollapse.isCollapsed()</a></li>
 <li><a href="#rxCollapse.hasCustomTitle">rxCollapse.hasCustomTitle()</a></li>
 <li><a href="#rxCollapse.toggle">rxCollapse.toggle()</a></li>
 </ul>
@@ -1567,11 +1585,19 @@ make sure checkbox is deselected/unchecked</p>
 <p>##rxCollapse.title
 Will return the custom title&#39;s text if the component uses one. Otherwise, it&#39;ll return
        the default title, found in the <code>.sml-title</code> (see-more-less-title) class.</p>
-<p><strong>Returns</strong>: <code>String</code> - Either the custom title&#39;s text, or the default title.<br><a name="rxCollapse.isDisplayed"></a></p>
+<p><strong>Returns</strong>: <code>String</code> - Either the custom title&#39;s text, or the default title.<br><a name="rxCollapse.expand"></a></p>
+<p>##rxCollapse.expand
+Will toggle the component <em>only</em> if it&#39;s currently collapsed.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxCollapse.collapse"></a></p>
+<p>##rxCollapse.collapse
+Will toggle the component <em>only</em> if it&#39;s currently expanded.</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxCollapse.isDisplayed"></a></p>
 <p>##rxCollapse.isDisplayed()
 <strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxCollapse.isExpanded"></a></p>
 <p>##rxCollapse.isExpanded()
-<strong>Returns</strong>: <code>Boolean</code> - Whether or no the component is currently expanded.<br><a name="rxCollapse.hasCustomTitle"></a></p>
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the component is currently expanded.<br><a name="rxCollapse.isCollapsed"></a></p>
+<p>##rxCollapse.isCollapsed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the component is currently collapsed.<br><a name="rxCollapse.hasCustomTitle"></a></p>
 <p>##rxCollapse.hasCustomTitle()
 <strong>Returns</strong>: <code>Boolean</code> - Whether or not the component has a custom title.<br><a name="rxCollapse.toggle"></a></p>
 <p>##rxCollapse.toggle()

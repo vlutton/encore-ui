@@ -1,7 +1,5 @@
 <rx-page title="'Introduction'">
-
-    <h2 class="title lg clear">Basics</h2>
-
+    <h2>Basics</h2>
     <ul class="list">
         <li>This sub-site provides development teams at Rackspace with a set of design patterns, to help ensure a consistent and unified look-and-feel for all products under the Encore umbrella.</li>
         <li>This section of the Demo site focuses mainly on markup, CSS and design patterns. If you're curious about Encore-specific angular.js directives, find the "All Components" section in the left hand navigation.</li>
@@ -16,140 +14,91 @@
         <li>Kevin Lamping, a developer on the EncoreUI team, wrote a document to address <a href="https://github.com/rackerlabs/encore-ui/blob/master/guides/css-styleguide.md">coding standards while writing CSS</a>.</li>
     </ul>
 
-    <h3 class="title clear" id="color">Color</h3>
-
-    <ul class="list">
-        <li><span class="msg-info">ENCORE-SPECIFIC:</span> Color is an integral part of communicating with users of Encore. Certain colors in Encore are reserved for certain types of actions or events.
-        <ul class="colors">
-            <li class="color-swatch">
-                <div class="swatch action-accept"></div>
-                <div class="hexcode">24b56a</div>
-            </li>
-            <div class="color-logic">
-                <ul>
-                    <li>This green is used for links and icons that deal explicitly with create and add actions.</li>
-                    <li>Note that this green should not be used to communicate "active" or "success", the distinction being that these are states, not actions a user can take.</li>
-                </ul>
-            </div>
-            <li class="color-swatch">
-                <div class="swatch status-success"></div>
-                <div class="hexcode">c8e5bf</div>
-            </li>
-            <div class="color-logic">
-                <ul>
-                    <li>This green is used for statuses that communicate success.</li>
-                </ul>
-            </div>
-            <li class="color-swatch">
-                <div class="swatch action-edit"></div>
-                <div class="hexcode">4881c0</div>
-            </li>
-            <div class="color-logic">
-                <ul>
-                    <li>This blue is used for links that direct the user to a new page or area.</li>
-                </ul>
-            </div>
-            <li class="color-swatch">
-                <div class="swatch status-info"></div>
-                <div class="hexcode">86cafd</div>
-            </li>
-            <div class="color-logic">
-                <ul>
-                    <li>This blue is used for statuses that are meant to be informative, but are not associated with success, failure, warning, or error.</li>
-                </ul>
-            </div>
-            <li class="color-swatch">
-                <div class="swatch status-disabled"></div>
-                <div class="hexcode">dededd</div>
-            </li>
-            <div class="color-logic">
-                <ul>
-                    <li>This gray is used to communicate a button, link, or element is disabled.</li>
-                </ul>
-            </div>
-            <li class="color-swatch">
-                <div class="swatch action-cancel"></div>
-                <div class="hexcode">898989</div>
-            </li>
-            <div class="color-logic">
-                <ul>
-                    <li>This gray is used to communicate that an icon, button, or link is associated with a cancel action.</li>
-                </ul>
-            </div>
-            <li class="color-swatch">
-                <div class="swatch action-system"></div>
-                <div class="hexcode">db7820</div>
-            </li>
-            <div class="color-logic">
-                <ul>
-                    <li>This orange is used to mean "warning", especially in cases where the user's attention or confirmation is needed before they take an additional action.</li>
-                    <li>This orange is also used for links and icons that deal with editing, changing, or updating something. In some cases this may cause an irreversible change to that object.</li>
-                </ul>
-            </div>
-            <li class="color-swatch">
-                <div class="swatch action-delete"></div>
-                <div class="hexcode">fc0f1d</div>
-            </li>
-            <div class="color-logic">
-                <ul>
-                    <li>This red is used to mean "error", either as part of a response or status message.</li>
-                    <li>Red is also used for link colors and icons associated with destructive/destroy actions that a user can take. Note that irreversible changes (like rebuilding a server) are not considered destructive actions.</li>
-                </ul>
-            </div>
-        </ul>
-    </ul>
-
-    <h3 class="title clear" id="typography">Typography</h3>
-
+    <h3 id="typography">Typography</h3>
     <ul class="list">
         <li><span class="msg-info">ENCORE-SPECIFIC:</span> We use Google Fonts, in particular the Roboto font. While Google Fonts are not included in the EncoreUI package, they are included if you use the encore-ui-template repository as a base.
         <li>For developers not using encore-ui-template, <a href="https://github.com/rackerlabs/encore-ui/tree/master/src/rxApp#fonts">read the README.md file for rxApp</a> on fonts for more information.</li>
     </ul>
 
-    <h3 class="title clear" id="flexbox-grid">Flexbox Grid</h3>
-
+    <h3 id="flexbox-grid">Flexbox Grid</h3>
     <ul class="list">
         <li>Encore UI includes a grid system forked from <a target="_blank" href="https://material.angularjs.org/#/layout/container">Angular Material's layout module</a> with minor usability enhancements to provide an assortment of attribute based layout options based on the flexbox layout model. Included are intuitive attribute based styles that ease the creation of responsive row and/or column based page layouts. Visit the <a href="#/components/layout">layout</a> section for info on how to use this attributes.</li>
     </ul>
 
-    <h3 class="title clear" id="heading-title-styles">Heading/Title Styles</h3>
+    <h3 id="heading-title-styles">Heading/Title Styles</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li>Headings are sized using the <code>title</code> class and an additional <code>xl</code>, <code>lg</code>, <code>sm</code> and <code>xs</code> classes. Not adding the additional class defaults the size to medium.</li>
-            <li>The size of the heading is not impacted by the heading level used (e.g. &lt;h1&gt;, &lt;h2&gt;). This is done to ensure that the heading levels are sequential.</li>
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> For design consistency, we usually use the default medium size (&lt;h2 class="title"&gt;) for most subheaders. Other headers classes can be used for context.</li>
+            <li>Headings are sized according to their heading level (H1 larger than H2 larger than H3, etc.).</li>
+            <li><span class="msg-info">ENCORE-SPECIFIC:</span> For design consistency, we usually use an H3 heading for most subheaders. Other headings can be used for context.</li>
+            <li>
+              <strong class="msg-info">WARNING</strong>:
+              The <code>title</code>, <code>xl</code>, <code>lg</code>, <code>sm</code>, and <code>xs</code> heading classes are deprecated and will be removed in a future release of the framework.
+            </li>
         </ul>
+
+        <h4>Markup Conversion Table</h4>
+        <table class="table-striped">
+            <thead>
+                <tr>
+                    <th>Legacy Selector</th>
+                    <th>Current Markup</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>.title.xl</code></td>
+                    <td><code>&lt;h1&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>.title.lg</code></td>
+                    <td><code>&lt;h2&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>.title</code></td>
+                    <td><code>&lt;h3&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>.title.sm</code></td>
+                    <td><code>&lt;h4&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><code>.title.xs</code></td>
+                    <td><code>&lt;h5&gt;</code></td>
+                </tr>
+                <tr>
+                    <td><em>N/A</em></td>
+                    <td><code>&lt;h6&gt;</code></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <rx-styleguide code-url="styleguide/basics/headings.html"></rx-styleguide>
 
-    <h3 class="title clear" id="date-formatting">Date formatting</h3>
+    <h3 id="date-formatting">Date formatting</h3>
     <ul class="list">
         <li>Dates in any context should be formatted this way: <code>Mar 2, 2015 @ 15:40 (UTC-0600)</code>–a three-letter capitalized month abbreviation (no period), followed by the day of the month (no leading zeroes), a comma, the four-digit year, an <code>@</code> symbol, military time, and UTC in parentheses.</li>
         <li>The only time this formatting standard would not be used is when relative dates would be helpful to the user, such as "4 hours ago" or "1 week ago".</li>
         <li>It is recommended that relative dates be reserved for more informal settings like user notes or comments. Relative dates should not extend too far into the past. For instance, "1 week ago" may be helpful to the user, but "8 months ago" or "3 years ago" is better represented by the non-relative format detailed above, as it reveals more specific information about dates that provide better context and information to the user when comparing dates and times.</li>
     </ul>
 
-    <h3 class="title clear" id="descriptions-metadata">Descriptions / Metadata</h3>
-
+    <h3 id="descriptions-metadata">Descriptions / Metadata</h3>
     <div class="component-description clear">
         <ul class="list">
             <li>The <a href="#/component/rxMetadata">rxMetadata</a> component provides the ability to display a list of terms with their associated descriptions. This is used throughout Encore to show metadata, especially on an individual object such as a server or a CBS volume.</li>
             <li><span class="msg-info">ENCORE-SPECIFIC:</span> This is an ideal solution if you have anywhere from 5-15 definitions (3 columns of 5 definitions). (See a Server Details page or Image Details page under Accounts -&gt; Cloud for an example.) Anything more - or anything displaying visual or image content - and you may want to consider a different design pattern. (See the "Non-Data based Tables" section in the Table page for more information.)</li>
         </ul>
     </div>
-
     <rx-styleguide code-url="styleguide/basics/metadata.html"></rx-styleguide>
 
-    <h3 class="title clear" id="no-data">When There is No Data to Display</h3>
-
+    <h3 id="no-data">When There is No Data to Display</h3>
     <ul class="list">
         <li>In table cells, metadata lists, or other displays of data, <code>N/A</code> should be used as an indicator to the user that there is no relevant data to display.</li>
         <li>Do not use <code>–</code>, <code>Empty</code>, <code>null</code>, or no indicator to communicate this, as there may be situations where those are valid inputs or data to display to a user depending on the context.</li>
         <li>Note that a separate style exists to communicate <a href="#/styleguide/basics#wells">when data isn't present due to permissions</a>, or when an entire table is empty (see "Null Patterns" section of <a href="#/styleguide/tables">Tables style guide</a>).
     </ul>
 
-    <h3 class="title" id="lists">Lists</h3>
+    <h3 id="lists">Lists</h3>
     <div class="component-description clear">
         <ul class="list">
             <li>Lists by default do not have styles. Add bullets/decimals to lists with the <code>list</code> class. It is also possible to build non-semantic lists using the additional <code>item</code> class.</li>
@@ -158,7 +107,7 @@
     </div>
     <rx-styleguide code-url="styleguide/basics/lists.html"></rx-styleguide>
 
-    <h3 class="title" id="collapsible">Collapsible Element</h3>
+    <h3 id="collapsible">Collapsible Element</h3>
     <div class="component-description clear">
         <ul class="list">
             <li>The collapsible element can be used to display and hide content.</li>
@@ -168,44 +117,28 @@
     </div>
     <rx-styleguide code-url="styleguide/basics/collapsible.html"></rx-styleguide>
 
-    <h3 class="title" id="wells">Wells</h3>
+    <h2 id="helper-classes">Helper Classes</h2>
     <div class="component-description clear">
         <ul class="list">
-            <li>The <code>well</code> class creates a well effect - a box with significant padding and light gray background.</li>
-            <li>Three well styles are available: one for modals, one for left-aligned summary text on a full page, and one for providing an explanation as to why data is not available to the user.</li>
-            <li>Modal wells: Modal wells are used in the context of modals, typically to provide a summary of data entered or decisions made by the user in a form to provide a clearer picture to the user of changes they are about to submit. Use the class <code>modal-well</code> for this type of well.</li>
-            <li>Left-aligned wells: These wells are used in conjunction with forms in much the same way modal wells are utilized, except left-aligned wells appear in a full-page context. Use the class <code>well</code> for this type of well.</li>
-            <li>Center-aligned wells: These wells are used to communicate why data is not present for the user, usually if data can only be seen with a permissions the user has not been granted. In other cases, it may be used to prompt the user to add data to an empty notes field. When utilizing this kind of well, list items may be appropriate. Use the classes <code>well</code> and <code>centered</code> for this type of well. Use the class <code>list</code> on a <code>ul</code> for correct styles and alignment.</li>
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> In the context of Encore, we currently use this in the context of adding large amounts of extraneous or optional information. (Take a look at Account -> Cloud -> Database -> Create New Instance for an example of this or <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/databases/CreateInstance.html#L48-L67">view source</a>.)</li>
+            <li>Subdued Text: The <code>.subdued</code> class is a basic color change to make text less prominent. The style persists if the class is nested in a link.</li>
+            <li>Full Width: <code>.full-width</code> class that marks content as full width (e.g. to give a button full width). Requires 'display' to be defined as inline-block or block.</li>
+            <li>Hidden content
+                <ul class="list">
+                    <li><code>.hidden</code> class - Will add to hide an element but not remove it from the spacing of the page.</li>
+                    <li><code>.visually-hidden</code> class - Used to hide content visually but <a href="http://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html">can still be read by screen readers</a> (i.e. removed from the page spacing)</li>
+                </ul>
+            </li>
+            <li>Clearing floats
+                <ul class="list">
+                    <li><code>.clear</code> class - Provides clearfix functionality See <a href="http://nicolasgallagher.com/micro-clearfix-hack/">http://nicolasgallagher.com/micro-clearfix-hack</a>.</li>
+                    <li><code>.clear-left</code>, <code>.clear-right</code> classes - Simple classes to help with clearing previous sibling floats</li>
+                </ul>
+            </li>
         </ul>
     </div>
-    <rx-styleguide code-url="styleguide/basics/wells.html"></rx-styleguide>
-
-    <h2 class="title lg" id="helper-classes">Helper Classes</h2>
-    <div class="component-description clear">
-
-<ul class="list">
-    <li>Subdued Text: The <code>.subdued</code> class is a basic color change to make text less prominent. The style persists if the class is nested in a link.</li>
-    <li>Full Width: <code>.full-width</code> class that marks content as full width (e.g. to give a button full width). Requires 'display' to be defined as inline-block or block.</li>
-    <li>Hidden content
-        <ul class="list">
-            <li><code>.hidden</code> class - Will add to hide an element but not remove it from the spacing of the page.</li>
-            <li><code>.visually-hidden</code> class - Used to hide content visually but <a href="http://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html">can still be read by screen readers</a> (i.e. removed from the page spacing)</li>
-        </ul>
-    </li>
-    <li>Clearing floats
-        <ul class="list">
-            <li><code>.clear</code> class - Provides clearfix functionality See <a href="http://nicolasgallagher.com/micro-clearfix-hack/">http://nicolasgallagher.com/micro-clearfix-hack</a>.</li>
-            <li><code>.clear-left</code>, <code>.clear-right</code> classes - Simple classes to help with clearing previous sibling floats</li>
-        </ul>
-    </li>
-</ul>
-
-    </div>
-
     <rx-styleguide code-url="styleguide/basics/helpers.html"></rx-styleguide>
 
-    <h3 class="title" id="progress-bars">Progress Bars</h3>
+    <h3 id="progress-bars">Progress Bars</h3>
     <div class="component-description clear">
         <ul class="list">
             <li>There are two states for progress bars: active and complete. Active progress bars have animated stripes, which are provided by the class <code>.active</code>. Full progress bars do not have this class, and are solid and static in appearance.</li>

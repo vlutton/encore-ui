@@ -5,7 +5,8 @@
 
 
 /*jshint unused:false*/
-function hotkeysCtrl ($scope, hotkeys) {
+angular.module('demoApp')
+.controller('hotkeysCtrl', function ($scope, hotkeys) {
     $scope.volume = 5;
 
     hotkeys.add({
@@ -39,42 +40,40 @@ function hotkeysCtrl ($scope, hotkeys) {
         combo: 'up+up+down+down+left+right+left+right+a+b',
         callback: showHFSHE
     });
-}
+});
 
 
-angular
-    .module('demoApp')
-    .controller('layoutController', function ($scope) {
-        $scope.layout = 'row';
-        $scope.align = { first: 'center', second: 'middle' };
-        $scope.options1 = ['left', 'center', 'right', 'spread', 'justify'];
-        $scope.options2 = ['top', 'middle', 'bottom', 'stretch'];
+angular.module('demoApp')
+.controller('layoutController', function ($scope) {
+    $scope.layout = 'row';
+    $scope.align = { first: 'center', second: 'middle' };
+    $scope.options1 = ['left', 'center', 'right', 'spread', 'justify'];
+    $scope.options2 = ['top', 'middle', 'bottom', 'stretch'];
 
-        // Swap the first 3 items in each array and set new value
-        $scope.swap = function (option) {
+    // Swap the first 3 items in each array and set new value
+    $scope.swap = function (option) {
 
-            if ($scope.layout === option) {
-                return;
-            }
+        if ($scope.layout === option) {
+            return;
+        }
 
-            var swap = $scope.options2.slice(0, 3).concat($scope.options1.slice(3));
-            $scope.options2 = $scope.options1.slice(0, 3).concat($scope.options2.slice(3));
-            $scope.options1 = swap;
-            swap = $scope.options1[$scope.options1.indexOf($scope.align.second)] || 'spread';
-            $scope.align.second = $scope.options2[$scope.options2.indexOf($scope.align.first)] || 'stretch';
-            $scope.align.first = swap;
-        };
+        var swap = $scope.options2.slice(0, 3).concat($scope.options1.slice(3));
+        $scope.options2 = $scope.options1.slice(0, 3).concat($scope.options2.slice(3));
+        $scope.options1 = swap;
+        swap = $scope.options1[$scope.options1.indexOf($scope.align.second)] || 'spread';
+        $scope.align.second = $scope.options2[$scope.options2.indexOf($scope.align.first)] || 'stretch';
+        $scope.align.first = swap;
+    };
 });
 
 
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function progressbarCtrl ($scope) {
-
-}
+angular.module('demoApp')
+.controller('progressbarCtrl', function ($scope) {
+    // This file is used to help build the 'demo' documentation page and should be updated with example code
+});
 
 
 // Note that these factories are only present for the purposes of this demo. In a real application,
@@ -254,8 +253,8 @@ angular.module('encore.ui.rxAccountInfo')
 
 
 /*jshint unused:false*/
-function rxActionMenuCtrl ($scope, rxNotify) {
-
+angular.module('demoApp')
+.controller('rxActionMenuCtrl', function ($scope, rxNotify) {
     $scope.add = function () {
         rxNotify.add('Added!', {
             type: 'success',
@@ -271,26 +270,25 @@ function rxActionMenuCtrl ($scope, rxNotify) {
             timeout: 3
         });
     };
-
-}
+});
 
 
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxAgeCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxAgeCtrl', function ($scope) {
     var day = 1000 * 60 * 60 * 24;
     $scope.ageHours = new Date((Date.now() - (day / 2.3))).toString();
     $scope.ageDays = new Date((Date.now() - (day * 1.5))).toString();
     $scope.ageMonths = new Date((Date.now() - (day * 40.2))).toString();
     $scope.ageYears = new Date((Date.now() - (day * 380.1))).toString();
-}
+});
 
 
 /*jshint unused:false*/
-function rxAppCtrl ($scope, $location, $rootScope, $window, encoreRoutes, rxVisibility) {
+angular.module('demoApp')
+.controller('rxAppCtrl', function ($scope, $location, $rootScope, $window, encoreRoutes, rxVisibility) {
     $scope.subtitle = 'With a subtitle';
 
     $scope.changeSubtitle = function () {
@@ -409,19 +407,21 @@ function rxAppCtrl ($scope, $location, $rootScope, $window, encoreRoutes, rxVisi
             }
         ]
     }];
-}
+});
 
 
 
 
 /*jshint unused:false*/
-function rxAttributesCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxAttributesCtrl', function ($scope) {
     $scope.customStyles = 'color: red; font-weight: bold;';
     $scope.customContent = '"Custom Content"';
-}
+});
 
 
-function rxAuthCtrl ($scope, Auth) {
+angular.module('demoApp')
+.controller('rxAuthCtrl', function ($scope, Auth) {
     $scope.hasRole = function () {
         alert('Has "superhero" Role? : ' + Auth.hasRole('superhero'));
     };
@@ -429,11 +429,12 @@ function rxAuthCtrl ($scope, Auth) {
     $scope.isAuthenticated = function () {
         alert('Is Authenticated? : ' + Auth.isAuthenticated());
     };
-}
+});
 
 
 /*jshint unused:false*/
-function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
+angular.module('demoApp')
+.controller('rxBreadcrumbsCtrl', function ($scope, rxBreadcrumbsSvc) {
     rxBreadcrumbsSvc.set([{
         path: '/',
         name: 'Components',
@@ -441,7 +442,7 @@ function rxBreadcrumbsCtrl ($scope, rxBreadcrumbsSvc) {
         name: '<strong>All Components</strong>',
         status: 'demo'
     }]);
-}
+});
 
 
 /*jshint unused:false*/
@@ -510,7 +511,8 @@ angular.module('demoApp')
 
 
 /*jshint unused:false*/
-function rxButtonCtrl ($scope, $timeout) {
+angular.module('demoApp')
+.controller('rxButtonCtrl', function ($scope, $timeout) {
     $scope.status = {
         loading: false,
         disable: true
@@ -523,20 +525,19 @@ function rxButtonCtrl ($scope, $timeout) {
             $scope.status.loading = false;
         }, 4000);
     };
-}
+});
 
 
 /*jshint unused:false*/
-
-function rxCapitalizeCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxCapitalizeCtrl', function ($scope) {
     $scope.hello = 'hello world. this is my text';
-}
+});
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxCharacterCountCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxCharacterCountCtrl', function ($scope) {
     $scope.data = {
         comment1: '',
         comment2: '',
@@ -545,11 +546,10 @@ function rxCharacterCountCtrl ($scope) {
         comment5: 'I have an initial value',
         comment6: ''
     };
-}
+});
 
 
 /*jshint unused:false*/
-
 angular.module('demoApp')
 .controller('rxCheckboxCtrl', function ($scope) {
     $scope.chkValidEnabledOne = true;
@@ -580,40 +580,41 @@ angular.module('demoApp')
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxCompileCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxCompileCtrl', function ($scope) {
     $scope.world = 'wrrrld';
     $scope.myExpression = 'Hello {{world}}';
-}
+});
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxDiskSizeCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxDiskSizeCtrl', function ($scope) {
     $scope.sizeGB = 420;
     $scope.sizeTB = 125000;
     $scope.sizePB = 171337000;
-}
+});
 
 
 /*jshint unused:false*/
-function rxEnvironmentCtrl ($scope, Environment) {
+angular.module('demoApp')
+.controller('rxEnvironmentCtrl', function ($scope, Environment) {
     $scope.Environment = Environment;
-}
+});
 
 
 /*jshint unused:false*/
-function rxFaviconCtrl ($scope, Environment) {
+angular.module('demoApp')
+.controller('rxFaviconCtrl', function ($scope, Environment) {
     $scope.setEnvironment = function (environment) {
         // TODO allow overriding the current environment to show how the favicon changes
     };
-}
+});
 
 
 /*jshint unused:false*/
-function rxFeedbackCtrl ($scope, rxNotify) {
+angular.module('demoApp')
+.controller('rxFeedbackCtrl', function ($scope, rxNotify) {
     $scope.alwaysSucceed = function () {
         rxNotify.add('Thanks for your feedback!', {
             type: 'success',
@@ -627,13 +628,12 @@ function rxFeedbackCtrl ($scope, rxNotify) {
             timeout: 3
         });
     };
-}
+});
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxFloatingHeaderCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxFloatingHeaderCtrl', function ($scope) {
     $scope.searchText = '';
     $scope.data = [
         { name: 'A', value: 1 },
@@ -663,8 +663,7 @@ function rxFloatingHeaderCtrl ($scope) {
     $scope.clearFilter = function () {
         $scope.searchText = '';
     };
-
-}
+});
 
 
 angular.module('demoApp')
@@ -875,12 +874,12 @@ angular.module('encore.ui.rxForm')
             });
         }
     };
-
 });
 
 
 /*jshint unused:false*/
-function rxIdentityCtrl ($scope, Identity) {
+angular.module('demoApp')
+.controller('rxIdentityCtrl', function ($scope, Identity) {
     $scope.user = {};
     $scope.login = function () {
         $scope.toggle = true;
@@ -894,12 +893,13 @@ function rxIdentityCtrl ($scope, Identity) {
                 alert('Login attempt failed.');
             });
     };
-}
+});
 
 
 
 
-function rxLocalStorageCtrl ($scope, LocalStorage) {
+angular.module('demoApp')
+.controller('rxLocalStorageCtrl', function ($scope, LocalStorage) {
     $scope.setSideKick = function () {
         LocalStorage.setObject('joker', { name: 'Harley Quinn' });
     };
@@ -908,7 +908,7 @@ function rxLocalStorageCtrl ($scope, LocalStorage) {
         var sidekick = LocalStorage.getObject('joker');
         alert(sidekick.name);
     };
-}
+});
 
 
 
@@ -921,7 +921,8 @@ angular.module('demoApp')
 });
 
 
-function rxMiscCtrl ($scope, $timeout, $q, rxNotify, rxAutoSave) {
+angular.module('demoApp')
+.controller('rxMiscCtrl', function ($scope, $timeout, $q, rxNotify, rxAutoSave) {
     $scope.formData = {
         checkbox: false,
         name: '',
@@ -968,7 +969,7 @@ function rxMiscCtrl ($scope, $timeout, $q, rxNotify, rxAutoSave) {
             });
         }, 1000);
     };
-}
+});
 
 
 /*jshint unused:false*/
@@ -1033,8 +1034,8 @@ angular.module('demoApp')
 
 
 /*jshint unused:false*/
-
-function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
+angular.module('demoApp')
+.controller('rxNotifyCtrl', function ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
     $scope.message = 'My message';
 
     $scope.types = [ 'info', 'success', 'warning', 'error' ];
@@ -1103,7 +1104,7 @@ function rxNotifyCtrl ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q)
             error: 'Error Message'
         }, 'demo');
     };
-}
+});
 
 
 /*jshint unused:false*/
@@ -1183,9 +1184,8 @@ angular.module('demoApp')
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxPageTitleCtrl ($scope, rxPageTitle) {
+angular.module('demoApp')
+.controller('rxPageTitleCtrl', function ($scope, rxPageTitle) {
     $scope.changeTitle = function () {
         rxPageTitle.setTitle($scope.newTitle);
     };
@@ -1195,13 +1195,13 @@ function rxPageTitleCtrl ($scope, rxPageTitle) {
     };
 
     $scope.refreshTitle();
-}
+});
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTracking, rxSortUtil, SelectFilter) {
+angular.module('demoApp')
+.controller('rxPaginateCtrl', function ($scope, $q, $timeout, $filter, rxPaginateUtils,
+                                        PageTracking, rxSortUtil, SelectFilter) {
     $scope.pager = PageTracking.createInstance({ itemsPerPage: 3 });
 
     var os = ['Ubuntu 12.04', 'Red Hat Enterprise Linux 6.4', 'CentOS 6.4', 'Ubuntu 13.04'];
@@ -1229,7 +1229,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
     $scope.addServers = function () {
         $scope.servers = $scope.servers.concat(makeServers(2));
     };
-    
+
     var allLazyServers = makeServers(701);
 
     var serverInterface = {
@@ -1259,7 +1259,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
                 // Return 100 items more than the user's `itemsPerPage`. i.e. if the
                 // user is asking for 25 items per page, return 125 in total
                 var lazyServers = filteredServers.slice(first, last + 100);
-                    
+
                 var response = {
                     items: lazyServers,
                     pageNumber: pageNumber,
@@ -1271,7 +1271,7 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
                 } else {
                     deferred.resolve(response);
                 }
-            }, 1000);
+            }, 300);
             return deferred.promise;
         }
     };
@@ -1292,10 +1292,11 @@ function rxPaginateCtrl ($scope, $q, $timeout, $filter, rxPaginateUtils, PageTra
     });
     $scope.serverInterface = serverInterface;
     $scope.pagedServers = PageTracking.createInstance({ itemsPerPage: 25 });
-}
+});
 
 
-function rxPermissionCtrl ($scope, Session, rxNotify) {
+angular.module('demoApp')
+.controller('rxPermissionCtrl', function ($scope, Session, rxNotify) {
     rxNotify.add('Respect My Authority!!', {
         stack: 'permission',
         type: 'warning'
@@ -1308,7 +1309,7 @@ function rxPermissionCtrl ($scope, Session, rxNotify) {
     $scope.clearToken = function () {
         Session.logout();
     };
-}
+});
 
 
 /*jshint unused:false*/
@@ -1352,9 +1353,8 @@ angular.module('demoApp')
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxSelectFilterCtrl ($scope, SelectFilter) {
+angular.module('demoApp')
+.controller('rxSelectFilterCtrl', function ($scope, SelectFilter) {
     $scope.data = {
         classification: []
     };
@@ -1373,17 +1373,19 @@ function rxSelectFilterCtrl ($scope, SelectFilter) {
         { account: 'B', status: 'VENDOR', description: 'Hold on to that feeling' },
         { account: 'A', status: 'TRANSFERRED', description: 'qwertyuiop' }
     ];
-}
+});
 
 
-function rxSessionCtrl ($scope, Session) {
+angular.module('demoApp')
+.controller('rxSessionCtrl', function ($scope, Session) {
     $scope.isAuthenticated = function () {
         alert(Session.isAuthenticated());
     };
-}
+});
 
 
-function rxSessionStorageCtrl ($scope, SessionStorage) {
+angular.module('demoApp')
+.controller('rxSessionStorageCtrl', function ($scope, SessionStorage) {
     $scope.setSideKick = function () {
         SessionStorage.setItem('Batman', 'Robin');
     };
@@ -1391,13 +1393,12 @@ function rxSessionStorageCtrl ($scope, SessionStorage) {
     $scope.getSideKick = function () {
         alert(SessionStorage.getItem('Batman'));
     };
-}
+});
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
+angular.module('demoApp')
+.controller('rxSortableColumnCtrl', function ($scope, PageTracking, rxSortUtil) {
     $scope.sort = rxSortUtil.getDefault('name');
     $scope.sort = rxSortUtil.getDefault('name', false);
     $scope.pager = PageTracking.createInstance();
@@ -1431,16 +1432,18 @@ function rxSortableColumnCtrl ($scope, PageTracking, rxSortUtil) {
             jobTitle: 'Dev Mom'
         },
     ];
-}
+});
 
 
 /*jshint unused:false*/
-function rxSpinnerCtrl ($scope) {
+angular.module('demoApp')
+.controller('rxSpinnerCtrl', function ($scope) {
     $scope.loading = true;
-}
+});
 
 
-function rxStatusCtrl ($scope, $rootScope, Status) {
+angular.module('demoApp')
+.controller('rxStatusCtrl', function ($scope, $rootScope, Status) {
     Status.setScope($scope);
 
     $scope.triggerRouteChangeSuccess = function () {
@@ -1491,13 +1494,12 @@ function rxStatusCtrl ($scope, $rootScope, Status) {
         $scope.notify && Status.dismiss($scope.notify);
         $scope.notify = undefined;
     };
-}
+});
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
-function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
+angular.module('demoApp')
+.controller('rxStatusColumnCtrl', function ($scope, rxStatusMappings, rxSortUtil) {
     $scope.servers = [
         { status: 'ACTIVE', title: 'ACTIVE status' },
         { status: 'ERROR', title: 'ERROR status' },
@@ -1526,14 +1528,12 @@ function rxStatusColumnCtrl ($scope, rxStatusMappings, rxSortUtil) {
         return rxSortUtil.sortCol($scope, predicate);
     };
     $scope.sort = rxSortUtil.getDefault('status');
-}
+});
 
 
 
 
 /*jshint unused:false*/
-
-// This file is used to help build the 'demo' documentation page and should be updated with example code
 angular.module('demoApp')
 .controller('rxToggleSwitchCtrl', function ($scope, $timeout, rxNotify) {
     $scope.toggle3 = true;
@@ -1563,13 +1563,15 @@ angular.module('demoApp')
 
 
 /* jshint unused:false */
-function tooltipsCtrl ($scope) {
+angular.module('demoApp')
+.controller('tooltipsCtrl', function ($scope) {
     $scope.dynamicTooltip = 'I was defined in the controller!';
-}
+});
 
 
 /*jshint unused:false*/
-function typeaheadCtrl ($scope) {
+angular.module('demoApp')
+.controller('typeaheadCtrl', function ($scope) {
     $scope.states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut',
         'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas',
         'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi',
@@ -1577,5 +1579,5 @@ function typeaheadCtrl ($scope) {
         'North Dakota', 'North Carolina', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Republic of Dawood',
         'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia',
         'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-}
+});
 
