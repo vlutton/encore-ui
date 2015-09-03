@@ -55,12 +55,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 name: 'Layouts'
             }])
         })
-        .when('/styleguide/layouts/collapsible', {
-            templateUrl: 'styleguide/layouts/collapsible.html',
-            controller: genericRouteController([{
-                name: 'Collapsible
-            }])
-        })
         .when('/styleguide/layouts/1', {
             templateUrl: 'styleguide/layout-1.html',
             controller: genericRouteController([{
@@ -115,6 +109,13 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 name: 'Style Guide', path: '#/styleguide/basics'
             }, {
                 name: 'Modals'
+            }])
+        })
+        /* Layout (flexgrid) */
+        .when('/layout/collapsible', {
+            templateUrl: 'layout/collapsible.html',
+            controller: genericRouteController([{
+                name: 'Collapsible'
             }])
         })
         /* Style Pages */
@@ -243,10 +244,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                             linkText: 'Grids'
                         },
                         {
-                            href: '#/styleguide/collapsible',
-                            linkText: 'Collapsible'
-                        },
-                        {
                             href: '#/styleguide/layouts',
                             linkText: 'Sample Layouts',
                             children: [
@@ -337,6 +334,15 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                             linkText: 'UI Roadmap / Possible Future-work'
                         }
                     ]
+                }
+            ]
+        },
+        {
+            title: 'Layout',
+            children: [
+                {
+                    href: '#/layout/collapsible',
+                    linkText: 'Collapsible'
                 }
             ]
         },
