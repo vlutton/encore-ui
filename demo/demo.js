@@ -48,10 +48,17 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 name: 'Style Guide'
             }])
         })
+        /* Layouts */
         .when('/styleguide/layouts', {
             templateUrl: 'styleguide/layouts.html',
             controller: genericRouteController([{
                 name: 'Layouts'
+            }])
+        })
+        .when('/styleguide/layouts/collapsible', {
+            templateUrl: 'styleguide/layouts/collapsible.html',
+            controller: genericRouteController([{
+                name: 'Collapsible
             }])
         })
         .when('/styleguide/layouts/1', {
@@ -234,6 +241,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                         {
                             href: '#/styleguide/layouts',
                             linkText: 'Grids'
+                        },
+                        {
+                            href: '#/styleguide/collapsible',
+                            linkText: 'Collapsible'
                         },
                         {
                             href: '#/styleguide/layouts',
