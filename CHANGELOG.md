@@ -1,3 +1,14 @@
+<a name="1.28.0"></a>
+## 1.28.0 (2015-09-03)
+
+
+#### Bug Fixes
+
+* **rxPaginate:** Remove old loading overlay. ([bfbc82d7](git@github.com:rackerlabs/encore-ui/commit/bfbc82d7006258d8cc82253bbea75cb521db8e46))
+* **styles:** rxSearchBox + rxForm ([fa7b0603](git@github.com:rackerlabs/encore-ui/commit/fa7b0603bd951c814e4c6bff377f6ad166ac452c))
+* **typo:** Fix typo in rxRadio docs: Suport -> Support ([aff68286](git@github.com:rackerlabs/encore-ui/commit/aff68286fdd0f16c94c8f32744a20d6d2d5d2220))
+
+
 <a name="1.27.0"></a>
 ## 1.27.0 (2015-08-26)
 
