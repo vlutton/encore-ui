@@ -50,6 +50,7 @@ These components work well with rxForm.
 * [rxMultiSelect](#/components/rxSelectFilter) *(defined in `rxSelectFilter`)*
 * [rxOptionTable](#/components/rxOptionTable)
 * [rxRadio](#/components/rxRadio)
+* [rxSearchBox](#/components/rxSearchBox)
 * [rxSelect](#/components/rxSelect)
 * [rxToggleSwitch](#/components/rxToggleSwitch)
 * [typeahead](#/components/typeahead)

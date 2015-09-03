@@ -399,8 +399,24 @@
               </select>
             </rx-suffix>
           </rx-input>
+          <rx-help-text>Dropdown + Text Input + Dropdown</rx-help-text>
         </rx-field-content>
       </rx-field>
+
+      <rx-field>
+        <rx-field-name>Search Box:</rx-field-name>
+        <rx-field-content>
+          <rx-input>
+            <rx-search-box
+              ng-model="demoSearch"
+              rx-placeholder="'Filter by...'"></rx-search-box>
+          </rx-input>
+          <rx-help-text>
+            Using <code>rx-search-box</code>.
+          </rx-help-text>
+        </rx-field-content>
+      </rx-field>
+
     </rx-form-section>
 
     <h2 class="title">Advanced Text Area</h2>
