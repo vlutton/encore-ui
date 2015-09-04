@@ -111,7 +111,7 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 name: 'Modals'
             }])
         })
-        /* Layout (flexgrid) */
+        /* Layouts */
         .when('/layout/collapsible', {
             templateUrl: 'layout/collapsible.html',
             controller: genericRouteController([{
