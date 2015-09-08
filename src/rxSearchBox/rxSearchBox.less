@@ -1,65 +1,65 @@
 /*
- * rxSearchBox
- */
+* rxSearchBox
+*/
 rx-search-box {
-  display: inline-block;
-  width: @rxSearchBox-width;
-  min-width: @rxSearchBox-min-width;
-
-  // wrapper fits full width
-  .rxSearchBox-wrapper {
-    .box-sizing(border-box);
-    border: @rxSearchBox-border;
-    min-height: @rxSearchBox-min-height;
+    display: inline-block;
+    width: @rxSearchBox-width;
     min-width: @rxSearchBox-min-width;
-    padding: 0px;
 
-    background: @rxSearchBox-background;
-    color: @rxSearchBox-color;
+    // wrapper fits full width
+    .rxSearchBox-wrapper {
+        .box-sizing(border-box);
+        border: @rxSearchBox-border;
+        min-height: @rxSearchBox-min-height;
+        min-width: @rxSearchBox-min-width;
+        padding: 0px;
 
-    // as flex container
-    .flexbox();
-    .flex-flow(row nowrap);
-    .justify-content(flex-start);
+        background: @rxSearchBox-background;
+        color: @rxSearchBox-color;
 
-    .rxSearchBox-input {
-      .ResetFormInput();
-      .flex(1 1);
-      .box-sizing(border-box);
+        // as flex container
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
 
-      background: transparent;
-      padding: @rxSearchBox-padding-vertical @rxSearchBox-padding-horizontal;
+        .rxSearchBox-input {
+            .ResetFormInput();
+            flex: 1 1;
+            .box-sizing(border-box);
 
-      /*
-      This gets around FireFox setting the min-width to a value
-      that overflows content out of the .rxSearch container.
-       */
-      min-width: (@rxSearchBox-min-width - @rxSearchBox-clear-width - (2 * @rxSearchBox-padding-horizontal));
+            background: transparent;
+            padding: @rxSearchBox-padding-vertical @rxSearchBox-padding-horizontal;
 
-      &[disabled] {
-        color: @rxSearchBox-color-disabled;
-        background: @rxSearchBox-background-disabled;
-        cursor: not-allowed;
-      }
-    }//.rxSearchBox-input
+            /*
+            This gets around FireFox setting the min-width to a value
+            that overflows content out of the .rxSearch container.
+            */
+            min-width: (@rxSearchBox-min-width - @rxSearchBox-clear-width - (2 * @rxSearchBox-padding-horizontal));
 
-    .rxSearchBox-clear {
-      .box-sizing(border-box);
-      cursor: pointer;
-      //font-size: 0.75em;
-      color: @rxSearchBox-color-icon;
+            &[disabled] {
+                color: @rxSearchBox-color-disabled;
+                background: @rxSearchBox-background-disabled;
+                cursor: not-allowed;
+            }
+        }//.rxSearchBox-input
 
-      // as flex item
-      .flex(0 0 @rxSearchBox-clear-width);
+        .rxSearchBox-clear {
+            .box-sizing(border-box);
+            cursor: pointer;
+            //font-size: 0.75em;
+            color: @rxSearchBox-color-icon;
 
-      // as flex container
-      .flexbox();
-      .align-items(center);
-      .justify-content(center);
+            // as flex item
+            flex: 0 0 @rxSearchBox-clear-width;
 
-      .rxSearchBox-clear-icon {
-        min-width: @rxSearchBox-clear-width;
-      }
-    }//.rxSearchBox-clear
-  }//.rxSearchBox-wrapper
+            // as flex container
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .rxSearchBox-clear-icon {
+                min-width: @rxSearchBox-clear-width;
+            }
+        }//.rxSearchBox-clear
+    }//.rxSearchBox-wrapper
 }//rx-search-box

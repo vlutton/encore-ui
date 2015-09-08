@@ -11,16 +11,16 @@
 // deprecated
 .form-item {
     margin-top: 5px;
-    .flexbox();
-    .flex-flow(row nowrap);
-    .justify-content(flex-start);
-    .align-items(baseline);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
 }
 
 // deprecated
 .text-area-label {
     &.form-item {
-        .align-items(flex-start);
+        align-items: flex-start;
     }
 }
 
@@ -43,16 +43,16 @@
 .field-legend, {
     color: @inputLabelColor;
     font-size: 1.1em;
-    .flex(0 0 @inputLabelWidth);
+    flex: 0 0 @inputLabelWidth;
 }
 
 // deprecated
 .field-content {
-    .flexbox();
-    .flex(1 auto);
-    .flex-flow(row wrap);
-    .justify-content(flex-start);
-    .align-items(center);
+    display: flex;
+    flex: 1 auto;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
 
     .field-prefix,
     .field-suffix {
@@ -66,7 +66,7 @@
     }
 
     .field-description {
-        .flex(1 100%);
+        flex: 1 100%;
         font-size: 0.8em;
         font-style: italic;
         margin-top: 5px;
@@ -263,13 +263,13 @@
 // DEPRECATED - No longer valid
 .rx-form.layout-compressed {
     .rx-form-row {
-        .flexbox();
-        .flex-wrap(nowrap);
-        .flex(1 auto);
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1 auto;
 
         .form-item {
             padding: 0px 3px;
-            .flex(1);
+            flex: 1;
         }
     }
 

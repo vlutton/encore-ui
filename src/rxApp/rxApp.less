@@ -1,5 +1,4 @@
 @import 'vars';
-@import 'flexbox';
 @import 'mixins';
 
 .rx-app {
@@ -7,16 +6,16 @@
     @appMenuWidth: 300px;
 
     min-height: 100%;
-    .flexbox();
-    .flex-direction(row);
+    display: flex;
+    flex-direction: row;
     background: @appBg;
 
     .rx-app-content {
-        .flex(1 1 0);
+        flex: 1 1 0;
     }
 
     .rx-app-menu {
-        .flex(0 0 @appMenuWidth);
+        flex: 0 0 @appMenuWidth;
         color: #fff;
         font-size: 15px;
         font-weight: 300;
@@ -103,7 +102,7 @@
 
     &.collapsed {
         .rx-app-menu {
-            .flex(0 0 25px);
+            flex: 0 0 25px;
             padding-bottom: 0;
             position: relative;
         }
