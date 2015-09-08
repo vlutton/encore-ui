@@ -124,10 +124,24 @@ describe('rxAccountInfo', function () {
         expect(el.text()).to.contain('Mosso');
     });
 
-    it('should populate the account access policy', function () {
+    it('should populate the account access policy: Full', function () {
         account.$deferred.resolve(account);
         scope.$digest();
         expect(el.text()).to.contain('Full');
+    });
+
+    it('should populate the account access policy: Suspended', function () {
+        account.accessPolicy = 'Suspended';
+        account.$deferred.resolve(account);
+        scope.$digest();
+        expect(el.text()).to.contain('Suspended');
+    });
+
+    it('should populate the account access policy: Terminated', function () {
+        account.accessPolicy = 'Terminated';
+        account.$deferred.resolve(account);
+        scope.$digest();
+        expect(el.text()).to.contain('Terminated');
     });
 
     it('should set an empty status class for an Active account', function () {
