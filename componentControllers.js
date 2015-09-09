@@ -160,11 +160,11 @@ angular.module('encore.ui.rxAccountInfo')
             if (config.id === '9876') {
                 deferred.reject();
             } else if (config.id === '5623') {
-                deferred.resolve({ name: 'DelinquentAccount', status: 'Delinquent' });
+                deferred.resolve({ name: 'DelinquentAccount', status: 'Delinquent', accessPolicy: 'Full' });
             } else if (config.id === '3265') {
-                deferred.resolve({ name: 'UnverifiedAccount', status: 'Unverified' });
+                deferred.resolve({ name: 'UnverifiedAccount', status: 'Unverified', accessPolicy: 'Full' });
             } else {
-                deferred.resolve({ name: 'Mosso', status: 'Active' });
+                deferred.resolve({ name: 'Mosso', status: 'Active', accessPolicy: 'Full' });
             }
 
             deferred.promise.then(success, failure);
@@ -463,6 +463,9 @@ angular.module('demoApp')
         { name: 'HKG1', city: 'Honk Kong' },
         { name: 'SYD2', city: 'Sydney' }
     ];
+
+    // cloned to avoid interference with first demo table
+    $scope.validateDatacenters = _.cloneDeep($scope.datacenters);
 
     $scope.filter = { keyword: '' };
 
@@ -1043,7 +1046,6 @@ angular.module('demoApp')
     $scope.options = {
         type: 'info',
         timeout: -1,
-        dismissable: true,
         show: 'immediate',
         repeat: true
     };

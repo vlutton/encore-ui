@@ -2596,6 +2596,7 @@ rx-field-name {
 
 [rx-form] {
   font-size: @rxForm-font-size;
+  margin: @rxForm-gutter 0;
 
   rx-field-name,
   rx-help-text,
@@ -2786,6 +2787,7 @@ rx-field-name {
 rx-metadata {
   box-sizing: border-box;
   padding: 0px;
+  margin: @rxMetadata-gutter 0;
 
   display: flex;
   flex-flow: row wrap;
@@ -2816,14 +2818,12 @@ rx-metadata {
   section {
     box-sizing: border-box;
     display: block;
-    padding: 0px;
-    margin: 0px (@rxMetadata-gutter / 2) 22px;
+    padding: 0;
+    margin: 0 @rxMetadata-gutter 0 0;
     flex: 0 0 300px; // no grow, no shrink, always 300px wide;
 
-    & > rx-meta {
-      &:last-child {
-        margin-bottom: 0;
-      }
+    &:last-child {
+        margin-right: 0;
     }
   }
 }

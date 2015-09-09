@@ -212,6 +212,15 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "encore.ui.rxBulkSelect:rxBulkSelectValidate",
+      "shortName": "rxBulkSelectValidate",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "A directive used to validate rxBulkSelect in a form. The directive should be placed",
+      "keywords": "api directive element encore form invalid item items rxbulkselect selected ui valid validate"
+    },
+    {
+      "section": "api",
       "id": "encore.ui.rxCollapse:rxCollapse",
       "shortName": "rxCollapse",
       "type": "directive",
@@ -344,42 +353,6 @@ NG_DOCS={
       "moduleName": "encore.ui",
       "shortDescription": "Responsible for creating the HTML necessary for modal form",
       "keywords": "api button cancel creating default defaults directive element encore firsttabbable focus form html is-loading modal responsible return rxmodalaction spinner submit submit-text subtitle text title true ui window"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxNotify:rxNotification",
-      "shortName": "rxNotification",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Display a static message with styling taken from rx-notifications",
-      "keywords": "api directive display encore error message notification rx-notifications rxnotify static styling type ui warning"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxNotify:rxNotifications",
-      "shortName": "rxNotifications",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Displays all messages in a stack",
-      "keywords": "api associate directive displays encore message messages mycustomstack rxnotify stack ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxNotify:rxNotify",
-      "shortName": "rxNotify",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Manages page messages for an application",
-      "keywords": "api application encore manages messages rxnotify service ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxNotify:rxPromiseNotifications",
-      "shortName": "rxPromiseNotifications",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Manages displaying messages for a promise",
-      "keywords": "add api deferred displaying encore error loading manages message messages promise rxnotify rxpromisenotifications service success ui"
     },
     {
       "section": "api",
@@ -875,6 +848,51 @@ NG_DOCS={
       "moduleName": "rxMisc",
       "shortDescription": "Helper function to aid in the creation of boilerplate DDO definitions",
       "keywords": "aid angular api boilerplate child childelement creation custom ddo default defined definition definitions directive element elements function helper merge module myapp nested nestedelement object options opts parent parentelement required return rxmisc rxnestedelement service validate"
+    },
+    {
+      "section": "api",
+      "id": "rxNotify",
+      "shortName": "rxNotify",
+      "type": "overview",
+      "moduleName": "rxNotify",
+      "shortDescription": "rxNotify Component",
+      "keywords": "$scope $timeout add api apicallback call cases change code component content create custom data directive directives dismiss displaying error false form function loaded loading logic login loginform messages notification overview reference required rxnotification rxnotifications rxnotify rxpromisenotifications service services stack status true type username var variable"
+    },
+    {
+      "section": "api",
+      "id": "rxNotify.directive:rxNotification",
+      "shortName": "rxNotification",
+      "type": "directive",
+      "moduleName": "rxNotify",
+      "shortDescription": "Display a static message with styling taken from rx-notifications",
+      "keywords": "api directive display error info message notification rx-notifications rxnotify static styling type warning"
+    },
+    {
+      "section": "api",
+      "id": "rxNotify.directive:rxNotifications",
+      "shortName": "rxNotifications",
+      "type": "directive",
+      "moduleName": "rxNotify",
+      "shortDescription": "Displays all messages in a stack",
+      "keywords": "api associate directive displays message messages mycustomstack rxnotify stack"
+    },
+    {
+      "section": "api",
+      "id": "rxNotify.service:rxNotify",
+      "shortName": "rxNotify",
+      "type": "service",
+      "moduleName": "rxNotify",
+      "shortDescription": "Manages page messages for an application",
+      "keywords": "add adds allowed api appear application associate change clear custom deletes disappear dismiss dismissed display equals error function icon info integer loading manages message messages method msg navigates noop object ondismiss option options pass positive property remove removes repeat replaces rxnotify scope seconds service specific spinner stack string success text time timeout true type user values warning watch"
+    },
+    {
+      "section": "api",
+      "id": "rxNotify.service:rxPromiseNotifications",
+      "shortName": "rxPromiseNotifications",
+      "type": "service",
+      "moduleName": "rxNotify",
+      "shortDescription": "Manages displaying messages for a promise",
+      "keywords": "add api attach deferred display displaying error html loading manages message messages method msgs promise rejection resolve rxnotify rxpromisenotifications service showing stack success successful unresolved"
     },
     {
       "section": "api",
