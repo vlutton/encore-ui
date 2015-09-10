@@ -153,5 +153,30 @@ exports.rxMisc = {
             // not present
             return fallbackReturnValue;
         });
+    },
+
+    /**
+       See https://github.com/Droogans/node-timing.js#sample-output-of-timinggettimes for details.
+       @function
+       @param {String|Array} [keys] - Key to get (string), keys to get (Array), or all (`undefined`).
+       @returns {Object} An object of timings that can be used to infer browser render performance
+       @example
+       ```js
+       it('should have loaded the page in less than two seconds', function () {
+           expect(encore.rxMisc.getPerformanceMetrics('loadTime')).to.eventually.be.under(2000);
+       });
+       ```
+     */
+    getPerformanceMetrics: function (keys) {
+        return browser.driver.executeScript(require('node-timing.js').getTimes).then(function (times) {
+            if (_.isString(keys)) {
+                return times[keys];
+            } else if (_.isArray(keys)) {
+                return _.pick(times, keys);
+            } else {
+                return times;
+            }
+        });
     }
+
 };
