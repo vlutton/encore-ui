@@ -1,21 +1,41 @@
+/**
+ * @ngdoc overview
+ * @name rxBulkSelect
+ * @requires rxCheckbox
+ * @description
+ * # rxBulkSelect Component
+ *
+ * [TBD]
+ *
+ * ## Directives
+ * * {@link rxBulkSelect.directive:rxBatchActions rxBatchActions}
+ * * {@link rxBulkSelect.directive:rxBulkSelect rxBulkSelect}
+ * * {@link rxBulkSelect.directive:rxBulkSelectHeaderCheck rxBulkSelectHeaderCheck}
+ * * {@link rxBulkSelect.directive:rxBulkSelectRow rxBulkSelectRow}
+ * * {@link rxBulkSelect.directive:rxBulkSelectValidate rxBulkSelectValidate}
+ *
+ * ## Services
+ * * {@link rxBulkSelect.service:NotifyProperties NotifyProperties}
+ * * {@link rxBulkSelect.service:rxBulkSelectUtils rxBulkSelectUtils}
+ */
 angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
 /**
  * @ngdoc directive
- * @name encore.ui.rxBulkSelect:rxBulkSelect
+ * @name rxBulkSelect.directive:rxBulkSelect
  * @restrict A
  * @scope
  * @description
  *
- * A directive you place in your <table> element to enable bulk select.
- * This directive will automatically add <tr bulk-select-message> into your <thead>,
+ * A directive you place on your `<table>` element to enable bulk select.
+ * This directive will automatically add `<tr bulk-select-message>` into your <thead>,
  * which will appear whenever items are selected, and disappear when none are selected.
  * The main responsibility of this directive is to provide a controller for other
  * bulk-select-related directives to interact with.
  *
  * @param {Object} bulkSource The source list that the table ng-repeats over.
- * @param {string} selectedKey The attribute on items in bulkSource that will be used to track
+ * @param {String} selectedKey The attribute on items in bulkSource that will be used to track
  *                             if the user has clicked the checkbox for that item.
- * @param {string} [resourceName=bulkSource] The name of the resource being iterated over.
+ * @param {String=} [resourceName=bulkSource] The name of the resource being iterated over.
  */
 .directive('rxBulkSelect', function () {
     var elemString = '<tr rx-bulk-select-message></tr>';
@@ -28,7 +48,7 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
         compile: function (elem, attrs) {
 
             // We add the `<tr rx-bulk-select-message>` row to the header here to save the devs
-            // from having to do it themselves. 
+            // from having to do it themselves.
             var thead = elem.find('thead').eq(0);
             var messageElem = angular.element(elemString);
             messageElem.attr('resource-name', attrs.resourceName || attrs.bulkSource.replace(/s$/, ''));
@@ -43,7 +63,7 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
 })
 .controller('rxBulkSelectController', function ($scope, NotifyProperties, rxBulkSelectUtils) {
     $scope.showMessage = false;
-    
+
     var uncheckHeaderFn = _.noop,
         messageStats = {
             // jscs:disable disallowDanglingUnderscores
@@ -111,7 +131,7 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
     this.increment = function () {
         messageStats.numSelected += 1;
     };
-    
+
     this.decrement = function () {
         messageStats.numSelected -= 1;
     };
@@ -121,22 +141,23 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
             uncheckHeaderFn = uncheck;
         }
     };
-
 })
-
 /**
  * @ngdoc directive
- * @name encore.ui.rxBulkSelect:rxBulkSelectHeaderCheck
+ * @name rxBulkSelect.directive:rxBulkSelectHeaderCheck
  * @restrict A
  * @scope
- * @requires rxBulkSelect
+ * @requires rxBulkSelect.directive:rxBulkSelect
  * @description
  *
- * A directive you place on your <th> element representing the checkbox column.
+ * A directive you place on your `<th>` element representing the checkbox column.
  * This places a checkbox in the header, which will select all items on the current
  * page when clicked.
  *
- * @example   <th rx-bulk-select-header-check></th>
+ * @example
+ * <pre>
+ * <th rx-bulk-select-header-check></th>
+ * </pre>
  */
 .directive('rxBulkSelectHeaderCheck', function ($compile) {
     var selectAllCheckbox = '<input ng-model="allSelected" ng-change="selectAll()" rx-checkbox>';
@@ -169,22 +190,24 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
         }
     };
 })
-
 /**
  * @ngdoc directive
- * @name encore.ui.rxBulkSelect:rxBulkSelectRow
+ * @name rxBulkSelect.directive:rxBulkSelectRow
  * @restrict A
  * @scope
- * @requires rxBulkSelect
+ * @requires rxBulkSelect.directive:rxBulkSelect
  * @description
  *
- * A directive you place on your <td> element which will contain the bulk-select
+ * A directive you place on your `<td>` element which will contain the bulk-select
  * checkbox. This directive draws the checkbox itself. This directive takes
  * `row` as an attribute, pointing to the object representing this row.
  *
  * @param {Object} row The object representing this row, i.e. the left side of the ng-repeat
  *
- * @example   <td rx-bulk-select-row row="server"></td>
+ * @example
+ * <pre>
+ * <td rx-bulk-select-row row="server"></td>
+ * </pre>
  */
 .directive('rxBulkSelectRow', function () {
     return {
@@ -207,13 +230,12 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
         }
     };
 })
-
 /**
  * @ngdoc directive
- * @name encore.ui.rxBulkSelect:rxBulkSelectMessage
+ * @name rxBulkSelect.directive:rxBulkSelectMessage
  * @restrict A
  * @scope
- * @requires rxBulkSelect, ?rxFloatingHeader
+ * @requires rxBulkSelect.directive:rxBulkSelect
  * @description
  *
  * This directive is responsible for drawing the appearing/disappearing
@@ -223,11 +245,11 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
  * You should not use this directive directly. It will be drawn automatically
  * by rxBulkSelect.
  *
- * If the table also has rxFloatingHeader available, this directive will 
+ * If the table also has rxFloatingHeader available, this directive will
  * communicate with the controller from rxFloatingHeader, to correctly
  * support the appearing/disappearing of this header row.
  *
- * @param {string} resourceName The singular form of the name of the resource, e.g. 'server'.
+ * @param {String} resourceName The singular form of the name of the resource, e.g. 'server'.
  *
  */
 .directive('rxBulkSelectMessage', function () {
@@ -255,7 +277,7 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
 
             scope.numSelected = 0;
             scope.total = rxBulkSelectCtrl.messageStats.total;
-            
+
             var numSelectedChange = function (numSelected, oldNumSelected) {
                 scope.numSelected = numSelected;
                 var multiple = numSelected > 1;
@@ -290,9 +312,9 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
 })
 /**
  * @ngdoc directive
- * @name encore.ui.rxBulkSelect:rxBulkSelectValidate
+ * @name rxBulkSelect.directive:rxBulkSelectValidate
  * @restrict A
- * @requires rxBulkSelect
+ * @requires rxBulkSelect.directive:rxBulkSelect
  * @description
  *
  * A directive used to validate rxBulkSelect in a form. The directive should be placed
@@ -316,37 +338,38 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
         }
     };
 })
-
 /**
  * @ngdoc directive
- * @name encore.ui.rxBulkSelect:rxBatchActions
+ * @name rxBulkSelect.directive:rxBatchActions
  * @restrict E
  * @scope
- * @requires rxBulkSelect
+ * @requires rxBulkSelect.directive:rxBulkSelect
  * @description
  *
  * This directive is responsible for adding the batch action menu link
  * inside a table header. It can only be used when rxBulkSelect is also
- * present. It should be placed in a <th> element.
+ * present. It should be placed in a `<th>` element.
  *
  * It will also transclude `<li>` items, each representing a modal bulk
- * select action. You don't need to include the correctly styled <ul>, it
+ * select action. You don't need to include the correctly styled `<ul>`, it
  * will do this for you.
  *
- * @example 
- *   <th colspan="10">
- *       <rx-batch-actions>
- *           <li>
- *               <rx-modal-action
- *                   template-url="templates/suspend-modal.html"
- *                   controller="SuspendServersCtrl"
- *                   classes="msg-info">
- *                   <i class="fa fa-fw fa-power-off msg-info"></i>
- *                   Suspend Selected Servers
- *               </rx-modal-action>
- *           </li>
- *       </rx-batch-actions>
- *   </th>
+ * @example
+ * <pre>
+ * <th colspan="10">
+ *     <rx-batch-actions>
+ *         <li>
+ *             <rx-modal-action
+ *                 template-url="templates/suspend-modal.html"
+ *                 controller="SuspendServersCtrl"
+ *                 classes="msg-info">
+ *                 <i class="fa fa-fw fa-power-off msg-info"></i>
+ *                 Suspend Selected Servers
+ *             </rx-modal-action>
+ *         </li>
+ *     </rx-batch-actions>
+ * </th>
+ * </pre>
  */
 .directive('rxBatchActions', function (rxDOMHelper) {
     return {
@@ -391,11 +414,15 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
 
         }
     };
-    
 })
+/**
+ * @ngdoc service
+ * @name rxBulkSelect.service:rxBulkSelectUtils
+ * @description [TBD]
+ */
 .factory('rxBulkSelectUtils', function () {
     var rxBulkSelectUtils = {};
-    
+
     var allVisibleRows = function (tableElement) {
         return _.map(tableElement[0].querySelectorAll('td .rx-bulk-select-row'), angular.element);
     };
@@ -409,10 +436,9 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
 
     return rxBulkSelectUtils;
 })
-
 /**
  * @ngdoc service
- * @name encore.ui.rxBulkSelect:NotifyProperties
+ * @name rxBulkSelect.service:NotifyProperties
  * @description
  *
  * This factory provides functionality for abstracting "properties", and allowing
@@ -423,13 +449,15 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
  * For example, say you have a value you want to track, which we'll call `numSelected`.
  * This will be a plain integer value that you have complete control over. What you want
  * is for other directives/controllers/etc to be able to register for notifications whenever
- * `numSelected` changes. 
+ * `numSelected` changes.
  *
  * The `registrationFn` method here sets all of this up. In your directive/controller where
  * you want your property to live, do something like:
  *
+ * ```
  * stats = { _numSelected: 0 };
  * scope.registerForNumSelected = NotifyProperties.registrationFn(stats, 'numSelected', '_numSelected');
+ * ```
  *
  * This is saying "We have a property `_numSelected` in `stats`, and we want it exposted as `numSelected`
  * in `stats`. Whenever `stats.numSelected` is modified, other directives/controllers should be notified"
@@ -467,5 +495,4 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
     };
 
     return NotifyProperties;
-    
 });

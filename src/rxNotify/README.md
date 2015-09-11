@@ -2,8 +2,6 @@
 
 Service (rxNotify) and Directives (rxNotification and rxNotifications) for displaying status messages on a page.
 
-[API Documentation](ngdocs/index.html#/api/rxNotify.service:rxNotify)
-
 
 ## Displaying an rxNotification as a State Message
 

@@ -71,20 +71,20 @@
  */
 angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
 /**
-* @ngdoc directive
-* @name rxNotify.directive:rxNotification
-* @restrict E
-* @scope
-* @description
-* Display a static message with styling taken from rx-notifications
-*
-* @param {String=} [type='info'] The type of notification (e.g. 'warning', 'error')
-*
-* @example
-* <pre>
-* <rx-notification type="warning">This is a message!</rx-notification>
-* </pre>
-*/
+ * @ngdoc directive
+ * @name rxNotify.directive:rxNotification
+ * @restrict E
+ * @scope
+ * @description
+ * Display a static message with styling taken from rx-notifications
+ *
+ * @param {String=} [type='info'] The type of notification (e.g. 'warning', 'error')
+ *
+ * @example
+ * <pre>
+ * <rx-notification type="warning">This is a message!</rx-notification>
+ * </pre>
+ */
 .directive('rxNotification', function (rxNotify) {
     return {
         scope: {
@@ -127,7 +127,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
         }
     };
 })
- /**
+/**
  * @ngdoc directive
  * @name rxNotify.directive:rxNotifications
  * @restrict E
@@ -454,19 +454,19 @@ angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
     };
 })
 /**
-* @ngdoc service
-* @name rxNotify.service:rxPromiseNotifications
-* @description Manages displaying messages for a promise
-*
-* @example
-* <pre>
-* rxPromiseNotifications.add($scope.deferred.promise, {
-*     loading: 'Loading Message',
-*     success: 'Success Message',
-*     error: 'Error Message'
-* });
-* </pre>
-*/
+ * @ngdoc service
+ * @name rxNotify.service:rxPromiseNotifications
+ * @description Manages displaying messages for a promise
+ *
+ * @example
+ * <pre>
+ * rxPromiseNotifications.add($scope.deferred.promise, {
+ *     loading: 'Loading Message',
+ *     success: 'Success Message',
+ *     error: 'Error Message'
+ * });
+ * </pre>
+ */
 .factory('rxPromiseNotifications', function (rxNotify, $rootScope, $q, $interpolate) {
     var scope = $rootScope.$new();
 
