@@ -12,7 +12,6 @@ module.exports = function (grunt) {
             grunt.task.run('karma:single');
             if (mode === 'full') {
                 grunt.task.run('modules');
-                grunt.task.run('phantomjs-check:allModules');
             }
         }
     });

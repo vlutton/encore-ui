@@ -28,6 +28,7 @@ before_script:
 script:
 - grunt
 - grunt test:full
+- ./node_modules/.bin/protractor protractor.error.conf.js
 - ./node_modules/.bin/protractor
 - grunt karma:minified
 after_success:
