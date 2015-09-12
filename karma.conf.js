@@ -8,13 +8,14 @@ module.exports = function (config) {
 
         // list of files to exclude
         exclude: [
-            'src/*/*.page.js',
-            'src/*/*.exercise.js',
+            'src/**/*.page.js',
+            'src/**/*.exercise.js'
         ],
 
         preprocessors: {
             'src/**/*.html': 'ng-html2js',
-            'src/*/!(*.spec).js': ['coverage']
+            'src/*/!(*.spec).js': ['coverage'],
+            'src/**/scripts/!(*.spec).js': ['coverage']
         },
 
         ngHtml2JsPreprocessor: {

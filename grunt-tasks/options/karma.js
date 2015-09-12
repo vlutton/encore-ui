@@ -24,8 +24,9 @@ module.exports = {
     options: {
         configFile: 'karma.conf.js',
         files: files.concat([
-            'src/*/*.js',
-            'src/*/templates/*.html'
+            'src/*/*.js',               // src/<component>/<component>.js
+            'src/*/templates/*.html',   // src/<component>/templates/<item>.html
+            'src/*/scripts/*.js'        // src/<component>/scripts/<item>.js
         ])
     },
     watch: {
@@ -44,7 +45,7 @@ module.exports = {
     minified: {
         options: {
             files: files.concat([
-                'src/*/*.spec.js',
+                'src/**/*.spec.js',
                 '<%= config.dist %>/<%= config.fileNameTpl %>.min.js'
             ])
         },
