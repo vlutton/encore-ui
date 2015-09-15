@@ -79,14 +79,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 name: 'Create Form'
             }])
         })
-        .when('/styleguide/buttons', {
-            templateUrl: 'styleguide/buttons.html',
-            controller: genericRouteController([{
-                name: 'Style Guide', path: '#/styleguide/basics'
-            }, {
-                name: 'Buttons'
-            }])
-        })
         .when('/styleguide/tables', {
             templateUrl: 'styleguide/tables.html',
             controller: genericRouteController([{
@@ -129,6 +121,12 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
             templateUrl: 'styles/wells.html',
             controller: genericRouteController([{
                 name: 'Wells'
+            }])
+        })
+        .when('/styles/buttons', {
+            templateUrl: 'styles/buttons.html',
+            controller: genericRouteController([{
+                name: 'Buttons/Actions'
             }])
         })
         /* Component Pages */
@@ -260,20 +258,6 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     ]
                 },
                 {
-                    href: '#/styleguide/buttons',
-                    linkText: 'Buttons & Links',
-                    children: [
-                        {
-                            href: '#/styleguide/buttons',
-                            linkText: 'Customizing Buttons'
-                        },
-                        {
-                            href: '#/styleguide/buttons#colors',
-                            linkText: 'Using Colors and Icons'
-                        }
-                    ]
-                },
-                {
                     href: '#/styleguide/tables',
                     linkText: 'Tables',
                     children: [
@@ -348,6 +332,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 {
                     href: '#/styles/color',
                     linkText: 'Color'
+                },
+                {
+                    href: '#/styles/buttons',
+                    linkText: 'Buttons/Actions'
                 },
                 {
                     href: '#/styles/wells',
