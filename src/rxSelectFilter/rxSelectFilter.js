@@ -105,7 +105,7 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
             filter: '='
         }
     };
-})
+});
 // /**
 //  * @ngdoc directive
 //  * @name rxSelectFilter.directive:rxMultiSelect
@@ -235,38 +235,38 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
  * @param {String} value The value of the option. If no transcluded content is provided,
  *                       the value will also be used as the option's text.
  */
-.directive('rxSelectOption', function (rxDOMHelper) {
-    return {
-        restrict: 'E',
-        templateUrl: 'templates/rxSelectOption.html',
-        transclude: true,
-        scope: {
-            value: '@'
-        },
-        require: '^^rxMultiSelect',
-        link: function (scope, element, attrs, selectCtrl) {
-            scope.transclusion = rxDOMHelper.find(element, '[ng-transclude] > *').length > 0;
+// .directive('rxSelectOption', function (rxDOMHelper) {
+//     return {
+//         restrict: 'E',
+//         templateUrl: 'templates/rxSelectOption.html',
+//         transclude: true,
+//         scope: {
+//             value: '@'
+//         },
+//         require: '^^rxMultiSelect',
+//         link: function (scope, element, attrs, selectCtrl) {
+//             scope.transclusion = rxDOMHelper.find(element, '[ng-transclude] > *').length > 0;
 
-            scope.toggle = function () {
-                if (scope.isSelected) {
-                    selectCtrl.unselect(scope.value);
-                } else {
-                    selectCtrl.select(scope.value);
-                }
-            };
+//             scope.toggle = function () {
+//                 if (scope.isSelected) {
+//                     selectCtrl.unselect(scope.value);
+//                 } else {
+//                     selectCtrl.select(scope.value);
+//                 }
+//             };
 
-            // The state of the input may be changed by the 'all' option.
-            scope.$watch(function () {
-                return selectCtrl.isSelected(scope.value);
-            }, function (isSelected) {
-                scope.isSelected = isSelected;
-            });
+//             // The state of the input may be changed by the 'all' option.
+//             scope.$watch(function () {
+//                 return selectCtrl.isSelected(scope.value);
+//             }, function (isSelected) {
+//                 scope.isSelected = isSelected;
+//             });
 
-            selectCtrl.addOption(scope.value);
+//             selectCtrl.addOption(scope.value);
 
-            scope.$on('$destroy', function () {
-                selectCtrl.removeOption(scope.value);
-            });
-        }
-    };
-});
+//             scope.$on('$destroy', function () {
+//                 selectCtrl.removeOption(scope.value);
+//             });
+//         }
+//     };
+// });

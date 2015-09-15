@@ -12,10 +12,10 @@ describe('rxMultiSelect', function () {
     var optionsTemplate = '<rx-multi-select ng-model="types" options="options"></rx-multi-select>';
 
     beforeEach(function () {
-        module('encore.ui.rxSelectFilter');
+        //module('encore.ui.rxSelectFilter');
 
         module('templates/rxMultiSelect.html');
-        module('templates/rxSelectOption.html');
+        //module('templates/rxSelectOption.html');
 
         inject(function ($rootScope, $compile) {
             rootScope = $rootScope;

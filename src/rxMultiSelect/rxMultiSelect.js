@@ -13,7 +13,7 @@
  * ## Related Directives (if applicable)
  * * Links to directive APIs provided by other components.
  */
-angular.module('encore.ui.rxMultiSelect', [])
+angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
 /**
  * @ngdoc directive
  * @name rxSelectFilter.directive:rxMultiSelect
@@ -130,6 +130,42 @@ angular.module('encore.ui.rxMultiSelect', [])
             };
 
             selectCtrl.ngModelCtrl = ngModelCtrl;
+        }
+    };
+})
+
+.directive('rxSelectOption', function (rxDOMHelper) {
+    return {
+        restrict: 'E',
+        templateUrl: 'templates/rxSelectOption.html',
+        transclude: true,
+        scope: {
+            value: '@'
+        },
+        require: '^^rxMultiSelect',
+        link: function (scope, element, attrs, selectCtrl) {
+            scope.transclusion = rxDOMHelper.find(element, '[ng-transclude] > *').length > 0;
+
+            scope.toggle = function () {
+                if (scope.isSelected) {
+                    selectCtrl.unselect(scope.value);
+                } else {
+                    selectCtrl.select(scope.value);
+                }
+            };
+
+            // The state of the input may be changed by the 'all' option.
+            scope.$watch(function () {
+                return selectCtrl.isSelected(scope.value);
+            }, function (isSelected) {
+                scope.isSelected = isSelected;
+            });
+
+            selectCtrl.addOption(scope.value);
+
+            scope.$on('$destroy', function () {
+                selectCtrl.removeOption(scope.value);
+            });
         }
     };
 });

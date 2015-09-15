@@ -1,11 +1,9 @@
-<div class="rx-multi-select">
-	<div ng-click="toggleDisplay($event)">
-	    <div class="preview">{{ preview }}</div>
+<div class="rx-multi-select" ng-click="toggleDisplay($event)">
+	<div class="preview">{{ preview }}</div>
 	    <ul ng-show="listDisplayed">
 	    	<rx-select-option value="all">Select All</rx-select-option>
 	    	<rx-select-option value="{{option}}" ng-repeat="option in options"></rx-select-option>
 	    	<div ng-if="!options" ng-transclude></div>
 		</ul>
-	</div>
 </div>
 

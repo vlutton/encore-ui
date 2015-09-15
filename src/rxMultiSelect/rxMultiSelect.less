@@ -1,6 +1,26 @@
 /*
  * rxMultiSelect
  */
+
+.rx-select-filter {
+    .rxSelect {
+        display: inline-block;
+    }
+
+    .select-wrapper:not(:first-child) {
+        padding-left: 20px;
+    }
+
+    .rxSelect, .field-label {
+        vertical-align: middle;
+    }
+
+    .field-label {
+        margin-right: 5px;
+    }
+}
+
+
 .rx-multi-select {
 
     z-index: auto !important;
@@ -30,4 +50,24 @@
         border-bottom: 1px solid @inputBorderColor;
     }
 
+}
+
+.rx-select-option {
+
+    label {
+        display: block;
+        padding: 4px 6px;
+
+        &:hover {
+            background: @optionHighlightBg;
+            color: @white;
+            cursor: pointer;
+        }
+    }
+
+    .rxCheckbox {
+        width: @appFontSize;
+        height: @appFontSize;
+        vertical-align: middle;
+    }
 }
