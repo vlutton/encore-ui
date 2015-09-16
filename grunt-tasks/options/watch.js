@@ -27,7 +27,13 @@ module.exports = {
         tasks: ['imagemin']
     },
     demoSite: {
-        files: ['src/**/docs/*.html', 'src/**/*.md', 'demo/**/*', '!demo/bower_components/**/*'],
+        files: [
+            'src/**/docs/**/*.html',
+            'src/**/*.md',
+            'demo/**/*',
+            '!demo/bower_components/**/*',
+            '!demo/examples/**/*'
+        ],
         tasks: ['build']
     },
     rxPageObjects: {

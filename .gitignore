@@ -21,6 +21,7 @@ results
 /node_modules/
 /demo/bower_components
 /demo/guides/rendered
+/demo/examples
 /demo/readme.html
 /demo/browser-helpers.js
 

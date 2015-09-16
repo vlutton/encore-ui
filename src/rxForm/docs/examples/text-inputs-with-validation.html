@@ -1,0 +1,49 @@
+<form rx-form ng-controller="rxFormDemoCtrl">
+  <rx-help-text>
+    Two <code>rx-field</code> elements each consume between 250px and 1/2 of the width.
+  </rx-help-text>
+
+  <rx-form-section>
+    <rx-field>
+      <rx-field-name
+        ng-required="simple.isNameRequired"
+        id="fieldNameVolumeName">Volume Name:</rx-field-name>
+      <rx-field-content>
+        <rx-input>
+          <input type="text"
+            id="txtVolumeName"
+            name="txtVolumeName"
+            ng-model="simple.volumeName"
+            ng-required="simple.isNameRequired"
+            ng-pattern="/^\b(\w)?(\w)\w?\2\1$/" />
+        </rx-input>
+        <rx-help-text>Must be 2-5 letter palindrome (e.g. 'dewed')</rx-help-text>
+        <rx-help-text>Bound Value: {{simple.volumeName}}</rx-help-text>
+
+        <rx-input>
+          <input rx-checkbox
+            id="chkVolumeNameRequired"
+            ng-model="simple.isNameRequired" />
+
+          <label for="chkVolumeNameRequired">
+            Check and uncheck with empty volume name to see border
+          </label>
+        </rx-input>
+      </rx-field-content>
+    </rx-field>
+
+    <rx-field>
+      <rx-field-name>Email Address:</rx-field-name>
+      <rx-field-content>
+        <rx-input>
+          <input name="userEmail" type="email" ng-model="simple.userEmail" foocheck />
+        </rx-input>
+
+        <rx-help-text>Must contain foo.</rx-help-text>
+
+        <rx-inline-error ng-show="demoForm.userEmail.$error.email">Invalid Email</rx-inline-error>
+        <rx-inline-error ng-show="demoForm.userEmail.$error.foocheck">Your email must contain 'foo'</rx-inline-error>
+      </rx-field-content>
+    </rx-field>
+  </rx-form-section>
+</form>

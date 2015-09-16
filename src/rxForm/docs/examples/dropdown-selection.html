@@ -1,0 +1,33 @@
+<form rx-form ng-controller="rxFormDemoCtrl">
+  <rx-form-section>
+    <!-- rxSelect -->
+    <rx-field>
+      <h4 class="title sm">Single Selection</h4>
+      <rx-field-name>Volume Type:</rx-field-name>
+      <rx-field-content>
+        <rx-input>
+          <select rx-select ng-model="intermediate.volumeType" id="selVolumeType">
+            <option ng-repeat="type in volumeTypes"
+              value="{{type.value}}"
+              ng-selected="{{type.value == model}}">{{type.label}}</option>
+          </select>
+        </rx-input>
+        <rx-help-text>Bound Value: {{intermediate.volumeType}}</rx-help-text>
+      </rx-field-content>
+    </rx-field>
+
+    <!-- rxMultiSelect -->
+    <rx-field>
+      <h4 class="title sm">Multiple Selection</h4>
+      <rx-field-name>Service Options:</rx-field-name>
+      <rx-field-content>
+        <rx-input>
+          <rx-multi-select ng-model="intermediate.services" id="mselServices">
+            <rx-select-option ng-repeat="service in services" value="{{service.value}}">{{service.label}}</rx-select-option>
+          </rx-multi-select>
+        </rx-input>
+        <rx-help-text>Bound Value: {{intermediate.services}}</rx-help-text>
+      </rx-field-content>
+    </rx-field>
+  </rx-form-section>
+</form>

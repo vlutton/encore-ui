@@ -91,13 +91,26 @@ module.exports = {
         }]
     },
     demoassets: {
-        files: [{
-            expand: true,
-            //Don't re-copy html files, we process those
-            src: ['**/**/*', '!**/*.html', '!*.js'],
-            cwd: 'demo/',
-            dest: '<%= config.docs %>'
-        }]
+        files: [
+            {
+                expand: true,
+                //Don't re-copy html files, we process those
+                src: ['**/**/*', '!**/*.html', '!*.js'],
+                cwd: 'demo/',
+                dest: '<%= config.docs %>'
+            },
+            {
+                expand: true,
+                cwd: 'src',
+                src: ['**/docs/examples/*.html'],
+                dest: 'demo/examples/',
+                rename: function (moduleName, filePath) {
+                    // SOURCE: src/<component>/docs/examples/<example>.html
+                    // DESTINATION: demo/examples/<component>/<example>.html
+                    return '' + moduleName + filePath.replace('docs/examples/', '');
+                }
+            }
+        ]
     },
     demopolyfills: {
         files: [{

@@ -1,0 +1,23 @@
+<form rx-form ng-controller="rxFormDemoCtrl">
+  <rx-form-section>
+    <rx-field>
+      <rx-field-name>Checkbox Option Table</rx-field-name>
+      <rx-field-content>
+        <rx-input>
+          <rx-option-table
+              columns="optionTableColumns"
+              type="checkbox"
+              id="checkboxOptionTable"
+              model="intermediate.table.checkbox"
+              field-id="optionCheckboxTable"
+              data="optionTableCheckboxData"
+              required="true"
+              ></rx-option-table>
+        </rx-input>
+        <rx-help-text ng-repeat="val in intermediate.table.checkbox">
+          Item {{$index + 1}} Value: {{val}}
+        </rx-help-text>
+      </rx-field-content>
+    </rx-field>
+  </rx-form-section>
+</form>

@@ -5,6 +5,9 @@ module.exports = {
     build: {
         src: ['<%= config.build %>']
     },
+    examples: {
+        src: ['demo/examples']
+    },
     templates: {
         src: ['templates']
     },

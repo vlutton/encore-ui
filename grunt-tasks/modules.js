@@ -46,13 +46,18 @@ module.exports = function (grunt) {
                 d[1], parseInt(d[2]) + ',', d[3], '@', d[4].substr(0, 5), d[5].replace('GMT', '(UTC') + ')'].join(' ');
         }
 
+        var tplJsFileGlobs = [
+            'templates/' + name + '/templates/*.html',
+            'templates/' + name + '/docs/example/*.html'
+        ];
+
         var module = {
             name: name,
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
             srcFiles: grunt.file.expand('src/' + name + '/!(*.spec|*.page|*.exercise).js'),
             tplFiles: grunt.file.expand('src/' + name + '/*.tpl.html'),
-            tplJsFiles: grunt.file.expand('templates/' + name + '/templates/*.html'),
+            tplJsFiles: grunt.file.expand(tplJsFileGlobs),
             dependencies: dependenciesForModule(name),
             stability: stabilities[name],
             lastModified: convertDateFormat(lastModified[name]),
@@ -60,7 +65,7 @@ module.exports = function (grunt) {
             docs: {
                 md: grunt.file.expand('src/' + name + '/*.md').map(grunt.file.read).map(parseMarkdown).join('\n'),
                 js: grunt.file.expand('src/' + name + '/docs/!(*.midway).js').map(grunt.file.read).join('\n'),
-                html: grunt.file.expand('src/' + name + '/docs/*.html').map(grunt.file.read).join('\n'),
+                html: grunt.file.expand('src/' + name + '/docs/' + name + '.html').map(grunt.file.read).join('\n'),
                 less: grunt.file.expand('src/' + name + '/*.less').map(grunt.file.read).join('\n'),
                 midway: grunt.file.expand('src/' + name + '/docs/*.midway.js').map(grunt.file.read).join('\n') +
                     '\n// this component\'s exercise.js file, if it exists, is below\n\n' +

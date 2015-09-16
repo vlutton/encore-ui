@@ -1,0 +1,23 @@
+<form rx-form ng-controller="rxFormDemoCtrl">
+  <rx-form-section>
+    <rx-field>
+      <rx-field-name>Radio Option Table</rx-field-name>
+      <rx-field-content>
+        <rx-input>
+          <rx-option-table
+              id="radioOptionTable"
+              data="optionTableData"
+              columns="optionTableColumns"
+              type="radio"
+              model="intermediate.table.radio"
+              field-id="optionTable"
+              selected="0"
+              class="full-width"
+              disable-fn="disableOption(tableId, fieldId, rowId)"
+              ></rx-option-table>
+        </rx-input>
+        <rx-help-text>Bound Value: {{intermediate.table.radio}}</rx-help-text>
+      </rx-field-content>
+    </rx-field>
+  </rx-form-section>
+</form>

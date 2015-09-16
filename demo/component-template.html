@@ -9,25 +9,5 @@
         <div ng-bind-html="component.docs.md"></div>
     </div>
 
-    <tabset class="clearfix clear" ng-if="component.docs.html || component.docs.js">
-        <tab heading="Demo">
-            <div rx-compile="component.docs.html" class="component-demo"></div>
-        </tab>
-
-        <tab heading="Markup" ng-if="component.docs.html">
-            <rx-prism language="markup">{{ component.docs.html }}</rx-prism>
-        </tab>
-
-        <tab heading="JavaScript" ng-if="component.docs.js">
-            <rx-prism language="clike">{{ component.docs.js }}</rx-prism>
-        </tab>
-
-        <tab heading="Less" ng-if="component.docs.less">
-            <rx-prism language="css">{{ component.docs.less }}</rx-prism>
-        </tab>
-
-        <tab heading="Protractor" ng-if="component.docs.midway">
-            <rx-prism language="clike">{{ component.docs.midway }}</rx-prism>
-        </tab>
-    </tabset>
+    <div rx-compile="component.docs.html" class="component-demo"></div>
 </rx-page>
