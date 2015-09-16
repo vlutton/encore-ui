@@ -1,3 +1,18 @@
+<a name="1.30.0"></a>
+## 1.30.0 (2015-09-16)
+
+
+#### Bug Fixes
+
+* **bugs:** manual save + rxButton ([d8a178b1](git@github.com:rackerlabs/encore-ui/commit/d8a178b15843aa35861683d5f5a332a480d65f68))
+* **typo:** @light-green hex ([4f55b259](git@github.com:rackerlabs/encore-ui/commit/4f55b259f6295a59b2baea85d189fc30f5702ccd))
+
+
+#### Features
+
+* **rxTags:** Add rxTags component. ([2283239e](git@github.com:rackerlabs/encore-ui/commit/2283239e8f72e71a74121a7f0cd8168c3a161eaf))
+
+
 <a name="1.29.0"></a>
 ## 1.29.0 (2015-09-09)
 
