@@ -196,7 +196,7 @@ exports.rxMultiSelect = {
     /**
        @function
        @param {WebElement} rxMultiSelectElement - WebElement to be transformed into an rxMultiSelectElement object.
-       @returns {rxMultiSelect} Page object representing the rxSelectFilter object.
+       @returns {rxMultiSelect} Page object representing the rxMultiSelect object.
      */
     initialize: function (rxMultiSelectElement) {
         rxMultiSelect.rootElement = {

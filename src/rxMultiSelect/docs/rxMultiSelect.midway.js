@@ -14,19 +14,3 @@ describe('rxMultiSelect', function () {
     }));
 
 });
-
-// describe('rxMultiSelect', function () {
-//     var rxMultiSelect;
-
-//     before(function () {
-//         demoPage.go('#/component/rxMultiSelect');
-//         rxMultiSelect = rxMultiSelectPage.initialize($('#rxMultiSelect'));
-//     });
-
-//     it('should show element', function () {
-//         expect(rxMultiSelect.isDisplayed()).to.eventually.be.true;
-//     });
-
-//     describe('exercises', encore.exercise.rxMultiSelect());
-
-// });

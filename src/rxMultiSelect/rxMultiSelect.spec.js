@@ -12,10 +12,10 @@ describe('rxMultiSelect', function () {
     var optionsTemplate = '<rx-multi-select ng-model="types" options="options"></rx-multi-select>';
 
     beforeEach(function () {
-        //module('encore.ui.rxSelectFilter');
+        module('encore.ui.rxMultiSelect');
 
         module('templates/rxMultiSelect.html');
-        //module('templates/rxSelectOption.html');
+        module('templates/rxSelectOption.html');
 
         inject(function ($rootScope, $compile) {
             rootScope = $rootScope;
@@ -207,30 +207,3 @@ describe('rxMultiSelect', function () {
 
     });
 });
-
-// describe('rxMultiSelect', function () {
-//     var scope, compile, rootScope, el;
-//     var validTemplate = '<rx-multi-select></rx-multi-select>';
-
-//     beforeEach(function () {
-//         // load module
-//         module('encore.ui.rxMultiSelect');
-
-//         // load templates
-//         module('templates/rxMultiSelect.html');
-
-//         // Inject in angular constructs
-//         inject(function ($location, $rootScope, $compile) {
-//             rootScope = $rootScope;
-//             scope = $rootScope.$new();
-//             compile = $compile;
-//         });
-
-//         el = helpers.createDirective(validTemplate, compile, scope);
-//     });
-
-//     it('shall not pass', function () {
-//         // Fail initial test to keep people honest
-//         expect(true).to.be.false;
-//     });
-// });

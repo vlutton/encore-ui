@@ -8,7 +8,8 @@
  * * Links to service APIs provided by rxMultiSelect component.
  *
  * ## Directives
- * * Links to directive APIs provided by rxMultiSelect component.
+ * * {@link rxMultiSelect.directive:rxMultiSelect rxMultiSelect}
+ * * {@link rxMultiSelect.directive:rxSelectOption rxSelectOption}
  *
  * ## Related Directives (if applicable)
  * * Links to directive APIs provided by other components.
@@ -16,7 +17,7 @@
 angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
 /**
  * @ngdoc directive
- * @name rxSelectFilter.directive:rxMultiSelect
+ * @name rxMultiSelect.directive:rxMultiSelect
  * @restrict E
  * @scope
  * @description
@@ -133,7 +134,16 @@ angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
         }
     };
 })
-
+/**
+ * @ngdoc directive
+ * @name rxMultiSelect.directive:rxSelectOption
+ * @restrict E
+ * @description
+ * A single option for rxMultiSelect
+ *
+ * @param {String} value The value of the option. If no transcluded content is provided,
+ *                       the value will also be used as the option's text.
+ */
 .directive('rxSelectOption', function (rxDOMHelper) {
     return {
         restrict: 'E',
