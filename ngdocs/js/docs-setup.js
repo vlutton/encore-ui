@@ -5,624 +5,489 @@ NG_DOCS={
   "pages": [
     {
       "section": "api",
-      "id": "encore.ui.rxAccountInfo:rxAccountInfo",
+      "id": "configs",
+      "shortName": "configs",
+      "type": "overview",
+      "moduleName": "configs",
+      "shortDescription": "configs Component",
+      "keywords": "api component configs overview routescdnpath service services"
+    },
+    {
+      "section": "api",
+      "id": "configs.service:routesCdnPath",
+      "shortName": "routesCdnPath",
+      "type": "service",
+      "moduleName": "configs",
+      "shortDescription": "[TBD]",
+      "keywords": "api configs service"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxTags:rxTags",
+      "shortName": "rxTags",
+      "type": "directive",
+      "moduleName": "encore.ui",
+      "shortDescription": "",
+      "keywords": "api binding determines directive encore list model object option options provided rxtags tag tags ui"
+    },
+    {
+      "section": "api",
+      "id": "encore.ui.rxTags:xor",
+      "shortName": "xor",
+      "type": "filter",
+      "moduleName": "encore.ui",
+      "shortDescription": "Returns the exclusive or of two arrays.",
+      "keywords": "api array arrays elements encore excluded exclusive filter input returns rxtags second ui unique"
+    },
+    {
+      "section": "api",
+      "id": "grid",
+      "shortName": "grid",
+      "type": "overview",
+      "moduleName": "grid",
+      "shortDescription": "grid Component",
+      "keywords": "api component grid layout overview"
+    },
+    {
+      "section": "api",
+      "id": "hotkeys",
+      "shortName": "hotkeys",
+      "type": "overview",
+      "moduleName": "hotkeys",
+      "shortDescription": "hotkeys Component",
+      "keywords": "api component hotkeys overview"
+    },
+    {
+      "section": "api",
+      "id": "layout",
+      "shortName": "layout",
+      "type": "overview",
+      "moduleName": "layout",
+      "shortDescription": "layout Component",
+      "keywords": "api component layout overview"
+    },
+    {
+      "section": "api",
+      "id": "metadata",
+      "shortName": "metadata",
+      "type": "overview",
+      "moduleName": "metadata",
+      "shortDescription": "metadata Component",
+      "keywords": "api component metadata overview rxmetadata"
+    },
+    {
+      "section": "api",
+      "id": "progressbar",
+      "shortName": "progressbar",
+      "type": "overview",
+      "moduleName": "progressbar",
+      "shortDescription": "progressbar Component",
+      "keywords": "api component overview progressbar"
+    },
+    {
+      "section": "api",
+      "id": "rxAccountInfo",
+      "shortName": "rxAccountInfo",
+      "type": "overview",
+      "moduleName": "rxAccountInfo",
+      "shortDescription": "rxAccountInfo Component",
+      "keywords": "api component directive directives overview rxaccountinfo"
+    },
+    {
+      "section": "api",
+      "id": "rxAccountInfo.directive:rxAccountInfo",
       "shortName": "rxAccountInfo",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxAccountInfo",
       "shortDescription": "Responsible for drawing an account info box.",
-      "keywords": "account account-info-banner accountnumber api appears badges box breadcrumbs data defaults directive drawing encore errors info intended load loading notifications number optional pass responsible retrieve rxaccountinfo set stack style styles supported team true ui under-the-breadcrumbs underneath"
+      "keywords": "account account-info-banner accountnumber api appears badges box breadcrumbs data defaults directive drawing errors info intended load loading notifications number optional pass responsible retrieve rxaccountinfo set stack style styles supported team true under-the-breadcrumbs underneath"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxActiveUrl",
-      "shortName": "encore.ui.rxActiveUrl",
+      "id": "rxActionMenu",
+      "shortName": "rxActionMenu",
+      "type": "overview",
+      "moduleName": "rxActionMenu",
+      "shortDescription": "rxActionMenu Component",
+      "keywords": "api component directive directives overview rxactionmenu"
+    },
+    {
+      "section": "api",
+      "id": "rxActionMenu.directive:rxActionMenu",
+      "shortName": "rxActionMenu",
       "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This is used as an attribute to directive , in the",
-      "keywords": "api attribute checks class current directive encore form returns rx-active-url rxactiveurl selected subset ui url"
+      "moduleName": "rxActionMenu",
+      "shortDescription": "[TBD]",
+      "keywords": "api directive rxactionmenu tbd"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:AppRoutes",
-      "shortName": "AppRoutes",
-      "type": "interface",
-      "moduleName": "encore.ui",
-      "shortDescription": "Manages page routes, building urls and marking them as active on route change",
-      "keywords": "active api building change encore interface manages marking route routes rxapp ui urls"
+      "id": "rxActiveUrl",
+      "shortName": "rxActiveUrl",
+      "type": "overview",
+      "moduleName": "rxActiveUrl",
+      "shortDescription": "rxActiveUrl Component",
+      "keywords": "api component directive directives overview rxactiveurl"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:encoreRoutes",
-      "shortName": "encoreRoutes",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Creates a shared instance of AppRoutes that is used for the Encore App nav.",
-      "keywords": "allows api app approutes apps creates encore encoreroutes fetchroutes instance method nav rxapp rxapproutes service shared ui updates"
+      "id": "rxActiveUrl.directive:rxActiveUrl",
+      "shortName": "rxActiveUrl",
+      "type": "directive",
+      "moduleName": "rxActiveUrl",
+      "shortDescription": "This is used as an attribute to directive &lt;rx-product-resources&gt;, in the",
+      "keywords": "api attribute checks class current directive form returns rx-active-url rxactiveurl selected subset url"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxAccountUsers",
+      "id": "rxAge",
+      "shortName": "rxAge",
+      "type": "overview",
+      "moduleName": "rxAge",
+      "shortDescription": "rxAge Component",
+      "keywords": "api component filter filters overview rxage"
+    },
+    {
+      "section": "api",
+      "id": "rxAge.filter:rxAge",
+      "shortName": "rxAge",
+      "type": "filter",
+      "moduleName": "rxAge",
+      "shortDescription": "[TBD]",
+      "keywords": "api filter rxage"
+    },
+    {
+      "section": "api",
+      "id": "rxApp",
+      "shortName": "rxApp",
+      "type": "overview",
+      "moduleName": "rxApp",
+      "shortDescription": "rxApp Component",
+      "keywords": "api component directive directives encoreroutes overview rxaccountsearch rxaccountusers rxapp rxappnav rxappnavitem rxappsearch rxatlassearch rxbillingsearch rxhideifukaccount rxpage rxstatustag rxstatustags rxticketsearch rxvisibility rxvisibilitypathparams service services"
+    },
+    {
+      "section": "api",
+      "id": "rxApp.directive:rxAccountSearch",
+      "shortName": "rxAccountSearch",
+      "type": "directive",
+      "moduleName": "rxApp",
+      "shortDescription": "[TBD]",
+      "keywords": "api directive rxapp"
+    },
+    {
+      "section": "api",
+      "id": "rxApp.directive:rxAccountUsers",
       "shortName": "rxAccountUsers",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "Provides the ability to switch between account users. This directive is specific to Rackspace",
-      "keywords": "ability account api directive encore rackspace rxapp specific switch ui users"
+      "keywords": "ability account api directive rackspace rxapp specific switch users"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxApp",
+      "id": "rxApp.directive:rxApp",
       "shortName": "rxApp",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "Responsible for creating the HTML necessary for a common Encore layout.",
-      "keywords": "api binding collapsed collapsible common corner creating custom directive encore feedback hand hide html instance items layout left-hand link menu navigation pass responsible rx-logout rxapp rxapproutes set site site-title title true ui upper url"
+      "keywords": "api binding collapsed collapsible common corner creating custom directive encore feedback hand hide html instance items layout left-hand link menu navigation pass responsible rx-logout rxapp rxapproutes set site site-title title true upper url"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxAppNav",
+      "id": "rxApp.directive:rxAppNav",
       "shortName": "rxAppNav",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "Creates a menu based on items passed in.",
-      "keywords": "api based creates deeper definition directive display encore encorenav heirarchy higher items level menu menuitems nested number object passed rxapp ui"
+      "keywords": "api based creates deeper definition directive display encorenav heirarchy higher items level menu menuitems nested number object passed rxapp"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxAppNavItem",
+      "id": "rxApp.directive:rxAppNavItem",
       "shortName": "rxAppNavItem",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "Creates a menu item. Recursively creates rx-app-nav if &#39;children&#39; present.",
-      "keywords": "api avialable children creates directive encore item items menu ng-repeat recursively rx-app-nav rxapp scope ui"
+      "keywords": "api avialable children creates directive item items menu ng-repeat recursively rx-app-nav rxapp scope"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxAppSearch",
+      "id": "rxApp.directive:rxAppSearch",
       "shortName": "rxAppSearch",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "Creates a search input form for navigation",
-      "keywords": "api argument creates directive encore form function input model navigation ng-model passed rxapp search submit tie title ui"
+      "keywords": "api argument creates directive form function input model navigation ng-model passed rxapp search submit tie title"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxAtlasSearch",
+      "id": "rxApp.directive:rxAtlasSearch",
       "shortName": "rxAtlasSearch",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "Used to search accounts for Cloud Atlas",
-      "keywords": "accounts api atlas cloud directive encore rxapp search ui"
+      "keywords": "accounts api atlas cloud directive rxapp search"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxPage",
+      "id": "rxApp.directive:rxBillingSearch",
+      "shortName": "rxBillingSearch",
+      "type": "directive",
+      "moduleName": "rxApp",
+      "shortDescription": "[TBD]",
+      "keywords": "api directive rxapp"
+    },
+    {
+      "section": "api",
+      "id": "rxApp.directive:rxPage",
       "shortName": "rxPage",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "Responsible for creating the HTML necessary for a page (including breadcrumbs and page title)",
-      "keywords": "api arbitrary attribute breadcrumbs creating depending directive document embedded encore ensure executed html javascript pass plain provide responsible rxapp set source string stripped subtitle tags title trust ui unsafehtmltitle version"
+      "keywords": "api arbitrary attribute breadcrumbs creating depending directive document embedded ensure executed html javascript pass plain provide responsible rxapp set source string stripped subtitle tags title trust unsafehtmltitle version"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxStatusTag",
+      "id": "rxApp.directive:rxStatusTag",
       "shortName": "rxStatusTag",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "This is used to draw the Alpha/Beta/etc tags in page titles and in breadcrumbs. It&#39;s not",
-      "keywords": "alpha api breadcrumbs directive draw encore intended public rxapp tags titles ui"
+      "keywords": "alpha api breadcrumbs directive draw intended public rxapp tags titles"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxTicketSearch",
+      "id": "rxApp.directive:rxTicketSearch",
       "shortName": "rxTicketSearch",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxApp",
       "shortDescription": "Used to search tickets for Ticket Queues",
-      "keywords": "api directive encore queues rxapp search ticket tickets ui"
+      "keywords": "api directive queues rxapp search ticket tickets"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxApp:rxToggle",
-      "shortName": "rxToggle",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Adds a &#39;click&#39; listener to an element that, when fired, toggles the boolean scope property defined",
-      "keywords": "adds api boolean click defined directive element encore fired listener property rxapp rxtoggle scope toggle toggles true ui"
+      "id": "rxApp.service:encoreRoutes",
+      "shortName": "encoreRoutes",
+      "type": "service",
+      "moduleName": "rxApp",
+      "shortDescription": "Creates a shared instance of AppRoutes that is used for the Encore App nav.",
+      "keywords": "allows api app approutes apps creates encore encoreroutes fetchroutes instance method nav rxapp rxapproutes service shared updates"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxAppRoutes:urlUtils",
+      "id": "rxApp.service:rxHideIfUkAccount",
+      "shortName": "rxHideIfUkAccount",
+      "type": "service",
+      "moduleName": "rxApp",
+      "shortDescription": "Check if account number in URL is of the UK origin",
+      "keywords": "account api check false matches number origin pattern rxapp rxhideifukaccount service uk url visibility"
+    },
+    {
+      "section": "api",
+      "id": "rxApp.service:rxStatusTags",
+      "shortName": "rxStatusTags",
+      "type": "service",
+      "moduleName": "rxApp",
+      "shortDescription": "This provider is primarily used for applications to specify custom status",
+      "keywords": "api applications attributes breadcrumb config custom framework gettag hastag methods needed objects provider rarely rx-page rxapp service status tags time"
+    },
+    {
+      "section": "api",
+      "id": "rxApp.service:rxVisibility",
+      "shortName": "rxVisibility",
+      "type": "service",
+      "moduleName": "rxApp",
+      "shortDescription": "Provides an interface for adding new visibility methods for nav menus.",
+      "keywords": "adding addmethod api args argument bar definition foo function interface menu menus method methods nav object passed rxapp second service somemethodname visibility"
+    },
+    {
+      "section": "api",
+      "id": "rxApp.service:rxVisibilityPathParams",
+      "shortName": "rxVisibilityPathParams",
+      "type": "service",
+      "moduleName": "rxApp",
+      "shortDescription": "Returns an object with name and method params that can",
+      "keywords": "addmethod api check current default menu method nav object param params passed register returns route routescdnpath rxapp rxpathparams rxvisibility service someparamname username visibility"
+    },
+    {
+      "section": "api",
+      "id": "rxAppRoutes",
+      "shortName": "rxAppRoutes",
+      "type": "overview",
+      "moduleName": "rxAppRoutes",
+      "shortDescription": "rxAppRoutes Component",
+      "keywords": "api component overview rxapproutes service services urlutils"
+    },
+    {
+      "section": "api",
+      "id": "rxAppRoutes.service:rxAppRoutes",
+      "shortName": "rxAppRoutes",
+      "type": "service",
+      "moduleName": "rxAppRoutes",
+      "shortDescription": "Manages page routes, building urls and marking them as active on route change",
+      "keywords": "active api building change manages marking route routes rxapproutes service urls"
+    },
+    {
+      "section": "api",
+      "id": "rxAppRoutes.service:urlUtils",
       "shortName": "urlUtils",
       "type": "service",
-      "moduleName": "encore.ui",
+      "moduleName": "rxAppRoutes",
       "shortDescription": "Set of utility functions used by rxAppRoutes to break apart/compare URLs",
-      "keywords": "apart api break encore functions rxapproutes service set ui urls utility"
+      "keywords": "apart api break functions rxapproutes service set urls utility"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxAuth:Auth",
+      "id": "rxAttributes",
+      "shortName": "rxAttributes",
+      "type": "overview",
+      "moduleName": "rxAttributes",
+      "shortDescription": "rxAttributes Component",
+      "keywords": "api component directive directives overview rxattributes"
+    },
+    {
+      "section": "api",
+      "id": "rxAttributes.directive:rxAttributes",
+      "shortName": "rxAttributes",
+      "type": "directive",
+      "moduleName": "rxAttributes",
+      "shortDescription": "[TBD]",
+      "keywords": "api directive rxattributes"
+    },
+    {
+      "section": "api",
+      "id": "rxAuth",
+      "shortName": "rxAuth",
+      "type": "overview",
+      "moduleName": "rxAuth",
+      "shortDescription": "rxAuth Component",
+      "keywords": "api component overview rxauth service services"
+    },
+    {
+      "section": "api",
+      "id": "rxAuth.service:Auth",
       "shortName": "Auth",
       "type": "service",
-      "moduleName": "encore.ui",
+      "moduleName": "rxAuth",
       "shortDescription": "Service which provides an entire solution for authenticating, user session management",
-      "keywords": "api array authenticating broken components customization encore entire errorcallback expired facilitate getroles gettoken hasrole identity isauthenticated iscurrent login loginwithjson logout logs management password permission permissions promise re-use returns role roles rxauth rxidentity rxpermission rxsession service services session smaller solution stored stores storetoken successcallback token true ui user valid wrapper"
+      "keywords": "api array authenticating broken components customization entire errorcallback expired facilitate getroles gettoken hasrole identity isauthenticated iscurrent login loginwithjson logout logs management password permission permissions promise re-use returns role roles rxauth rxidentity rxpermission rxsession service services session smaller solution stored stores storetoken successcallback token true ui user valid wrapper"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxBreadcrumbs:rxBreadcrumbs",
+      "id": "rxBreadcrumbs",
+      "shortName": "rxBreadcrumbs",
+      "type": "overview",
+      "moduleName": "rxBreadcrumbs",
+      "shortDescription": "rxBreadcrumbs Component",
+      "keywords": "api component directive directives overview rxbreadcrumbs rxbreadcrumbssvc service services"
+    },
+    {
+      "section": "api",
+      "id": "rxBreadcrumbs.directive:rxBreadcrumbs",
       "shortName": "rxBreadcrumbs",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxBreadcrumbs",
       "shortDescription": "Responsible for drawing the breadcrumbs for a page",
-      "keywords": "api apply breadcrumbs custom directive drawing encore responsible rxbreadcrumbs site-title tag title ui usepagestatustag"
+      "keywords": "api apply breadcrumbs custom directive drawing responsible rxbreadcrumbs site-title status tag title usepagestatustag"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxBulkSelect:NotifyProperties",
-      "shortName": "NotifyProperties",
+      "id": "rxBreadcrumbs.service:rxBreadcrumbsSvc",
+      "shortName": "rxBreadcrumbsSvc",
       "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "This factory provides functionality for abstracting &quot;properties&quot;, and allowing",
-      "keywords": "_numselected abstracting allowing api call called change changes child complete control controller directive directives element encore example exposted factory function functionality integer live ll method modified notification notificationfunction notifications notified notifyproperties numselected oldvalue parent plain properties property register registered registerfornumselected registrationfn require rxbulkselect scope service sets stats track ui"
+      "moduleName": "rxBreadcrumbs",
+      "shortDescription": "[TBD]",
+      "keywords": "api rxbreadcrumbs service"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxBulkSelect:rxBatchActions",
+      "id": "rxBulkSelect",
+      "shortName": "rxBulkSelect",
+      "type": "overview",
+      "moduleName": "rxBulkSelect",
+      "shortDescription": "rxBulkSelect Component",
+      "keywords": "api component directive directives notifyproperties overview rxbatchactions rxbulkselect rxbulkselectheadercheck rxbulkselectrow rxbulkselectutils rxbulkselectvalidate rxcheckbox service services"
+    },
+    {
+      "section": "api",
+      "id": "rxBulkSelect.directive:rxBatchActions",
       "shortName": "rxBatchActions",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxBulkSelect",
       "shortDescription": "This directive is responsible for adding the batch action menu link",
-      "keywords": "action adding api batch bulk class classes colspan controller correctly directive don element encore fa fa-fw fa-power-off header html include inside items link menu modal msg-info representing responsible rxbulkselect select selected servers styled suspend suspendserversctrl table template-url templates transclude ui"
+      "keywords": "action adding api batch bulk class classes colspan controller correctly directive don element fa fa-fw fa-power-off header html include inside items link menu modal msg-info representing responsible rxbulkselect select selected servers styled suspend suspendserversctrl table template-url templates transclude"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxBulkSelect:rxBulkSelect",
+      "id": "rxBulkSelect.directive:rxBulkSelect",
       "shortName": "rxBulkSelect",
       "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "A directive you place in your  element to enable bulk select.",
-      "keywords": "add api appear attribute automatically bulk bulk-select-message bulk-select-related bulksource checkbox clicked controller directive directives disappear element enable encore interact item items iterated list main ng-repeats place provide resource responsibility rxbulkselect select selected selectedkey source table track ui user"
+      "moduleName": "rxBulkSelect",
+      "shortDescription": "A directive you place on your &lt;table&gt; element to enable bulk select.",
+      "keywords": "add api appear attribute automatically bulk bulk-select-message bulk-select-related bulksource checkbox clicked controller directive directives disappear element enable interact item items iterated list main ng-repeats place provide resource responsibility rxbulkselect select selected selectedkey source table track user"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxBulkSelect:rxBulkSelectHeaderCheck",
+      "id": "rxBulkSelect.directive:rxBulkSelectHeaderCheck",
       "shortName": "rxBulkSelectHeaderCheck",
       "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "A directive you place on your  element representing the checkbox column.",
-      "keywords": "api checkbox clicked column current directive element encore header items place places representing rx-bulk-select-header-check rxbulkselect select ui"
+      "moduleName": "rxBulkSelect",
+      "shortDescription": "A directive you place on your &lt;th&gt; element representing the checkbox column.",
+      "keywords": "api checkbox clicked column current directive element header items place places representing rx-bulk-select-header-check rxbulkselect select"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxBulkSelect:rxBulkSelectMessage",
+      "id": "rxBulkSelect.directive:rxBulkSelectMessage",
       "shortName": "rxBulkSelectMessage",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxBulkSelect",
       "shortDescription": "This directive is responsible for drawing the appearing/disappearing",
-      "keywords": "api appearing automatically buttons clear communicate controller correctly directive directly drawing drawn encore form header items message resource resourcename responsible row rxbulkselect rxfloatingheader select selected server singular support table ui"
+      "keywords": "api appearing automatically buttons clear communicate controller correctly directive directly drawing drawn form header items message resource resourcename responsible row rxbulkselect rxfloatingheader select selected server singular support table"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxBulkSelect:rxBulkSelectRow",
+      "id": "rxBulkSelect.directive:rxBulkSelectRow",
       "shortName": "rxBulkSelectRow",
       "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "A directive you place on your  element which will contain the bulk-select",
-      "keywords": "api attribute bulk-select checkbox directive draws element encore left ng-repeat object place pointing representing row rx-bulk-select-row rxbulkselect server side takes ui"
+      "moduleName": "rxBulkSelect",
+      "shortDescription": "A directive you place on your &lt;td&gt; element which will contain the bulk-select",
+      "keywords": "api attribute bulk-select checkbox directive draws element left ng-repeat object place pointing representing row rx-bulk-select-row rxbulkselect server side takes"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxBulkSelect:rxBulkSelectValidate",
+      "id": "rxBulkSelect.directive:rxBulkSelectValidate",
       "shortName": "rxBulkSelectValidate",
       "type": "directive",
-      "moduleName": "encore.ui",
+      "moduleName": "rxBulkSelect",
       "shortDescription": "A directive used to validate rxBulkSelect in a form. The directive should be placed",
-      "keywords": "api directive element encore form invalid item items rxbulkselect selected ui valid validate"
+      "keywords": "api directive element form invalid item items rxbulkselect selected valid validate"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxCollapse:rxCollapse",
-      "shortName": "rxCollapse",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Hide and show an element with a transition.",
-      "keywords": "api button collapsed default directive display element encore expanded filter hide initially rxcollapse title toggle transition true ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxEnvironment:Environment",
-      "shortName": "Environment",
+      "id": "rxBulkSelect.service:NotifyProperties",
+      "shortName": "NotifyProperties",
       "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Allows defining environments and retrieving the current environment based on location",
-      "keywords": "allows api based current defining encore environment environments location matches object retrieving return rxenvironment service ui"
+      "moduleName": "rxBulkSelect",
+      "shortDescription": "This factory provides functionality for abstracting &quot;properties&quot;, and allowing",
+      "keywords": "_numselected abstracting allowing api call called change changes child complete control controller directive directives element example exposted factory function functionality integer live ll method modified notification notificationfunction notifications notified notifyproperties numselected oldvalue parent plain properties property register registered registerfornumselected registrationfn require rxbulkselect scope service sets stats track"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxEnvironment:rxEnvironment",
-      "shortName": "rxEnvironment",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Show or hide content based on environment name",
-      "keywords": "api based content directive encore environment hide prod rx-if-environment rxenvironment staging ui unified-preprod"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxEnvironment:rxEnvironmentMatch",
-      "shortName": "rxEnvironmentMatch",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "Checks if current environment matches target environment",
-      "keywords": "api checks current encore environment false filter matches production returns rxenvironment rxenvironmentmatch target true ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxEnvironment:rxEnvironmentUrl",
-      "shortName": "rxEnvironmentUrl",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "Builds a URL based on current environment.",
-      "keywords": "api based builds cbs cloudatlas current encore environment filter isn note object passed path rackspace renders return rxenvironment rxenvironmenturl simply staging tld ui url"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxFavicon:rxFavicon",
-      "shortName": "rxFavicon",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Updates href of element and replaces it with path to a different image based on environment",
-      "keywords": "api based directive element encore environment favicon href image local optional path properties replaces rxfavicon takes ui updates"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxFloatingHeader:rxFloatingHeader",
-      "shortName": "rxFloatingHeader",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Turns a tableheader into a floating persistent header",
-      "keywords": "api directive encore floating header persistent rxfloatingheader tableheader turns ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxIdentity:Identity",
-      "shortName": "Identity",
+      "id": "rxBulkSelect.service:rxBulkSelectUtils",
+      "shortName": "rxBulkSelectUtils",
       "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Service which is designed to authenticate with Rackspace&#39;s Identity service.",
-      "keywords": "$resource api authenticate designed encore errorcallback identity login loginwithjson password promise rackspace returns rxidentity service successcallback ui"
+      "moduleName": "rxBulkSelect",
+      "shortDescription": "[TBD]",
+      "keywords": "api rxbulkselect service"
     },
     {
       "section": "api",
-      "id": "encore.ui.rxInfoPanel:rxInfoPanel",
-      "shortName": "rxInfoPanel",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Renders a generic, pre-styled, info panel, with an optional title.",
-      "keywords": "api area directive displayed encore generic info optional panel pre-styled renders rxinfopanel text title ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxLocalStorage:LocalStorage",
-      "shortName": "LocalStorage",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A simple wrapper for injecting the global variable localStorage",
-      "keywords": "$document $window angular api batman clear encore functions getitem getobject global helper hero http includes injecting key local localstorage objects org provided removeitem return returns robin rxlocalstorage service services setitem setobject setting simple specification storage storage-0 storing ui values variable w3 w3c works wrapper"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxLogout:rxLogout",
-      "shortName": "rxLogout",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Adds logout functionality to an element",
-      "keywords": "adds api custom directive element encore functionality location logging logout redirect rx-logout rxlogout ui url"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxModalAction:rxModalAction",
-      "shortName": "rxModalAction",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Link which will show a modal window on click, and handle callbacks for pre/post modal actions",
-      "keywords": "actions api attribute call callbacks called cancelled click close content directive disable-esc disabled dismissed encore esc function handle html link modal modalcontent myposthook myprehook opened post-hook pre pre-hook press rxmodalaction submitted takes template template-url text ui url values window"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxModalAction:rxModalFooter",
-      "shortName": "rxModalFooter",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Define a footer for the next modal.",
-      "keywords": "activated api attribute button class confirm content define directive encore footer global modal modals ng-click pending risks rxmodalaction setstate takes ui understand values"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxModalAction:rxModalFooterTemplates",
-      "shortName": "rxModalFooterTemplates",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A cache for storing the modal footer templates",
-      "keywords": "add api body cache calling direct dom encore flush footer html inserted internally modal preferred registering returns rxmodalaction rxmodalfooter rxmodalfootertemplates service step1 storing string templates ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxModalAction:rxModalForm",
-      "shortName": "rxModalForm",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Responsible for creating the HTML necessary for modal form",
-      "keywords": "api button cancel creating default defaults directive element encore firsttabbable focus form html is-loading modal responsible return rxmodalaction spinner submit submit-text subtitle text title true ui window"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPageTitle:rxUnsafeRemoveHTML",
-      "shortName": "rxUnsafeRemoveHTML",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "Given a string, it removes all HTML tags from the string, using the",
-      "keywords": "api browser cleaned content details encore engine filter html http inside note parsing remove removes rxpagetitle string tags text trusted ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPaginate:Page",
-      "shortName": "Page",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "This is the pagination filter that is used to limit the number of pages",
-      "keywords": "api created displayed encore filter instance limit list number numbers pager pagetracking pagination rxpaginate service ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPaginate:PageTracking",
-      "shortName": "PageTracking",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "This is the data service that can be used in conjunction with the pagination",
-      "keywords": "api conjunction createinstance data display encore items itemsperpage objects pagetracking pagination rxpaginate service store tables true ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPaginate:Paginate",
-      "shortName": "Paginate",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "This is the pagination filter that is used to calculate the division in the",
-      "keywords": "api calculate created current division encore filter instance items list object pager pagetracking pagination paging rxpaginate service sliced ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPaginate:PaginatedItemsSummary",
-      "shortName": "PaginatedItemsSummary",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "Given an active pager (i.e. the result of PageTracking.createInstance()),",
-      "keywords": "active api createinstance displayed displaying encore filter instance items list numbers pager pagetracking result return rxpaginate second service string ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPaginate:rxLoadingOverlay",
-      "shortName": "rxLoadingOverlay",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "This directive can be used to show and hide a &quot;loading&quot; overlay on top",
-      "keywords": "add api attribute automatically child controller directive element elements encore hide hides loading overlay promise rejects require resolves rxpaginate showandhide sibling top ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPaginate:rxPaginate",
-      "shortName": "rxPaginate",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Directive that takes in the page tracking object and outputs a page",
-      "keywords": "api call change changes column conjunction controller current described direction directive display displayed encore error fails filter getitems input instance intend maximum message method model number numberofpages object optional outputs pagetracking paginate paginated pagination property readme request requirements rxpaginate selected selectfilter selections server-side serverinterface service sort switching table takes time tracking ui ui-based watch"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPaginate:rxPaginateUtils",
-      "shortName": "rxPaginateUtils",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A few utilities",
-      "keywords": "api encore rxpaginate service ui utilities"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPermission:Permission",
-      "shortName": "Permission",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Simple service for accessing roles and permissions for a user.",
-      "keywords": "accessing api array encore getroles hasrole permission permissions role roles rxpermission rxsession service simple true ui user"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxPermission:rxPermission",
-      "shortName": "rxPermission",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Simple directive which will show or hide content if user specified role.",
-      "keywords": "api content directive encore hide required role rxpermission simple ui user"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSelectFilter:Apply",
-      "shortName": "Apply",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "Used to apply an instance of SelectFilter to an array.",
-      "keywords": "api apply array encore filter filtered instance list rxselectfilter selectfilter ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSelectFilter:rxMultiSelect",
-      "shortName": "rxMultiSelect",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "A multi-select dropdown with checkboxes for each option",
-      "keywords": "api checkboxes directive dropdown encore input list multi-select ng-model option options property rxselectfilter scope stores ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSelectFilter:rxSelectFilter",
-      "shortName": "rxSelectFilter",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Autmatically creates the appropriate dropdowns to manage a filter object.",
-      "keywords": "api appropriate autmatically creates directive dropdowns encore filter instance manage object rxselectfilter selectfilter ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSelectFilter:rxSelectOption",
-      "shortName": "rxSelectOption",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "A single option for rxMultiSelect",
-      "keywords": "api content directive encore option provided rxmultiselect rxselectfilter single text transcluded ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSelectFilter:SelectFilter",
-      "shortName": "SelectFilter",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A prototype for creating objects that can be used for filtering arrays.",
-      "keywords": "api arrays create creating encore filter filtering objects properties prototype provided rxselectfilter service tracks ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSession:Session",
-      "shortName": "Session",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Service for managing user session in encore-ui.",
-      "keywords": "api encore encore-ui expired gettoken isauthenticated iscurrent logout logs managing returns rxlocalstorage rxsession service session stored stores storetoken token true ui user valid"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSessionStorage:SessionStorage",
-      "shortName": "SessionStorage",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A simple wrapper for injecting the global variable sessionStorage",
-      "keywords": "$document $window angular api batman clear encore functions getitem getobject global helper hero http includes injecting key objects org provided removeitem return returns robin rxsessionstorage service services session sessionstorage setitem setobject setting simple specification storage storage-0 storing ui values variable w3 w3c works wrapper"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSortableColumn:rxSortableColumn",
-      "shortName": "rxSortableColumn",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Renders a clickable link in a table heading which will sort the table by",
-      "keywords": "api array ascending called clickable clicked collection current descending directive displayed displaytext encore function heading indicates link order predicate property referenced renders reverse rxsortablecolumn sort sorted sortmethod sortproperty table text ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSortableColumn:rxSortEmptyTop",
-      "shortName": "rxSortEmptyTop",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "Filter that moves rows with an empty predicate to the top of the column in ascending order,",
-      "keywords": "adam api ascending bottom column descending empty encore filter firstname moves null order predicate rows rxsortablecolumn rxsortemptytop sort top ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSortableColumn:rxSortUtil",
-      "shortName": "rxSortUtil",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Service which provided utility methods for sorting collections.",
-      "keywords": "api based collection collections default encore getdefault methods object predicate provided returns rxsortablecolumn rxsortutil service sort sortcol sorting sorts ui utility"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxSpinner:rxSpinner",
-      "shortName": "rxSpinner",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Renders a spinner animation on the provided element given the &#39;toggle&#39; attribute is truthy",
-      "keywords": "adds animation api attribute class color controls default depicting directive display element encore extra extra-large large mini options provided renders rxspinner size small spinner toggle true truthy ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxStatus:ErrorFormatter",
-      "shortName": "ErrorFormatter",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Provides a helper method to parse error objects for &#39;message&#39; and format them",
-      "keywords": "api encore error format helper message method objects parse rxstatus service seterror status ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxStatus:Status",
-      "shortName": "Status",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Manages notifications for rxNotify with an abstracted set of functions for ease of use",
-      "keywords": "abstracted api ease encore functions manages notifications rxnotify rxstatus service set ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxStatus:StatusUtil",
-      "shortName": "StatusUtil",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Manipulates references to needed $scope input for proper notification functionality",
-      "keywords": "$on $rootscope $routechangesuccess $scope api encore forcibly function functionality input manipulates needed notification proper references rxstatus scope service set setscope setutil status ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxStatusColumn:rxStatusColumn",
-      "shortName": "rxStatusColumn",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "A directive for drawing colored status columns in a table. This",
-      "keywords": "api colored column columns default directive draw drawing encore mapping optionally passed place rxstatuscolumn status string table takes tooltip ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxStatusColumn:rxStatusColumnIcons",
-      "shortName": "rxStatusColumnIcons",
-      "type": "object",
-      "moduleName": "encore.ui",
-      "shortDescription": "Mapping of internal statuses to FontAwesome icons.",
-      "keywords": "api defined encore fontawesome icons internal map mapping names object rxstatuscolumn statuses ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxStatusColumn:rxStatusHeader",
-      "shortName": "rxStatusHeader",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "Place this attribute directive on the &lt;th&gt; for the status columns. It ensures",
-      "keywords": "api attribute columns correct directive encore ensures place rxstatuscolumn status styling ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxStatusColumn:rxStatusMappings",
-      "shortName": "rxStatusMappings",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "A set of methods for creating mappings between a product&#39;s notion",
-      "keywords": "api creating encore encore-ui identifiers mappings methods notion product rxstatuscolumn service set status statuses ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxTokenInjector:TokenInjector",
-      "shortName": "TokenInjector",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Simple injector which will intercept http request and inject the",
-      "keywords": "$httpprovider angular api config encore encoreapp http identity inject injector intercept interceptors module push rackspace request rxsession rxtokeninjector service simple token tokeninterceptor ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxUnauthorizedInterceptor:UnauthorizedInterceptor",
-      "shortName": "UnauthorizedInterceptor",
-      "type": "service",
-      "moduleName": "encore.ui",
-      "shortDescription": "Simple injector which will intercept http responses. If a 401 is returned,",
-      "keywords": "$httpprovider $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
+      "id": "rxButton",
+      "shortName": "rxButton",
+      "type": "overview",
+      "moduleName": "rxButton",
+      "shortDescription": "rxButton Component",
+      "keywords": "api component directive directives overview rxbutton"
     },
     {
       "section": "api",
@@ -635,6 +500,33 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "rxCapitalize",
+      "shortName": "rxCapitalize",
+      "type": "overview",
+      "moduleName": "rxCapitalize",
+      "shortDescription": "rxCapitalize Component",
+      "keywords": "api component filter filters overview rxcapitalize"
+    },
+    {
+      "section": "api",
+      "id": "rxCapitalize.filter:rxCapitalize",
+      "shortName": "rxCapitalize",
+      "type": "filter",
+      "moduleName": "rxCapitalize",
+      "shortDescription": "[TBD]",
+      "keywords": "api filter rxcapitalize"
+    },
+    {
+      "section": "api",
+      "id": "rxCharacterCount",
+      "shortName": "rxCharacterCount",
+      "type": "overview",
+      "moduleName": "rxCharacterCount",
+      "shortDescription": "rxCharacterCount Component",
+      "keywords": "api component directive directives overview rxcharactercount"
+    },
+    {
+      "section": "api",
       "id": "rxCharacterCount.directive:rxCharacterCount",
       "shortName": "rxCharacterCount",
       "type": "directive",
@@ -644,12 +536,191 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "rxCheckbox",
+      "shortName": "rxCheckbox",
+      "type": "overview",
+      "moduleName": "rxCheckbox",
+      "shortDescription": "rxCheckbox Component",
+      "keywords": "api component directive directives overview rxcheckbox"
+    },
+    {
+      "section": "api",
       "id": "rxCheckbox.directive:rxCheckbox",
       "shortName": "rxCheckbox",
       "type": "directive",
       "moduleName": "rxCheckbox",
       "shortDescription": "Attribute directive that wraps a native checkbox element in markup required for styling purposes.",
       "keywords": "api attribute checkbox control demovalue determines directive disabled element markup native ng-model purposes required rx-checkbox rxcheckbox styling wraps"
+    },
+    {
+      "section": "api",
+      "id": "rxCollapse",
+      "shortName": "rxCollapse",
+      "type": "overview",
+      "moduleName": "rxCollapse",
+      "shortDescription": "rxCollapse Component",
+      "keywords": "api component directive directives overview rxcollapse"
+    },
+    {
+      "section": "api",
+      "id": "rxCollapse.directive:rxCollapse",
+      "shortName": "rxCollapse",
+      "type": "directive",
+      "moduleName": "rxCollapse",
+      "shortDescription": "Hide and show an element with a transition.",
+      "keywords": "api button collapsed default directive display element expanded filter hide initially rxcollapse title toggle transition true"
+    },
+    {
+      "section": "api",
+      "id": "rxCompile",
+      "shortName": "rxCompile",
+      "type": "overview",
+      "moduleName": "rxCompile",
+      "shortDescription": "rxCompile Component",
+      "keywords": "api component directive directives overview rxcompile"
+    },
+    {
+      "section": "api",
+      "id": "rxCompile.directive:rxCompile",
+      "shortName": "rxCompile",
+      "type": "directive",
+      "moduleName": "rxCompile",
+      "keywords": "angularjs api attributes directive http org rxcompile"
+    },
+    {
+      "section": "api",
+      "id": "rxDiskSize",
+      "shortName": "rxDiskSize",
+      "type": "overview",
+      "moduleName": "rxDiskSize",
+      "shortDescription": "rxDiskSize Component",
+      "keywords": "api component filter filters overview rxdisksize"
+    },
+    {
+      "section": "api",
+      "id": "rxDiskSize.filter:rxDiskSize",
+      "shortName": "rxDiskSize",
+      "type": "filter",
+      "moduleName": "rxDiskSize",
+      "shortDescription": "[TBD]",
+      "keywords": "api filter rxdisksize"
+    },
+    {
+      "section": "api",
+      "id": "rxEnvironment",
+      "shortName": "rxEnvironment",
+      "type": "overview",
+      "moduleName": "rxEnvironment",
+      "shortDescription": "rxEnvironment Component",
+      "keywords": "api component directive directives environment filter filters overview rxenvironment rxenvironmentmatch rxenvironmenturl service services"
+    },
+    {
+      "section": "api",
+      "id": "rxEnvironment.directive:rxEnvironment",
+      "shortName": "rxEnvironment",
+      "type": "directive",
+      "moduleName": "rxEnvironment",
+      "shortDescription": "Show or hide content based on environment name",
+      "keywords": "api based content directive environment hide prod rx-if-environment rxenvironment service staging unified-preprod"
+    },
+    {
+      "section": "api",
+      "id": "rxEnvironment.filter:rxEnvironmentMatch",
+      "shortName": "rxEnvironmentMatch",
+      "type": "filter",
+      "moduleName": "rxEnvironment",
+      "shortDescription": "Checks if current environment matches target environment",
+      "keywords": "api checks current environment false filter matches production returns rxenvironment rxenvironmentmatch target true"
+    },
+    {
+      "section": "api",
+      "id": "rxEnvironment.filter:rxEnvironmentUrl",
+      "shortName": "rxEnvironmentUrl",
+      "type": "filter",
+      "moduleName": "rxEnvironment",
+      "shortDescription": "Builds a URL based on current environment.",
+      "keywords": "api based builds cbs cloudatlas current encore environment filter isn note object passed path rackspace renders return rxenvironment rxenvironmenturl simply staging tld url"
+    },
+    {
+      "section": "api",
+      "id": "rxEnvironment.service:Environment",
+      "shortName": "Environment",
+      "type": "service",
+      "moduleName": "rxEnvironment",
+      "shortDescription": "Allows defining environments and retrieving the current environment based on location",
+      "keywords": "allows api based current defining environment environments location matches object retrieving return rxenvironment service"
+    },
+    {
+      "section": "api",
+      "id": "rxFavicon",
+      "shortName": "rxFavicon",
+      "type": "overview",
+      "moduleName": "rxFavicon",
+      "shortDescription": "rxFavicon Component",
+      "keywords": "api component directive directives overview rxfavicon"
+    },
+    {
+      "section": "api",
+      "id": "rxFavicon.directive:rxFavicon",
+      "shortName": "rxFavicon",
+      "type": "directive",
+      "moduleName": "rxFavicon",
+      "shortDescription": "Updates href of element and replaces it with path to a different image based on environment",
+      "keywords": "api based directive element environment favicon href image local optional path properties replaces rxfavicon takes tbd updates"
+    },
+    {
+      "section": "api",
+      "id": "rxFeedback",
+      "shortName": "rxFeedback",
+      "type": "overview",
+      "moduleName": "rxFeedback",
+      "shortDescription": "rxFeedback Component",
+      "keywords": "api component directive directives overview rxfeedback rxfeedbacksvc rxscreenshotsvc service services"
+    },
+    {
+      "section": "api",
+      "id": "rxFeedback.directive:rxFeedback",
+      "shortName": "rxFeedback",
+      "type": "directive",
+      "moduleName": "rxFeedback",
+      "shortDescription": "[TBD]",
+      "keywords": "api directive rxfeedback"
+    },
+    {
+      "section": "api",
+      "id": "rxFeedback.service:rxFeedbackSvc",
+      "shortName": "rxFeedbackSvc",
+      "type": "service",
+      "moduleName": "rxFeedback",
+      "shortDescription": "[TBD]",
+      "keywords": "api rxfeedback service"
+    },
+    {
+      "section": "api",
+      "id": "rxFeedback.service:rxScreenshotSvc",
+      "shortName": "rxScreenshotSvc",
+      "type": "service",
+      "moduleName": "rxFeedback",
+      "shortDescription": "requires html2canvas",
+      "keywords": "api html2canvas requires rxfeedback service"
+    },
+    {
+      "section": "api",
+      "id": "rxFloatingHeader",
+      "shortName": "rxFloatingHeader",
+      "type": "overview",
+      "moduleName": "rxFloatingHeader",
+      "shortDescription": "rxFloatingHeader Component",
+      "keywords": "api component directive directives overview rxfloatingheader tbd"
+    },
+    {
+      "section": "api",
+      "id": "rxFloatingHeader.directive:rxFloatingHeader",
+      "shortName": "rxFloatingHeader",
+      "type": "directive",
+      "moduleName": "rxFloatingHeader",
+      "shortDescription": "Turns a tableheader into a floating persistent header",
+      "keywords": "api directive floating header persistent rxfloatingheader tableheader turns"
     },
     {
       "section": "api",
@@ -779,6 +850,78 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "rxIdentity",
+      "shortName": "rxIdentity",
+      "type": "overview",
+      "moduleName": "rxIdentity",
+      "shortDescription": "rxIdentity Component",
+      "keywords": "api component identity overview rxidentity service services"
+    },
+    {
+      "section": "api",
+      "id": "rxIdentity.service:Identity",
+      "shortName": "Identity",
+      "type": "service",
+      "moduleName": "rxIdentity",
+      "shortDescription": "Service which is designed to authenticate with Rackspace&#39;s Identity service.",
+      "keywords": "$resource api authenticate designed errorcallback identity login loginwithjson password promise rackspace returns rxidentity service successcallback"
+    },
+    {
+      "section": "api",
+      "id": "rxInfoPanel",
+      "shortName": "rxInfoPanel",
+      "type": "overview",
+      "moduleName": "rxInfoPanel",
+      "shortDescription": "rxInfoPanel Component",
+      "keywords": "api component directive directives overview rxinfopanel"
+    },
+    {
+      "section": "api",
+      "id": "rxInfoPanel.directive:rxInfoPanel",
+      "shortName": "rxInfoPanel",
+      "type": "directive",
+      "moduleName": "rxInfoPanel",
+      "shortDescription": "Renders a generic, pre-styled, info panel, with an optional title.",
+      "keywords": "api area directive displayed generic info optional panel pre-styled renders rxinfopanel text title"
+    },
+    {
+      "section": "api",
+      "id": "rxLocalStorage",
+      "shortName": "rxLocalStorage",
+      "type": "overview",
+      "moduleName": "rxLocalStorage",
+      "shortDescription": "rxLocalStorage Component",
+      "keywords": "api component localstorage overview rxlocalstorage service services"
+    },
+    {
+      "section": "api",
+      "id": "rxLocalStorage.service:LocalStorage",
+      "shortName": "LocalStorage",
+      "type": "service",
+      "moduleName": "rxLocalStorage",
+      "shortDescription": "A simple wrapper for injecting the global variable localStorage",
+      "keywords": "$document $window angular api batman clear functions getitem getobject global helper hero http includes injecting key local localstorage objects org provided removeitem return returns robin rxlocalstorage service services setitem setobject setting simple specification storage storage-0 storing values variable w3 w3c works wrapper"
+    },
+    {
+      "section": "api",
+      "id": "rxLogout",
+      "shortName": "rxLogout",
+      "type": "overview",
+      "moduleName": "rxLogout",
+      "shortDescription": "rxLogout Component",
+      "keywords": "api component directive directives overview rxlogout"
+    },
+    {
+      "section": "api",
+      "id": "rxLogout.directive:rxLogout",
+      "shortName": "rxLogout",
+      "type": "directive",
+      "moduleName": "rxLogout",
+      "shortDescription": "Adds logout functionality to an element",
+      "keywords": "adds api custom directive element functionality location logging logout redirect rx-logout rxlogout url"
+    },
+    {
+      "section": "api",
       "id": "rxMetadata",
       "shortName": "rxMetadata",
       "type": "overview",
@@ -810,8 +953,8 @@ NG_DOCS={
       "shortName": "rxMisc",
       "type": "overview",
       "moduleName": "rxMisc",
-      "shortDescription": "A module for shared functionality across framework components.",
-      "keywords": "api components filter filters framework functionality module overview rxautosave rxdomhelper rxmisc rxnestedelement service services shared titleize"
+      "shortDescription": "rxMisc Component",
+      "keywords": "api component components filter filters framework functionality module overview rxautosave rxdomhelper rxmisc rxnestedelement service services shared titleize"
     },
     {
       "section": "api",
@@ -848,6 +991,51 @@ NG_DOCS={
       "moduleName": "rxMisc",
       "shortDescription": "Helper function to aid in the creation of boilerplate DDO definitions",
       "keywords": "aid angular api boilerplate child childelement creation custom ddo default defined definition definitions directive element elements function helper merge module myapp nested nestedelement object options opts parent parentelement required return rxmisc rxnestedelement service validate"
+    },
+    {
+      "section": "api",
+      "id": "rxModalAction",
+      "shortName": "rxModalAction",
+      "type": "overview",
+      "moduleName": "rxModalAction",
+      "shortDescription": "rxModalAction Component",
+      "keywords": "api component directive directives overview rxmodalaction rxmodalfooter rxmodalfootertemplates rxmodalform service services"
+    },
+    {
+      "section": "api",
+      "id": "rxModalAction.directive:rxModalAction",
+      "shortName": "rxModalAction",
+      "type": "directive",
+      "moduleName": "rxModalAction",
+      "shortDescription": "Link which will show a modal window on click, and handle callbacks for pre/post modal actions",
+      "keywords": "actions api attribute call callbacks called cancelled click close content directive disable-esc disabled dismissed esc function handle html link modal modalcontent myposthook myprehook opened post-hook pre pre-hook press rxmodalaction submitted takes template template-url text url values window"
+    },
+    {
+      "section": "api",
+      "id": "rxModalAction.directive:rxModalFooter",
+      "shortName": "rxModalFooter",
+      "type": "directive",
+      "moduleName": "rxModalAction",
+      "shortDescription": "Define a footer for the next modal.",
+      "keywords": "activated api attribute button class confirm content define directive footer global modal modals ng-click pending risks rxmodalaction setstate takes understand values"
+    },
+    {
+      "section": "api",
+      "id": "rxModalAction.directive:rxModalForm",
+      "shortName": "rxModalForm",
+      "type": "directive",
+      "moduleName": "rxModalAction",
+      "shortDescription": "Responsible for creating the HTML necessary for modal form",
+      "keywords": "api button cancel creating default defaults directive element firsttabbable focus form html is-loading modal responsible return rxmodalaction spinner submit submit-text subtitle text title true window"
+    },
+    {
+      "section": "api",
+      "id": "rxModalAction.service:rxModalFooterTemplates",
+      "shortName": "rxModalFooterTemplates",
+      "type": "service",
+      "moduleName": "rxModalAction",
+      "shortDescription": "A cache for storing the modal footer templates",
+      "keywords": "add api body cache calling direct dom flush footer html inserted internally modal preferred registering returns rxmodalaction rxmodalfooter rxmodalfootertemplates service step1 storing string templates"
     },
     {
       "section": "api",
@@ -900,7 +1088,8 @@ NG_DOCS={
       "shortName": "rxOptionTable",
       "type": "overview",
       "moduleName": "rxOptionTable",
-      "keywords": "api overview rxoptiontable"
+      "shortDescription": "rxOptionTable Component",
+      "keywords": "api component directive directives overview rxformoptiontable rxoptiontable"
     },
     {
       "section": "api",
@@ -922,12 +1111,174 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "rxPageTitle",
+      "shortName": "rxPageTitle",
+      "type": "overview",
+      "moduleName": "rxPageTitle",
+      "shortDescription": "rxPageTitle Component",
+      "keywords": "api component filter filters overview rxpagetitle rxunsaferemovehtml service services"
+    },
+    {
+      "section": "api",
+      "id": "rxPageTitle.filter:rxUnsafeRemoveHTML",
+      "shortName": "rxUnsafeRemoveHTML",
+      "type": "filter",
+      "moduleName": "rxPageTitle",
+      "shortDescription": "Given a string, it removes all HTML tags from the string, using the",
+      "keywords": "api browser cleaned content details engine filter html http inside note parsing remove removes rxpagetitle string tags text trusted"
+    },
+    {
+      "section": "api",
+      "id": "rxPageTitle.service:rxPageTitle",
+      "shortName": "rxPageTitle",
+      "type": "service",
+      "moduleName": "rxPageTitle",
+      "shortDescription": "[TBD]",
+      "keywords": "api rxpagetitle service"
+    },
+    {
+      "section": "api",
+      "id": "rxPaginate",
+      "shortName": "rxPaginate",
+      "type": "overview",
+      "moduleName": "rxPaginate",
+      "shortDescription": "rxPaginate Component",
+      "keywords": "api component directive directives filter filters overview pagetracking paginate rxloadingoverlay rxpaginate rxpaginateutils service services"
+    },
+    {
+      "section": "api",
+      "id": "rxPaginate.directive:rxLoadingOverlay",
+      "shortName": "rxLoadingOverlay",
+      "type": "directive",
+      "moduleName": "rxPaginate",
+      "shortDescription": "This directive can be used to show and hide a &quot;loading&quot; overlay on top",
+      "keywords": "add api attribute automatically child controller directive element elements hide hides loading overlay promise rejects require resolves rxpaginate showandhide sibling top"
+    },
+    {
+      "section": "api",
+      "id": "rxPaginate.directive:rxPaginate",
+      "shortName": "rxPaginate",
+      "type": "directive",
+      "moduleName": "rxPaginate",
+      "shortDescription": "Directive that takes in the page tracking object and outputs a page",
+      "keywords": "api call change changes column conjunction controller current described direction directive display displayed error fails filter getitems input instance intend maximum message method model number numberofpages object optional outputs pagetracking paginate paginated pagination property readme request requirements rxpaginate selected selectfilter selections server-side serverinterface service sort switching table takes time tracking ui-based watch"
+    },
+    {
+      "section": "api",
+      "id": "rxPaginate.filter:Page",
+      "shortName": "Page",
+      "type": "filter",
+      "moduleName": "rxPaginate",
+      "shortDescription": "This is the pagination filter that is used to limit the number of pages",
+      "keywords": "api created displayed filter instance limit list number numbers pager pagetracking pagination rxpaginate service"
+    },
+    {
+      "section": "api",
+      "id": "rxPaginate.filter:Paginate",
+      "shortName": "Paginate",
+      "type": "filter",
+      "moduleName": "rxPaginate",
+      "shortDescription": "This is the pagination filter that is used to calculate the division in the",
+      "keywords": "api calculate created current division filter instance items list object pager pagetracking pagination paging rxpaginate service sliced"
+    },
+    {
+      "section": "api",
+      "id": "rxPaginate.filter:PaginatedItemsSummary",
+      "shortName": "PaginatedItemsSummary",
+      "type": "filter",
+      "moduleName": "rxPaginate",
+      "shortDescription": "Given an active pager (i.e. the result of PageTracking.createInstance()),",
+      "keywords": "active api createinstance displayed displaying filter instance items list numbers pager pagetracking result return rxpaginate second service string"
+    },
+    {
+      "section": "api",
+      "id": "rxPaginate.service:PageTracking",
+      "shortName": "PageTracking",
+      "type": "service",
+      "moduleName": "rxPaginate",
+      "shortDescription": "This is the data service that can be used in conjunction with the pagination",
+      "keywords": "api conjunction createinstance data display items itemsperpage objects pagetracking pagination rxpaginate service store tables true"
+    },
+    {
+      "section": "api",
+      "id": "rxPaginate.service:rxPaginateUtils",
+      "shortName": "rxPaginateUtils",
+      "type": "service",
+      "moduleName": "rxPaginate",
+      "shortDescription": "A few utilities",
+      "keywords": "api rxpaginate service utilities"
+    },
+    {
+      "section": "api",
+      "id": "rxPermission",
+      "shortName": "rxPermission",
+      "type": "overview",
+      "moduleName": "rxPermission",
+      "shortDescription": "rxPermission Component",
+      "keywords": "api component directive directives overview permission rxpermission service services"
+    },
+    {
+      "section": "api",
+      "id": "rxPermission.directive:rxPermission",
+      "shortName": "rxPermission",
+      "type": "directive",
+      "moduleName": "rxPermission",
+      "shortDescription": "Simple directive which will show or hide content if user specified role.",
+      "keywords": "api content directive hide required role rxpermission service simple user"
+    },
+    {
+      "section": "api",
+      "id": "rxPermission.service:Permission",
+      "shortName": "Permission",
+      "type": "service",
+      "moduleName": "rxPermission",
+      "shortDescription": "Simple service for accessing roles and permissions for a user.",
+      "keywords": "accessing api array getroles hasrole permission permissions role roles rxpermission rxsession service simple true user"
+    },
+    {
+      "section": "api",
+      "id": "rxRadio",
+      "shortName": "rxRadio",
+      "type": "overview",
+      "moduleName": "rxRadio",
+      "shortDescription": "rxRadio Component",
+      "keywords": "api component directive directives overview rxradio"
+    },
+    {
+      "section": "api",
       "id": "rxRadio.directive:rxRadio",
       "shortName": "rxRadio",
       "type": "directive",
       "moduleName": "rxRadio",
       "shortDescription": "Attribute directive that wraps a native radio element in markup required for styling purposes.",
       "keywords": "api attribute control determines directive disabled element markup native purposes radio required rx-radio rxradio styling wraps"
+    },
+    {
+      "section": "api",
+      "id": "rxSearchBox",
+      "shortName": "rxSearchBox",
+      "type": "overview",
+      "moduleName": "rxSearchBox",
+      "shortDescription": "rxSearchBox Component",
+      "keywords": "api box component creating directive directives functionality input overview rxsearchbox search"
+    },
+    {
+      "section": "api",
+      "id": "rxSearchBox.directive:rxSearchBox",
+      "shortName": "rxSearchBox",
+      "type": "directive",
+      "moduleName": "rxSearchBox",
+      "shortDescription": "The rxSearchBox directive behaves similar to the HTML &quot;Search&quot; input type. When",
+      "keywords": "allow api behaves bind boolean box button clear cleared default directive disabled disappear display element empty enable html input model ng-disabled ng-model override placeholder rxsearchbox search searchmodel string type"
+    },
+    {
+      "section": "api",
+      "id": "rxSelect",
+      "shortName": "rxSelect",
+      "type": "overview",
+      "moduleName": "rxSelect",
+      "shortDescription": "rxSelect component",
+      "keywords": "api component directive directives overview rxselect"
     },
     {
       "section": "api",
@@ -940,12 +1291,327 @@ NG_DOCS={
     },
     {
       "section": "api",
+      "id": "rxSelectFilter",
+      "shortName": "rxSelectFilter",
+      "type": "overview",
+      "moduleName": "rxSelectFilter",
+      "shortDescription": "rxSelectFilter component",
+      "keywords": "api apply component directive directives filter filters overview rxmultiselect rxselectfilter rxselectoption selectfilter service services"
+    },
+    {
+      "section": "api",
+      "id": "rxSelectFilter.directive:rxMultiSelect",
+      "shortName": "rxMultiSelect",
+      "type": "directive",
+      "moduleName": "rxSelectFilter",
+      "shortDescription": "A multi-select dropdown with checkboxes for each option",
+      "keywords": "api checkboxes directive dropdown input list multi-select ng-model option options property rxselectfilter scope stores"
+    },
+    {
+      "section": "api",
+      "id": "rxSelectFilter.directive:rxSelectFilter",
+      "shortName": "rxSelectFilter",
+      "type": "directive",
+      "moduleName": "rxSelectFilter",
+      "shortDescription": "Autmatically creates the appropriate dropdowns to manage a filter object.",
+      "keywords": "api appropriate autmatically creates directive dropdowns filter instance manage object rxselectfilter selectfilter"
+    },
+    {
+      "section": "api",
+      "id": "rxSelectFilter.directive:rxSelectOption",
+      "shortName": "rxSelectOption",
+      "type": "directive",
+      "moduleName": "rxSelectFilter",
+      "shortDescription": "A single option for rxMultiSelect",
+      "keywords": "api content directive option provided rxmultiselect rxselectfilter single text transcluded"
+    },
+    {
+      "section": "api",
+      "id": "rxSelectFilter.filter:Apply",
+      "shortName": "Apply",
+      "type": "filter",
+      "moduleName": "rxSelectFilter",
+      "shortDescription": "Used to apply an instance of SelectFilter to an array.",
+      "keywords": "api apply array filter filtered instance list rxselectfilter selectfilter"
+    },
+    {
+      "section": "api",
+      "id": "rxSelectFilter.service:SelectFilter",
+      "shortName": "SelectFilter",
+      "type": "service",
+      "moduleName": "rxSelectFilter",
+      "shortDescription": "A prototype for creating objects that can be used for filtering arrays.",
+      "keywords": "api arrays create creating filter filtering objects properties prototype provided rxselectfilter service tracks"
+    },
+    {
+      "section": "api",
+      "id": "rxSession",
+      "shortName": "rxSession",
+      "type": "overview",
+      "moduleName": "rxSession",
+      "shortDescription": "rxSession Component",
+      "keywords": "api component overview rxsession service services session"
+    },
+    {
+      "section": "api",
+      "id": "rxSession.service:Session",
+      "shortName": "Session",
+      "type": "service",
+      "moduleName": "rxSession",
+      "shortDescription": "Service for managing user session in encore-ui.",
+      "keywords": "api encore-ui expired gettoken isauthenticated iscurrent logout logs managing returns rxlocalstorage rxsession service session stored stores storetoken token true user valid"
+    },
+    {
+      "section": "api",
+      "id": "rxSessionStorage",
+      "shortName": "rxSessionStorage",
+      "type": "overview",
+      "moduleName": "rxSessionStorage",
+      "shortDescription": "rxSessionStorage Component",
+      "keywords": "api component overview rxsessionstorage service services sessionstorage"
+    },
+    {
+      "section": "api",
+      "id": "rxSessionStorage.service:SessionStorage",
+      "shortName": "SessionStorage",
+      "type": "service",
+      "moduleName": "rxSessionStorage",
+      "shortDescription": "A simple wrapper for injecting the global variable sessionStorage",
+      "keywords": "$document $window angular api batman clear functions getitem getobject global helper hero http includes injecting key objects org provided removeitem return returns robin rxsessionstorage service services session sessionstorage setitem setobject setting simple specification storage storage-0 storing values variable w3 w3c works wrapper"
+    },
+    {
+      "section": "api",
+      "id": "rxSortableColumn",
+      "shortName": "rxSortableColumn",
+      "type": "overview",
+      "moduleName": "rxSortableColumn",
+      "shortDescription": "rxSortableColumn Component",
+      "keywords": "api component directive directives filter filters overview rxsortablecolumn rxsortemptytop rxsortutil service services"
+    },
+    {
+      "section": "api",
+      "id": "rxSortableColumn.directive:rxSortableColumn",
+      "shortName": "rxSortableColumn",
+      "type": "directive",
+      "moduleName": "rxSortableColumn",
+      "shortDescription": "Renders a clickable link in a table heading which will sort the table by",
+      "keywords": "api array ascending called clickable clicked collection current descending directive displayed displaytext function heading indicates link order predicate property referenced renders reverse rxsortablecolumn sort sorted sortmethod sortproperty table text"
+    },
+    {
+      "section": "api",
+      "id": "rxSortableColumn.filter:rxSortEmptyTop",
+      "shortName": "rxSortEmptyTop",
+      "type": "filter",
+      "moduleName": "rxSortableColumn",
+      "shortDescription": "Filter that moves rows with an empty predicate to the top of the column in ascending order,",
+      "keywords": "adam api ascending bottom column descending empty filter firstname moves null order predicate rows rxsortablecolumn rxsortemptytop sort top"
+    },
+    {
+      "section": "api",
+      "id": "rxSortableColumn.service:rxSortUtil",
+      "shortName": "rxSortUtil",
+      "type": "service",
+      "moduleName": "rxSortableColumn",
+      "shortDescription": "Service which provided utility methods for sorting collections.",
+      "keywords": "api based collection collections default getdefault methods object predicate provided returns rxsortablecolumn rxsortutil service sort sortcol sorting sorts utility"
+    },
+    {
+      "section": "api",
+      "id": "rxSpinner",
+      "shortName": "rxSpinner",
+      "type": "overview",
+      "moduleName": "rxSpinner",
+      "shortDescription": "rxSpinner Component",
+      "keywords": "api component directive directives overview rxspinner"
+    },
+    {
+      "section": "api",
+      "id": "rxSpinner.directive:rxSpinner",
+      "shortName": "rxSpinner",
+      "type": "directive",
+      "moduleName": "rxSpinner",
+      "shortDescription": "Renders a spinner animation on the provided element given the &#39;toggle&#39; attribute is truthy",
+      "keywords": "adds animation api attribute class color controls default depicting directive display element extra extra-large large mini options provided renders rxspinner size small spinner toggle true truthy"
+    },
+    {
+      "section": "api",
+      "id": "rxStatus",
+      "shortName": "rxStatus",
+      "type": "overview",
+      "moduleName": "rxStatus",
+      "shortDescription": "rxStatus Component",
+      "keywords": "api component errorformatter overview rxstatus service services status statusutil"
+    },
+    {
+      "section": "api",
+      "id": "rxStatus.service:ErrorFormatter",
+      "shortName": "ErrorFormatter",
+      "type": "service",
+      "moduleName": "rxStatus",
+      "shortDescription": "Provides a helper method to parse error objects for &#39;message&#39; and format them",
+      "keywords": "api error format helper message method objects parse rxstatus service seterror status"
+    },
+    {
+      "section": "api",
+      "id": "rxStatus.service:Status",
+      "shortName": "Status",
+      "type": "service",
+      "moduleName": "rxStatus",
+      "shortDescription": "Manages notifications for rxNotify with an abstracted set of functions for ease of use",
+      "keywords": "abstracted api ease functions manages notifications rxnotify rxstatus service set"
+    },
+    {
+      "section": "api",
+      "id": "rxStatus.service:StatusUtil",
+      "shortName": "StatusUtil",
+      "type": "service",
+      "moduleName": "rxStatus",
+      "shortDescription": "Manipulates references to needed $scope input for proper notification functionality",
+      "keywords": "$on $rootscope $routechangesuccess $scope api forcibly function functionality input manipulates needed notification proper references rxstatus scope service set setscope setutil status"
+    },
+    {
+      "section": "api",
+      "id": "rxStatusColumn",
+      "shortName": "rxStatusColumn",
+      "type": "overview",
+      "moduleName": "rxStatusColumn",
+      "shortDescription": "rxStatusColumn Component",
+      "keywords": "api component directive directives object objects overview rxstatuscolumn rxstatuscolumnicons rxstatusheader rxstatusmappings service services"
+    },
+    {
+      "section": "api",
+      "id": "rxStatusColumn.directive:rxStatusColumn",
+      "shortName": "rxStatusColumn",
+      "type": "directive",
+      "moduleName": "rxStatusColumn",
+      "shortDescription": "A directive for drawing colored status columns in a table. This",
+      "keywords": "api colored column columns default directive draw drawing mapping optionally passed place rxstatuscolumn status string table takes tooltip"
+    },
+    {
+      "section": "api",
+      "id": "rxStatusColumn.directive:rxStatusHeader",
+      "shortName": "rxStatusHeader",
+      "type": "directive",
+      "moduleName": "rxStatusColumn",
+      "shortDescription": "Place this attribute directive on the &lt;th&gt; for the status columns. It ensures",
+      "keywords": "api attribute columns correct directive ensures place rxstatuscolumn status styling"
+    },
+    {
+      "section": "api",
+      "id": "rxStatusColumn.object:rxStatusColumnIcons",
+      "shortName": "rxStatusColumnIcons",
+      "type": "object",
+      "moduleName": "rxStatusColumn",
+      "shortDescription": "Mapping of internal statuses to FontAwesome icons.",
+      "keywords": "api defined fontawesome icons internal map mapping names object rxstatuscolumn statuses"
+    },
+    {
+      "section": "api",
+      "id": "rxStatusColumn.service:rxStatusMappings",
+      "shortName": "rxStatusMappings",
+      "type": "service",
+      "moduleName": "rxStatusColumn",
+      "shortDescription": "A set of methods for creating mappings between a product&#39;s notion",
+      "keywords": "api creating encore-ui identifiers mappings methods notion product rxstatuscolumn service set status statuses"
+    },
+    {
+      "section": "api",
+      "id": "rxToggle",
+      "shortName": "rxToggle",
+      "type": "overview",
+      "moduleName": "rxToggle",
+      "shortDescription": "rxToggle Component",
+      "keywords": "api component directive directives overview rxtoggle"
+    },
+    {
+      "section": "api",
+      "id": "rxToggle.directive:rxToggle",
+      "shortName": "rxToggle",
+      "type": "directive",
+      "moduleName": "rxToggle",
+      "shortDescription": "Adds a &#39;click&#39; listener to an element that, when fired, toggles the boolean scope property defined",
+      "keywords": "adds api boolean click defined directive element fired listener property rxtoggle scope toggle toggles true"
+    },
+    {
+      "section": "api",
+      "id": "rxToggleSwitch",
+      "shortName": "rxToggleSwitch",
+      "type": "overview",
+      "moduleName": "rxToggleSwitch",
+      "shortDescription": "rxToggleSwitch Component",
+      "keywords": "api component directive directives overview rxtoggleswitch"
+    },
+    {
+      "section": "api",
       "id": "rxToggleSwitch.directive:rxToggleSwitch",
       "shortName": "rxToggleSwitch",
       "type": "directive",
       "moduleName": "rxToggleSwitch",
       "shortDescription": "Displays an on/off switch toggle",
       "keywords": "api bind directive disabled displays foo function indicates input ng-model property rxtoggleswitch scope switch toggle toggled"
+    },
+    {
+      "section": "api",
+      "id": "rxTokenInterceptor",
+      "shortName": "rxTokenInterceptor",
+      "type": "overview",
+      "moduleName": "rxTokenInterceptor",
+      "shortDescription": "rxTokenInterceptor Component",
+      "keywords": "api component overview rxtokeninterceptor service services tokeninterceptor"
+    },
+    {
+      "section": "api",
+      "id": "rxTokenInterceptor.service:TokenInterceptor",
+      "shortName": "TokenInterceptor",
+      "type": "service",
+      "moduleName": "rxTokenInterceptor",
+      "shortDescription": "Simple injector which will intercept http request and inject the",
+      "keywords": "$httpprovider angular api config encore encoreapp http identity inject injector intercept interceptors module push rackspace request rxsession rxtokeninterceptor service simple token tokeninterceptor ui"
+    },
+    {
+      "section": "api",
+      "id": "rxUnauthorizedInterceptor",
+      "shortName": "rxUnauthorizedInterceptor",
+      "type": "overview",
+      "moduleName": "rxUnauthorizedInterceptor",
+      "shortDescription": "rxUnauthorizedInterceptor Component",
+      "keywords": "api component overview rxunauthorizedinterceptor service services unauthorizedinterceptor"
+    },
+    {
+      "section": "api",
+      "id": "rxUnauthorizedInterceptor.service:UnauthorizedInterceptor",
+      "shortName": "UnauthorizedInterceptor",
+      "type": "service",
+      "moduleName": "rxUnauthorizedInterceptor",
+      "shortDescription": "Simple injector which will intercept http responses. If a 401 is returned,",
+      "keywords": "$httpprovider $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
+    },
+    {
+      "section": "api",
+      "id": "tabs",
+      "shortName": "tabs",
+      "type": "overview",
+      "moduleName": "tabs",
+      "shortDescription": "tabs Component",
+      "keywords": "api component overview tabs"
+    },
+    {
+      "section": "api",
+      "id": "tooltips",
+      "shortName": "tooltips",
+      "type": "overview",
+      "moduleName": "tooltips",
+      "shortDescription": "tooltips Component",
+      "keywords": "api component overview tooltips"
+    },
+    {
+      "section": "api",
+      "id": "typeahead",
+      "shortName": "typeahead",
+      "type": "overview",
+      "moduleName": "typeahead",
+      "shortDescription": "typeahead Component",
+      "keywords": "api component overview typeahead"
     }
   ],
   "apis": {

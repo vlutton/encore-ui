@@ -22,7 +22,6 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 // Adapted from https://github.com/angular/material/commits/master/src/core/style/layout.scss
 // commit 4216d242d78f1bdadd89ebd59e1d80b9cc4f2978
 
-@import 'flexbox';
 @import 'mixins';
 @import 'vars';
 
@@ -30,194 +29,194 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 // ------------------------------
 
 [layout] {
-  .box-sizing(border-box);
-  .flexbox;
+    .box-sizing(border-box);
+    display: flex;
 }
 
 [layout="column"] {
-  .flex-direction(column);
+    flex-direction: column;
 }
 
 [layout="row"] {
-  .flex-direction(row);
+    flex-direction: row;
 }
 
 [layout-padding],
 [layout-padding] > [flex] {
-  padding: @layout-gutter-width / 2;
+    padding: @layout-gutter-width / 2;
 }
 
 [layout-wrap] {
-  .flex-wrap(wrap);
+    flex-wrap: wrap;
 }
 
 [layout-fill] {
-  margin: 0;
-  min-height: 100%;
-  width: 100%;
+    margin: 0;
+    min-height: 100%;
+    width: 100%;
 }
 @-moz-document url-prefix() {
-  [layout-fill] {
-    margin: 0;
-    width: 100%;
-    min-height: auto;
-    height: inherit;
-  }
+    [layout-fill] {
+        margin: 0;
+        width: 100%;
+        min-height: auto;
+        height: inherit;
+    }
 }
 
 
 // Used to concatenate selectors with '-' delimiter or without if no value provided
 // Only works for variable name @selector
 .concat-selector(@base, @value) when not (@value = null) {
-  @selector: ~'@{base}-@{value}';
+    @selector: ~'@{base}-@{value}';
 }
 .concat-selector(@base, @value) when (@value = null) {
-  @selector: ~'@{base}';
+    @selector: ~'@{base}';
 }
 
 
 // Vertical and horizontal margins, except on outside and on flex-ordered elements
 .layout-margin-for-name(@divisor, @suffix: null) {
-  .concat-selector('flex', @suffix);
-  [layout-margin] > [@{selector}]:not([flex-order])  {
-    margin: (@layout-gutter-width / @divisor);
-    &:first-child { margin-left: 0; }
-    &:last-child { margin-right: 0; }
-  }
+    .concat-selector('flex', @suffix);
+    [layout-margin] > [@{selector}]:not([flex-order])  {
+        margin: (@layout-gutter-width / @divisor);
+        &:first-child { margin-left: 0; }
+        &:last-child { margin-right: 0; }
+    }
 }
 
 
 .flex-order-for-name(@suffix: null) {
-  .concat-selector('flex-order', @suffix);
-  [@{selector}].margin-right {
-    margin-right: @layout-gutter-width / 2;
-  }
-  [@{selector}].margin-left {
-    margin-left: @layout-gutter-width / 2;
-  }
-  .loop (@i) when (@i < 10) {
-    [@{selector}="@{i}"] { order: @i; }
-    .loop (@i + 1);
-  }
-  .loop (0);
+    .concat-selector('flex-order', @suffix);
+    [@{selector}].margin-right {
+        margin-right: @layout-gutter-width / 2;
+    }
+    [@{selector}].margin-left {
+        margin-left: @layout-gutter-width / 2;
+    }
+    .loop (@i) when (@i < 10) {
+        [@{selector}="@{i}"] { order: @i; }
+        .loop (@i + 1);
+    }
+    .loop (0);
 }
 
 .layout-for-name(@name) {
-  @selector: ~'layout-@{name}';
-  [@{selector}] {
-    .box-sizing(border-box);
-    .flexbox;
-  }
-  [@{selector}="column"] {
-    .flex-direction(col);
-  }
-  [@{selector}="row"] {
-    .flex-direction(row);
-  }
+    @selector: ~'layout-@{name}';
+    [@{selector}] {
+        .box-sizing(border-box);
+        display: flex;
+    }
+    [@{selector}="column"] {
+        flex-direction: col;
+    }
+    [@{selector}="row"] {
+        flex-direction: row ;
+    }
 }
 
 .offset-for-name(@suffix: null) {
-  .concat-selector('flex-offset', @suffix);
-  .loop (@i) when (@i < 20) {
-    @offset: @i * 5;
-    [@{selector}="@{offset}"] {
-      margin-left: ~"@{offset}%";
+    .concat-selector('flex-offset', @suffix);
+    .loop (@i) when (@i < 20) {
+        @offset: @i * 5;
+        [@{selector}="@{offset}"] {
+            margin-left: ~"@{offset}%";
+        }
+        .loop (@i + 1);
     }
-    .loop (@i + 1);
-  }
-  .loop (1);
+    .loop (1);
 
-  [@{selector}="33"], [@{selector}="34"] {
-    margin-left: 33.33%;
-  }
-  [@{selector}="66"], [@{selector}="67"] {
-    margin-left: 66.66%;
-  }
+    [@{selector}="33"], [@{selector}="34"] {
+        margin-left: 33.33%;
+    }
+    [@{selector}="66"], [@{selector}="67"] {
+        margin-left: 66.66%;
+    }
 }
 
 
 .flex-properties-for-name(@suffix: null) {
-  .concat-selector('flex', @suffix);
+    .concat-selector('flex', @suffix);
 
-  [@{selector}] {
-    .box-sizing(border-box);
-    .flex(1);
-  }
+    [@{selector}] {
+        .box-sizing(border-box);
+        flex: 1;
+    }
 
-  // (0-20) * 5 = 0-100%
-  .loop (@i) when (@i < 21) {
-    @flex: @i * 5;
-    [@{selector}="@{flex}"] {
-      .flex(0 0 ~'@{flex}%');
+    // (0-20) * 5 = 0-100%
+    .loop (@i) when (@i < 21) {
+        @flex: @i * 5;
+        [@{selector}="@{flex}"] {
+            flex: 0 0 ~'@{flex}%';
+        }
+        [layout="row"] > [@{selector}="@{flex}"] {
+            max-width: ~'@{flex}%';
+        }
+        [layout="column"] > [@{selector}="@{flex}"] {
+            max-height: ~'@{flex}%';
+        }
+        .loop (@i + 1);
     }
-    [layout="row"] > [@{selector}="@{flex}"] {
-      max-width: ~'@{flex}%';
-    }
-    [layout="column"] > [@{selector}="@{flex}"] {
-      max-height: ~'@{flex}%';
-    }
-    .loop (@i + 1);
-  }
-  .loop (0);
+    .loop (0);
 
-  [@{selector}="33"], [@{selector}="34"] {
-    .flex(0 0 33.33%);
-  }
-  [@{selector}="66"], [@{selector}="67"] {
-    .flex(0 0 66.66%);
-  }
+    [@{selector}="33"], [@{selector}="34"] {
+        flex: 0 0 33.33%;
+    }
+    [@{selector}="66"], [@{selector}="67"] {
+        flex: 0 0 66.66%;
+    }
 
-  [layout="row"] {
-    > [@{selector}="33"], > [@{selector}="34"] {
-      max-width: 33.33%;
+    [layout="row"] {
+        > [@{selector}="33"], > [@{selector}="34"] {
+            max-width: 33.33%;
+        }
+        > [@{selector}="66"], > [@{selector}="67"] {
+            max-width: 66.66%;
+        }
     }
-    > [@{selector}="66"], > [@{selector}="67"] {
-      max-width: 66.66%;
+    [layout="column"] {
+        > [@{selector}="33"], > [@{selector}="34"] {
+            max-height: 33.33%;
+        }
+        > [@{selector}="66"], > [@{selector}="67"] {
+            max-height: 66.66%;
+        }
     }
-  }
-  [layout="column"] {
-    > [@{selector}="33"], > [@{selector}="34"] {
-      max-height: 33.33%;
-    }
-    > [@{selector}="66"], > [@{selector}="67"] {
-      max-height: 66.66%;
-    }
-  }
 }
 
 
 .layout-align-for-name(@suffix: null) {
-  .concat-selector('layout', @suffix);
+    .concat-selector('layout', @suffix);
 
-  [@{selector}="row"] {
-    .concat-selector('layout-align', @suffix);
+    [@{selector}="row"] {
+        .concat-selector('layout-align', @suffix);
 
-    &[@{selector}~="left"]    { .justify-content(flex-start); }
-    &[@{selector}~="center"]  { .justify-content(center); }
-    &[@{selector}~="right"]   { .justify-content(flex-end); }
-    &[@{selector}~="justify"] { .justify-content(space-between); }
-    &[@{selector}~="spread"]  { .justify-content(space-around); }
+        &[@{selector}~="left"]    { justify-content: flex-start; }
+        &[@{selector}~="center"]  { justify-content: center; }
+        &[@{selector}~="right"]   { justify-content: flex-end; }
+        &[@{selector}~="justify"] { justify-content: space-between; }
+        &[@{selector}~="spread"]  { justify-content: space-around; }
 
-    &[@{selector}~="top"]     { .align-items(flex-start); }
-    &[@{selector}~="middle"]  { .align-items(center); }
-    &[@{selector}~="bottom"]  { .align-items(flex-end); }
-    &[@{selector}~="stretch"] { .align-items(stretch); }
-  }
+        &[@{selector}~="top"]     { align-items: flex-start; }
+        &[@{selector}~="middle"]  { align-items: center; }
+        &[@{selector}~="bottom"]  { align-items: flex-end; }
+        &[@{selector}~="stretch"] { align-items: stretch; }
+    }
 
-  [@{selector}="column"] {
-    .concat-selector('layout-align', @suffix);
+    [@{selector}="column"] {
+        .concat-selector('layout-align', @suffix);
 
-    &[@{selector}~="top"]     { .justify-content(flex-start); }
-    &[@{selector}~="middle"]  { .justify-content(center); }
-    &[@{selector}~="bottom"]  { .justify-content(flex-end); }
-    &[@{selector}~="justify"] { .justify-content(space-between); }
-    &[@{selector}~="spread"]  { .justify-content(space-around); }
+        &[@{selector}~="top"]     { justify-content: flex-start; }
+        &[@{selector}~="middle"]  { justify-content: center; }
+        &[@{selector}~="bottom"]  { justify-content: flex-end; }
+        &[@{selector}~="justify"] { justify-content: space-between; }
+        &[@{selector}~="spread"]  { justify-content: space-around; }
 
-    &[@{selector}~="left"]    { .align-items(flex-start); }
-    &[@{selector}~="center"]  { .align-items(center); }
-    &[@{selector}~="right"]   { .align-items(flex-end); }
-    &[@{selector}~="stretch"] { .align-items(stretch); }
-  }
+        &[@{selector}~="left"]    { align-items: flex-start; }
+        &[@{selector}~="center"]  { align-items: center; }
+        &[@{selector}~="right"]   { align-items: flex-end; }
+        &[@{selector}~="stretch"] { align-items: stretch; }
+    }
 }
 
 // Flex attributes for layout children
@@ -373,11 +372,11 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     width: auto;
   }
 
-  .dark-blue { background-color: #4881c0; }
-  .light-blue { background-color: #86cafd; }
-  .dark-green { background-color: #24b56a; }
-  .light-green { background-color: #c8e5bf; }
-  .orange { background-color: #db7820; }
+  .dark-blue { background-color: @blue; }
+  .light-blue { background-color: @light-blue; }
+  .dark-green { background-color: @green; }
+  .light-green { background-color: @light-green; }
+  .orange { background-color: @orange; }
 
   .small-box-container {
     width: 95%;
@@ -446,7 +445,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 @progress-bg: #f5f5f5;
 
 //** Default progress bar color
-@progress-bar-bg: #86cafd;
+@progress-bar-bg: @light-blue;
 
 //** Secondary progress bar color
 @progress-bar-secondary-bg: @infoBlue;
@@ -1149,7 +1148,6 @@ body:hover .visually-hidden button {
 }
 
 @import 'vars';
-@import 'flexbox';
 @import 'mixins';
 
 .rx-app {
@@ -1157,16 +1155,16 @@ body:hover .visually-hidden button {
     @appMenuWidth: 300px;
 
     min-height: 100%;
-    .flexbox();
-    .flex-direction(row);
+    display: flex;
+    flex-direction: row;
     background: @appBg;
 
     .rx-app-content {
-        .flex(1 1 0);
+        flex: 1 1 0;
     }
 
     .rx-app-menu {
-        .flex(0 0 @appMenuWidth);
+        flex: 0 0 @appMenuWidth;
         color: #fff;
         font-size: 15px;
         font-weight: 300;
@@ -1253,7 +1251,7 @@ body:hover .visually-hidden button {
 
     &.collapsed {
         .rx-app-menu {
-            .flex(0 0 25px);
+            flex: 0 0 25px;
             padding-bottom: 0;
             position: relative;
         }
@@ -1895,7 +1893,7 @@ thead th[rx-bulk-select-header-check] {
     background: @buttonDefaultBg;
     color: @buttonColor;
     border: 0;
-    font-size: 1.1em;
+    font-size: 14px;
     padding: 7px 13px;
     margin-bottom: 10px;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.320, 1.275);
@@ -1911,24 +1909,24 @@ thead th[rx-bulk-select-header-check] {
 
     // Size Variations
     &.xl {
-        font-size: 1.25em;
+        font-size: 16px;
         padding: 20px 30px;
     }
 
     &.lg {
-        font-size: 1.15em;
+        font-size: 15px;
         padding: 15px 26px;
     }
 
     &.sm {
         padding: 5px 10px;
-        font-size: 1em;
+        font-size: 13px;
     }
 
     &.xs {
         padding: 3px 7px;
         margin-bottom: 5px;
-        font-size: .9em;
+        font-size: 12px;
     }
 
     // Color Variations
@@ -2132,10 +2130,10 @@ thead th .btn-link {
         text-align: right;
         color: @subduedTitle;
         &.near-limit {
-            color: #db7820;
+            color: @orange;
         }
         &.over-limit {
-            color: #fc0f1d;
+            color: @red;
         }
     }
 }
@@ -2286,7 +2284,7 @@ rx-collapse {
   }
   .sml-title {
     cursor: pointer;
-    color:#898989;
+    color: @cancel-gray;
     font-size: 10pt;
   }
 
@@ -2360,16 +2358,16 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 // deprecated
 .form-item {
     margin-top: 5px;
-    .flexbox();
-    .flex-flow(row nowrap);
-    .justify-content(flex-start);
-    .align-items(baseline);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
 }
 
 // deprecated
 .text-area-label {
     &.form-item {
-        .align-items(flex-start);
+        align-items: flex-start;
     }
 }
 
@@ -2392,16 +2390,16 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 .field-legend, {
     color: @inputLabelColor;
     font-size: 1.1em;
-    .flex(0 0 @inputLabelWidth);
+    flex: 0 0 @inputLabelWidth;
 }
 
 // deprecated
 .field-content {
-    .flexbox();
-    .flex(1 auto);
-    .flex-flow(row wrap);
-    .justify-content(flex-start);
-    .align-items(center);
+    display: flex;
+    flex: 1 auto;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
 
     .field-prefix,
     .field-suffix {
@@ -2415,7 +2413,7 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
     }
 
     .field-description {
-        .flex(1 100%);
+        flex: 1 100%;
         font-size: 0.8em;
         font-style: italic;
         margin-top: 5px;
@@ -2612,13 +2610,13 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 // DEPRECATED - No longer valid
 .rx-form.layout-compressed {
     .rx-form-row {
-        .flexbox();
-        .flex-wrap(nowrap);
-        .flex(1 auto);
+        display: flex;
+        flex-wrap: nowrap;
+        flex: 1 auto;
 
         .form-item {
             padding: 0px 3px;
-            .flex(1);
+            flex: 1;
         }
     }
 
@@ -3209,12 +3207,12 @@ rx-metadata {
             padding: @tableCellPadding;
             cursor: pointer;
 
-            .flexbox();
+            display: flex;
             // vertically centered content in label
-            .align-items(center);
+            align-items: center;
 
             .alignWrapper {
-                .flex(1 1 auto);
+                flex: 1 1 auto;
             }
         }
 
@@ -3274,8 +3272,8 @@ rx-metadata {
 
 .rx-paginate {
     .pagination {
-        .flexbox();
-        .flex-flow(row nowrap);
+        display: flex;
+        flex-flow: row nowrap;
         padding-left: 0;
         width: 100%;
     }
@@ -3439,285 +3437,284 @@ rx-metadata {
 }
 
 /*
- * rxRadio
- */
+* rxRadio
+*/
 .rxRadio {
-  display: inline-block;
-  width: @rxRadio-size;
-  height: @rxRadio-size;
-  background-color: transparent;
-  position: relative;
+    display: inline-block;
+    width: @rxRadio-size;
+    height: @rxRadio-size;
+    background-color: transparent;
+    position: relative;
 
-  input[type="radio"],
-  .fake-radio {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
-    outline: 0px;
-  }
-
-  .fake-radio {
-    .box-sizing(border-box);
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-    .border-radius(100%);
-    overflow: hidden;
-    border: @rxRadio-border-width solid @inputBorderColor;
-    background-color: @rxRadio-background-color;
-
-    // perfect center alignment for tick
-    .flexbox();
-    .flex-flow(row nowrap);
-    .align-items(center);
-    .justify-content(center);
-
-    .tick {
-      .flex(0 0 auto);
-      .box-sizing(border-box);
-      .border-radius(@rxRadio-tick-border-radius);
-      width: @rxRadio-tick-size;
-      height: @rxRadio-tick-size;
-      background-color: transparent;
-    }
-  }//.fake-radio
-
-  &.rx-disabled + label {
-    color: @inputColorDisabled;
-  }
-
-  input[type="radio"] {
-    z-index: 1;
-    height: 110%;
-    width: 110%;
-    opacity: 0;
-    cursor: pointer;
-
-    // enabled checked
-    &:checked + .fake-radio {
-      border-color: @rxRadio-color-selected;
-
-      .tick {
-        background-color: @rxRadio-color-selected;
-      }
+    input[type="radio"],
+    .fake-radio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        outline: 0px;
     }
 
-    &.ng-invalid {
-      // enabled unchecked error
-      & + .fake-radio {
-        border: @rxRadio-border-width-invalid solid @rxRadio-color-error;
+    .fake-radio {
+        .box-sizing(border-box);
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        .border-radius(100%);
+        overflow: hidden;
+        border: @rxRadio-border-width solid @inputBorderColor;
+        background-color: @rxRadio-background-color;
+
+        // perfect center alignment for tick
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
 
         .tick {
-          .border-radius(@rxRadio-tick-border-radius-invalid);
-          width: @rxRadio-tick-size-invalid;
-          height: @rxRadio-tick-size-invalid;
+            flex: 0 0 auto;
+            .box-sizing(border-box);
+            .border-radius(@rxRadio-tick-border-radius);
+            width: @rxRadio-tick-size;
+            height: @rxRadio-tick-size;
+            background-color: transparent;
         }
-      }
+    }//.fake-radio
 
-      &:checked + .fake-radio .tick {
-        background: @rxRadio-color-error;
-      }
+    &.rx-disabled + label {
+        color: @inputColorDisabled;
     }
 
-    // disabled trumps invalid
-    &[disabled] {
-      cursor: not-allowed;
+    input[type="radio"] {
+        z-index: 1;
+        height: 110%;
+        width: 110%;
+        opacity: 0;
+        cursor: pointer;
 
-      // disabled, unchecked
-      & + .fake-radio {
-        border: 1px solid @inputBackgroundDisabled;
+        // enabled checked
+        &:checked + .fake-radio {
+            border-color: @rxRadio-color-selected;
 
-        .tick {
-          width: @rxRadio-tick-size;
-          height: @rxRadio-tick-size;
+            .tick {
+                background-color: @rxRadio-color-selected;
+            }
         }
-      }
 
-      &:checked + .fake-radio .tick {
-        background: @inputBackgroundDisabled;
-      }
-    }//[disabled]
-  }//input
+        &.ng-invalid {
+            // enabled unchecked error
+            & + .fake-radio {
+                border: @rxRadio-border-width-invalid solid @rxRadio-color-error;
+
+                .tick {
+                    .border-radius(@rxRadio-tick-border-radius-invalid);
+                    width: @rxRadio-tick-size-invalid;
+                    height: @rxRadio-tick-size-invalid;
+                }
+            }
+
+            &:checked + .fake-radio .tick {
+                background: @rxRadio-color-error;
+            }
+        }
+
+        // disabled trumps invalid
+        &[disabled] {
+            cursor: not-allowed;
+
+            // disabled, unchecked
+            & + .fake-radio {
+                border: 1px solid @inputBackgroundDisabled;
+
+                .tick {
+                    width: @rxRadio-tick-size;
+                    height: @rxRadio-tick-size;
+                }
+            }
+
+            &:checked + .fake-radio .tick {
+                background: @inputBackgroundDisabled;
+            }
+        }//[disabled]
+    }//input
 }//.rxRadio
 
 /*
- * rxSearchBox
- */
+* rxSearchBox
+*/
 rx-search-box {
-  display: inline-block;
-  width: @rxSearchBox-width;
-  min-width: @rxSearchBox-min-width;
-
-  // wrapper fits full width
-  .rxSearchBox-wrapper {
-    .box-sizing(border-box);
-    border: @rxSearchBox-border;
-    min-height: @rxSearchBox-min-height;
+    display: inline-block;
+    width: @rxSearchBox-width;
     min-width: @rxSearchBox-min-width;
-    padding: 0px;
 
-    background: @rxSearchBox-background;
-    color: @rxSearchBox-color;
+    // wrapper fits full width
+    .rxSearchBox-wrapper {
+        .box-sizing(border-box);
+        border: @rxSearchBox-border;
+        min-height: @rxSearchBox-min-height;
+        min-width: @rxSearchBox-min-width;
+        padding: 0px;
 
-    // as flex container
-    .flexbox();
-    .flex-flow(row nowrap);
-    .justify-content(flex-start);
+        background: @rxSearchBox-background;
+        color: @rxSearchBox-color;
 
-    .rxSearchBox-input {
-      .ResetFormInput();
-      .flex(1 1);
-      .box-sizing(border-box);
+        // as flex container
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
 
-      background: transparent;
-      padding: @rxSearchBox-padding-vertical @rxSearchBox-padding-horizontal;
+        .rxSearchBox-input {
+            .ResetFormInput();
+            flex: 1 1;
+            .box-sizing(border-box);
 
-      /*
-      This gets around FireFox setting the min-width to a value
-      that overflows content out of the .rxSearch container.
-       */
-      min-width: (@rxSearchBox-min-width - @rxSearchBox-clear-width - (2 * @rxSearchBox-padding-horizontal));
+            background: transparent;
+            padding: @rxSearchBox-padding-vertical @rxSearchBox-padding-horizontal;
 
-      &[disabled] {
-        color: @rxSearchBox-color-disabled;
-        background: @rxSearchBox-background-disabled;
-        cursor: not-allowed;
-      }
-    }//.rxSearchBox-input
+            /*
+            This gets around FireFox setting the min-width to a value
+            that overflows content out of the .rxSearch container.
+            */
+            min-width: (@rxSearchBox-min-width - @rxSearchBox-clear-width - (2 * @rxSearchBox-padding-horizontal));
 
-    .rxSearchBox-clear {
-      .box-sizing(border-box);
-      cursor: pointer;
-      //font-size: 0.75em;
-      color: @rxSearchBox-color-icon;
+            &[disabled] {
+                color: @rxSearchBox-color-disabled;
+                background: @rxSearchBox-background-disabled;
+                cursor: not-allowed;
+            }
+        }//.rxSearchBox-input
 
-      // as flex item
-      .flex(0 0 @rxSearchBox-clear-width);
+        .rxSearchBox-clear {
+            .box-sizing(border-box);
+            cursor: pointer;
+            //font-size: 0.75em;
+            color: @rxSearchBox-color-icon;
 
-      // as flex container
-      .flexbox();
-      .align-items(center);
-      .justify-content(center);
+            // as flex item
+            flex: 0 0 @rxSearchBox-clear-width;
 
-      .rxSearchBox-clear-icon {
-        min-width: @rxSearchBox-clear-width;
-      }
-    }//.rxSearchBox-clear
-  }//.rxSearchBox-wrapper
+            // as flex container
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .rxSearchBox-clear-icon {
+                min-width: @rxSearchBox-clear-width;
+            }
+        }//.rxSearchBox-clear
+    }//.rxSearchBox-wrapper
 }//rx-search-box
 
 /*
- * rxSelect
- */
+* rxSelect
+*/
 .rxSelect {
-  .box-sizing(border-box);
-  display: block;
-  position: relative;
-  color: @rxSelect-color;
-  background: @rxSelect-background;
-  .border-radius(@rxSelect-border-radius);
-
-  // Element should be resizable via wrapper alone
-  min-width: @rxSelect-min-width;
-  height: @rxSelect-height;
-
-  &.rx-disabled {
-    color: @inputColorDisabled;
-    background: @inputBackgroundDisabled;
-  }
-
-  // position elements in wrapper
-  select,
-  rx-multi-select,
-  .fake-select {
     .box-sizing(border-box);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  select,
-  rx-multi-select {
-    z-index: 0;
-    cursor: pointer;
-
-    // reset native styling
-    border: none !important;
-    outline: none !important;
-    background: transparent;
-    &:-moz-focusring {
-      // FF uses text color to draw ring. Make it transparent
-      color: transparent;
-      // However, we still need to display our select <option> text
-      text-shadow: 0 0 0 @rxSelect-color;
-    }
-
-    & + .fake-select {
-      border-color: @inputBorderColor;
-      border-width: 1px;
-    }
-
-    &.ng-invalid + .fake-select {
-      border-color: @rxSelect-border-color-invalid;
-      border-width: 2px;
-
-      .select-trigger {
-        color: @rxSelect-trigger-color-invalid;
-      }
-    }
-
-    // Disabled Trumps All
-    &[disabled] {
-      cursor: not-allowed ;
-
-      & + .fake-select {
-        border-color: @rxSelect-border-color-disabled;
-        border-width: 1px;
-
-        .select-trigger {
-          background: @rxSelect-background-disabled;
-          border-left-width: 0px;
-          border-left-color: @rxSelect-color-disabled;
-          color: @rxSelect-trigger-color-disabled;
-        }
-      }
-    }//[disabled]
-  }//select
-
-  .fake-select {
-    z-index: 10;
-    border: @rxSelect-border-width solid @rxSelect-border-color;
-    overflow: hidden;
+    display: block;
+    position: relative;
+    color: @rxSelect-color;
+    background: @rxSelect-background;
     .border-radius(@rxSelect-border-radius);
-    .flexbox();
-    .justify-content(flex-end);
-    .flex-flow(row nowrap);
 
-    // This allow pointer events to pass THROUGH to the
-    // native <select> element
-    pointer-events: none !important;
+    // Element should be resizable via wrapper alone
+    min-width: @rxSelect-min-width;
+    height: @rxSelect-height;
 
-    // Custom trigger button will cover native <select> button
-    .select-trigger {
-      .box-sizing(border-box);
-      width: @rxSelect-trigger-width;
-      background: @rxSelect-trigger-background;
-      color: @rxSelect-trigger-color;
+    &.rx-disabled {
+        color: @inputColorDisabled;
+        background: @inputBackgroundDisabled;
+    }
 
-      // perfectly center the trigger icon
-      .flexbox();
-      .align-items(center);
-      .justify-content(center);
-    }//.select-trigger
-  }//.fake-select
+    // position elements in wrapper
+    select,
+    rx-multi-select,
+    .fake-select {
+        .box-sizing(border-box);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    select,
+    rx-multi-select {
+        z-index: 0;
+        cursor: pointer;
+
+        // reset native styling
+        border: none !important;
+        outline: none !important;
+        background: transparent;
+        &:-moz-focusring {
+            // FF uses text color to draw ring. Make it transparent
+            color: transparent;
+            // However, we still need to display our select <option> text
+            text-shadow: 0 0 0 @rxSelect-color;
+        }
+
+        & + .fake-select {
+            border-color: @inputBorderColor;
+            border-width: 1px;
+        }
+
+        &.ng-invalid + .fake-select {
+            border-color: @rxSelect-border-color-invalid;
+            border-width: 2px;
+
+            .select-trigger {
+                color: @rxSelect-trigger-color-invalid;
+            }
+        }
+
+        // Disabled Trumps All
+        &[disabled] {
+            cursor: not-allowed ;
+
+            & + .fake-select {
+                border-color: @rxSelect-border-color-disabled;
+                border-width: 1px;
+
+                .select-trigger {
+                    background: @rxSelect-background-disabled;
+                    border-left-width: 0px;
+                    border-left-color: @rxSelect-color-disabled;
+                    color: @rxSelect-trigger-color-disabled;
+                }
+            }
+        }//[disabled]
+    }//select
+
+    .fake-select {
+        z-index: 10;
+        border: @rxSelect-border-width solid @rxSelect-border-color;
+        overflow: hidden;
+        .border-radius(@rxSelect-border-radius);
+        display: flex;
+        justify-content: flex-end;
+        flex-flow: row nowrap;
+
+        // This allow pointer events to pass THROUGH to the
+        // native <select> element
+        pointer-events: none !important;
+
+        // Custom trigger button will cover native <select> button
+        .select-trigger {
+            .box-sizing(border-box);
+            width: @rxSelect-trigger-width;
+            background: @rxSelect-trigger-background;
+            color: @rxSelect-trigger-color;
+
+            // perfectly center the trigger icon
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }//.select-trigger
+    }//.fake-select
 }//.rxSelect
-
 
 /*
  * rxSelectFilter
@@ -3927,7 +3924,7 @@ td.rx-status-column {
     &.status-WARNING {
         background: #fdbc3c;
         i {
-            color: #db7820;
+            color: @orange;
         }
     }
     &.status-ERROR {
@@ -3937,13 +3934,13 @@ td.rx-status-column {
         }
     }
     &.status-INFO {
-        background: #86cafd;
+        background: @light-blue;
         i {
             color: #287BBD;
         }
     }
     &.status-DISABLED {
-        background: #dededd;
+        background: @disabled-gray;
     }
 
     .fa-exclamation-circle {
@@ -3951,6 +3948,90 @@ td.rx-status-column {
     }
 
 
+}
+
+/*
+ * rxTags
+ */
+rx-tags {
+    display: block;
+
+    &[disabled] .rx-tags {
+        border: none;
+
+        .fa-times {
+            display: none;
+        }
+
+        &:hover {
+          cursor: default;
+        }
+    }
+}
+.rx-tags {
+
+    background-color: @white;
+    border: 1px solid @rxForm-input-border-color;
+
+    &:hover {
+        cursor: text;
+    }
+
+    input {
+        width: 200px;
+        padding: 3px 5px;
+        margin: 8px 0px;
+    }
+
+    .tag {
+        display: inline-block;
+        margin: 6px 10px;
+        line-height: @rxTag-height;
+        border-radius: @rxTag-height / 2;
+        vertical-align: top;
+        background-color: #e0e0e0;
+        &:hover {
+            cursor: default;
+        }
+
+        &:focus {
+            background-color: #007bff;
+            outline: none;
+            .fa, .text, .category {
+                color: @white;
+            }
+        }
+
+        & > * {
+            vertical-align: middle;
+        }
+
+        .text {
+            font-size: 12px;
+            margin: 0px 7px 0px 10px;
+            color: #727272;
+        }
+
+        .category {
+            font-size: 10px;
+            margin-right: 20px;
+            color: #878787;
+        }
+
+        .fa-tag {
+            margin-left: @rxTag-height / 2;
+            color: #999999;
+        }
+
+        .fa-times {
+            margin-right: @rxTag-height / 2;
+            color: #b8b8b8;
+            &:hover {
+                cursor: pointer;
+                color: @warnRedHover;
+            }
+        }
+    }
 }
 
 /*
@@ -4070,12 +4151,12 @@ Provides styling for the Angular-UI tab HTML
 ```
 */
 .nav-tabs {
-    .flexbox();
+    display: flex;
     border-bottom: 9px solid @tabBorder;
     clear: both;
 
     li {
-        .flex(0 0 auto);
+        flex: 0 0 auto;
         font-size: 14px;
         margin-right: 1px;
     }

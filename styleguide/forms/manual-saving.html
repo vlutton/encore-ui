@@ -3,18 +3,18 @@
         <rx-notification ng-if="form.$dirty" type="info" stack="page">
             Changes made are not automatically saved. Click "Save Now" to save changes.
         </rx-notification>
-        <span class="title subdued">
+        <h3 class="subdued">
             <span ng-show="lastSaved">Last saved {{lastSaved | date:'medium'}}</span>
             <span ng-hide="lastSaved">Unsaved changes.</span>
-        </span>
-        <rx-button
-            classes="submit xs inline"
-            ng-click="form.$setPristine(); save()"
-            default-msg="Save Now"
-            toggle-msg="Saving"
-            toggle="saving"
-            disable="form.$invalid || form.$pristine">
-        </rx-button>
+            <rx-button
+                classes="submit xs inline"
+                ng-click="form.$setPristine(); save()"
+                default-msg="Save Now"
+                toggle-msg="Saving"
+                toggle="saving"
+                disable="form.$invalid || form.$pristine">
+            </rx-button>
+        </h3>
         <rx-form-section style="width: 200px;">
             <rx-field>
                 <rx-field-name>Field:</rx-field-name>

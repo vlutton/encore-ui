@@ -185,7 +185,39 @@
 158
 159
 160
-161</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -261,14 +293,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -344,12 +371,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">48</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxStatusColumn', [])
-&nbsp;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @ngdoc overview
+ * @name rxStatusColumn
+ * @description
+ * # rxStatusColumn Component
+ *
+ * [TBD]
+ *
+ * ## Directives
+ * * {@link rxStatusColumn.directive:rxStatusColumn rxStatusColumn}
+ * * {@link rxStatusColumn.directive:rxStatusHeader rxStatusHeader}
+ *
+ * ## Objects/Values
+ * * {@link rxStatusColumn.object:rxStatusColumnIcons rxStatusColumnIcons}
+ *
+ * ## Services
+ * * {@link rxStatusColumn.service:rxStatusMappings rxStatusMappings}
+ */
+angular.module('encore.ui.rxStatusColumn', [])
 /**
  * @ngdoc directive
- * @name encore.ui.rxStatusColumn:rxStatusColumn
+ * @name rxStatusColumn.directive:rxStatusColumn
+ * @restrict A
+ * @scope
  * @description
  * A directive for drawing colored status columns in a table. This
  * takes the place of the &lt;td&gt;&lt;/td&gt; for the column it's in.
@@ -357,7 +402,7 @@
  * @param {String} status The status to draw
  * @param {String} [api] Optionally specify which API mapping to use for the status
  * @param {String} [tooltip] The string to use for the tooltip. If omitted,
- *                           it will default to using the passed in status 
+ *                           it will default to using the passed in status
  */
 .directive('rxStatusColumn', function (rxStatusMappings, rxStatusColumnIcons) {
     return {
@@ -400,10 +445,9 @@
         }
     };
 })
-&nbsp;
 /**
  * @ngdoc object
- * @name encore.ui.rxStatusColumn:rxStatusColumnIcons
+ * @name rxStatusColumn.object:rxStatusColumnIcons
  * @description
  * Mapping of internal statuses to FontAwesome icons.
  * The keys map to the names defined in rxStatusColumn.less
@@ -413,10 +457,9 @@
     'WARNING': 'fa-exclamation-triangle',
     'INFO': 'fa-info-circle',
 })
-&nbsp;
 /**
  * @ngdoc directive
- * @name encore.ui.rxStatusColumn:rxStatusHeader
+ * @name rxStatusColumn.directive:rxStatusHeader
  * @description
  * Place this attribute directive on the `&lt;th&gt;` for the status columns. It ensures
  * correct styling.
@@ -429,17 +472,14 @@
         }
     };
 })
-&nbsp;
 /**
  * @ngdoc service
- * @name encore.ui.rxStatusColumn:rxStatusMappings
+ * @name rxStatusColumn.service:rxStatusMappings
  * @description
  * A set of methods for creating mappings between a product's notion
  * of statuses, and the status identifiers used in encore-ui
- *
  */
 .factory('rxStatusMappings', function () {
-&nbsp;
     var globalMappings = {};
     var apiMappings = {};
     var rxStatusMappings = {};
@@ -491,7 +531,7 @@
     rxStatusMappings.mapToInfo = buildMapFunc('INFO');
     rxStatusMappings.mapToPending = buildMapFunc('PENDING');
     rxStatusMappings.mapToDisabled = buildMapFunc('DISABLED');
-    
+&nbsp;
     rxStatusMappings.getInternalMapping = function (statusString, api) {
         if (_.has(apiMappings, api) &amp;&amp; _.has(apiMappings[api], statusString)) {
             return apiMappings[api][statusString];
@@ -503,14 +543,13 @@
     };
 &nbsp;
     return rxStatusMappings;
-    
 });
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 09 2015 13:40:48 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 16 2015 13:33:48 GMT-0500 (CDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

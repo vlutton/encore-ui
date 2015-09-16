@@ -290,9 +290,38 @@
 263
 264
 265
-266</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -482,14 +511,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">73</span>
 <span class="cline-any cline-yes">260</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">260</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -555,19 +581,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @ngdoc overview
+ * @name rxEnvironment
+ * @description
+ * # rxEnvironment Component
+ *
+ * [TBD]
+ *
+ * ## Directives
+ * * {@link rxEnvironment.directive:rxEnvironment rxEnvironment}
+ *
+ * ## Filters
+ * * {@link rxEnvironment.filter:rxEnvironmentMatch rxEnvironmentMatch}
+ * * {@link rxEnvironment.filter:rxEnvironmentUrl rxEnvironmentUrl}
+ *
+ * ## Services
+ * * {@link rxEnvironment.service:Environment Environment}
+ */
+angular.module('encore.ui.rxEnvironment', ['ngSanitize'])
 /**
-*
-* @ngdoc service
-* @name encore.ui.rxEnvironment:Environment
-* @description
-* Allows defining environments and retrieving the current environment based on location
-*
-* @example
-* &lt;pre&gt;
-* Environment.get() // return environment object that matches current location
-* &lt;/pre&gt;
-*/
+ * @ngdoc service
+ * @name rxEnvironment.service:Environment
+ * @description
+ * Allows defining environments and retrieving the current environment based on location
+ *
+ * @example
+ * &lt;pre&gt;
+ * Environment.get() // return environment object that matches current location
+ * &lt;/pre&gt;
+ */
 .service('Environment', function ($location, $rootScope, $log) {
     /*
      * This array defines different environments to check against.
@@ -579,7 +622,6 @@
      * @property {string} url The url pattern used to build out urls for that environment.
      *                        See 'buildUrl' for more details
      */
-&nbsp;
     var environments = [{
         // http://localhost:3000/
         // http://localhost:9000/
@@ -729,25 +771,23 @@
      * @public
      */
     this.isUnifiedProd = makeEnvCheck('unified-prod');
-&nbsp;
 })
 /**
-*
-* @ngdoc filter
-* @name encore.ui.rxEnvironment:rxEnvironmentUrl
-* @description
-* Builds a URL based on current environment.
-* Note: if value passed in isn't an object, it will simply return that value
-*
-* @example
-* &lt;pre&gt;
-* {{ { tld: 'cloudatlas', path: 'cbs/servers' } | rxEnvironmentUrl }}
-* Renders as '//staging.cloudatlas.encore.rackspace.com/cbs/servers' in staging
-*
-* {{ '/myPath' | rxEnvironmentUrl }}
-* Renders as '/myPath' regardless of environment, because value passed in was not an object
-* &lt;/pre&gt;
-*/
+ * @ngdoc filter
+ * @name rxEnvironment.filter:rxEnvironmentUrl
+ * @description
+ * Builds a URL based on current environment.
+ * Note: if value passed in isn't an object, it will simply return that value
+ *
+ * @example
+ * &lt;pre&gt;
+ * {{ { tld: 'cloudatlas', path: 'cbs/servers' } | rxEnvironmentUrl }}
+ * Renders as '//staging.cloudatlas.encore.rackspace.com/cbs/servers' in staging
+ *
+ * {{ '/myPath' | rxEnvironmentUrl }}
+ * Renders as '/myPath' regardless of environment, because value passed in was not an object
+ * &lt;/pre&gt;
+ */
 .filter('rxEnvironmentUrl', function (Environment, $interpolate) {
     return function (details) {
         var environment = Environment.get();
@@ -757,21 +797,20 @@
     };
 })
 /**
-*
-* @ngdoc filter
-* @name encore.ui.rxEnvironment:rxEnvironmentMatch
-* @description
-* Checks if current environment matches target environment
-*
-* @example
-* &lt;pre&gt;
-* {{ 'production' | rxEnvironmentMatch }}
-* returns true if current environment is 'production', false otherwise
-*
-* {{ '!production' | rxEnvironmentMatch }}
-* returns false if current environment is 'production', true otherwise
-* &lt;/pre&gt;
-*/
+ * @ngdoc filter
+ * @name rxEnvironment.filter:rxEnvironmentMatch
+ * @description
+ * Checks if current environment matches target environment
+ *
+ * @example
+ * &lt;pre&gt;
+ * {{ 'production' | rxEnvironmentMatch }}
+ * returns true if current environment is 'production', false otherwise
+ *
+ * {{ '!production' | rxEnvironmentMatch }}
+ * returns false if current environment is 'production', true otherwise
+ * &lt;/pre&gt;
+ */
 .filter('rxEnvironmentMatch', function (Environment) {
     return function (environment) {
         // check to see if first character is negation indicator
@@ -785,19 +824,19 @@
     };
 })
 /**
-* @ngdoc directive
-* @name encore.ui.rxEnvironment:rxEnvironment
-* @restrict A
-* @description
-* Show or hide content based on environment name
-* @requires encore.ui.rxEnvironment:Environment
-*
-* @example
-* &lt;pre&gt;
-*     &lt;div rx-if-environment="unified-preprod"&gt;Show if staging&lt;/div&gt;
-*     &lt;div rx-if-environment="!unified-prod"&gt;Show if not prod&lt;/div&gt;
-* &lt;/pre&gt;
-*/
+ * @ngdoc directive
+ * @name rxEnvironment.directive:rxEnvironment
+ * @restrict A
+ * @requires rxEnvironment.service:Environment
+ * @description
+ * Show or hide content based on environment name
+ *
+ * @example
+ * &lt;pre&gt;
+ * &lt;div rx-if-environment="unified-preprod"&gt;Show if staging&lt;/div&gt;
+ * &lt;div rx-if-environment="!unified-prod"&gt;Show if not prod&lt;/div&gt;
+ * &lt;/pre&gt;
+ */
 .directive('rxIfEnvironment', function ($compile) {
     return {
         restrict: 'A',
@@ -825,7 +864,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 09 2015 13:40:48 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 16 2015 13:33:48 GMT-0500 (CDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

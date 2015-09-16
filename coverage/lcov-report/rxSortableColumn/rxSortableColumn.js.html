@@ -116,8 +116,39 @@
 89
 90
 91
-92</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,7 +226,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4</span>
@@ -207,22 +237,38 @@
 <span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">angular.module('encore.ui.rxSortableColumn', [])
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * @ngdoc overview
+ * @name rxSortableColumn
+ * @description
+ * # rxSortableColumn Component
+ *
+ * [TBD]
+ *
+ * ## Directives
+ * * {@link rxSortableColumn.directive:rxSortableColumn rxSortableColumn}
+ *
+ * ## Filters
+ * * {@link rxSortableColumn.filter:rxSortEmptyTop rxSortEmptyTop}
+ *
+ * ## Services
+ * * {@link rxSortableColumn.service:rxSortUtil rxSortUtil}
+ */
+angular.module('encore.ui.rxSortableColumn', [])
 /**
-* @ngdoc directive
-* @name encore.ui.rxSortableColumn:rxSortableColumn
-* @restrict E
-*
-* @description
-* Renders a clickable link in a table heading which will sort the table by
-* the referenced property in ascending or descending order.
-*
-* @param {String} displayText - The text to be displayed in the link
-* @param {Function} sortMethod - The sort function to be called when the link is clicked
-* @param {String} sortProperty - The property on the array to sort by when the link is clicked.
-* @param {Object} predicate - The current property the collection is sorted by.
-* @param {Boolean} reverse - Indicates whether the collection should sort the array in reverse order.
-*/
+ * @ngdoc directive
+ * @name rxSortableColumn.directive:rxSortableColumn
+ * @restrict E
+ * @description
+ * Renders a clickable link in a table heading which will sort the table by
+ * the referenced property in ascending or descending order.
+ *
+ * @param {String} displayText - The text to be displayed in the link
+ * @param {Function} sortMethod - The sort function to be called when the link is clicked
+ * @param {String} sortProperty - The property on the array to sort by when the link is clicked.
+ * @param {Object} predicate - The current property the collection is sorted by.
+ * @param {Boolean} reverse - Indicates whether the collection should sort the array in reverse order.
+ */
 .directive('rxSortableColumn', function () {
     return {
         restrict: 'E',
@@ -237,17 +283,17 @@
     };
 })
 /**
-* @ngdoc service
-* @name encore.ui.rxSortableColumn:rxSortUtil
-* @description
-* Service which provided utility methods for sorting collections.
-*
-* @example
-* &lt;pre&gt;
-* rxSortUtil.getDefault() // returns a sort object with name as the default.
-* rxSortUtil.sortCol($scope, 'name') // sorts the collection based on the predicate
-* &lt;/pre&gt;
-*/
+ * @ngdoc service
+ * @name rxSortableColumn.service:rxSortUtil
+ * @description
+ * Service which provided utility methods for sorting collections.
+ *
+ * @example
+ * &lt;pre&gt;
+ * rxSortUtil.getDefault() // returns a sort object with name as the default.
+ * rxSortUtil.sortCol($scope, 'name') // sorts the collection based on the predicate
+ * &lt;/pre&gt;
+ */
 .factory('rxSortUtil', function () {
     var util = {};
 &nbsp;
@@ -270,22 +316,21 @@
     return util;
 })
 /**
-* @ngdoc filter
-* @name encore.ui.rxSortableColumn:rxSortEmptyTop
-* @description
-* Filter that moves rows with an empty predicate to the top of the column in ascending order,
-  and to the bottom in descending order.
-*
-* @example
-* &lt;pre&gt;
-* [{ name: { firstName: 'Adam' } }, { }] | rxSortEmptyTop 'name.firstName':false
-* Will sort as [{}, { name: { firstName: 'Adam' } }].
-&nbsp;
-* [{ name: { firstName: 'Adam' } }, { name: { firstName: null } ] | rxSortEmptyTop 'name.firstName':true
-* Will sort as [{ name: { firstName: 'Adam' } }, {}]
-&nbsp;
-* &lt;/pre&gt;
-*/
+ * @ngdoc filter
+ * @name rxSortableColumn.filter:rxSortEmptyTop
+ * @description
+ * Filter that moves rows with an empty predicate to the top of the column in ascending order,
+ * and to the bottom in descending order.
+ *
+ * @example
+ * &lt;pre&gt;
+ * [{ name: { firstName: 'Adam' } }, { }] | rxSortEmptyTop 'name.firstName':false
+ * Will sort as [{}, { name: { firstName: 'Adam' } }].
+ *
+ * [{ name: { firstName: 'Adam' } }, { name: { firstName: null } ] | rxSortEmptyTop 'name.firstName':true
+ * Will sort as [{ name: { firstName: 'Adam' } }, {}]
+ * &lt;/pre&gt;
+ */
 .filter('rxSortEmptyTop', ['$filter', '$parse', function ($filter, $parse) {
     return function (array, key, reverse) {
 &nbsp;
@@ -303,7 +348,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 09 2015 13:40:48 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 16 2015 13:33:48 GMT-0500 (CDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

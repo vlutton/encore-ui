@@ -1,4 +1,4 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxCharacterCount/rxCharacterCount.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/bdc9307/src/rxCharacterCount/rxCharacterCount.js#L19" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxCharacterCount</code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxCharacterCount/rxCharacterCount.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/f1cbca0/src/rxCharacterCount/rxCharacterCount.js#L30" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxCharacterCount</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">rxCharacterCount</code>
 </span>
 </div>
@@ -8,14 +8,18 @@
 </div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage">as attribute<pre class="prettyprint linenums">&lt;ANY rx-character-count
-     low-boundary="{number}"
-     max-characters="{number}"
-     highlight="{boolean}"&gt;
+     [low-boundary="{Number}"]
+     [max-characters="{Number}"]
+     [highlight="{Boolean}"]&gt;
    ...
 &lt;/ANY&gt;</pre>
-<h4 id="usage_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>low-boundary</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="rxcharactercount-directive-page rxcharactercount-directive-rxcharactercount-page"><p>How far from the maximum to enter a warning state</p>
-</div> <p><em>(default: 10)</em></p></td></tr><tr><td>max-characters</td><td><a href="" class="label type-hint type-hint-number">number</a></td><td><div class="rxcharactercount-directive-page rxcharactercount-directive-rxcharactercount-page"><p>The maximum number of characters allowed</p>
-</div> <p><em>(default: 254)</em></p></td></tr><tr><td>highlight</td><td><a href="" class="label type-hint type-hint-boolean">boolean</a></td><td><div class="rxcharactercount-directive-page rxcharactercount-directive-rxcharactercount-page"><p>Whether or not characters over the limit are highlighted</p>
+<h3 id="usage_directive-info">Directive info</h3>
+<div class="directive-info"><ul><li>This directive creates new scope.</li>
+</ul>
+</div>
+<h4 id="usage_directive-info_parameters">Parameters</h4><table class="variables-matrix table table-bordered table-striped"><thead><tr><th>Param</th><th>Type</th><th>Details</th></tr></thead><tbody><tr><td>low-boundary <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="rxcharactercount-directive-page rxcharactercount-directive-rxcharactercount-page"><p>How far from the maximum to enter a warning state</p>
+</div> <p><em>(default: 10)</em></p></td></tr><tr><td>max-characters <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-number">Number</a></td><td><div class="rxcharactercount-directive-page rxcharactercount-directive-rxcharactercount-page"><p>The maximum number of characters allowed</p>
+</div> <p><em>(default: 254)</em></p></td></tr><tr><td>highlight <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="rxcharactercount-directive-page rxcharactercount-directive-rxcharactercount-page"><p>Whether or not characters over the limit are highlighted</p>
 </div> <p><em>(default: false)</em></p></td></tr></tbody></table></div>
 <h2 id="example">Example</h2>
 <div class="example"><div class="rxcharactercount-directive-page rxcharactercount-directive-rxcharactercount-page"><pre class="prettyprint linenums">

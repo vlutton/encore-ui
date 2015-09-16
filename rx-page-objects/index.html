@@ -119,6 +119,11 @@
 <li><a href="#encore.module_rxStatusColumn.colors">const: encore.rxStatusColumn.colors</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_rxTags">encore.rxTags</a><ul>
+<li><a href="#encore.module_rxTags.main">encore.rxTags.main</a></li>
+<li><a href="#encore.module_rxTags.initialize">encore.rxTags.initialize(rxTagsElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxToggleSwitch">encore.rxToggleSwitch</a><ul>
 <li><a href="#encore.module_rxToggleSwitch.main">encore.rxToggleSwitch.main</a></li>
 <li><a href="#encore.module_rxToggleSwitch.initialize">encore.rxToggleSwitch.initialize(rxToggleSwitchElement)</a></li>
@@ -136,6 +141,7 @@
 <li><a href="#encore.exercise.module_rxSearchBox">encore.exercise.rxSearchBox</a></li>
 <li><a href="#encore.exercise.module_rxSelect">encore.exercise.rxSelect</a></li>
 <li><a href="#encore.exercise.module_rxMultiSelect">encore.exercise.rxMultiSelect</a></li>
+<li><a href="#encore.exercise.module_rxTags">encore.exercise.rxTags</a></li>
 <li><a href="#encore.exercise.module_rxToggleSwitch">encore.exercise.rxToggleSwitch</a></li>
 </ul>
 <p><strong>Namespaces</strong></p>
@@ -230,6 +236,7 @@
 <li><a href="#rxMisc.currencyToPennies">rxMisc.currencyToPennies(currencyString)</a></li>
 <li><a href="#rxMisc.newDate">rxMisc.newDate(dateText)</a></li>
 <li><a href="#rxMisc.unless">rxMisc.unless(elem, [innerFn], [fallbackReturnValue])</a></li>
+<li><a href="#rxMisc.getPerformanceMetrics">rxMisc.getPerformanceMetrics([keys])</a></li>
 <li><a href="#rxMisc.nullValueMatches">const: rxMisc.nullValueMatches</a></li>
 </ul>
 </li>
@@ -352,6 +359,11 @@
 <li><a href="#rxStatusColumn.tooltip.text">tooltip.text</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li><a href="#tag">tag</a></li>
+<li><a href="#rxTags">rxTags</a><ul>
+<li><a href="#rxTags.isDisplayed">rxTags.isDisplayed()</a></li>
 </ul>
 </li>
 <li><a href="#rxToggleSwitch">rxToggleSwitch</a><ul>
@@ -1026,7 +1038,25 @@ it(&#39;should sort the column ascending by default&#39;, function () {
 <p>##const: encore.rxStatusColumn.icons
 <strong>Returns</strong>: <code>Object</code> - Lookup of icon class names from a human-readable version.<br><a name="encore.module_rxStatusColumn.colors"></a></p>
 <p>##const: encore.rxStatusColumn.colors
-<strong>Returns</strong>: <code>Object</code> - Lookup of color class names from a human-readable class name.<br><a name="encore.module_rxToggleSwitch"></a></p>
+<strong>Returns</strong>: <code>Object</code> - Lookup of color class names from a human-readable class name.<br><a name="encore.module_rxTags"></a></p>
+<p>#encore.rxTags
+<strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxTags">encore.rxTags</a><ul>
+<li><a href="#encore.module_rxTags.main">encore.rxTags.main</a></li>
+<li><a href="#encore.module_rxTags.initialize">encore.rxTags.initialize(rxTagsElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxTags.main"></a></p>
+<p>##encore.rxTags.main
+<strong>Returns</strong>: <a href="#rxTags">rxTags</a> - Page object representing the <em>first</em> rxTags object found on the page.<br><a name="encore.module_rxTags.initialize"></a></p>
+<p>##encore.rxTags.initialize(rxTagsElement)
+<strong>Params</strong></p>
+<ul>
+<li>rxTagsElement <code>WebElement</code> - WebElement to be transformed into an rxTagsElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxTags">rxTags</a> - Page object representing the rxTags object.<br><a name="encore.module_rxToggleSwitch"></a></p>
 <p>#encore.rxToggleSwitch
 <strong>Members</strong></p>
 <ul>
@@ -1274,6 +1304,22 @@ rxMultiSelect exercises.</p>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxMultiSelect({
     instance: myPage.subscriptionList, // select one of many widgets from your page objects
+}));
+</code></pre>
+<p><a name="encore.exercise.module_rxTags"></a></p>
+<p>#encore.exercise.rxTags
+rxTags exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[instance=] <code><a href="#rxTags">rxTags</a></code> - Component to Exercise.  </li>
+<li>sampleText <code>string</code> - A tag that can be added.  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxTags({
+    instance: encore.rxTags.initialize(&#39;.demo rx-tags&#39;) // select one of many widgets on page
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxToggleSwitch"></a></p>
@@ -1656,6 +1702,7 @@ Will expand the component if collapsed, or will collapse it if it&#39;s expanded
 <li><a href="#rxMisc.currencyToPennies">rxMisc.currencyToPennies(currencyString)</a></li>
 <li><a href="#rxMisc.newDate">rxMisc.newDate(dateText)</a></li>
 <li><a href="#rxMisc.unless">rxMisc.unless(elem, [innerFn], [fallbackReturnValue])</a></li>
+<li><a href="#rxMisc.getPerformanceMetrics">rxMisc.getPerformanceMetrics([keys])</a></li>
 <li><a href="#rxMisc.nullValueMatches">const: rxMisc.nullValueMatches</a></li>
 </ul>
 </li>
@@ -1753,6 +1800,18 @@ var balancePage = Page.create({
             });
         }
     }
+});
+</code></pre>
+<p><a name="rxMisc.getPerformanceMetrics"></a></p>
+<p>##rxMisc.getPerformanceMetrics([keys])
+See <a href="https://github.com/Droogans/node-timing.js#sample-output-of-timinggettimes">https://github.com/Droogans/node-timing.js#sample-output-of-timinggettimes</a> for details.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[keys] <code>String</code> | <code>Array</code> - Key to get (string), keys to get (Array), or all (<code>undefined</code>).  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Object</code> - An object of timings that can be used to infer browser render performance<br><strong>Example</strong>  </p>
+<pre><code class="lang-js">it(&#39;should have loaded the page in less than two seconds&#39;, function () {
+    expect(encore.rxMisc.getPerformanceMetrics(&#39;loadTime&#39;)).to.eventually.be.under(2000);
 });
 </code></pre>
 <p><a name="rxMisc.nullValueMatches"></a></p>
@@ -2352,7 +2411,24 @@ Hovers over the current row&#39;s status column and returns whether or not a too
 <p><strong>Returns</strong>: <code>Boolean</code> - Whether or not a tooltip is present.<br><a name="rxStatusColumn.tooltip.text"></a></p>
 <p>###tooltip.text
 Warning: This property is known to be unstable in many Selenium end to end test runs in EncoreUI.</p>
-<p><strong>Returns</strong>: <code>String</code> - Tooltip text.<br><a name="rxToggleSwitch"></a></p>
+<p><strong>Returns</strong>: <code>String</code> - Tooltip text.<br><a name="tag"></a></p>
+<p>#tag
+<strong>Members</strong></p>
+<ul>
+<li><a href="#tag">tag</a></li>
+</ul>
+<p><a name="rxTags"></a></p>
+<p>#rxTags
+<strong>Members</strong></p>
+<ul>
+<li><a href="#rxTags">rxTags</a><ul>
+<li><a href="#rxTags.isDisplayed">rxTags.isDisplayed()</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxTags.isDisplayed"></a></p>
+<p>##rxTags.isDisplayed()
+<strong>Returns</strong>: <code>Boolean</code> - Whether the root element is currently displayed.<br><a name="rxToggleSwitch"></a></p>
 <p>#rxToggleSwitch
 <strong>Members</strong></p>
 <ul>
