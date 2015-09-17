@@ -1,10 +1,14 @@
-var removeFromIndex = ['/*jshint node:true*/\n',
-                       'var _ = require(\'lodash\');\n',
-                       'var moment = require(\'moment\');\n',
-                       'var Page = require(\'astrolabe\').Page;\n'];
+var removeFromIndex = [
+    '/*jshint node:true*/\n',
+    'var _ = require(\'lodash\');\n',
+    'var moment = require(\'moment\');\n',
+    'var Page = require(\'astrolabe\').Page;\n'
+];
 
-var removeFromExercises = ['/*jshint node:true*/\n',
-                           'var _ = require(\'lodash\');\n'];
+var removeFromExercises = [
+    '/*jshint node:true*/\n',
+    'var _ = require(\'lodash\');\n'
+];
 
 module.exports = {
     dist: {
@@ -51,7 +55,10 @@ module.exports = {
                 return src;
             }
         },
-        src: ['src/*/*.exercise.js'],
+        src: [
+            'src/*/*.exercise.js',
+            'src/*/scripts/*.exercise.js'
+        ],
         dest: 'utils/rx-page-objects/exercise.js'
     },
     tmpLess: {

@@ -46,11 +46,17 @@ module.exports = function (grunt) {
                 d[1], parseInt(d[2]) + ',', d[3], '@', d[4].substr(0, 5), d[5].replace('GMT', '(UTC') + ')'].join(' ');
         }
 
+        var srcFileGlobs = [
+            'src/' + name + '/' + name + '.js',  // (OLD Manifest) Must load first
+            'src/' + name + '/' + name + '.module.js', // (NEW Manifest) Must load first
+            'src/' + name + '/scripts/!(*.spec|*.page|*.exercise).js' // Load additional scripts
+        ];
+
         var module = {
             name: name,
             moduleName: enquote('encore.ui.' + name),
             displayName: ucwords(breakup(name, ' ')),
-            srcFiles: grunt.file.expand('src/' + name + '/!(*.spec|*.page|*.exercise).js'),
+            srcFiles: grunt.file.expand(srcFileGlobs),
             tplFiles: grunt.file.expand('src/' + name + '/*.tpl.html'),
             tplJsFiles: grunt.file.expand('templates/' + name + '/templates/*.html'),
             dependencies: dependenciesForModule(name),
@@ -64,7 +70,7 @@ module.exports = function (grunt) {
                 less: grunt.file.expand('src/' + name + '/*.less').map(grunt.file.read).join('\n'),
                 midway: grunt.file.expand('src/' + name + '/docs/*.midway.js').map(grunt.file.read).join('\n') +
                     '\n// this component\'s exercise.js file, if it exists, is below\n\n' +
-                    grunt.file.expand('src/' + name + '/*.exercise.js').map(grunt.file.read).join('\n')
+                    grunt.file.expand('src/' + name + '/**/*.exercise.js').map(grunt.file.read).join('\n')
             }
         };
 
