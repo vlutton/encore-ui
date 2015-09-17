@@ -382,23 +382,23 @@
         color: #babab9;
 
         fieldset {
-          position: relative;
+            position: relative;
         }
 
         // NOTE: We have to have this duplication because CSS doesn't like combining the placholder selectors
         .placeholder() {
-           font-style: italic;
-           text-overflow: ellipsis;
+            font-style: italic;
+            text-overflow: ellipsis;
         }
 
         ::-webkit-input-placeholder {
             .placeholder();
         }
         ::-moz-placeholder {
-           .placeholder();
+            .placeholder();
         }
         :-ms-input-placeholder {
-           .placeholder();
+            .placeholder();
         }
 
         .search-input {

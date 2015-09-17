@@ -1,6 +1,6 @@
 /*
-* rxSearchBox
-*/
+ * rxSearchBox
+ */
 rx-search-box {
     display: inline-block;
     width: @rxSearchBox-width;
@@ -31,9 +31,9 @@ rx-search-box {
             padding: @rxSearchBox-padding-vertical @rxSearchBox-padding-horizontal;
 
             /*
-            This gets around FireFox setting the min-width to a value
-            that overflows content out of the .rxSearch container.
-            */
+             * This gets around FireFox setting the min-width to a value
+             * that overflows content out of the .rxSearch container.
+             */
             min-width: (@rxSearchBox-min-width - @rxSearchBox-clear-width - (2 * @rxSearchBox-padding-horizontal));
 
             &[disabled] {

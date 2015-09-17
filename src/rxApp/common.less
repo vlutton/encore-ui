@@ -1,3 +1,6 @@
+/*
+ * Common
+ */
 @import 'vars';
 @import (inline) 'normalize.css';
 
@@ -69,7 +72,7 @@ table {
         color: @tableHeaderText;
         border: 1px solid @tableHeaderBorder;
         &.actions {
-          width: 15px;
+            width: 15px;
         }
     }
     tr {
@@ -354,21 +357,22 @@ body:hover .visually-hidden button {
 }
 
 
-/* PLACEHOLDER TEXT STYLING
-  https://css-tricks.com/snippets/css/style-placeholder-text/
-*/
+/*
+ * PLACEHOLDER TEXT STYLING
+ * https://css-tricks.com/snippets/css/style-placeholder-text/
+ */
 ::-webkit-input-placeholder { // Chrome
-  color: @inputPlaceholderColor;
-  font-weight: 300;
-  font-style: italic;
+    color: @inputPlaceholderColor;
+    font-weight: 300;
+    font-style: italic;
 }
 ::-moz-placeholder { // Firefox 19+
-  color: @inputPlaceholderColor;
-  font-weight: 400;
-  font-style: italic;
+    color: @inputPlaceholderColor;
+    font-weight: 400;
+    font-style: italic;
 }
 
 //DEPRECATED: A "filter" style rxSearchBox
 .filter-box {
-  font-style: italic;
+    font-style: italic;
 }
