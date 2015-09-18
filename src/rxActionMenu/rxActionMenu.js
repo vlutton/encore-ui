@@ -4,7 +4,7 @@
  * @description
  * # rxActionMenu Component
  *
- * [TBD]
+ * A component to create a configurable action menu.
  *
  * ## Directives
  * * {@link rxActionMenu.directive:rxActionMenu rxActionMenu}
@@ -15,9 +15,15 @@ angular.module('encore.ui.rxActionMenu', [])
  * @name rxActionMenu.directive:rxActionMenu
  * @restrict E
  * @scope
- * @description [TBD]
+ * @description
  *
- * @param {Boolean=} [globalDismiss=true] TBD
+ * Component to add a clickable cog which brings up a menu of configurable actions.
+ *
+ * Normally the menu is dismissable by clicking anywhere on the page, but this can
+ * be disabled by passing an optional `global-dismiss="false"` attribute to the
+ * directive.
+ *
+ * @param {Boolean=} [globalDismiss=true] - optional attribute to make menu dismissable by clicking anywhere on the page
  */
 .directive('rxActionMenu', function ($rootScope, $document) {
     return {
