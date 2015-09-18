@@ -435,21 +435,31 @@ rx-field-name {
                             border: 1px solid @rxForm-input-border-color;
                         }
 
-                        &.ng-invalid {
+                        .disabled() {
+                            border: 1px solid @rxForm-input-border-color;
+                            color: @inputColorDisabled;
+                            background: @inputBackgroundDisabled;
+                            cursor: not-allowed !important;
+                        }//.disabled
+
+                        &.ng-invalid.ng-dirty {
                             border-color: @inputBorderColorInvalid;
                             border-width: 2px;
                             // MUST differ with valid padding by 1px to
                             // account for thicker border
                             padding: 2px 4px;
+
+                            // DISABLED STYLING
+                            // (these should trump all other styles)
+                            &[disabled] {
+                                .disabled();
+                            }
                         }
 
                         // DISABLED STYLING
                         // (these should trump all other styles)
                         &[disabled] {
-                            border: 1px solid @rxForm-input-border-color;
-                            color: @inputColorDisabled;
-                            background: @inputBackgroundDisabled;
-                            cursor: not-allowed !important;
+                            .disabled();
                         }
                     }
 

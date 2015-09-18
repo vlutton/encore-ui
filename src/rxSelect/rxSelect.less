@@ -51,17 +51,7 @@
             border-width: 1px;
         }
 
-        &.ng-invalid + .fake-select {
-            border-color: @rxSelect-border-color-invalid;
-            border-width: 2px;
-
-            .select-trigger {
-                color: @rxSelect-trigger-color-invalid;
-            }
-        }
-
-        // Disabled Trumps All
-        &[disabled] {
+        .disabled() {
             cursor: not-allowed ;
 
             & + .fake-select {
@@ -75,7 +65,27 @@
                     color: @rxSelect-trigger-color-disabled;
                 }
             }
-        }//[disabled]
+        }//.disabled()
+
+        &.ng-invalid.ng-dirty {
+            & + .fake-select {
+                border-color: @rxSelect-border-color-invalid;
+                border-width: 2px;
+
+                .select-trigger {
+                    color: @rxSelect-trigger-color-invalid;
+                }
+            }
+
+            &[disabled] {
+                .disabled();
+            }
+        }
+
+        // Disabled Trumps All
+        &[disabled] {
+            .disabled();
+        }
     }//select
 
     .fake-select {

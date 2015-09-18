@@ -62,22 +62,7 @@
             border: none;
         }
 
-        &.ng-invalid {
-            // enabled unchecked error
-            & + .fake-checkbox {
-                background-color: @rxCheckbox-background-color;
-                border: 2px solid @inputBackgroundError;
-            }       
-
-            // enabled checked error
-            &:checked {
-                & + .fake-checkbox {
-                    background-color: @inputBackgroundError;
-                }
-            }
-        }
-
-        &[disabled] {
+        .disabled() {
             cursor: not-allowed;
 
             & ~ .fake-checkbox {
@@ -90,6 +75,29 @@
                 background-color: @inputBackgroundDisabled;
                 border: none;
             }
+        }//.disabled()
+
+        &.ng-invalid.ng-dirty {
+            // enabled unchecked error
+            & + .fake-checkbox {
+                background-color: @rxCheckbox-background-color;
+                border: 2px solid @inputBackgroundError;
+            }
+
+            // enabled checked error
+            &:checked {
+                & + .fake-checkbox {
+                    background-color: @inputBackgroundError;
+                }
+            }
+
+            &[disabled] {
+                .disabled();
+            }
+        }
+
+        &[disabled] {
+            .disabled();
         }
     }
 }//.rxCheckbox
