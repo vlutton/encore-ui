@@ -84,9 +84,7 @@ describe('rxBreadcrumbs', function () {
         var middle;
 
         before(function () {
-            breadcrumbs.byName('Components').then(function (breadcrumb) {
-                middle = breadcrumb;
-            });
+            middle = breadcrumbs.byName('Components');
         });
 
         it('should fetch a single breadcrumb by position', function () {

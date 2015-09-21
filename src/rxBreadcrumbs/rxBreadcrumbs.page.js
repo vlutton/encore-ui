@@ -80,13 +80,12 @@ var rxBreadcrumbs = {
           If multiple entries exist with the same name, the first will be returned.
         */
         value: function (breadcrumbName) {
-            return this.tblBreadcrumbs.filter(function (breadcrumbElement) {
+            var eleBreadcrumb = this.tblBreadcrumbs.filter(function (breadcrumbElement) {
                 return breadcrumbElement.element(by.exactBinding('breadcrumb.name')).getText().then(function (name) {
                     return name === breadcrumbName;
                 });
-            }).then(function (matchingBreadcrumbs) {
-                return breadcrumb(matchingBreadcrumbs[0]);
-            });
+            }).get(0);
+            return breadcrumb(eleBreadcrumb);
         }
     },
 
