@@ -66,25 +66,7 @@
             }
         }
 
-        &.ng-invalid {
-            // enabled unchecked error
-            & + .fake-radio {
-                border: @rxRadio-border-width-invalid solid @rxRadio-color-error;
-
-                .tick {
-                    .border-radius(@rxRadio-tick-border-radius-invalid);
-                    width: @rxRadio-tick-size-invalid;
-                    height: @rxRadio-tick-size-invalid;
-                }
-            }
-
-            &:checked + .fake-radio .tick {
-                background: @rxRadio-color-error;
-            }
-        }
-
-        // disabled trumps invalid
-        &[disabled] {
+        .disabled() {
             cursor: not-allowed;
 
             // disabled, unchecked
@@ -100,6 +82,33 @@
             &:checked + .fake-radio .tick {
                 background: @inputBackgroundDisabled;
             }
-        }//[disabled]
+        }//.disabled()
+
+        &.ng-invalid.ng-dirty {
+            // enabled unchecked error
+            & + .fake-radio {
+                border: @rxRadio-border-width-invalid solid @rxRadio-color-error;
+
+                .tick {
+                    .border-radius(@rxRadio-tick-border-radius-invalid);
+                    width: @rxRadio-tick-size-invalid;
+                    height: @rxRadio-tick-size-invalid;
+                }
+            }
+
+            &:checked + .fake-radio .tick {
+                background: @rxRadio-color-error;
+            }
+
+            // disabled trumps invalid
+            &[disabled] {
+                .disabled();
+            }
+        }
+
+        // disabled trumps invalid
+        &[disabled] {
+            .disabled();
+        }
     }//input
 }//.rxRadio
