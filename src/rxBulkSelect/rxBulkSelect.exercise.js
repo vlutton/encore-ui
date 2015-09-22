@@ -6,6 +6,7 @@ var _ = require('lodash');
    @exports encore.exercise.rxBulkSelect
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {rxBulkSelect} [options.instance=] - Component to exercise.
+   @param {number} [options.count=10] - Number of items in the table.
    @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @example
    ```js
@@ -19,16 +20,19 @@ exports.rxBulkSelect = function (options) {
         options = {};
     }
 
-    options = _.defaults(options, {});
+    options = _.defaults(options, {
+        count: 10
+    });
 
     return function () {
         var component;
 
         before(function () {
-            if (options.instance !== undefined) {
-                component = options.instance;
-            } else {
+
+            if (options.instance === undefined) {
                 component = rxBulkSelect.main;
+            } else {
+                component = options.instance;
             }
 
             if (options.cssSelector !== undefined) {
@@ -61,9 +65,11 @@ exports.rxBulkSelect = function (options) {
         });
 
         it('selects all rows via the header checkbox', function () {
+            var selExp = new RegExp('^' + options.count + ' \\w+s are selected.$');
+
             component.selectAllCheckbox.select();
             expect(component.allSelected()).to.eventually.be.true;
-            expect(component.bulkMessage).to.eventually.match(/^10 \w+s are selected.$/);
+            expect(component.bulkMessage).to.eventually.match(selExp);
             expect(component.isEnabled()).to.eventually.be.true;
         });
 
@@ -75,11 +81,13 @@ exports.rxBulkSelect = function (options) {
         });
 
         it('selects all rows via the button in the message', function () {
+            var selExp = new RegExp('^' + options.count + ' \\w+s are selected.$');
+
             component.row(0).select();
             component.selectAll();
             expect(component.allSelected()).to.eventually.be.true;
             expect(component.selectAllCheckbox.isSelected()).to.eventually.be.true;
-            expect(component.bulkMessage).to.eventually.match(/^10 \w+s are selected.$/);
+            expect(component.bulkMessage).to.eventually.match(selExp);
             expect(component.isEnabled()).to.eventually.be.true;
         });
 
