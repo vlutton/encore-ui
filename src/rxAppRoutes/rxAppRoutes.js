@@ -4,7 +4,7 @@
  * @description
  * # rxAppRoutes Component
  *
- * [TBD]
+ * A component to manage app routes and states of routes
  *
  * ## Services
  * * {@link rxAppRoutes.service:rxAppRoutes rxAppRoutes}
@@ -15,6 +15,7 @@ angular.module('encore.ui.rxAppRoutes', ['encore.ui.rxEnvironment'])
  * @ngdoc service
  * @name rxAppRoutes.service:urlUtils
  * @description
+ *
  * Set of utility functions used by rxAppRoutes to break apart/compare URLs
  */
 .service('urlUtils', function ($location, rxEnvironmentUrlFilter, $interpolate, $route, $document) {
