@@ -5,9 +5,9 @@
   class="rx-feedback-form"
   ng-switch="state">
   <rx-form-section>
-    <strong class="title">We want to hear your voice.</strong>
+    <h3>We want to hear your voice.</h3>
     <rx-field>
-      <rx-field-name class="title subdued">Choose a topic:</rx-field-name>
+      <rx-field-name>Choose a topic:</rx-field-name>
       <rx-field-content>
         <rx-input>
           <select rx-select
@@ -17,18 +17,20 @@
               ng-init="fields.type = feedbackTypes[0]"
               required="true"></select>
         </rx-input>
-        <rx-help-text ng-if="state === 'redirect'">You'll be redirected to a new window</rx-help-text>
+        <rx-help-text ng-if="state === 'redirect'">You'll be redirected to a new window.</rx-help-text>
       </rx-field-content>
     </rx-field>
   </rx-form-section>
-  <!-- if we need to show the redirect message -->
-  <div class="redirect-description well" ng-show="fields.type" ng-switch-when="redirect">
-    Popup Blocker? <a href="{{ route }}" target="_blank">Go to the page directly.</a>
-  </div>
+  <rx-form-section ng-show="fields.type" ng-switch-when="redirect">
+    <!-- if we need to show the redirect message -->
+    <div class="modal-well">
+      Popup Blocker? <a href="{{ route }}" target="_blank">Go to the page directly.</a>
+    </div>
+  </rx-form-section>
   <!-- if we need to show the redirect message -->
   <rx-form-section ng-show="fields.type" ng-switch-default>
     <rx-field>
-      <rx-field-name class="subdued feedback-description">{{fields.type.prompt}}:</rx-field-name>
+      <rx-field-name class="feedback-description">{{fields.type.prompt}}:</rx-field-name>
       <rx-field-content>
         <rx-input>
           <textarea rows="8"
