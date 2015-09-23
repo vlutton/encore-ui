@@ -10,7 +10,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "configs",
       "shortDescription": "configs Component",
-      "keywords": "api component configs overview routescdnpath service services"
+      "keywords": "allow api app automatically case common component config configs configuration configured constant customurl depending documenting encore encore-ui-nav environment example file find folder framework hascustomurl intended js json live local main mynav null override overview people point provider pull reason repository requests routescdnpath routescdnpathprovider service services set stuff submitting test true url users versions"
     },
     {
       "section": "api",
@@ -55,7 +55,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "hotkeys",
       "shortDescription": "hotkeys Component",
-      "keywords": "api component hotkeys overview"
+      "keywords": "account actions allows angular angular-hotkeys api app apps avoid best browsers choosing chosen collapse combination component config conflicts consider controller creates ctrl currently define defined defining deletes description design difficult directive encore encoreui end-users example find github global good guidance guide help helper hotkeys identified identify identifying integration io isn key keybinding keystroke keystrokes leaving letter letters library list ll long main menu modifier mousetrap multiple official operating overview pattern plugin practice presses provide provided reference route rxapp selected set shortcut shortcuts simple simply single solution specific standard systems user views ways window"
     },
     {
       "section": "api",
@@ -64,7 +64,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "layout",
       "shortDescription": "layout Component",
-      "keywords": "api component layout overview"
+      "keywords": "angularjs api appropriate assortment attribute attribute-based attributes based column component creation css design desired ease encore enhancements features file flexbox forked grid include included includes intuitive layout layouts material minor model module note omits options org overview project provide require responsive row save space style styles suffixes system ui usability versions work"
     },
     {
       "section": "api",
@@ -91,7 +91,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxAccountInfo",
       "shortDescription": "rxAccountInfo Component",
-      "keywords": "api component directive directives overview rxaccountinfo"
+      "keywords": "account account-number accountstatusgroup activate additional allow api box breadcrumbs change cloud component design directive directives directly draw drop-down encore info integrates intention internal overview parameters passing products project provided racker rackspace repository requires route rxaccountinfo rxapp rxpage selector services sitting style supportaccount teams template theoretically time top underneath user user-selection"
     },
     {
       "section": "api",
@@ -109,7 +109,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxActionMenu",
       "shortDescription": "rxActionMenu Component",
-      "keywords": "api component directive directives overview rxactionmenu"
+      "keywords": "action api component configurable create directive directives menu overview rxactionmenu"
     },
     {
       "section": "api",
@@ -117,8 +117,8 @@ NG_DOCS={
       "shortName": "rxActionMenu",
       "type": "directive",
       "moduleName": "rxActionMenu",
-      "shortDescription": "[TBD]",
-      "keywords": "api directive rxactionmenu tbd"
+      "shortDescription": "Component to add a clickable cog which brings up a menu of configurable actions.",
+      "keywords": "actions add api attribute brings clickable clicking cog component configurable directive disabled dismissable false global-dismiss menu optional passing rxactionmenu"
     },
     {
       "section": "api",
@@ -127,7 +127,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxActiveUrl",
       "shortDescription": "rxActiveUrl Component",
-      "keywords": "api component directive directives overview rxactiveurl"
+      "keywords": "adds api class component current directive directives future li marked matches overview pre-defined release removed rxactiveurl selected url"
     },
     {
       "section": "api",
@@ -145,7 +145,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxAge",
       "shortDescription": "rxAge Component",
-      "keywords": "api component filter filters overview rxage"
+      "keywords": "abbreviated allow amounts api argument aug combine component dates days default display effects encore expand filter filters framework full gmt-0500 hours js largest letter manipulate method minutes ng-controller number overview parse pass provided representation requires rxage rxagectrl second sep sun third thu true truncates tue units word"
     },
     {
       "section": "api",
@@ -153,8 +153,8 @@ NG_DOCS={
       "shortName": "rxAge",
       "type": "filter",
       "moduleName": "rxAge",
-      "shortDescription": "[TBD]",
-      "keywords": "api filter rxage"
+      "shortDescription": "Several filters are available to parse dates.",
+      "keywords": "api dates filter filters parse rxage"
     },
     {
       "section": "api",
@@ -316,7 +316,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxAppRoutes",
       "shortDescription": "rxAppRoutes Component",
-      "keywords": "api component overview rxapproutes service services urlutils"
+      "keywords": "api app component manage overview routes rxapproutes service services urlutils"
     },
     {
       "section": "api",
@@ -361,7 +361,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxAuth",
       "shortDescription": "rxAuth Component",
-      "keywords": "api component overview rxauth service services"
+      "keywords": "api authenticating component logic managing overview permissions rxauth service services sessions validating"
     },
     {
       "section": "api",

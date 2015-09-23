@@ -25,8 +25,9 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 @import 'mixins';
 @import 'vars';
 
-// Layout
-// ------------------------------
+/*
+ * Layout
+ */
 
 [layout] {
     .box-sizing(border-box);
@@ -228,28 +229,28 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 .flex-order-for-name();
 .offset-for-name();
 
-
 // Adapted from https://github.com/angular/material/commits/master/src/core/style/layout.scss
 // commit 4216d242d78f1bdadd89ebd59e1d80b9cc4f2978
 
-// Responsive attributes
-// ------------------------------
+/*
+ * Responsive attributes
+ */
 
 [layout-padding] > [flex-sm],
 [layout-padding] > [flex-lt-md]
 {
-  padding: @layout-gutter-width / 4;
+    padding: @layout-gutter-width / 4;
 }
 [layout-padding] > [flex-gt-sm],
 [layout-padding] > [flex-md],
 [layout-padding] > [flex-lt-lg]
 {
-  padding: @layout-gutter-width / 2;
+    padding: @layout-gutter-width / 2;
 }
 [layout-padding] > [flex-gt-md],
 [layout-padding] > [flex-lg]
 {
-  padding: @layout-gutter-width / 1;
+    padding: @layout-gutter-width / 1;
 }
 
 .layout-margin-for-name(4, sm);
@@ -270,142 +271,143 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 
 // SMALL SCREEN
 @media (max-width: (@layout-breakpoint-sm - 1)) {
-  [hide-sm], [hide] {
-    &:not([show-sm]):not([show]) {
-      display: none;
+    [hide-sm], [hide] {
+        &:not([show-sm]):not([show]) {
+            display: none;
+        }
     }
-  }
 
-  .flex-order-for-name(sm);
-  .layout-align-for-name(sm);
-  .layout-for-name(sm);
-  .offset-for-name(sm);
-  .flex-properties-for-name(sm);
+    .flex-order-for-name(sm);
+    .layout-align-for-name(sm);
+    .layout-for-name(sm);
+    .offset-for-name(sm);
+    .flex-properties-for-name(sm);
 }
 
 // BIGGER THAN SMALL SCREEN
 @media (min-width: @layout-breakpoint-sm) {
-  .flex-order-for-name(gt-sm);
-  .layout-align-for-name(gt-sm);
-  .layout-for-name(gt-sm);
-  .offset-for-name(gt-sm);
-  .flex-properties-for-name(gt-sm);
+    .flex-order-for-name(gt-sm);
+    .layout-align-for-name(gt-sm);
+    .layout-for-name(gt-sm);
+    .offset-for-name(gt-sm);
+    .flex-properties-for-name(gt-sm);
 }
 
 // MEDIUM SCREEN
 @media (min-width: @layout-breakpoint-sm) and (max-width: (@layout-breakpoint-md - 1)) {
-  [hide], [hide-gt-sm] {
-    &:not([show-gt-sm]):not([show-md]):not([show]) {
-      display: none;
+    [hide], [hide-gt-sm] {
+        &:not([show-gt-sm]):not([show-md]):not([show]) {
+            display: none;
+        }
     }
-  }
-  [hide-md]:not([show-md]):not([show]) {
-    display: none;
-  }
+    [hide-md]:not([show-md]):not([show]) {
+        display: none;
+    }
 
-  .flex-order-for-name(md);
-  .layout-align-for-name(md);
-  .layout-for-name(md);
-  .offset-for-name(md);
-  .flex-properties-for-name(md);
+    .flex-order-for-name(md);
+    .layout-align-for-name(md);
+    .layout-for-name(md);
+    .offset-for-name(md);
+    .flex-properties-for-name(md);
 }
 
 // BIGGER THAN MEDIUM SCREEN
 @media (min-width: @layout-breakpoint-md) {
-  .flex-order-for-name(gt-md);
-  .layout-align-for-name(gt-md);
-  .layout-for-name(gt-md);
-  .offset-for-name(gt-md);
-  .flex-properties-for-name(gt-md);
+    .flex-order-for-name(gt-md);
+    .layout-align-for-name(gt-md);
+    .layout-for-name(gt-md);
+    .offset-for-name(gt-md);
+    .flex-properties-for-name(gt-md);
 }
 
 // LARGE SCREEN
 @media (min-width: @layout-breakpoint-md) and (max-width: (@layout-breakpoint-lg - 1)) {
-  [hide], [hide-gt-sm], [hide-gt-md] {
-    &:not([show-gt-sm]):not([show-gt-md]):not([show-lg]):not([show]) {
-      display: none;
+    [hide], [hide-gt-sm], [hide-gt-md] {
+        &:not([show-gt-sm]):not([show-gt-md]):not([show-lg]):not([show]) {
+            display: none;
+        }
     }
-  }
-  [hide-lg]:not([show-lg]):not([show]) {
-    display: none;
-  }
+    [hide-lg]:not([show-lg]):not([show]) {
+        display: none;
+    }
 
-  .flex-order-for-name(lg);
-  .layout-align-for-name(lg);
-  .layout-for-name(lg);
-  .offset-for-name(lg);
-  .flex-properties-for-name(lg);
+    .flex-order-for-name(lg);
+    .layout-align-for-name(lg);
+    .layout-for-name(lg);
+    .offset-for-name(lg);
+    .flex-properties-for-name(lg);
 }
 
 // BIGGER THAN LARGE SCREEN
 @media (min-width: @layout-breakpoint-lg) {
-  [hide-gt-sm], [hide-gt-md], [hide-gt-lg], [hide] {
-    &:not([show-gt-sm]):not([show-gt-md]):not([show-gt-lg]):not([show]) {
-      display: none;
+    [hide-gt-sm], [hide-gt-md], [hide-gt-lg], [hide] {
+        &:not([show-gt-sm]):not([show-gt-md]):not([show-gt-lg]):not([show]) {
+            display: none;
+        }
     }
-  }
 
-  .flex-order-for-name(gt-lg);
-  .layout-align-for-name(gt-lg);
-  .layout-for-name(gt-lg);
-  .offset-for-name(gt-lg);
-  .flex-properties-for-name(gt-lg);
+    .flex-order-for-name(gt-lg);
+    .layout-align-for-name(gt-lg);
+    .layout-for-name(gt-lg);
+    .offset-for-name(gt-lg);
+    .flex-properties-for-name(gt-lg);
 }
 
+
 .layout-demo {
-  .base-box {
-    height: 50px;
-    color: white;
-    font-weight: bold;
-    padding: 20px;
-    text-shadow: 0 0 4px rgba(100, 100, 100, 1);
-  }
-
-  .box {
-    &:extend(.layout-demo .base-box);
-    width: 150px;
-    margin: 10px 15px;
-  }
-
-  .flex-box {
-    &:extend(.layout-demo .base-box);
-    width: auto;
-  }
-
-  .dark-blue { background-color: @blue; }
-  .light-blue { background-color: @light-blue; }
-  .dark-green { background-color: @green; }
-  .light-green { background-color: @light-green; }
-  .orange { background-color: @orange; }
-
-  .small-box-container {
-    width: 95%;
-    height: 300px;
-    margin: 0 auto 10px;
-    box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
-  }
-
-  .small-box {
-    &:extend(.layout-demo .base-box);
-    height: auto;
-    width: auto;
-    text-align: center;
-  }
-
-  .grow-box {
-    &:extend(.layout-demo .base-box);
-    height: auto;
-  }
-
-  .layout-examples {
-    input[type="radio"] {
-      margin-right: 6px;
+    .base-box {
+        height: 50px;
+        color: white;
+        font-weight: bold;
+        padding: 20px;
+        text-shadow: 0 0 4px rgba(100, 100, 100, 1);
     }
 
-    label {
-      margin: 10px 0 0 10px;
+    .box {
+        &:extend(.layout-demo .base-box);
+        width: 150px;
+        margin: 10px 15px;
     }
-  }
+
+    .flex-box {
+        &:extend(.layout-demo .base-box);
+        width: auto;
+    }
+
+    .dark-blue { background-color: @blue; }
+    .light-blue { background-color: @light-blue; }
+    .dark-green { background-color: @green; }
+    .light-green { background-color: @light-green; }
+    .orange { background-color: @orange; }
+
+    .small-box-container {
+        width: 95%;
+        height: 300px;
+        margin: 0 auto 10px;
+        box-shadow: 0 0 5px 0 rgba(0,0,0,0.6);
+    }
+
+    .small-box {
+        &:extend(.layout-demo .base-box);
+        height: auto;
+        width: auto;
+        text-align: center;
+    }
+
+    .grow-box {
+        &:extend(.layout-demo .base-box);
+        height: auto;
+    }
+
+    .layout-examples {
+        input[type="radio"] {
+            margin-right: 6px;
+        }
+
+        label {
+            margin: 10px 0 0 10px;
+        }
+    }
 }
 
 /*
@@ -423,11 +425,11 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     }
 
     dt {
-      float: left;
-      font-weight: 700;
-      text-align: left;
-      clear: left;
-      margin-right: 1em;
+        float: left;
+        font-weight: 700;
+        text-align: left;
+        clear: left;
+        margin-right: 1em;
     }
     dd {
         font-weight: 400;
@@ -772,6 +774,9 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     float: right;
 }
 
+/*
+ * Common
+ */
 @import 'vars';
 @import (inline) 'normalize.css';
 
@@ -781,6 +786,13 @@ html, body {
     font-size: @appFontSize;
     color: @appTextColor;
     font-family: @appFont;
+}
+
+// Resets for form inputs
+input,
+textarea,
+select {
+    box-shadow: none;
 }
 
 // Set default font
@@ -843,7 +855,7 @@ table {
         color: @tableHeaderText;
         border: 1px solid @tableHeaderBorder;
         &.actions {
-          width: 15px;
+            width: 15px;
         }
     }
     tr {
@@ -1128,23 +1140,24 @@ body:hover .visually-hidden button {
 }
 
 
-/* PLACEHOLDER TEXT STYLING
-  https://css-tricks.com/snippets/css/style-placeholder-text/
-*/
+/*
+ * PLACEHOLDER TEXT STYLING
+ * https://css-tricks.com/snippets/css/style-placeholder-text/
+ */
 ::-webkit-input-placeholder { // Chrome
-  color: @inputPlaceholderColor;
-  font-weight: 300;
-  font-style: italic;
+    color: @inputPlaceholderColor;
+    font-weight: 300;
+    font-style: italic;
 }
 ::-moz-placeholder { // Firefox 19+
-  color: @inputPlaceholderColor;
-  font-weight: 400;
-  font-style: italic;
+    color: @inputPlaceholderColor;
+    font-weight: 400;
+    font-style: italic;
 }
 
 //DEPRECATED: A "filter" style rxSearchBox
 .filter-box {
-  font-style: italic;
+    font-style: italic;
 }
 
 @import 'vars';
@@ -1531,23 +1544,23 @@ body:hover .visually-hidden button {
         color: #babab9;
 
         fieldset {
-          position: relative;
+            position: relative;
         }
 
         // NOTE: We have to have this duplication because CSS doesn't like combining the placholder selectors
         .placeholder() {
-           font-style: italic;
-           text-overflow: ellipsis;
+            font-style: italic;
+            text-overflow: ellipsis;
         }
 
         ::-webkit-input-placeholder {
             .placeholder();
         }
         ::-moz-placeholder {
-           .placeholder();
+            .placeholder();
         }
         :-ms-input-placeholder {
-           .placeholder();
+            .placeholder();
         }
 
         .search-input {
@@ -1886,6 +1899,9 @@ thead th[rx-bulk-select-header-check] {
     .pagination-per-page { display: none; }
 }
 
+/*
+ * rxButton
+ */
 @import 'vars';
 
 .button {
@@ -1978,7 +1994,7 @@ thead th[rx-bulk-select-header-check] {
     }
 
 
-// Spinner styles
+    // Spinner styles
     .spinner {
         display: inline-block;
         position: relative;
@@ -2018,7 +2034,8 @@ thead th[rx-bulk-select-header-check] {
         0%, 80%, 100% {
             transform: scale(0.0);
             -webkit-transform: scale(0.0);
-        } 40% {
+        }
+        40% {
             transform: scale(1.0);
             -webkit-transform: scale(1.0);
         }
@@ -2108,10 +2125,10 @@ thead th .btn-link {
     position: relative;
     background-color: #ffffff;
     input, textarea {
-      position: relative; // Ensure the input is layered over the highlighting without z-index
-      background-color: transparent;
-      resize: none;
-      .inputBorderPadding;
+        position: relative; // Ensure the input is layered over the highlighting without z-index
+        background-color: transparent;
+        resize: none;
+        .inputBorderPadding;
     }
     .input-highlighting {
         position: absolute;
@@ -2142,155 +2159,163 @@ thead th .btn-link {
  * rxCheckbox
  */
 .rxCheckbox {
-  display: inline-block;
-  width: @rxCheckbox-size;
-  height: @rxCheckbox-size;
-  color: @rxCheckbox-color;
-  background-color: @rxCheckbox-background-color;
-  position: relative;
-
-  input[type="checkbox"],
-  .fake-checkbox {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
-    outline: 0px;
-  }
-
-  .fake-checkbox {
-    box-sizing: border-box;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
-
-    // enabled unchecked
+    display: inline-block;
+    width: @rxCheckbox-size;
+    height: @rxCheckbox-size;
+    color: @rxCheckbox-color;
     background-color: @rxCheckbox-background-color;
-    border: 1px solid @rxCheckbox-border-color;
+    position: relative;
 
-    // perfect center alignment for tick
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: center;
-    color: transparent;
-
-    .tick {
-      flex: 0 0 auto;
-      font-size: @rxCheckbox-font-size;
-    }
-  }//.fake-checkbox
-
-  &.rx-disabled + label {
-    color: @inputColorDisabled;
-  }
-
-  input[type="checkbox"] {
-    z-index: 1;
-    height: 110%;
-    width: 110%;
-    opacity: 0;
-    cursor: pointer;
-
-    // enabled checked
-    &:checked + .fake-checkbox {
-      background-color: @rxCheckbox-background-color-selected;
-      color: @rxCheckbox-color;
-      border: none;
+    input[type="checkbox"],
+    .fake-checkbox {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+        outline: 0px;
     }
 
-    &.ng-invalid {
-      // enabled unchecked error
-      & + .fake-checkbox {
+    .fake-checkbox {
+        box-sizing: border-box;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+
+        // enabled unchecked
         background-color: @rxCheckbox-background-color;
-        border: 2px solid @inputBackgroundError;
-      }
-
-      // enabled checked error
-      &:checked {
-        & + .fake-checkbox {
-          background-color: @inputBackgroundError;
-        }
-      }
-    }
-
-    &[disabled] {
-      cursor: not-allowed;
-
-      & ~ .fake-checkbox {
-        background: @inputBackground;
         border: 1px solid @rxCheckbox-border-color;
-      }
 
-      // disabled, checked
-      &:checked ~ .fake-checkbox {
-        background-color: @inputBackgroundDisabled;
-        border: none;
-      }
+        // perfect center alignment for tick
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        color: transparent;
+
+        .tick {
+            flex: 0 0 auto;
+            font-size: @rxCheckbox-font-size;
+        }
+    }//.fake-checkbox
+
+    &.rx-disabled + label {
+        color: @inputColorDisabled;
     }
-  }
+
+    input[type="checkbox"] {
+        z-index: 1;
+        height: 110%;
+        width: 110%;
+        opacity: 0;
+        cursor: pointer;
+
+        // enabled checked
+        &:checked + .fake-checkbox {
+            background-color: @rxCheckbox-background-color-selected;
+            color: @rxCheckbox-color;
+            border: none;
+        }
+
+        .disabled() {
+            cursor: not-allowed;
+
+            & ~ .fake-checkbox {
+                background: @inputBackground;
+                border: 1px solid @rxCheckbox-border-color;
+            }
+
+            // disabled, checked
+            &:checked ~ .fake-checkbox {
+                background-color: @inputBackgroundDisabled;
+                border: none;
+            }
+        }//.disabled()
+
+        &.ng-invalid.ng-dirty {
+            // enabled unchecked error
+            & + .fake-checkbox {
+                background-color: @rxCheckbox-background-color;
+                border: 2px solid @inputBackgroundError;
+            }
+
+            // enabled checked error
+            &:checked {
+                & + .fake-checkbox {
+                    background-color: @inputBackgroundError;
+                }
+            }
+
+            &[disabled] {
+                .disabled();
+            }
+        }
+
+        &[disabled] {
+            .disabled();
+        }
+    }
 }//.rxCheckbox
 
 /*
  * rxCollapse
  */
 rx-collapse {
-  display: block;
+    display: block;
 
-  .collapse-container {
+    .collapse-container {
 
-    .double-chevron-cell {
-      display: inline-block;
-      .box-sizing(border-box);
-      width: 30px;
-      padding: 0 10px;
-      background-color: @borderGrey;
-      vertical-align: middle;
+        .double-chevron-cell {
+            display: inline-block;
+            .box-sizing(border-box);
+            width: 30px;
+            padding: 0 10px;
+            background-color: @borderGrey;
+            vertical-align: middle;
 
-      .double-chevron {
+            .double-chevron {
+                cursor: pointer;
+                &:after {
+                    display: inline-block;
+                    color: @white;
+                    font-size: 28px;
+                    .chevron-mixin;
+                }
+            }
+
+            &.expanded {
+                .double-chevron {
+                    &:after {
+                        .chevron-mixin(-1);
+                    }
+                }
+            }
+        }
+
+        border: 2px solid @borderGrey;
+
+        .rx-collapse-title {
+            display: inline-block;
+            margin: 0 10px;
+            vertical-align: middle;
+        }
+
+        .collapse-body {
+            margin: 0;
+            padding: 10px;
+        }
+    }
+    .sml-title {
         cursor: pointer;
-        &:after {
-          display: inline-block;
-          color: @white;
-          font-size: 28px;
-          .chevron-mixin;
-        }
-      }
-
-      &.expanded {
-        .double-chevron {
-          &:after {
-            .chevron-mixin(-1);
-          }
-        }
-      }
+        color: @cancel-gray;
+        font-size: 10pt;
     }
 
-    border: 2px solid @borderGrey;
-
-    .rx-collapse-title {
-      display: inline-block;
-      margin: 0 10px;
-      vertical-align: middle;
+    .hide-border {
+        border:none;
     }
-
-    .collapse-body {
-      margin: 0;
-      padding: 10px;
-    }
-  }
-  .sml-title {
-    cursor: pointer;
-    color: @cancel-gray;
-    font-size: 10pt;
-  }
-
-  .hide-border {
-      border:none;
-  }
 }
 
 /*
@@ -2342,8 +2367,12 @@ th.filter-header {
 // add z-index:2 to the other rows in the header, *not* the row
 // that the batch actions menu lives in.
 tr.rx-floating-header:not(.rx-table-filter-row) {
-  z-index: 2;
+    z-index: 2;
 }
+
+/*
+ * rxForm
+ */
 
 @import 'vars';
 @import 'mixins';
@@ -2640,7 +2669,7 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 
                 &[type="checkbox"],
                 &[type="radio"] {
-                  width: 1em;
+                    width: 1em;
                 }
             }
         }
@@ -2670,9 +2699,9 @@ tr.rx-floating-header:not(.rx-table-filter-row) {
 input,
 textarea,
 select {
-  box-sizing: border-box;
-  border: none;
-  outline: none;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
 }
 
 [rx-form],
@@ -2683,203 +2712,213 @@ rx-field-content,
 rx-input,
 rx-inline-error,
 rx-help-text {
-  box-sizing: border-box;
-  display: block;
-  margin: 0px;
-  padding: 0px;
+    box-sizing: border-box;
+    display: block;
+    margin: 0px;
+    padding: 0px;
 }
 
 rx-inline-error {
-  color: @inputColorError;
-  font-weight: 900;
+    color: @inputColorError;
+    font-weight: 900;
 }
 
 rx-help-text {
-  font-size: 0.8em;
-  font-style: italic;
-  margin: 1em 0em;
+    font-size: 0.8em;
+    font-style: italic;
+    margin: 1em 0em;
 }
 
 rx-field-name {
-  color: @rxFieldName-color;
-  font-size: @rxFieldName-font-size;
+    color: @rxFieldName-color;
+    font-size: @rxFieldName-font-size;
 
-  .wrapper {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
+    .wrapper {
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
 
-    .required-symbol {
-      font-weight: 900;
-      color: @rxFieldName-symbol-color;
+        .required-symbol {
+            font-weight: 900;
+            color: @rxFieldName-symbol-color;
+        }
     }
-  }
 }//rx-field-name
 
 [rx-form] {
-  font-size: @rxForm-font-size;
-  margin: @rxForm-gutter 0;
+    font-size: @rxForm-font-size;
+    margin: @rxForm-gutter 0;
 
-  rx-field-name,
-  rx-help-text,
-  rx-inline-error,
-  rx-input {
-    margin-bottom: (@rxForm-gutter / 2);
+    rx-field-name,
+    rx-help-text,
+    rx-inline-error,
+    rx-input {
+        margin-bottom: (@rxForm-gutter / 2);
 
-    &:last-child { margin-bottom: 0px; }
-  }
-
-  rx-form-section {
-    // as flex container
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-
-    margin: 0px (@rxForm-gutter / 2);
-
-    & > div,
-    rx-field {
-      margin: 0px (@rxForm-gutter / 2) (@rxForm-gutter * 1.25);
-
-      // http://www.w3.org/TR/css3-flexbox/images/rel-vs-abs-flex.svg
-      // as dynamic flex item (3rd arg acts like min-width)
-      flex: 1 0 @rxForm-field-min-width;
+        &:last-child { margin-bottom: 0px; }
     }
 
-    rx-field {
-      // as flex container
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: flex-start;
+    rx-form-section {
+        // as flex container
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
 
-      rx-field-content {
-        flex: 1 0 auto; // as flex item
-        margin-bottom: @rxForm-gutter;
+        margin: 0px (@rxForm-gutter / 2);
 
-        &:last-child {
-          margin-bottom: 0px;
+        & > div,
+        rx-field {
+            margin: 0px (@rxForm-gutter / 2) (@rxForm-gutter * 1.25);
+
+            // http://www.w3.org/TR/css3-flexbox/images/rel-vs-abs-flex.svg
+            // as dynamic flex item (3rd arg acts like min-width)
+            flex: 1 0 @rxForm-field-min-width;
         }
 
-        rx-input {
-          // as a flex container
-          display: flex;
-          flex-flow: row nowrap;
-          justify-content: flex-start;
-          align-items: stretch;
-
-          & > input,
-          & > textarea {
-            flex: 1 1 auto; // as dynamic flex item
-
-            min-height: @rxForm-input-min-height;
-
-            &, &.ng-valid {
-              padding: 3px 5px;
-              border: 1px solid @rxForm-input-border-color;
-            }
-
-            &.ng-invalid {
-              border-color: @inputBorderColorInvalid;
-              border-width: 2px;
-              // MUST differ with valid padding by 1px to
-              // account for thicker border
-              padding: 2px 4px;
-            }
-
-            // DISABLED STYLING
-            // (these should trump all other styles)
-            &[disabled] {
-              border: 1px solid @rxForm-input-border-color;
-              color: @inputColorDisabled;
-              background: @inputBackgroundDisabled;
-              cursor: not-allowed !important;
-            }
-          }
-
-          rx-prefix,
-          rx-suffix {
-            box-sizing: border-box;
-            min-height: @rxForm-input-min-height;
-            padding: 0px (@rxForm-gutter / 4);
-            flex: 0 0 auto; // as static flex item
-
+        rx-field {
             // as flex container
             display: flex;
-            align-items: center; // content is vertically centered
-          }
+            flex-flow: column nowrap;
+            justify-content: flex-start;
 
-          rx-prefix:first-child { padding-left: 0px; }
-          rx-suffix:last-child { padding-right: 0px; }
+            rx-field-content {
+                flex: 1 0 auto; // as flex item
+                margin-bottom: @rxForm-gutter;
 
-          /* ===== Other Directive Support ===== */
-          .rxSelect {
-            flex: 1 1 auto; // as dynamic flex item
-          }
+                &:last-child {
+                    margin-bottom: 0px;
+                }
 
-          .rxCheckbox,
-          .rxRadio,
-          rx-toggle-switch {
-            flex: 0 0 auto; // as static flex item
+                rx-input {
+                    // as a flex container
+                    display: flex;
+                    flex-flow: row nowrap;
+                    justify-content: flex-start;
+                    align-items: stretch;
 
-            & + label {
-              margin-left: 5px;
+                    & > input,
+                    & > textarea {
+                        flex: 1 1 auto; // as dynamic flex item
+
+                        min-height: @rxForm-input-min-height;
+
+                        &, &.ng-valid {
+                            padding: 3px 5px;
+                            border: 1px solid @rxForm-input-border-color;
+                        }
+
+                        .disabled() {
+                            border: 1px solid @rxForm-input-border-color;
+                            color: @inputColorDisabled;
+                            background: @inputBackgroundDisabled;
+                            cursor: not-allowed !important;
+                        }//.disabled
+
+                        &.ng-invalid.ng-dirty {
+                            border-color: @inputBorderColorInvalid;
+                            border-width: 2px;
+                            // MUST differ with valid padding by 1px to
+                            // account for thicker border
+                            padding: 2px 4px;
+
+                            // DISABLED STYLING
+                            // (these should trump all other styles)
+                            &[disabled] {
+                                .disabled();
+                            }
+                        }
+
+                        // DISABLED STYLING
+                        // (these should trump all other styles)
+                        &[disabled] {
+                            .disabled();
+                        }
+                    }
+
+                    rx-prefix,
+                    rx-suffix {
+                        box-sizing: border-box;
+                        min-height: @rxForm-input-min-height;
+                        padding: 0px (@rxForm-gutter / 4);
+                        flex: 0 0 auto; // as static flex item
+
+                        // as flex container
+                        display: flex;
+                        align-items: center; // content is vertically centered
+                    }
+
+                    rx-prefix:first-child { padding-left: 0px; }
+                    rx-suffix:last-child { padding-right: 0px; }
+
+                    /* ===== Other Directive Support ===== */
+                    .rxSelect {
+                        flex: 1 1 auto; // as dynamic flex item
+                    }
+
+                    .rxCheckbox,
+                    .rxRadio,
+                    rx-toggle-switch {
+                        flex: 0 0 auto; // as static flex item
+
+                        & + label {
+                            margin-left: 5px;
+                        }
+                    }
+
+                    .rxCheckbox,
+                    .rxRadio,
+                    rx-toggle-switch {
+                        &[disabled] + label {
+                            color: @inputColorDisabled;
+                        }
+                    }
+
+                    .rx-option-table {
+                        table-layout: fixed;
+                        width: 100%;
+                    }
+
+                    // rxCharacterCount support
+                    .counted-input-wrapper {
+                        flex: 1 0;
+
+                        input,
+                        textarea {
+                            width: 100%;
+                        }
+                    }
+
+                    rx-search-box {
+                        flex: 1 1;
+                    }
+                }//rx-input
+            }//rx-field-content
+        }//rx-field
+
+        // replaces .form-actions
+        // [rx-form] > rx-form-section > div
+        & > div {
+            margin-top: (@rxForm-gutter / 2);
+
+            .button {
+                margin: 2px;
+
+                &:first-of-type { margin-left: 0px; }
+                &:last-of-type { margin-right: 0px; }
             }
-          }
+        }
 
-          .rxCheckbox,
-          .rxRadio,
-          rx-toggle-switch {
-            &[disabled] + label {
-              color: @inputColorDisabled;
+        &[stacked] {
+            flex-flow: column nowrap;
+
+            & > div,
+            rx-field {
+                flex: 1 0; // grows vertically, does not shrink
+                max-width: @rxForm-field-max-width;
+                margin-bottom: (@rxForm-gutter * 1.25);
             }
-          }
-
-          .rx-option-table {
-            table-layout: fixed;
-            width: 100%;
-          }
-
-          // rxCharacterCount support
-          .counted-input-wrapper {
-            flex: 1 0;
-
-            input,
-            textarea {
-              width: 100%;
-            }
-          }
-
-          rx-search-box {
-            flex: 1 1;
-          }
-        }//rx-input
-      }//rx-field-content
-    }//rx-field
-
-    // replaces .form-actions
-    // [rx-form] > rx-form-section > div
-    & > div {
-      margin-top: (@rxForm-gutter / 2);
-
-      .button {
-        margin: 2px;
-
-        &:first-of-type { margin-left: 0px; }
-        &:last-of-type { margin-right: 0px; }
-      }
-    }
-
-    &[stacked] {
-      flex-flow: column nowrap;
-
-      & > div,
-      rx-field {
-        flex: 1 0; // grows vertically, does not shrink
-        max-width: @rxForm-field-max-width;
-        margin-bottom: (@rxForm-gutter * 1.25);
-      }
-    }
-  }//rx-form-section
+        }
+    }//rx-form-section
 }//[rx-form]
 
 /*
@@ -2907,47 +2946,47 @@ rx-field-name {
  * rxMetadata
  */
 rx-metadata {
-  box-sizing: border-box;
-  padding: 0px;
-  margin: @rxMetadata-gutter 0;
-
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: stretch;
-
-  rx-meta {
-    display: block;
-    margin: 0 0 22px;
-
-    .label {
-      color: @rxMetadata-label-color;
-      font-size: @rxMetadata-label-font-size;
-      margin: 0 0 6px;
-    }
-
-    .definition {
-      color: @rxMetadata-definition-color;
-      font-size: @rxMetadata-definition-font-size;
-      font-weight: 700;
-    }
-
-    &.force-word-break {
-      word-break: break-all;
-    }
-  }
-
-  section {
     box-sizing: border-box;
-    display: block;
-    padding: 0;
-    margin: 0 @rxMetadata-gutter 0 0;
-    flex: 0 0 300px; // no grow, no shrink, always 300px wide;
+    padding: 0px;
+    margin: @rxMetadata-gutter 0;
 
-    &:last-child {
-        margin-right: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    rx-meta {
+        display: block;
+        margin: 0 0 22px;
+
+        .label {
+            color: @rxMetadata-label-color;
+            font-size: @rxMetadata-label-font-size;
+            margin: 0 0 6px;
+        }
+
+        .definition {
+            color: @rxMetadata-definition-color;
+            font-size: @rxMetadata-definition-font-size;
+            font-weight: 700;
+        }
+
+        &.force-word-break {
+            word-break: break-all;
+        }
     }
-  }
+
+    section {
+        box-sizing: border-box;
+        display: block;
+        padding: 0;
+        margin: 0 @rxMetadata-gutter 0 0;
+        flex: 0 0 300px; // no grow, no shrink, always 300px wide;
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
 }
 
 @import 'mixins';
@@ -3103,7 +3142,7 @@ rx-metadata {
             background-image: url('images/green-checkmark-circled.png');
             color: #45ad26;
             a {
-              color: #7db162;
+                color: #7db162;
             }
         }
         &.notification-info {
@@ -3111,7 +3150,7 @@ rx-metadata {
             background-image: url('images/info-circled.png');
             color: #1672b9;
             a {
-              color: #568fb8;
+                color: #568fb8;
             }
         }
         &.notification-warning {
@@ -3119,7 +3158,7 @@ rx-metadata {
             background-image: url('images/warning-triangle.png');
             color: #fff;
             a {
-              color: #f1d6af;
+                color: #f1d6af;
             }
         }
         &.notification-error {
@@ -3127,7 +3166,7 @@ rx-metadata {
             background-image: url('images/error-stop.png');
             color: #fff;
             a {
-              color: #fdaaab;
+                color: #fdaaab;
             }
         }
         &.notification-loading {
@@ -3217,7 +3256,7 @@ rx-metadata {
         }
 
         rx-help-text {
-          margin: 0;
+            margin: 0;
         }
     }
     input[disabled] {
@@ -3247,20 +3286,18 @@ rx-metadata {
     }
 
     thead {
-      tr {
-        th:first-child {
-          width: @rxCheckbox-size;
+        tr {
+            th:first-child {
+                width: @rxCheckbox-size;
+            }
         }
-      }
     }
 }
 
 /*
-  rxPaginate
-
+ * rxPaginate
  */
-
- @paginationColor: #ababab;
+@paginationColor: #ababab;
 
 .paginate-area {
     text-align: center;
@@ -3360,8 +3397,8 @@ rx-metadata {
             background: transparent;
         }
         & li + li::before {
-           content: " | ";
-           margin: 0 1em;
+            content: " | ";
+            margin: 0 1em;
         }
     }
 
@@ -3437,8 +3474,8 @@ rx-metadata {
 }
 
 /*
-* rxRadio
-*/
+ * rxRadio
+ */
 .rxRadio {
     display: inline-block;
     width: @rxRadio-size;
@@ -3504,25 +3541,7 @@ rx-metadata {
             }
         }
 
-        &.ng-invalid {
-            // enabled unchecked error
-            & + .fake-radio {
-                border: @rxRadio-border-width-invalid solid @rxRadio-color-error;
-
-                .tick {
-                    .border-radius(@rxRadio-tick-border-radius-invalid);
-                    width: @rxRadio-tick-size-invalid;
-                    height: @rxRadio-tick-size-invalid;
-                }
-            }
-
-            &:checked + .fake-radio .tick {
-                background: @rxRadio-color-error;
-            }
-        }
-
-        // disabled trumps invalid
-        &[disabled] {
+        .disabled() {
             cursor: not-allowed;
 
             // disabled, unchecked
@@ -3538,13 +3557,40 @@ rx-metadata {
             &:checked + .fake-radio .tick {
                 background: @inputBackgroundDisabled;
             }
-        }//[disabled]
+        }//.disabled()
+
+        &.ng-invalid.ng-dirty {
+            // enabled unchecked error
+            & + .fake-radio {
+                border: @rxRadio-border-width-invalid solid @rxRadio-color-error;
+
+                .tick {
+                    .border-radius(@rxRadio-tick-border-radius-invalid);
+                    width: @rxRadio-tick-size-invalid;
+                    height: @rxRadio-tick-size-invalid;
+                }
+            }
+
+            &:checked + .fake-radio .tick {
+                background: @rxRadio-color-error;
+            }
+
+            // disabled trumps invalid
+            &[disabled] {
+                .disabled();
+            }
+        }
+
+        // disabled trumps invalid
+        &[disabled] {
+            .disabled();
+        }
     }//input
 }//.rxRadio
 
 /*
-* rxSearchBox
-*/
+ * rxSearchBox
+ */
 rx-search-box {
     display: inline-block;
     width: @rxSearchBox-width;
@@ -3575,9 +3621,9 @@ rx-search-box {
             padding: @rxSearchBox-padding-vertical @rxSearchBox-padding-horizontal;
 
             /*
-            This gets around FireFox setting the min-width to a value
-            that overflows content out of the .rxSearch container.
-            */
+             * This gets around FireFox setting the min-width to a value
+             * that overflows content out of the .rxSearch container.
+             */
             min-width: (@rxSearchBox-min-width - @rxSearchBox-clear-width - (2 * @rxSearchBox-padding-horizontal));
 
             &[disabled] {
@@ -3609,8 +3655,8 @@ rx-search-box {
 }//rx-search-box
 
 /*
-* rxSelect
-*/
+ * rxSelect
+ */
 .rxSelect {
     .box-sizing(border-box);
     display: block;
@@ -3661,17 +3707,7 @@ rx-search-box {
             border-width: 1px;
         }
 
-        &.ng-invalid + .fake-select {
-            border-color: @rxSelect-border-color-invalid;
-            border-width: 2px;
-
-            .select-trigger {
-                color: @rxSelect-trigger-color-invalid;
-            }
-        }
-
-        // Disabled Trumps All
-        &[disabled] {
+        .disabled() {
             cursor: not-allowed ;
 
             & + .fake-select {
@@ -3685,7 +3721,27 @@ rx-search-box {
                     color: @rxSelect-trigger-color-disabled;
                 }
             }
-        }//[disabled]
+        }//.disabled()
+
+        &.ng-invalid.ng-dirty {
+            & + .fake-select {
+                border-color: @rxSelect-border-color-invalid;
+                border-width: 2px;
+
+                .select-trigger {
+                    color: @rxSelect-trigger-color-invalid;
+                }
+            }
+
+            &[disabled] {
+                .disabled();
+            }
+        }
+
+        // Disabled Trumps All
+        &[disabled] {
+            .disabled();
+        }
     }//select
 
     .fake-select {
@@ -3964,7 +4020,7 @@ rx-tags {
         }
 
         &:hover {
-          cursor: default;
+            cursor: default;
         }
     }
 }

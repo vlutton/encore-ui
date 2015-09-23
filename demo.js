@@ -129,6 +129,12 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 name: 'Buttons/Actions'
             }])
         })
+        .when('/styles/typography', {
+            templateUrl: 'styles/typography.html',
+            controller: genericRouteController([{
+                name: 'Typography'
+            }])
+        })
         /* Component Pages */
         .when('/components', {
             templateUrl: 'components.html',
@@ -192,32 +198,12 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                     linkText: 'Basics',
                     children: [
                         {
-                            href: '#/styleguide/basics#typography',
-                            linkText: 'Typography'
-                        },
-                        {
                             href: '#/styleguide/basics#flexbox-grid',
                             linkText: 'Flexbox Grid'
                         },
                         {
-                            href: '#/styleguide/basics#heading-title-styles',
-                            linkText: 'Header & Title Styles'
-                        },
-                        {
                             href: '#/styleguide/basics#date-formatting',
                             linkText: 'Date Formatting'
-                        },
-                        {
-                            href: '#/styleguide/basics#descriptions-metadata',
-                            linkText: 'Descriptions & Metadata'
-                        },
-                        {
-                            href: '#/styleguide/basics#no-data',
-                            linkText: 'No Data to Display'
-                        },
-                        {
-                            href: '#/styleguide/basics#lists',
-                            linkText: 'Lists'
                         },
                         {
                             href: '#/styleguide/basics#helper-classes',
@@ -340,6 +326,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
                 {
                     href: '#/styles/wells',
                     linkText: 'Wells'
+                },
+                {
+                    href: '#/styles/typography',
+                    linkText: 'Typography'
                 }
             ]
         },
@@ -398,6 +388,10 @@ angular.module('demoApp', ['encore.ui', 'ngRoute'])
         require: 'ngModel',
         link: function (scope, el, attrs, ctrl) {
             ctrl.$setValidity('alwaysInvalid', false);
+            /* ng1.2+ (hack) */
+            el.addClass('ng-dirty');
+            /* ng1.3+ */
+            //ctrl.$setDirty();
         }
     };
 })
