@@ -1,3 +1,21 @@
+<a name="1.30.1"></a>
+### 1.30.1 (2015-09-23)
+
+
+#### Features
+
+* **docs:**
+  * FRMW-159-Migrate rxAge to API Docs ([fcdf4eaf](git@github.com:rackerlabs/encore-ui/commit/fcdf4eaff44061d84c85cc1975dc5e86adb65b53))
+  * FRMW-161 - Update rxAppRoutes API docs and README ([ab774e56](git@github.com:rackerlabs/encore-ui/commit/ab774e56a9ace4e18df97628181950beebc132d7))
+  * FRMW-158 - Migrate rxActiveUrl docs in README to ngdocs ([b15af7ef](git@github.com:rackerlabs/encore-ui/commit/b15af7efba368f077131965eb1c59f45eb0a4c0e))
+  * FRMW-153 - Migrate rxActionMenu docs in README to ngdocs ([5a7f3f6a](git@github.com:rackerlabs/encore-ui/commit/5a7f3f6aab92436426817b71e14a2afd2b65dd01))
+  * FRMW-150 - Migrate configs API Docs in README to ngdocs ([ce100881](git@github.com:rackerlabs/encore-ui/commit/ce100881fbf8a729ebae9bf112f44849e16ef644))
+  * Create Typography style page ([4125d4ba](git@github.com:rackerlabs/encore-ui/commit/4125d4bac6c19315da5c60b91471aa9a3e688980))
+  * FRMW-156 - Migrate rxAccountInfo docs in README to ngdocs ([3ff14f61](git@github.com:rackerlabs/encore-ui/commit/3ff14f618a32691782e66b93f03d21e32a402a88))
+  * FRMW-153 - Migrate layout API Docs in README to ngdocs ([c78e098b](git@github.com:rackerlabs/encore-ui/commit/c78e098b4cca4e4df08ef9dac026541339f7c966))
+  * FRMW-151 - Migrate hotkey s API Docs in README to ngdocs ([a5477797](git@github.com:rackerlabs/encore-ui/commit/a5477797cfb206466672d6f7f0de91bb639a73db))
+
+
 <a name="1.30.0"></a>
 ## 1.30.0 (2015-09-16)
 
