@@ -1,19 +1,6 @@
 var Page = require('astrolabe').Page;
 var _ = require('lodash');
 
-describe('rxMultiSelect', function () {
-
-    before(function () {
-        demoPage.go('#/components/rxSelectFilter');
-    });
-
-    describe('exercises', encore.exercise.rxMultiSelect({
-        instance: encore.rxMultiSelect.initialize($('#classification')),
-        inputs: ['Type A', 'Type B', 'Type C', 'Type D']
-    }));
-
-});
-
 var table = Page.create({
     getDataForColumn: {
         value: function (column) {
