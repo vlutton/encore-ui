@@ -5,7 +5,7 @@
  * @description
  * # rxBulkSelect Component
  *
- * [TBD]
+ * A component used to perform an action on multiple items in a table.
  *
  * ## Directives
  * * {@link rxBulkSelect.directive:rxBatchActions rxBatchActions}
@@ -31,6 +31,17 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
  * which will appear whenever items are selected, and disappear when none are selected.
  * The main responsibility of this directive is to provide a controller for other
  * bulk-select-related directives to interact with.
+ *
+ * <pre>
+ * <table rx-bulk-select
+ *        bulk-source="servers"
+ *        selectedKey="rowIsSelected">
+ * </table>
+ * </pre>
+ *
+ * The directive is also responsible for adding a row to the table header that
+ * indicates how many rows are selected and contains buttons to select or deselect
+ * all the rows at once.
  *
  * @param {Object} bulkSource The source list that the table ng-repeats over.
  * @param {String} selectedKey The attribute on items in bulkSource that will be used to track
