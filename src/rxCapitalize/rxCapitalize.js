@@ -4,7 +4,7 @@
  * @description
  * # rxCapitalize Component
  *
- * [TBD]
+ * This component provides logic to capitalize the first word in a string via an Angular filter.
  *
  * ## Filters
  * * {@link rxCapitalize.filter:rxCapitalize rxCapitalize}
@@ -13,7 +13,8 @@ angular.module('encore.ui.rxCapitalize', [])
 /**
  * @ngdoc filter
  * @name rxCapitalize.filter:rxCapitalize
- * @description [TBD]
+ * @description
+ * The `rxCapitalize` filter capitalizes the first word in a string.
  */
 .filter('rxCapitalize', function () {
     return function (input) {
