@@ -4,7 +4,14 @@
  * @description
  * # rxFeedback Component
  *
- * [TBD]
+ * `rxFeedback` component gathers and sends user feedback to a default or specifiable email list.
+ * 
+ * ## Default Submission Function
+ *
+ * The `rxFeedback` component sends feedback to `/api/encore/feedback`, which routes feedback to `encoreui@lists`.
+ * This endpoint also supports a `product` parameter `/api/encore/feedback/:product` for sending feedback to a 
+ * product-specific mailing list. Adding a custom endpoint is managed in `encore-service-pillar`. Once configured 
+ * you can override the default endpoint with `rxFeedbackSvc.setEndpoint`.
  *
  * ## Directives
  * * {@link rxFeedback.directive:rxFeedback rxFeedback}
@@ -41,9 +48,9 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
  * @ngdoc service
  * @name rxFeedback.service:rxScreenshotSvc
  * @description
- * requires html2canvas
+ * Captures a screenshot for `rxFeedback` submission form.
  *
- * [TBD]
+ * **NOTE:** Requires `html2canvas` which Encore Framework provides by default.
  */
 .service('rxScreenshotSvc', function ($log, $q) {
     // double check that html2canvas is loaded
@@ -77,7 +84,9 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
 /**
  * @ngdoc service
  * @name rxFeedback.service:rxFeedbackSvc
- * @description [TBD]
+ * @description
+ * `rxFeedbackSvc` service supports `rxFeedback` directive functionality.  A `custom endpoint` may be set to override
+ * the `default` endpoint.  
  */
 .factory('rxFeedbackSvc', function ($resource, feedbackApi, $location, $window) {
     var container = {
@@ -141,7 +150,29 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
  * @name rxFeedback.directive:rxFeedback
  * @restrict E
  * @scope
- * @description [TBD]
+ * @description
+ * ## Custom Submission Function
+ * 
+ * The `rxFeedback` directive allows you to define an `on-submit` attribute that points to a custom function for the
+ * purposes of overriding the default submission logic.  This function should accept a *single argument* for a
+ * `feedback object` with the following definition:
+ *
+ * @example
+ * <pre>
+ * // feedback object structure
+ * {
+ *   "type": {
+ *      "label": "(string)",
+ *      "placeholder": "(string) placeholder text",
+ *      "prompt": "(string) UI text used to describe the `description` field"
+ *    },
+ *    "description": "(string) user-submitted feedback"
+ * }
+ * </pre>
+ *
+ * @param {Object} type JSON object with `label` {String}, `placeholder` {String}, and `prompt` {String}
+ * @param {String} description User-submitted feedback
+ * 
  */
 .directive('rxFeedback', function (feedbackTypes, $location, rxFeedbackSvc, rxScreenshotSvc, rxNotify, Session) {
     return {
