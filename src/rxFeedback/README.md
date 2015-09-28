@@ -9,6 +9,8 @@ The `rxFeedback` component sends feedback to `/api/encore/feedback`, which route
 This endpoint also supports a `product` parameter `/api/encore/feedback/:product` for sending feedback to a
 product-specific mailing list.
 
+## Custom Endpoint
+
 Adding a custom endpoint is managed in `encore-service-pillar`. Once configured
 you can override the default endpoint with `rxFeedbackSvc.setEndpoint`.
 
@@ -45,10 +47,14 @@ of "Feature Request", the service will open up a new window redirecting the user
 which will now host all internal requests for features.
 
 
-
 ```
 angular.module('myApplication', ['ngRoute', 'ngResource', 'encore.svcs.feedback'])
 ```
+
+By adding the `encore.svcs.feedback` dependency to your application, the `Feedback` service will be available and automatically
+initialized by the `rxFeedback` controller.  Once initialized, the default behaviour of the `rxFeedback` controller will be
+altered to perform the GET feedback redirect.
+
 
 ### Production
 To manually include the Feedback changes without updating your version of Encore UI (but after updating `encore-ui-svcs`), please include the following:
@@ -57,13 +63,9 @@ Add the following script in your `index.html` (after injected dependencies):
 
 [http://3bea8551c95f45baa125-a22eac1892b2a6dcfdb36104c0e925de.r46.cf1.rackcdn.com/feedback-override.js](http://3bea8551c95f45baa125-a22eac1892b2a6dcfdb36104c0e925de.r46.cf1.rackcdn.com/feedback-override.js)
 
-```javascript
+```html
 <!-- inject:js -->
 <!-- endinject -->
-<!-- or -->
-<script src="bower_components/encore-ui/encore-ui-tpls.min.js"></script>
-<script src="bower_components/encore-ui-svcs/dist/encore-ui-svcs.js"></script>
-<!-- ... -->
 <script src="https://6618f7541d71c1a404be-a22eac1892b2a6dcfdb36104c0e925de.ssl.cf1.rackcdn.com/feedback-override.js"></script>
 ```
 
