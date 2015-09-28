@@ -4,7 +4,7 @@
  * @description
  * # rxFavicon Component
  *
- * [TBD]
+ * This component allows custom favicons between local, staging and production environments.
  *
  * ## Directives
  * * {@link rxFavicon.directive:rxFavicon rxFavicon}
@@ -16,14 +16,18 @@ angular.module('encore.ui.rxFavicon', ['encore.ui.rxEnvironment'])
  * @restrict A
  * @scope
  * @description
- * Updates href of element and replaces it with path to a different image based on environment
+ * This updates the href of an element, and replaces it with the path to a different image based on the environment.
  *
- * @param {Object} rxFavicon - Takes two optional properties (staging and local), with the value of each being
- *                             the path to the favicon.
- *
+ * @param {Object} rxFavicon
+ * This is a congifuration object for each environment.
+ * @param {String=} rxFavicon.staging This defines the favicon file for the staging environment.
+ * @param {String=} rxFavicon.local This defines the favicon file for the local environment.
  * @example
  * <pre>
- * TBD
+ * <link rel="icon"
+ *     type="image/png"
+ *     href="favicon.png"
+ *     rx-favicon="{ staging: 'staging-favicon.png', local: 'local-favicon.png' }" />
  * </pre>
  */
 .directive('rxFavicon', function (Environment, $parse, $log) {
