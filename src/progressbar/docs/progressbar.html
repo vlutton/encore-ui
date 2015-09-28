@@ -1,24 +1,11 @@
 <!-- Sample HTML goes here as a live example of how the component can be used -->
 <div ng-controller="progressbarCtrl">
-     <div class="pure-g columns clear">
-        <div class="pure-u-2-3">
+     <div layout="row">
+        <div flex="67">
             <progressbar class="progress-striped active" value="45" max="100"></progressbar>
-        </div>
-    </div>
-     <div class="pure-g columns clear">
-        <div class="pure-u-2-3">
             <progressbar class="progress-striped active" value="22">22%</progressbar>
-        </div>
-    </div>
-     <div class="pure-g columns clear">
-        <div class="pure-u-2-3">
             <progressbar class="progress-striped active" max="3" value="2"><i>2 of 3 servers processed</i></progressbar>
-        </div>
-    </div>
-     <div class="pure-g columns clear">
-        <div class="pure-u-2-3">
             <progressbar class="progress active" max="3" value="3"><i>3 of 3 servers processed</i></progressbar>
         </div>
     </div>
-
 </div>
