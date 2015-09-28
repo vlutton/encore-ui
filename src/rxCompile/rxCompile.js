@@ -4,7 +4,7 @@
  * @description
  * # rxCompile Component
  *
- * [TBD]
+ * A component that allows compilation of expressions inside of other expressions.
  *
  * ## Directives
  * * {@link rxCompile.directive:rxCompile rxCompile}
