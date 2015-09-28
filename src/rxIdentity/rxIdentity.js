@@ -4,7 +4,7 @@
  * @description
  * # rxIdentity Component
  *
- * This is a service designed to authenticate with Rackspace's Identity service.
+ * This is a component designed to aid interaction with Rackspace's Identity API.
  *
  * ## Services
  * * {@link rxIdentity.service:Identity Identity}
@@ -14,7 +14,7 @@ angular.module('encore.ui.rxIdentity', ['ngResource'])
 * @ngdoc service
 * @name rxIdentity.service:Identity
 * @description
-* This is a service designed to authenticate with Rackspace's Identity service.
+* This is a component designed to aid interaction with Rackspace's Identity API.
 *
 * @requires $resource
 *
