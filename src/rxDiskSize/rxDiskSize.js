@@ -4,8 +4,8 @@
  * @description
  * # rxDiskSize Component
  *
- * [TBD]
- *
+ * Converts GB disk size into a more readable format (e.g. GBs, TBs, PBs)
+ * 
  * ## Filters
  * * {@link rxDiskSize.filter:rxDiskSize rxDiskSize}
  */
@@ -13,8 +13,17 @@ angular.module('encore.ui.rxDiskSize', [])
 /**
  * @ngdoc filter
  * @name rxDiskSize.filter:rxDiskSize
- * @description [TBD]
- */
+ * @description
+ *
+ * Converts GB disk size into a more readable format (e.g. GBs, TBs, PBs)
+ *
+ * 
+ * <pre>
+ * 420 → 420 GB
+ * 125000 → 125 TB
+ * 171337000 → 171.337 PB
+ * </pre>
+ **/
 .filter('rxDiskSize', function () {
     return function (size, unit) {
         var units = ['GB', 'TB', 'PB'];
