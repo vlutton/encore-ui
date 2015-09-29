@@ -5,7 +5,7 @@
  * @description
  * # rxLocalStorage Component
  *
- * [TBD]
+ * Simple wrapper of the global session `localStorage` object for interacting with local storage in the browser.
  *
  * ## Services
  * * {@link rxLocalStorage.service:LocalStorage LocalStorage}
@@ -15,11 +15,11 @@ angular.module('encore.ui.rxLocalStorage', [])
  * @ngdoc service
  * @name rxLocalStorage.service:LocalStorage
  * @description
- * A simple wrapper for injecting the global variable localStorage
- * for storing values in local storage. This service is similar to angular's
- * $window and $document services.  The API works the same as the W3C's
+ * A simple wrapper for injecting the global variable `localStorage`
+ * for storing values in the browser's local storage object. This service is similar to Angular's
+ * `$window` and `$document` services.  The API works the same as the W3C's
  * specification provided at: http://dev.w3.org/html5/webstorage/#storage-0.
- * Also includes to helper functions for getting and setting objects.
+ * This service also includes helper functions for `getting` and `setting` objects.
  *
  * @example
  * <pre>
