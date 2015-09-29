@@ -4,7 +4,7 @@
  * @description
  * # rxInfoPanel Component
  *
- * [TBD]
+ * This is a generic info panel intended for use at the top of pages.
  *
  * ## Directives
  * * {@link rxInfoPanel.directive:rxInfoPanel rxInfoPanel}
@@ -16,9 +16,15 @@ angular.module('encore.ui.rxInfoPanel', [])
  * @restrict E
  * @scope
  * @description
- * Renders a generic, pre-styled, info panel, with an optional title.
+ * This renders a generic, pre-styled, info panel, with an optional title.
  *
  * @param {String} title - Text to be displayed in the title area of the info panel
+ * @example
+ * <pre>
+ *  <rx-info-panel panel-title="My title!">
+ *        You can put whatever you like in here.
+ *  </rx-info-panel>
+ * </pre>
  */
 .directive('rxInfoPanel', function () {
     return {
