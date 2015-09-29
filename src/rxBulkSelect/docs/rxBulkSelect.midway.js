@@ -14,7 +14,7 @@ describe('rxBulkSelect', function () {
             get: function () {
                 return $('rx-modal-action#selectDatacenters a');
             }
-        },
+        }
 
     });
 
@@ -22,13 +22,16 @@ describe('rxBulkSelect', function () {
         demoPage.go('#/components/rxBulkSelect');
     });
 
-    describe('exercises', encore.exercise.rxBulkSelect());
+    describe('exercises', encore.exercise.rxBulkSelect({
+        batchActions: ['Shutdown Selected Datacenters']
+    }));
 
     describe('rxBulkSelectValidate', function () {
 
-        var validateModal;
+        var bulkSelect, validateModal;
 
         beforeEach(function () {
+            bulkSelect = encore.rxBulkSelect.main;
             validateModal = encore.rxModalAction.initialize();
         });
 
@@ -41,7 +44,6 @@ describe('rxBulkSelect', function () {
             page.selectFirst();
             expect(validateModal.canSubmit()).to.eventually.be.true;
         });
-
     });
 
 });

@@ -5,8 +5,43 @@ var Page = require('astrolabe').Page;
 /**
    @namespace
  */
+
 var rxBulkSelectDefaultRowFn = function (rowElement) {
     return exports.rxCheckbox.initialize(rowElement.$('input[type="checkbox"]'));
+};
+
+var rxBatchActionMenu = function (rootElement) {
+    var actionMenu = exports.rxActionMenu.initialize(rootElement);
+
+    // Need to override several properties styles and the ng-hide attribute
+    // compared to what is seen in rxActionMenu.
+    Object.defineProperties(actionMenu, {
+        'isExpanded': {
+            value: function () {
+                return rootElement.$('.batch-action-menu-container')
+                    .getAttribute('class').then(function (className) {
+                        return className.indexOf('ng-hide') === -1;
+                });
+            }
+        },
+        'icoCog': {
+            get: function () {
+                return rootElement.$('.fa-cogs');
+            }
+        },
+        'isEnabled': {
+            value: function () {
+                return rootElement.$('.btn-link.header-button').isEnabled();
+            }
+        },
+        'isPresent': {
+            value: function () {
+                return rootElement.isPresent();
+            }
+        }
+    });
+
+    return actionMenu;
 };
 
 var rxBulkSelect = {
@@ -26,6 +61,12 @@ var rxBulkSelect = {
             return this.rootElement.element(
                 by.cssContainingText('.btn-link', 'Batch Actions')
             ).isEnabled();
+        }
+    },
+
+    batchActions: {
+        get: function () {
+            return rxBatchActionMenu(this.rootElement.$('rx-batch-actions'));
         }
     },
 
