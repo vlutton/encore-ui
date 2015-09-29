@@ -1,3 +1,3 @@
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-Simple wrapper of the global session localStorage object for interacting with local storage.
+`localStorage` is a simple wrapper component that interacts with the local storage in the browser.
