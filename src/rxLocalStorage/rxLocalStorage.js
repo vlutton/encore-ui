@@ -19,7 +19,7 @@ angular.module('encore.ui.rxLocalStorage', [])
  * for storing values in the browser's local storage object. This service is similar to Angular's
  * `$window` and `$document` services.  The API works the same as the W3C's
  * specification provided at: http://dev.w3.org/html5/webstorage/#storage-0.
- * This service also includes helper functions for `getting` and `setting` objects.
+ * This service also includes helper functions for getting and setting objects.
  *
  * @example
  * <pre>
