@@ -2,10 +2,31 @@
     <h3 class="title clear">Basics</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li>Tables have default styles: regular rows have white backgrounds, while headers use white text with a gray background. An additional <code>.table-striped</code> class is available for alternate row striping.</li>
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> In Encore, we usually use to tables to show data-table related data, such as listing of objects.</li>
-            <li>If you need to show summary-style important pieces of metadata that aren't necessarily related to each other, consider <a href="#/styleguide/basics#descriptions-metadata">using an rxMetadata component</a>.</li>
-            <li>In Support Services, there have been moments where we have displayed table in a structural format, but we use a different styling. See the <a href="#/styleguide/tables#non-data-tables">Non-Data based Tables</a> section for more information.</li>
+            <li>
+              Tables have default styles: regular rows have white backgrounds,
+              while headers use white text with a gray background.
+              An additional <code>.table-striped</code> class is available for
+              alternate row striping.
+            </li>
+            <li>
+              <span class="msg-info">ENCORE-SPECIFIC:</span> You can use tables
+              to show data-table related details, such as listing of objects.
+            </li>
+            <li>
+              If you need to show summary-style important pieces of metadata
+              that aren't necessarily related to each other, consider
+              <a href="#/styleguide/basics#descriptions-metadata">
+                using an rxMetadata component
+              </a>.
+            </li>
+            <li>
+              In Support Services, some exceptions exist where it is
+              appropriate to use different table styling. See the
+              <a href="#/styleguide/tables#non-data-tables">
+                Non-Data based Tables
+              </a>
+              section for more information.
+            </li>
         </ul>
     </div>
     <rx-styleguide code-url="styleguide/tables/basics.html"></rx-styleguide>
@@ -15,12 +36,41 @@
     <h3 class="title">Cog Menus via rxActionMenu</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li><a href="#/component/rxActionMenu">See the rxActionMenu directive</a> for implementation and examples.</li>
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> In Encore, we usually use cogs if there are actionable items for every row. As an example, most main table listings show cog menus with actionable items, such as <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/servers/Servers.html#L135-L146">Cloud Server pages showing FirstGen/NextGen actions</a> or <a href="https://github.com/rackerlabs/encore-cloud-ui/blob/master/app/views/cbs/Volumes.html#L115-L145">Cloud Block Storage Volumes</a>.</li>
-            <li>For general advice as to what icons and colors to use, consult <a href="#/styleguide/buttons">the section on icons and colors</a>.
-            <li>There may be cases where an action is not available on a particular row. In this case, those particular links were disabled using the <code>.disabled</code> class rather than not having them appear at all.</li>
-            <li>The <code>.actions</code> class is used on a column header (<code>th</code> tag) to add a 15px width for action cogs in the table body.</li>
-            <li><span class="msg-warn">HEADS UP:</span> We have one design pattern that slightly differs; for data tables that have involved objects that only require deleting such as particular data tables related to LBaaS connection nodes and Support Service user tables, a particular delete-based design pattern was created. See <a href="#/styleguide/tables#delete-x">the section on Delete "X" actions</a>.</li>
+            <li>
+              For implementation and examples,
+              <a href="#/component/rxActionMenu">
+                See the rxActionMenu directive
+              </a>.
+            </li>
+            <li>
+              <span class="msg-info">ENCORE-SPECIFIC:</span>
+              If you need to show actionable items for every row, cogs are
+              helpful. For example: most main table listings show cog menus
+              with actionable items, such as Cloud Server pages showing
+              FirstGen/NextGen actions or Cloud Block Storage Volumes.
+            </li>
+            <li>
+              To help you choose which icons and colors to use, read more about
+              <a href="#/styleguide/buttons">
+                icons and colors here
+              </a>.
+            </li>
+            <li>
+              There may be cases where an action is not available on a
+              particular row. In this scenario, you can disable those links
+              using the <code>.disabled</code> class.
+            </li>
+            <li>
+              The <code>.actions</code> class is used on a column header
+              (<code>th</code> tag) to add a 15px width for action cogs in the
+              table body.
+            </li>
+            <li>
+              Are you using LBaaS connection nodes or Support Service user
+              tables? There is a design exception to these tables described in
+              the <a href="#/styleguide/tables#delete-x">Delete "X" actions</a>
+              section.
+            </li>
         </ul>
     </div>
     <rx-styleguide code-url="styleguide/tables/directives.html"></rx-styleguide>
@@ -28,16 +78,31 @@
     <h3 class="title">Table Footer Pagination via rxPaginate</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li><a href="#/component/rxPaginate">See the rxPaginate directive</a> for implementation and examples.</li>
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> The pagination is visible in this example to show how mark-up will be implemented. Generally, the pagination directive does not display if there is only one page of data available. We use AngularJS to make sure this doesn't display.</li>
-            <li>It's a known issue that the footer wraps into a second line if the table is 50% of the screen.  Use <code>display:none</code> CSS property to hide all elements not directly related to pagination.  See the CSS example below for an example.  This has not been implemented in EncoreUI.</li>
+            <li>
+              For implementation and examples, see the
+              <a href="#/component/rxPaginate">rxPaginate directive</a>.
+            </li>
+            <li>
+              <span class="msg-info">ENCORE-SPECIFIC:</span>
+              To show how mark-up will be implemented, pagination is visible
+              in this example. The pagination directive doesn't display if
+              there is only one page of data available. It is hidden using
+              AngularJS.
+            </li>
+            <li>
+              It's a known issue that the footer wraps into a second line, if
+              the table is 50% of the screen. Use the <code>display:none</code>
+              CSS property to hide all elements not directly related to
+              pagination. See the CSS example below. This has not been
+              implemented in EncoreUI.
+            </li>
         </ul>
         <pre>
-    .my-custom-class-name .pagination {
-        &amp; > li.nth-child(1) { display: none; }
-        &amp; > li.nth-child(2) { display: none; }
-        .pagination-per-page { display: none; }
-    }
+        .my-custom-class-name .pagination {
+            &amp; > li.nth-child(1) { display: none; }
+            &amp; > li.nth-child(2) { display: none; }
+            .pagination-per-page { display: none; }
+        }
         </pre>
     </div>
     <rx-styleguide code-url="styleguide/tables/paginate.html"></rx-styleguide>
@@ -47,16 +112,35 @@
     <h3 class="title">Null patterns</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> Consider having a default message if there are no rows for your data table. In Encore, we still include the data table headers to show there would usually be tabular data here.</li>
+            <li>
+              <span class="msg-info">ENCORE-SPECIFIC:</span>
+              If you have no table data, choose a default message to inform
+              your user. Encore shows data table headers to communicate this.
+            </li>
         </ul>
     </div>
     <rx-styleguide code-url="styleguide/tables/nullpattern.html"></rx-styleguide>
-    
     <h3 class="title" id="delete-x">Delete "X" action</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> For data tables involving objects that only require deleting (Examples: tables related to LBaaS connection nodes and Support Service user tables) there's a design pattern that replaces the cog with an X.</li>
-            <li>Add the <code>.delete-x</code> class to the icon element to automatically apply the red hover style.  This should always be done when using this design pattern.</li>
+            <li>
+              <span class="msg-info">ENCORE-SPECIFIC:</span>
+              For data tables involving objects that only require deleting
+              (tables related to LBaaS connection nodes and Support Service
+              user tables) there's a design pattern that replaces the cog with
+              an X.
+            </li>
+            <li>
+              Add the <code>.delete-x</code> class to the icon element to
+              automatically apply the red hover style.  This should always be
+              done when using this design pattern.
+            </li>
+            <li>
+              For some examples, view
+              <a href="https://github.com/rackerlabs/supportservice-ui/search?utf8=%E2%9C%93&q=times">
+                these set of tables used in Support Services
+              </a>.
+            </li>
         </ul>
     </div>
     <rx-styleguide code-url="styleguide/tables/delete.html"></rx-styleguide>
@@ -64,38 +148,78 @@
     <h3 class="title">Other single action</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li>A button link is used for tables where each row has a single action that is not a deletion.</li>
-            <li>If the action is unavailable for a row, the link should be disabled and have a tooltip indicating why.</li>
+            <li>A button link is used for tables where each row has a single
+              action that is not a deletion.
+            </li>
+            <li>
+              If the action is unavailable for a row, the link should be
+              disabled and have a tooltip indicating why.
+            </li>
         </ul>
     </div>
     <rx-styleguide code-url="styleguide/tables/single-action.html"></rx-styleguide>
 
     <h3 class="title">Status columns</h3>
-    <ul>
-        <li><span class="msg-info">ENCORE-SPECIFIC:</span> We provide a standardized mechanism for color coding of status columns, via <a href="#/component/rxStatusColumn">rxStatusColumn</a>. Ticket Queues has their own styling that predates this, and can be seen in <a href="https://github.com/rackerlabs/encore-tq-ui/blob/master/app/styles/tickets.less">their tickets.less file.</a> For consistency, new projects should use <code>rxStatusColumn</code>. If it doesn't satisfy your needs, please let us know and we'll see what we can do.</li>
-    </ul>
-
+    <div class="component-description clear">
+      <ul>
+          <li>
+            <span class="msg-info">ENCORE-SPECIFIC:</span>
+            You can add consistency and color code your status columns using
+            the <code>.rx-status-column</code> class. Ticket Queues have their
+            own styling that predates this and can be seen in their
+            <a href="https://github.com/rackerlabs/encore-tq-ui/blob/master/app/styles/tickets.less">
+              tickets.less
+            </a> file. Your new project should use
+            <a href="#/component/rxStatusColumn">rxStatusColumn</a>.
+            However, if this is not suitable, send feedback.
+          </li>
+      </ul>
+    </div>
     <h3 class="title">Filters</h3>
     <div class="component-description clear">
       <ul>
-          <li><span class="msg-info">ENCORE-SPECIFIC:</span> Tables have also been used for filtering. In the past there was no common design pattern for this, and different products implemented it on their own:
-          <ul class="list">
-              <li>Data-based filters, seen in Encore Cloud (Servers, Volumes, Images, Database, Load Balancers)</a></li>
-              <li>Ticket Queues (Filtering by ticket queues and status)</li>
-              <li>Billing (Filtering by billing data and transactional status)</li>
-          </ul>
+          <li>
+            <span class="msg-info">ENCORE-SPECIFIC:</span>
+            Tables have also been used for filtering. In the past there was
+            no common design pattern for this, and different products
+            implemented it on their own:
+            <ul class="list">
+              <li>
+                Data-based filters, seen in Encore Cloud (Servers,
+                Volumes, Images, Database, Load Balancers)
+              </li>
+              <li>
+                Ticket Queues (Filtering by ticket queues and status)
+              </li>
+              <li>
+                Billing (Filtering by billing data and transactional status)
+              </li>
+            </ul>
           </li>
-          <li>With the addition of <a href="#/component/rxFloatingHeader">rxFloatingHeader</a> to the framework, we now have a standard way of adding table filters. In short, we add a new <code>&lt;tr&gt;</code> into the <code>&lt;thead&gt;</code> of the table. <code>rxFloatingHeader</code> will take care of the styling, by adding the appropriate classes on its own (namely <a href="https://github.com/rackerlabs/encore-ui/blob/master/src/rxFloatingHeader/rxFloatingHeader.less#L12"><code>th.filter-header</code></a>)</li>
+          <li>
+            You now have a standard way of adding table filters using
+            <a href="#/component/rxFloatingHeader">rxFloatingHeader</a>.
+            You can add a new <code>&lt;tr&gt;</code> into the
+            <code>&lt;thead&gt;</code> of the table.
+            The <code>.rx-floating-header</code> class will add appropriate
+            styling.
+          </li>
       </ul>
     </div>
     <rx-styleguide code-url="styleguide/tables/with-filtering.html"></rx-styleguide>
-
     <h3 class="title">Collapsible component for table filters</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li>Filters can be displayed inside of a collapsible element.</li>
-            <li>The initial display can be expanded or collapsed.</li>
-            <li>A double chevron is used as a toggle to show/hide the inner contents, while keeping the header and border visible.</li>
+            <li>
+              You can add filters inside of a collapsible element.
+            </li>
+            <li>
+              The initial display can be expanded or collapsed.
+            </li>
+            <li>
+              To show and hide the inner contents while keeping the header and
+              border visible, you can use a chevron.
+            </li>
         </ul>
     </div>
     <rx-styleguide code-url="styleguide/tables/collapsible-filtering.html"></rx-styleguide>
@@ -104,8 +228,16 @@
     <h3 class="title">Nested content</h3>
     <div class="component-description clear">
         <ul class="list">
-            <li>When a dataset includes a parent-child relationship, the nested tables style should be used to optionally show the related content.</li>
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> Use the double chevron in the right most column as the toggle switch for the hidden content.</li>
+            <li>
+              When a dataset includes a parent-child relationship, the nested
+              tables style should be used to optionally show the
+              related content.
+            </li>
+            <li>
+              <span class="msg-info">ENCORE-SPECIFIC:</span>
+              Use the double chevron in the right most column as the toggle
+              switch for the hidden content.
+            </li>
         </ul>
     </div>
 
@@ -117,8 +249,15 @@
 
     <h2 class="title lg" id="roadmap">UI Roadmap / Possible Future-work</h2>
     <ul class="list">
-        <li>Checkboxes for table rows with design patterns related to "Select/Unselect All" behavior</li>
-        <li>Loading Styles for Tables</li>
-        <li>Submit actions for Server-Side Filtering</li>
+        <li>
+          Checkboxes for table rows with design patterns related to
+          "Select/Unselect All" behavior
+        </li>
+        <li>
+          Loading Styles for Tables
+        </li>
+        <li>
+          Submit actions for Server-Side Filtering
+        </li>
     </ul>
 </rx-page>
