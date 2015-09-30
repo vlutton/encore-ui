@@ -294,8 +294,8 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *   };
  * </pre>
  *
- * By default, every time this page was loaded, the form would be initialized with an unchecked checkbox, a blank `Name` 
- * field and a blank `Description`.
+ * By default, every time this page was loaded, the form would be initialized with an unchecked checkbox, a blank 
+ * `Name` field and a blank `Description`.
  *
  * To have `rxAutoSave` automatically save values, first inject `rxAutoSave` into your controller, and modify 
  * initialization as follows:
@@ -422,7 +422,8 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  * `load:` will accept a boolean, or it can accept a promise that eventually resolves to a boolean. Accepting a promise 
  * will let you delay your decision on whether or not to load (for example, asking a user if they want values loaded). 
  * Note that if you use a promise, `rxAutoSave` will look at its resolved value. If the resolved value is `true`, then 
- * the data will be loaded. If the resolved value is `false`, or the promise fails/rejects, then the data will not be loaded.
+ * the data will be loaded. If the resolved value is `false`, or the promise fails/rejects, then the data will not be 
+ * loaded.
  *
  * ## Excluding some values from loading/saving
  *
@@ -439,8 +440,8 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  * ## Manual saving
  *
  * It might be that you don't want your `rxAutoSave` instance to automatically save to the storage backend 
- * automatically. In some cases, you might want to disable automatic saving and instead manually tell your instance when 
- * it should save. To turn off automatic saving, set up your instance as follows:
+ * automatically. In some cases, you might want to disable automatic saving and instead manually tell your instance 
+ * when it should save. To turn off automatic saving, set up your instance as follows:
  *
  * <pre>
  *   var manualsave = rxAutoSave($scope, 'formData', { save: false });
@@ -487,9 +488,9 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *   });
  * </pre>
  *
- * The above example could be used to have the current url ignore any caching flags passed in. The `keyShaping` function 
- * will receive the default calculated key (`rxAutoSave::` + $location.url()). By default, `keyShaping` just returns the 
- * original calculated key.
+ * The above example could be used to have the current url ignore any caching flags passed in. The `keyShaping` 
+ * function will receive the default calculated key (`rxAutoSave::` + $location.url()). By default, `keyShaping` 
+ * just returns the original calculated key.
  *
  * 
  * @param {Object} scope scope to apply a `$watch` expression
