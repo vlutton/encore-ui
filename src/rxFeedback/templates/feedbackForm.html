@@ -1,7 +1,15 @@
-<rx-modal-form rx-form title="Submit Feedback" subtitle="for page: {{ currentUrl }}" submit-text="Send Feedback" class="rx-feedback-form">
+<rx-modal-form
+  rx-form
+  title="Submit Feedback"
+  submit-text="Send Feedback"
+  class="rx-feedback-form"
+  ng-switch="state">
   <rx-form-section>
+    <div>
+      <h3>We want to hear your voice.</h3>
+    </div>
     <rx-field>
-      <rx-field-name>Report Type:</rx-field-name>
+      <rx-field-name>Choose a topic:</rx-field-name>
       <rx-field-content>
         <rx-input>
           <select rx-select
@@ -11,11 +19,16 @@
               ng-init="fields.type = feedbackTypes[0]"
               required="true"></select>
         </rx-input>
+        <rx-help-text ng-if="state === 'redirect'">You'll be redirected to a new window.</rx-help-text>
       </rx-field-content>
     </rx-field>
   </rx-form-section>
-
-  <rx-form-section ng-show="fields.type">
+  <rx-form-section ng-show="fields.type" ng-switch-when="redirect">
+    <div class="modal-well">
+      Popup Blocker? <a href="{{ route }}" target="_blank">Go to the page directly.</a>
+    </div>
+  </rx-form-section>
+  <rx-form-section ng-show="fields.type" ng-switch-default>
     <rx-field>
       <rx-field-name class="feedback-description">{{fields.type.prompt}}:</rx-field-name>
       <rx-field-content>
@@ -30,3 +43,7 @@
     </rx-field>
   </rx-form-section>
 </rx-modal-form>
+<rx-modal-footer state="redirect">
+  <button class="button submit" ng-click="continue()">Continue</button>
+  <button class="button cancel" ng-click="cancel()">Cancel</button>
+</rx-modal-footer>
