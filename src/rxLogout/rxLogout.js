@@ -4,7 +4,7 @@
  * @description
  * # rxLogout Component
  *
- * [TBD]
+ * The rxLogout component provides logic to apply logout functionality to an element.
  *
  * ## Directives
  * * {@link rxLogout.directive:rxLogout rxLogout}
@@ -16,7 +16,7 @@ angular.module('encore.ui.rxLogout', ['encore.ui.rxAuth'])
  * @restrict A
  * @scope
  * @description
- * Adds logout functionality to an element
+ * Adds logout functionality to an element.
  *
  * @param {String=} [rxLogout='/login'] URL to redirect to after logging out
  *

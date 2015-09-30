@@ -1,3 +1,3 @@
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
 
-Allows adding logout functionality to an element
+The rxLogout component provides logic to apply logout functionality to an element.
