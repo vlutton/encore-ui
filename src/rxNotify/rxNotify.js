@@ -4,8 +4,18 @@
  * @description
  * # rxNotify Component
  *
- * Logic for displaying status messages on a page.
+ * The rxNotify component provides status message notifications on a page.
  *
+ * There may be situations where you will need to use the styling/markup of
+ * rxNotify's messaging queue in status messages of your own - for example,
+ * a modal window which asks if you want to delete an object, with the
+ * appropriate warning or error flags. If this is the case, we recommend using 
+ * the {@link rxNotify.directive:rxNotification rxNotification} directive in your views.  Please note, this
+ * differs from {@link rxNotify.directive:rxNotifications rxNotifications} (plural).
+ * 
+ * The type attribute can be any type supported by `options.type` for the `rxNotify.add()` function in 
+ * the {@link rxNotify.service:rxNotify rxNotify} service.
+
  * ## Services
  * * {@link rxNotify.service:rxNotify rxNotify}
  * * {@link rxNotify.service:rxPromiseNotifications rxPromiseNotifications}
@@ -76,7 +86,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
  * @restrict E
  * @scope
  * @description
- * Display a static message with styling taken from rx-notifications
+ * Display a static message with styling taken from `rx-notifications`.
  *
  * @param {String=} [type='info'] The type of notification (e.g. 'warning', 'error')
  *
@@ -133,7 +143,7 @@ angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
  * @restrict E
  * @scope
  * @description
- * Displays all messages in a stack
+ * Displays all messages in a stack.
  *
  * @param {String=} [stack='page'] The message stack to associate with
  *
@@ -177,7 +187,78 @@ angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
  * @ngdoc service
  * @name rxNotify.service:rxNotify
  * @description
- * Manages page messages for an application
+ * Manages page messages for an application.
+ *
+ * # Stacks
+ * 
+ * Stacks are just separate notification areas. Normally, all messages created will go to the `page` stack, which 
+ * should be displayed at the top of the page. The `page` stack is used for page-level messages.
+ *
+ * ## Using the Page Stack
+ *
+ * The default notification stack is added by default to the `rxPage` template (see {@link rxApp}), so it should be 
+ * ready to use without any work (unless your app uses a custom template).  The 
+ * {@link rxNotify.directive:rxNotifications rxNotifications} directive will gather all notifications for a particular 
+ * stack into a single point on the page.  By default, this directive will collect all notifications in the `page` 
+ * stack.
+ *
+ * <pre>
+ * <rx-notifications></rx-notifications>
+ * </pre>
+ *
+ * See {@link rxNotify.directive:rxNotification rxNotification} for more details.
+ *
+ * ## Using a Custom Stack
+ *
+ * You can also create custom stacks for specific notification areas. Say you have a form on your page that you want to 
+ * add error messages to. You can create a custom stack for this form and send form-specific messages to it.
+ *
+ * Please see the *Custom Stack* usage example in the `rxNotify` {@link /#/components/rxForm demo}.
+ *
+ * ## Adding an `rxNotification` to the Default Stack
+ *
+ * If you need to add a notification via your Angular template, just set the `stack` parameter on the opening 
+ * `<rx-notification>` tag.  This will allow the notification to be added via the `rxNotify.add()` function.
+ * 
+ * <pre>
+ * <rx-notification type="error" stack="page">
+ *   This is an error message being added to the "page" stack with <strong>Custom</strong> html.
+ * </rx-notification>
+ * </pre>
+ *
+ * ## Adding a New Message Queue via `rxNotify`
+ *
+ * To add a new message to a stack, inject `rxNotify` into your Angular function and run:
+ * 
+ * <pre>
+ * rxNotify.add('My Message Text');
+ * </pre>
+ *
+ * This will add a new message to the default stack (`page`) with all default options set.  To customize options, pass 
+ * in an `object` as the second argument with your specific options set:
+ *
+ * <pre>
+ * rxNotify.add('My Message Text', {
+ *   stack: 'custom',
+ *   type: 'warning'
+ * }); 
+ * </pre>
+ *
+ * ## Dismissing a message programatically
+ *
+ * Most messages are dismissed either by the user, a route change or using the custom `dismiss` property.  If you need 
+ * to dismiss a message programmaticaly, you can run `rxNotify.dismiss(message)`, where *message* is the `object`
+ * returned from `rxNotify.add()`.
+ *
+ * ## Clearing all messages in a stack
+ *
+ * You can clear all messages in a specific stack programmatically via the `rxNotify.clear()` function. Simply pass in 
+ * the name of the stack to clear:
+ *
+ * <pre>
+ * rxNotify.clear('page');
+ * </pre>
+ * 
  */
 .service('rxNotify', function ($interval, $rootScope) {
     var defaultStack = 'page';
@@ -457,6 +538,9 @@ angular.module('encore.ui.rxNotify', ['ngSanitize', 'ngAnimate'])
  * @ngdoc service
  * @name rxNotify.service:rxPromiseNotifications
  * @description Manages displaying messages for a promise
+ *
+ * It is a common pattern with API requests that you'll show a loading message, followed by either a success or failure 
+ * message depending on the result of the call.  `rxPromiseNotifications` is the service created for this pattern.
  *
  * @example
  * <pre>
