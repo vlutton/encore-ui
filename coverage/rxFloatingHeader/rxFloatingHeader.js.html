@@ -253,7 +253,50 @@
 226
 227
 228
-229</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -265,6 +308,43 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -487,8 +567,11 @@
  * @description
  * # rxFloatingHeader Component
  *
- * TBD
+ * `rxFloatingHeader` component turns a table header into floating persistent header so that names of columns are still
+ *  visible, even as a user scrolls down the page.
  *
+ * `rxFloatingHeader` is also fully compatible with {@link rxSortableColumn} and {@link rxPaginate}.
+ * 
  * ## Directives
  * * {@link rxFloatingHeader.directive:rxFloatingHeader rxFloatingHeader}
  */
@@ -498,7 +581,44 @@ angular.module('encore.ui.rxFloatingHeader', ['encore.ui.rxMisc'])
  * @name rxFloatingHeader.directive:rxFloatingHeader
  * @restrict A
  * @description
- * Turns a tableheader into a floating persistent header
+ * 
+ *`rxFloatingHeader` is an attribute directive that turns a tableheader into a floating persistent header so that names 
+ * of columns are still visible, even as a user scrolls down the page. This is based off of the example at 
+ * http://css-tricks.com/persistent-headers/
+ *
+ * * To use it, add an `rx-floating-header` attribute to a `table` element.
+ *
+ * * A common pattern in our products is to place an `&lt;input&gt;` filter at the top of the table, to restrict the items
+ * that are displayed. We support this as well, by placing the `&lt;input&gt;` directly inside of the `&lt;thead&gt;` in its 
+ * own `&lt;tr&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;`.
+ *
+ * * Make sure you set the `colspan` attribute on the filter's `&lt;th&gt;`, to match the number of columns you have.
+ *
+ * * `rxFloatingHeader` is also fully compatible with {@link rxSortableColumn} and {@link rxPaginate}.
+ * 
+ * @example
+ * &lt;pre&gt;
+ * &lt;table rx-floating-header&gt;
+ *   &lt;thead&gt;
+ *     &lt;tr&gt;
+ *       &lt;td colspan="2"&gt;
+ *         &lt;rx-search-box
+ *             ng-model="searchText"
+ *             rx-placeholder="'Filter by any...'"&gt;
+ *         &lt;/rx-search-box&gt;
+ *       &lt;/td&gt;
+ *     &lt;/tr&gt;
+ *     &lt;tr&gt;
+ *       &lt;th&gt;Column One Header&lt;/th&gt;
+ *       &lt;th&gt;Column Two Header&lt;/th&gt;
+ *     &lt;/tr&gt;
+ *   &lt;/thead&gt;
+ *   &lt;tbody&gt;
+ *     ...
+ *   &lt;/tbody&gt;
+ * &lt;/table&gt;
+ * &lt;/pre&gt;
+ *
  */
 .directive('rxFloatingHeader', function ($document, rxDOMHelper) {
     return {
@@ -714,7 +834,7 @@ angular.module('encore.ui.rxFloatingHeader', ['encore.ui.rxMisc'])
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 23 2015 13:20:30 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 30 2015 13:18:59 GMT-0500 (CDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

@@ -64,6 +64,11 @@
 <li><a href="#encore.module_rxModalAction.initialize">encore.rxModalAction.initialize([customFunctionality])</a></li>
 </ul>
 </li>
+<li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
+<li><a href="#encore.module_rxMultiSelect.main">encore.rxMultiSelect.main</a></li>
+<li><a href="#encore.module_rxMultiSelect.initialize">encore.rxMultiSelect.initialize(rxMultiSelectElement)</a></li>
+</ul>
+</li>
 <li><a href="#encore.module_rxOptionTable">encore.rxOptionTable</a><ul>
 <li><a href="#encore.module_rxOptionTable.main">encore.rxOptionTable.main</a></li>
 <li><a href="#encore.module_rxOptionTable.initialize">encore.rxOptionTable.initialize(rxOptionTableElement)</a></li>
@@ -89,16 +94,6 @@
 <li><a href="#encore.module_rxSelect">encore.rxSelect</a><ul>
 <li><a href="#encore.module_rxSelect.initialize">encore.rxSelect.initialize(rxSelectElement)</a></li>
 <li><a href="#encore.module_rxSelect.generateAccessor">encore.rxSelect.generateAccessor(elem, [slowClick])</a></li>
-</ul>
-</li>
-<li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
-<li><a href="#encore.module_rxMultiSelect.main">encore.rxMultiSelect.main</a></li>
-<li><a href="#encore.module_rxMultiSelect.initialize">encore.rxMultiSelect.initialize(rxMultiSelectElement)</a></li>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter">encore.rxMultiSelect~rxSelectFilter</a><ul>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.apply">rxSelectFilter.apply(filterData)</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#encore.module_rxSelectFilter">encore.rxSelectFilter</a><ul>
@@ -135,6 +130,7 @@
 <li><a href="#encore.exercise.module_rxCollapse">encore.exercise.rxCollapse</a></li>
 <li><a href="#encore.exercise.module_rxFieldName">encore.exercise.rxFieldName</a></li>
 <li><a href="#encore.exercise.module_rxMetadata">encore.exercise.rxMetadata</a></li>
+<li><a href="#encore.exercise.module_rxMultiSelect">encore.exercise.rxMultiSelect</a></li>
 <li><a href="#encore.exercise.module_rxOptionTable">encore.exercise.rxOptionTable</a></li>
 <li><a href="#encore.exercise.module_rxPaginate">encore.exercise.rxPaginate</a></li>
 <li><a href="#encore.exercise.module_rxRadio">encore.exercise.rxRadio</a></li>
@@ -250,6 +246,23 @@
 <li><a href="#rxModalAction.cancel">rxModalAction.cancel()</a></li>
 </ul>
 </li>
+<li><a href="#rxMultiSelect">rxMultiSelect</a><ul>
+<li><a href="#rxMultiSelect.preview">rxMultiSelect.preview</a></li>
+<li><a href="#rxMultiSelect.options">rxMultiSelect.options</a></li>
+<li><a href="#rxMultiSelect.values">rxMultiSelect.values</a></li>
+<li><a href="#rxMultiSelect.selectedOptions">rxMultiSelect.selectedOptions</a></li>
+<li><a href="#rxMultiSelect.closeMenu">rxMultiSelect.closeMenu()</a></li>
+<li><a href="#rxMultiSelect.openMenu">rxMultiSelect.openMenu()</a></li>
+<li><a href="#rxMultiSelect.isOpen">rxMultiSelect.isOpen()</a></li>
+<li><a href="#rxMultiSelect.select">rxMultiSelect.select(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.deselect">rxMultiSelect.deselect(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
+<li><a href="#rxMultiSelect.option.text">option.text</a></li>
+<li><a href="#rxMultiSelect.option.value">option.value</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href="#rxOptionTable">rxOptionTable</a><ul>
 <li><a href="#rxOptionTable.emptyMessage">rxOptionTable.emptyMessage</a></li>
 <li><a href="#rxOptionTable.selectedRow">rxOptionTable.selectedRow</a></li>
@@ -320,21 +333,9 @@
 </li>
 </ul>
 </li>
-<li><a href="#rxMultiSelect">rxMultiSelect</a><ul>
-<li><a href="#rxMultiSelect.preview">rxMultiSelect.preview</a></li>
-<li><a href="#rxMultiSelect.options">rxMultiSelect.options</a></li>
-<li><a href="#rxMultiSelect.values">rxMultiSelect.values</a></li>
-<li><a href="#rxMultiSelect.selectedOptions">rxMultiSelect.selectedOptions</a></li>
-<li><a href="#rxMultiSelect.closeMenu">rxMultiSelect.closeMenu()</a></li>
-<li><a href="#rxMultiSelect.openMenu">rxMultiSelect.openMenu()</a></li>
-<li><a href="#rxMultiSelect.isOpen">rxMultiSelect.isOpen()</a></li>
-<li><a href="#rxMultiSelect.select">rxMultiSelect.select(optionTexts)</a></li>
-<li><a href="#rxMultiSelect.deselect">rxMultiSelect.deselect(optionTexts)</a></li>
-<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
-<li><a href="#rxMultiSelect.option.text">option.text</a></li>
-<li><a href="#rxMultiSelect.option.value">option.value</a></li>
-</ul>
-</li>
+<li><a href="#rxSelectFilter">rxSelectFilter</a><ul>
+<li><a href="#rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
+<li><a href="#rxSelectFilter.apply">rxSelectFilter.apply(filterData)</a></li>
 </ul>
 </li>
 <li><a href="#rxSortableColumn">rxSortableColumn</a><ul>
@@ -752,7 +753,25 @@ By default, every modal will have a title, subtitle, a submit button, a cancel b
  // but also a couple of form elements for checking an old password and a new password.
  changePasswordModal = modal.initialize(customFunctionalty);
 </code></pre>
-<p><a name="encore.module_rxOptionTable"></a></p>
+<p><a name="encore.module_rxMultiSelect"></a></p>
+<p>#encore.rxMultiSelect
+<strong>Members</strong></p>
+<ul>
+<li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
+<li><a href="#encore.module_rxMultiSelect.main">encore.rxMultiSelect.main</a></li>
+<li><a href="#encore.module_rxMultiSelect.initialize">encore.rxMultiSelect.initialize(rxMultiSelectElement)</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="encore.module_rxMultiSelect.main"></a></p>
+<p>##encore.rxMultiSelect.main
+<strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the <em>first</em> rxMultiSelect object found on the page.<br><a name="encore.module_rxMultiSelect.initialize"></a></p>
+<p>##encore.rxMultiSelect.initialize(rxMultiSelectElement)
+<strong>Params</strong></p>
+<ul>
+<li>rxMultiSelectElement <code>WebElement</code> - WebElement to be transformed into an rxMultiSelectElement object.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the rxMultiSelect object.<br><a name="encore.module_rxOptionTable"></a></p>
 <p>#encore.rxOptionTable
 <strong>Members</strong></p>
 <ul>
@@ -908,61 +927,6 @@ it(&#39;should select a new state and county without using `rxMisc.slowClick()`&
     expect(form.county).to.eventually.equal(&#39;Bexar&#39;);
 });
 </code></pre>
-<p><a name="encore.module_rxMultiSelect"></a></p>
-<p>#encore.rxMultiSelect
-<strong>Members</strong></p>
-<ul>
-<li><a href="#encore.module_rxMultiSelect">encore.rxMultiSelect</a><ul>
-<li><a href="#encore.module_rxMultiSelect.main">encore.rxMultiSelect.main</a></li>
-<li><a href="#encore.module_rxMultiSelect.initialize">encore.rxMultiSelect.initialize(rxMultiSelectElement)</a></li>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter">encore.rxMultiSelect~rxSelectFilter</a><ul>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.apply">rxSelectFilter.apply(filterData)</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p><a name="encore.module_rxMultiSelect.main"></a></p>
-<p>##encore.rxMultiSelect.main
-<strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the <em>first</em> rxMultiSelect object found on the page.<br><a name="encore.module_rxMultiSelect.initialize"></a></p>
-<p>##encore.rxMultiSelect.initialize(rxMultiSelectElement)
-<strong>Params</strong></p>
-<ul>
-<li>rxMultiSelectElement <code>WebElement</code> - WebElement to be transformed into an rxMultiSelectElement object.  </li>
-</ul>
-<p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxMultiSelect..rxSelectFilter"></a></p>
-<p>##encore.rxMultiSelect~rxSelectFilter
-<strong>Scope</strong>: inner namespace of <a href="#encore.module_rxMultiSelect">rxMultiSelect</a><br><strong>Members</strong></p>
-<ul>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter">encore.rxMultiSelect~rxSelectFilter</a><ul>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
-<li><a href="#encore.module_rxMultiSelect..rxSelectFilter.apply">rxSelectFilter.apply(filterData)</a></li>
-</ul>
-</li>
-</ul>
-<p><a name="encore.module_rxMultiSelect..rxSelectFilter.multiSelectByLabel"></a></p>
-<p>###rxSelectFilter.multiSelectByLabel(label)
-<strong>Params</strong></p>
-<ul>
-<li>label <code>string</code> - The label of the rxMultiSelect dropdown.  </li>
-</ul>
-<p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxMultiSelect..rxSelectFilter.apply"></a></p>
-<p>###rxSelectFilter.apply(filterData)
-<strong>Params</strong></p>
-<ul>
-<li>filterData <code>Object</code> - Key-value pairs of the rxMultiSelects&#39; labels and their options to select.<pre><code>                              The value is an object, where the keys are the options and the values indicate
-                              if the option should be selected or deselected.  
-</code></pre></li>
-</ul>
-<p><strong>Returns</strong>: <code>undefined</code><br><strong>Example</strong>  </p>
-<pre><code class="lang-js"> multiSelect.filter({
-     Account: {
-         All: false,
-         B: true
-     }
- });
-</code></pre>
 <p><a name="encore.module_rxSelectFilter"></a></p>
 <p>#encore.rxSelectFilter
 <strong>Members</strong></p>
@@ -975,13 +939,13 @@ it(&#39;should select a new state and county without using `rxMisc.slowClick()`&
 </ul>
 <p><a name="encore.module_rxSelectFilter.main"></a></p>
 <p>##encore.rxSelectFilter.main
-<strong>Returns</strong>: <code>rxSelectFilter</code> - Page object representing the <em>first</em> rxSelectFilter object found on the page.<br><a name="encore.module_rxSelectFilter.initialize"></a></p>
+<strong>Returns</strong>: <a href="#rxSelectFilter">rxSelectFilter</a> - Page object representing the <em>first</em> rxSelectFilter object found on the page.<br><a name="encore.module_rxSelectFilter.initialize"></a></p>
 <p>##encore.rxSelectFilter.initialize(rxSelectFilterElement)
 <strong>Params</strong></p>
 <ul>
 <li>rxSelectFilterElement <code>WebElement</code> - WebElement to be transformed into an rxSelectFilterElement object.  </li>
 </ul>
-<p><strong>Returns</strong>: <code>rxSelectFilter</code> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxSortableColumn"></a></p>
+<p><strong>Returns</strong>: <a href="#rxSelectFilter">rxSelectFilter</a> - Page object representing the rxSelectFilter object.<br><a name="encore.module_rxSortableColumn"></a></p>
 <p>#encore.rxSortableColumn
 <strong>Members</strong></p>
 <ul>
@@ -1206,6 +1170,21 @@ rxMetadata exercises</p>
         &#39;Current Due&#39;: 64400,
         &#39;Expiration Date&#39;: new Date(&#39;January 1st, 2021&#39;)
     }
+}));
+</code></pre>
+<p><a name="encore.exercise.module_rxMultiSelect"></a></p>
+<p>#encore.exercise.rxMultiSelect
+rxMultiSelect exercises.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
+<li>[instance=rxMultiSelect.main] <code><a href="#rxMultiSelect">rxMultiSelect</a></code> - Component to exercise.  </li>
+</ul>
+</li>
+</ul>
+<p><strong>Example</strong>  </p>
+<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxMultiSelect({
+    cssSelector: &#39;.secondary-info rx-paginate&#39;, // select one of many widgets on page
 }));
 </code></pre>
 <p><a name="encore.exercise.module_rxOptionTable"></a></p>
@@ -1858,7 +1837,75 @@ Clicks the &quot;submit&quot; button. This isn&#39;t exactly what you think it i
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxModalAction.cancel"></a></p>
 <p>##rxModalAction.cancel()
 Cancels out of the current modal by clicking the &quot;cancel&quot; button</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxOptionTable"></a></p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect"></a></p>
+<p>#rxMultiSelect
+<strong>Members</strong></p>
+<ul>
+<li><a href="#rxMultiSelect">rxMultiSelect</a><ul>
+<li><a href="#rxMultiSelect.preview">rxMultiSelect.preview</a></li>
+<li><a href="#rxMultiSelect.options">rxMultiSelect.options</a></li>
+<li><a href="#rxMultiSelect.values">rxMultiSelect.values</a></li>
+<li><a href="#rxMultiSelect.selectedOptions">rxMultiSelect.selectedOptions</a></li>
+<li><a href="#rxMultiSelect.closeMenu">rxMultiSelect.closeMenu()</a></li>
+<li><a href="#rxMultiSelect.openMenu">rxMultiSelect.openMenu()</a></li>
+<li><a href="#rxMultiSelect.isOpen">rxMultiSelect.isOpen()</a></li>
+<li><a href="#rxMultiSelect.select">rxMultiSelect.select(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.deselect">rxMultiSelect.deselect(optionTexts)</a></li>
+<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
+<li><a href="#rxMultiSelect.option.text">option.text</a></li>
+<li><a href="#rxMultiSelect.option.value">option.value</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a name="rxMultiSelect.preview"></a></p>
+<p>##rxMultiSelect.preview
+<strong>Returns</strong>: <code>string</code> - The preview text for the dropdown.<br><a name="rxMultiSelect.options"></a></p>
+<p>##rxMultiSelect.options
+<strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The text of each option element in the dropdown.<br><a name="rxMultiSelect.values"></a></p>
+<p>##rxMultiSelect.values
+<strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The value of each option element in the dropdown.<br><a name="rxMultiSelect.selectedOptions"></a></p>
+<p>##rxMultiSelect.selectedOptions
+<strong>Returns</strong>: <code>Array.&lt;optionTexts&gt;</code> - Array of strings representing the currently selected options.<br><a name="rxMultiSelect.closeMenu"></a></p>
+<p>##rxMultiSelect.closeMenu()
+Close the menu</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.openMenu"></a></p>
+<p>##rxMultiSelect.openMenu()
+Open the menu</p>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.isOpen"></a></p>
+<p>##rxMultiSelect.isOpen()
+<strong>Returns</strong>: <code>boolean</code> - - Whether or not the menu is visible.<br><a name="rxMultiSelect.select"></a></p>
+<p>##rxMultiSelect.select(optionTexts)
+<strong>Params</strong></p>
+<ul>
+<li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to select.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.deselect"></a></p>
+<p>##rxMultiSelect.deselect(optionTexts)
+<strong>Params</strong></p>
+<ul>
+<li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to deselect.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option"></a></p>
+<p>##rxMultiSelect.option
+<strong>Params</strong></p>
+<ul>
+<li>optionText <code>string</code> - Partial or total string matching the desired option.  </li>
+</ul>
+<p><strong>Returns</strong>: <a href="#rxMultiSelect.option">option</a> - Page object representing an option.<br><strong>Members</strong></p>
+<ul>
+<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
+<li><a href="#rxMultiSelect.option.text">option.text</a></li>
+<li><a href="#rxMultiSelect.option.value">option.value</a></li>
+</ul>
+</li>
+</ul>
+<p><a name="rxMultiSelect.option.text"></a></p>
+<p>###option.text
+<strong>Returns</strong>: <code>string</code> - The text inside of the current option.<br><a name="rxMultiSelect.option.value"></a></p>
+<p>###option.value
+<strong>Returns</strong>: <code>string</code> - The value bound to the option.<br><a name="rxOptionTable"></a></p>
 <p>#rxOptionTable
 <strong>Members</strong></p>
 <ul>
@@ -2227,75 +2274,39 @@ Select an <code>&lt;option&gt;</code> element within a <code>&lt;select&gt;</cod
 <p>####option.isSelected()
 <strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;option&gt;</code> is currently selected<br><a name="rxSelect.option.option.isPresent"></a></p>
 <p>####option.isPresent()
-<strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;option&gt;</code> is currently present<br><a name="rxMultiSelect"></a></p>
-<p>#rxMultiSelect
+<strong>Returns</strong>: <code>Boolean</code> - Whether or not the <code>&lt;option&gt;</code> is currently present<br><a name="rxSelectFilter"></a></p>
+<p>#rxSelectFilter
 <strong>Members</strong></p>
 <ul>
-<li><a href="#rxMultiSelect">rxMultiSelect</a><ul>
-<li><a href="#rxMultiSelect.preview">rxMultiSelect.preview</a></li>
-<li><a href="#rxMultiSelect.options">rxMultiSelect.options</a></li>
-<li><a href="#rxMultiSelect.values">rxMultiSelect.values</a></li>
-<li><a href="#rxMultiSelect.selectedOptions">rxMultiSelect.selectedOptions</a></li>
-<li><a href="#rxMultiSelect.closeMenu">rxMultiSelect.closeMenu()</a></li>
-<li><a href="#rxMultiSelect.openMenu">rxMultiSelect.openMenu()</a></li>
-<li><a href="#rxMultiSelect.isOpen">rxMultiSelect.isOpen()</a></li>
-<li><a href="#rxMultiSelect.select">rxMultiSelect.select(optionTexts)</a></li>
-<li><a href="#rxMultiSelect.deselect">rxMultiSelect.deselect(optionTexts)</a></li>
-<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
-<li><a href="#rxMultiSelect.option.text">option.text</a></li>
-<li><a href="#rxMultiSelect.option.value">option.value</a></li>
+<li><a href="#rxSelectFilter">rxSelectFilter</a><ul>
+<li><a href="#rxSelectFilter.multiSelectByLabel">rxSelectFilter.multiSelectByLabel(label)</a></li>
+<li><a href="#rxSelectFilter.apply">rxSelectFilter.apply(filterData)</a></li>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-<p><a name="rxMultiSelect.preview"></a></p>
-<p>##rxMultiSelect.preview
-<strong>Returns</strong>: <code>string</code> - The preview text for the dropdown.<br><a name="rxMultiSelect.options"></a></p>
-<p>##rxMultiSelect.options
-<strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The text of each option element in the dropdown.<br><a name="rxMultiSelect.values"></a></p>
-<p>##rxMultiSelect.values
-<strong>Returns</strong>: <code>Array.&lt;string&gt;</code> - The value of each option element in the dropdown.<br><a name="rxMultiSelect.selectedOptions"></a></p>
-<p>##rxMultiSelect.selectedOptions
-<strong>Returns</strong>: <code>Array.&lt;optionTexts&gt;</code> - Array of strings representing the currently selected options.<br><a name="rxMultiSelect.closeMenu"></a></p>
-<p>##rxMultiSelect.closeMenu()
-Close the menu</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.openMenu"></a></p>
-<p>##rxMultiSelect.openMenu()
-Open the menu</p>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.isOpen"></a></p>
-<p>##rxMultiSelect.isOpen()
-<strong>Returns</strong>: <code>boolean</code> - - Whether or not the menu is visible.<br><a name="rxMultiSelect.select"></a></p>
-<p>##rxMultiSelect.select(optionTexts)
+<p><a name="rxSelectFilter.multiSelectByLabel"></a></p>
+<p>##rxSelectFilter.multiSelectByLabel(label)
 <strong>Params</strong></p>
 <ul>
-<li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to select.  </li>
+<li>label <code>string</code> - The label of the rxMultiSelect dropdown.  </li>
 </ul>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.deselect"></a></p>
-<p>##rxMultiSelect.deselect(optionTexts)
+<p><strong>Returns</strong>: <a href="#rxMultiSelect">rxMultiSelect</a> - Page object representing the rxSelectFilter object.<br><a name="rxSelectFilter.apply"></a></p>
+<p>##rxSelectFilter.apply(filterData)
 <strong>Params</strong></p>
 <ul>
-<li>optionTexts <code>Array.&lt;string&gt;</code> - Array of partial or total strings matching the desired options to deselect.  </li>
+<li>filterData <code>Object</code> - Key-value pairs of the rxMultiSelects&#39; labels and their options to select.<pre><code>                              The value is an object, where the keys are the options and the values indicate
+                              if the option should be selected or deselected.  
+</code></pre></li>
 </ul>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMultiSelect.option"></a></p>
-<p>##rxMultiSelect.option
-<strong>Params</strong></p>
-<ul>
-<li>optionText <code>string</code> - Partial or total string matching the desired option.  </li>
-</ul>
-<p><strong>Returns</strong>: <a href="#rxMultiSelect.option">option</a> - Page object representing an option.<br><strong>Members</strong></p>
-<ul>
-<li><a href="#rxMultiSelect.option">rxMultiSelect.option</a><ul>
-<li><a href="#rxMultiSelect.option.text">option.text</a></li>
-<li><a href="#rxMultiSelect.option.value">option.value</a></li>
-</ul>
-</li>
-</ul>
-<p><a name="rxMultiSelect.option.text"></a></p>
-<p>###option.text
-<strong>Returns</strong>: <code>string</code> - The text inside of the current option.<br><a name="rxMultiSelect.option.value"></a></p>
-<p>###option.value
-<strong>Returns</strong>: <code>string</code> - The value bound to the option.<br><a name="rxSortableColumn"></a></p>
+<p><strong>Returns</strong>: <code>undefined</code><br><strong>Example</strong>  </p>
+<pre><code class="lang-js"> multiSelect.filter({
+     Account: {
+         All: false,
+         B: true
+     }
+ });
+</code></pre>
+<p><a name="rxSortableColumn"></a></p>
 <p>#rxSortableColumn
 <strong>Members</strong></p>
 <ul>

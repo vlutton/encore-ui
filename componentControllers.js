@@ -1038,6 +1038,14 @@ angular.module('demoApp')
 
 /*jshint unused:false*/
 angular.module('demoApp')
+.controller('rxMultiSelectCtrl', function ($scope) {
+    $scope.data = {
+        classification: []
+    };
+ });
+
+/*jshint unused:false*/
+angular.module('demoApp')
 .controller('rxNotifyCtrl', function ($rootScope, $scope, rxNotify, rxPromiseNotifications, $q) {
     $scope.message = 'My message';
 
@@ -1357,10 +1365,6 @@ angular.module('demoApp')
 /*jshint unused:false*/
 angular.module('demoApp')
 .controller('rxSelectFilterCtrl', function ($scope, SelectFilter) {
-    $scope.data = {
-        classification: []
-    };
-
     $scope.filter = SelectFilter.create({
         properties: ['account', 'status'],
         selected: {

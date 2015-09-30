@@ -82,7 +82,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "progressbar",
       "shortDescription": "progressbar Component",
-      "keywords": "api component overview progressbar"
+      "keywords": "action angular api bootstrap component details encore feedback framework github io overview progress progressbar provide utilizes workflow"
     },
     {
       "section": "api",
@@ -163,7 +163,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxApp",
       "shortDescription": "rxApp Component",
-      "keywords": "api component directive directives encoreroutes overview rxaccountsearch rxaccountusers rxapp rxappnav rxappnavitem rxappsearch rxatlassearch rxbillingsearch rxhideifukaccount rxpage rxstatustag rxstatustags rxticketsearch rxvisibility rxvisibilitypathparams service services"
+      "keywords": "$root $rootscope $route ability access accessing account-level action add api app apps attribute base based breadcrumbs browsers building builds built changed check childvisibility classes common component consistent content control controller create creating css current custom data default defined defines demo details directive directives docs don dynamically encore encorenav encoreroutes encoreui entirely example exposed file font fonts function github gl google googleapis help helpful helps href html https include included includes including inside io items layout left-hand level linktext ll loaded main menu menus myapp mykey myupdatedroute navigation ng-app ng-view options overview params pass path point pretty properties property re-using reference rel resource responsible roboto route routes rules runtime rx-app rx-page rxaccountsearch rxaccountusers rxapp rxappnav rxappnavitem rxapproutes rxappsearch rxatlassearch rxbillingsearch rxhideifukaccount rxpage rxstatustag rxstatustags rxticketsearch rxvisibility rxvisibilitypathparams scope separate service services set setroutebykey setting simple simpler source specific starting styles stylesheet styling text titles tool type update updating usage view views wrap"
     },
     {
       "section": "api",
@@ -199,7 +199,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxApp",
       "shortDescription": "Creates a menu based on items passed in.",
-      "keywords": "api based creates deeper definition directive display encorenav heirarchy higher items level menu menuitems nested number object passed rxapp"
+      "keywords": "$route _all_ _also_ _always_ _any_ _at _both_ _completely _generally_ _intent_ _must_ _one_ access accessible account accountnumber ad add addition allowing allows angular api app application applications applications_ applied apps area argument array assign attached attribute attributes automatic automatically avoid aware based belong bob bottom box brand browser check checking chevron child childheader children childvisibility class click clickable clicked clicking clicks compile compiled components configuration consists content control correctly creates criteria current currently custom dash-delimited data deeper default define defined defines defining definition demo demos deployed described describing design designers details determine dev developed directive directives directly display displayed documentation doesn domain elements encore encorenav encoreui enhance ensure entered entering environemnts environment evaluated example exclusive exist exists expand expanded expected expecting experience exposes expression extra fact feature file files filtering final foobar form format framework front-end full function functions future general gl happen header heirarchy higher highlight href html identifier importantly include including independently individual insert inserted inside instance internally interpolated introducing isactivebykey item items javascript json key ldap left legacy level linked linktext list live lives load loaded loads local machine machine-search menu menuitems methods mind multiple mutually nav nav-section-all nav-section-highlight nav-section-type navigate navigated navigating navigation navjson nested note number object objects one_ operate optional optionally original outer overview paragraph param parameter parameters pass passed path pathparams people people-search permissions point predefined prevent previous product production products project property provide pull purely rackspace real reasons recall receive receives rely render rendered representing represents require required requires reserved resonsible restrict role role-based role1 role2 role3 roles route routing rx-account-search rx-app-key- rxaccountsearch rxaccountusers rxapp rxapproutes rxappsearch rxcompile rxenvironment rxenvironmentmatch rxhideifukaccount rxpathparams scope search second sections security separate server-side set setroutebykey shouldn simply single solution staging string structure styleguide styling sue support supposed syntax tailed takes technique term text things three title tools top top-level true type types typically unified-preprod unique url urls user users values variables version viewing visibility visible won working"
     },
     {
       "section": "api",
@@ -244,7 +244,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxApp",
       "shortDescription": "Responsible for creating the HTML necessary for a page (including breadcrumbs and page title)",
-      "keywords": "api arbitrary attribute breadcrumbs creating depending directive document embedded ensure executed html javascript pass plain provide responsible rxapp set source string stripped subtitle tags title trust unsafehtmltitle version"
+      "keywords": "accept accepts accessible account account-number accountnumber actions add adds addstatus alpha alpha-status alt angular api appear application arbitrary attribute attributes automatically beta box breadcrumb breadcrumbs browser build called capable case chosen class common component config considered content correct create created creating css currently custom customized default define demo dependency depending directive directly document draw drawing drawn easily embedded enable enabling encore encoreui ensure essentially example executed executing expression expressions file final framework gamma hello href html http info injection inside integrates internal javascript jpg key link-action ll memegenerator method msg-action myview net opt-in overview page-actions pass passed passing plain previous product property provide provided rackspace receive repository requires responsible rx-app rx-page rxaccountinfo rxapp rxbreadcrumbs rxpage rxstatustagsprovider scope server servers services set setting source specific src status status-tag string stripped style styled styling subtitle supportaccount system tab tag tags takes teams template text title titles top true trust underneath unique unsafe unsafe-html-title unsafehtmltitle usage usestatustag version view views visible world wrapper"
     },
     {
       "section": "api",
@@ -343,7 +343,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxAttributes",
       "shortDescription": "rxAttributes Component",
-      "keywords": "api component directive directives overview rxattributes"
+      "keywords": "$scope add allows angular another-attribute-name anotherscopevalue api attribute-name attributes based code component controller convention customattrval defined demoapp directive directives example format function isn module my-custom-attr myctrl ng-class ng-click ng-controller nofunc object output overview parse pattern rx-attributes rxattributes scope scopevalue set takes"
     },
     {
       "section": "api",
@@ -351,8 +351,8 @@ NG_DOCS={
       "shortName": "rxAttributes",
       "type": "directive",
       "moduleName": "rxAttributes",
-      "shortDescription": "[TBD]",
-      "keywords": "api directive rxattributes"
+      "shortDescription": "This drective allows you to add attributes based on a value in scope being defined or not.",
+      "keywords": "add allows api attribute attributes based custom defined directive drective rxattributes scope"
     },
     {
       "section": "api",
@@ -379,7 +379,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxBreadcrumbs",
       "shortDescription": "rxBreadcrumbs Component",
-      "keywords": "api component directive directives overview rxbreadcrumbs rxbreadcrumbssvc service services"
+      "keywords": "adds api breadcrumbs component directive directives navigation overview rxbreadcrumbs rxbreadcrumbssvc service services updates"
     },
     {
       "section": "api",
@@ -388,7 +388,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxBreadcrumbs",
       "shortDescription": "Responsible for drawing the breadcrumbs for a page",
-      "keywords": "api apply breadcrumbs custom directive drawing responsible rxbreadcrumbs site-title status tag title usepagestatustag"
+      "keywords": "alpha api apply breadcrumb breadcrumbs changed checking custom default defined directive directly display drawing inside leverages marked method passed precedence receive responsible rxapp rxbreadcrumbs rxbreadcrumbssvc service set sethome site-title status tag tags title true url usepagestatustag"
     },
     {
       "section": "api",
@@ -396,8 +396,8 @@ NG_DOCS={
       "shortName": "rxBreadcrumbsSvc",
       "type": "service",
       "moduleName": "rxBreadcrumbs",
-      "shortDescription": "[TBD]",
-      "keywords": "api rxbreadcrumbs service"
+      "shortDescription": "rxBreadcrumbsSvc provides various methods to manipulate breadcrumbs.",
+      "keywords": "api app argument breadcrumb breadcrumbs breadcrumbsservice changed default display don function html manipulate method methods pass path relative reuse rxbreadcrumbs rxbreadcrumbssvc second service sethome takes url"
     },
     {
       "section": "api",
@@ -406,7 +406,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxBulkSelect",
       "shortDescription": "rxBulkSelect Component",
-      "keywords": "api component directive directives notifyproperties overview rxbatchactions rxbulkselect rxbulkselectheadercheck rxbulkselectrow rxbulkselectutils rxbulkselectvalidate rxcheckbox service services"
+      "keywords": "action api component directive directives items multiple notifyproperties overview perform rxbatchactions rxbulkselect rxbulkselectheadercheck rxbulkselectrow rxbulkselectutils rxbulkselectvalidate rxcheckbox service services table"
     },
     {
       "section": "api",
@@ -424,7 +424,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxBulkSelect",
       "shortDescription": "A directive you place on your &lt;table&gt; element to enable bulk select.",
-      "keywords": "add api appear attribute automatically bulk bulk-select-message bulk-select-related bulksource checkbox clicked controller directive directives disappear element enable interact item items iterated list main ng-repeats place provide resource responsibility rxbulkselect select selected selectedkey source table track user"
+      "keywords": "add adding api appear attribute automatically bulk bulk-select-message bulk-select-related bulk-source bulksource buttons checkbox clicked controller deselect directive directives disappear element enable header indicates interact item items iterated list main ng-repeats place provide resource responsibility responsible row rowisselected rows rx-bulk-select rxbulkselect select selected selectedkey servers source table track user"
     },
     {
       "section": "api",
@@ -487,7 +487,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxButton",
       "shortDescription": "rxButton Component",
-      "keywords": "api component directive directives overview rxbutton"
+      "keywords": "api attribute button buttons classes component create directive directives documented dynamically-displayed elements framework indicator loading multiple overview passed replacement rxbutton scenarios styleguide styles styling"
     },
     {
       "section": "api",
@@ -495,8 +495,8 @@ NG_DOCS={
       "shortName": "rxButton",
       "type": "directive",
       "moduleName": "rxButton",
-      "shortDescription": "Renders a button which will disable when clicked and show a loading message",
-      "keywords": "api applied attributes button class classes clicked complete default defaultmsg directive disable disabled display displayed instance loading loadingmsg message names operation passed progress renable renders rxbutton set text true"
+      "shortDescription": "Renders a button which will disable when clicked and show a loading message, ",
+      "keywords": "api applied attribute attributes behavior button call class classes clicked complete controlled default default-msg defaultmsg defaults defined desired directive disable disabled disables display displayed false handler instance loading loadingmsg matter message messages modified modify names ng-click ng-disabled normal operation passed process progress provided re-enable renders replaces rxbutton set text toggle toggle-msg toggled true variable"
     },
     {
       "section": "api",
@@ -505,7 +505,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxCapitalize",
       "shortDescription": "rxCapitalize Component",
-      "keywords": "api component filter filters overview rxcapitalize"
+      "keywords": "angular api capitalize component filter filters logic overview rxcapitalize string word"
     },
     {
       "section": "api",
@@ -513,8 +513,8 @@ NG_DOCS={
       "shortName": "rxCapitalize",
       "type": "filter",
       "moduleName": "rxCapitalize",
-      "shortDescription": "[TBD]",
-      "keywords": "api filter rxcapitalize"
+      "shortDescription": "The rxCapitalize filter capitalizes the first word in a string.",
+      "keywords": "api capitalizes filter rxcapitalize string word"
     },
     {
       "section": "api",
@@ -523,7 +523,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxCharacterCount",
       "shortDescription": "rxCharacterCount Component",
-      "keywords": "api component directive directives overview rxcharactercount"
+      "keywords": "api character component count designed directive directives elements functionality overview rxcharactercount"
     },
     {
       "section": "api",
@@ -531,8 +531,8 @@ NG_DOCS={
       "shortName": "rxCharacterCount",
       "type": "directive",
       "moduleName": "rxCharacterCount",
-      "shortDescription": "Monitors the number of characters in a text input and compares it to the desired length.",
-      "keywords": "allowed api characters compares desired directive enter highlighted input length limit maximum model monitors ng-model number rx-character-count rxcharactercount text warning"
+      "shortDescription": "A component provides an attribute directive intended for adding to &lt;textarea&gt;",
+      "keywords": "_do_ add adding addition advantage allowed api applied attribute built-in case cases character characters choose class classes component considered content correctly count counted-input-wrapper counter currently default demo directive directives directly display div element elements enabled ensure enter enters example experimental extensively failure false feature field functionality heavily highlight highlighted highlighting ignored initial input-highlighting inside intended isshown leading left limit maximum model ng-hide ng-model ng-show ng-trim ngshow number orange performs place placing position preliminary putting recommend red remaining requires rx-character-count rxcharactercount scrollbar shipping spaces span style styling support test tested text textarea trailing true underneath unstable user ve warning watch width"
     },
     {
       "section": "api",
@@ -541,7 +541,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxCheckbox",
       "shortDescription": "rxCheckbox Component",
-      "keywords": "api component directive directives overview rxcheckbox"
+      "keywords": "api behave checkbox chkdemo class code complexity component css decendents demo directive directives display element highly inside introduce isshown label logic markup native ng-hide ng-if ng-model ng-show ng-switch output overview performing placing purposes recommend recommended required rx-checkbox rxcheckbox scope style styling unnecessary wrapper wraps"
     },
     {
       "section": "api",
@@ -559,7 +559,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxCollapse",
       "shortDescription": "rxCollapse Component",
-      "keywords": "api component directive directives overview rxcollapse"
+      "keywords": "api component content directive directives display hide overview rxcollapse"
     },
     {
       "section": "api",
@@ -567,8 +567,8 @@ NG_DOCS={
       "shortName": "rxCollapse",
       "type": "directive",
       "moduleName": "rxCollapse",
-      "shortDescription": "Hide and show an element with a transition.",
-      "keywords": "api button collapsed default directive display element expanded filter hide initially rxcollapse title toggle transition true"
+      "shortDescription": "rxCollapse directive hides and shows an element with a transition.  It can be configured to show as either expanded",
+      "keywords": "api areas avoid bad border browser button chevron collapsed column columns configured content contents context data decreases default described developed directive display displaying doesn double element elements estate expanded experience filter final flexbox header hide hides initially keeping key load lost metadata pairs parameter pattern presented problem real responsive-friendly rxcollapse screen short title toggle toggles transition true user visible width wrap"
     },
     {
       "section": "api",
@@ -577,7 +577,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxCompile",
       "shortDescription": "rxCompile Component",
-      "keywords": "api component directive directives overview rxcompile"
+      "keywords": "allows api compilation component directive directives expressions inside overview rxcompile"
     },
     {
       "section": "api",
@@ -594,7 +594,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxDiskSize",
       "shortDescription": "rxDiskSize Component",
-      "keywords": "api component filter filters overview rxdisksize"
+      "keywords": "api component converts disk filter filters format gb gbs overview pbs readable rxdisksize size tbs"
     },
     {
       "section": "api",
@@ -602,8 +602,8 @@ NG_DOCS={
       "shortName": "rxDiskSize",
       "type": "filter",
       "moduleName": "rxDiskSize",
-      "shortDescription": "[TBD]",
-      "keywords": "api filter rxdisksize"
+      "shortDescription": "Converts GB disk size into a more readable format (e.g. GBs, TBs, PBs)",
+      "keywords": "api converts disk filter format gb gbs pb pbs readable rxdisksize size tb tbs"
     },
     {
       "section": "api",
@@ -612,7 +612,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxEnvironment",
       "shortDescription": "rxEnvironment Component",
-      "keywords": "api component directive directives environment filter filters overview rxenvironment rxenvironmentmatch rxenvironmenturl service services"
+      "keywords": "actions api assume assumption avoid avoided based building built call check checking code component consider current currently custom define defines deprecated detect dev directive directives discussed encore envcheck environment environments exclusive explicitly filter filters find full generate ghpages http https including instance islocal ispreprod issue isunified isunifiedpreprod isunifiedprod list listed local matching methods mind multiple mutually mynewproduct normal note older overlapping overview pattern preprod problems procedure prod products provide rackspace return running rxenvironment rxenvironmentmatch rxenvironmenturl service services set special specific staging system true unified-preprod unified-prod url urls ve warning wrong"
     },
     {
       "section": "api",
@@ -648,7 +648,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "rxEnvironment",
       "shortDescription": "Allows defining environments and retrieving the current environment based on location",
-      "keywords": "allows api based current defining environment environments location matches object retrieving return rxenvironment service"
+      "keywords": "add adding additional allows api application based basegithuburl build current defining demo didn encore environment environments example friendly ghpages github https io local location matched matches object path pattern preprod properties rackspace regex retrieving return rxenvironment rxenvironmenturl service string takes three url urls"
     },
     {
       "section": "api",
@@ -657,7 +657,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxFavicon",
       "shortDescription": "rxFavicon Component",
-      "keywords": "api component directive directives overview rxfavicon"
+      "keywords": "allows api component custom directive directives environments favicons local overview production rxfavicon staging"
     },
     {
       "section": "api",
@@ -665,8 +665,8 @@ NG_DOCS={
       "shortName": "rxFavicon",
       "type": "directive",
       "moduleName": "rxFavicon",
-      "shortDescription": "Updates href of element and replaces it with path to a different image based on environment",
-      "keywords": "api based directive element environment favicon href image local optional path properties replaces rxfavicon takes tbd updates"
+      "shortDescription": "This updates the href of an element, and replaces it with the path to a different image based on the environment.",
+      "keywords": "api based congifuration defines directive element environment favicon file href icon image local local-favicon object path png rel replaces rx-favicon rxfavicon staging staging-favicon type updates"
     },
     {
       "section": "api",
@@ -676,6 +676,15 @@ NG_DOCS={
       "moduleName": "rxFeedback",
       "shortDescription": "rxFeedback Component",
       "keywords": "api component directive directives overview rxfeedback rxfeedbacksvc rxscreenshotsvc service services"
+    },
+    {
+      "section": "api",
+      "id": "rxFeedback.controller:rxFeedbackController",
+      "shortName": "rxFeedbackController",
+      "type": "controller",
+      "moduleName": "rxFeedback",
+      "shortDescription": "Allows the customization of the feedback modal via $scope and $modalInstance.",
+      "keywords": "$modalinstance $scope allows api controller customization feedback modal rxfeedback"
     },
     {
       "section": "api",
@@ -711,7 +720,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxFloatingHeader",
       "shortDescription": "rxFloatingHeader Component",
-      "keywords": "api component directive directives overview rxfloatingheader tbd"
+      "keywords": "api columns compatible component directive directives floating fully header names overview persistent rxfloatingheader rxpaginate rxsortablecolumn scrolls table turns user visible"
     },
     {
       "section": "api",
@@ -719,8 +728,8 @@ NG_DOCS={
       "shortName": "rxFloatingHeader",
       "type": "directive",
       "moduleName": "rxFloatingHeader",
-      "shortDescription": "Turns a tableheader into a floating persistent header",
-      "keywords": "api directive floating header persistent rxfloatingheader tableheader turns"
+      "shortDescription": "rxFloatingHeader is an attribute directive that turns a tableheader into a floating persistent header so that names ",
+      "keywords": "add api attribute based colspan columns common compatible directive directly displayed element example filter floating fully header http inside items match names ng-model number pattern persistent place placing products restrict rx-floating-header rx-placeholder rxfloatingheader rxpaginate rxsortablecolumn scrolls searchtext set support table tableheader top turns user visible"
     },
     {
       "section": "api",
@@ -729,7 +738,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxForm",
       "shortDescription": "rxForm Component",
-      "keywords": "accessibility api common component components create creating deprecated directive directives easier elements encore ensure form forms helps html layout overview provide rxbutton rxcharactercount rxcheckbox rxfield rxfieldcontent rxfieldname rxform rxformfieldset rxformitem rxformsection rxformutils rxhelptext rxinlineerror rxinput rxoptiontable rxprefix rxradio rxselect rxsuffix rxtoggleswitch service services set style"
+      "keywords": "$error accessibility accomodate address advanced aim angular api applicable apply applying arrange arrangement asterisk attribute based breakage brittle browser check child children class closest code column columnar common comparing compatible component components conjunction console control controls cost create creating css custom default define definitions demo demoform denote deprecated description design designed desired details directive directives display displaying div documentation easier element elements eliminating email enabled encore encoreui ensure equivalent error errors evaluates example examples explicit fashion feedback field fields flexibility foo foocheck form forms framework free-range full functional functionality future grow heading help helps hierarchical hierarchy html implemented incredibly individual inline inline-error inputs invalid items javascript label layout left legend limited looked markup message messages migrating monthly nest nested ng-model ng-required ng-show note number online overview parent pertains place placement placing plenty prefix project prone properly properties provide ranges release removed replaced replacement required requirements resize responsive row rule rules rx-field rx-form rx-form-section rxbutton rxcharactercount rxcheckbox rxfield rxfieldcontent rxfieldname rxform rxformfieldset rxformitem rxformsection rxformutils rxhelptext rxinlineerror rxinput rxmultiselect rxoptiontable rxprefix rxradio rxsearchbox rxselect rxsuffix rxtoggleswitch sections service services set showing single specific stacked stand-in standard standardizing style styled suffix tab text textarea thing throw thumb top true turn type typeahead unnecessary upgrade useremail validation validator validators variant vary versus volume warning width wordy work wrap"
     },
     {
       "section": "api",
@@ -855,7 +864,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxIdentity",
       "shortDescription": "rxIdentity Component",
-      "keywords": "api component identity overview rxidentity service services"
+      "keywords": "aid api component designed identity interaction overview rackspace rxidentity service services"
     },
     {
       "section": "api",
@@ -863,8 +872,8 @@ NG_DOCS={
       "shortName": "Identity",
       "type": "service",
       "moduleName": "rxIdentity",
-      "shortDescription": "Service which is designed to authenticate with Rackspace&#39;s Identity service.",
-      "keywords": "$resource api authenticate designed errorcallback identity login loginwithjson password promise rackspace returns rxidentity service successcallback"
+      "shortDescription": "This is a component designed to aid interaction with Rackspace&#39;s Identity API.",
+      "keywords": "$resource aid api component designed errorcallback identity interaction login loginwithjson password promise rackspace returns rxidentity service successcallback"
     },
     {
       "section": "api",
@@ -873,7 +882,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxInfoPanel",
       "shortDescription": "rxInfoPanel Component",
-      "keywords": "api component directive directives overview rxinfopanel"
+      "keywords": "api component directive directives generic info intended overview panel rxinfopanel top"
     },
     {
       "section": "api",
@@ -881,8 +890,8 @@ NG_DOCS={
       "shortName": "rxInfoPanel",
       "type": "directive",
       "moduleName": "rxInfoPanel",
-      "shortDescription": "Renders a generic, pre-styled, info panel, with an optional title.",
-      "keywords": "api area directive displayed generic info optional panel pre-styled renders rxinfopanel text title"
+      "shortDescription": "This renders a generic, pre-styled, info panel, with an optional title.",
+      "keywords": "api area directive displayed generic info optional panel panel-title pre-styled renders rxinfopanel text title"
     },
     {
       "section": "api",
@@ -891,7 +900,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxLocalStorage",
       "shortDescription": "rxLocalStorage Component",
-      "keywords": "api component localstorage overview rxlocalstorage service services"
+      "keywords": "api browser component global interacting local localstorage object overview rxlocalstorage service services session simple storage wrapper"
     },
     {
       "section": "api",
@@ -900,7 +909,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "rxLocalStorage",
       "shortDescription": "A simple wrapper for injecting the global variable localStorage",
-      "keywords": "$document $window angular api batman clear functions getitem getobject global helper hero http includes injecting key local localstorage objects org provided removeitem return returns robin rxlocalstorage service services setitem setobject setting simple specification storage storage-0 storing values variable w3 w3c works wrapper"
+      "keywords": "$document $window angular api batman browser clear functions getitem getobject global helper hero http includes injecting key local localstorage object objects org provided removeitem return returns robin rxlocalstorage service services setitem setobject setting simple specification storage storage-0 storing values variable w3 w3c works wrapper"
     },
     {
       "section": "api",
@@ -909,7 +918,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxLogout",
       "shortDescription": "rxLogout Component",
-      "keywords": "api component directive directives overview rxlogout"
+      "keywords": "api apply component directive directives element functionality logic logout overview rxlogout"
     },
     {
       "section": "api",
@@ -917,7 +926,7 @@ NG_DOCS={
       "shortName": "rxLogout",
       "type": "directive",
       "moduleName": "rxLogout",
-      "shortDescription": "Adds logout functionality to an element",
+      "shortDescription": "Adds logout functionality to an element.",
       "keywords": "adds api custom directive element functionality location logging logout redirect rx-logout rxlogout url"
     },
     {
@@ -927,7 +936,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxMetadata",
       "shortDescription": "rxMetadata Component",
-      "keywords": "api component consistent directive directives display metadata overview provide rxmeta rxmetadata styling"
+      "keywords": "adjacent anunseeminglyunbreakablewordthatcouldoverflowtothenextcolumn api break class column columns component consistent container content css data directive directives display element elements fit fixed force-word-break highly intensive label level long metadata metastatus naturally organizing overflowing overview prevent provide rcn recommended row rxmeta rxmetadata separate service set single status styling super sysops type values width wrap"
     },
     {
       "section": "api",
@@ -936,7 +945,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxMetadata",
       "shortDescription": "",
-      "keywords": "api damaged definition directive element fubar html irreparably label metadata order parent rxmetadata seriously width working"
+      "keywords": "api definition degraded directive element html label maintenance metadata parent rxmetadata status system width"
     },
     {
       "section": "api",
@@ -945,7 +954,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxMetadata",
       "shortDescription": "Parent directive used for styling and arranging metadata information.",
-      "keywords": "accommodate api arranging bang blocks columns container damaged directive element enought foo fubar highly html irreparably isn label metadata order parent purposes recommended row rxmeta rxmetadata sections seriously single stack styling vertically wide width working wrap"
+      "keywords": "accommodate api arranging blocks columns container degraded directive element enought example field highly html isn label maintenance metadata parent purposes recommended row rxmeta rxmetadata sections single stack status styling system vertically wide width wrap"
     },
     {
       "section": "api",
@@ -1036,6 +1045,33 @@ NG_DOCS={
       "moduleName": "rxModalAction",
       "shortDescription": "A cache for storing the modal footer templates",
       "keywords": "add api body cache calling direct dom flush footer html inserted internally modal preferred registering returns rxmodalaction rxmodalfooter rxmodalfootertemplates service step1 storing string templates"
+    },
+    {
+      "section": "api",
+      "id": "rxMultiSelect",
+      "shortName": "rxMultiSelect",
+      "type": "overview",
+      "moduleName": "rxMultiSelect",
+      "shortDescription": "rxMultiSelect Component",
+      "keywords": "api apis applicable component components directive directives links overview provided rxmultiselect rxselectoption service services"
+    },
+    {
+      "section": "api",
+      "id": "rxMultiSelect.directive:rxMultiSelect",
+      "shortName": "rxMultiSelect",
+      "type": "directive",
+      "moduleName": "rxMultiSelect",
+      "shortDescription": "A multi-select dropdown with checkboxes for each option",
+      "keywords": "api checkboxes directive dropdown input list multi-select ng-model option options property rxmultiselect scope stores"
+    },
+    {
+      "section": "api",
+      "id": "rxMultiSelect.directive:rxSelectOption",
+      "shortName": "rxSelectOption",
+      "type": "directive",
+      "moduleName": "rxMultiSelect",
+      "shortDescription": "A single option for rxMultiSelect",
+      "keywords": "api content directive option provided rxmultiselect single text transcluded"
     },
     {
       "section": "api",
@@ -1296,16 +1332,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxSelectFilter",
       "shortDescription": "rxSelectFilter component",
-      "keywords": "api apply component directive directives filter filters overview rxmultiselect rxselectfilter rxselectoption selectfilter service services"
-    },
-    {
-      "section": "api",
-      "id": "rxSelectFilter.directive:rxMultiSelect",
-      "shortName": "rxMultiSelect",
-      "type": "directive",
-      "moduleName": "rxSelectFilter",
-      "shortDescription": "A multi-select dropdown with checkboxes for each option",
-      "keywords": "api checkboxes directive dropdown input list multi-select ng-model option options property rxselectfilter scope stores"
+      "keywords": "api apply component create directive directives exposes filter filters instances method object overview rxselectfilter selectfilter service services single"
     },
     {
       "section": "api",
@@ -1313,17 +1340,8 @@ NG_DOCS={
       "shortName": "rxSelectFilter",
       "type": "directive",
       "moduleName": "rxSelectFilter",
-      "shortDescription": "Autmatically creates the appropriate dropdowns to manage a filter object.",
-      "keywords": "api appropriate autmatically creates directive dropdowns filter instance manage object rxselectfilter selectfilter"
-    },
-    {
-      "section": "api",
-      "id": "rxSelectFilter.directive:rxSelectOption",
-      "shortName": "rxSelectOption",
-      "type": "directive",
-      "moduleName": "rxSelectFilter",
-      "shortDescription": "A single option for rxMultiSelect",
-      "keywords": "api content directive option provided rxmultiselect rxselectfilter single text transcluded"
+      "shortDescription": "Automatically creates the appropriate dropdowns to manage a filter object.",
+      "keywords": "api appropriate automatically creates directive dropdowns filter instance manage object rxselectfilter selectfilter"
     },
     {
       "section": "api",
