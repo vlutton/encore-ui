@@ -1,3 +1,32 @@
+<a name="1.31.0"></a>
+## 1.31.0 (2015-09-30)
+
+
+#### Bug Fixes
+
+* **basics:** Correct typo ([d4498bac](git@github.com:rackerlabs/encore-ui/commit/d4498bac72a782c77f8ecf691cff9b774571115d))
+* **rxFeedback:** Updated Documentation & Template per comments ([8b4dd618](git@github.com:rackerlabs/encore-ui/commit/8b4dd6183b43ff169baa33b1032ea6e9594900b2))
+
+
+#### Features
+
+* **directive:**
+  * Split rxMultiSelect from rxSelectFilter ([5c86cc14](git@github.com:rackerlabs/encore-ui/commit/5c86cc1422a43b892ce6be8f1e8bb87c12bcd12f))
+  * Add new directive.  Fix demo styling ([09dcfbcc](git@github.com:rackerlabs/encore-ui/commit/09dcfbcc02a6b2ce2202a30025d51a58127518cc))
+  * Add new rxMultiSelect directive from rxSelectFilter ([17cb6594](git@github.com:rackerlabs/encore-ui/commit/17cb6594eb4a504bbdb6ce0a30b66525a49a38b8))
+* **docs:**
+  * FRMW-173 - Migrate rxEnvironment docs ([912479ca](git@github.com:rackerlabs/encore-ui/commit/912479ca4cfe5ae7f929181c2589775928bc8d60))
+  * FRMW-168 - Migrate rxCharacterCount docs ([1e356da8](git@github.com:rackerlabs/encore-ui/commit/1e356da86ccf5609a65c642d916308c9dcd760a9))
+  * FRMW-171 - Migrate rxCompile docs ([ad698086](git@github.com:rackerlabs/encore-ui/commit/ad69808610d9317db31b3eb4f7ee768827e9d80a))
+  * FRMW-155-Migrate progressbar docs in README to ngdocs ([ae7b6115](git@github.com:rackerlabs/encore-ui/commit/ae7b6115748ac94076c2aeb590c728792af0d687))
+  * FRMW-160 - Migrate rxApp docs in README to ngdocs ([50fb5dff](git@github.com:rackerlabs/encore-ui/commit/50fb5dff14486f7b7f7eb738b5691cc748d7624d))
+  * FRMW-154-Migrate rxMetadata to API docs ([238882de](git@github.com:rackerlabs/encore-ui/commit/238882de8187d0f6c57b20fbaf85e6496af5d2df))
+  * FRMW-165 - Migrate rxBulkSelect docs to ngdocs ([3e46988c](git@github.com:rackerlabs/encore-ui/commit/3e46988c6d001d5399e2cc6eaf050aa1b5b66d35))
+  * FRMW-169 - Migrate rxCheckbox docs to ngdocs ([af7866e1](git@github.com:rackerlabs/encore-ui/commit/af7866e108be4efe51080030c08d2aaea78174c2))
+  * FRMW-162 - Migrate rxAttributes docs to ngdocs ([3be80560](git@github.com:rackerlabs/encore-ui/commit/3be80560bfda0e5bc26d43c1dec8cc64e56b0fc3))
+* **rxFeedback:** Adding a controller to the feedback modal ([2212cb8f](git@github.com:rackerlabs/encore-ui/commit/2212cb8f52e5f0fb63baeb2059a62b48ae41c5ce))
+
+
 <a name="1.30.1"></a>
 ### 1.30.1 (2015-09-23)
 
