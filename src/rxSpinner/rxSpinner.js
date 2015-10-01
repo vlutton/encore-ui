@@ -4,7 +4,7 @@
  * @description
  * # rxSpinner Component
  *
- * [TBD]
+ * A component adds a spinner icon to any element.
  *
  * ## Directives
  * * {@link rxSpinner.directive:rxSpinner rxSpinner}
