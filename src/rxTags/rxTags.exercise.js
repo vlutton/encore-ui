@@ -1,17 +1,17 @@
 var rxTags = require('./rxTags.page').rxTags;
 
 /**
-   rxTags exercises.
-   @exports encore.exercise.rxTags
-   @param {Object} [options=] - Test options. Used to build valid tests.
-   @param {rxTags} [options.instance=] - Component to Exercise.
-   @param {string} options.sampleText - A tag that can be added.
-   @example
-   ```js
-   describe('default exercises', encore.exercise.rxTags({
-       instance: encore.rxTags.initialize('.demo rx-tags') // select one of many widgets on page
-   }));
-   ```
+ * rxTags exercises
+ * @exports encore.exercise.rxTags
+ * @param {Object} [options=] - Test options. Used to build valid tests.
+ * @param {rxTags} [options.instance=] - Component to Exercise.
+ * @param {string} options.sampleText - A tag that can be added.
+ * @example
+ * <pre>
+ * describe('default exercises', encore.exercise.rxTags({
+ *     instance: encore.rxTags.initialize('.demo rx-tags') // select one of many widgets on page
+ * }));
+ * </pre>
  */
 exports.rxTags = function (options) {
     if (options === undefined) {
@@ -31,37 +31,74 @@ exports.rxTags = function (options) {
             } else {
                 component = rxTags.main;
             }
+
             component.count().then(function (num) {
                 numTags = num;
             });
         });
 
         if (!_.isUndefined(options.sampleText)) {
-            it('adds a tag', function () {
-                tag = component.addTag(options.sampleText);
-                expect(tag.text).to.eventually.equal(options.sampleText);
-                expect(component.count()).to.eventually.equal(numTags + 1);
+            describe('after adding tag', function () {
+                before(function () {
+                    tag = component.addTag(options.sampleText);
+                });
+
+                it('should have expected value', function () {
+                    expect(tag.text).to.eventually.equal(options.sampleText);
+                });
+
+                it('should increment total tags by 1', function () {
+                    expect(component.count()).to.eventually.equal(numTags + 1);
+                });
+
+                it('should not focus last tag', function () {
+                    expect(tag.isFocused()).to.eventually.be.false;
+                });
+
+                describe('and clicking the tag X', function () {
+                    before(function () {
+                        tag.remove();
+                    });
+
+                    it('should no longer exist', function () {
+                        expect(tag.exists()).to.eventually.be.false;
+                    });
+
+                    it('should decrement total tags by 1', function () {
+                        expect(component.count()).to.eventually.equal(numTags);
+                    });
+                });
             });
 
-            it('removes a tag by clicking the x', function () {
-                tag.remove();
-                expect(tag.exists()).to.eventually.be.false;
-                expect(component.count()).to.eventually.equal(numTags);
-            });
+            describe('after adding temporary tag for removal', function () {
+                before(function () {
+                    tag = component.addTag(options.sampleText);
+                });
 
-            it('focuses the last tag by typing backspace', function () {
-                tag = component.addTag(options.sampleText);
-                expect(tag.isFocused()).to.eventually.be.false;
-                component.sendBackspace();
-                expect(tag.isFocused()).to.eventually.be.true;
-            });
+                describe('and typing backspace from input', function () {
+                    before(function () {
+                        component.sendBackspace();
+                    });
 
-            it('removes a focused tag by entering a backspace', function () {
-                tag.sendBackspace();
-                expect(component.byText(options.sampleText).exists()).to.eventually.be.false;
-                expect(component.count()).to.eventually.equal(numTags);
+                    it('should focus the last tag', function () {
+                        expect(tag.isFocused()).to.eventually.be.true;
+                    });
+
+                    describe('and typing backspace with focused tag', function () {
+                        before(function () {
+                            tag.sendBackspace();
+                        });
+
+                        it('should no longer exist', function () {
+                            expect(component.byText(options.sampleText).exists()).to.eventually.be.false;
+                        });
+
+                        it('should decrement count by 1', function () {
+                            expect(component.count()).to.eventually.equal(numTags);
+                        });
+                    });
+                });
             });
         }
-
     };
 };

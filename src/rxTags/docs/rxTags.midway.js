@@ -1,5 +1,3 @@
-var rxTagsPage = encore.rxTags;
-
 describe('rxTags', function () {
 
     before(function () {
@@ -7,6 +5,7 @@ describe('rxTags', function () {
     });
 
     describe('exercises', encore.exercise.rxTags({
+        instance: encore.rxTags.initialize($('#standard-tags')),
         sampleText: 'orange'
     }));
 
