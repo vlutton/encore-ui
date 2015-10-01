@@ -3,8 +3,9 @@
  * @name rxPermission
  * @description
  * # rxPermission Component
- *
- * [TBD]
+ * The rxPermission component manages permissions in EncoreUI.  It provides a 
+ * {@link rxPermission.service:Permission Permission} service for working with roles, and a 
+ * {@link rxPermission.directive:rxPermission rxPermission} directive for excluding DOM content based on roles.
  *
  * ## Services
  * * {@link rxPermission.service:Permission Permission}
@@ -19,6 +20,22 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
  * @description
  * Simple service for accessing roles and permissions for a user.
  *
+ * # `Permission` Methods
+ *
+ * `Permission` service exposes three methods.
+ *
+ * ## `getRoles()`
+ * This method takes no arguments, and returns all the roles tied to the user, in the exact format available in their 
+ * Session token.
+ *
+ * ## `hasRole(roles)` 
+ * Given an array of roles (strings), this method returns `true` if the user has at least **one** of those roles, and 
+ * `false` otherwise.
+ *
+ * ## `hasAllRoles(roles)`
+ * Given an array of roles (strings), this method returns `true` if the user has **_all_** of the roles, and `false` 
+ * otherwise.
+ * 
  * @requires rxSession.service:Session
  *
  * @example
@@ -92,8 +109,9 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
  * @restrict E
  * @scope
  * @description
- * Simple directive which will show or hide content if user specified role.
- *
+ * Simple directive which will show or hide content based on whether or not the user has the specified role. See 
+ * the `rxPermission` component {@link /#/components/rxPermission demo} for an example.
+ * 
  * @requires rxPermission.service:Permission
  *
  * @param {String} role - Name of required role.
