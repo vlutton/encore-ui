@@ -4,7 +4,8 @@
  * @description
  * # rxSortableColumn Component
  *
- * [TBD]
+ * The rxSortableColumn component provides functionality to sort a table on a
+ * single property value.
  *
  * ## Directives
  * * {@link rxSortableColumn.directive:rxSortableColumn rxSortableColumn}
@@ -25,10 +26,13 @@ angular.module('encore.ui.rxSortableColumn', [])
  * the referenced property in ascending or descending order.
  *
  * @param {String} displayText - The text to be displayed in the link
- * @param {Function} sortMethod - The sort function to be called when the link is clicked
- * @param {String} sortProperty - The property on the array to sort by when the link is clicked.
+ * @param {Function} sortMethod - The sort function to be called when the link is
+ * clicked
+ * @param {String} sortProperty - The property on the array to sort by when the
+ * link is clicked.
  * @param {Object} predicate - The current property the collection is sorted by.
- * @param {Boolean} reverse - Indicates whether the collection should sort the array in reverse order.
+ * @param {Boolean} reverse - Indicates whether the collection should sort the
+ * array in reverse order.
  */
 .directive('rxSortableColumn', function () {
     return {
@@ -80,8 +84,9 @@ angular.module('encore.ui.rxSortableColumn', [])
  * @ngdoc filter
  * @name rxSortableColumn.filter:rxSortEmptyTop
  * @description
- * Filter that moves rows with an empty predicate to the top of the column in ascending order,
- * and to the bottom in descending order.
+ *
+ * Filter that moves rows with an empty predicate to the top of the column in
+ * ascending order, and to the bottom in descending order.
  *
  * @example
  * <pre>
