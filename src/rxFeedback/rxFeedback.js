@@ -154,7 +154,7 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
  * ## Custom Submission Function
  * 
  * The `rxFeedback` directive allows you to define an `on-submit` attribute that points to a custom function for the
- * purposes of overriding the default submission logic.  This function should accept a *single argument* for a
+ * purposes of overriding the default submission logic.  This function accepts a *single argument* for a
  * `feedback object` with the following definition:
  *
  * @example
