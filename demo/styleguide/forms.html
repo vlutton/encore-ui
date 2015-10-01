@@ -80,9 +80,9 @@
           about how we style and color buttons.
           <ul>
             <li>
-              In a nutshell, submit buttons should use the green <code>submit</code>
+              Submit buttons should use the green <code>.submit</code>
               class unless you are performing a destructive action, in which case, you
-              should use the <code>negative</code> class.
+              should use the <code>.negative</code> class.
             </li>
           </ul>
         </li>
@@ -218,7 +218,7 @@
     <h3 class="title">Manual Form Saving</h3>
     <div class="component-description">
       <ul class="list">
-        <li>When an entity is being edited in place, rather than submitting an edit or create form, an informative notification and a save button are used.</li>
+        <li>If you require form data to be completed before submitting, or require interactive form experiences, a conditional save button and notification is used.</li>
         <li>The notification should be put in the page stack and should only be shown after a change has been made to the form (e.g. not on page load).</li>
         <li>The subtitle of the page should indicate when the form was last saved and contain the save button.</li>
       </ul>
@@ -247,4 +247,3 @@
     </ul>
   </div>
 </rx-page>
-
