@@ -40,8 +40,8 @@ angular.module('encore.ui.rxRadio', [])
  *
  * @example
  * <pre>
- *    <input rx-radio id="radDemo" ng-model="radDemo" />
- *    <label for="radDemo">Label for Demo Radio</label>
+ * <input rx-radio id="radDemo" ng-model="radDemo" />
+ * <label for="radDemo">Label for Demo Radio</label>
  * </pre>
  *
  * @param {Boolean=} [ng-disabled=false] Determines if control is disabled.
