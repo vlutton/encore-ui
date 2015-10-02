@@ -585,10 +585,10 @@ angular.module('demoApp')
         ],
         "dependencies": [],
         "stability": "unstable",
-        "lastModified": "Oct 1, 2015 @ 17:09 (UTC-0500)",
-        "rawLastModified": "2015-10-01 17:09:28 -0500",
+        "lastModified": "Oct 2, 2015 @ 14:21 (UTC-0500)",
+        "rawLastModified": "2015-10-02 14:21:18 -0500",
         "docs": {
-            "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/unstable.svg\" alt=\"unstable\"></a></p>\n<p><code>rxFeedback</code> component gathers and sends user feedback to a default or specifiable email list.</p>\n",
+            "md": "<p><a href=\"http://github.com/badges/stability-badges\"><img src=\"http://badges.github.io/stability-badges/dist/unstable.svg\" alt=\"unstable\"></a></p>\n<p>The rxFeedback component gathers and sends user feedback to a default or specifiable email list.</p>\n",
             "js": "/*jshint unused:false*/\nangular.module('demoApp')\n.controller('rxFeedbackCtrl', function ($scope, rxNotify) {\n    $scope.alwaysSucceed = function () {\n        rxNotify.add('Thanks for your feedback!', {\n            type: 'success',\n            timeout: 3\n        });\n    };\n\n    $scope.alwaysFail = function () {\n        rxNotify.add('Feedback not received!', {\n            type: 'error',\n            timeout: 3\n        });\n    };\n});\n",
             "html": "<!-- Sample HTML goes here as a live example of how to the component can be used -->\n<div ng-controller=\"rxFeedbackCtrl\">\n\n    <rx-feedback id=\"rxFeedback\"></rx-feedback>\n    <span class=\"subdued\">(Will fallback to default email client)</span>\n\n    <hr/>\n\n    <rx-feedback on-submit=\"alwaysSucceed\" id=\"rxFeedbackSucceeds\"></rx-feedback>\n    <span class=\"subdued\">(Will Succeed)</span>\n\n    <rx-feedback on-submit=\"alwaysFail\" id=\"rxFeedbackFails\"></rx-feedback>\n    <span class=\"subdued\">(Will Fail)</span>\n\n</div>\n",
             "less": "/*\n * rxFeedback\n */\n.rx-feedback-form .feedback-description {\n    .field-label,\n    .field-input,\n    .feedback-textarea {\n        display: block;\n        width: 100%;\n        float: none;\n    }\n\n    .field-input {\n        top: 0;\n        margin-top: 5px;\n    }\n\n    .feedback-textarea {\n        height: 10em;\n    }\n}",

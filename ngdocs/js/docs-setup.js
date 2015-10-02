@@ -675,7 +675,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxFeedback",
       "shortDescription": "rxFeedback Component",
-      "keywords": "adding api component configured custom default directive directives email encore-service-pillar encoreui endpoint feedback function gathers list mailing managed override overview parameter product product-specific routes rxfeedback rxfeedbacksvc rxscreenshotsvc sending sends service services setendpoint specifiable submission supports user"
+      "keywords": "accept add adding allows altered angular api application argument attribute automatically behaviour cf1 changeorigin changes component configurations configured context controller create custom default define definition dependencies dependency depending describe description details development directive directives email encore encore-service-pillar encore-ui-svcs encorefeedback encoreui endinject endpoint ensure false feature features feedback field function gathers generator gulp host html http https include initialized inject injected integration internal js label latest list logic mailing managed manually module myapplication ngresource ngroute object on-submit open override overriding overview parameter perform placeholder points port prism product product-specific production project prompt protocol proxy purposes r46 rackcdn rackspace redirect redirecting request requests routes rxfeedback rxfeedbacksvc rxscreenshotsvc script selects sending sends service services set setendpoint single specifiable src ssl staging structure submission supports svcs tasks text true type ui update updating user user-submitted version website window"
     },
     {
       "section": "api",
