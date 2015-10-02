@@ -12,14 +12,6 @@ To help guide you in getting a new project off the ground quickly, please refere
 
 You can see all components in action by visiting [the EncoreUI demo page](http://rackerlabs.github.io/encore-ui/).
 
-# General Support
-
-Our team can usually provide general assistance with using the Framework, but we do not create mock-ups of design for projects consuming the EncoreUI Framework.
-
-To discuss bugs and features, please use [the GitHub Issues Page](https://github.com/rackerlabs/encore-ui/issues?state=open). To view the issues we're currently working on, check out the [EncoreUI Task Board](https://waffle.io/rackerlabs/encore-ui). For high-level questions and requests, you can e-mail the [EncoreUI mailing list](mailto:encoreui@lists.rackspace.com). Expect a response within one working day.
-
-
-
 # Further Reading
 
  - [Contribution Guide](./CONTRIBUTING.md)
