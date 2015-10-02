@@ -1,3 +1,12 @@
+<a name="1.31.1"></a>
+### 1.31.1 (2015-10-02)
+
+
+#### Features
+
+* **docs:** FRMW-197 - Update rxSpinner docs ([45143351](git@github.com:rackerlabs/encore-ui/commit/45143351fe97bf12560cc940f85d9e1bb804aed3))
+
+
 <a name="1.31.0"></a>
 ## 1.31.0 (2015-09-30)
 
