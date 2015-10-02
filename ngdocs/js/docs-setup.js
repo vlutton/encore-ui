@@ -675,7 +675,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxFeedback",
       "shortDescription": "rxFeedback Component",
-      "keywords": "api component directive directives overview rxfeedback rxfeedbacksvc rxscreenshotsvc service services"
+      "keywords": "adding api component configured custom default directive directives email encore-service-pillar encoreui endpoint feedback function gathers list mailing managed override overview parameter product product-specific routes rxfeedback rxfeedbacksvc rxscreenshotsvc sending sends service services setendpoint specifiable submission supports user"
     },
     {
       "section": "api",
@@ -692,8 +692,8 @@ NG_DOCS={
       "shortName": "rxFeedback",
       "type": "directive",
       "moduleName": "rxFeedback",
-      "shortDescription": "[TBD]",
-      "keywords": "api directive rxfeedback"
+      "shortDescription": "Custom Submission Function",
+      "keywords": "accepts allows api argument attribute custom default define definition describe description directive feedback field function json label logic object on-submit overriding placeholder points prompt purposes rxfeedback structure submission text type ui user-submitted"
     },
     {
       "section": "api",
@@ -701,8 +701,8 @@ NG_DOCS={
       "shortName": "rxFeedbackSvc",
       "type": "service",
       "moduleName": "rxFeedback",
-      "shortDescription": "[TBD]",
-      "keywords": "api rxfeedback service"
+      "shortDescription": "rxFeedbackSvc service supports rxFeedback directive functionality.  A custom endpoint may be set to override",
+      "keywords": "api custom default directive endpoint functionality override rxfeedback rxfeedbacksvc service set supports"
     },
     {
       "section": "api",
@@ -710,8 +710,8 @@ NG_DOCS={
       "shortName": "rxScreenshotSvc",
       "type": "service",
       "moduleName": "rxFeedback",
-      "shortDescription": "requires html2canvas",
-      "keywords": "api html2canvas requires rxfeedback service"
+      "shortDescription": "Captures a screenshot for rxFeedback submission form.",
+      "keywords": "api captures default encore form framework html2canvas requires rxfeedback screenshot service submission"
     },
     {
       "section": "api",
@@ -981,7 +981,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "rxMisc",
       "shortDescription": "A factory that controllers can use to help automatically save and load",
-      "keywords": "$watch addition api apply appropriate automatic automatically autosave backends background boolean caching calculated card case change changes check clear cleared clearonsuccess continuous controllers corresponding credit custom data days defaults desired encoreui example exclude expiration expire expired expiring expiry expression factory false flags form formdata formed freshly function getobject help hours ignore interface key keyshaping live load loaded localstorage long manually methods modify names numbers object options parameter pass password passwords prepending prevent process promise property provided replace resolution resolves return running rxautosave rxmisc save saved saving scope seconds sensitive service sessionstorage set setobject specific storage storagebackend string successful support supports time ttl turn url usage user val var variable visits watched"
+      "keywords": "$location $resource $scope $watch _some_ accept accepting accidentally actions add addition affect api appearing apply appropriate argument array attribute attributes automatic automatically autosave autosave1 autosave2 backend backends background birthday blank boolean browser button caching calculated call calling card case cases chance change changed changes check checkbox chkcheckbox clear cleared clearing clearonsuccess click commit computer continuous controller controllers correctly corresponding create credit current custom customername data days decision default defaults delay demoform described description desired directives disable disagree don edit editing encoreui entering eventually example exclude excluding exist expiration expire expired expiring expiry explicit explict expression factory fails false field flags form form1data form2data formdata formed forms freshly function getobject good happen help hours html ignore independently individual initialization initialized inject instance instances instantation instantiating instantiation integer intended intent interested interface key keyed keyshaping knowledge length live load loaded loading loads localstorage location logs long manual manually manualsave mentioned method methods model models modify multiple names navigate ng-model note null numbers object onsubmit operates optional options opts original out-of-the-box override parameter pass passed passing password passwords prefix prepending prevent preventing process progress promise property provide provided receive replace requirement requires resolution resolve resolved resolves return returns rows running rx-checkbox rx-form rxautosave rxmisc save saved saves saving scope seconds send sensitive server server1 server2 servers serversubmitpromise service sessionstorage set setobject setting simultaneously specific stacked stated storage storagebackend store stored storing string submit success successful successfull support supported supports takes template templates text third time time-to-live track true ttl turn type unchecked url usage user users val values var variable visits watch watched won write"
     },
     {
       "section": "api",
@@ -1008,7 +1008,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxModalAction",
       "shortDescription": "rxModalAction Component",
-      "keywords": "api component directive directives overview rxmodalaction rxmodalfooter rxmodalfootertemplates rxmodalform service services"
+      "keywords": "angular-ui api blank bootstrap build buttons component content dependency directive directives form github going hook included inside io link modal module open operations overview perform rxmodalaction rxmodalfooter rxmodalfootertemplates rxmodalform service services submit tie title webpage window"
     },
     {
       "section": "api",
@@ -1017,7 +1017,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxModalAction",
       "shortDescription": "Link which will show a modal window on click, and handle callbacks for pre/post modal actions",
-      "keywords": "actions api attribute call callbacks called cancelled click close content directive disable-esc disabled dismissed esc function handle html link modal modalcontent myposthook myprehook opened post-hook pre pre-hook press rxmodalaction submitted takes template template-url text url values window"
+      "keywords": "$modalinstance action actions allows api attribute based benefit button call callbacks called calling cancel cancelled changes click clicking close closed common complex component confirmation content data define defined dialog directive disable-esc disabled dismiss dismiss-hook dismissed don dynamic entered esc example explicitly extra field file fully function functional functions handle handled happen helpful hook hooks html indeterminate input inside javascript json lifecycle link live loaded logic maintainability making modal modalcontent multiple myposthook myprehook nature ng-include opened optional passed points populate post-hook pre pre-defined pre-hook press pressing previous re-use requests return rxmodalaction scenario scenarios send separate simple simply specific submitted submitting switches takes template template-url text toggle top transcluding ui url user values window windows work"
     },
     {
       "section": "api",
@@ -1026,7 +1026,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxModalAction",
       "shortDescription": "Define a footer for the next modal.",
-      "keywords": "activated api attribute button class confirm content define directive footer global modal modals ng-click pending risks rxmodalaction setstate takes understand values"
+      "keywords": "activated api attribute button buttons cancel case changing class complete component confirm content controller default define defined demo design directive editing example footer footers form framework global inherits kicks loaded method modal modals module multiple ng-click pattern pending process provided return risks rxmodalaction scope setstate standard submit subsequent takes template toggle tracked understand usage values views"
     },
     {
       "section": "api",
@@ -1035,7 +1035,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxModalAction",
       "shortDescription": "Responsible for creating the HTML necessary for modal form",
-      "keywords": "api button cancel creating default defaults directive element firsttabbable focus form html is-loading modal responsible return rxmodalaction spinner submit submit-text subtitle text title true window"
+      "keywords": "api autofocus button cancel common creating cursor default defaults directive element firsttabbable focus form format forms helpful html input inside is-loading keyboard mechanism modal modals move providing responsible return rxmodalaction spinner submit submit-text subtitle tabbable text title true window"
     },
     {
       "section": "api",
@@ -1278,7 +1278,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxRadio",
       "shortDescription": "rxRadio Component",
-      "keywords": "api component directive directives overview rxradio"
+      "keywords": "api component directive directives element markup native overview purposes radio required rxradio styling wraps"
     },
     {
       "section": "api",
@@ -1286,8 +1286,8 @@ NG_DOCS={
       "shortName": "rxRadio",
       "type": "directive",
       "moduleName": "rxRadio",
-      "shortDescription": "Attribute directive that wraps a native radio element in markup required for styling purposes.",
-      "keywords": "api attribute control determines directive disabled element markup native purposes radio required rx-radio rxradio styling wraps"
+      "shortDescription": "rxRadio is an attribute directive that wraps a native radio element in markup required for styling purposes.",
+      "keywords": "api attribute behave class code complexity control correct css decendents demo determines directive directives disabled display element highly inline-block input inside introduce isshown label logic markup native ng-hide ng-if ng-model ng-show ng-switch output performing placing purposes raddemo radio recommend recommended replace required rx-radio rxradio scope set smart style styling type unnecessary wrapper wraps"
     },
     {
       "section": "api",
@@ -1440,7 +1440,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxSpinner",
       "shortDescription": "rxSpinner Component",
-      "keywords": "api component directive directives overview rxspinner"
+      "keywords": "adds api component directive directives element icon overview rxspinner spinner"
     },
     {
       "section": "api",

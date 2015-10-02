@@ -236,7 +236,45 @@
 209
 210
 211
-212</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -309,6 +347,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -372,6 +412,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4</span>
 <span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -453,7 +515,14 @@
  * @description
  * # rxFeedback Component
  *
- * [TBD]
+ * `rxFeedback` component gathers and sends user feedback to a default or specifiable email list.
+ * 
+ * ## Default Submission Function
+ *
+ * The `rxFeedback` component sends feedback to `/api/encore/feedback`, which routes feedback to `encoreui@lists`.
+ * This endpoint also supports a `product` parameter `/api/encore/feedback/:product` for sending feedback to a 
+ * product-specific mailing list. Adding a custom endpoint is managed in `encore-service-pillar`. Once configured 
+ * you can override the default endpoint with `rxFeedbackSvc.setEndpoint`.
  *
  * ## Directives
  * * {@link rxFeedback.directive:rxFeedback rxFeedback}
@@ -490,9 +559,9 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
  * @ngdoc service
  * @name rxFeedback.service:rxScreenshotSvc
  * @description
- * requires html2canvas
+ * Captures a screenshot for `rxFeedback` submission form.
  *
- * [TBD]
+ * **NOTE:** Requires `html2canvas` which Encore Framework provides by default.
  */
 .service('rxScreenshotSvc', function ($log, $q) {
     // double check that html2canvas is loaded
@@ -526,7 +595,9 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
 /**
  * @ngdoc service
  * @name rxFeedback.service:rxFeedbackSvc
- * @description [TBD]
+ * @description
+ * `rxFeedbackSvc` service supports `rxFeedback` directive functionality.  A `custom endpoint` may be set to override
+ * the `default` endpoint.  
  */
 .factory('rxFeedbackSvc', function ($resource, feedbackApi, $location, $window) {
     var container = {
@@ -590,7 +661,29 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
  * @name rxFeedback.directive:rxFeedback
  * @restrict E
  * @scope
- * @description [TBD]
+ * @description
+ * ## Custom Submission Function
+ * 
+ * The `rxFeedback` directive allows you to define an `on-submit` attribute that points to a custom function for the
+ * purposes of overriding the default submission logic.  This function accepts a *single argument* for a
+ * `feedback object` with the following definition:
+ *
+ * @example
+ * &lt;pre&gt;
+ * // feedback object structure
+ * {
+ *   "type": {
+ *      "label": "(string)",
+ *      "placeholder": "(string) placeholder text",
+ *      "prompt": "(string) UI text used to describe the `description` field"
+ *    },
+ *    "description": "(string) user-submitted feedback"
+ * }
+ * &lt;/pre&gt;
+ *
+ * @param {Object} type JSON object with `label` {String}, `placeholder` {String}, and `prompt` {String}
+ * @param {String} description User-submitted feedback
+ * 
  */
 .directive('rxFeedback', function (feedbackTypes, $location, rxFeedbackSvc, rxScreenshotSvc, rxNotify, Session) {
     return {
@@ -663,7 +756,7 @@ angular.module('encore.ui.rxFeedback', ['ngResource'])
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Sep 30 2015 13:19:00 GMT-0500 (CDT)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Oct 02 2015 13:43:47 GMT-0500 (CDT)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

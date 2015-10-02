@@ -1,9 +1,14 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxFeedback/rxFeedback.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/e488622/src/rxFeedback/rxFeedback.js#L16" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable=""></code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxFeedback/rxFeedback.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/79f0dc9/src/rxFeedback/rxFeedback.js#L23" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable=""></code>
 <div><span class="hint"></span>
 </div>
 </h1>
 <div><div class="rxfeedback-page"><h2 id="rxfeedback-component">rxFeedback Component</h2>
-<p>[TBD]</p>
+<p><code>rxFeedback</code> component gathers and sends user feedback to a default or specifiable email list.</p>
+<h3 id="rxfeedback-component_default-submission-function">Default Submission Function</h3>
+<p>The <code>rxFeedback</code> component sends feedback to <code>/api/encore/feedback</code>, which routes feedback to <code>encoreui@lists</code>.
+This endpoint also supports a <code>product</code> parameter <code>/api/encore/feedback/:product</code> for sending feedback to a 
+product-specific mailing list. Adding a custom endpoint is managed in <code>encore-service-pillar</code>. Once configured 
+you can override the default endpoint with <code>rxFeedbackSvc.setEndpoint</code>.</p>
 <h3 id="rxfeedback-component_directives">Directives</h3>
 <ul>
 <li><a href="#/api/rxFeedback.directive:rxFeedback">rxFeedback</a></li>

@@ -1,10 +1,38 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxModalAction/rxModalAction.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/e488622/src/rxModalAction/rxModalAction.js#L221" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxModalAction</code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxModalAction/rxModalAction.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/79f0dc9/src/rxModalAction/rxModalAction.js#L288" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxModalAction</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">rxModalAction</code>
 </span>
 </div>
 </h1>
 <div><h2 id="description">Description</h2>
 <div class="description"><div class="rxmodalaction-directive-page rxmodalaction-directive-rxmodalaction-page"><p>Link which will show a modal window on click, and handle callbacks for pre/post modal actions</p>
+<h3 id="description_template-url">Template URL</h3>
+<p>Due to the complex nature of the information passed into modal windows, HTML is handled via a template (versus 
+transcluding the content).</p>
+<p>One benefit is that this allows for multiple actions to re-use the same template. It also allows modal content to 
+live in a separate file, which can be helpful for maintainability if the modal HTML is complex. While this can be 
+done via <code>ng-include</code>, it would be a little extra work for a common scenario.</p>
+<h3 id="description_hooks">Hooks</h3>
+<p><code>rxModalAction</code> allows you to define functions to be called at different points of the modal lifecycle.  These hooks 
+are optional and the modal window is fully functional without any being defined.</p>
+<h4 id="description_hooks_pre-hook">Pre-hook</h4>
+<p>The <code>pre-hook</code> function is called before the modal window is shown.  Use a this to populate field information inside 
+of the modal.  This is useful when you have information you don&#39;t want loaded when the page is first opened, but do 
+need for the modal.  It is also useful for dynamic information that is based on actions taken.</p>
+<h4 id="description_hooks_post-hook">Post-hook</h4>
+<p>The <code>post-hook</code> function is called after the modal is submitted.  A <code>post-hook</code> is useful to take actions based upon 
+input in the modal.  For example, you can use the user input that gets entered to send API requests with specific 
+JSON data.  Or you can simply run a pre-defined API call (assuming the modal is a simple confirmation dialog).</p>
+<h4 id="description_hooks_dismiss-hook">Dismiss-hook</h4>
+<p>The <code>dismiss-hook</code> function is called after the modal is closed without submitting.  This may happen via any of the 
+following scenarios:</p>
+<ul>
+<li>Clicking the &quot;Cancel&quot; button</li>
+<li>Clicking the &quot;X&quot; button in the top right</li>
+<li>Pressing <code>ESC</code></li>
+<li>Explicitly calling <code>$modalInstance.dismiss()</code> in your javascript logic</li>
+</ul>
+<p>This hook is useful for making changes to UI state when the user wants to cancel the given action.  For example, you 
+may use this to return an indeterminate component to a previous state (e.g. toggle switches).</p>
 </div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage">as element:<pre class="prettyprint linenums">&lt;rx-modal-action
@@ -33,7 +61,7 @@ for the modal. This attribute takes no values.</p>
     template-url="modalContent.html"
     disable-esc&gt;
         My Link Text
- &lt;/rx-modal-action&gt;
- </pre>
+&lt;/rx-modal-action&gt;
+</pre>
 </div></div>
 </div>

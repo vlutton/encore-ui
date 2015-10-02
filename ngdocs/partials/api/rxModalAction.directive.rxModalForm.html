@@ -1,10 +1,13 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxModalAction/rxModalAction.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/e488622/src/rxModalAction/rxModalAction.js#L40" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxModalForm</code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxModalAction/rxModalAction.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/79f0dc9/src/rxModalAction/rxModalAction.js#L54" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxModalForm</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">rxModalAction</code>
 </span>
 </div>
 </h1>
 <div><h2 id="description">Description</h2>
 <div class="description"><div class="rxmodalaction-directive-page rxmodalaction-directive-rxmodalform-page"><p>Responsible for creating the HTML necessary for modal form</p>
+<p>The <code>&lt;rx-modal-form&gt;</code> directive is helpful for providing a common format to forms inside modals (hence the name). </p>
+<p>This directive also provides an &#39;autofocus&#39; mechanism, which will move the keyboard focus cursor to the first 
+&#39;tabbable&#39; input available in the form.</p>
 </div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage">as element:<pre class="prettyprint linenums">&lt;rx-modal-form
@@ -29,6 +32,8 @@
 </div></td></tr><tr><td>[defaultFocus]</td><td><a href="" class="label type-hint type-hint-string">string</a></td><td><div class="rxmodalaction-directive-page rxmodalaction-directive-rxmodalform-page"><p>default focus element. May be &#39;submit&#39; or &#39;cancel&#39;. Defaults to &#39;firstTabbable&#39;</p>
 </div></td></tr></tbody></table></div>
 <h2 id="example">Example</h2>
-<div class="example"><div class="rxmodalaction-directive-page rxmodalaction-directive-rxmodalform-page"><p><rx-modal-form title="My Form" is-loading="true" submit-text="Yes!"></rx-modal-form></p>
+<div class="example"><div class="rxmodalaction-directive-page rxmodalaction-directive-rxmodalform-page"><pre class="prettyprint linenums">
+&lt;rx-modal-form title="My Form" is-loading="true" submit-text="Yes!"&gt;&lt;/rx-modal-form&gt;
+</pre>
 </div></div>
 </div>
