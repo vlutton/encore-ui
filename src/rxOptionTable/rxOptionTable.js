@@ -4,8 +4,8 @@
  * @description
  * # rxOptionTable Component
  *
- * [TBD]
- *
+ * The rxOptionTable component provides functionality to create a series of radio or checkbox inputs within a table.
+ * 
  * ## Directives
  * * {@link rxOptionTable.directive:rxOptionTable rxOptionTable}
  * * {@link rxOptionTable.directive:rxFormOptionTable rxFormOptionTable} (*deprecated*)
@@ -17,7 +17,7 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
  * @restrict E
  * @scope
  * @description
- * This directive is used to build a table of radio/checkbox inputs
+ * This directive is used to build a table of radio/checkbox inputs.
  *
  * @param {String} field-id - Used as the base for unique identifiers within the generated markup.
  * @param {Object} model - The AngularJS model to tie all radios/checkboxes together.
@@ -25,8 +25,9 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
  * @param {String} empty-message - A default message if the data attribute is empty.
  * @param {Array} data - Array of objects used to populate table. Properties must match column keys.
  * For checkboxes, checked values default to true unless `value` and `falseValue` attributes are given.
+ * 
  * Example:
- * ```js
+ * <pre>
  * [
  *     {
  *         'name': 'Option 1',
@@ -39,7 +40,7 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
  *         'value': 2
  *     }
  * ]
- * ```
+ * </pre>
  * @param {Object} columns - Array of column data to match against data objects.
  * Each object may include the following properties.
  * * **label** - Column display value
@@ -48,22 +49,25 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
  *   demonstration samples.
  *
  * Example:
- * ```js
+ * 
+ * <pre>
  * [{
  *     'label': 'Name',
  *     'key': 'name'
  * }]
- * ```
+ * </pre>
  * @param {String=} selected - Array of objects to match against data for preselection on page load.
  * If excluded, no values will be preselected on initial load.
- * @param {Boolean=} required - Value passed to input's 'ng-required' attribute.
+ * @param {Boolean=} required - Value passed to input's `ng-required` attribute.
  * For checkboxes, a `true` value means that there must be at least one checkbox selected.
  * @param {Function=} disable-fn - Optional callback function to determine if option should be disabled.
  * Parameters `tableId`, `fieldId`, and `rowId` will be passed to the function.
+ * 
  * Example:
- * ```js
- *  disable-fn="disableOption(tableId, fieldId, rowId)"
- * ```
+ * 
+ * <pre>
+ *  <rx-option-table disable-fn="disableOption(tableId, fieldId, rowId)"></rx-option-table>
+ * </pre>
  */
 .directive('rxOptionTable', function ($interpolate) {
     return {
