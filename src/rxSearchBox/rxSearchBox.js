@@ -4,7 +4,8 @@
  * @description
  * # rxSearchBox Component
  *
- * The rxSearchBox component provides functionality around creating a search input box.
+ * The rxSearchBox component provides functionality around creating a search
+ * input box.
  *
  * ## Directives
  * * {@link rxSearchBox.directive:rxSearchBox rxSearchBox}
@@ -15,19 +16,37 @@ angular.module('encore.ui.rxSearchBox', [])
  * @ngdoc directive
  * @restrict E
  * @description
- * The rxSearchBox directive behaves similar to the HTML "Search" input type. When
- * the search box is not empty, an "X" button within the element will allow you to
- * clear the value. Once clear, the "X" will disappear. A disabled search box cannot
- * be cleared of its value via the "X" button because the button will display.
+ * The rxSearchBox directive behaves similar to the HTML "Search" input type.
+ * When the search box is not empty, an "X" button within the element will
+ * allow you to clear the value. Once clear, the "X" will disappear. A disabled
+ * search box cannot be cleared of its value via the "X" button because the
+ * button will not display.
  *
+ * Though it is described as a search box, you can also use it for filtering
+ * capabilities (as seen by the placeholder text in the "Customized"
+ * {@link /#/components/rxSearchBox demo}).
+ *
+ * # Styling
+ * You can style the `<rx-search-box>` element via custom CSS classes the same
+ * way you would any HTML element. See the customized search box in the
+ * {@link /#/components/rxSearchBox demo} for an example.
+ *
+ * <pre>
+ * <rx-search-box
+ *      ng-model="customSearchModel"
+ *      rx-placeholder="filterPlaceholder">
+ * </rx-search-box>
+ * </pre>
  * @param {String} ng-model Model value to bind the search value.
  * @param {Boolean=} ng-disabled Boolean value to enable/disable the search box.
- * @param {String=} [ng-placeholder='Search...'] String to override the default placeholder.
+ * @param {String=} [ng-placeholder='Search...'] String to override the
+ * default placeholder.
  *
  * @example
  * <pre>
  * <rx-search-box ng-model="searchModel"></rx-search-box>
  * </pre>
+ *
  */
 .directive('rxSearchBox', function () {
     return {
