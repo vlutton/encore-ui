@@ -65,8 +65,10 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
      * @name  getRoles
      * @ngdoc method
      * @methodOf rxPermission.service:Permission
-     * @description Returns a list of all roles associated to the user.  This method takes no arguments, 
-     * and returns all the roles tied to the user, in the exact format available in their Session token.
+     * @description
+     * Fetch all the roles tied to the user (in the exact format available in their Session token).
+     * 
+     * @returns {Array} List of all roles associated to the user.
      */
     permissionSvc.getRoles = function () {
         var token = Session.getToken();
@@ -78,8 +80,9 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
      * @name  hasRoles
      * @ngdoc method
      * @methodOf rxPermission.service:Permission 
-     * @description Returns `true` or `false` based on whether or not the user has at least _one_ of `roles`.
-     * @param {array} roles - List of roles to check against
+     * @description Check if user has at least _one_ of the given roles.
+     * @param {Array} roles List of roles to check against
+     * @returns {Boolean} Returns `true` if user has at least _one_ of the given roles.
      */
     permissionSvc.hasRole = function (roles) {
         return checkRoles(roles, _.any);
@@ -89,9 +92,11 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
      * @name  hasAllRoles
      * @ngdoc method
      * @methodOf rxPermission.service:Permission 
-     * @description Returns `true` if the user has _every_ role in `roles`; otherwise, it returns `false`.
+     * @description Checks if user has _every_ role in given list.
      * 
-     * @param {array} roles - List of roles to check against
+     * @param {Array} roles List of roles to check against
+     * @returns {Boolean} Returns `true` if user has _every_ role in given list.
+     * 
      */
     permissionSvc.hasAllRoles = function (roles) {
         return checkRoles(roles, _.all);
