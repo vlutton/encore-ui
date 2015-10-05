@@ -1,3 +1,3 @@
 [![unstable](http://badges.github.io/stability-badges/dist/unstable.svg)](http://github.com/badges/stability-badges)
 
-`rxPermission` component manages permissions in EncoreUI.  
+The rxPermission component provides functionality to perform checks against existing user permissions in EncoreUI.  
