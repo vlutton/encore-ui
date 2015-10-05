@@ -3,9 +3,10 @@
  * @name rxPageTitle
  * @description
  * # rxPageTitle Component
+ * 
+ * The rxPageTitle component manages page titles. 
  *
- * [TBD]
- *
+ * 
  * ## Filters
  * * {@link rxPageTitle.filter:rxUnsafeRemoveHTML rxUnsafeRemoveHTML}
  *
@@ -16,7 +17,23 @@ angular.module('encore.ui.rxPageTitle', [])
 /**
  * @ngdoc service
  * @name rxPageTitle.service:rxPageTitle
- * @description [TBD]
+ * @description
+ *  `rxPageTitle` service manages page titles.
+ *
+ * Two methods are available for setting the page title:
+ *
+ * First, `setTitle()` simply sets the title to whatever raw string is passed in.
+ *
+ * Second, `setTitleUnsafeStripHTML()` strips any HTML tags from the string, and sets the title to
+ * the result. This uses the
+ * [technique found here](http://stackoverflow.com/questions/5002111/javascript-how-to-strip-html-tags-from-string).
+ * Note the caveats listed there, namely:
+ *
+ * 1. Only tags valid within `<div>` will be correctly stripped out
+ * 2. You should not have  any `<script>` tags within the title
+ * 3. You should not pass `null` as the title
+ * 4. The title must come from a trusted source, i.e. danger danger danger
+ *    `<img onerror="alert('could run arbitrary JS here')" src=bogus />`
  */
 .factory('rxPageTitle', function ($document, $filter) {
     var suffix = '',
@@ -67,10 +84,10 @@ angular.module('encore.ui.rxPageTitle', [])
  * Given a string, it removes all HTML tags from the string, using the
  * browser's own parsing engine. Any content inside of tags will be kept.
  *
- * NOTE: You must only use this with trusted text. See
- * http://stackoverflow.com/a/5002618 for more details
+ * **NOTE:** You must only use this with **trusted text**. See this
+ * {@link http://stackoverflow.com/a/5002618 StackOverflow} answer for more details.
  *
- * @param {String} The string to remove HTML from
+ * @param {String} htmlString The string to remove HTML from **trusted text**
  * @returns {String} Cleaned string
  */
 .filter('rxUnsafeRemoveHTML', function ($document) {
