@@ -4,7 +4,7 @@
  * @description
  * # rxSession Component
  *
- * [TBD]
+ * A component that manages user session
  *
  * ## Services
  * * {@link rxSession.service:Session Session}
@@ -14,6 +14,7 @@ angular.module('encore.ui.rxSession', ['encore.ui.rxLocalStorage'])
  * @ngdoc service
  * @name rxSession.service:Session
  * @description
+ *
  * Service for managing user session in encore-ui.
  *
  * @requires rxLocalStorage.service:LocalStorage
