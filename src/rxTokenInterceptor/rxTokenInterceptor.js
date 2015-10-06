@@ -4,8 +4,10 @@
  * @description
  * # rxTokenInterceptor Component
  *
- * [TBD]
- *
+ * The rxTokenInterceptor component adds an authorization token to all http requests.  This 
+ * allows access to system services for authenticated users.
+ *  
+ * 
  * ## Services
  * * {@link rxTokenInterceptor.service:TokenInterceptor TokenInterceptor}
  */
@@ -14,7 +16,7 @@ angular.module('encore.ui.rxTokenInterceptor', ['encore.ui.rxSession'])
  * @ngdoc service
  * @name rxTokenInterceptor.service:TokenInterceptor
  * @description
- * Simple injector which will intercept http request and inject the
+ * Simple $http injector which will intercept http request and inject the
  * Rackspace Identity's token into every http request.
  *
  * @requires rxSession.service:Session
