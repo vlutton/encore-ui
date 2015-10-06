@@ -124,10 +124,6 @@ describe('rxMisc', function () {
                 expect(fn('($100 AUS)')).to.equal(-10000);
             });
 
-            it('should lose precision when converting negative fractions of a penny to an int', function () {
-                expect(fn('($1.011)')).to.equal(-101);
-            });
-
             it('should not incur any binary rounding errors', function () {
                 expect(fn('$1.10')).to.equal(110);
             });
