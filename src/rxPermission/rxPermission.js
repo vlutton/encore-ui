@@ -77,12 +77,12 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     };
 
     /**
-     * @name  hasRoles
+     * @name  hasRole
      * @ngdoc method
      * @methodOf rxPermission.service:Permission 
      * @description Check if user has at least _one_ of the given roles.
      * @param {Array} roles List of roles to check against
-     * @returns {Boolean} Returns `true` if user has at least _one_ of the given roles.
+     * @returns {Boolean} True if user has at least _one_ of the given roles; otherwise, False.
      */
     permissionSvc.hasRole = function (roles) {
         return checkRoles(roles, _.any);
@@ -93,9 +93,8 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
      * @ngdoc method
      * @methodOf rxPermission.service:Permission 
      * @description Checks if user has _every_ role in given list.
-     * 
      * @param {Array} roles List of roles to check against
-     * @returns {Boolean} Returns `true` if user has _every_ role in given list.
+     * @returns {Boolean} True if user has _every_ role in given list; otherwise, False.
      * 
      */
     permissionSvc.hasAllRoles = function (roles) {
