@@ -5,7 +5,8 @@
  * @description
  * # rxSessionStorage Component
  *
- * [TBD]
+ * A component that provides a simple wrapper around the global
+ * `sessionStorage` object for interacting with session storage.
  *
  * ## Services
  * * {@link rxSessionStorage.service:SessionStorage SessionStorage}
@@ -15,6 +16,7 @@ angular.module('encore.ui.rxSessionStorage', [])
  * @ngdoc service
  * @name rxSessionStorage.service:SessionStorage
  * @description
+ *
  * A simple wrapper for injecting the global variable sessionStorage
  * for storing values in session storage. This service is similar to angular's
  * $window and $document services.  The API works the same as the W3C's
