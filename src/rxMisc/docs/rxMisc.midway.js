@@ -116,10 +116,6 @@ describe('rxMisc', function () {
                 expect(fn('$0.01')).to.equal(1);
             });
 
-            it('should lose precision when converting a fraction of a penny to an int', function () {
-                expect(fn('$0.019')).to.equal(1);
-            });
-
             it('should ignore any dollar type indicators (CAN, AUS, USD)', function () {
                 expect(fn('$100 CAN')).to.equal(10000);
             });
@@ -134,6 +130,10 @@ describe('rxMisc', function () {
 
             it('should not incur any binary rounding errors', function () {
                 expect(fn('$1.10')).to.equal(110);
+            });
+
+            it('should not incur any binary rounding errors', function () {
+                expect(fn('$150.14')).to.equal(15014);
             });
         });
 

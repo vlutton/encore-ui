@@ -44,7 +44,7 @@ exports.rxMisc = {
             resFloat = -resFloat;
         }
 
-        return parseInt(resFloat * 100, 10);
+        return parseInt(Math.round(resFloat * 100), 10);
     },
 
     /**
