@@ -1,3 +1,23 @@
+<a name="1.32.0"></a>
+## 1.32.0 (2015-10-07)
+
+
+#### Bug Fixes
+
+* **rxTags:** midway revert and workaround ([3b868114](git@github.com:rackerlabs/encore-ui/commit/3b86811445603ce725f32a7733692c9f0e67b420))
+
+
+#### Features
+
+* **docs:**
+  * FRMW-202 - Migrate rxToggleSwitch docs ([51327d84](git@github.com:rackerlabs/encore-ui/commit/51327d84b7eaa43d72c9d713fa83f0d838da7587))
+  * FRMW-195 - Migrate rxSessionStorage docs ([a86e2dff](git@github.com:rackerlabs/encore-ui/commit/a86e2dffd8a9e3a278934666155caa0d74fbf41a))
+  * FRMW-194 - Migrate rxSession docs ([7597fdcc](git@github.com:rackerlabs/encore-ui/commit/7597fdccdee25dcf40366056c2efc3330117715b))
+  * FRMW-198 - Migrate rxStatus docs ([7103b1e4](git@github.com:rackerlabs/encore-ui/commit/7103b1e4897dcff685328a271c228e46d5044d42))
+  * FRMW-192 - Migrate rxSelect docs ([e51f0225](git@github.com:rackerlabs/encore-ui/commit/e51f0225260aad07ba418f0accfe113551253c2c))
+  * FRMW-196 - Migrate rxSortableColumn docs ([0e2be485](git@github.com:rackerlabs/encore-ui/commit/0e2be48545c55834b8d059ebf92b1babe9c24fdf))
+
+
 <a name="1.31.2"></a>
 ### 1.31.2 (2015-10-02)
 
