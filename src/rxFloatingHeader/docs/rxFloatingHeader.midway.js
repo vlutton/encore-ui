@@ -1,11 +1,15 @@
-var rxFloatingHeader = encore.rxFloatingHeader;
-
 describe('rxFloatingHeader', function () {
     var table, tr, middleRow, middleRowY, initialY;
+    var yTolerance = 2; // +/- pixel tolerance for Y value comparison
+    var lower, upper;
+    var actual;
 
-    describe('One header row table', function () {
+    before(function () {
+        demoPage.go('#/components/rxFloatingHeader');
+    });
+
+    describe('Single-row header table', function () {
         before(function () {
-            demoPage.go('#/components/rxFloatingHeader');
             table = $('table[rx-floating-header].no-filter');
             tr = table.$('thead tr:first-of-type');
             middleRow = table.$('.middle-row');
@@ -19,18 +23,34 @@ describe('rxFloatingHeader', function () {
             expect(table.isDisplayed()).to.eventually.be.true;
         });
 
-        it('should float header after scrolling to middle of table', function () {
-            rxFloatingHeader.scrollToElement(middleRow);
-            expect(rxFloatingHeader.compareYLocations(tr, middleRowY)).to.eventually.be.true;
-        });
+        describe('after scrolling to middle of table', function () {
+            before(function () {
+                encore.rxMisc.scrollToElement(middleRow);
+            });
 
-        it('should put the header back when scrolling to the top', function () {
-            rxFloatingHeader.scrollToElement($('.page-titles'));
-            expect(rxFloatingHeader.compareYLocations(tr, initialY)).to.eventually.be.true;
-        });
-    });
+            it('should float header', function () {
+                actual = encore.rxMisc.transformLocation(tr, 'y');
+                lower = middleRowY - yTolerance;
+                upper = middleRowY + yTolerance;
+                expect(actual).to.eventually.be.within(lower, upper);
+            });
 
-    describe('Multi header row table', function () {
+            describe('after scrolling back to top', function () {
+                before(function () {
+                    encore.rxMisc.scrollToElement($('.page-titles'));
+                });
+
+                it('should put the header back', function () {
+                    actual = encore.rxMisc.transformLocation(tr, 'y');
+                    lower = initialY - yTolerance;
+                    upper = initialY + yTolerance;
+                    expect(actual).to.eventually.be.within(lower, upper);
+                });
+            });//after scrolling to top
+        });//after scrolling to middle
+    });//Single-row header table
+
+    describe('Multi-row header table', function () {
         var filterHeader, titlesHeader, initialFilterY, filterHeight, windowSize;
         var window = browser.driver.manage().window();
         var trs;
@@ -55,30 +75,49 @@ describe('rxFloatingHeader', function () {
             });
         });
 
-        it('should float the header after scrolling to middle of table', function () {
-            rxFloatingHeader.scrollToElement(middleRow);
-            expect(rxFloatingHeader.compareYLocations(filterHeader, middleRowY)).to.eventually.be.true;
-        });
+        describe('after scrolling to middle of table', function () {
+            before(function () {
+                encore.rxMisc.scrollToElement(middleRow);
+            });
 
-        it('should have the right distance between the float header and the middle of the table', function () {
-            expect(rxFloatingHeader.compareYLocations(titlesHeader, middleRowY + filterHeight)).to.eventually.be.true;
-        });
+            it('should float the header', function () {
+                actual = encore.rxMisc.transformLocation(filterHeader, 'y');
+                lower = middleRowY - yTolerance;
+                upper = middleRowY + yTolerance;
+                expect(actual).to.eventually.be.within(lower, upper);
+            });
 
-        it('should scroll to the first element when given an ElementArrayFinder', function () {
-            rxFloatingHeader.scrollToElement(trs);
-            expect(rxFloatingHeader.compareYLocations(filterHeader, initialFilterY)).to.eventually.be.true;
-        });
+            it('should have correct distance between float header and middle of table', function () {
+                actual = encore.rxMisc.transformLocation(titlesHeader, 'y');
+                lower = middleRowY + filterHeight - yTolerance;
+                upper = middleRowY + filterHeight + yTolerance;
+                expect(actual).to.eventually.be.within(lower, upper);
+            });
+        });//after scrolling to middle of table
 
-        it('should have the right distance between the title header and the initial starting point', function () {
-            expect(rxFloatingHeader.compareYLocations(titlesHeader, initialFilterY + filterHeight))
-                .to.eventually.be.true;
+        describe('when given an ElementArrayFinder', function () {
+            before(function () {
+                encore.rxMisc.scrollToElement(trs);
+            });
+
+            it('should scroll to the first element', function () {
+                actual = encore.rxMisc.transformLocation(filterHeader, 'y');
+                lower = initialFilterY - yTolerance;
+                upper = initialFilterY + yTolerance;
+                expect(actual).to.eventually.be.within(lower, upper);
+            });
+
+            it('should have correct distance between title header and initial starting point', function () {
+                actual = encore.rxMisc.transformLocation(titlesHeader, 'y');
+                lower = initialFilterY + filterHeight - yTolerance;
+                upper = initialFilterY + filterHeight + yTolerance;
+                expect(actual).to.eventually.be.within(lower, upper);
+            });
         });
 
         after(function () {
             // Return window to original size
             window.setSize(windowSize.width, windowSize.height);
         });
-
-    });
-
+    });//Multi-row header table
 });

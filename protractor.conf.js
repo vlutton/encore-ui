@@ -25,6 +25,7 @@ var config = {
     },
 
     onPrepare: function () {
+        browser.driver.manage().window().setSize(1366, 768); // laptop
         expect = require('chai').use(require('chai-as-promised')).expect;
         demoPage = require('./utils/demo.page.js');
         encore = require('./utils/rx-page-objects/index');
