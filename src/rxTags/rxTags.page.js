@@ -98,8 +98,19 @@ var rxTags = {
 
     sendBackspace: {
         value: function () {
-            this.txtNewTag.click();
-            this.txtNewTag.sendKeys(protractor.Key.BACK_SPACE);
+            /*
+             * Protractor isn't properly trapping the `BACK_SPACE = navigate back`
+             * functionality so we have to use SHIFT + BACK_SPACE as a workaround.
+             *
+             * Initially, changing ng-keydown to ng-keypress in the template seemed
+             * to work, but this only corrected the issue with Firefox. Chrome doesn't
+             * seem to recognize ng-keypress functionality.
+             */
+            var chordBackspace = protractor.Key.chord(
+                protractor.Key.SHIFT,
+                protractor.Key.BACK_SPACE
+            );
+            this.txtNewTag.sendKeys(chordBackspace);
         }
     },
 

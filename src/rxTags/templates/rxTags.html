@@ -1,7 +1,7 @@
 <div class="rx-tags" ng-click="focusInput($event)">
     <div class="tag"
         ng-repeat="tag in tags track by tag.text"
-        ng-keypress="removeIfBackspace($event, tag)"
+        ng-keydown="removeIfBackspace($event, tag)"
         tabindex="{{ disabled ? '' : 0 }}">
         <i class="fa fa-tag"></i>
         <span class="text">{{tag.text}}</span>
@@ -11,7 +11,7 @@
     <input type="text"
         placeholder="{{ disabled ? '' : 'Enter a tag' }}"
         ng-model="newTag"
-        ng-keypress="focusTag($event, newTag)"
+        ng-keydown="focusTag($event, newTag)"
         ng-disabled="disabled"
         typeahead="tag as tag.text for tag in options | xor:tags | filter:{text: $viewValue}"
         typeahead-on-select="add(newTag)" />
