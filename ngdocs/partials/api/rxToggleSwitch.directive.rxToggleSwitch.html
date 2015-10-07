@@ -1,10 +1,22 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxToggleSwitch/rxToggleSwitch.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/210cac9/src/rxToggleSwitch/rxToggleSwitch.js#L31" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxToggleSwitch</code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxToggleSwitch/rxToggleSwitch.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/bbfd3ab/src/rxToggleSwitch/rxToggleSwitch.js#L47" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxToggleSwitch</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">rxToggleSwitch</code>
 </span>
 </div>
 </h1>
 <div><h2 id="description">Description</h2>
 <div class="description"><div class="rxtoggleswitch-directive-page rxtoggleswitch-directive-rxtoggleswitch-page"><p>Displays an on/off switch toggle</p>
+<p>The switch shows the states of &#39;ON&#39; and &#39;OFF&#39;, which evaluate to <code>true</code> and
+<code>false</code>, respectively.  The model values are configurable with the
+<code>true-value</code> and <code>false-value</code> attributes.</p>
+<p><strong> Note: If the value of the model is not defined at the time of
+initialization, it will be automatically set to the false value. </strong></p>
+<p>The expression passed to the <code>post-hook</code> attribute will be evaluated every
+time the switch is toggled (after the model property is written on the
+scope).  It takes one argument, <code>value</code>, which is the new value of the model.
+This can be used instead of a <code>$scope.$watch</code> on the <code>ng-model</code> property.
+As shown in the <a href="/#/components/rxToggleSwitch">demo</a>, the <code>disabled</code>
+attribute can be used to prevent further toggles if the <code>post-hook</code> performs
+an asynchronous operation.</p>
 </div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage">as element:<pre class="prettyprint linenums">&lt;rx-toggle-switch

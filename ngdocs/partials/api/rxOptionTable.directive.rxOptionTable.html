@@ -1,10 +1,10 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxOptionTable/rxOptionTable.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/210cac9/src/rxOptionTable/rxOptionTable.js#L68" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxOptionTable</code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxOptionTable/rxOptionTable.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/bbfd3ab/src/rxOptionTable/rxOptionTable.js#L72" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxOptionTable</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">rxOptionTable</code>
 </span>
 </div>
 </h1>
 <div><h2 id="description">Description</h2>
-<div class="description"><div class="rxoptiontable-directive-page rxoptiontable-directive-rxoptiontable-page"><p>This directive is used to build a table of radio/checkbox inputs</p>
+<div class="description"><div class="rxoptiontable-directive-page rxoptiontable-directive-rxoptiontable-page"><p>This directive is used to build a table of radio/checkbox inputs.</p>
 </div></div>
 <h2 id="usage">Usage</h2>
 <div class="usage">as element:<pre class="prettyprint linenums">&lt;rx-option-table
@@ -36,22 +36,23 @@
 </ul>
 </div></td></tr><tr><td>data</td><td><a href="" class="label type-hint type-hint-array">Array</a></td><td><div class="rxoptiontable-directive-page rxoptiontable-directive-rxoptiontable-page"><ul>
 <li>Array of objects used to populate table. Properties must match column keys.
-For checkboxes, checked values default to true unless <code>value</code> and <code>falseValue</code> attributes are given.
-Example:<pre><code class="lang-js">[
-  {
-      &#39;name&#39;: &#39;Option 1&#39;,
-      &#39;value&#39;: 0
-  }, {
-      &#39;name&#39;: &#39;Option 2&#39;,
-      &#39;value&#39;: 1
-  }, {
-      &#39;name&#39;: &#39;Option 3&#39;,
-      &#39;value&#39;: 2
-  }
-]
-</code></pre>
-</li>
+For checkboxes, checked values default to true unless <code>value</code> and <code>falseValue</code> attributes are given.</li>
 </ul>
+<p>Example:
+<pre class="prettyprint linenums">
+[
+    {
+        'name': 'Option 1',
+        'value': 0
+    }, {
+        'name': 'Option 2',
+        'value': 1
+    }, {
+        'name': 'Option 3',
+        'value': 2
+    }
+]
+</pre>
 </div></td></tr><tr><td>columns</td><td><a href="" class="label type-hint type-hint-object">Object</a></td><td><div class="rxoptiontable-directive-page rxoptiontable-directive-rxoptiontable-page"><ul>
 <li>Array of column data to match against data objects.
 Each object may include the following properties.</li>
@@ -61,25 +62,27 @@ Each object may include the following properties.</li>
 demonstration samples.</li>
 </ul>
 <p>Example:</p>
-<pre><code class="lang-js">[{
-    &#39;label&#39;: &#39;Name&#39;,
-    &#39;key&#39;: &#39;name&#39;
+<pre class="prettyprint linenums">
+[{
+    'label': 'Name',
+    'key': 'name'
 }]
-</code></pre>
+</pre>
 </div></td></tr><tr><td>selected <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-string">String</a></td><td><div class="rxoptiontable-directive-page rxoptiontable-directive-rxoptiontable-page"><ul>
 <li>Array of objects to match against data for preselection on page load.
 If excluded, no values will be preselected on initial load.</li>
 </ul>
 </div></td></tr><tr><td>required <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-boolean">Boolean</a></td><td><div class="rxoptiontable-directive-page rxoptiontable-directive-rxoptiontable-page"><ul>
-<li>Value passed to input&#39;s &#39;ng-required&#39; attribute.
+<li>Value passed to input&#39;s <code>ng-required</code> attribute.
 For checkboxes, a <code>true</code> value means that there must be at least one checkbox selected.</li>
 </ul>
 </div></td></tr><tr><td>disable-fn <div><em>(optional)</em></div></td><td><a href="" class="label type-hint type-hint-function">Function</a></td><td><div class="rxoptiontable-directive-page rxoptiontable-directive-rxoptiontable-page"><ul>
 <li>Optional callback function to determine if option should be disabled.
-Parameters <code>tableId</code>, <code>fieldId</code>, and <code>rowId</code> will be passed to the function.
-Example:<pre><code class="lang-js">disable-fn=&quot;disableOption(tableId, fieldId, rowId)&quot;
-</code></pre>
-</li>
+Parameters <code>tableId</code>, <code>fieldId</code>, and <code>rowId</code> will be passed to the function.</li>
 </ul>
+<p>Example:</p>
+<pre class="prettyprint linenums">
+ &lt;rx-option-table disable-fn="disableOption(tableId, fieldId, rowId)"&gt;&lt;/rx-option-table&gt;
+</pre>
 </div></td></tr></tbody></table></div>
 </div>

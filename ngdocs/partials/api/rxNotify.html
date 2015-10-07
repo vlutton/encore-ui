@@ -1,9 +1,17 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxNotify/rxNotify.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/210cac9/src/rxNotify/rxNotify.js#L72" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable=""></code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxNotify/rxNotify.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/bbfd3ab/src/rxNotify/rxNotify.js#L82" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable=""></code>
 <div><span class="hint"></span>
 </div>
 </h1>
 <div><div class="rxnotify-page"><h2 id="rxnotify-component">rxNotify Component</h2>
-<p>Logic for displaying status messages on a page.</p>
+<p>The rxNotify component provides status message notifications on a page.</p>
+<p>There may be situations where you will need to use the styling/markup of
+rxNotify&#39;s messaging queue in status messages of your own - for example,
+a modal window which asks if you want to delete an object, with the
+appropriate warning or error flags. If this is the case, we recommend using 
+the <a href="#/api/rxNotify.directive:rxNotification">rxNotification</a> directive in your views.  Please note, this
+differs from <a href="#/api/rxNotify.directive:rxNotifications">rxNotifications</a> (plural).</p>
+<p>The type attribute can be any type supported by <code>options.type</code> for the <code>rxNotify.add()</code> function in 
+the <a href="#/api/rxNotify.service:rxNotify">rxNotify</a> service.</p>
 <h3 id="rxnotify-component_services">Services</h3>
 <ul>
 <li><a href="#/api/rxNotify.service:rxNotify">rxNotify</a></li>

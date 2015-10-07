@@ -1288,7 +1288,7 @@ rxMultiSelect exercises.</p>
 </code></pre>
 <p><a name="encore.exercise.module_rxTags"></a></p>
 <p>#encore.exercise.rxTags
-rxTags exercises.</p>
+rxTags exercises</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>[options=] <code>Object</code> - Test options. Used to build valid tests.  <ul>
@@ -1298,10 +1298,12 @@ rxTags exercises.</p>
 </li>
 </ul>
 <p><strong>Example</strong>  </p>
-<pre><code class="lang-js">describe(&#39;default exercises&#39;, encore.exercise.rxTags({
-    instance: encore.rxTags.initialize(&#39;.demo rx-tags&#39;) // select one of many widgets on page
+<pre>
+describe('default exercises', encore.exercise.rxTags({
+    instance: encore.rxTags.initialize('.demo rx-tags') // select one of many widgets on page
 }));
-</code></pre>
+</pre>
+
 <p><a name="encore.exercise.module_rxToggleSwitch"></a></p>
 <p>#encore.exercise.rxToggleSwitch
 rxToggleSwitch exercises.</p>
@@ -1702,18 +1704,15 @@ to achieve consistent behavior.</p>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMisc.currencyToPennies"></a></p>
 <p>##rxMisc.currencyToPennies(currencyString)
 Transform <code>currencyString</code> (USD) to an integer representing pennies. Built to reverse
-Angular&#39;s &#39;currency&#39; filter. If your currency string includes fractions of a penny,
-that precision will be lost!</p>
+Angular&#39;s &#39;currency&#39; filter. Do not pass in fractions of a penny.</p>
 <p><strong>Params</strong></p>
 <ul>
 <li>currencyString <code>string</code> - Raw text as output by Angular&#39;s <code>currency</code> filter.  </li>
 </ul>
 <p><strong>Example</strong>  </p>
 <pre><code class="lang-js">encore.rxMisc.currencyToPennies(&#39;$0.01&#39;)      ==  1
-encore.rxMisc.currencyToPennies(&#39;$0.019&#39;)     ==  1
 encore.rxMisc.currencyToPennies(&#39;$100 CAN&#39;)   ==  10000
 encore.rxMisc.currencyToPennies(&#39;($100 AUS)&#39;) == -10000
-encore.rxMisc.currencyToPennies(&#39;($1.011)&#39;)   == -101
 encore.rxMisc.currencyToPennies(&#39;$1.10&#39;)      ==  110
 </code></pre>
 <p><a name="rxMisc.newDate"></a></p>
