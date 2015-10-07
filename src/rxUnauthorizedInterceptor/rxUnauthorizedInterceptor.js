@@ -4,8 +4,9 @@
  * @description
  * # rxUnauthorizedInterceptor Component
  *
- * [TBD]
- *
+ * The rxUnauthorizedInterceptor component redirects users to the login page, 
+ * when user authentication fails during a system service request.
+ * 
  * ## Services
  * * {@link rxUnauthorizedInterceptor.service:UnauthorizedInterceptor UnauthorizedInterceptor}
  */
@@ -14,8 +15,8 @@ angular.module('encore.ui.rxUnauthorizedInterceptor', ['encore.ui.rxSession'])
  * @ngdoc service
  * @name rxUnauthorizedInterceptor.service:UnauthorizedInterceptor
  * @description
- * Simple injector which will intercept http responses. If a 401 is returned,
- * the ui redirects to /login.
+ * Simple injector which will intercept HTTP responses. If a HTTP 401 response error code is returned,
+ * the ui redirects to `/login`.
  *
  * @requires $q
  * @requires @window
