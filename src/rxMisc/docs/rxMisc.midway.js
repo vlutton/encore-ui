@@ -131,6 +131,11 @@ describe('rxMisc', function () {
             it('should not incur any binary rounding errors', function () {
                 expect(fn('$150.14')).to.equal(15014);
             });
+
+            it('should convert an array of currencies to an array of pennies', function () {
+                expect(fn(['$0.01', '$100 CAN', '($100 AUS)', '$1.10', '$150.14']))
+                    .to.eql([1, 10000, -10000, 110, 15014]);
+            });
         });
 
         describe('unless', function () {

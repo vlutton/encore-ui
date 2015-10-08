@@ -22,27 +22,38 @@ exports.rxMisc = {
 
     /**
      * @description
-     * Transform `currencyString` (USD) to an integer representing pennies. Built to reverse
-     * Angular's 'currency' filter. Do not pass in fractions of a penny.
-     * @param {string} currencyString - Raw text as output by Angular's `currency` filter.
+     * Transform `currencyStringOrArray` (USD) to an integer representing pennies or an array of integers representing
+     * pennies. Built to reverse Angular's 'currency' filter. Do not pass in fractions of a penny because it will be
+     * rounded with Math.round() which doesn't use bankers' rounding for negative numbers.
+     * @param {string|array<string>} currencyStringOrArray - Raw text or an array of raw texts as output by Angular's
+     * `currency` filter.
      *
      * @example
      * ```js
-     * encore.rxMisc.currencyToPennies('$0.01')      ==  1
-     * encore.rxMisc.currencyToPennies('$100 CAN')   ==  10000
+     * encore.rxMisc.currencyToPennies('$0.01') == 1
+     * encore.rxMisc.currencyToPennies('$100 CAN') == 10000
      * encore.rxMisc.currencyToPennies('($100 AUS)') == -10000
-     * encore.rxMisc.currencyToPennies('$1.10')      ==  110
+     * encore.rxMisc.currencyToPennies('$1.10') == 110
+     * encore.rxMisc.currencyToPennies(['$0.01', '($100 AUS)', '$150.14']) == [1, -10000, 15014]
      * ```
      */
-    currencyToPennies: function (currencyString) {
-        var resFloat = parseFloat(currencyString.split(' ')[0].replace(/[,$()]/g, '').trim());
+    currencyToPennies: function (currencyStringOrArray) {
+        var convert = function (currencyString) {
+            var resFloat = parseFloat(currencyString.split(' ')[0].replace(/[,$()]/g, '').trim());
 
-        // Negative number
-        if (currencyString.indexOf('(') > -1 && currencyString.indexOf(')') > -1) {
-            resFloat = -resFloat;
+            // Negative number
+            if (currencyString.indexOf('(') > -1 && currencyString.indexOf(')') > -1) {
+                resFloat = -resFloat;
+            }
+
+            return parseInt(Math.round(resFloat * 100), 10);
+        };
+
+        if (typeof currencyStringOrArray === 'string') {
+            return convert(currencyStringOrArray);
+        } else if (Array.isArray(currencyStringOrArray)) {
+            return _.map(currencyStringOrArray, convert);
         }
-
-        return parseInt(Math.round(resFloat * 100), 10);
     },
 
     /**
