@@ -4,7 +4,9 @@
  * @description
  * # rxToggle Component
  *
- * [TBD]
+ * This component provides an attribute directive to handle toggling a boolean
+ * scope property for show/hide purposes (normally used in conjunction with
+ * ng-show to toggle hidden content).
  *
  * ## Directives
  * * {@link rxToggle.directive:rxToggle rxToggle}
@@ -15,7 +17,9 @@ angular.module('encore.ui.rxToggle', [])
  * @name rxToggle.directive:rxToggle
  * @restrict A
  * @description
- * Adds a 'click' listener to an element that, when fired, toggles the boolean scope property defined
+ *
+ * Adds a 'click' listener to an element that, when fired, toggles the boolean
+ * scope property defined
  *
  * @param {String} rxToggle Boolean property to toggle true/false state
  */
