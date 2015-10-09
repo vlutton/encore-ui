@@ -3,8 +3,12 @@
     <h3 class="title">Filtered Table</h3>
     <table class="table-striped">
         <thead>
-            <th colspan="6" class="filter-header">
-                <rx-select-filter filter="filter"></rx-select-filter>
+            <th colspan="3" class="filter-header">
+                <form rx-form>
+                    <rx-form-section controlled-width>
+                        <rx-select-filter filter="filter"></rx-select-filter>
+                    </rx-form-section>
+                </form>
             </th>
             <tr>
                 <th>Account</th>
@@ -27,16 +31,3 @@
         </tbody>
     </table>
 </div>
-<style>
-    .multi-select-container {
-        width: 200px;
-    }
-
-    .account-filter .rxSelect {
-        width: 150px;
-    }
-
-    .status-filter .rxSelect {
-        width: 180px;
-    }
-</style>

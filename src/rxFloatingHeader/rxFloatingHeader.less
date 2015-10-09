@@ -19,18 +19,27 @@ th.filter-header {
     button {
         margin: 0;
     }
+    [rx-form] {
+        margin: 10px 0;
+        rx-form-section {
+            margin: 0;
+            rx-field {
+                margin-bottom: 0;
+            }
+        }
+    }
 }
 
 // Batch actions menu is visible even when header floats
-// There's some black magic here. For whatever reason, we have to 
+// There's some black magic here. For whatever reason, we have to
 // add z-index:2 to the other rows in the header, *not* the row
 // that the batch actions menu lives in.
 tr.rx-floating-header:not(.rx-table-filter-row) {
     z-index: 2;
 }
 
-// Added to accommodate dropdown boxes to display "on top" of rx-floating-header 
-// components 
+// Added to accommodate dropdown boxes to display "on top" of rx-floating-header
+// components
 thead .rx-floating-header:first-child {
     z-index: 3;
 }
