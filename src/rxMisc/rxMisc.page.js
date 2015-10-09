@@ -35,14 +35,32 @@ exports.rxMisc = {
      * ```
      */
     currencyToPennies: function (currencyString) {
-        var resFloat = parseFloat(currencyString.split(' ')[0].replace(/[,$()]/g, '').trim());
+        // ensure string
+        var strIn = currencyString.toString();
 
-        // Negative number
-        if (currencyString.indexOf('(') > -1 && currencyString.indexOf(')') > -1) {
-            resFloat = -resFloat;
+        // ignore anything that's not a "number"
+        var wholeAmount = strIn.replace(/[^0-9.]/g, '');
+
+        // locate decimal
+        var decimalIndex = wholeAmount.indexOf('.');
+        var normalizedAmount;
+        if (decimalIndex > 0) {
+            // truncate pennies to 2 decimal places
+            normalizedAmount = wholeAmount.slice(0, decimalIndex + 3);
+        } else {
+            // whole number, concat decimal value
+            normalizedAmount = wholeAmount + '.00';
         }
 
-        return parseInt(Math.round(resFloat * 100), 10);
+        // remove decimal (leaves us total pennies)
+        var pennyAmount = normalizedAmount.replace(/[^0-9]/g, '');
+
+        // Negative number
+        if (strIn.indexOf('(') > -1 && strIn.indexOf(')') > -1) {
+            pennyAmount *= -1;
+        }
+
+        return parseInt(pennyAmount);
     },
 
     /**
