@@ -1,9 +1,19 @@
-<span class="rx-select-filter">
-    <span class="select-wrapper {{prop}}-filter" ng-repeat="prop in filter.properties">
-          <span class="field-label">{{ prop | titleize }}:</span>
-          <rx-multi-select
-              ng-model="filter.selected[prop]"
-              options="filter.available[prop]">
-          </rx-multi-select>
+<form rx-form>
+    <span class="rx-select-filter">
+        <span class="select-wrapper {{prop}}-filter" ng-repeat="prop in filter.properties">
+            <rx-form-section>
+                <rx-field>
+                    <rx-field-name> {{ prop | titleize }} </rx-field-name>
+                    <rx-field-content>
+                        <rx-input>
+                            <rx-multi-select
+                                ng-model="filter.selected[prop]"
+                                options="filter.available[prop]">
+                            </rx-multi-select>
+                        </rx-input>
+                    </rx-field-content>
+                </rx-field>
+            </rx-form-section>
+        </span>
     </span>
-</span>
+</form>
