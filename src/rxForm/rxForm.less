@@ -417,6 +417,25 @@ rx-field-name {
                     margin-bottom: 0px;
                 }
 
+                .validInput() {
+                    padding: 3px 5px;
+                    border: 1px solid @rxForm-input-border-color;
+                }//.validInput()
+
+                .invalidInput() {
+                    border: 2px solid @inputBorderColorInvalid;
+                    // MUST differ with valid padding by 1px to
+                    // account for thicker border
+                    padding: 2px 4px;
+                }//.invalidInput()
+
+                .disabledInput() {
+                    border: 1px solid @rxForm-input-border-color;
+                    color: @inputColorDisabled;
+                    background: @inputBackgroundDisabled;
+                    cursor: not-allowed !important;
+                }//.disabledInput()
+
                 rx-input {
                     // as a flex container
                     display: flex;
@@ -431,35 +450,23 @@ rx-field-name {
                         min-height: @rxForm-input-min-height;
 
                         &, &.ng-valid {
-                            padding: 3px 5px;
-                            border: 1px solid @rxForm-input-border-color;
+                            .validInput();
                         }
 
-                        .disabled() {
-                            border: 1px solid @rxForm-input-border-color;
-                            color: @inputColorDisabled;
-                            background: @inputBackgroundDisabled;
-                            cursor: not-allowed !important;
-                        }//.disabled
-
                         &.ng-invalid.ng-dirty {
-                            border-color: @inputBorderColorInvalid;
-                            border-width: 2px;
-                            // MUST differ with valid padding by 1px to
-                            // account for thicker border
-                            padding: 2px 4px;
+                            .invalidInput();
 
                             // DISABLED STYLING
                             // (these should trump all other styles)
                             &[disabled] {
-                                .disabled();
+                                .disabledInput();
                             }
                         }
 
                         // DISABLED STYLING
                         // (these should trump all other styles)
                         &[disabled] {
-                            .disabled();
+                            .disabledInput();
                         }
                     }
 
@@ -513,6 +520,24 @@ rx-field-name {
                         input,
                         textarea {
                             width: 100%;
+
+                            .validInput();
+
+                            &.ng-invalid.ng-dirty {
+                                .invalidInput();
+
+                                // DISABLED STYLING
+                                // (these should trump all other styles)
+                                &[disabled] {
+                                    .disabledInput();
+                                }
+                            }
+
+                            // DISABLED STYLING
+                            // (these should trump all other styles)
+                            &[disabled] {
+                                .disabledInput();
+                            }
                         }
                     }
 
