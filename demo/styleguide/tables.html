@@ -29,9 +29,16 @@
     <div class="component-description clear">
         <ul class="list">
             <li><a href="#/component/rxPaginate">See the rxPaginate directive</a> for implementation and examples.</li>
-            <li><span class="msg-info">ENCORE-SPECIFIC:</span> The pagination is visible in this example to show how mark-up will be implemented. Generally, the pagination directive does not display if there is only one page of data available. We use angular.js to make sure this doesn't display.</li>
-            <li><span class="msg-warn">HEADS UP:</span> It's a known issue that the footer wraps into a second line if the table is 50% of the screen. In cases like those, we've used the <code>display:none</code> CSS property for elements to hide all elements not directly related to pagination. See the <a href="https://github.com/rackerlabs/supportservice-ui/blob/master/app/styles/table.less#L40-L50">LESS of narrow tables used in Support Services</a> for an example of this. Note that this has not been implemented in EncoreUI yet.</li>
+            <li><span class="msg-info">ENCORE-SPECIFIC:</span> The pagination is visible in this example to show how mark-up will be implemented. Generally, the pagination directive does not display if there is only one page of data available. We use AngularJS to make sure this doesn't display.</li>
+            <li>It's a known issue that the footer wraps into a second line if the table is 50% of the screen.  Use <code>display:none</code> CSS property to hide all elements not directly related to pagination.  See the CSS example below for an example.  This has not been implemented in EncoreUI.</li>
         </ul>
+        <pre>
+    .my-custom-class-name .pagination {
+        &amp; > li.nth-child(1) { display: none; }
+        &amp; > li.nth-child(2) { display: none; }
+        .pagination-per-page { display: none; }
+    }
+        </pre>
     </div>
     <rx-styleguide code-url="styleguide/tables/paginate.html"></rx-styleguide>
 
