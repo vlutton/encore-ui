@@ -4,7 +4,8 @@
  * @description
  * # rxSelectFilter component
  *
- * This service exposes an object with single method, `create()`, used to create instances of a `SelectFilter`.
+ * A component that provides a multi-select dropdown interface intended for
+ * table filtering.
  *
  * ## Directives
  * * {@link rxSelectFilter.directive:rxSelectFilter rxSelectFilter}
@@ -22,8 +23,15 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
  * @description
  * Used to apply an instance of SelectFilter to an array.
  *
+ * Merely calls the `applyTo()` method of a `SelectFilter` instance to an
+ * input array.
+ * <pre>
+ * <tr ng-repeat="item in list | Apply:filter">
+ * </pre>
+ *
  * @param {Array} list The list to be filtered.
  * @param {Object} filter An instance of SelectFilter
+ *
  */
 .filter('Apply', function () {
     return function (list, filter) {
@@ -36,10 +44,135 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
  * @description
  * A prototype for creating objects that can be used for filtering arrays.
  *
- * @method create(options) - Create a filter that tracks the provided properties.
+ * ## SelectFilter
+ * This service exposes an object with single method, `create()`, used to
+ * create instances of a `SelectFilter`. It is configurable via three options:
+ * - `properties`: A list of the properties to create a filter control.
+ * Assuming the source data is an array of objects, a property is equivalent to
+ * an object's key.
+ *
+ * - `available` (optional): An object that tracks which options are available
+ * for a property.
+ * Note that the key of the object matches a value in the `properties` array.
+ * - `selected` (optional): An object that tracks which options are selected
+ * for a property. It has the same form as the `available` object, but the
+ * arrays indicate which options are selected, and as such are strict subsets
+ * of their `available` counterparts.
+ *
+ * ### Option Defaults
+ * Every property that is listed in `properties` but not provided as a key
+ * to `available` will be automatically populated the first time `applyTo()`
+ * (see below) is called.
+ * <pre>
+ * var filter = SelectFilter.create({
+ *   properties: ['year']
+ * });
+ *
+ * filter.applyTo([{
+ *   eventId: 1,
+ *   year: 2013
+ * }, {
+ *   eventId: 2,
+ *   year: 2014
+ * }, {
+ *   eventId: 3,
+ *   year: 2013
+ * }]);
+ * // filter.available is { year: [2013, 2014] }
+ * </pre>
+ * **Note:** There is an implied requirement that, when relying on the
+ * auto-populated filter, the input array will have at least one item for every
+ * available option. For example, this may not be the case when used with
+ * server-side pagination.
+ *
+ * Every property that is listed in `properties` but not provided as a key to
+ * `selected` is initialized to have all options selected (by looking them up
+ * in `available`).  If property is also not provided to `available`, its
+ * initialization is delayed until the first call of `applyTo()`.
+ *
+ * <pre>
+ * var filter = SelectFilter.create({
+ *   properties: ['year'],
+ *   available: {
+ *       year: [2013, 2014, 2015]
+ *   }
+ * });
+ * // filter.selected is { year: [2013, 2014, 2015] }
+ * </pre>
+ *
+ * ### Instances
+ * Instances of `SelectFilter` have an `applyTo()` method, which applies the
+ * filter's internal state of selected options to the array. This will not
+ * often be called directly, but instead used by the
+ * {@link rxSelectFilter.filter:Apply Apply} filter. As stated previously,
+ * the first call of `applyTo()` will initialize any
+ * `properties` that have not been defined in `available` or `selected`.
+ * <pre>
+ * var filter = SelectFilter.create({
+ *   properties: ['year'],
+ *   selected: {
+ *      year: [2014]
+ *     }
+ * });
+ *
+ * var filteredArray = filter.applyTo([{
+ *   eventId: 1,
+ *   year: 2013
+ * }, {
+ *   eventId: 2,
+ *   year: 2014
+ * }, {
+ *   eventId: 3,
+ *   year: 2013
+ * }]);
+ * // filteredArray is [{ eventId: 2, year: 2014 }]
+ * </pre>
+ *
+ * The instance will also have all of the constructor options as public
+ * properties, so that they can be watched or changed.
+ *
  */
 .service('SelectFilter', function () {
     return {
+       /**
+        * @ngdoc method
+        * @name create
+        * @methodOf rxSelectFilter.service:SelectFilter
+        * @param {Object} options
+        * Options object
+        * @param {Object} options.properties
+        * A list of the properties to create a filter control. Assuming the
+        * source data is an array of objects, a property is equivalent to an
+        * object's key.
+        * <pre>
+        * SelectFilter.create({
+        *      properties: ['year']
+        * });
+        * </pre>
+        * @param {Object=} options.available
+        * An object that tracks which options are available for a property.
+        * <pre>
+        * SelectFilter.create({
+        *     // other options...
+        *     available: {
+        *        year: [2013, 2014, 2015],
+        *       }
+        * });
+        * </pre>
+        * @param {Object=} options.selected
+        * An object that tracks which options are selected for a property.
+        * It has the same form as the `available` object, but the arrays indicate
+        * which options are selected, and as such are strict subsets of their
+        * `available` counterparts.
+        * <pre>
+        * SelectFilter.create({
+        *     // other options...
+        *     selected: {
+        *         year: [2014],
+        *       }
+        * });
+        * </pre>
+        */
         create: function (options) {
             options = _.defaults(options, {
                 properties: [],
@@ -93,7 +226,21 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
  * @description
  * Automatically creates the appropriate dropdowns to manage a filter object.
  *
+ * ## rxSelectFilter
+ * Uses an instance of `SelectFilter` to create a set of `<rx-multi-select>`'s
+ * that modify the instance object.
+ * <pre>
+ * // In the controller
+ * $scope.filter = SelectFilter.create({
+ *   // options...
+ * });
+ *
+ * // In the template
+ * <rx-select-filter filter="filter"></rx-select-filter>
+ * </pre>
+ *
  * @param {Object} filter - An instance of SelectFilter
+ *
  */
 .directive('rxSelectFilter', function () {
     return {
