@@ -28,3 +28,9 @@ th.filter-header {
 tr.rx-floating-header:not(.rx-table-filter-row) {
     z-index: 2;
 }
+
+// Added to accommodate dropdown boxes to display "on top" of rx-floating-header 
+// components 
+thead .rx-floating-header:first-child {
+    z-index: 3;
+}
