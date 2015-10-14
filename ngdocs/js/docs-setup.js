@@ -1332,7 +1332,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxSelectFilter",
       "shortDescription": "rxSelectFilter component",
-      "keywords": "api apply component create directive directives exposes filter filters instances method object overview rxselectfilter selectfilter service services single"
+      "keywords": "api apply component directive directives dropdown filter filtering filters intended interface multi-select overview rxselectfilter selectfilter service services table"
     },
     {
       "section": "api",
@@ -1341,7 +1341,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxSelectFilter",
       "shortDescription": "Automatically creates the appropriate dropdowns to manage a filter object.",
-      "keywords": "api appropriate automatically creates directive dropdowns filter instance manage object rxselectfilter selectfilter"
+      "keywords": "$scope api appropriate automatically controller create creates directive dropdowns filter instance manage modify object options rxselectfilter selectfilter set template"
     },
     {
       "section": "api",
@@ -1350,7 +1350,7 @@ NG_DOCS={
       "type": "filter",
       "moduleName": "rxSelectFilter",
       "shortDescription": "Used to apply an instance of SelectFilter to an array.",
-      "keywords": "api apply array filter filtered instance list rxselectfilter selectfilter"
+      "keywords": "api apply applyto array calls filter filtered input instance item list method ng-repeat rxselectfilter selectfilter"
     },
     {
       "section": "api",
@@ -1359,7 +1359,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "rxSelectFilter",
       "shortDescription": "A prototype for creating objects that can be used for filtering arrays.",
-      "keywords": "api arrays create creating filter filtering objects properties prototype provided rxselectfilter service tracks"
+      "keywords": "api applies apply applyto array arrays assuming auto-populated automatically call called case changed configurable control counterparts create creating data defaults defined delayed directly equivalent eventid example exposes filter filteredarray filtering form implied indicate initialization initialize initialized input instance instances internal item key list listed matches method note object objects option options pagination populated properties property prototype provided public relying requirement rxselectfilter selected selectfilter server-side service single source stated strict subsets three time tracks var watched year"
     },
     {
       "section": "api",
@@ -1494,7 +1494,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxStatusColumn",
       "shortDescription": "rxStatusColumn Component",
-      "keywords": "api component directive directives object objects overview rxstatuscolumn rxstatuscolumnicons rxstatusheader rxstatusmappings service services"
+      "keywords": "api columns component directive directives object objects overview putting rxstatuscolumn rxstatuscolumnicons rxstatusheader rxstatusmappings service services status styles tables"
     },
     {
       "section": "api",
@@ -1503,7 +1503,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxStatusColumn",
       "shortDescription": "A directive for drawing colored status columns in a table. This",
-      "keywords": "api colored column columns default directive draw drawing mapping optionally passed place rxstatuscolumn status string table takes tooltip"
+      "keywords": "action actions active add additional additive animated api apis appropriate appropriately attribute attributes code color colored column columns completes corresponding create css currently default delete demo destructive directive disabled distinction draw drawing encore ends error example explained follow general green info ing internally item logic map mapping ng-repeat note number optional optionally pass passed pending place progress receiving red rule rx-status-column rxstatuscolumn server servers set sets simply status statuses string stripes styles support table takes thumb title tooltip tooltip-content transition treatment true typical usage user warning yellow"
     },
     {
       "section": "api",
@@ -1511,8 +1511,8 @@ NG_DOCS={
       "shortName": "rxStatusHeader",
       "type": "directive",
       "moduleName": "rxStatusColumn",
-      "shortDescription": "Place this attribute directive on the &lt;th&gt; for the status columns. It ensures",
-      "keywords": "api attribute columns correct directive ensures place rxstatuscolumn status styling"
+      "shortDescription": "Place this attribute directive on the &lt;th&gt; for the status columns. It",
+      "keywords": "add api attribute column columns coming component correct defined demo directive ensures example note place predicate property referring representing reverse row rx-status-header rxsortablecolumn rxstatuscolumn server sort sort-method sort-property sortable sortcol sorting status styling text things"
     },
     {
       "section": "api",
@@ -1530,7 +1530,7 @@ NG_DOCS={
       "type": "service",
       "moduleName": "rxStatusColumn",
       "shortDescription": "A set of methods for creating mappings between a product&#39;s notion",
-      "keywords": "api creating encore-ui identifiers mappings methods notion product rxstatuscolumn service set status statuses"
+      "keywords": "_could_ accommodate active addapi addglobal advantage angular api apiname apis argument array attribute based basic blocked call calls chance check code constant convert create creating cumbersome declare define defined defines defining directive easily eliminates encoreui equivalent error errors example factory failed failure fall find foo forced framework full function getinternalmapping globally group grouped help identifiers includes individual info instances intended internal leaving list map mapped mapping mappings maptoactive maptodisabled maptoerror maptoinfo maptopending maptowarning method methods misassigning misspelling mistyping notion object optional pair parameter pass passed physically product provide provided receives registered repetition required return returns room rules running rx-status-column rxstatuscolumn rxstatusmappings second separately service set shorter shutdown single specific standby status statuses statusstring stopping string sufficient suspended takes template three transformation type utility values warning"
     },
     {
       "section": "api",
@@ -1539,7 +1539,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxToggle",
       "shortDescription": "rxToggle Component",
-      "keywords": "api component directive directives overview rxtoggle"
+      "keywords": "api attribute boolean component conjunction content directive directives handle hidden ng-show overview property purposes rxtoggle scope toggle toggling"
     },
     {
       "section": "api",
@@ -1547,7 +1547,7 @@ NG_DOCS={
       "shortName": "rxToggle",
       "type": "directive",
       "moduleName": "rxToggle",
-      "shortDescription": "Adds a &#39;click&#39; listener to an element that, when fired, toggles the boolean scope property defined",
+      "shortDescription": "Adds a &#39;click&#39; listener to an element that, when fired, toggles the boolean",
       "keywords": "adds api boolean click defined directive element fired listener property rxtoggle scope toggle toggles true"
     },
     {
@@ -1593,7 +1593,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxUnauthorizedInterceptor",
       "shortDescription": "rxUnauthorizedInterceptor Component",
-      "keywords": "api component overview rxunauthorizedinterceptor service services unauthorizedinterceptor"
+      "keywords": "api authentication component fails login overview redirects request rxunauthorizedinterceptor service services system unauthorizedinterceptor user users"
     },
     {
       "section": "api",
@@ -1601,8 +1601,8 @@ NG_DOCS={
       "shortName": "UnauthorizedInterceptor",
       "type": "service",
       "moduleName": "rxUnauthorizedInterceptor",
-      "shortDescription": "Simple injector which will intercept http responses. If a 401 is returned,",
-      "keywords": "$httpprovider $q angular api config encore encoreapp http injector intercept interceptors module push redirects responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
+      "shortDescription": "Simple injector which will intercept HTTP responses. If a HTTP 401 response error code is returned,",
+      "keywords": "$httpprovider $q angular api code config encore encoreapp error http injector intercept interceptors module push redirects response responses returned rxsession rxunauthorizedinterceptor service simple ui unauthorizedinterceptor"
     },
     {
       "section": "api",
@@ -1611,7 +1611,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "tabs",
       "shortDescription": "tabs Component",
-      "keywords": "api component overview tabs"
+      "keywords": "angular-ui api bootstrap component configuration currently default demo demoed dependency disclaimer docs encoreui exact github guidance horizontal included io justified overview pills plugin site styles supported tabs unsupported usage vertical"
     },
     {
       "section": "api",
@@ -1620,7 +1620,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "tooltips",
       "shortDescription": "tooltips Component",
-      "keywords": "api component overview tooltips"
+      "keywords": "api applied attributes bootstrap component configuration creating custom demo dependency directive directives documentation elements encoreui exact example fine github guidance html included inside io optional overview plugin raw styles template templates tooltip tooltips usage work"
     },
     {
       "section": "api",
@@ -1629,7 +1629,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "typeahead",
       "shortDescription": "typeahead Component",
-      "keywords": "api component overview typeahead"
+      "keywords": "add allowempty angular-ui api attribute bootstrap case component configuration demo demoed dependency docs empty encoreui exact example feature filter filtered focus github gl guidance included input io list options overview parameter plugin receives site styles typeahead usage"
     }
   ],
   "apis": {

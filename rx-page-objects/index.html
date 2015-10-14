@@ -33,9 +33,10 @@
 </ul>
 </li>
 <li><a href="#encore.module_rxFloatingHeader">encore.rxFloatingHeader</a><ul>
-<li><a href="#encore.module_rxFloatingHeader.scrollToElement">encore.rxFloatingHeader.scrollToElement(elem)</a></li>
-<li><a href="#encore.module_rxFloatingHeader.compareYLocations">encore.rxFloatingHeader.compareYLocations(e1, e2)</a></li>
-<li><a href="#encore.module_rxFloatingHeader.compareXLocations">encore.rxFloatingHeader.compareXLocations(e1, e2)</a></li>
+<li><a href="#encore.module_rxFloatingHeader.scrollToElement"><del>encore.rxFloatingHeader.scrollToElement()</del></a></li>
+<li><a href="#encore.module_rxFloatingHeader.compareYLocations"><del>encore.rxFloatingHeader.compareYLocations()</del></a></li>
+<li><a href="#encore.module_rxFloatingHeader.compareXLocations"><del>encore.rxFloatingHeader.compareXLocations()</del></a></li>
+<li><a href="#encore.module_rxFloatingHeader.transformLocation"><del>encore.rxFloatingHeader.transformLocation()</del></a></li>
 </ul>
 </li>
 <li><a href="#encore.module_rxForm">encore.rxForm</a><ul>
@@ -229,10 +230,14 @@
 </li>
 <li><a href="#rxMisc">rxMisc</a><ul>
 <li><a href="#rxMisc.slowClick">rxMisc.slowClick(elem)</a></li>
-<li><a href="#rxMisc.currencyToPennies">rxMisc.currencyToPennies(currencyString)</a></li>
+<li><a href="#rxMisc.currencyToPennies">rxMisc.currencyToPennies(currencyStringOrArray)</a></li>
 <li><a href="#rxMisc.newDate">rxMisc.newDate(dateText)</a></li>
 <li><a href="#rxMisc.unless">rxMisc.unless(elem, [innerFn], [fallbackReturnValue])</a></li>
 <li><a href="#rxMisc.getPerformanceMetrics">rxMisc.getPerformanceMetrics([keys])</a></li>
+<li><a href="#rxMisc.scrollToElement">rxMisc.scrollToElement(elem)</a></li>
+<li><a href="#rxMisc.compareYLocations">rxMisc.compareYLocations(e1, e2)</a></li>
+<li><a href="#rxMisc.compareXLocations">rxMisc.compareXLocations(e1, e2)</a></li>
+<li><a href="#rxMisc.transformLocation">rxMisc.transformLocation()</a></li>
 <li><a href="#rxMisc.nullValueMatches">const: rxMisc.nullValueMatches</a></li>
 </ul>
 </li>
@@ -507,36 +512,30 @@ Generates a getter and a setter for an rxCheckbox element on your page.</p>
 <strong>Members</strong></p>
 <ul>
 <li><a href="#encore.module_rxFloatingHeader">encore.rxFloatingHeader</a><ul>
-<li><a href="#encore.module_rxFloatingHeader.scrollToElement">encore.rxFloatingHeader.scrollToElement(elem)</a></li>
-<li><a href="#encore.module_rxFloatingHeader.compareYLocations">encore.rxFloatingHeader.compareYLocations(e1, e2)</a></li>
-<li><a href="#encore.module_rxFloatingHeader.compareXLocations">encore.rxFloatingHeader.compareXLocations(e1, e2)</a></li>
+<li><a href="#encore.module_rxFloatingHeader.scrollToElement"><del>encore.rxFloatingHeader.scrollToElement()</del></a></li>
+<li><a href="#encore.module_rxFloatingHeader.compareYLocations"><del>encore.rxFloatingHeader.compareYLocations()</del></a></li>
+<li><a href="#encore.module_rxFloatingHeader.compareXLocations"><del>encore.rxFloatingHeader.compareXLocations()</del></a></li>
+<li><a href="#encore.module_rxFloatingHeader.transformLocation"><del>encore.rxFloatingHeader.transformLocation()</del></a></li>
 </ul>
 </li>
 </ul>
 <p><a name="encore.module_rxFloatingHeader.scrollToElement"></a></p>
-<p>##encore.rxFloatingHeader.scrollToElement(elem)
-Accepts an ElementArrayFinder, which can have several locations. Should the
-       list of elements be stacked vertically (say, in a list of table rows),
-       the element with the smallest Y coordinate will be scrolled to.</p>
-<p><strong>Params</strong></p>
-<ul>
-<li>elem <code>WebElement</code> - An element, or a list of elements to scroll to  </li>
-</ul>
-<p><strong>Returns</strong>: <code>undefined</code><br><a name="encore.module_rxFloatingHeader.compareYLocations"></a></p>
-<p>##encore.rxFloatingHeader.compareYLocations(e1, e2)
-<strong>Params</strong></p>
-<ul>
-<li>e1 <code>WebElement</code> - First element to compare Y locations against.  </li>
-<li>e2 <code>WebElement</code> - Second element to compare Y locations against.  </li>
-</ul>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not <code>e1</code> and <code>e2</code> have the same Y coordinates.<br><a name="encore.module_rxFloatingHeader.compareXLocations"></a></p>
-<p>##encore.rxFloatingHeader.compareXLocations(e1, e2)
-<strong>Params</strong></p>
-<ul>
-<li>e1 <code>WebElement</code> - First element to compare X locations against.  </li>
-<li>e2 <code>WebElement</code> - Second element to compare X locations against.  </li>
-</ul>
-<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not <code>e1</code> and <code>e2</code> have the same X coordinates.<br><a name="encore.module_rxForm"></a></p>
+<p>##<del>encore.rxFloatingHeader.scrollToElement()</del>
+<strong>ALIASED</strong>: Plese use <a href="#rxMisc.scrollToElement">scrollToElement</a> instead.
+This function will be removed in a future release of the framework.</p>
+<p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxFloatingHeader.compareYLocations"></a></p>
+<p>##<del>encore.rxFloatingHeader.compareYLocations()</del>
+<strong>ALIASED</strong>: Plese use <a href="#rxMisc.compareYLocations">compareYLocations</a> instead.
+This function will be removed in a future release of the framework.</p>
+<p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxFloatingHeader.compareXLocations"></a></p>
+<p>##<del>encore.rxFloatingHeader.compareXLocations()</del>
+<strong>ALIASED</strong>: Plese use <a href="#rxMisc.compareXLocations">compareXLocations</a> instead.
+This function will be removed in a future release of the framework.</p>
+<p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxFloatingHeader.transformLocation"></a></p>
+<p>##<del>encore.rxFloatingHeader.transformLocation()</del>
+<strong>ALIASED</strong>: Plese use <a href="#rxMisc.transformLocation">transformLocation</a> instead.
+This function will be removed in a future release of the framework.</p>
+<p><strong><em>Deprecated</em></strong><br><a name="encore.module_rxForm"></a></p>
 <p>#encore.rxForm
 <strong>Members</strong></p>
 <ul>
@@ -1681,10 +1680,14 @@ Will expand the component if collapsed, or will collapse it if it&#39;s expanded
 <ul>
 <li><a href="#rxMisc">rxMisc</a><ul>
 <li><a href="#rxMisc.slowClick">rxMisc.slowClick(elem)</a></li>
-<li><a href="#rxMisc.currencyToPennies">rxMisc.currencyToPennies(currencyString)</a></li>
+<li><a href="#rxMisc.currencyToPennies">rxMisc.currencyToPennies(currencyStringOrArray)</a></li>
 <li><a href="#rxMisc.newDate">rxMisc.newDate(dateText)</a></li>
 <li><a href="#rxMisc.unless">rxMisc.unless(elem, [innerFn], [fallbackReturnValue])</a></li>
 <li><a href="#rxMisc.getPerformanceMetrics">rxMisc.getPerformanceMetrics([keys])</a></li>
+<li><a href="#rxMisc.scrollToElement">rxMisc.scrollToElement(elem)</a></li>
+<li><a href="#rxMisc.compareYLocations">rxMisc.compareYLocations(e1, e2)</a></li>
+<li><a href="#rxMisc.compareXLocations">rxMisc.compareXLocations(e1, e2)</a></li>
+<li><a href="#rxMisc.transformLocation">rxMisc.transformLocation()</a></li>
 <li><a href="#rxMisc.nullValueMatches">const: rxMisc.nullValueMatches</a></li>
 </ul>
 </li>
@@ -1702,18 +1705,21 @@ to achieve consistent behavior.</p>
 <li>elem <code>WebElement</code> - Web element to &quot;slow click&quot;.  </li>
 </ul>
 <p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMisc.currencyToPennies"></a></p>
-<p>##rxMisc.currencyToPennies(currencyString)
-Transform <code>currencyString</code> (USD) to an integer representing pennies. Built to reverse
-Angular&#39;s &#39;currency&#39; filter. Do not pass in fractions of a penny.</p>
+<p>##rxMisc.currencyToPennies(currencyStringOrArray)
+Transform <code>currencyStringOrArray</code> (USD) to an integer representing pennies or an array of integers representing
+pennies. Built to reverse Angular&#39;s &#39;currency&#39; filter. Do not pass in fractions of a penny because it will be
+rounded with Math.round() which doesn&#39;t use bankers&#39; rounding for negative numbers.</p>
 <p><strong>Params</strong></p>
 <ul>
-<li>currencyString <code>string</code> - Raw text as output by Angular&#39;s <code>currency</code> filter.  </li>
+<li>currencyStringOrArray <code>string</code> | <code>array.&lt;string&gt;</code> - Raw text or an array of raw texts as output by Angular&#39;s
+<code>currency</code> filter.  </li>
 </ul>
 <p><strong>Example</strong>  </p>
-<pre><code class="lang-js">encore.rxMisc.currencyToPennies(&#39;$0.01&#39;)      ==  1
-encore.rxMisc.currencyToPennies(&#39;$100 CAN&#39;)   ==  10000
+<pre><code class="lang-js">encore.rxMisc.currencyToPennies(&#39;$0.01&#39;) == 1
+encore.rxMisc.currencyToPennies(&#39;$100 CAN&#39;) == 10000
 encore.rxMisc.currencyToPennies(&#39;($100 AUS)&#39;) == -10000
-encore.rxMisc.currencyToPennies(&#39;$1.10&#39;)      ==  110
+encore.rxMisc.currencyToPennies(&#39;$1.10&#39;) == 110
+encore.rxMisc.currencyToPennies([&#39;$0.01&#39;, &#39;($100 AUS)&#39;, &#39;$150.14&#39;]) == [1, -10000, 15014]
 </code></pre>
 <p><a name="rxMisc.newDate"></a></p>
 <p>##rxMisc.newDate(dateText)
@@ -1793,6 +1799,35 @@ See <a href="https://github.com/Droogans/node-timing.js#sample-output-of-timingg
     expect(encore.rxMisc.getPerformanceMetrics(&#39;loadTime&#39;)).to.eventually.be.under(2000);
 });
 </code></pre>
+<p><a name="rxMisc.scrollToElement"></a></p>
+<p>##rxMisc.scrollToElement(elem)
+Accepts an ElementArrayFinder, which can have several locations. Should the
+list of elements be stacked vertically (say, in a list of table rows),
+the element with the smallest Y coordinate will be scrolled to.</p>
+<p><strong>Params</strong></p>
+<ul>
+<li>elem <code>WebElement</code> - An element, or a list of elements to scroll to  </li>
+</ul>
+<p><strong>Returns</strong>: <code>undefined</code><br><a name="rxMisc.compareYLocations"></a></p>
+<p>##rxMisc.compareYLocations(e1, e2)
+<strong>Params</strong></p>
+<ul>
+<li>e1 <code>WebElement</code> - First element to compare Y locations against.  </li>
+<li>e2 <code>WebElement</code> - Second element to compare Y locations against.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not <code>e1</code> and <code>e2</code> have the same Y coordinates.<br><a name="rxMisc.compareXLocations"></a></p>
+<p>##rxMisc.compareXLocations(e1, e2)
+<strong>Params</strong></p>
+<ul>
+<li>e1 <code>WebElement</code> - First element to compare X locations against.  </li>
+<li>e2 <code>WebElement</code> - Second element to compare X locations against.  </li>
+</ul>
+<p><strong>Returns</strong>: <code>Boolean</code> - Whether or not <code>e1</code> and <code>e2</code> have the same X coordinates.<br><a name="rxMisc.transformLocation"></a></p>
+<p>##rxMisc.transformLocation()
+Unify input from either a location object or a web element into a promise
+representing the location attribute (x or y) of either input.
+Both <code>transformLocation($(&#39;.element&#39;), &#39;y&#39;)</code> and <code>transformLocation({x: 20, y: 0}, &#39;y&#39;)</code>
+return a promise representing the y value of the resulting (or provided) location object.</p>
 <p><a name="rxMisc.nullValueMatches"></a></p>
 <p>##const: rxMisc.nullValueMatches
 A list of common strings that appear in the UI that represent <code>null</code> to a page object.
