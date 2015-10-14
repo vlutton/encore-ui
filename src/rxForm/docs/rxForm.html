@@ -1,8 +1,8 @@
 <div ng-controller="rxFormDemoCtrl">
   <form rx-form name="demoForm" style="max-width: 1100px">
-    <h2 class="title lg">Simple Controls</h2>
+    <h2>Simple Controls</h2>
 
-    <h3 class="title">Text Inputs</h3>
+    <h3>Text Inputs</h3>
     <rx-help-text>
       Three <code>rx-field</code> elements each consume between 250px and 1/3 of the width.
     </rx-help-text>
@@ -40,7 +40,7 @@
       </rx-field>
     </rx-form-section>
 
-    <h2 class="title">Text Area</h2>
+    <h2>Text Area</h2>
     <rx-help-text>
       One <code>rx-field</code> element consumes the full width.
     </rx-help-text>
@@ -59,9 +59,9 @@
     </rx-form-section>
 
 
-    <h2 class="title lg">Intermediate Controls</h2>
+    <h2>Intermediate Controls</h2>
 
-    <h3 class="title">Text Inputs With Validation</h3>
+    <h3>Text Inputs With Validation</h3>
     <rx-help-text>
       Two <code>rx-field</code> elements each consume between 250px and 1/2 of the width.
     </rx-help-text>
@@ -108,11 +108,11 @@
       </rx-field>
     </rx-form-section>
 
-    <h3 class="title">Drop-Down Selection</h3>
+    <h3>Drop-Down Selection</h3>
     <rx-form-section>
       <!-- rxSelect -->
       <rx-field>
-        <h4 class="title sm">Single Selection</h4>
+        <h4>Single Selection</h4>
         <rx-field-name>Volume Type:</rx-field-name>
         <rx-field-content>
           <rx-input>
@@ -128,7 +128,7 @@
 
       <!-- rxMultiSelect -->
       <rx-field>
-        <h4 class="title sm">Multiple Selection</h4>
+        <h4>Multiple Selection</h4>
         <rx-field-name>Service Options:</rx-field-name>
         <rx-field-content>
           <rx-input>
@@ -141,11 +141,11 @@
       </rx-field>
     </rx-form-section>
 
-    <h3 class="title">Input Groups</h3>
+    <h3>Input Groups</h3>
     <rx-form-section>
       <!-- rxRadio -->
       <rx-field>
-        <h4 class="title sm">Radio Group</h4>
+        <h4>Radio Group</h4>
         <rx-field-name>Favorite Beatles Member:</rx-field-name>
         <rx-field-content>
           <rx-input ng-repeat="beatle in beatles">
@@ -178,7 +178,7 @@
 
       <!-- rxCheckbox -->
       <rx-field>
-        <h4 class="title sm">Checkbox Group</h4>
+        <h4>Checkbox Group</h4>
         <rx-field-name>Rick Astley Will Never:</rx-field-name>
         <rx-field-content>
           <rx-input ng-repeat="never in nevers">
@@ -201,7 +201,7 @@
 
       <!-- rxToggleSwitch -->
       <rx-field>
-        <h4 class="title sm">Toggle Switches</h4>
+        <h4>Toggle Switches</h4>
         <rx-field-name>Settings:</rx-field-name>
         <rx-field-content>
           <rx-input>
@@ -249,7 +249,7 @@
       </rx-field>
     </rx-form-section>
 
-    <h3 class="title">rxOptionTable</h3>
+    <h3>rxOptionTable</h3>
     <rx-form-section>
       <rx-field>
         <rx-field-name>Radio Option Table</rx-field-name>
@@ -314,8 +314,8 @@
     </rx-form-section>
 
 
-    <h2 class="title lg">Advanced Controls</h2>
-    <h3 class="title">With <code>stacked</code> section attribute</h3>
+    <h2>Advanced Controls</h2>
+    <h3>With <code>stacked</code> section attribute</h3>
     <rx-help-text>
       To obtain a stacked layout, place the <code>stacked</code>
       attribute on <code>rx-form-section</code>.
@@ -377,6 +377,14 @@
         </rx-field-content>
       </rx-field>
 
+    </rx-form-section>
+
+    <h3>With <code>controlled-width</code> section attribute</h3>
+    <rx-help-text>
+      To prevent fields from taking up too much horizontal space, use the <code>controlled-width</code> attribute on <code>rx-form-section</code>.
+      The fields will still stack if horizontal space is constrained, but they will not exceed a reasonable field width.
+    </rx-help-text>
+    <rx-form-section controlled-width>
       <!-- Dropdown + Text + Dropdown -->
       <rx-field>
         <rx-field-name>Name:</rx-field-name>
@@ -416,11 +424,10 @@
           </rx-help-text>
         </rx-field-content>
       </rx-field>
-
     </rx-form-section>
 
-    <h2 class="title">Advanced Text Area</h2>
-    <h3 class="title subdued">With additional info side-by-side.</h3>
+    <h2>Advanced Text Area</h2>
+    <h3 class="subdued">With additional info side-by-side.</h3>
     <rx-form-section>
       <rx-field>
         <rx-field-name
@@ -450,7 +457,7 @@
     </rx-form-section>
 
     <!-- form actions, no special class required -->
-    <h2 class="title lg">Form Actions</h2>
+    <h2>Form Actions</h2>
     <rx-help-text>No CSS class required</rx-help-text>
     <rx-form-section>
       <div>

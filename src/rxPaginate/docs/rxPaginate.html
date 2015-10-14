@@ -42,8 +42,19 @@
         <thead>
             <tr>
                 <th colspan="2" class="filter-header">
-                    <rx-search-box rx-placeholder="'Filter by any...'" ng-model="data.searchText"></rx-search-box>
-                    <rx-select-filter filter="osFilter"></rx-select-filter>
+                    <form rx-form>
+                        <rx-form-section controlled-width>
+                            <rx-field>
+                                <rx-field-name> Filter Data </rx-field-name>
+                                <rx-field-content>
+                                    <rx-input>
+                                        <rx-search-box rx-placeholder="'Filter by any...'" ng-model="data.searchText"></rx-search-box>
+                                    </rx-input>
+                                </rx-field-content>
+                            </rx-field>
+                            <rx-select-filter filter="osFilter"></rx-select-filter>
+                        </rx-form-section>
+                    </form>
                 </th>
             </tr>
             <tr>
@@ -92,14 +103,3 @@
         </tfoot>
     </table>
 </div>
-<style>
-    rx-search-box {
-        font-style: italic;
-    }
-    rx-select-filter {
-        margin-left: 20px;
-    }
-    .os-filter .rxSelect {
-        width: 200px;
-    }
-</style>

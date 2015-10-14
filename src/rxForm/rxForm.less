@@ -571,5 +571,13 @@ rx-field-name {
                 margin-bottom: (@rxForm-gutter * 1.25);
             }
         }
+
+        &[controlled-width] {
+            & > div,
+            rx-field {
+                max-width: @rxForm-field-max-width;
+            }
+        }
+
     }//rx-form-section
 }//[rx-form]
