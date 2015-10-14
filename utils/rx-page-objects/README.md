@@ -38,7 +38,7 @@ var myPage = Page.create({
     column: {
         value: function (columnName) {
             var columnElement = element(by.cssContainingText('rx-sortable-column', columnName));
-            return encore.rxSortableColumn.initalize(columnElement);
+            return encore.rxSortableColumn.initialize(columnElement);
         }
     }
 });
@@ -96,10 +96,10 @@ var form = Page.create({
 
     country: {
         get: function () {
-            return encore.rxForm.dropdown.initiailze(element(by.model('user.country'))).selectedOption;
+            return encore.rxForm.dropdown.initialize(element(by.model('user.country'))).selectedOption;
         },
         set: function (countryName) {
-            encore.rxForm.dropdown.initiailze(element(by.model('user.country'))).select(countryName);
+            encore.rxForm.dropdown.initialize(element(by.model('user.country'))).select(countryName);
         }
     },
 

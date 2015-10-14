@@ -12,7 +12,7 @@ This does mean that the master branch will contain updates not available in the 
 
 ## Releasing a version
 
-A new version is released every time a push to production (our CDN and to Bower) occurs. This will normally happen at least once per week. There is no specific criteria for a version to be released, other than features being ready for deployment.
+A new version is released every time a push to production (our CDN and to Bower) occurs. This will normally happen at least once per week. There are no specific criteria for a version to be released, other than features being ready for deployment.
 
 Production deploys are done manually through the command line. To push to production, run `grunt shipit:[versionType]:updateDemo` (replacing [versionType] with 'major', 'minor' or 'patch').
 
