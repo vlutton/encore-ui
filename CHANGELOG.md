@@ -1,3 +1,25 @@
+<a name="1.33.0"></a>
+## 1.33.0 (2015-10-14)
+
+
+#### Bug Fixes
+
+* **rxForm:** correct invalid styles for rxCharacterCount ([11261680](git@github.com:rackerlabs/encore-ui/commit/11261680583f4e9b4d91b38f7c676bc29bda87b8))
+* **vars:** Switch gray scale so darker colors have higher var numbers ([3b4edcd5](git@github.com:rackerlabs/encore-ui/commit/3b4edcd59814dca82cc8dfad3036891a2fbc9cc4))
+* **z_index:**
+  * FRMW-100-Bug-fix-rxPaginate ([ab96c0b1](git@github.com:rackerlabs/encore-ui/commit/ab96c0b16b236cb60e5f203361f68ede18884bf1))
+  * FRMW-66-Bug-fix-rxFloatingHeade ([92769622](git@github.com:rackerlabs/encore-ui/commit/9276962231522ffc244d7e993cbb4c1cc381e46f))
+
+
+#### Features
+
+* **docs:**
+  * FRMW-199 - Migrate rxStatusColumn docs ([91431a94](git@github.com:rackerlabs/encore-ui/commit/91431a94984c3e8c61759364e9a0c81851bf658f))
+  * Migrate typehead docs ([45261d9f](git@github.com:rackerlabs/encore-ui/commit/45261d9fd75de324faacddb32745401d71bcee4e))
+  * Migrate tabs docs ([2dae031d](git@github.com:rackerlabs/encore-ui/commit/2dae031d969477ef801a3cba68236d18f4f41fea))
+  * FRMW-200 - Migrate rxToggle docs ([2a3a8c64](git@github.com:rackerlabs/encore-ui/commit/2a3a8c6402a8262e03a4eac2ffe6b5e53fcd3022))
+
+
 <a name="1.32.0"></a>
 ## 1.32.0 (2015-10-07)
 
