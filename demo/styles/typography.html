@@ -2,14 +2,12 @@
 
   <ul class="list">
       <li>
-          <span class="msg-info"> ENCORE-SPECIFIC: </span> We use Google Fonts,
-          in particular the Roboto font. While Google Fonts are not included in
-          the Encore UI package, they are included if you use the encore-ui
-          template repository as a base.
+          Encore uses Google Fonts, particularly Roboto. This font is
+          included in the encore-ui template.
       </li>
       <li>
-          We use Google Fonts, in particular the Roboto font.  This is automatically 
-          imported via CSS when you link <code>encore-ui.css</code> or <code>encore-ui-resp.css</code>.       
+          We use Google Fonts, in particular the Roboto font.  This is automatically
+          imported via CSS when you link <code>encore-ui.css</code> or <code>encore-ui-resp.css</code>.
       </li>
   </ul>
 
@@ -17,19 +15,16 @@
   <div class="component-description clear">
       <ul class="list">
           <li>
-              Headings are sized according to their heading level (H1 larger
-              than H2 larger than H3, etc.).
+              Headings are sized according to their heading level
+              (H1 larger than H2 larger than H3, etc.).
+              You can use H3 for most sub-headers.
           </li>
           <li>
-              <span class="msg-info">ENCORE-SPECIFIC:</span> For design consistency,
-              we usually use an H3 heading for most subheaders. Other headings can be
-              used for context.
-          </li>
-          <li>
-            <strong class="msg-info">WARNING</strong>:
-            The <code>title</code>, <code>xl</code>, <code>lg</code>, <code>sm</code>,
-            and <code>xs</code> heading classes are deprecated and will be removed in a
-            future release of the framework.
+            <strong class="msg-info">Warning</strong>:
+            The <code>.title</code>, <code>.xl</code>, <code>.lg</code>,
+            <code>.sm</code>, and <code>.xs</code> heading classes are
+            deprecated and will be removed in a future release of the
+            framework.
           </li>
       </ul>
 
@@ -76,18 +71,18 @@
   <div class="component-description clear">
       <ul class="list">
           <li>
-              The <a href="#/component/rxMetadata">rxMetadata</a> component provides
-              the ability to display a list of terms with their associated descriptions.
-              This is used throughout Encore to show metadata, especially on an individual
-              object such as a server or a CBS volume.
+              To display a list of terms with their associated descriptions,
+              use <a href="#/component/rxMetadata">rxMetadata</a>.
+              This is used throughout Encore to show metadata, especially on
+              an individual object such as a server or a CBS volume.
           </li>
           <li>
-              <span class="msg-info">ENCORE-SPECIFIC:</span> This is an ideal solution
-              if you have anywhere from 5-15 definitions (3 columns of 5 definitions).
-              (See a Server Details page or Image Details page under Accounts -&gt; Cloud
-              for an example.) Anything more - or anything displaying visual or image
-              content - and you may want to consider a different design pattern. (See
-              the "Non-Data based Tables" section in the Table page for more information.)
+              <span class="msg-info">ENCORE-SPECIFIC:</span> If you have
+              between 5-15 definitions over 3 columns, rxMetadata is an
+              ideal solution. You can see good examples on server details,
+              or image details pages. However, take note that server details
+              and image details pages are part of Encore Cloud UI. They are
+              not part of the EncoreUI framework.
           </li>
       </ul>
   </div>
@@ -96,35 +91,39 @@
   <h3>When There is No Data to Display</h3>
   <ul class="list">
       <li>
-          In table cells, metadata lists, or other displays of data, <code>N/A</code>
-          should be used as an indicator to the user that there is no relevant data
-          to display.
+          In all displays of data, you should use <code>"N/A"</code>
+          where no relevant details are available.
       </li>
       <li>
-          Do not use <code>–</code>, <code>Empty</code>, <code>null</code>, or no
-          indicator to communicate this, as there may be situations where those are
-          valid inputs or data to display to a user depending on the context.
+          <code>"Empty"</code>, <code>"Null"</code>, or blank spaces should
+          be avoided as they may be considered valid inputs.
       </li>
       <li>
-          Note that a separate style exists to communicate
-          <a href="#/styles/wells"> when data isn't present due to permissions </a>,
-          or when an entire table is empty (see "Null Patterns" section of
-          <a href="#/styleguide/tables"> Tables style guide </a>).
+          A separate style exists to communicate
+          <a href="#/styles/wells">
+            when data isn't present due to permissions
+          </a>,
+          or when an entire table is empty.
+          see <a href="#/styleguide/tables#designpatterns">Null Patterns</a>
+          section of <a href="#/styleguide/tables">Tables</a> style guide.
+      </li>
   </ul>
 
   <h3>Lists</h3>
   <div class="component-description clear">
       <ul class="list">
           <li>
-              Lists by default do not have styles. Add bullets/decimals to lists
-              with the <code> list </code> class. It is also possible to build
-              non-semantic lists using the additional <code> item </code> class.
+              Lists by default do not have styles. You can add
+              bullets/decimals to lists with the <code>.list</code> class.
+              It is also possible to build non-semantic lists using the
+              additional <code>.item</code> class.
           </li>
           <li>
-              <span class="msg-info"> ENCORE-SPECIFIC: </span> Use this in conjunction
-              with icons, colors and helper classes such as <code> .flush-right </code>
-              to build out action menus. Look at the detail pages in Cloud Servers and
-              view-source for additional context.
+              <span class="msg-info">ENCORE-SPECIFIC:</span>
+              Use this in conjunction with icons, colors and helper classes
+              such as <code>.flush-right</code> to build out action menus.
+              Look at the detail pages in Cloud Servers and view-source
+              for additional context.
           </li>
       </ul>
   </div>
