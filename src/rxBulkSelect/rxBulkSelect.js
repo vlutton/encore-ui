@@ -411,7 +411,7 @@ angular.module('encore.ui.rxBulkSelect', ['encore.ui.rxCheckbox'])
             };
             rxBulkSelectCtrl.registerForNumSelected(numSelectedChange);
 
-            if (!_.isUndefined(rxFloatingHeaderCtrl)) {
+            if (_.isObject(rxFloatingHeaderCtrl)) {
                 // When rxBatchActions lives inside of an rxFloatingHeader enabled table,
                 // the element will be cloned by rxFloatingHeader. The issue is that a normal
                 // .clone() does not clone Angular bindings, and thus the cloned element doesn't

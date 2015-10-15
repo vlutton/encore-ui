@@ -66,7 +66,7 @@ angular.module('encore.ui.rxSearchBox', [])
                 if ($scope.isDisabled) {
                     $scope.isClearable = false;
                 } else {
-                    $scope.isClearable = newVal.toString() !== '';
+                    $scope.isClearable = (newVal.toString() !== '');
                 }
             });
 
@@ -76,7 +76,7 @@ angular.module('encore.ui.rxSearchBox', [])
         },
         link: function (scope, element, attrs, controllers) {
             var rxFloatingHeaderCtrl = controllers[1];
-            if (!_.isUndefined(rxFloatingHeaderCtrl)) {
+            if (_.isObject(rxFloatingHeaderCtrl)) {
                 rxFloatingHeaderCtrl.update();
             }
         }
