@@ -14,7 +14,7 @@ We have a fairly extensive build system built with grunt. Converting to gulp wou
 
 We try to release every Friday, but depending on the number of PRs ready for release (or ones that aren't quite ready), sometimes it doesn't happen and we release early the next week. If a team has an urgent need for a release, we are open to accommodating them.
 
-For versioning, we rougly follow the [Semantic Versioning system](http://semver.org/):
+For versioning, we roughly follow the [Semantic Versioning system](http://semver.org/):
  - MAJOR version when you make incompatible API changes
  - MINOR version when you add functionality in a backwards-compatible manner
  - PATCH version when you make backwards-compatible bug fixes

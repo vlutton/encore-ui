@@ -142,7 +142,7 @@ Keep in mind you'll need to register a global variable declaration in your linti
 If you see a page object asking for another component, it will do so using this.
 
 ```js
-var otherComponent = exports.otherComponent.intialize(/*...*/);
+var otherComponent = exports.otherComponent.initialize(/*...*/);
 ```
 
 It does this because as a part of the publishing step of the rx-page-objects module, all files in `src/**/*/page.js` are concatenated together, meaning the `exports` call will be valid during end to end test runs. The reason this is done this way is because *in the past*, requiring a component in a page object meant traversing the library's directory to find the component.
