@@ -156,8 +156,8 @@ angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
         link: function (scope, element, attrs, selectCtrl) {
             scope.transclusion = rxDOMHelper.find(element, '[ng-transclude] > *').length > 0;
 
-            scope.toggle = function () {
-                if (scope.isSelected) {
+            scope.toggle = function (isSelected) {
+                if (isSelected) {
                     selectCtrl.unselect(scope.value);
                 } else {
                     selectCtrl.select(scope.value);
