@@ -5,9 +5,9 @@ exports.rxLocalStorage = Page.create({
     setItem: {
         value: function (key, value) {
             var command = function (key, value) {
-                localStorage.setItem(key, JSON.stringify(value));
+                localStorage.setItem(key, value);
             };
-            this.driver.executeScript(command, key, value);
+            this.driver.executeScript(command, key, JSON.stringify(value));
         }
     },
 
