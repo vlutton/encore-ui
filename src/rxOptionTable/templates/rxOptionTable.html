@@ -12,9 +12,8 @@
       <td class="option-table-input">
         <div class="fillWrapper">
           <label ng-switch="type">
-            <div class="alignWrapper">
+            <div class="alignWrapper" ng-switch-when="radio">
               <input rx-radio
-                 ng-switch-when="radio"
                  id="{{fieldId}}_{{$index}}"
                  ng-model="$parent.$parent.model"
                  value="{{row.value}}"
@@ -22,9 +21,9 @@
                  class="option-input"
                  ng-disabled="checkDisabled(row)"
                  rx-attributes="{'ng-required': required}">
-
+            </div>
+            <div class="alignWrapper" ng-switch-when="checkbox">
               <input rx-checkbox
-                 ng-switch-when="checkbox"
                  id="{{fieldId}}_{{$index}}"
                  class="option-input"
                  ng-model="$parent.modelProxy[$index]"
