@@ -21,6 +21,42 @@
             disable-esc>
             Multi-View Example
         </rx-modal-action>
+
+    </p>
+    <p>
+
+        <rx-modal-action
+            controller="rxModalStateCtrl"
+            template-url="multiview.html"
+            id="disabledModal">
+            Multi-View Example
+        </rx-modal-action>
+
+    </p>
+
+    <p>
+        <h3> Disabled Modal </h3>
+
+        <rx-modal-action
+            disabled="true"
+            classes="button"
+            controller="rxModalStateCtrl"
+            template-url="multiview.html"
+            id="btnDisabledModal">
+            Edit Account
+        </rx-modal-action>
+
+    </p>
+
+    <p>
+        <rx-modal-action
+            disabled="'user' !== 'racker'"
+            controller="rxModalStateCtrl"
+            template-url="multiview.html"
+            id="lnkDisabledModal">
+            Edit Account
+        </rx-modal-action>
+
     </p>
 
     <script type="text/ng-template" id="changePassword.html">

@@ -10,6 +10,18 @@
  * @author Ernie Hsiung
  */
 
+ .modal-link {
+     &[disabled],
+     &[disabled]:hover {
+         cursor: not-allowed;
+         color: @gray-600;
+
+         &.button {
+             background-color: @gray-300;
+         }
+     }
+ }
+
 .modal,
 .modal-backdrop {
     .transition();
