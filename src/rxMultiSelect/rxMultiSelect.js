@@ -3,7 +3,9 @@
  * @name rxMultiSelect
  * @description
  * # rxMultiSelect Component
- *
+ * This component is a multi-select dropdown with checkboxes for each option.
+ * It is a replacement for `<select multiple>` when space is an issue, such as
+ * in the header of a table.
  * ## Services
  * * Links to service APIs provided by rxMultiSelect component.
  *
@@ -21,7 +23,36 @@ angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
  * @restrict E
  * @scope
  * @description
- * A multi-select dropdown with checkboxes for each option
+ * This component is a multi-select dropdown with checkboxes for each option.
+ * It is a replacement for `<select multiple>` when space is an issue, such as
+ * in the header of a table.
+ * The options for the control can be specified by passing an array of strings
+ * (corresponding to the options' values) to the `options` attribute of the
+ * directive, or using `<rx-select-option>`s. An 'All' option is automatically
+ * set as the first option for the dropdown, which allows all options to be
+ * toggled at once.
+ *
+ * The following two dropdowns are equivalent.
+ * <pre>
+ * <!-- $scope.available = [2014, 2015] -->
+ * <rx-multi-select ng-model="selected" options="available"></rx-multi-select>
+ *
+ * <rx-multi-select ng-model="selected">
+ *   <rx-select-option value="2014"></rx-select-option>
+ *   <rx-select-option value="2015"></rx-select-option>
+ * </rx-multi-select>
+ * </pre>
+ *
+ * This component requires the `ng-model` attribute and binds the model to an
+ * array of the selected options.
+ *
+ *
+ * The preview text (what is shown when the element is not active) follows the following rules:
+ * * If no items are selected, show "None".
+ * * If only one item is selected from the dropdown, its label will display.
+ * * If > 1 but < n-1 items are selected, show "[#] Selected".
+ * * If all but one item is selected, show "All except [x]"
+ * * If all items are selected, show "All Selected".
  *
  * @param {String} ng-model The scope property that stores the value of the input
  * @param {Array} [options] A list of the options for the dropdown
@@ -139,7 +170,17 @@ angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
  * @name rxMultiSelect.directive:rxSelectOption
  * @restrict E
  * @description
- * A single option for rxMultiSelect
+ * A single option for use within rxMultiSelect.
+ *
+ * `<rx-select-option>` is to `<rx-multi-select>` as `<option>` is to `<select>`.
+ *
+ * Just like `<option>`, it has a `value` attribute and uses the element's
+ * content for the label. If the label is not provided, it defaults to a
+ * titleized version of `value`.
+ *
+ * <pre>
+ * <rx-select-option value="DISABLED">Disabled</rx-select-option>
+ * </pre>
  *
  * @param {String} value The value of the option. If no transcluded content is provided,
  *                       the value will also be used as the option's text.
