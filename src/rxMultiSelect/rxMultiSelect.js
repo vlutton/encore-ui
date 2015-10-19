@@ -55,7 +55,7 @@ angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
  * * If all items are selected, show "All Selected".
  *
  * @param {String} ng-model The scope property that stores the value of the input
- * @param {Array} [options] A list of the options for the dropdown
+ * @param {Array=} options A list of the options for the dropdown
  */
 .directive('rxMultiSelect', function ($document, rxDOMHelper, rxSelectDirective) {
     return {
