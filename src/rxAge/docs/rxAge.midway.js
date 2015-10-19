@@ -18,7 +18,7 @@ describe('rxAge', function () {
         '10 hours',
         '1 day, 12 hours',
         '40 days, 4 hours, 48 minutes',
-        '380d 2h 24m'
+        '380 days, 2 hours, 24 minutes'
     ];
 
     before(function () {
