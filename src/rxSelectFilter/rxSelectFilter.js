@@ -225,6 +225,10 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
  * @scope
  * @description
  * Automatically creates the appropriate dropdowns to manage a filter object.
+ * 
+ * **NOTE:** `rxSelectFilter` directive must be instaniated as a child of 
+ * {@link rxForm.directive:rxFormSection rxFormSection} directive.  The {@link rxForm} component 
+ * hierarchy validation enforces this relationship. 
  *
  * ## rxSelectFilter
  * Uses an instance of `SelectFilter` to create a set of `<rx-multi-select>`'s
@@ -234,20 +238,26 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
  * $scope.filter = SelectFilter.create({
  *   // options...
  * });
- *
- * // In the template
- * <rx-select-filter filter="filter"></rx-select-filter>
+ * </pre>
+ * 
+ * ## rxSelectFilter usage in rxForm 
+ * <pre>
+ * // rxSelectFilter must be instantiated as a child of rxFormSection
+ * <rx-form-section>
+ *     <rx-select-filter filter="filter"></rx-select-filter>
+ * </rx-form-section>
  * </pre>
  *
  * @param {Object} filter - An instance of SelectFilter
  *
  */
-.directive('rxSelectFilter', function () {
-    return {
+.directive('rxSelectFilter', function (rxNestedElement) {
+    return rxNestedElement({
+        parent: 'rxFormSection',
         restrict: 'E',
         templateUrl: 'templates/rxSelectFilter.html',
         scope: {
             filter: '='
         }
-    };
+    });
 });
