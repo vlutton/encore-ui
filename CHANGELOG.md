@@ -1,3 +1,19 @@
+<a name="1.34.0"></a>
+## 1.34.0 (2015-10-21)
+
+
+#### Bug Fixes
+
+* **bug:** FRMW-292-Unbreakable long value rxMultiSelect ([ccb40d39](git@github.com:rackerlabs/encore-ui/commit/ccb40d399d2de2806dd0b6dfb07b3439e64f398b))
+* **bux:** FRMW-128-Unbreakable long page titles ([bdde2758](git@github.com:rackerlabs/encore-ui/commit/bdde275894a46de312c9b9a7dbb820bcb4ba3b97))
+* **z_index:** FRMW-312-z-index-error ([fa8a030f](git@github.com:rackerlabs/encore-ui/commit/fa8a030fec079db51c16b2af5319e501fecc02ed))
+
+
+#### Features
+
+* **rxSelectFilter:** FRMW-293-Add rxForm hierarchy validation ([b330fe3a](git@github.com:rackerlabs/encore-ui/commit/b330fe3aaaf1964198b61d82036bffcf33e7dd5b))
+
+
 <a name="1.33.0"></a>
 ## 1.33.0 (2015-10-14)
 
