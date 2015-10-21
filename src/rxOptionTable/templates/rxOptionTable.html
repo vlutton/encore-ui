@@ -1,7 +1,15 @@
 <table class="table-striped rx-option-table" ng-show="data.length > 0 || emptyMessage ">
   <thead>
     <tr>
-      <th><!-- control column --></th>
+      <th>
+          <!-- control column -->
+          <span ng-if="type === 'checkbox' && data.length > 0">
+              <input rx-checkbox
+                 ng-model="selectAllModel"
+                 class="option-input select-all"
+                 ng-click="selectAll(selectAllModel)" />
+         </span>
+      </th>
       <th class="column" ng-repeat="column in columns">{{column.label}}</th>
     </tr>
   </thead>
@@ -27,6 +35,7 @@
                  ng-switch-when="checkbox"
                  id="{{fieldId}}_{{$index}}"
                  class="option-input"
+                 ng-checked="$parent.modelProxy[$index]"
                  ng-model="$parent.modelProxy[$index]"
                  ng-change="updateCheckboxes($parent.modelProxy[$index], $index)"
                  ng-required="checkRequired()">

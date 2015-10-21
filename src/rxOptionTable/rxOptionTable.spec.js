@@ -142,6 +142,28 @@ describe('rxOptionTable', function () {
             var checkTableScope = checkTable.isolateScope();
             expect(checkTableScope.checkRequired()).to.be.true;
         });
+
+        it('should select all', function () {
+            var checkboxFormTemplate2 =
+                '<rx-option-table data="tableData" columns="tableColumns" ' +
+                'type="checkbox" model="myModel"></rx-option-table>';
+
+            var checkScope = rootScope.$new();
+            checkScope.tableData = _.clone(tableDataTemplate);
+            checkScope.myModel = [true, false];
+
+            var checkTable = helpers.createDirective(checkboxFormTemplate2, compile, checkScope);
+            var checkTableScope = checkTable.isolateScope();
+
+            expect(checkTableScope.model[0]).to.be.true;
+            expect(checkTableScope.model[1]).to.be.false;
+
+            checkTableScope.selectAll();
+
+            expect(checkTableScope.model[0]).to.be.true;
+            expect(checkTableScope.model[1]).to.be.true;
+
+        });
     });
 
     describe('rxOptionTable directive (radio)', function () {
