@@ -443,28 +443,6 @@ https://github.com/yui/pure/blob/master/LICENSE.md
 
 @import 'vars';
 
-//** Background color of the whole progress component
-@progress-bg: #f5f5f5;
-
-//** Default progress bar color
-@progress-bar-bg: @light-blue;
-
-//** Secondary progress bar color
-@progress-bar-secondary-bg: @infoBlue;
-
-//** Tertiary progress bar color
-@progress-bar-tertiary-bg: @actionGreen;
-
-@font-size-base: @appFontSize;
-@font-size-large:         ceil((@font-size-base * 1.25));
-@font-size-small:         ceil((@font-size-base * 0.85)); 
-
-//** Unit-less `line-height` for use in components like buttons.
-@line-height-base:        1.428571429; // 20/14
-
-//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
-@line-height-computed:    floor((@font-size-base * @line-height-base)); // ~20px
-
 // Bar animations
 // -------------------------
 // WebKit
@@ -1633,16 +1611,18 @@ body:hover .visually-hidden button {
             .page-title {
                 margin: 0;
                 position: relative;
+                word-break: break-all;
             }
 
             .page-subtitle {
                 margin-top: 0;
+                word-break: break-all;
             }
         }
 
         & > .rx-notifications {
             position:fixed;
-            z-index: 5;
+            z-index: 20;  // accommodate rxSelect .fake-select class
             top: 0px;
             left: 300px;
             right: 100px;
@@ -1675,7 +1655,6 @@ body:hover .visually-hidden button {
         padding: 1px 2px;
         .border-radius(2px);
         top: 9px;
-        position: absolute;
         color: #427fc4;
     }
 }
@@ -2361,21 +2340,31 @@ th.filter-header {
     button {
         margin: 0;
     }
+    [rx-form] {
+        margin: 10px 0;
+        rx-form-section {
+            margin: 0;
+            rx-field {
+                margin-bottom: 0;
+            }
+        }
+    }
 }
 
 // Batch actions menu is visible even when header floats
-// There's some black magic here. For whatever reason, we have to 
+// There's some black magic here. For whatever reason, we have to
 // add z-index:2 to the other rows in the header, *not* the row
 // that the batch actions menu lives in.
 tr.rx-floating-header:not(.rx-table-filter-row) {
     z-index: 2;
 }
 
-// Added to accommodate dropdown boxes to display "on top" of rx-floating-header 
-// components 
+// Added to accommodate dropdown boxes to display "on top" of rx-floating-header
+// components
 thead .rx-floating-header:first-child {
     z-index: 3;
 }
+
 /*
  * rxForm
  */
@@ -2949,6 +2938,14 @@ rx-field-name {
                 margin-bottom: (@rxForm-gutter * 1.25);
             }
         }
+
+        &[controlled-width] {
+            & > div,
+            rx-field {
+                max-width: @rxForm-field-max-width;
+            }
+        }
+
     }//rx-form-section
 }//[rx-form]
 
@@ -3858,23 +3855,13 @@ rx-search-box {
 /*
  * rxSelectFilter
  */
-.rx-select-filter {
-    .rxSelect {
-        display: inline-block;
-    }
-
-    .select-wrapper:not(:first-child) {
-        padding-left: 20px;
-    }
-
-    .rxSelect, .field-label {
-        vertical-align: middle;
-    }
-
-    .field-label {
-        margin-right: 5px;
-    }
+rx-select-filter {
+    flex: 1;
+    display: flex;
+    flex-flow: row wrap;
+    word-break: break-all;
 }
+
 /*
  * rxSortableColumn
  */

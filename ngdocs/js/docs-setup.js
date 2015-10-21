@@ -23,24 +23,6 @@ NG_DOCS={
     },
     {
       "section": "api",
-      "id": "encore.ui.rxTags:rxTags",
-      "shortName": "rxTags",
-      "type": "directive",
-      "moduleName": "encore.ui",
-      "shortDescription": "",
-      "keywords": "api binding determines directive encore list model object option options provided rxtags tag tags ui"
-    },
-    {
-      "section": "api",
-      "id": "encore.ui.rxTags:xor",
-      "shortName": "xor",
-      "type": "filter",
-      "moduleName": "encore.ui",
-      "shortDescription": "Returns the exclusive or of two arrays.",
-      "keywords": "api array arrays elements encore excluded exclusive filter input returns rxtags second ui unique"
-    },
-    {
-      "section": "api",
       "id": "grid",
       "shortName": "grid",
       "type": "overview",
@@ -738,7 +720,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxForm",
       "shortDescription": "rxForm Component",
-      "keywords": "$error accessibility accomodate address advanced aim angular api applicable apply applying arrange arrangement asterisk attribute based breakage brittle browser check child children class closest code column columnar common comparing compatible component components conjunction console control controls cost create creating css custom default define definitions demo demoform denote deprecated description design designed desired details directive directives display displaying div documentation easier element elements eliminating email enabled encore encoreui ensure equivalent error errors evaluates example examples explicit fashion feedback field fields flexibility foo foocheck form forms framework free-range full functional functionality future grow heading help helps hierarchical hierarchy html implemented incredibly individual inline inline-error inputs invalid items javascript label layout left legend limited looked markup message messages migrating monthly nest nested ng-model ng-required ng-show note number online overview parent pertains place placement placing plenty prefix project prone properly properties provide ranges release removed replaced replacement required requirements resize responsive row rule rules rx-field rx-form rx-form-section rxbutton rxcharactercount rxcheckbox rxfield rxfieldcontent rxfieldname rxform rxformfieldset rxformitem rxformsection rxformutils rxhelptext rxinlineerror rxinput rxmultiselect rxoptiontable rxprefix rxradio rxsearchbox rxselect rxsuffix rxtoggleswitch sections service services set showing single specific stacked stand-in standard standardizing style styled suffix tab text textarea thing throw thumb top true turn type typeahead unnecessary upgrade useremail validation validator validators variant vary versus volume warning width wordy work wrap"
+      "keywords": "$error accessibility accomodate address advanced aim angular api applicable apply applying arrange arrangement asterisk attribute based breakage brittle browser check child children class closest code column columnar common comparing compatible component components conjunction console control controls cost create creating css custom default define definitions demo demoform denote deprecated description design designed desired details directive directives display displaying div documentation easier element elements eliminating email enabled encore encoreui ensure equivalent error errors evaluates example examples explicit fashion feedback field fields flexibility foo foocheck form forms framework free-range full functional functionality future grow heading help helps hierarchical hierarchy html implemented incredibly individual inline inline-error inputs invalid items javascript label layout left legend limited looked markup message messages migrating monthly nest nested ng-model ng-required ng-show note number online overview parent pertains place placement placing plenty prefix project prone properly properties provide ranges release removed replaced replacement required requirements resize responsive row rule rules rx-field rx-form rx-form-section rx-select-filter rxbutton rxcharactercount rxcheckbox rxfield rxfieldcontent rxfieldname rxform rxformfieldset rxformitem rxformsection rxformutils rxhelptext rxinlineerror rxinput rxmultiselect rxoptiontable rxprefix rxradio rxsearchbox rxselect rxselectfilter rxsuffix rxtoggleswitch sections service services set showing single specific stacked stand-in standard standardizing style styled suffix tab text textarea thing throw thumb top true turn type typeahead unnecessary upgrade useremail validation validator validators variant vary versus volume warning width wordy work wrap"
     },
     {
       "section": "api",
@@ -801,7 +783,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxForm",
       "shortDescription": "Structural element directive used for layout of sub-elements.",
-      "keywords": "api attribute children default directive display div element elements horizontally html inline layout manner parent place rx-form rx-form-section rxfield rxform stack stacked structural sub-elements vertically width"
+      "keywords": "api attribute children default directive display div element elements horizontally html inline layout manner parent place rx-form rx-form-section rxfield rxform rxselectfilter stack stacked structural sub-elements vertically width"
     },
     {
       "section": "api",
@@ -1053,7 +1035,7 @@ NG_DOCS={
       "type": "overview",
       "moduleName": "rxMultiSelect",
       "shortDescription": "rxMultiSelect Component",
-      "keywords": "api apis applicable component components directive directives links overview provided rxmultiselect rxselectoption service services"
+      "keywords": "api apis applicable checkboxes component components directive directives dropdown header issue links multi-select multiple option overview provided replacement rxmultiselect rxselectoption service services space table"
     },
     {
       "section": "api",
@@ -1061,8 +1043,8 @@ NG_DOCS={
       "shortName": "rxMultiSelect",
       "type": "directive",
       "moduleName": "rxMultiSelect",
-      "shortDescription": "A multi-select dropdown with checkboxes for each option",
-      "keywords": "api checkboxes directive dropdown input list multi-select ng-model option options property rxmultiselect scope stores"
+      "shortDescription": "This component is a multi-select dropdown with checkboxes for each option.",
+      "keywords": "$scope active allows api array attribute automatically binds checkboxes component control directive display dropdown dropdowns element equivalent header input issue item items label list model multi-select multiple n-1 ng-model option options passing preview property replacement requires rules rxmultiselect scope selected set space stores strings table text toggled values"
     },
     {
       "section": "api",
@@ -1070,8 +1052,8 @@ NG_DOCS={
       "shortName": "rxSelectOption",
       "type": "directive",
       "moduleName": "rxMultiSelect",
-      "shortDescription": "A single option for rxMultiSelect",
-      "keywords": "api content directive option provided rxmultiselect single text transcluded"
+      "shortDescription": "A single option for use within rxMultiSelect.",
+      "keywords": "api attribute content defaults directive disabled element label option provided rxmultiselect single text titleized transcluded version"
     },
     {
       "section": "api",
@@ -1341,7 +1323,7 @@ NG_DOCS={
       "type": "directive",
       "moduleName": "rxSelectFilter",
       "shortDescription": "Automatically creates the appropriate dropdowns to manage a filter object.",
-      "keywords": "$scope api appropriate automatically controller create creates directive dropdowns filter instance manage modify object options rxselectfilter selectfilter set template"
+      "keywords": "$scope api appropriate automatically child component controller create creates directive dropdowns enforces filter hierarchy instance instaniated instantiated manage modify object options relationship rxform rxformsection rxselectfilter selectfilter set usage validation"
     },
     {
       "section": "api",
@@ -1531,6 +1513,33 @@ NG_DOCS={
       "moduleName": "rxStatusColumn",
       "shortDescription": "A set of methods for creating mappings between a product&#39;s notion",
       "keywords": "_could_ accommodate active addapi addglobal advantage angular api apiname apis argument array attribute based basic blocked call calls chance check code constant convert create creating cumbersome declare define defined defines defining directive easily eliminates encoreui equivalent error errors example factory failed failure fall find foo forced framework full function getinternalmapping globally group grouped help identifiers includes individual info instances intended internal leaving list map mapped mapping mappings maptoactive maptodisabled maptoerror maptoinfo maptopending maptowarning method methods misassigning misspelling mistyping notion object optional pair parameter pass passed physically product provide provided receives registered repetition required return returns room rules running rx-status-column rxstatuscolumn rxstatusmappings second separately service set shorter shutdown single specific standby status statuses statusstring stopping string sufficient suspended takes template three transformation type utility values warning"
+    },
+    {
+      "section": "api",
+      "id": "rxTags",
+      "shortName": "rxTags",
+      "type": "overview",
+      "moduleName": "rxTags",
+      "shortDescription": "rxTags component",
+      "keywords": "api apply component descriptions directive directives entity filter filters overview predetermined rxtags xor"
+    },
+    {
+      "section": "api",
+      "id": "rxTags.directive:rxTags",
+      "shortName": "rxTags",
+      "type": "directive",
+      "moduleName": "rxTags",
+      "shortDescription": "Like native form components, this directive uses ng-model to store",
+      "keywords": "$scope accepts additional api applied array attribute binding blue category color coloroptions colors component components customize default determines directive disabled form ignored key list meaning model native ng-disabled ng-model object objects option options properties provided represent required rxtags selected selecting single store subset tag tag0 tags text"
+    },
+    {
+      "section": "api",
+      "id": "rxTags.filter:xor",
+      "shortName": "xor",
+      "type": "filter",
+      "moduleName": "rxTags",
+      "shortDescription": "Returns the exclusive or of two arrays.",
+      "keywords": "api array arrays elements excluded exclusive filter input returns rxtags second unique"
     },
     {
       "section": "api",

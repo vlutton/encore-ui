@@ -1,4 +1,4 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxForm/rxForm.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/11a003c/src/rxForm/rxForm.js#L222" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable=""></code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxForm/rxForm.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/0fcee95/src/rxForm/rxForm.js#L223" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable=""></code>
 <div><span class="hint"></span>
 </div>
 </h1>
@@ -16,6 +16,7 @@ a common HTML layout and style for all form elements, which helps ensure form ac
 <ul>
 <li><a href="#/api/rxForm.directive:rxForm">rxForm</a><ul>
 <li><a href="#/api/rxForm.directive:rxFormSection">rxFormSection</a> (0..N)<ul>
+<li><a href="#/api/rxSelectFilter.directive:rxSelectFilter">rxSelectFilter</a> (0..N)</li>
 <li><a href="#/api/rxForm.directive:rxField">rxField</a> (0..N)<ul>
 <li><a href="#/api/rxForm.directive:rxFieldName">rxFieldName</a> (0..1)</li>
 <li><a href="#/api/rxForm.directive:rxFieldContent">rxFieldContent</a> (0..1)<ul>
@@ -63,8 +64,8 @@ a common HTML layout and style for all form elements, which helps ensure form ac
 <h3 id="layout_stacked-field-arrangement">Stacked Field Arrangement</h3>
 <p>By default, <code>rx-form-section</code> will arrange its children inline, in a row.  To obtain a stacked, columnar layout
 for a particular section, place the <code>stacked</code> attribute on the <code>rx-form-section</code> element.  This will arrange the
-<code>rx-field</code> and <code>div</code> children elements in a columnar fashion.  This can be used in conjunction with sections taking
- the full width of the form.</p>
+<code>rx-field</code>, <code>rx-select-filter</code>, and <code>div</code> children elements in a columnar fashion.  This can be used in conjunction 
+with sections taking the full width of the form.</p>
 <p> <em>See &quot;Advanced Inputs&quot; in the <a href="/#/components/rxForm">demo</a> for an example.</em></p>
 <h3 id="layout_responsive">Responsive</h3>
 <p><code>rx-field</code> and <code>div</code> elements that are immediate children of <code>rx-form-section</code> will grow from 250px to full width of 
