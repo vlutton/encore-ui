@@ -20,6 +20,7 @@
  *
  * * {@link rxForm.directive:rxForm rxForm}
  *   * {@link rxForm.directive:rxFormSection rxFormSection} (0..N)
+ *      * {@link rxSelectFilter.directive:rxSelectFilter rxSelectFilter} (0..N)
  *      * {@link rxForm.directive:rxField rxField} (0..N)
  *        * {@link rxForm.directive:rxFieldName rxFieldName} (0..1)
  *        * {@link rxForm.directive:rxFieldContent rxFieldContent} (0..1)
@@ -54,8 +55,8 @@
  * ## Stacked Field Arrangement
  * By default, `rx-form-section` will arrange its children inline, in a row.  To obtain a stacked, columnar layout
  * for a particular section, place the `stacked` attribute on the `rx-form-section` element.  This will arrange the
- * `rx-field` and `div` children elements in a columnar fashion.  This can be used in conjunction with sections taking
- *  the full width of the form.
+ * `rx-field`, `rx-select-filter`, and `div` children elements in a columnar fashion.  This can be used in conjunction 
+ * with sections taking the full width of the form.
  *
  *  *See "Advanced Inputs" in the {@link /#/components/rxForm demo} for an example.*
  *
@@ -271,9 +272,9 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
  * @description
  * Structural element directive used for layout of sub-elements.
  *
- * By default, all `rxField` elements will display inline (horizontally).
- * If you wish to display `rxField` elements in a stacked manner, you may
- * place the `stacked` attribute on `rx-form-section`
+ * By default, all `rxField`, `rxSelectFilter`, and `<div>` elements will display inline (horizontally).
+ * If you wish to display these elements in a stacked manner, you may
+ * place the `stacked` attribute on `rx-form-section`.
  *
  * <dl>
  *   <dt>Display:</dt>
@@ -289,6 +290,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
  *   <dd>
  *     <ul>
  *       <li>{@link rxForm.directive:rxField rxField}</li>
+ *       <li>{@link rxSelectFilter.directive:rxSelectFilter rxSelectFilter}</li>
  *       <li>HTML DIV Element</li>
  *     </ul>
  *   </dd>
@@ -300,6 +302,7 @@ angular.module('encore.ui.rxForm', ['ngSanitize', 'encore.ui.rxMisc'])
  * <form rx-form>
  *   <rx-form-section>
  *     <rx-field>...</rx-field>
+ *     <rx-select-filter>...</rx-select-filter>
  *     <div>...</div>
  *   </rx-form-section>
  * </form>
