@@ -1,20 +1,19 @@
 /*
  * rxToggleSwitch
  */
+@textColor: @white;
+@offStateColor: #b3b3b3;
+@borderColor: darken(@offStateColor, 10%);
+@onStateColor: #00ac31;
+@knobColor: @white;
+@knobBorderColor: darken(@knobColor, 10%);
+@knobSize: 1.2em;
+@edgeSpacing: @knobSize * 0.9;
+@lineHeight: @knobSize * 1.25;
+@blurDist: @edgeSpacing;
+@blurSpread: (@edgeSpacing/3) * -1;
+
 .rx-toggle-switch {
-
-    @textColor: #fff;
-    @offStateColor: #b3b3b3;
-    @borderColor: darken(@offStateColor, 10%);
-    @onStateColor: #00ac31;
-    @knobColor: #fff;
-    @knobBorderColor: darken(@knobColor, 10%);
-    @knobSize: 1.2em;
-    @edgeSpacing: @knobSize * 0.9;
-    @lineHeight: @knobSize * 1.25;
-    @blurDist: @edgeSpacing;
-    @blurSpread: (@edgeSpacing/3) * -1;
-
     font-size: 0.8em;
     line-height: @lineHeight;
 

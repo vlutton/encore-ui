@@ -15,10 +15,10 @@
         top: 0;
         left: 0;
         display: block;
-        margin: 0px;
-        padding: 0px;
-        border: 0px;
-        outline: 0px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
     }
 
     .fake-checkbox {
@@ -59,7 +59,7 @@
         &:checked + .fake-checkbox {
             background-color: @rxCheckbox-background-color-selected;
             color: @rxCheckbox-color;
-            border: none;
+            border: 0;
         }
 
         .disabled() {
@@ -73,7 +73,7 @@
             // disabled, checked
             &:checked ~ .fake-checkbox {
                 background-color: @inputBackgroundDisabled;
-                border: none;
+                border: 0;
             }
         }//.disabled()
 
