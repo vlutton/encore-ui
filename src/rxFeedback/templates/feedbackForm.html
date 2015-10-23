@@ -19,16 +19,11 @@
               ng-init="fields.type = feedbackTypes[0]"
               required="true"></select>
         </rx-input>
-        <rx-help-text ng-if="state === 'redirect'">You'll be redirected to a new window.</rx-help-text>
+        <rx-help-text ng-if="state === 'redirect'">Click continue to be redirected to the 'Feedback Forum' page to submit your feedback.</rx-help-text>
       </rx-field-content>
     </rx-field>
   </rx-form-section>
-  <rx-form-section ng-show="fields.type" ng-switch-when="redirect">
-    <div class="modal-well">
-      Popup Blocker? <a href="{{ route }}" target="_blank">Go to the page directly.</a>
-    </div>
-  </rx-form-section>
-  <rx-form-section ng-show="fields.type" ng-switch-default>
+  <rx-form-section ng-show="fields.type" ng-if="state !== 'redirect'">
     <rx-field>
       <rx-field-name class="feedback-description">{{fields.type.prompt}}:</rx-field-name>
       <rx-field-content>
