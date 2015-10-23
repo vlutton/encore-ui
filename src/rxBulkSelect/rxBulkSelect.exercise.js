@@ -6,6 +6,7 @@ var _ = require('lodash');
    @exports encore.exercise.rxBulkSelect
    @param {Object} [options=] - Test options. Used to build valid tests.
    @param {rxBulkSelect} [options.instance=] - Component to exercise.
+   @param {string[]} [options.batchActions] - List of batch actions to exercise, will not run exercises if empty.
    @param {number} [options.count=10] - Number of items in the table.
    @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @example
@@ -21,7 +22,8 @@ exports.rxBulkSelect = function (options) {
     }
 
     options = _.defaults(options, {
-        count: 10
+        count: 10,
+        batchActions: []
     });
 
     return function () {
@@ -99,5 +101,40 @@ exports.rxBulkSelect = function (options) {
             expect(component.isEnabled()).to.eventually.be.false;
         });
 
+        if (options.batchActions.length > 0) {
+            it('should have a batch actions menu', function () {
+                expect(component.batchActions.isPresent()).to.eventually.be.true;
+            });
+
+            it('should disable the batch actions menu when no items selected', function () {
+                expect(component.batchActions.isEnabled()).to.eventually.be.false;
+            });
+
+            it('should enable the batch actions menu when an item is selected', function () {
+                component.row(0).select();
+                expect(component.batchActions.isEnabled()).to.eventually.be.true;
+            });
+
+            it('should expand the batch action menu when clicked', function () {
+                component.batchActions.expand();
+                expect(component.batchActions.isExpanded()).to.eventually.be.true;
+            });
+
+            it('should have the correct number of batch actions', function () {
+                expect(component.batchActions.actionCount()).to.eventually.eql(options.batchActions.length);
+            });
+
+            _.each(options.batchActions, function (action) {
+                it('should have the batch action "' + action + '"', function () {
+                    expect(component.batchActions.hasAction(action)).to.eventually.be.true;
+                });
+
+                it('should be able to open the modal for batch action "' + action + '"', function () {
+                    var modal = component.batchActions.action(action).openModal();
+                    expect(modal.isDisplayed()).to.eventually.be.true;
+                    modal.close();
+                });
+            });
+        }
     };
 };
