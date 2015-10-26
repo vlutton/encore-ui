@@ -7,7 +7,7 @@
     text-align: center;
     td {
         padding: 0;
-        background: #fff;
+        background: @white;
     }
 }
 
@@ -34,7 +34,7 @@
         padding: 6px 12px;
         margin-left: -1px;
         text-decoration: none;
-        background: #fff;
+        background: @white;
         border-top: 2px solid transparent;
         color: @paginationColor;
     }
@@ -57,7 +57,7 @@
             position: absolute;
             border: 6px solid transparent;
             border-bottom-color: @infoBlue;
-            border-top: none;
+            border-top: 0;
             left: 10px;
             top: 55%;
             margin-top: -4px;
@@ -114,7 +114,7 @@
     .pagination > .page-links > li > span:hover,
     .pagination > .page-links > li > a:focus,
     .pagination > .page-links > li > span:focus {
-        background: #eee;
+        background: #eeeeee;
     }
 
     .pagination > .page-links > .active > a,
@@ -124,9 +124,9 @@
     .pagination > .page-links > .active > a:focus,
     .pagination > .page-links > .active > span:focus {
         cursor: default;
-        border-top-color: #000;
-        color: #000;
-        background: #fff;
+        border-top-color: @black;
+        color: @black;
+        background: @white;
     }
 
     .pagination .disabled > span,
@@ -167,11 +167,11 @@
         font-size: 18px;
         margin-top: 15%;
         text-align: center;
-        color: #777;
+        color: #777777;
     }
     i {
         font-size: 30px;
         margin-left: 25px;
-        color: #777;
+        color: #777777;
     }
 }

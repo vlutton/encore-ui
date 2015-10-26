@@ -1,4 +1,4 @@
-@import 'mixins';
+@import "mixins";
 
 .rx-notifications {
     margin-bottom: 1.5em;
@@ -14,12 +14,12 @@
 
         .button {
             font-weight: normal;
-            margin-bottom: 0px;
+            margin-bottom: 0;
         }
 
         &.notification-success {
             background-color: #ddffd3;
-            background-image: url('images/green-checkmark-circled.png');
+            background-image: url("images/green-checkmark-circled.png");
             color: #45ad26;
             a {
                 color: #7db162;
@@ -27,7 +27,7 @@
         }
         &.notification-info {
             background-color: #83c9fe;
-            background-image: url('images/info-circled.png');
+            background-image: url("images/info-circled.png");
             color: #1672b9;
             a {
                 color: #568fb8;
@@ -35,16 +35,16 @@
         }
         &.notification-warning {
             background-color: #ffa61b;
-            background-image: url('images/warning-triangle.png');
-            color: #fff;
+            background-image: url("images/warning-triangle.png");
+            color: @white;
             a {
                 color: #f1d6af;
             }
         }
         &.notification-error {
             background-color: #f21a1a;
-            background-image: url('images/error-stop.png');
-            color: #fff;
+            background-image: url("images/error-stop.png");
+            color: @white;
             a {
                 color: #fdaaab;
             }
@@ -67,34 +67,37 @@
         top: 0;
         height: 100%;
         padding: 0 15px;
-        content: '\00D7';
+        content: "\00D7";
         .opacity(.5);
-        color: #000;
+        color: @black;
         &:hover,
         &:focus {
-            .opacity(.8);
+            .opacity(0.8);
             text-decoration: none;
         }
     }
 }
 
-.animate-fade.ng-enter,
-.animate-fade.ng-leave {
-    -webkit-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-}
+.animate-fade {
+    &.ng-enter,
+    &.ng-leave {
+        -webkit-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        -moz-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        -ms-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        -o-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
 
-.animate-fade.ng-leave.ng-leave-active,
-.animate-fade.ng-enter {
-    opacity:0;
-}
+    &.ng-leave.ng-leave-active,
+    &.ng-enter {
+        opacity: 0;
+    }
 
-.animate-fade.ng-leave,
-.animate-fade.ng-enter.ng-enter-active {
-    opacity:1;
-}
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+        opacity: 1;
+    }
+}//.animate-fade
+

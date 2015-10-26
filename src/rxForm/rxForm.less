@@ -44,7 +44,7 @@
 
 // deprecated
 .field-label,
-.field-legend, {
+.field-legend {
     color: @inputLabelColor;
     font-size: 1.1em;
     flex: 0 0 @inputLabelWidth;
@@ -99,7 +99,7 @@
 
     textarea {
         .inputBorderPadding;
-        background-color: #fff;
+        background-color: @white;
         width: 100%;
         position: relative;
         z-index: 2;
@@ -303,11 +303,10 @@
         }
 
         .field-label,
-        .field-legend, {
+        .field-legend {
             font-size: 0.8em;
             display: block;
         }
-
     }
 
     // This is selecting based off of the element so that we can be sure to set
@@ -482,8 +481,12 @@ rx-field-name {
                         align-items: center; // content is vertically centered
                     }
 
-                    rx-prefix:first-child { padding-left: 0px; }
-                    rx-suffix:last-child { padding-right: 0px; }
+                    rx-prefix:first-child {
+                        padding-left: 0px;
+                    }
+                    rx-suffix:last-child {
+                        padding-right: 0px;
+                    }
 
                     /* ===== Other Directive Support ===== */
                     .rxSelect {
@@ -556,8 +559,12 @@ rx-field-name {
             .button {
                 margin: 2px;
 
-                &:first-of-type { margin-left: 0px; }
-                &:last-of-type { margin-right: 0px; }
+                &:first-of-type {
+                    margin-left: 0px;
+                }
+                &:last-of-type {
+                    margin-right: 0px;
+                }
             }
         }
 
@@ -578,6 +585,5 @@ rx-field-name {
                 max-width: @rxForm-field-max-width;
             }
         }
-
     }//rx-form-section
 }//[rx-form]

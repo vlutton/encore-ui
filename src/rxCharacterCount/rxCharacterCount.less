@@ -2,23 +2,29 @@
  * rxCharacterCount
  */
 
-// Wrapper provides proper width for text area and positioning 
-// character count. For specific use cases in a project, 
+// Wrapper provides proper width for text area and positioning
+// character count. For specific use cases in a project,
 // custom wrappers with custom widths can be set.
 .counted-input-wrapper {
     width: 375px;
-    // These two selectors must always be styled with the same width.
-    .input-highlighting, textarea {
-        width: 370px;
-    }
     position: relative;
     background-color: #ffffff;
-    input, textarea {
-        position: relative; // Ensure the input is layered over the highlighting without z-index
+
+    // These two selectors must always be styled with the same width.
+    .input-highlighting,
+    textarea {
+        width: 370px;
+    }
+
+    input,
+    textarea {
+        // Ensure the input is layered over the highlighting without z-index
+        position: relative;
         background-color: transparent;
         resize: none;
         .inputBorderPadding;
     }
+
     .input-highlighting {
         position: absolute;
         top: 4px;
@@ -26,6 +32,7 @@
         white-space: pre-wrap;
         word-wrap: break-word;
         color: transparent;
+
         .over-limit-text {
             background-color: @warnRed;
             opacity: 0.3;
@@ -35,6 +42,7 @@
     .character-countdown {
         text-align: right;
         color: @subduedTitle;
+
         &.near-limit {
             color: @orange;
         }

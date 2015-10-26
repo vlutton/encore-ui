@@ -1,60 +1,30 @@
-/*
-# rxBreadcrumbs
-
-They show your position within the site heirarchy.
-
-```
-<ol class="rx-breadcrumbs">
-    <li class="breadcrumb">
-        <span>
-            <a href="#" class="breadcrumb-name first">First Breadcrumb</a>
-        </span>
-    </li>
-    <li class="breadcrumb">
-        <span>
-            <a href="#" class="breadcrumb-name">Middle Breadcrumb</a>
-        </span>
-    </li>
-    <li class="breadcrumb">
-        <span>
-            <a href="#" class="breadcrumb-name :hover">Hovered Breadcrumb</a>
-        </span>
-    </li>
-    <li class="breadcrumb">
-        <span class="breadcrumb-name last">Last Breadcrumb</span>
-    </li>
-</ol>
-```
-*/
+@import "vars";
 
 .rx-breadcrumbs {
     overflow: hidden;
     border-style: solid;
-    border-color: #ccc;
+    border-color: #cccccc;
     float: left;
 
     .breadcrumb {
         float: left;
 
-        @breadcrumbHeight: 1.2em;
-        @breadcrumbArrowWidth: 9px;
-
         .breadcrumb-name {
             padding: @breadcrumbHeight/2 1em @breadcrumbHeight/2 2em;
             font-size: 0.9em;
             display: block;
-            color: #555;
+            color: #555555;
             position: relative;
             text-decoration: none;
             text-shadow: 0 1px 0 rgba(255,255,255,.5);
-            background: #ddd;
+            background: #dddddd;
         }
         .breadcrumb-name.last {
             background: transparent;
         }
 
         a::after,
-        a::before{
+        a::before {
             content: "";
             position: absolute;
             top: 50%;
@@ -64,13 +34,13 @@ They show your position within the site heirarchy.
             right: -@breadcrumbArrowWidth;
         }
 
-        a::after{
+        a::after {
             /* TODO add in border gradient to match nav background */
-            border-left-color: #ddd;
+            border-left-color: #dddddd;
             z-index: 2;
         }
-        a::before{
-            border-left-color: #ccc;
+        a::before {
+            border-left-color: #cccccc;
             right: -(@breadcrumbArrowWidth + 1);
             z-index: 1;
         }
@@ -84,15 +54,16 @@ They show your position within the site heirarchy.
         }
 
         a:hover {
-            background: #fff;
+            background: @white;
         }
         a:hover::after {
-            border-left-color: #fff;
+            border-left-color: @white;
         }
     }
 
     .status-tag {
-        &.alpha-status, &.beta-status {
+        &.alpha-status,
+        &.beta-status {
             margin-left: 6px;
             position: static;
         }
