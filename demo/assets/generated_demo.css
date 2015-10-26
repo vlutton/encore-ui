@@ -118,9 +118,6 @@ table.component-attributes td {
 p {
   line-height: 1.5;
 }
-.rx-app .page-body .page-titles {
-  float: initial;
-}
 .markdown ul,
 .markdown ol {
   display: inline;
