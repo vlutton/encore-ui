@@ -38,7 +38,7 @@ module.exports = {
                 return src;
             }
         },
-        src: ['src/*/*.page.js'],
+        src: ['src/**/*.page.js'],
         dest: 'utils/rx-page-objects/index.js'
     },
     rxPageObjectsExercises: {
