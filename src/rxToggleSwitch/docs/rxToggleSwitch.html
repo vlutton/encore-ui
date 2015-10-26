@@ -23,6 +23,15 @@
         </rx-toggle-switch>
     </p>
     <p>
+        <h3>Attempting a failed asynchronous operation</h3>
+        <rx-toggle-switch class="demo-failed-async"
+            ng-model="toggle5"
+            post-hook="attemptFailedChange()"
+            true-value="active"
+            disabled="loading5">
+        </rx-toggle-switch>
+    </p>
+    <p>
         <h3>Disabled</h3>
         <rx-toggle-switch class="demo-disabled" ng-model="toggle4" disabled="true"></rx-toggle-switch>
     </p>
