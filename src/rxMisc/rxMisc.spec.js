@@ -37,8 +37,8 @@ describe('rxDOMHelper', function () {
     });
 
     it('should allow query selectors for finding nested objects', function () {
-        var el = angular.element('<div><span><h1 class="title">Title!</h1></span></div>'),
-            title = rxjq.find(el, '.title');
+        var el = angular.element('<div><span><h1 class="my-title">Title!</h1></span></div>'),
+            title = rxjq.find(el, '.my-title');
 
         expect(title.text()).to.equal('Title!');
         expect(title[0].nodeName).to.equal('H1');
