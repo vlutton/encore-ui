@@ -16,6 +16,14 @@ module.exports = {
             rewrite: {
                 '/api/identity': '/v2.0/'
             }
+        },
+        {
+            context: '/encore-ui',
+            host: 'localhost',
+            port: 9001,
+            rewrite: {
+                '/encore-ui': '/'
+            }
         }
     ],
     dist: {

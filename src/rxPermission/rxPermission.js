@@ -3,8 +3,8 @@
  * @name rxPermission
  * @description
  * # rxPermission Component
- * The rxPermission component provides functionality to perform checks against existing user permissions in 
- * EncoreUI.  It provides a {@link rxPermission.service:Permission Permission} service for working with roles, and 
+ * The rxPermission component provides functionality to perform checks against existing user permissions in
+ * EncoreUI.  It provides a {@link rxPermission.service:Permission Permission} service for working with roles, and
  * a {@link rxPermission.directive:rxPermission rxPermission} directive for excluding DOM content based on roles.
  *
  * ## Services
@@ -19,7 +19,7 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
  * @name rxPermission.service:Permission
  * @description
  * Simple service for accessing roles and permissions for a user.
- * 
+ *
  * @requires rxSession.service:Session
  *
  * @example
@@ -40,11 +40,11 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     var userRoles = function () {
         return _.pluck(permissionSvc.getRoles(), 'name');
     };
- 
+
     /**
      * @description Takes a function and a list of roles, and returns the
      * result of calling that function with `roles`, and comparing to userRoles().
-     * 
+     *
      * @param {function} fn - Comparison function to use. _.any, _.all, etc.
      * @param {array} roles - List of desired roles
      */
@@ -67,7 +67,7 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
      * @methodOf rxPermission.service:Permission
      * @description
      * Fetch all the roles tied to the user (in the exact format available in their Session token).
-     * 
+     *
      * @returns {Array} List of all roles associated to the user.
      */
     permissionSvc.getRoles = function () {
@@ -79,7 +79,7 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     /**
      * @name  hasRole
      * @ngdoc method
-     * @methodOf rxPermission.service:Permission 
+     * @methodOf rxPermission.service:Permission
      * @description Check if user has at least _one_ of the given roles.
      * @param {Array} roles List of roles to check against
      * @returns {Boolean} True if user has at least _one_ of the given roles; otherwise, False.
@@ -91,11 +91,11 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     /**
      * @name  hasAllRoles
      * @ngdoc method
-     * @methodOf rxPermission.service:Permission 
+     * @methodOf rxPermission.service:Permission
      * @description Checks if user has _every_ role in given list.
      * @param {Array} roles List of roles to check against
      * @returns {Boolean} True if user has _every_ role in given list; otherwise, False.
-     * 
+     *
      */
     permissionSvc.hasAllRoles = function (roles) {
         return checkRoles(roles, _.all);
@@ -109,9 +109,9 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
  * @restrict E
  * @scope
  * @description
- * Simple directive which will show or hide content based on whether or not the user has the specified role. See 
- * the `rxPermission` component {@link /#/components/rxPermission demo} for an example.
- * 
+ * Simple directive which will show or hide content based on whether or not the user has the specified role. See
+ * the `rxPermission` component {@link /encore-ui/#/components/rxPermission demo} for an example.
+ *
  * @requires rxPermission.service:Permission
  *
  * @param {String} role - Name of required role.

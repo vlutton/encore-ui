@@ -4,15 +4,15 @@
  * @description
  * # rxForm Component
  *
- * The rxForm component contains a set of directives used to create forms throughout Encore.  These directives provide 
+ * The rxForm component contains a set of directives used to create forms throughout Encore.  These directives provide
  * a common HTML layout and style for all form elements, which helps ensure form accessibility and makes creating new
  *  forms easier.
  *
- * ## Directives Are Hierarchical 
+ * ## Directives Are Hierarchical
  *
  * To provide a standard layout of form fields (and so CSS rules can apply that layout), most of the new directives
  *  must be nested in a specific hierarchy.
- *  If you do not nest these elements properly, Angular will throw an error (this is by design). So, rule of thumb, 
+ *  If you do not nest these elements properly, Angular will throw an error (this is by design). So, rule of thumb,
  *  aim for `0` console errors.
  *
  * These directives must be nested in the following hierarchy (*the ranges (e.g., 0..1) below denote how many items can
@@ -49,45 +49,45 @@
  * * {@link rxSelect}
  * * {@link rxToggleSwitch}
  * * {@link typeahead}
- * 
+ *
  * # Layout
- * 
+ *
  * ## Stacked Field Arrangement
  * By default, `rx-form-section` will arrange its children inline, in a row.  To obtain a stacked, columnar layout
  * for a particular section, place the `stacked` attribute on the `rx-form-section` element.  This will arrange the
- * `rx-field`, `rx-select-filter`, and `div` children elements in a columnar fashion.  This can be used in conjunction 
+ * `rx-field`, `rx-select-filter`, and `div` children elements in a columnar fashion.  This can be used in conjunction
  * with sections taking the full width of the form.
  *
- *  *See "Advanced Inputs" in the {@link /#/components/rxForm demo} for an example.*
+ *  *See "Advanced Inputs" in the {@link /encore-ui/#/components/rxForm demo} for an example.*
  *
  * ## Responsive
- * `rx-field` and `div` elements that are immediate children of `rx-form-section` will grow from 250px to full width of 
- * the section.  As such, you will see that these elements will wrap in the section if there's not enough width to 
+ * `rx-field` and `div` elements that are immediate children of `rx-form-section` will grow from 250px to full width of
+ * the section.  As such, you will see that these elements will wrap in the section if there's not enough width to
  * accomodate more than one child.
- * 
- * *You can see this in the {@link /#/components/rxForm demo} if you resize the width of your browser.*
+ *
+ * *You can see this in the {@link /encore-ui/#/components/rxForm demo} if you resize the width of your browser.*
  *
  * # Validation
  *
  * ## Required Fields
- * When displaying a field that should be required, please make use of the `ng-required` attribute for rxFieldName.  
- * When the value evaluates to true, an asterisk will display to the left of the field name.  You can see an example 
- * of this with the "Required Textarea" field name in the {@link /#/components/rxForm demo}.
+ * When displaying a field that should be required, please make use of the `ng-required` attribute for rxFieldName.
+ * When the value evaluates to true, an asterisk will display to the left of the field name.  You can see an example
+ * of this with the "Required Textarea" field name in the {@link /encore-ui/#/components/rxForm demo}.
  *
- * See {@link rxForm.directive:rxFieldName rxFieldName} 
+ * See {@link rxForm.directive:rxFieldName rxFieldName}
  * API Documentation for more information.
- * 
+ *
  * ## Custom Validators
  *
  * Angular provides its own validator when you use `type="email"`, and you can use `<rx-inline-error>` to turn email
  * validation errors into a styled message.  You can also use this element if you define a custom validator.
  *
  * ### Foocheck validator
- * The example shown in the "Email Address" example, uses a custom `foocheck` validator. Note that it is enabled by 
+ * The example shown in the "Email Address" example, uses a custom `foocheck` validator. Note that it is enabled by
  * placing the `foocheck` attribute in the `<input>` element, and using it with
- * `ng-show="demoForm.userEmail.$error.foocheck"`.  Check out the Javascript tab in 
- * the {@link /#/components/rxForm demo} to see how this validator is implemented.
- * 
+ * `ng-show="demoForm.userEmail.$error.foocheck"`.  Check out the Javascript tab in
+ * the {@link /encore-ui/#/components/rxForm demo} to see how this validator is implemented.
+ *
  * There are plenty of examples online showing the same thing.
  *
  * # Migrating Old Code
@@ -104,16 +104,16 @@
  * See "Before & After" below
  *
  * ### **rxFormFieldset**
- * Closest equivalent is to use `rxFormSection`. Your individual project requirements will vary, but the `legend` 
+ * Closest equivalent is to use `rxFormSection`. Your individual project requirements will vary, but the `legend`
  * attribute can be replaced with a heading variant where applicable.
  *
  * * If your legend pertains to at least one row, place a heading variant before the desired `rx-form-section`
  * element.
- * * If your legend pertains to controls in a single column, place a heading variant within the `rx-field` 
+ * * If your legend pertains to controls in a single column, place a heading variant within the `rx-field`
  * element at the top.
  *
  * ## Before &amp; After
- * The `rxFormItem` has been found to be incredibly brittle and prone to breakage. The new markup may look a little 
+ * The `rxFormItem` has been found to be incredibly brittle and prone to breakage. The new markup may look a little
  * wordy, but it is designed to provide enough flexibility for advanced field inputs. To be explicit, the new directives
  * were designed based on feedback around:
  *
@@ -161,7 +161,7 @@
  *   </rx-form-section>
  * </form>
  * </pre>
- * 
+ *
  * ### Monthly Cost
  * #### Before
  * <pre>
@@ -187,8 +187,8 @@
  *     </rx-field>
  *   </rx-form-section>
  * </form>
- * </pre>                                                                           
- * 
+ * </pre>
+ *
  * ## Services
  * * {@link rxForm.service:rxFormUtils rxFormUtils}
  *

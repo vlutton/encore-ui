@@ -41,7 +41,7 @@ angular.module('encore.ui.rxStatusColumn', [])
  * internally you will be receiving a number of different statuses from your
  * APIs, and will need to map them to these six statuses.
  *
- * The example in the {@link /#/components/rxStatusColumn demo} shows a typical
+ * The example in the {@link /encore-ui/#/components/rxStatusColumn demo} shows a typical
  * use of this directive, such as:
  *
  * <pre>
@@ -144,11 +144,11 @@ angular.module('encore.ui.rxStatusColumn', [])
  * <th rx-status-header></th>
  * </pre>
  * Note that status columns are sortable with
- * {@link /#/components/rxSortableColumn rxSortableColumn}, just like any
+ * {@link /encore-ui/#/components/rxSortableColumn rxSortableColumn}, just like any
  * other column. The demo below shows an example of this.
  *
  * One few things to note about the
- * {@link /#/components/rxStatusColumn demo}: The `<th>` is defined as:
+ * {@link /encore-ui/#/components/rxStatusColumn demo}: The `<th>` is defined as:
  *
  * <pre>
  * <th rx-status-header>
