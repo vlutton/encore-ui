@@ -1,13 +1,10 @@
-var rxAppPage = encore.rxApp;
-var rxPage = encore.rxPage;
-
 describe('rxApp', function () {
     var rxAppCustom, rxAppStandard;
 
     before(function () {
         demoPage.go('#/components/rxApp');
-        rxAppCustom = rxAppPage.initialize($('#custom-rxApp'));
-        rxAppStandard = rxAppPage.initialize($('#standard-rxApp'));
+        rxAppCustom = encore.rxApp.initialize($('#custom-rxApp'));
+        rxAppStandard = encore.rxApp.initialize($('#standard-rxApp'));
     });
 
     it('should show element', function () {
@@ -80,8 +77,8 @@ describe('rxPage', function () {
 
     before(function () {
         demoPage.go('#/components/rxApp');
-        standardPage = rxPage.initialize($('#standard-rxApp .rx-page'));
-        customPage = rxPage.initialize($('#custom-rxApp .rx-page'));
+        standardPage = encore.rxPage.initialize($('#standard-rxApp .rx-page'));
+        customPage = encore.rxPage.initialize($('#custom-rxApp .rx-page'));
     });
 
     it('should show element', function () {
@@ -124,7 +121,7 @@ describe('rxPage', function () {
         });
 
         it('should grab the main title', function () {
-            expect(rxPage.main.title).to.eventually.equal('configs');
+            expect(encore.rxPage.main.title).to.eventually.equal('configs');
         });
 
     });
