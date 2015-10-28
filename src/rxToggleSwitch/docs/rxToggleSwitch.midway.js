@@ -17,8 +17,13 @@ describe('rxToggleSwitch', function () {
         instance: encore.rxToggleSwitch.initialize($('.demo-post-hook'))
     }));
 
+    describe('failed asynchronous operation', encore.exercise.rxToggleSwitch({
+        instance: encore.rxToggleSwitch.initialize($('.demo-failed-async')),
+        enabledAtEnd: false
+    }));
+
     describe('disabled', encore.exercise.rxToggleSwitch({
-        cssSelector: '.demo-disabled',
+        instance: encore.rxToggleSwitch.initialize($('.demo-disabled')),
         disabled: true
     }));
 
