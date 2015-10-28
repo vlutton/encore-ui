@@ -1,3 +1,22 @@
+<a name="1.35.1"></a>
+### 1.35.1 (2015-10-28)
+
+
+#### Bug Fixes
+
+* **clearfix:** apply clearfix to documentation pages ([dc47e7a7](git@github.com:rackerlabs/encore-ui/commit/dc47e7a7f426ceede388614f35aff59613a2d661))
+* **css:**
+  * FRMW-421-Remove deprecated .title from rxActionMenu ([b638554a](git@github.com:rackerlabs/encore-ui/commit/b638554a7180b37174e401038e9e1ca983718fc2))
+  * FRMW-422-Remove .title class from rxMisc ([0e6304ff](git@github.com:rackerlabs/encore-ui/commit/0e6304ff64f14bda57fd1f6adac3449783d16201))
+* **links:** Fix demo links ([d5f1c852](git@github.com:rackerlabs/encore-ui/commit/d5f1c852b6407c44500296ff69ad5e816742189b))
+* **style:** remove unnecessary style ([076c30cb](git@github.com:rackerlabs/encore-ui/commit/076c30cb714bed26e5ff58cfd2dd853a0fa72301))
+
+
+#### Features
+
+* **demo:** FRMW-60-rxToggleSwitch failed async demo ([7e09d5aa](git@github.com:rackerlabs/encore-ui/commit/7e09d5aaa7d5ade2921dae4c41c8adb620f4bb00))
+
+
 <a name="1.35.0"></a>
 ## 1.35.0 (2015-10-26)
 
