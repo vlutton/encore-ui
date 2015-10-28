@@ -19,7 +19,7 @@ describe('rxActionMenu', function () {
     };
 
     var clickSomewhereElse = function () {
-        $('.component-demo .title').click();
+        $('#typical-usage').click();
     };
 
     before(function () {
