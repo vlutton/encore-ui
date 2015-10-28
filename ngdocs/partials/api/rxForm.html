@@ -1,15 +1,15 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxForm/rxForm.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/a759173/src/rxForm/rxForm.js#L223" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable=""></code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxForm/rxForm.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/2c6c929/src/rxForm/rxForm.js#L223" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable=""></code>
 <div><span class="hint"></span>
 </div>
 </h1>
 <div><div class="rxform-page"><h2 id="rxform-component">rxForm Component</h2>
-<p>The rxForm component contains a set of directives used to create forms throughout Encore.  These directives provide 
+<p>The rxForm component contains a set of directives used to create forms throughout Encore.  These directives provide
 a common HTML layout and style for all form elements, which helps ensure form accessibility and makes creating new
  forms easier.</p>
 <h3 id="rxform-component_directives-are-hierarchical">Directives Are Hierarchical</h3>
 <p>To provide a standard layout of form fields (and so CSS rules can apply that layout), most of the new directives
  must be nested in a specific hierarchy.
- If you do not nest these elements properly, Angular will throw an error (this is by design). So, rule of thumb, 
+ If you do not nest these elements properly, Angular will throw an error (this is by design). So, rule of thumb,
  aim for <code>0</code> console errors.</p>
 <p>These directives must be nested in the following hierarchy (<em>the ranges (e.g., 0..1) below denote how many items can
  be nested within its parent</em>):</p>
@@ -64,28 +64,29 @@ a common HTML layout and style for all form elements, which helps ensure form ac
 <h3 id="layout_stacked-field-arrangement">Stacked Field Arrangement</h3>
 <p>By default, <code>rx-form-section</code> will arrange its children inline, in a row.  To obtain a stacked, columnar layout
 for a particular section, place the <code>stacked</code> attribute on the <code>rx-form-section</code> element.  This will arrange the
-<code>rx-field</code>, <code>rx-select-filter</code>, and <code>div</code> children elements in a columnar fashion.  This can be used in conjunction 
+<code>rx-field</code>, <code>rx-select-filter</code>, and <code>div</code> children elements in a columnar fashion.  This can be used in conjunction
 with sections taking the full width of the form.</p>
-<p> <em>See &quot;Advanced Inputs&quot; in the <a href="/#/components/rxForm">demo</a> for an example.</em></p>
+<p> <em>See &quot;Advanced Inputs&quot; in the <a href="/encore-ui/#/components/rxForm">demo</a> for an example.</em></p>
 <h3 id="layout_responsive">Responsive</h3>
-<p><code>rx-field</code> and <code>div</code> elements that are immediate children of <code>rx-form-section</code> will grow from 250px to full width of 
-the section.  As such, you will see that these elements will wrap in the section if there&#39;s not enough width to 
+<p><code>rx-field</code> and <code>div</code> elements that are immediate children of <code>rx-form-section</code> will grow from 250px to full width of
+the section.  As such, you will see that these elements will wrap in the section if there&#39;s not enough width to
 accomodate more than one child.</p>
-<p><em>You can see this in the <a href="/#/components/rxForm">demo</a> if you resize the width of your browser.</em></p>
+<p><em>You can see this in the <a href="/encore-ui/#/components/rxForm">demo</a> if you resize the width of your browser.</em></p>
 <h2 id="validation">Validation</h2>
 <h3 id="validation_required-fields">Required Fields</h3>
-<p>When displaying a field that should be required, please make use of the <code>ng-required</code> attribute for rxFieldName.<br>When the value evaluates to true, an asterisk will display to the left of the field name.  You can see an example 
-of this with the &quot;Required Textarea&quot; field name in the <a href="/#/components/rxForm">demo</a>.</p>
-<p>See <a href="#/api/rxForm.directive:rxFieldName">rxFieldName</a> 
+<p>When displaying a field that should be required, please make use of the <code>ng-required</code> attribute for rxFieldName.
+When the value evaluates to true, an asterisk will display to the left of the field name.  You can see an example
+of this with the &quot;Required Textarea&quot; field name in the <a href="/encore-ui/#/components/rxForm">demo</a>.</p>
+<p>See <a href="#/api/rxForm.directive:rxFieldName">rxFieldName</a>
 API Documentation for more information.</p>
 <h3 id="validation_custom-validators">Custom Validators</h3>
 <p>Angular provides its own validator when you use <code>type=&quot;email&quot;</code>, and you can use <code>&lt;rx-inline-error&gt;</code> to turn email
 validation errors into a styled message.  You can also use this element if you define a custom validator.</p>
 <h4 id="validation_custom-validators_foocheck-validator">Foocheck validator</h4>
-<p>The example shown in the &quot;Email Address&quot; example, uses a custom <code>foocheck</code> validator. Note that it is enabled by 
+<p>The example shown in the &quot;Email Address&quot; example, uses a custom <code>foocheck</code> validator. Note that it is enabled by
 placing the <code>foocheck</code> attribute in the <code>&lt;input&gt;</code> element, and using it with
-<code>ng-show=&quot;demoForm.userEmail.$error.foocheck&quot;</code>.  Check out the Javascript tab in 
-the <a href="/#/components/rxForm">demo</a> to see how this validator is implemented.</p>
+<code>ng-show=&quot;demoForm.userEmail.$error.foocheck&quot;</code>.  Check out the Javascript tab in
+the <a href="/encore-ui/#/components/rxForm">demo</a> to see how this validator is implemented.</p>
 <p>There are plenty of examples online showing the same thing.</p>
 <h2 id="migrating-old-code">Migrating Old Code</h2>
 <h3 id="migrating-old-code_deprecated-directives">Deprecated Directives</h3>
@@ -97,16 +98,16 @@ you should upgrade your code.</p>
 <h4 id="migrating-old-code_deprecated-directives"><strong>rxFormItem</strong></h4>
 <p>See &quot;Before &amp; After&quot; below</p>
 <h4 id="migrating-old-code_deprecated-directives"><strong>rxFormFieldset</strong></h4>
-<p>Closest equivalent is to use <code>rxFormSection</code>. Your individual project requirements will vary, but the <code>legend</code> 
+<p>Closest equivalent is to use <code>rxFormSection</code>. Your individual project requirements will vary, but the <code>legend</code>
 attribute can be replaced with a heading variant where applicable.</p>
 <ul>
 <li>If your legend pertains to at least one row, place a heading variant before the desired <code>rx-form-section</code>
 element.</li>
-<li>If your legend pertains to controls in a single column, place a heading variant within the <code>rx-field</code> 
+<li>If your legend pertains to controls in a single column, place a heading variant within the <code>rx-field</code>
 element at the top.</li>
 </ul>
 <h3 id="migrating-old-code_before-&amp;-after">Before &amp; After</h3>
-<p>The <code>rxFormItem</code> has been found to be incredibly brittle and prone to breakage. The new markup may look a little 
+<p>The <code>rxFormItem</code> has been found to be incredibly brittle and prone to breakage. The new markup may look a little
 wordy, but it is designed to provide enough flexibility for advanced field inputs. To be explicit, the new directives
 were designed based on feedback around:</p>
 <ul>
@@ -177,7 +178,7 @@ were designed based on feedback around:</p>
     &lt;/rx-field&gt;
   &lt;/rx-form-section&gt;
 &lt;/form&gt;
-</pre>                                                                           </p>
+</pre>
 <h3 id="migrating-old-code_services">Services</h3>
 <ul>
 <li><a href="#/api/rxForm.service:rxFormUtils">rxFormUtils</a></li>

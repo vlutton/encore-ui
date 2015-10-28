@@ -477,7 +477,7 @@ NG_DOCS={
       "shortName": "rxButton",
       "type": "directive",
       "moduleName": "rxButton",
-      "shortDescription": "Renders a button which will disable when clicked and show a loading message, ",
+      "shortDescription": "Renders a button which will disable when clicked and show a loading message,",
       "keywords": "api applied attribute attributes behavior button call class classes clicked complete controlled default default-msg defaultmsg defaults defined desired directive disable disabled disables display displayed false handler instance loading loadingmsg matter message messages modified modify names ng-click ng-disabled normal operation passed process progress provided re-enable renders replaces rxbutton set text toggle toggle-msg toggled true variable"
     },
     {
@@ -1241,7 +1241,7 @@ NG_DOCS={
       "shortName": "rxPermission",
       "type": "directive",
       "moduleName": "rxPermission",
-      "shortDescription": "Simple directive which will show or hide content based on whether or not the user has the specified role. See ",
+      "shortDescription": "Simple directive which will show or hide content based on whether or not the user has the specified role. See",
       "keywords": "api based component content demo directive example hide required role rxpermission service simple user"
     },
     {

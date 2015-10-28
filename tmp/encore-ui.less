@@ -19,6 +19,8 @@ https://github.com/yui/pure/blob/master/LICENSE.md
         padding-right: 0;
     }
 }
+
+
 // Adapted from https://github.com/angular/material/commits/master/src/core/style/layout.scss
 // commit 4216d242d78f1bdadd89ebd59e1d80b9cc4f2978
 
@@ -249,11 +251,21 @@ https://github.com/yui/pure/blob/master/LICENSE.md
         width: auto;
     }
 
-    .dark-blue { background-color: @blue; }
-    .light-blue { background-color: @light-blue; }
-    .dark-green { background-color: @green; }
-    .light-green { background-color: @light-green; }
-    .orange { background-color: @orange; }
+    .dark-blue {
+        background-color: @blue;
+    }
+    .light-blue {
+        background-color: @light-blue;
+    }
+    .dark-green {
+        background-color: @green;
+    }
+    .light-green {
+        background-color: @light-green;
+    }
+    .orange {
+        background-color: @orange;
+    }
 
     .small-box-container {
         width: 95%;
@@ -312,7 +324,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
         margin: 0;
         display: list-item;
         list-style-type: none;
-        list-style-image: url('');
+        list-style-image: url("");
     }
 }
 
@@ -480,10 +492,10 @@ https://github.com/yui/pure/blob/master/LICENSE.md
         margin-right: 5em;
     }
     .account-info-label {
-        color: #777;
+        color: #777777;
     }
     .account-info-data {
-        color: #777;
+        color: #777777;
         font-size: 26px;
         img {
             height: 35px;
@@ -537,7 +549,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
                     font-size: 12px;
                     background: #959595; // select box background
                     border: 1px solid #6c6c6c;
-                    color: #fff;
+                    color: @white;
                 }
             }
             .msg-warn {
@@ -568,7 +580,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     }
 }
 
-@import 'vars';
+@import "vars";
 
 // containers for actionmenus that spawn modals
 .action-menu-container {
@@ -595,7 +607,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     top: -10px;
     right: 15px;
     min-width: 20em;
-    font-size: .9em;
+    font-size: 0.9em;
     border: 4px solid @white;
     .border-radius(4px);
     background: @white;
@@ -604,7 +616,7 @@ https://github.com/yui/pure/blob/master/LICENSE.md
     padding: 6px;
 
     &:before {
-        content:  "\f0da";
+        content: "\f0da";
         text-shadow: rgba(0, 0, 0, 0.35) 1px 1px 1px;
         font-family: FontAwesome;
         text-decoration: inherit;
@@ -631,11 +643,12 @@ https://github.com/yui/pure/blob/master/LICENSE.md
  * Common
  */
 @import url("https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,700,700italic");
-@import 'vars';
-@import (inline) 'normalize.css';
+@import "vars";
+@import (inline) "normalize.css";
 
 // Resets for HTML elements
-html, body {
+html,
+body {
     height: 100%;
     font-size: @appFontSize;
     color: @appTextColor;
@@ -650,16 +663,26 @@ select {
 }
 
 // Set default font
-button, input, select,
+button,
+input,
+select,
 .pure-g [class *= "pure-u"],
 .pure-g-r [class *= "pure-u"] {
     font-family: @appFont;
 }
 
 // Remove default margin/padding/etc
-header, nav,
-ol, ul, li,
-h1, h2, h3, h4, h5, h6,
+header,
+nav,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 fieldset {
     margin: 0;
     padding: 0;
@@ -670,7 +693,9 @@ fieldset {
 }
 
 // No list styles for lists
-ol, ul, li {
+ol,
+ul,
+li {
     list-style: none;
 }
 
@@ -716,13 +741,14 @@ table {
         background: @tableBg;
     }
     &.table-striped {
-        tr:nth-child(even), tbody:nth-child(odd) > tr {
+        tr:nth-child(even),
+        tbody:nth-child(odd) > tr {
             background: @tableBgAlt;
         }
     }
     td.double-chevron-cell {
         width: 10px;
-        padding: 0px 10px;
+        padding: 0 10px;
         .double-chevron {
             cursor: pointer;
             &::after {
@@ -750,10 +776,12 @@ table {
 .expanded-container {
     padding: 0 3px 3px 3px;
     background-color: @subtableBorder;
+
     & > * {
         margin-left: 2%;
         width: 98%;
     }
+
     table.subtable {
         table-layout: fixed;
 
@@ -782,30 +810,64 @@ table {
 }
 
 /* ===== HEADINGS ===== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 1em 0;
 
     &.subdued {
         color: @subduedTitle;
     }
 }
-h1 { font-size: 28px; } // same as .title.xl
-h2 { font-size: 22px; } // same as .title.lg
-h3 { font-size: 18px; } // same as .title
-h4 { font-size: 16px; } // same as .title.sm
-h5 { font-size: 13px; } // same as .title.xs
-h6 { font-size: 10px; } // no legacy equivalent
+
+h1 {
+    // same as .title.xl
+    font-size: 28px;
+}
+h2 {
+    // same as .title.lg
+    font-size: 22px;
+}
+h3 {
+    // same as .title
+    font-size: 18px;
+}
+h4 {
+    // same as .title.sm
+    font-size: 16px;
+}
+h5 {
+    // same as .title.xs
+    font-size: 13px;
+}
+h6 {
+    // no legacy equivalent
+    font-size: 10px;
+}
 
 // Heading/Title Styles
 .title {
     margin: 1em 0;
 
     // Sizing
-    &.xl { font-size: 28px; } // h1
-    &.lg { font-size: 22px; } // h2
-    &    { font-size: 18px; } // h3
-    &.sm { font-size: 16px; } // h4
-    &.xs { font-size: 13px; } // h5
+    &.xl { // h1
+        font-size: 28px;
+    }
+    &.lg { // h2
+        font-size: 22px;
+    }
+    & { // h3
+        font-size: 18px;
+    }
+    &.sm { // h4
+        font-size: 16px;
+    }
+    &.xs { // h5
+        font-size: 13px;
+    }
 
     // Colors
     &.subdued {
@@ -824,12 +886,12 @@ h6 { font-size: 10px; } // no legacy equivalent
 
 .link-action:before,
 .link-action a:before {
-    content: '+ ';
+    content: "+ ";
 }
 
 .link-warn:before,
 .link-warn a:before {
-    content: '- ';
+    content: "- ";
 }
 
 .action-separator {
@@ -900,7 +962,7 @@ h6 { font-size: 10px; } // no legacy equivalent
 
 // Wells
 .well {
-    background: #eee;
+    background: #eeeeee;
     padding: 40px 50px;
     box-shadow: 0 0 0 10px white inset;
 
@@ -916,7 +978,7 @@ h6 { font-size: 10px; } // no legacy equivalent
 }
 
 .modal-well {
-    background-color: #eee;
+    background-color: #eeeeee;
     padding: 20px 30px;
 
     h2 {
@@ -1554,63 +1616,33 @@ a.disabled {
     text-decoration: none;
 }
 
-/*
-# rxBreadcrumbs
-
-They show your position within the site heirarchy.
-
-```
-<ol class="rx-breadcrumbs">
-    <li class="breadcrumb">
-        <span>
-            <a href="#" class="breadcrumb-name first">First Breadcrumb</a>
-        </span>
-    </li>
-    <li class="breadcrumb">
-        <span>
-            <a href="#" class="breadcrumb-name">Middle Breadcrumb</a>
-        </span>
-    </li>
-    <li class="breadcrumb">
-        <span>
-            <a href="#" class="breadcrumb-name :hover">Hovered Breadcrumb</a>
-        </span>
-    </li>
-    <li class="breadcrumb">
-        <span class="breadcrumb-name last">Last Breadcrumb</span>
-    </li>
-</ol>
-```
-*/
+@import "vars";
 
 .rx-breadcrumbs {
     overflow: hidden;
     border-style: solid;
-    border-color: #ccc;
+    border-color: #cccccc;
     float: left;
 
     .breadcrumb {
         float: left;
 
-        @breadcrumbHeight: 1.2em;
-        @breadcrumbArrowWidth: 9px;
-
         .breadcrumb-name {
             padding: @breadcrumbHeight/2 1em @breadcrumbHeight/2 2em;
             font-size: 0.9em;
             display: block;
-            color: #555;
+            color: #555555;
             position: relative;
             text-decoration: none;
             text-shadow: 0 1px 0 rgba(255,255,255,.5);
-            background: #ddd;
+            background: #dddddd;
         }
         .breadcrumb-name.last {
             background: transparent;
         }
 
         a::after,
-        a::before{
+        a::before {
             content: "";
             position: absolute;
             top: 50%;
@@ -1620,13 +1652,13 @@ They show your position within the site heirarchy.
             right: -@breadcrumbArrowWidth;
         }
 
-        a::after{
+        a::after {
             /* TODO add in border gradient to match nav background */
-            border-left-color: #ddd;
+            border-left-color: #dddddd;
             z-index: 2;
         }
-        a::before{
-            border-left-color: #ccc;
+        a::before {
+            border-left-color: #cccccc;
             right: -(@breadcrumbArrowWidth + 1);
             z-index: 1;
         }
@@ -1640,15 +1672,16 @@ They show your position within the site heirarchy.
         }
 
         a:hover {
-            background: #fff;
+            background: @white;
         }
         a:hover::after {
-            border-left-color: #fff;
+            border-left-color: @white;
         }
     }
 
     .status-tag {
-        &.alpha-status, &.beta-status {
+        &.alpha-status,
+        &.beta-status {
             margin-left: 6px;
             position: static;
         }
@@ -1716,8 +1749,8 @@ thead th[rx-bulk-select-header-check] {
     padding: 6px;
 
     &:before {
-        content:  "\f0d8";
-        text-shadow: rgba(0, 0, 0, 0.35) 0px -1px 1px;
+        content: "\f0d8";
+        text-shadow: rgba(0, 0, 0, 0.35) 0 -1px 1px;
         font-family: FontAwesome;
         text-decoration: inherit;
         color: @white;
@@ -1749,15 +1782,21 @@ thead th[rx-bulk-select-header-check] {
 }
 
 .batch-action-modal-table .pagination {
-    & > li:nth-child(1) { display: none }
-    & > li:nth-child(2) { display: none }
-    .pagination-per-page { display: none; }
+    & > li:nth-child(1) {
+        display: none;
+    }
+    & > li:nth-child(2) {
+        display: none;
+    }
+    .pagination-per-page {
+        display: none;
+    }
 }
 
 /*
  * rxButton
  */
-@import 'vars';
+@import "vars";
 
 .button {
     display: inline-block;
@@ -1801,8 +1840,10 @@ thead th[rx-bulk-select-header-check] {
     }
 
     // Color Variations
-    &.positive, &.submit {
+    &.positive,
+    &.submit {
         background: @buttonPositiveBg;
+
         &:hover,
         &:focus {
             background: @buttonPositiveBgHover;
@@ -1811,6 +1852,7 @@ thead th[rx-bulk-select-header-check] {
 
     &.negative {
         background: @buttonNegativeBg;
+
         &:hover,
         &:focus {
             background: @buttonNegativeBgHover;
@@ -1821,6 +1863,7 @@ thead th[rx-bulk-select-header-check] {
         background: #fff;
         color: @buttonDefaultBg;
         .box-shadow(inset 0 0 0 2px @buttonDefaultBg);
+
         &:hover,
         &:focus {
             color: @buttonDefaultBgHover;
@@ -1830,6 +1873,7 @@ thead th[rx-bulk-select-header-check] {
 
     &.cancel {
         background: @buttonCancelBg;
+
         &:hover,
         &:focus {
             background: @buttonCancelBgHover;
@@ -1838,7 +1882,8 @@ thead th[rx-bulk-select-header-check] {
 
     // Disabled styles should always come last in the cascade for color
     // variations styles, or else they won't override other colors properly.
-    &[disabled], &[disabled]:hover {
+    &[disabled],
+    &[disabled]:hover {
         cursor: not-allowed;
         color: @buttonColorDisabled;
         background: @buttonDisabledBg;
@@ -1847,7 +1892,6 @@ thead th[rx-bulk-select-header-check] {
     &.inline {
         vertical-align: middle;
     }
-
 
     // Spinner styles
     .spinner {
@@ -1881,12 +1925,20 @@ thead th[rx-bulk-select-header-check] {
     }
 
     @-webkit-keyframes bouncedelay {
-        0%, 80%, 100% { -webkit-transform: scale(0.0) }
-        40% { -webkit-transform: scale(1.0) }
+        0%,
+        80%,
+        100% {
+            -webkit-transform: scale(0.0)
+        }
+        40% {
+            -webkit-transform: scale(1.0)
+        }
     }
 
     @keyframes bouncedelay {
-        0%, 80%, 100% {
+        0%,
+        80%,
+        100% {
             transform: scale(0.0);
             -webkit-transform: scale(0.0);
         }
@@ -1895,26 +1947,29 @@ thead th[rx-bulk-select-header-check] {
             -webkit-transform: scale(1.0);
         }
     }
-}
+}//.button
 
 // Make buttons look like plain links
 .btn-link {
     color: @linkColor;
     background: none;
-    border: none;
+    border: 0;
     padding: 0;
     cursor: pointer;
     font-size: inherit;
+
     &:hover,
     &:focus {
         text-decoration: underline;
     }
 
-    &[disabled], &[disabled]:hover {
+    &[disabled],
+    &[disabled]:hover {
         cursor: not-allowed;
         color: @buttonDisabledBg;
     }
 }
+
 thead th .btn-link {
     color: @tableHeaderText;
     &:hover,
@@ -1932,8 +1987,8 @@ thead th .btn-link {
     input {
         display: none;
     }
-    label {
 
+    label {
         flex: 1;
         text-align: center;
         padding: 7px 13px;
@@ -1943,10 +1998,12 @@ thead th .btn-link {
             border-top-left-radius: @buttonGroupBorderRadius;
             border-bottom-left-radius: @buttonGroupBorderRadius;
         }
+
         &:last-of-type {
             border-top-right-radius: @buttonGroupBorderRadius;
             border-bottom-right-radius: @buttonGroupBorderRadius;
         }
+
         &:not(:last-of-type) {
             border-right: @buttonGroupBorder;
         }
@@ -1957,34 +2014,41 @@ thead th .btn-link {
             color: @white;
             background: @buttonCancelBgHover;
         }
-    }
+    }//label
+
     input:checked + label {
         color: @white;
         background: #757575;
     }
-}
+}//.button-group
 
 /*
  * rxCharacterCount
  */
 
-// Wrapper provides proper width for text area and positioning 
-// character count. For specific use cases in a project, 
+// Wrapper provides proper width for text area and positioning
+// character count. For specific use cases in a project,
 // custom wrappers with custom widths can be set.
 .counted-input-wrapper {
     width: 375px;
-    // These two selectors must always be styled with the same width.
-    .input-highlighting, textarea {
-        width: 370px;
-    }
     position: relative;
     background-color: #ffffff;
-    input, textarea {
-        position: relative; // Ensure the input is layered over the highlighting without z-index
+
+    // These two selectors must always be styled with the same width.
+    .input-highlighting,
+    textarea {
+        width: 370px;
+    }
+
+    input,
+    textarea {
+        // Ensure the input is layered over the highlighting without z-index
+        position: relative;
         background-color: transparent;
         resize: none;
         .inputBorderPadding;
     }
+
     .input-highlighting {
         position: absolute;
         top: 4px;
@@ -1992,6 +2056,7 @@ thead th .btn-link {
         white-space: pre-wrap;
         word-wrap: break-word;
         color: transparent;
+
         .over-limit-text {
             background-color: @warnRed;
             opacity: 0.3;
@@ -2001,6 +2066,7 @@ thead th .btn-link {
     .character-countdown {
         text-align: right;
         color: @subduedTitle;
+
         &.near-limit {
             color: @orange;
         }
@@ -2027,10 +2093,10 @@ thead th .btn-link {
         top: 0;
         left: 0;
         display: block;
-        margin: 0px;
-        padding: 0px;
-        border: 0px;
-        outline: 0px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
     }
 
     .fake-checkbox {
@@ -2071,7 +2137,7 @@ thead th .btn-link {
         &:checked + .fake-checkbox {
             background-color: @rxCheckbox-background-color-selected;
             color: @rxCheckbox-color;
-            border: none;
+            border: 0;
         }
 
         .disabled() {
@@ -2085,7 +2151,7 @@ thead th .btn-link {
             // disabled, checked
             &:checked ~ .fake-checkbox {
                 background-color: @inputBackgroundDisabled;
-                border: none;
+                border: 0;
             }
         }//.disabled()
 
@@ -2169,7 +2235,7 @@ rx-collapse {
     }
 
     .hide-border {
-        border:none;
+        border: 0;
     }
 }
 
@@ -2286,7 +2352,7 @@ thead .rx-floating-header:first-child {
 
 // deprecated
 .field-label,
-.field-legend, {
+.field-legend {
     color: @inputLabelColor;
     font-size: 1.1em;
     flex: 0 0 @inputLabelWidth;
@@ -2341,7 +2407,7 @@ thead .rx-floating-header:first-child {
 
     textarea {
         .inputBorderPadding;
-        background-color: #fff;
+        background-color: @white;
         width: 100%;
         position: relative;
         z-index: 2;
@@ -2545,11 +2611,10 @@ thead .rx-floating-header:first-child {
         }
 
         .field-label,
-        .field-legend, {
+        .field-legend {
             font-size: 0.8em;
             display: block;
         }
-
     }
 
     // This is selecting based off of the element so that we can be sure to set
@@ -2724,8 +2789,12 @@ rx-field-name {
                         align-items: center; // content is vertically centered
                     }
 
-                    rx-prefix:first-child { padding-left: 0px; }
-                    rx-suffix:last-child { padding-right: 0px; }
+                    rx-prefix:first-child {
+                        padding-left: 0px;
+                    }
+                    rx-suffix:last-child {
+                        padding-right: 0px;
+                    }
 
                     /* ===== Other Directive Support ===== */
                     .rxSelect {
@@ -2798,8 +2867,12 @@ rx-field-name {
             .button {
                 margin: 2px;
 
-                &:first-of-type { margin-left: 0px; }
-                &:last-of-type { margin-right: 0px; }
+                &:first-of-type {
+                    margin-left: 0px;
+                }
+                &:last-of-type {
+                    margin-right: 0px;
+                }
             }
         }
 
@@ -2820,7 +2893,6 @@ rx-field-name {
                 max-width: @rxForm-field-max-width;
             }
         }
-
     }//rx-form-section
 }//[rx-form]
 
@@ -2829,7 +2901,7 @@ rx-field-name {
  */
 .info-panel {
     clear: both;
-    background: #fff;
+    background: @white;
     border-color: @tabBorder;
     border-width: 0 5px 5px 5px;
     border-style: solid;
@@ -2838,7 +2910,7 @@ rx-field-name {
 
     .info-title {
         background: @tabBorder;
-        color: #fff;
+        color: @white;
         width: 100%;
         padding: 8px 10px;
         margin: 0 0 10px -10px;
@@ -2850,7 +2922,7 @@ rx-field-name {
  */
 rx-metadata {
     box-sizing: border-box;
-    padding: 0px;
+    padding: 0;
     margin: @rxMetadata-gutter 0;
 
     display: flex;
@@ -2892,8 +2964,8 @@ rx-metadata {
     }
 }
 
-@import 'mixins';
-@import 'vars';
+@import "mixins";
+@import "vars";
 
 /**
  * rxModalAction.less
@@ -2920,7 +2992,7 @@ rx-metadata {
     bottom: 0;
     left: 0;
     z-index: 1040;
-    background: #000;
+    background: @black;
     &.fade.in {
         .opacity(0.4);
     }
@@ -2974,7 +3046,7 @@ rx-metadata {
         }
 
         &:before {
-            content: '\00D7';
+            content: "\00D7";
             position: absolute;
             line-height: 0;
             right: 0;
@@ -3015,14 +3087,14 @@ rx-metadata {
         left: @padding;
         right: @padding;
     }
-    .modal-header .close{
+    .modal-header .close {
         padding: @padding;
         margin: -@padding;
     }
 }
 
 /*
- * rxMultiSelect 
+ * rxMultiSelect
  */
 rx-multi-select {
 
@@ -3046,7 +3118,7 @@ rx-multi-select {
         width: 100%;
         border: 1px solid @inputBorderColor;
         background: @white;
-        box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.35);
+        box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.35);
     }
 
     rx-select-option[value="all"] label {
@@ -3074,7 +3146,8 @@ rx-multi-select {
         vertical-align: middle;
     }
 }
-@import 'mixins';
+
+@import "mixins";
 
 .rx-notifications {
     margin-bottom: 1.5em;
@@ -3090,12 +3163,12 @@ rx-multi-select {
 
         .button {
             font-weight: normal;
-            margin-bottom: 0px;
+            margin-bottom: 0;
         }
 
         &.notification-success {
             background-color: #ddffd3;
-            background-image: url('images/green-checkmark-circled.png');
+            background-image: url("images/green-checkmark-circled.png");
             color: #45ad26;
             a {
                 color: #7db162;
@@ -3103,7 +3176,7 @@ rx-multi-select {
         }
         &.notification-info {
             background-color: #83c9fe;
-            background-image: url('images/info-circled.png');
+            background-image: url("images/info-circled.png");
             color: #1672b9;
             a {
                 color: #568fb8;
@@ -3111,16 +3184,16 @@ rx-multi-select {
         }
         &.notification-warning {
             background-color: #ffa61b;
-            background-image: url('images/warning-triangle.png');
-            color: #fff;
+            background-image: url("images/warning-triangle.png");
+            color: @white;
             a {
                 color: #f1d6af;
             }
         }
         &.notification-error {
             background-color: #f21a1a;
-            background-image: url('images/error-stop.png');
-            color: #fff;
+            background-image: url("images/error-stop.png");
+            color: @white;
             a {
                 color: #fdaaab;
             }
@@ -3143,37 +3216,40 @@ rx-multi-select {
         top: 0;
         height: 100%;
         padding: 0 15px;
-        content: '\00D7';
+        content: "\00D7";
         .opacity(.5);
-        color: #000;
+        color: @black;
         &:hover,
         &:focus {
-            .opacity(.8);
+            .opacity(0.8);
             text-decoration: none;
         }
     }
 }
 
-.animate-fade.ng-enter,
-.animate-fade.ng-leave {
-    -webkit-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -moz-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -ms-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -o-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-    -webkit-animation-fill-mode: both;
-    animation-fill-mode: both;
-}
+.animate-fade {
+    &.ng-enter,
+    &.ng-leave {
+        -webkit-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        -moz-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        -ms-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        -o-transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        transition: 0.25s cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+        -webkit-animation-fill-mode: both;
+        animation-fill-mode: both;
+    }
 
-.animate-fade.ng-leave.ng-leave-active,
-.animate-fade.ng-enter {
-    opacity:0;
-}
+    &.ng-leave.ng-leave-active,
+    &.ng-enter {
+        opacity: 0;
+    }
 
-.animate-fade.ng-leave,
-.animate-fade.ng-enter.ng-enter-active {
-    opacity:1;
-}
+    &.ng-leave,
+    &.ng-enter.ng-enter-active {
+        opacity: 1;
+    }
+}//.animate-fade
+
 
 /*
  * rxOptionTable
@@ -3229,7 +3305,7 @@ rx-multi-select {
         line-height: 0;
     }
     .current td {
-        color: #3AB661;
+        color: #3ab661;
     }
     // @note KL: I'd like to stick with just adding the background to the <tr>, but
     // we need to make the selector more specific to override the table-stripe styles.
@@ -3259,7 +3335,7 @@ rx-multi-select {
     text-align: center;
     td {
         padding: 0;
-        background: #fff;
+        background: @white;
     }
 }
 
@@ -3286,7 +3362,7 @@ rx-multi-select {
         padding: 6px 12px;
         margin-left: -1px;
         text-decoration: none;
-        background: #fff;
+        background: @white;
         border-top: 2px solid transparent;
         color: @paginationColor;
     }
@@ -3309,7 +3385,7 @@ rx-multi-select {
             position: absolute;
             border: 6px solid transparent;
             border-bottom-color: @infoBlue;
-            border-top: none;
+            border-top: 0;
             left: 10px;
             top: 55%;
             margin-top: -4px;
@@ -3366,7 +3442,7 @@ rx-multi-select {
     .pagination > .page-links > li > span:hover,
     .pagination > .page-links > li > a:focus,
     .pagination > .page-links > li > span:focus {
-        background: #eee;
+        background: #eeeeee;
     }
 
     .pagination > .page-links > .active > a,
@@ -3376,9 +3452,9 @@ rx-multi-select {
     .pagination > .page-links > .active > a:focus,
     .pagination > .page-links > .active > span:focus {
         cursor: default;
-        border-top-color: #000;
-        color: #000;
-        background: #fff;
+        border-top-color: @black;
+        color: @black;
+        background: @white;
     }
 
     .pagination .disabled > span,
@@ -3419,12 +3495,12 @@ rx-multi-select {
         font-size: 18px;
         margin-top: 15%;
         text-align: center;
-        color: #777;
+        color: #777777;
     }
     i {
         font-size: 30px;
         margin-left: 25px;
-        color: #777;
+        color: #777777;
     }
 }
 
@@ -3557,7 +3633,7 @@ rx-search-box {
         border: @rxSearchBox-border;
         min-height: @rxSearchBox-min-height;
         min-width: @rxSearchBox-min-width;
-        padding: 0px;
+        padding: 0;
 
         background: @rxSearchBox-background;
         color: @rxSearchBox-color;
@@ -3780,7 +3856,9 @@ rx-select-filter {
         }
     }
 }
-@import 'vars';
+
+
+@import "vars";
 
 /*********************************************************
  *  CSS3 Animation spinner
@@ -3799,11 +3877,11 @@ rx-select-filter {
     height: 12px;
     margin-bottom: 3px;
     vertical-align: middle;
-    -webkit-animation: spin .8s infinite linear;
-    -moz-animation: spin .8s infinite linear;
-    -ms-animation: spin .8s infinite linear;
-    -o-animation: spin .8s infinite linear;
-    animation: spin .8s infinite linear;
+    -webkit-animation: spin 0.8s infinite linear;
+    -moz-animation: spin 0.8s infinite linear;
+    -ms-animation: spin 0.8s infinite linear;
+    -o-animation: spin 0.8s infinite linear;
+    animation: spin 0.8s infinite linear;
 }
 .rx-spinner.dark {
     border-bottom-color: @appTextColor;
@@ -3830,24 +3908,44 @@ rx-select-filter {
     height: 32px;
 }
 @-webkit-keyframes spin { /* Safari and Chrome */
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
 @-moz-keyframes spin { /* Firefox */
-    0% { -moz-transform: rotate(0deg); }
-    100% { -moz-transform: rotate(360deg); }
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
 }
 @-ms-keyframes spin { /* IE */
-    0% { -ms-transform: rotate(0deg); }
-    100% { -ms-transform: rotate(360deg); }
+    from {
+        -ms-transform: rotate(0deg);
+    }
+    to {
+        -ms-transform: rotate(360deg);
+    }
 }
 @-o-keyframes spin { /* Opera */
-    0% { -o-transform: rotate(0deg); }
-    100% { -o-transform: rotate(360deg); }
+    from {
+        -o-transform: rotate(0deg);
+    }
+    to {
+        -o-transform: rotate(360deg);
+    }
 }
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /*
@@ -3868,7 +3966,7 @@ td.rx-status-column {
     }
     &.status-PENDING {
         background: #fdbc3c;
-        background-image: url('images/status-pending.gif');
+        background-image: url("images/status-pending.gif");
     }
     &.status-WARNING {
         background: #fdbc3c;
@@ -3885,7 +3983,7 @@ td.rx-status-column {
     &.status-INFO {
         background: @light-blue;
         i {
-            color: #287BBD;
+            color: #287bbd;
         }
     }
     &.status-DISABLED {
@@ -3906,7 +4004,7 @@ rx-tags {
     display: block;
 
     &[disabled] .rx-tags {
-        border: none;
+        border: 0;
 
         .fa-times {
             display: none;
@@ -3918,7 +4016,6 @@ rx-tags {
     }
 }
 .rx-tags {
-
     background-color: @white;
     border: 1px solid @rxForm-input-border-color;
 
@@ -3929,7 +4026,7 @@ rx-tags {
     input {
         width: 200px;
         padding: 3px 5px;
-        margin: 8px 0px;
+        margin: 8px 0;
     }
 
     .tag {
@@ -3946,7 +4043,9 @@ rx-tags {
         &:focus {
             background-color: #007bff;
             outline: none;
-            .fa, .text, .category {
+            .fa,
+            .text,
+            .category {
                 color: @white;
             }
         }
@@ -3957,7 +4056,7 @@ rx-tags {
 
         .text {
             font-size: 12px;
-            margin: 0px 7px 0px 10px;
+            margin: 0 7px 0 10px;
             color: #727272;
         }
 
@@ -3986,20 +4085,19 @@ rx-tags {
 /*
  * rxToggleSwitch
  */
+@textColor: @white;
+@offStateColor: #b3b3b3;
+@borderColor: darken(@offStateColor, 10%);
+@onStateColor: #00ac31;
+@knobColor: @white;
+@knobBorderColor: darken(@knobColor, 10%);
+@knobSize: 1.2em;
+@edgeSpacing: @knobSize * 0.9;
+@lineHeight: @knobSize * 1.25;
+@blurDist: @edgeSpacing;
+@blurSpread: (@edgeSpacing/3) * -1;
+
 .rx-toggle-switch {
-
-    @textColor: #fff;
-    @offStateColor: #b3b3b3;
-    @borderColor: darken(@offStateColor, 10%);
-    @onStateColor: #00ac31;
-    @knobColor: #fff;
-    @knobBorderColor: darken(@knobColor, 10%);
-    @knobSize: 1.2em;
-    @edgeSpacing: @knobSize * 0.9;
-    @lineHeight: @knobSize * 1.25;
-    @blurDist: @edgeSpacing;
-    @blurSpread: (@edgeSpacing/3) * -1;
-
     font-size: 0.8em;
     line-height: @lineHeight;
 
@@ -4064,41 +4162,8 @@ rx-tags {
 
 }
 
-@import 'vars';
+@import "vars";
 
-/*
-
-# Angular-UI Tabs
-
-Provides styling for the Angular-UI tab HTML
-
-```
-<div class="tabbable">
-    <ul class="nav nav-tabs">
-        <li class="active">
-            <a>Bacon Ipsum</a>
-        </li>
-        <li>
-            <a>Veggie Ipsum</a>
-        </li>
-        <li>
-            <a>Cat Ipsum</a>
-        </li>
-    </ul>
-    <div class="tab-content">
-        <div class="tab-pane active">
-            <p>First Tab Content. Bacon ipsum dolor sit amet salami jowl corned beef, andouille flank tongue ball tip kielbasa pastrami tri-tip meatloaf short loin beef biltong. Cow bresaola ground round strip steak fatback meatball shoulder leberkas pastrami sausage corned beef t-bone pork belly drumstick.</p>
-        </div>
-        <div class="tab-pane">
-            <p>Second tab content. Veggies sunt bona vobis, proinde vos postulo esse magis grape pea sprouts horseradish courgette maize spinach prairie turnip jícama coriander quandong gourd broccoli seakale gumbo. Parsley corn lentil zucchini radicchio maize burdock avocado sea lettuce. Garbanzo tigernut earthnut pea fennel.</p>
-        </div>
-        <div class="tab-pane">
-            <p>Cat ipsum dolor sit amet, hunt anything that moves or hopped up on goofballs hide when guests come over. Hide when guests come over intrigued by the shower, or stare at ceiling climb leg for stretch and use lap as chair. Hunt anything that moves flop over, leave dead animals as gifts for chase imaginary bugs, chase mice for stare at ceiling yet hopped up on goofballs.</p>
-        </div>
-    </div>
-</div>
-```
-*/
 .nav-tabs {
     display: flex;
     border-bottom: 9px solid @tabBorder;
@@ -4113,7 +4178,7 @@ Provides styling for the Angular-UI tab HTML
     a {
         display: block;
         background: #3f6085;
-        color: #ccc;
+        color: #cccccc;
         padding: 10px 20px;
 
         .subdued {
@@ -4161,14 +4226,15 @@ Provides styling for the Angular-UI tab HTML
     }
 }
 
-@import 'vars';
+@import "vars";
+
 //
 // Tooltips
 // --------------------------------------------------
 
 @zindexTooltip: 1070;
 @tooltipMaxWidth: 200px;
-@tooltipHeaderColor: #fff;
+@tooltipHeaderColor: @white;
 @tooltipColor: #f1f1f1;
 @tooltipBg: #878787;
 @tooltipOpacity: 1;
@@ -4216,7 +4282,6 @@ Provides styling for the Angular-UI tab HTML
 // Wrapper for the tooltip content
 .tooltip-inner {
     max-width: @tooltipMaxWidth;
-    padding: 3px 8px;
     color: @tooltipColor;
     text-align: center;
     text-decoration: none;
@@ -4224,13 +4289,14 @@ Provides styling for the Angular-UI tab HTML
     .border-radius(4px);
     box-shadow: rgba(0, 0, 0, 0.35) 1px 1px 4px 0px;
     padding: 1em;
+
     .tooltip-header {
         color: @tooltipHeaderColor;
         text-align: left;
         font-size: 15px;
         padding-bottom: 5px;
         font-weight: 600;
-  }
+    }
 }
 
 // Arrows
@@ -4297,7 +4363,7 @@ Provides styling for the Angular-UI tab HTML
     }
 }
 
-@import 'vars';
+@import "vars";
 
 .dropdown-menu {
     position: absolute;
@@ -4307,7 +4373,7 @@ Provides styling for the Angular-UI tab HTML
     display: none;
     list-style: none;
     background: @white;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     padding: 6px 0;
     z-index: 3; // Will display over a textarea element
     max-height: 300px;

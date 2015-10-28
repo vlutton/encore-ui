@@ -1,19 +1,19 @@
-<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxButton/rxButton.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/a759173/src/rxButton/rxButton.js#L50" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxButton</code>
+<a href="https://github.com/rackerlabs/encore-ui/edit/master/src/rxButton/rxButton.js" class="improve-docs"><i class="icon-edit"> </i>Improve this doc</a><a href="https://github.com/rackerlabs/encore-ui/blob/2c6c929/src/rxButton/rxButton.js#L50" class="view-source"><i class="icon-eye-open"> </i>View source</a><h1><code ng:non-bindable="">rxButton</code>
 <div><span class="hint">directive in module <code ng:non-bindable="">rxButton</code>
 </span>
 </div>
 </h1>
 <div><h2 id="description">Description</h2>
-<div class="description"><div class="rxbutton-directive-page rxbutton-directive-rxbutton-page"><p>Renders a button which will disable when clicked and show a loading message, 
+<div class="description"><div class="rxbutton-directive-page rxbutton-directive-rxbutton-page"><p>Renders a button which will disable when clicked and show a loading message,
 and re-enable when the operation is complete. If you set <code>classes</code> attributes <code>&lt;rx-button&gt;</code>,
 those will get passed to the <code>&lt;button&gt;</code> instance as <code>class</code>.</p>
 <h4 id="description_button-state">Button State</h4>
 <p>The state of the button is controlled via the <code>toggle</code> attribute, which disables the button and replaces the
-<code>default-msg</code> with the <code>toggle-msg</code> as the button&#39;s text.  There are no defaults for these messages, so they must 
-be defined if the toggle behavior is desired.  While the button is in the toggled state, it is also disabled (no 
+<code>default-msg</code> with the <code>toggle-msg</code> as the button&#39;s text.  There are no defaults for these messages, so they must
+be defined if the toggle behavior is desired.  While the button is in the toggled state, it is also disabled (no
 matter what the value of <code>disable</code> is.</p>
-<p>The button does not modify the variable passed to <code>toggle</code>; it should be modified in the handler provided to 
-<code>ng-click</code>.  Usually, the handler will set the variable to <code>true</code> immediately, and then to <code>false</code> once the the 
+<p>The button does not modify the variable passed to <code>toggle</code>; it should be modified in the handler provided to
+<code>ng-click</code>.  Usually, the handler will set the variable to <code>true</code> immediately, and then to <code>false</code> once the the
 process (e.g. an API call) is complete.</p>
 <p>To disable the button, use the <code>disable</code> attribute instead of the normal <code>ng-disabled</code> - the behavior is the same.</p>
 </div></div>
