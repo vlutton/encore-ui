@@ -5,7 +5,7 @@
  * # rxOptionTable Component
  *
  * The rxOptionTable component provides functionality to create a series of radio or checkbox inputs within a table.
- * 
+ *
  * ## Directives
  * * {@link rxOptionTable.directive:rxOptionTable rxOptionTable}
  * * {@link rxOptionTable.directive:rxFormOptionTable rxFormOptionTable} (*deprecated*)
@@ -25,7 +25,7 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
  * @param {String} empty-message - A default message if the data attribute is empty.
  * @param {Array} data - Array of objects used to populate table. Properties must match column keys.
  * For checkboxes, checked values default to true unless `value` and `falseValue` attributes are given.
- * 
+ *
  * Example:
  * <pre>
  * [
@@ -49,7 +49,7 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
  *   demonstration samples.
  *
  * Example:
- * 
+ *
  * <pre>
  * [{
  *     'label': 'Name',
@@ -62,9 +62,9 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
  * For checkboxes, a `true` value means that there must be at least one checkbox selected.
  * @param {Function=} disable-fn - Optional callback function to determine if option should be disabled.
  * Parameters `tableId`, `fieldId`, and `rowId` will be passed to the function.
- * 
+ *
  * Example:
- * 
+ *
  * <pre>
  *  <rx-option-table disable-fn="disableOption(tableId, fieldId, rowId)"></rx-option-table>
  * </pre>
@@ -85,12 +85,31 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
             disableFn: '&?'
         },
         link: function (scope, element) {
+            scope.selectAllModel = false;
+
+            scope.$watchCollection('modelProxy', function (newValue) {
+                scope.selectAllModel = !_.any(newValue, function (val) {
+                    return val === false;
+                });
+            });
+
             var determineMatch = function (val1, val2) {
                 if (_.isUndefined(val1) || _.isUndefined(val2)) {
                     return false;
                 }
 
                 return (val1 == val2);
+            };
+
+            scope.selectAll = function (currentVal) {
+                scope.selectAllModel = !currentVal;
+                scope.modelProxy.forEach(function (model, index) {
+                    // assigning the value to `model` variable caused the
+                    // select all functionality to not select checkboxes
+                    // so using `modelProxy[index]` is workaround
+                    scope.modelProxy[index] = scope.selectAllModel;
+                    scope.updateCheckboxes(scope.selectAllModel, index);
+                });
             };
 
             scope.checkDisabled = function (row) {
