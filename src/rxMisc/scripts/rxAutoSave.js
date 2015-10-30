@@ -1,218 +1,4 @@
-/**
- * @ngdoc overview
- * @name rxMisc
- * @description
- * # rxMisc Component
- *
- * A module for shared functionality across framework components.
- *
- * ## Filters
- * * {@link rxMisc.filter:titleize titleize}
- *
- * ## Services
- * * {@link rxMisc.service:rxAutoSave rxAutoSave}
- * * {@link rxMisc.service:rxDOMHelper rxDOMHelper}
- * * {@link rxMisc.service:rxNestedElement rxNestedElement}
- */
-angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
-/**
- * @ngdoc service
- * @name rxMisc.service:rxDOMHelper
- * @description
- * A small set of functions to provide some functionality
- * that isn't present in Angular's jQuery-lite, and other
- * DOM-related functions that are useful.
- *
- * All methods take jquery-lite wrapped elements as arguments.
- */
-.factory('rxDOMHelper', function ($document, $window) {
-    var scrollTop = function () {
-        // Safari and Chrome both use body.scrollTop, but Firefox needs
-        // documentElement.scrollTop
-        var doc = $document[0];
-        var scrolltop = $window.pageYOffset || doc.body.scrollTop || doc.documentElement.scrollTop || 0;
-        return scrolltop;
-    };
-
-    var offset = function (elm) {
-        //http://cvmlrobotics.blogspot.co.at/2013/03/angularjs-get-element-offset-position.html
-        var rawDom = elm[0];
-        var _x = 0;
-        var _y = 0;
-        var doc = $document[0];
-        var body = doc.documentElement || doc.body;
-        var scrollX = $window.pageXOffset || body.scrollLeft;
-        var scrollY = scrollTop();
-        var rect = rawDom.getBoundingClientRect();
-        _x = rect.left + scrollX;
-        _y = rect.top + scrollY;
-        return { left: _x, top:_y };
-    };
-
-    var style = function (elem) {
-        if (elem instanceof angular.element) {
-            elem = elem[0];
-        }
-        return $window.getComputedStyle(elem);
-    };
-
-    var width = function (elem) {
-        return style(elem).width;
-    };
-
-    var height = function (elem) {
-        return style(elem).height;
-    };
-
-    var shouldFloat = function (elem, maxHeight) {
-        var elemOffset = offset(elem),
-            scrolltop = scrollTop();
-
-        return ((scrolltop > elemOffset.top) && (scrolltop < elemOffset.top + maxHeight));
-    };
-
-    // An implementation of wrapAll, based on
-    // http://stackoverflow.com/a/13169465
-    // Takes a raw DOM `newParent`, and moves all of `elms` (either
-    // a single element or an array of elements) into it. It then places
-    // `newParent` in the location that elms[0] was originally in
-    var wrapAll = function (newParent, elms) {
-        // Figure out if it's one element or an array
-        var isGroupParent = ['SELECT', 'FORM'].indexOf(elms.tagName) !== -1;
-        var el = (elms.length && !isGroupParent) ? elms[0] : elms;
-
-        // cache the current parent node and sibling
-        // of the first element
-        var parentNode = el.parentNode;
-        var sibling = el.nextSibling;
-
-        // wrap the first element. This automatically
-        // removes it from its parent
-        newParent.appendChild(el);
-
-        // If there are other elements, wrap them. Each time
-        // it will remove the element from its current parent,
-        // and also from the `elms` array
-        if (!isGroupParent) {
-            while (elms.length) {
-                newParent.appendChild(elms[0]);
-            }
-        }
-
-        // If there was a sibling to the first element,
-        // insert newParent right before it. Otherwise
-        // just add it to parentNode
-        if (sibling) {
-            parentNode.insertBefore(newParent, sibling);
-        } else {
-            parentNode.appendChild(newParent);
-        }
-    };
-
-    // bind `f` to the scroll event
-    var onscroll = function (f) {
-        angular.element($window).bind('scroll', f);
-    };
-
-    var find = function (elem, selector) {
-        return angular.element(elem[0].querySelector(selector));
-    };
-
-    return {
-        offset: offset,
-        scrollTop: scrollTop,
-        width: width,
-        height: height,
-        shouldFloat: shouldFloat,
-        onscroll: onscroll,
-        find: find,
-        wrapAll: wrapAll
-    };
-})
-/**
- * @ngdoc filter
- * @name rxMisc.filter:titleize
- * @description
- * Convert a string to title case, stripping out underscores and capitalizing words.
- *
- * Credit where it's due: https://github.com/epeli/underscore.string/blob/master/titleize.js
- *
- * @param {String} inputString - The string to convert
- * @returns {String} The titleized version of the string
- *
- * @example
- * Both examples result in a string of `"A Simple String"`.
- * <pre>
- * {{ 'a simple_STRING' | titleize }}
- * </pre>
- *
- * <pre>
- * $filter('titleize')('a simple_STRING');
- * </pre>
- */
-.filter('titleize', function () {
-    return function (inputString) {
-        return inputString
-            .toLowerCase()
-            .replace(/_/g, ' ')
-            .replace(/(?:^|\s)\S/g, function (character) {
-                return character.toUpperCase();
-            });
-    };
-})
-/**
- * @ngdoc service
- * @name rxMisc.service:rxNestedElement
- * @description
- * Helper function to aid in the creation of boilerplate DDO definitions
- * required to validate nested custom elements.
- *
- * @param {Object=} opts - Options to merge with default DDO definitions
- * @param {String} opts.parent - Parent directive name
- * (i.e. defined NestedElement is an immediate child of this parent element)
- *
- * @return {Object} Directive Definition Object for a rxNestedElement
- *
- * @example
- * <pre>
- * angular.module('myApp', [])
- * .directive('parentElement', function (rxNestedElement) {
- *   return rxNestedElement();
- * })
- * .directive('childElement', function (rxNestedElement) {
- *   return rxNestedElement({
- *      parent: 'parentElement'
- *   });
- * });
- * </pre>
- */
-.factory('rxNestedElement', function () {
-    return function (opts) {
-        opts = opts || {};
-
-        var defaults = {
-            restrict: 'E',
-            /*
-             * must be defined for a child element to verify
-             * correct hierarchy
-             */
-            controller: angular.noop
-        };
-
-        if (angular.isDefined(opts.parent)) {
-            opts.require = '^' + opts.parent;
-            /*
-             * bare minimum function definition needed for "require"
-             * validation logic
-             *
-             * NOTE: `angular.noop` and `_.noop` WILL NOT trigger validation
-             */
-            opts.link = function () {};
-        }
-
-        return _.defaults(opts, defaults);
-    };
-})
+angular.module('encore.ui.rxMisc')
 /**
  * @ngdoc service
  * @name rxMisc.service:rxAutoSave
@@ -220,30 +6,30 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  * A factory that controllers can use to help automatically save and load
  * form data (via LocalStorage) on any given page.
  *
- * `rxAutoSave` provides a way to store values in a form for later. For instance, if a user is entering values into a 
- * form, then accidentally navigate to a new page, we likely want the values to be present again when they click the 
- * "Back" button in their browser. By correctly setting up an `rxAutoSave` instance for the form, this can happen 
+ * `rxAutoSave` provides a way to store values in a form for later. For instance, if a user is entering values into a
+ * form, then accidentally navigate to a new page, we likely want the values to be present again when they click the
+ * "Back" button in their browser. By correctly setting up an `rxAutoSave` instance for the form, this can happen
  * automatically. By default, all saved values will be cleared after two days.
  *
- * `rxAutoSave` is a service intended to be used in controllers. No directives are provided. The intent is that the 
- * HTML forms themselves will have no knowledge that their values are being saved. `rxAutoSave` operates by doing a 
- * `$watch` on the model values for a given form, storing those model values whenever they change, and loading them 
+ * `rxAutoSave` is a service intended to be used in controllers. No directives are provided. The intent is that the
+ * HTML forms themselves will have no knowledge that their values are being saved. `rxAutoSave` operates by doing a
+ * `$watch` on the model values for a given form, storing those model values whenever they change, and loading them
  * on instantation.
  *
- * The stored data is keyed on the page URL. This means you can track the form state for multiple pages simultaneously. 
- * For example, say you have an "Edit" form. The user has gone to edit some values for "Server1", at 
- * `"/servers/server1/edit"`, and for "Server2" at `"/servers/server2/edit"`. The edit progress for both servers will 
- * be saved independently of each other. `rxAutoSave` will also let you independently store values for multiple forms 
+ * The stored data is keyed on the page URL. This means you can track the form state for multiple pages simultaneously.
+ * For example, say you have an "Edit" form. The user has gone to edit some values for "Server1", at
+ * `"/servers/server1/edit"`, and for "Server2" at `"/servers/server2/edit"`. The edit progress for both servers will
+ * be saved independently of each other. `rxAutoSave` will also let you independently store values for multiple forms
  * appearing on the same page.
  *
- * By default, all values are stored in the browser's `LocalStorage`. This means that if a user logs into a different 
- * computer, their stored values will not be present. Use of `SessionStorage` is also supported out-of-the-box. If you 
+ * By default, all values are stored in the browser's `LocalStorage`. This means that if a user logs into a different
+ * computer, their stored values will not be present. Use of `SessionStorage` is also supported out-of-the-box. If you
  * wish to save form states elsewhere (for instance, to an API), see the "Storage Location" section below.
  *
  * ## Setting up your template
  *
  * Nothing explicit needs to be done in your templates to add support for `rxAutoSave`. The only requirement is that all
- * the `ng-model` values in a given form are stored within one object (`formData` below). For example, say you have the 
+ * the `ng-model` values in a given form are stored within one object (`formData` below). For example, say you have the
  * following form in your template:
  *
  * <pre>
@@ -294,10 +80,10 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *   };
  * </pre>
  *
- * By default, every time this page was loaded, the form would be initialized with an unchecked checkbox, a blank 
+ * By default, every time this page was loaded, the form would be initialized with an unchecked checkbox, a blank
  * `Name` field and a blank `Description`.
  *
- * To have `rxAutoSave` automatically save values, first inject `rxAutoSave` into your controller, and modify 
+ * To have `rxAutoSave` automatically save values, first inject `rxAutoSave` into your controller, and modify
  * initialization as follows:
  *
  * <pre>
@@ -310,7 +96,7 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *   var autosave = rxAutoSave($scope, 'formData');
  * </pre>
  *
- * And that's it! Your `rxAutoSave` instance will watch for any change to `$scope.formData`, and will automatically 
+ * And that's it! Your `rxAutoSave` instance will watch for any change to `$scope.formData`, and will automatically
  * write those changes to `LocalStorage`.
  *
  * A third argument can be passed to `rxAutoSave`, specifying usage options. The default values for these options are:
@@ -325,12 +111,12 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *     storageBackend: LocalStorage // Object
  *   });
  * </pre>
- * 
+ *
  * All of these options will be described below.
  *
  * ## Multiple Forms on one page
  *
- * `rxAutoSave` supports independently saving multiple forms on one page. To do this, have each form's model in its own 
+ * `rxAutoSave` supports independently saving multiple forms on one page. To do this, have each form's model in its own
  * object, and create individual `rxAutoSave` instances for each. i.e.:
  *
  * <pre>
@@ -351,14 +137,14 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *
  * ## Clearing values
  *
- * If you need to clear the stored values, you can call `autosave.clear()`. This will clear the values from 
+ * If you need to clear the stored values, you can call `autosave.clear()`. This will clear the values from
  * `LocalStorage`, but won't affect your `$scope.formData` values.
  *
- * More likely, rather than manually calling `autosave.clear()`, you'd like the values to be cleared on a "successful 
- * submit". For example, if your user is editing the form described above, and they click a "Submit" button to send the 
+ * More likely, rather than manually calling `autosave.clear()`, you'd like the values to be cleared on a "successful
+ * submit". For example, if your user is editing the form described above, and they click a "Submit" button to send the
  * values to a server, `LocalStorage` should be cleared for this form if the server call is a success.
  *
- * To do this, pass an "options" parameter as the third argument to `rxAutoSave`, setting a promise on the 
+ * To do this, pass an "options" parameter as the third argument to `rxAutoSave`, setting a promise on the
  * `clearOnSuccess` attribute, i.e.
  *
  * <pre>
@@ -368,8 +154,8 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  * If the `serverSubmitPromise` resolves, then `rxAutoSave` will automatically clear the stored values for `formData` on
  * this page.
  *
- * When instantiating your controller, there's a good chance that the `clearOnSuccess` promise you are interested in 
- * does not actually exist yet, i.e. if you want to clear on a successfull submit, you need the submit `promise`. 
+ * When instantiating your controller, there's a good chance that the `clearOnSuccess` promise you are interested in
+ * does not actually exist yet, i.e. if you want to clear on a successfull submit, you need the submit `promise`.
  * Instances of `rxAutoSave` provide a `clearOnSuccess()` method to accept this promise after instantiation:
  *
  * <pre>
@@ -387,7 +173,7 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *
  * ## Automatic expiry
  *
- * Another way to automatically clear values is to set an explict Time-To-Live (TTL) when instantiating your 
+ * Another way to automatically clear values is to set an explict Time-To-Live (TTL) when instantiating your
  * `rxAutoSave` instance. This is done with the `ttl` property of the `opts` object,
  *
  * <pre>
@@ -398,49 +184,49 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  * By default, a `ttl` of `172800` (two days) is used.
  *
  * The `ttl` property takes a length of time in seconds. Whenever something in `formData` changes, the expiry time will
- * be freshly set. With the example above, whenever `formData` is changed, the new expiry time will be set to 24 hours 
- * from the time of the change. In addition, we freshly set the expiry time whenever the data is loaded. If `formData` 
- * is 12 hours away from expiring, and the user visits the page again, then the expiry will be freshly set to a new 24 
+ * be freshly set. With the example above, whenever `formData` is changed, the new expiry time will be set to 24 hours
+ * from the time of the change. In addition, we freshly set the expiry time whenever the data is loaded. If `formData`
+ * is 12 hours away from expiring, and the user visits the page again, then the expiry will be freshly set to a new 24
  * hours, whether or not the user makes a change.
  *
- * If a user visits a page after the data has expired, the data will be cleared from storage and not automatically 
- * loaded. (i.e. we're not running a continuous background process to look for expired data, we only check for 
+ * If a user visits a page after the data has expired, the data will be cleared from storage and not automatically
+ * loaded. (i.e. we're not running a continuous background process to look for expired data, we only check for
  * expiration the next time `rxAutoSave` tries to load the data).
  *
- * To turn off automatic expiry for a given form, pass a value of `{ ttl: 0 }`. In this case, the data will never 
+ * To turn off automatic expiry for a given form, pass a value of `{ ttl: 0 }`. In this case, the data will never
  * expire. You will have to clear it at an appropriate time by using one of the methods mentioned above.
  *
  * ## Preventing automatic loading
  *
- * If you need to prevent `rxAutoSave` from automatically loading stored values, you can again use the optional third 
+ * If you need to prevent `rxAutoSave` from automatically loading stored values, you can again use the optional third
  * parameter, this time setting `load: false`, i.e.
  *
  * <pre>
  *   var autosave = rxAutoSave($scope, 'formData', { load: false });
  * </pre>
  *
- * `load:` will accept a boolean, or it can accept a promise that eventually resolves to a boolean. Accepting a promise 
- * will let you delay your decision on whether or not to load (for example, asking a user if they want values loaded). 
- * Note that if you use a promise, `rxAutoSave` will look at its resolved value. If the resolved value is `true`, then 
- * the data will be loaded. If the resolved value is `false`, or the promise fails/rejects, then the data will not be 
+ * `load:` will accept a boolean, or it can accept a promise that eventually resolves to a boolean. Accepting a promise
+ * will let you delay your decision on whether or not to load (for example, asking a user if they want values loaded).
+ * Note that if you use a promise, `rxAutoSave` will look at its resolved value. If the resolved value is `true`, then
+ * the data will be loaded. If the resolved value is `false`, or the promise fails/rejects, then the data will not be
  * loaded.
  *
  * ## Excluding some values from loading/saving
  *
- * By default, `rxAutoSave` automatically loads and saves all the stored values for a form. If you want to prevent it 
+ * By default, `rxAutoSave` automatically loads and saves all the stored values for a form. If you want to prevent it
  * from loading/saving _some_ values, you can do:
  *
  * <pre>
  *   var autosave = rxAutoSave($scope, 'formData', { exclude: ['description'] });
  * </pre>
  *
- * This will tell `rxAutoSave` not to load from or save to the stored `description` value, but everything else in 
+ * This will tell `rxAutoSave` not to load from or save to the stored `description` value, but everything else in
  * `formData` will be loaded/saved.
  *
  * ## Manual saving
  *
- * It might be that you don't want your `rxAutoSave` instance to automatically save to the storage backend 
- * automatically. In some cases, you might want to disable automatic saving and instead manually tell your instance 
+ * It might be that you don't want your `rxAutoSave` instance to automatically save to the storage backend
+ * automatically. In some cases, you might want to disable automatic saving and instead manually tell your instance
  * when it should save. To turn off automatic saving, set up your instance as follows:
  *
  * <pre>
@@ -457,8 +243,8 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *
  * ## Storage location
  *
- * All values for `rxAutoSave` are by default stored in the browser's `LocalStorage`, and keyed on the URL of the page, 
- * with a `rxAutoSave::` prefix. For example, if the above form were present at the URL `'users/JonnyRocket/edit'`, 
+ * All values for `rxAutoSave` are by default stored in the browser's `LocalStorage`, and keyed on the URL of the page,
+ * with a `rxAutoSave::` prefix. For example, if the above form were present at the URL `'users/JonnyRocket/edit'`,
  * then the form data would be saved into `LocalStorage` at location `'rxAutoSave::users/JonnyRocket/edit'`
  *
  * If you wish to use a different storage backend (`SessionStorage`, for instance), use the `storageBackend` parameter:
@@ -467,15 +253,15 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *    var autosave = rxAutoSave($scope, 'formData', { storageBackend: SessionStorage });
  * </pre>
  *
- * `storageBackend` requires that you pass it an object which has `getObject(key)` and `setObject(key, val)` methods. 
+ * `storageBackend` requires that you pass it an object which has `getObject(key)` and `setObject(key, val)` methods.
  * `LocalStorage` and `SessionStorage` are both provided by EncoreUI, and support this interface.
  *
  * You can use your own custom backends as well, as long as it supports `getObject(key)` and `setObject(key, val)`.
  *
  * ## Custom Storage Key Values
  *
- * Sometimes, it may be necessary to change how a key is formed for the specified `storageBackend`. As previously 
- * stated, these are calculated by prepending `'rxAutoSave::'` before the url. You can override this by passing in a 
+ * Sometimes, it may be necessary to change how a key is formed for the specified `storageBackend`. As previously
+ * stated, these are calculated by prepending `'rxAutoSave::'` before the url. You can override this by passing in a
  * `keyShaping` function to the options object.
  *
  * An example one would be as follows:
@@ -488,11 +274,11 @@ angular.module('encore.ui.rxMisc', ['debounce', 'encore.ui.rxSessionStorage'])
  *   });
  * </pre>
  *
- * The above example could be used to have the current url ignore any caching flags passed in. The `keyShaping` 
- * function will receive the default calculated key (`rxAutoSave::` + $location.url()). By default, `keyShaping` 
+ * The above example could be used to have the current url ignore any caching flags passed in. The `keyShaping`
+ * function will receive the default calculated key (`rxAutoSave::` + $location.url()). By default, `keyShaping`
  * just returns the original calculated key.
  *
- * 
+ *
  * @param {Object} scope scope to apply a `$watch` expression
  * @param {String} variable
  * variable name corresponding to an object on the given scope
