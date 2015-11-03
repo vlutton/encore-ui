@@ -1,7 +1,6 @@
 var _ = require('lodash');
 
 exports.rxEnvironment = {
-
     /**
       Return the current environment the user sees.
       The default is set to something simple and reasonable,
@@ -67,5 +66,4 @@ exports.rxEnvironment = {
             return _.isEqual(component.compare(namedParams.useBaseUrl ? protractor.baseUrl : url), environment);
         });
     }
-
 };
