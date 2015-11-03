@@ -45,7 +45,6 @@ var rxBatchActionMenu = function (rootElement) {
 };
 
 var rxBulkSelect = {
-
     /**
        @function
        @returns {Boolean} Whether the root element is currently displayed.
@@ -168,14 +167,12 @@ var rxBulkSelect = {
             }
         }
     }
-
 };
 
 /**
    @exports encore.rxBulkSelect
  */
 exports.rxBulkSelect = {
-
     /**
        @function
        @param {WebElement} rxBulkSelectElement - WebElement to be transformed into an rxBulkSelectElement object.
@@ -205,5 +202,4 @@ exports.rxBulkSelect = {
         };
         return Page.create(rxBulkSelect);
     })()
-
 };
