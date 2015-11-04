@@ -1,72 +1,72 @@
 @import "vars";
 
 .rx-breadcrumbs {
-    overflow: hidden;
-    border-style: solid;
-    border-color: #cccccc;
+  overflow: hidden;
+  border-style: solid;
+  border-color: #cccccc;
+  float: left;
+
+  .breadcrumb {
     float: left;
 
-    .breadcrumb {
-        float: left;
-
-        .breadcrumb-name {
-            padding: @breadcrumbHeight/2 1em @breadcrumbHeight/2 2em;
-            font-size: 0.9em;
-            display: block;
-            color: #555555;
-            position: relative;
-            text-decoration: none;
-            text-shadow: 0 1px 0 rgba(255,255,255,.5);
-            background: #dddddd;
-        }
-        .breadcrumb-name.last {
-            background: transparent;
-        }
-
-        a::after,
-        a::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            margin-top: -@breadcrumbHeight;
-            border: 0 solid transparent;
-            border-width: @breadcrumbHeight 0 @breadcrumbHeight @breadcrumbArrowWidth;
-            right: -@breadcrumbArrowWidth;
-        }
-
-        a::after {
-            /* TODO add in border gradient to match nav background */
-            border-left-color: #dddddd;
-            z-index: 2;
-        }
-        a::before {
-            border-left-color: #cccccc;
-            right: -(@breadcrumbArrowWidth + 1);
-            z-index: 1;
-        }
-
-        .first {
-            padding-left: 1em;
-            background: #c8c8c8;
-        }
-        .first::after {
-            border-left-color: #c8c8c8;
-        }
-
-        a:hover {
-            background: @white;
-        }
-        a:hover::after {
-            border-left-color: @white;
-        }
+    .breadcrumb-name {
+      padding: @breadcrumbHeight/2 1em @breadcrumbHeight/2 2em;
+      font-size: 0.9em;
+      display: block;
+      color: #555555;
+      position: relative;
+      text-decoration: none;
+      text-shadow: 0 1px 0 rgba(255,255,255,.5);
+      background: #dddddd;
+    }
+    .breadcrumb-name.last {
+      background: transparent;
     }
 
-    .status-tag {
-        &.alpha-status,
-        &.beta-status {
-            margin-left: 6px;
-            position: static;
-        }
+    a::after,
+    a::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      margin-top: -@breadcrumbHeight;
+      border: 0 solid transparent;
+      border-width: @breadcrumbHeight 0 @breadcrumbHeight @breadcrumbArrowWidth;
+      right: -@breadcrumbArrowWidth;
     }
+
+    a::after {
+      /* TODO add in border gradient to match nav background */
+      border-left-color: #dddddd;
+      z-index: 2;
+    }
+    a::before {
+      border-left-color: #cccccc;
+      right: -(@breadcrumbArrowWidth + 1);
+      z-index: 1;
+    }
+
+    .first {
+      padding-left: 1em;
+      background: #c8c8c8;
+    }
+    .first::after {
+      border-left-color: #c8c8c8;
+    }
+
+    a:hover {
+      background: @white;
+    }
+    a:hover::after {
+      border-left-color: @white;
+    }
+  }
+
+  .status-tag {
+    &.alpha-status,
+    &.beta-status {
+      margin-left: 6px;
+      position: static;
+    }
+  }
 
 }

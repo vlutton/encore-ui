@@ -12,117 +12,117 @@
 
 .modal,
 .modal-backdrop {
-    .transition();
-    .opacity(0);
-    &.fade.in {
-        .opacity(1);
-    }
+  .transition();
+  .opacity(0);
+  &.fade.in {
+    .opacity(1);
+  }
 }
 
 .modal-backdrop {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1040;
-    background: @black;
-    &.fade.in {
-        .opacity(0.4);
-    }
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background: @black;
+  &.fade.in {
+    .opacity(0.4);
+  }
 }
 
 .modal {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    z-index: 1050;
-    width: 560px;
-    background: @white;
-    border: 1px solid rgba(0, 0, 0, 0.3);
-    transform: translate(-50%, 0);
-    -webkit-transform: translate(-50%, 0);
-    -moz-transform: translate(-50%, 0);
-    .box-shadow(0 3px 7px rgba(0, 0, 0, 0.3));
-    .background-clip();
-    outline: none;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  z-index: 1050;
+  width: 560px;
+  background: @white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+  -moz-transform: translate(-50%, 0);
+  .box-shadow(0 3px 7px rgba(0, 0, 0, 0.3));
+  .background-clip();
+  outline: none;
 }
 
 .modal-header {
-    padding: @modalPadding;
-    border-bottom: 1px solid @pageDivider;
-    position: relative;
+  padding: @modalPadding;
+  border-bottom: 1px solid @pageDivider;
+  position: relative;
 
-    .modal-title {
-        line-height: 1;
-        font-size: 1.75em;
-        margin: 0;
+  .modal-title {
+    line-height: 1;
+    font-size: 1.75em;
+    margin: 0;
+  }
+  .modal-subtitle {
+    line-height: 1.5;
+    font-size: 1em;
+    font-wieght: bold;
+    color: @subduedTitle;
+    margin: 0;
+  }
+  .modal-close {
+    position: absolute;
+    top: @modalPadding;
+    right: @modalPadding;
+    font-size: 2em;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    color: @closeText;
+    &:hover,
+    &:focus {
+      color: @closeTextHover;
     }
-    .modal-subtitle {
-        line-height: 1.5;
-        font-size: 1em;
-        font-wieght: bold;
-        color: @subduedTitle;
-        margin: 0;
-    }
-    .modal-close {
-        position: absolute;
-        top: @modalPadding;
-        right: @modalPadding;
-        font-size: 2em;
-        width: 1em;
-        height: 1em;
-        text-align: center;
-        color: @closeText;
-        &:hover,
-        &:focus {
-            color: @closeTextHover;
-        }
 
-        &:before {
-            content: "\00D7";
-            position: absolute;
-            line-height: 0;
-            right: 0;
-            width: 1em;
-        }
+    &:before {
+      content: "\00D7";
+      position: absolute;
+      line-height: 0;
+      right: 0;
+      width: 1em;
     }
+  }
 }
 .modal-body {
-    position: relative;
-    overflow-y: auto;
-    max-height: 400px;
-    padding: @modalBodyPadding @modalPadding;
+  position: relative;
+  overflow-y: auto;
+  max-height: 400px;
+  padding: @modalBodyPadding @modalPadding;
 
-    .loading {
-        margin: 0 auto;
-        width: 1em;
-    }
+  .loading {
+    margin: 0 auto;
+    width: 1em;
+  }
 
-    .form-radio {
-        border: 0;
-    }
+  .form-radio {
+    border: 0;
+  }
 
-    .rx-form.modal-form {
-        margin: 0;
-    }
+  .rx-form.modal-form {
+    margin: 0;
+  }
 }
 
 .modal-footer {
-    padding: @modalPadding;
-    border-top: 1px solid @pageDivider;
+  padding: @modalPadding;
+  border-top: 1px solid @pageDivider;
 }
 
 @media (max-width:480px) {
-    @padding: 10px;
-    .modal {
-        position: absolute;
-        top: @padding;
-        left: @padding;
-        right: @padding;
-    }
-    .modal-header .close {
-        padding: @padding;
-        margin: -@padding;
-    }
+  @padding: 10px;
+  .modal {
+    position: absolute;
+    top: @padding;
+    left: @padding;
+    right: @padding;
+  }
+  .modal-header .close {
+    padding: @padding;
+    margin: -@padding;
+  }
 }
