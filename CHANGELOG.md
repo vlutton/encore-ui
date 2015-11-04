@@ -1,3 +1,12 @@
+<a name="1.36.0"></a>
+## 1.36.0 (2015-11-04)
+
+
+#### Features
+
+* **selectAll:** FRMW-112 - Add Select All to rxOptionTable ([8c5284db](git@github.com:rackerlabs/encore-ui/commit/8c5284db7d1f4b150cd9efd6893b35fd94e4ef59))
+
+
 <a name="1.35.1"></a>
 ### 1.35.1 (2015-10-28)
 
