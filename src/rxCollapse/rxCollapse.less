@@ -2,57 +2,57 @@
  * rxCollapse
  */
 rx-collapse {
-    display: block;
+  display: block;
 
-    .collapse-container {
+  .collapse-container {
 
-        .double-chevron-cell {
-            display: inline-block;
-            .box-sizing(border-box);
-            width: 30px;
-            padding: 0 10px;
-            background-color: @borderGrey;
-            vertical-align: middle;
+    .double-chevron-cell {
+      display: inline-block;
+      .box-sizing(border-box);
+      width: 30px;
+      padding: 0 10px;
+      background-color: @borderGrey;
+      vertical-align: middle;
 
-            .double-chevron {
-                cursor: pointer;
-                &:after {
-                    display: inline-block;
-                    color: @white;
-                    font-size: 28px;
-                    .chevron-mixin;
-                }
-            }
-
-            &.expanded {
-                .double-chevron {
-                    &:after {
-                        .chevron-mixin(-1);
-                    }
-                }
-            }
-        }
-
-        border: 2px solid @borderGrey;
-
-        .rx-collapse-title {
-            display: inline-block;
-            margin: 0 10px;
-            vertical-align: middle;
-        }
-
-        .collapse-body {
-            margin: 0;
-            padding: 10px;
-        }
-    }
-    .sml-title {
+      .double-chevron {
         cursor: pointer;
-        color: @cancel-gray;
-        font-size: 10pt;
+        &:after {
+          display: inline-block;
+          color: @white;
+          font-size: 28px;
+          .chevron-mixin;
+        }
+      }
+
+      &.expanded {
+        .double-chevron {
+          &:after {
+            .chevron-mixin(-1);
+          }
+        }
+      }
     }
 
-    .hide-border {
-        border: 0;
+    border: 2px solid @borderGrey;
+
+    .rx-collapse-title {
+      display: inline-block;
+      margin: 0 10px;
+      vertical-align: middle;
     }
+
+    .collapse-body {
+      margin: 0;
+      padding: 10px;
+    }
+  }
+  .sml-title {
+    cursor: pointer;
+    color: @cancel-gray;
+    font-size: 10pt;
+  }
+
+  .hide-border {
+    border: 0;
+  }
 }

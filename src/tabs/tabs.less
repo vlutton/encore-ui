@@ -1,63 +1,63 @@
 @import "vars";
 
 .nav-tabs {
-    display: flex;
-    border-bottom: 9px solid @tabBorder;
-    clear: both;
+  display: flex;
+  border-bottom: 9px solid @tabBorder;
+  clear: both;
 
-    li {
-        flex: 0 0 auto;
-        font-size: 14px;
-        margin-right: 1px;
+  li {
+    flex: 0 0 auto;
+    font-size: 14px;
+    margin-right: 1px;
+  }
+
+  a {
+    display: block;
+    background: #3f6085;
+    color: #cccccc;
+    padding: 10px 20px;
+
+    .subdued {
+      color: @subduedTextHover;
     }
 
-    a {
-        display: block;
-        background: #3f6085;
-        color: #cccccc;
-        padding: 10px 20px;
+    &:hover:not(.active),
+    &:focus:not(.active) {
+      cursor: pointer;
+      color: @white;
+      text-decoration: none;
 
-        .subdued {
-            color: @subduedTextHover;
-        }
-
-        &:hover:not(.active),
-        &:focus:not(.active) {
-            cursor: pointer;
-            color: @white;
-            text-decoration: none;
-
-            .subdued {
-                color: @subduedText;
-            }
-        }
+      .subdued {
+        color: @subduedText;
+      }
     }
+  }
 
-    .active a {
-        background: @tabBorder;
-        color: @white;
+  .active a {
+    background: @tabBorder;
+    color: @white;
 
-        .subdued {
-            color: @subduedText;
-        }
+    .subdued {
+      color: @subduedText;
     }
+  }
 }
 
 .tab-pane {
-    clear: both;
-    display: none;
-    background: @white;
-    padding: 10px;
-    border-left: 2px solid @tabBorder;
-    border-right: 2px solid @tabBorder;
-    border-bottom: 2px solid @tabBorder;
+  clear: both;
+  display: none;
+  background: @white;
+  padding: 10px;
+  border-left: 2px solid @tabBorder;
+  border-right: 2px solid @tabBorder;
+  border-bottom: 2px solid @tabBorder;
 
-    &.active {
-        display: block;
-    }
+  &.active {
+    display: block;
+  }
 
-    // If the title is the first part of the tab-pane, remove its top border so there isn't so much space
-    .title:first-child {
-        margin-top: 0;
-    }
+  // If the title is the first part of the tab-pane, remove its top border so there isn't so much space
+  .title:first-child {
+    margin-top: 0;
+  }
 }

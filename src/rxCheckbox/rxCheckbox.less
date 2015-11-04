@@ -2,102 +2,102 @@
  * rxCheckbox
  */
 .rxCheckbox {
-    display: inline-block;
-    width: @rxCheckbox-size;
-    height: @rxCheckbox-size;
-    color: @rxCheckbox-color;
+  display: inline-block;
+  width: @rxCheckbox-size;
+  height: @rxCheckbox-size;
+  color: @rxCheckbox-color;
+  background-color: @rxCheckbox-background-color;
+  position: relative;
+
+  input[type="checkbox"],
+  .fake-checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+  }
+
+  .fake-checkbox {
+    box-sizing: border-box;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+
+    // enabled unchecked
     background-color: @rxCheckbox-background-color;
-    position: relative;
+    border: 1px solid @rxCheckbox-border-color;
 
-    input[type="checkbox"],
-    .fake-checkbox {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        outline: 0;
+    // perfect center alignment for tick
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+
+    .tick {
+      flex: 0 0 auto;
+      font-size: @rxCheckbox-font-size;
+    }
+  }//.fake-checkbox
+
+  &.rx-disabled + label {
+    color: @inputColorDisabled;
+  }
+
+  input[type="checkbox"] {
+    z-index: 1;
+    height: 110%;
+    width: 110%;
+    opacity: 0;
+    cursor: pointer;
+
+    // enabled checked
+    &:checked + .fake-checkbox {
+      background-color: @rxCheckbox-background-color-selected;
+      color: @rxCheckbox-color;
+      border: 0;
     }
 
-    .fake-checkbox {
-        box-sizing: border-box;
-        z-index: 0;
-        width: 100%;
-        height: 100%;
+    .disabled() {
+      cursor: not-allowed;
 
-        // enabled unchecked
-        background-color: @rxCheckbox-background-color;
+      & ~ .fake-checkbox {
+        background: @inputBackground;
         border: 1px solid @rxCheckbox-border-color;
+      }
 
-        // perfect center alignment for tick
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        justify-content: center;
-        color: transparent;
+      // disabled, checked
+      &:checked ~ .fake-checkbox {
+        background-color: @inputBackgroundDisabled;
+        border: 0;
+      }
+    }//.disabled()
 
-        .tick {
-            flex: 0 0 auto;
-            font-size: @rxCheckbox-font-size;
+    &.ng-invalid.ng-dirty {
+      // enabled unchecked error
+      & + .fake-checkbox {
+        background-color: @rxCheckbox-background-color;
+        border: 2px solid @inputBackgroundError;
+      }
+
+      // enabled checked error
+      &:checked {
+        & + .fake-checkbox {
+          background-color: @inputBackgroundError;
         }
-    }//.fake-checkbox
+      }
 
-    &.rx-disabled + label {
-        color: @inputColorDisabled;
+      &[disabled] {
+        .disabled();
+      }
     }
 
-    input[type="checkbox"] {
-        z-index: 1;
-        height: 110%;
-        width: 110%;
-        opacity: 0;
-        cursor: pointer;
-
-        // enabled checked
-        &:checked + .fake-checkbox {
-            background-color: @rxCheckbox-background-color-selected;
-            color: @rxCheckbox-color;
-            border: 0;
-        }
-
-        .disabled() {
-            cursor: not-allowed;
-
-            & ~ .fake-checkbox {
-                background: @inputBackground;
-                border: 1px solid @rxCheckbox-border-color;
-            }
-
-            // disabled, checked
-            &:checked ~ .fake-checkbox {
-                background-color: @inputBackgroundDisabled;
-                border: 0;
-            }
-        }//.disabled()
-
-        &.ng-invalid.ng-dirty {
-            // enabled unchecked error
-            & + .fake-checkbox {
-                background-color: @rxCheckbox-background-color;
-                border: 2px solid @inputBackgroundError;
-            }
-
-            // enabled checked error
-            &:checked {
-                & + .fake-checkbox {
-                    background-color: @inputBackgroundError;
-                }
-            }
-
-            &[disabled] {
-                .disabled();
-            }
-        }
-
-        &[disabled] {
-            .disabled();
-        }
+    &[disabled] {
+      .disabled();
     }
+  }
 }//.rxCheckbox

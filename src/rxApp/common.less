@@ -9,17 +9,17 @@
 // Resets for HTML elements
 html,
 body {
-    height: 100%;
-    font-size: @appFontSize;
-    color: @appTextColor;
-    font-family: @appFont;
+  height: 100%;
+  font-size: @appFontSize;
+  color: @appTextColor;
+  font-family: @appFont;
 }
 
 // Resets for form inputs
 input,
 textarea,
 select {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 // Set default font
@@ -28,7 +28,7 @@ input,
 select,
 .pure-g [class *= "pure-u"],
 .pure-g-r [class *= "pure-u"] {
-    font-family: @appFont;
+  font-family: @appFont;
 }
 
 // Remove default margin/padding/etc
@@ -44,129 +44,129 @@ h4,
 h5,
 h6,
 fieldset {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font: inherit;
-    font-size: 100%;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
 }
 
 // No list styles for lists
 ol,
 ul,
 li {
-    list-style: none;
+  list-style: none;
 }
 
 // We want a little bit more line-spacing in paragraphs
 p {
-    line-height: @appLineHeight;
+  line-height: @appLineHeight;
 }
 
 // Link Styles
 a {
-    text-decoration: none;
-    color: @linkColor;
+  text-decoration: none;
+  color: @linkColor;
 }
 a:hover,
 a:focus {
-    text-decoration: underline;
-    color: @linkColorHover;
+  text-decoration: underline;
+  color: @linkColorHover;
 }
 
 // Table Styles
 table {
-    clear: both;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-    border-collapse: collapse;
-    td,
-    th {
-        border: 1px solid @tableBorder;
-        padding: @tableCellPadding;
-        color: @tableCellText;
+  clear: both;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-collapse: collapse;
+  td,
+  th {
+    border: 1px solid @tableBorder;
+    padding: @tableCellPadding;
+    color: @tableCellText;
+  }
+  thead th {
+    text-align: left;
+    background: @tableHeaderBg;
+    color: @tableHeaderText;
+    border: 1px solid @tableHeaderBorder;
+    &.actions {
+      width: 15px;
     }
-    thead th {
-        text-align: left;
-        background: @tableHeaderBg;
-        color: @tableHeaderText;
-        border: 1px solid @tableHeaderBorder;
-        &.actions {
-            width: 15px;
-        }
+  }
+  tr {
+    background: @tableBg;
+  }
+  &.table-striped {
+    tr:nth-child(even),
+    tbody:nth-child(odd) > tr {
+      background: @tableBgAlt;
     }
-    tr {
-        background: @tableBg;
+  }
+  td.double-chevron-cell {
+    width: 10px;
+    padding: 0 10px;
+    .double-chevron {
+      cursor: pointer;
+      &::after {
+        display: inline-block;
+        color: @subduedText;
+        font-size: 20px;
+        .chevron-mixin;
+      }
     }
-    &.table-striped {
-        tr:nth-child(even),
-        tbody:nth-child(odd) > tr {
-            background: @tableBgAlt;
-        }
+  }
+  td.expanded {
+    background-color: @subtableBorder;
+    border-bottom-color: @subtableBorder;
+    .double-chevron::after {
+      color: @white;
+      .chevron-mixin(-1);
     }
-    td.double-chevron-cell {
-        width: 10px;
-        padding: 0 10px;
-        .double-chevron {
-            cursor: pointer;
-            &::after {
-                display: inline-block;
-                color: @subduedText;
-                font-size: 20px;
-                .chevron-mixin;
-            }
-        }
-    }
-    td.expanded {
-        background-color: @subtableBorder;
-        border-bottom-color: @subtableBorder;
-        .double-chevron::after {
-            color: @white;
-            .chevron-mixin(-1);
-        }
-    }
-    .fa-times.delete-x:hover {
-        color: @warnRedHover;
-        cursor: pointer;
-    }
+  }
+  .fa-times.delete-x:hover {
+    color: @warnRedHover;
+    cursor: pointer;
+  }
 }
 
 .expanded-container {
-    padding: 0 3px 3px 3px;
-    background-color: @subtableBorder;
+  padding: 0 3px 3px 3px;
+  background-color: @subtableBorder;
 
-    & > * {
-        margin-left: 2%;
-        width: 98%;
+  & > * {
+    margin-left: 2%;
+    width: 98%;
+  }
+
+  table.subtable {
+    table-layout: fixed;
+
+    th:first-child {
+      border-left-width: 0;
     }
 
-    table.subtable {
-        table-layout: fixed;
-
-        th:first-child {
-            border-left-width: 0;
-        }
-
-        th:last-child {
-            border-right-width: 0;
-        }
-
-        th {
-            border-color: darken(@subtableBorder, 15%);
-            background-color: @subtableBorder;
-            border-top: 0;
-            border-bottom: 0;
-        }
+    th:last-child {
+      border-right-width: 0;
     }
-    .expanded-content {
-        background-color: @white;
-        margin-top: 3px;
-        .metadata {
-            padding: 5px 10px;
-        }
+
+    th {
+      border-color: darken(@subtableBorder, 15%);
+      background-color: @subtableBorder;
+      border-top: 0;
+      border-bottom: 0;
     }
+  }
+  .expanded-content {
+    background-color: @white;
+    margin-top: 3px;
+    .metadata {
+      padding: 5px 10px;
+    }
+  }
 }
 
 /* ===== HEADINGS ===== */
@@ -176,63 +176,63 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 1em 0;
+  margin: 1em 0;
 
-    &.subdued {
-        color: @subduedTitle;
-    }
+  &.subdued {
+    color: @subduedTitle;
+  }
 }
 
 h1 {
-    // same as .title.xl
-    font-size: 28px;
+  // same as .title.xl
+  font-size: 28px;
 }
 h2 {
-    // same as .title.lg
-    font-size: 22px;
+  // same as .title.lg
+  font-size: 22px;
 }
 h3 {
-    // same as .title
-    font-size: 18px;
+  // same as .title
+  font-size: 18px;
 }
 h4 {
-    // same as .title.sm
-    font-size: 16px;
+  // same as .title.sm
+  font-size: 16px;
 }
 h5 {
-    // same as .title.xs
-    font-size: 13px;
+  // same as .title.xs
+  font-size: 13px;
 }
 h6 {
-    // no legacy equivalent
-    font-size: 10px;
+  // no legacy equivalent
+  font-size: 10px;
 }
 
 // Heading/Title Styles
 .title {
-    margin: 1em 0;
+  margin: 1em 0;
 
-    // Sizing
-    &.xl { // h1
-        font-size: 28px;
-    }
-    &.lg { // h2
-        font-size: 22px;
-    }
-    & { // h3
-        font-size: 18px;
-    }
-    &.sm { // h4
-        font-size: 16px;
-    }
-    &.xs { // h5
-        font-size: 13px;
-    }
+  // Sizing
+  &.xl { // h1
+    font-size: 28px;
+  }
+  &.lg { // h2
+    font-size: 22px;
+  }
+  & { // h3
+    font-size: 18px;
+  }
+  &.sm { // h4
+    font-size: 16px;
+  }
+  &.xs { // h5
+    font-size: 13px;
+  }
 
-    // Colors
-    &.subdued {
-        color: @subduedTitle;
-    }
+  // Colors
+  &.subdued {
+    color: @subduedTitle;
+  }
 }//.title
 
 // Statuses
@@ -240,115 +240,115 @@ h6 {
 .link-action a,
 .link-warn,
 .link-warn a {
-    font-size: 1.2em;
-    cursor: pointer;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 
 .link-action:before,
 .link-action a:before {
-    content: "+ ";
+  content: "+ ";
 }
 
 .link-warn:before,
 .link-warn a:before {
-    content: "- ";
+  content: "- ";
 }
 
 .action-separator {
-    font-size: 1.1em;
-    color: @subduedText;
+  font-size: 1.1em;
+  color: @subduedText;
 }
 
 .msg-action,
 .msg-action a {
+  color: @actionGreen;
+  &:hover,
+  &:focus {
     color: @actionGreen;
-    &:hover,
-    &:focus {
-        color: @actionGreen;
-    }
+  }
 }
 
 .msg-warn,
 .msg-warn a {
-    color: @warnRed;
-    &:hover,
-    &:focus {
-        color: @warnRedHover;
-    }
+  color: @warnRed;
+  &:hover,
+  &:focus {
+    color: @warnRedHover;
+  }
 }
 
 .msg-info,
 .msg-info a {
-    color: @infoOrange;
-    &:hover,
-    &:focus {
-        color: @infoOrangeHover;
-    }
+  color: @infoOrange;
+  &:hover,
+  &:focus {
+    color: @infoOrangeHover;
+  }
 }
 
 .msg-info-blue,
 .msg-info-blue a {
-    color: @infoBlue;
-    &:hover,
-    &:focus {
-        color: @infoBlueHover;
-    }
+  color: @infoBlue;
+  &:hover,
+  &:focus {
+    color: @infoBlueHover;
+  }
 }
 
 // Lists
 .list {
+  li,
+  .item {
+    display: list-item;
+    margin: 5px 0 0 30px;
+  }
+
+  ul&,
+  &.bulleted {
     li,
     .item {
-        display: list-item;
-        margin: 5px 0 0 30px;
+      list-style: disc;
     }
+  }
 
-    ul&,
-    &.bulleted {
-        li,
-        .item {
-            list-style: disc;
-        }
+  ol&,
+  &.decimal {
+    li,
+    .item {
+      list-style: decimal;
     }
-
-    ol&,
-    &.decimal {
-        li,
-        .item {
-            list-style: decimal;
-        }
-    }
+  }
 }
 
 // Wells
 .well {
-    background: #eeeeee;
-    padding: 40px 50px;
-    box-shadow: 0 0 0 10px white inset;
+  background: #eeeeee;
+  padding: 40px 50px;
+  box-shadow: 0 0 0 10px white inset;
 
-    p {
-        line-height: 1.5em;
-        color: @wellText;
-    }
+  p {
+    line-height: 1.5em;
+    color: @wellText;
+  }
 
-    ul {
-        display: inline-block;
-        text-align: left;
-    }
+  ul {
+    display: inline-block;
+    text-align: left;
+  }
 }
 
 .modal-well {
-    background-color: #eeeeee;
-    padding: 20px 30px;
+  background-color: #eeeeee;
+  padding: 20px 30px;
 
-    h2 {
-        font-size: 14px;
-    }
+  h2 {
+    font-size: 14px;
+  }
 }
 
 // Other Stuff
 .subdued {
-    color: @subduedText;
+  color: @subduedText;
 }
 
 // Add hover style if a link or inside a link
@@ -356,63 +356,63 @@ a.subdued:hover,
 a.subdued:focus,
 a:hover .subdued,
 a:focus .subdued {
-    color: @subduedTextHover;
+  color: @subduedTextHover;
 }
 
 // Hidden content
 .hidden {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 // Used to hide content visually but let them still be read
 // by screen readers (removed from the page spacing)
 .visually-hidden {
-    position: absolute !important;
-    clip: rect(1px, 1px, 1px, 1px);
-    padding: 0 !important;
-    border: 0 !important;
-    height: 1px !important;
-    width: 1px !important;
-    overflow: hidden;
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
 }
 body:hover .visually-hidden a,
 body:hover .visually-hidden input,
 body:hover .visually-hidden button {
-    display: none;
+  display: none;
 }
 
 // Clearing Floats
 .clearfix:before,
 .clearfix:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+  content: " "; /* 1 */
+  display: table; /* 2 */
 }
 
 .clearfix:after {
-    clear: both;
+  clear: both;
 }
 
 // Clearing siblings
 .clear {
-    clear: both;
+  clear: both;
 }
 .clear-left {
-    clear: left;
+  clear: left;
 }
 .clear-right {
-    clear: right;
+  clear: right;
 }
 
 // Marks content as full width (e.g. to give a button full width).
 // Requires 'display' to be defined as `inline-block` or `block`
 .full-width {
-    width: 100%;
+  width: 100%;
 }
 
 // Center content
 // Requires 'display' to be defined as `inline-block` or `block`
 .centered {
-    text-align: center;
+  text-align: center;
 }
 
 
@@ -421,17 +421,17 @@ body:hover .visually-hidden button {
  * https://css-tricks.com/snippets/css/style-placeholder-text/
  */
 ::-webkit-input-placeholder { // Chrome
-    color: @inputPlaceholderColor;
-    font-weight: 300;
-    font-style: italic;
+  color: @inputPlaceholderColor;
+  font-weight: 300;
+  font-style: italic;
 }
 ::-moz-placeholder { // Firefox 19+
-    color: @inputPlaceholderColor;
-    font-weight: 400;
-    font-style: italic;
+  color: @inputPlaceholderColor;
+  font-weight: 400;
+  font-style: italic;
 }
 
 //DEPRECATED: A "filter" style rxSearchBox
 .filter-box {
-    font-style: italic;
+  font-style: italic;
 }

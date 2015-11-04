@@ -2,538 +2,538 @@
 @import 'mixins';
 
 .rx-app {
-    @navTransitionDuration: .2s;
-    @appMenuWidth: 300px;
+  @navTransitionDuration: .2s;
+  @appMenuWidth: 300px;
 
-    min-height: 100%;
-    display: flex;
-    flex-direction: row;
-    background: @appBg;
+  min-height: 100%;
+  display: flex;
+  flex-direction: row;
+  background: @appBg;
 
-    .rx-app-content {
-        flex: 1 1 0;
+  .rx-app-content {
+    flex: 1 1 0;
+  }
+
+  .rx-app-menu {
+    flex: 0 0 @appMenuWidth;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 300;
+    background: @appMenuBg;
+    line-height: @appLineHeight;
+    padding-bottom: 10em;
+    position: relative;
+
+    .site-title,
+    .nav-section-title {
+      margin: 0;
+      font-size: inherit;
     }
+  }
 
-    .rx-app-menu {
-        flex: 0 0 @appMenuWidth;
-        color: #fff;
-        font-size: 15px;
-        font-weight: 300;
-        background: @appMenuBg;
-        line-height: @appLineHeight;
-        padding-bottom: 10em;
-        position: relative;
+  .site-branding {
+    border-top: 1px solid #074285;
+    border-bottom: 1px solid #052953;
+    padding: 5px 20px;
+    overflow: hidden;
+    background: @siteBrandingBg;
+    position: relative;
 
-        .site-title,
-        .nav-section-title {
-            margin: 0;
-            font-size: inherit;
-        }
+    .site-title {
+      float: left;
     }
+    .site-options {
+      float: right;
+      font-size: .8em;
+      margin-top: 1px;
 
-    .site-branding {
-        border-top: 1px solid #074285;
-        border-bottom: 1px solid #052953;
-        padding: 5px 20px;
-        overflow: hidden;
-        background: @siteBrandingBg;
-        position: relative;
-
-        .site-title {
-            float: left;
-        }
-        .site-options {
-            float: right;
-            font-size: .8em;
-            margin-top: 1px;
-
-            .site-option {
-                color: @menuLinkLightBlue;
-                display: inline-block;
-                margin-left: 1em;
-                &:hover,
-                &:focus {
-                    color: @white;
-                }
-            }
-        }
-
-        .collapsible-toggle {
-            position: absolute;
-            text-align: center;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            width: 2em;
-            border-left: 1px solid #052953;
-            &:hover {
-                background: lighten(@siteBrandingBg, 10%);
-            }
-        }
-
-        .double-chevron {
-            font-size: 20px;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-
-            &::before {
-                color: @menuLinkLightBlue;
-                content: "\00bb";
-            }
-
-            &.double-chevron-left::before {
-                content: "\00ab";
-            }
-
-            &:hover &::before {
-                color: @white;
-            }
-        }
-    }
-
-    &.collapsible {
-        .site-branding {
-            padding-right: calc(~"2em + 20px");
-        }
-    }
-
-    &.collapsed {
-        .rx-app-menu {
-            flex: 0 0 25px;
-            padding-bottom: 0;
-            position: relative;
-        }
-
-        .site-branding,
-        .collapsible-toggle {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            padding: 0;
-            width: 100%;
-        }
-
-        .site-title,
-        .site-options,
-        .rx-app-nav,
-        .rx-app-help {
-            display: none;
-        }
-
-        .page-body {
-            & > .rx-notifications {
-                left: 25px;
-            }
-        }
-    }
-
-    &.warning-bar {
-        position: absolute;
-        margin-top: 3em;
-        width: 100%;
-    }
-
-    &.warning-bar.preprod {
-        .rx-app-menu {
-            background: @preprodBackground;
-        }
-        .rx-app-nav-item {
-            &.active:not(.has-children) > .item-link {
-                border-top-color: @preprodBorderTop;
-            }
-            .item-link {
-                background: @preprodBackground;
-                border-top: 1px solid @preprodBorderTop;
-                border-bottom: 1px solid @preprodBorderBottom;
-                &:hover,
-                &:focus {
-                    background: @preprodBackgroundFocus;
-                    border-top: 1px solid @preprodBorderBottom;
-                    border-bottom: 1px solid @preprodBorderBottom;
-                }
-            }
-
-            // active nav, w/children (double arrow up, gray bg)
-            &.active.has-children > .item-link {
-                border-top-color: @preprodBorderTop;
-                // used to show BG of arrow (because :after is rotated)
-                &:before {
-                    background: @preprodActiveBackground;
-                }
-                .item-content {
-                    border-bottom: 1px solid #000000;
-                }
-            }
-
-            .item-content {
-                background: @preprodActiveBackground;
-            }
-        }
-    }
-
-    .rx-app-nav {
-        clear: both;
-
-        .nav-section {
-            padding-left: 5px;
-        }
-
-        .nav-section-title {
-            padding: 5px 15px;
-            font-size: 13px;
-        }
-
-        .nav-section-all {
-            background: #407610;
-            border-top: 1px solid #568c26;
-        }
-
-        .nav-section-highlight {
-            background: #0951a3;
-            border-top: 1px solid #00408f;
-        }
-
-        .nav-section-no-title {
-            background: transparent;
-            padding: 0;
-            margin: 0;
-
-            & > .nav-section-title {
-                display: none;
-            }
-        }
-    }
-
-    .rx-app-nav-item {
-        clear: both;
-
-        // common nav styles (inactive nav, no children)
-        .item-link {
-            background: #1a1a1a;
-            border-top: 1px solid #333333;
-            border-bottom: 1px solid #000000;
-            padding: 10px 4em 10px 15px;
-            display: block;
-            color: #fff;
-            text-decoration: none;
-            -webkit-transition: background @navTransitionDuration;
-            transition: background @navTransitionDuration;
-            position: relative;
-            &:hover,
-            &:focus {
-                background: #262626;
-                border-top: 1px solid #404040;
-                border-bottom: 1px solid #0d0d0d;
-            }
-            &:before,
-            &:after {
-                content: '';
-                position: absolute;
-            }
-            &:after {
-                -webkit-transition: all @navTransitionDuration;
-                transition: all @navTransitionDuration;
-            }
-        }
-
-        &:not(.has-children) > .item-link:after {
-            right: 0;
-            top: 0;
-            border: transparent solid;
-            border-width: calc(~"5px + 1em") 6px;
-            border-right: 0;
-        }
-
-        // active nav, no children (blue bg, arrow right)
-        &.active:not(.has-children) > .item-link {
-            border-color: transparent;
-            background: #0E7FFF;
-            &:after {
-                right: -6px;
-                border-left-color: #0E7FFF;
-            }
-        }
-
-        // inactive nav, w/children (double arrow down)
-        &.has-children > .item-link:after {
-            font-size: 2em;
-            content: "\00bb"; // angle quotation mark, right (&raquo;)
-            -webkit-transform: rotate(90deg) scaleX(1);
-            transform: rotate(90deg) scaleX(1);
-            top: 50%;
-            line-height: 0;
-            right: .45em;
-        }
-
-        // active nav, w/children (double arrow up, gray bg)
-        &.active.has-children > .item-link {
-            border-top-color: #404040;
-            border-bottom-width: 0;
-            // used to show BG of arrow (because :after is rotated)
-            &:before {
-                width: 3em;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                background: #333;
-            }
-            &:after {
-                // flip arrow around
-                -webkit-transform: rotate(90deg) scaleX(-1);
-                transform: rotate(90deg) scaleX(-1);
-            }
-            .item-content {
-                border-bottom: 1px solid #000000;
-            }
-        }
-
-        .item-content {
-            background: #333;
-            padding: 10px;
-        }
-
-        .item-directive:not(.ng-hide) + .item-children {
-            margin-top: 10px;
-        }
-
-        .item-children {
-            padding: 10px;
-            background: #4d4d4c;
-        }
-
-        .child-header {
-            margin-bottom: 1em;
-        }
-
-        .current-search {
-            text-transform: uppercase;
-            font-weight: bold;
-            color: #9c9c9c;
-            font-size: 10px;
-            display: block;
-        }
-        .current-result {
-            color: #d5d5d3;
-            font-size: 18px;
-        }
-
-    }
-
-    .rx-app-nav-level-2 {
-        .item-link {
-            background: #666766;
-            border-top-color: #787878;
-            border-bottom-color: #595959;
-            font-size: 13px;
-
-            &:hover,
-            &:focus {
-                background: #595959;
-                border-top: 1px solid #737373;
-                border-bottom: 1px solid #404040;
-            }
-        }
-        .active:not(.has-children) > .item-link {
-            margin-right: -10px;
-        }
-        .active.has-children > .item-link {
-            background: #1a1a1a;
-            border-color: transparent;
-        }
-
-        .item-content {
-            background: #1a1a1a;
-            padding: 0 0 4px 4px;
-        }
-
-        .item-children {
-            padding: 0;
-        }
-    }
-
-    .rx-app-nav-level-3 .item-link {
-        background: #333333;
-        border-color: transparent;
-        padding: 5px 15px;
-
+      .site-option {
+        color: @menuLinkLightBlue;
+        display: inline-block;
+        margin-left: 1em;
         &:hover,
         &:focus {
-            background: #404040;
-            border-color: transparent;
+          color: @white;
         }
-    }
-    .rx-app-nav-level-3 .rx-app-nav-item {
-        &:first-child {
-            border-top: 3px solid #333;
-        }
-        .item-link:after {
-            border-top-width: 1em;
-            border-bottom-width: 1em;
-        }
+      }
     }
 
-    .rx-app-search {
-        position: relative;
-        font-size: 14px;
-        color: #babab9;
-
-        fieldset {
-            position: relative;
-        }
-
-        // NOTE: We have to have this duplication because CSS doesn't like combining the placholder selectors
-        .placeholder() {
-            font-style: italic;
-            text-overflow: ellipsis;
-        }
-
-        ::-webkit-input-placeholder {
-            .placeholder();
-        }
-        ::-moz-placeholder {
-            .placeholder();
-        }
-        :-ms-input-placeholder {
-            .placeholder();
-        }
-
-        .search-input {
-            .box-sizing(border-box);
-            background: #4d4d4c;
-            border: 0;
-            width: 100%;
-            padding: 9px;
-            padding-right: 30px;
-            margin: 0;
-        }
-
-        .search-input.ng-invalid:focus {
-            outline-color: @menuRed;
-        }
-
-        .search-action {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 30px;
-            height: 100%;
-            background: url(images/magnifying-glass.png) no-repeat 50% 50%;
-            border: 0;
-            opacity: 0.2;
-        }
-
-        .search-option {
-            margin-top: 10px;
-        }
+    .collapsible-toggle {
+      position: absolute;
+      text-align: center;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 2em;
+      border-left: 1px solid #052953;
+      &:hover {
+        background: lighten(@siteBrandingBg, 10%);
+      }
     }
 
+    .double-chevron {
+      font-size: 20px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+
+      &::before {
+        color: @menuLinkLightBlue;
+        content: "\00bb";
+      }
+
+      &.double-chevron-left::before {
+        content: "\00ab";
+      }
+
+      &:hover &::before {
+        color: @white;
+      }
+    }
+  }
+
+  &.collapsible {
+    .site-branding {
+      padding-right: calc(~"2em + 20px");
+    }
+  }
+
+  &.collapsed {
+    .rx-app-menu {
+      flex: 0 0 25px;
+      padding-bottom: 0;
+      position: relative;
+    }
+
+    .site-branding,
+    .collapsible-toggle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 0;
+      width: 100%;
+    }
+
+    .site-title,
+    .site-options,
+    .rx-app-nav,
     .rx-app-help {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: @appMenuWidth;
-        background: @appHelpBg;
-        border-top: 1px solid @appHelpBorder;
-        line-height: 3em;
-        padding-bottom: 1px;
-        font-size: .8em;
-        text-shadow: 1px 1px 0px rgba(26, 26, 26, 0.2);
-
-        .rx-feedback .modal-link {
-            background: url(images/icon-feedback.png) no-repeat 20px calc(~"50% + 1px");
-            vertical-align: middle;
-            color: @menuLinkOrange;
-            padding: 0 21px 0 41px;
-            float: right;
-        }
-    }
-
-
-    // Page Styles
-
-    .page-header {
-        background: linear-gradient(to bottom, #e7e7e7 0%, #d6d6d6 100%);
-        border-bottom: 1px solid #bbb;
+      display: none;
     }
 
     .page-body {
-        padding: 20px 30px 50px;
-        clear: both;
-
-        .page-titles {
-            float: left;
-
-            .page-title {
-                margin: 0;
-                position: relative;
-                word-break: break-all;
-            }
-
-            .page-subtitle {
-                margin-top: 0;
-                word-break: break-all;
-            }
-        }
-
-        & > .rx-notifications {
-            position:fixed;
-            z-index: 20;  // accommodate rxSelect .fake-select class
-            top: 0px;
-            left: 300px;
-            right: 100px;
-            opacity: 0.95;
-            .rx-notification {
-                width: 100%;
-            }
-        }
-
-        .page-actions {
-            float: right;
-            margin: 0 0 2em 2em;
-        }
+      & > .rx-notifications {
+        left: 25px;
+      }
     }
+  }
+
+  &.warning-bar {
+    position: absolute;
+    margin-top: 3em;
+    width: 100%;
+  }
+
+  &.warning-bar.preprod {
+    .rx-app-menu {
+      background: @preprodBackground;
+    }
+    .rx-app-nav-item {
+      &.active:not(.has-children) > .item-link {
+        border-top-color: @preprodBorderTop;
+      }
+      .item-link {
+        background: @preprodBackground;
+        border-top: 1px solid @preprodBorderTop;
+        border-bottom: 1px solid @preprodBorderBottom;
+        &:hover,
+        &:focus {
+          background: @preprodBackgroundFocus;
+          border-top: 1px solid @preprodBorderBottom;
+          border-bottom: 1px solid @preprodBorderBottom;
+        }
+      }
+
+      // active nav, w/children (double arrow up, gray bg)
+      &.active.has-children > .item-link {
+        border-top-color: @preprodBorderTop;
+        // used to show BG of arrow (because :after is rotated)
+        &:before {
+          background: @preprodActiveBackground;
+        }
+        .item-content {
+          border-bottom: 1px solid #000000;
+        }
+      }
+
+      .item-content {
+        background: @preprodActiveBackground;
+      }
+    }
+  }
+
+  .rx-app-nav {
+    clear: both;
+
+    .nav-section {
+      padding-left: 5px;
+    }
+
+    .nav-section-title {
+      padding: 5px 15px;
+      font-size: 13px;
+    }
+
+    .nav-section-all {
+      background: #407610;
+      border-top: 1px solid #568c26;
+    }
+
+    .nav-section-highlight {
+      background: #0951a3;
+      border-top: 1px solid #00408f;
+    }
+
+    .nav-section-no-title {
+      background: transparent;
+      padding: 0;
+      margin: 0;
+
+      & > .nav-section-title {
+        display: none;
+      }
+    }
+  }
+
+  .rx-app-nav-item {
+    clear: both;
+
+    // common nav styles (inactive nav, no children)
+    .item-link {
+      background: #1a1a1a;
+      border-top: 1px solid #333333;
+      border-bottom: 1px solid #000000;
+      padding: 10px 4em 10px 15px;
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      -webkit-transition: background @navTransitionDuration;
+      transition: background @navTransitionDuration;
+      position: relative;
+      &:hover,
+      &:focus {
+        background: #262626;
+        border-top: 1px solid #404040;
+        border-bottom: 1px solid #0d0d0d;
+      }
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+      }
+      &:after {
+        -webkit-transition: all @navTransitionDuration;
+        transition: all @navTransitionDuration;
+      }
+    }
+
+    &:not(.has-children) > .item-link:after {
+      right: 0;
+      top: 0;
+      border: transparent solid;
+      border-width: calc(~"5px + 1em") 6px;
+      border-right: 0;
+    }
+
+    // active nav, no children (blue bg, arrow right)
+    &.active:not(.has-children) > .item-link {
+      border-color: transparent;
+      background: #0E7FFF;
+      &:after {
+        right: -6px;
+        border-left-color: #0E7FFF;
+      }
+    }
+
+    // inactive nav, w/children (double arrow down)
+    &.has-children > .item-link:after {
+      font-size: 2em;
+      content: "\00bb"; // angle quotation mark, right (&raquo;)
+      -webkit-transform: rotate(90deg) scaleX(1);
+      transform: rotate(90deg) scaleX(1);
+      top: 50%;
+      line-height: 0;
+      right: .45em;
+    }
+
+    // active nav, w/children (double arrow up, gray bg)
+    &.active.has-children > .item-link {
+      border-top-color: #404040;
+      border-bottom-width: 0;
+      // used to show BG of arrow (because :after is rotated)
+      &:before {
+        width: 3em;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: #333;
+      }
+      &:after {
+        // flip arrow around
+        -webkit-transform: rotate(90deg) scaleX(-1);
+        transform: rotate(90deg) scaleX(-1);
+      }
+      .item-content {
+        border-bottom: 1px solid #000000;
+      }
+    }
+
+    .item-content {
+      background: #333;
+      padding: 10px;
+    }
+
+    .item-directive:not(.ng-hide) + .item-children {
+      margin-top: 10px;
+    }
+
+    .item-children {
+      padding: 10px;
+      background: #4d4d4c;
+    }
+
+    .child-header {
+      margin-bottom: 1em;
+    }
+
+    .current-search {
+      text-transform: uppercase;
+      font-weight: bold;
+      color: #9c9c9c;
+      font-size: 10px;
+      display: block;
+    }
+    .current-result {
+      color: #d5d5d3;
+      font-size: 18px;
+    }
+
+  }
+
+  .rx-app-nav-level-2 {
+    .item-link {
+      background: #666766;
+      border-top-color: #787878;
+      border-bottom-color: #595959;
+      font-size: 13px;
+
+      &:hover,
+      &:focus {
+        background: #595959;
+        border-top: 1px solid #737373;
+        border-bottom: 1px solid #404040;
+      }
+    }
+    .active:not(.has-children) > .item-link {
+      margin-right: -10px;
+    }
+    .active.has-children > .item-link {
+      background: #1a1a1a;
+      border-color: transparent;
+    }
+
+    .item-content {
+      background: #1a1a1a;
+      padding: 0 0 4px 4px;
+    }
+
+    .item-children {
+      padding: 0;
+    }
+  }
+
+  .rx-app-nav-level-3 .item-link {
+    background: #333333;
+    border-color: transparent;
+    padding: 5px 15px;
+
+    &:hover,
+    &:focus {
+      background: #404040;
+      border-color: transparent;
+    }
+  }
+  .rx-app-nav-level-3 .rx-app-nav-item {
+    &:first-child {
+      border-top: 3px solid #333;
+    }
+    .item-link:after {
+      border-top-width: 1em;
+      border-bottom-width: 1em;
+    }
+  }
+
+  .rx-app-search {
+    position: relative;
+    font-size: 14px;
+    color: #babab9;
+
+    fieldset {
+      position: relative;
+    }
+
+    // NOTE: We have to have this duplication because CSS doesn't like combining the placholder selectors
+    .placeholder() {
+      font-style: italic;
+      text-overflow: ellipsis;
+    }
+
+    ::-webkit-input-placeholder {
+      .placeholder();
+    }
+    ::-moz-placeholder {
+      .placeholder();
+    }
+    :-ms-input-placeholder {
+      .placeholder();
+    }
+
+    .search-input {
+      .box-sizing(border-box);
+      background: #4d4d4c;
+      border: 0;
+      width: 100%;
+      padding: 9px;
+      padding-right: 30px;
+      margin: 0;
+    }
+
+    .search-input.ng-invalid:focus {
+      outline-color: @menuRed;
+    }
+
+    .search-action {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 30px;
+      height: 100%;
+      background: url(images/magnifying-glass.png) no-repeat 50% 50%;
+      border: 0;
+      opacity: 0.2;
+    }
+
+    .search-option {
+      margin-top: 10px;
+    }
+  }
+
+  .rx-app-help {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: @appMenuWidth;
+    background: @appHelpBg;
+    border-top: 1px solid @appHelpBorder;
+    line-height: 3em;
+    padding-bottom: 1px;
+    font-size: .8em;
+    text-shadow: 1px 1px 0px rgba(26, 26, 26, 0.2);
+
+    .rx-feedback .modal-link {
+      background: url(images/icon-feedback.png) no-repeat 20px calc(~"50% + 1px");
+      vertical-align: middle;
+      color: @menuLinkOrange;
+      padding: 0 21px 0 41px;
+      float: right;
+    }
+  }
+
+
+  // Page Styles
+
+  .page-header {
+    background: linear-gradient(to bottom, #e7e7e7 0%, #d6d6d6 100%);
+    border-bottom: 1px solid #bbb;
+  }
+
+  .page-body {
+    padding: 20px 30px 50px;
+    clear: both;
+
+    .page-titles {
+      float: left;
+
+      .page-title {
+        margin: 0;
+        position: relative;
+        word-break: break-all;
+      }
+
+      .page-subtitle {
+        margin-top: 0;
+        word-break: break-all;
+      }
+    }
+
+    & > .rx-notifications {
+      position:fixed;
+      z-index: 20;  // accommodate rxSelect .fake-select class
+      top: 0px;
+      left: 300px;
+      right: 100px;
+      opacity: 0.95;
+      .rx-notification {
+        width: 100%;
+      }
+    }
+
+    .page-actions {
+      float: right;
+      margin: 0 0 2em 2em;
+    }
+  }
 }
 
 .warning-bar.rx-notifications {
-    position: fixed;
-    z-index: 3;
-    width: 100%;
-    margin-bottom: 0;
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .status-tag {
-    &.alpha-status, &.beta-status {
-        margin-left: 10px;
-        text-transform: uppercase;
-        font-size: 9px;
-        border: 1px solid;
-        padding: 1px 2px;
-        .border-radius(2px);
-        top: 9px;
-        color: #427fc4;
-    }
+  &.alpha-status, &.beta-status {
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-size: 9px;
+    border: 1px solid;
+    padding: 1px 2px;
+    .border-radius(2px);
+    top: 9px;
+    color: #427fc4;
+  }
 }
 
 /* Disabled link styles */
 .link-disabled {
-    pointer-events: none;
-    a {
-        color: #d5d3d3;
-    }
-    .rx-spinner {
-        margin-left: 10px;
-        border-bottom-color: #d5d3d3;
-        border-right-color: #d5d3d3;
-    }
+  pointer-events: none;
+  a {
+    color: #d5d3d3;
+  }
+  .rx-spinner {
+    margin-left: 10px;
+    border-bottom-color: #d5d3d3;
+    border-right-color: #d5d3d3;
+  }
 }
 
 a.disabled {
-    color: #d5d3d3;
-    cursor: default;
-    pointer-events: none;
-    text-decoration: none;
+  color: #d5d3d3;
+  cursor: default;
+  pointer-events: none;
+  text-decoration: none;
 }

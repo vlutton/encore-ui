@@ -3,46 +3,46 @@
  */
 
 th.rx-status-header {
-    width: 55px;
+  width: 55px;
 }
 
 td.rx-status-column {
-    text-align: center;
+  text-align: center;
+  i {
+    padding-left: 2px;
+  }
+  &.status-ACTIVE {
+    background: #ddffd3;
+  }
+  &.status-PENDING {
+    background: #fdbc3c;
+    background-image: url("images/status-pending.gif");
+  }
+  &.status-WARNING {
+    background: #fdbc3c;
     i {
-        padding-left: 2px;
+      color: @orange;
     }
-    &.status-ACTIVE {
-        background: #ddffd3;
+  }
+  &.status-ERROR {
+    background: #eb2124;
+    i {
+      color: #861212;
     }
-    &.status-PENDING {
-        background: #fdbc3c;
-        background-image: url("images/status-pending.gif");
+  }
+  &.status-INFO {
+    background: @light-blue;
+    i {
+      color: #287bbd;
     }
-    &.status-WARNING {
-        background: #fdbc3c;
-        i {
-            color: @orange;
-        }
-    }
-    &.status-ERROR {
-        background: #eb2124;
-        i {
-            color: #861212;
-        }
-    }
-    &.status-INFO {
-        background: @light-blue;
-        i {
-            color: #287bbd;
-        }
-    }
-    &.status-DISABLED {
-        background: @disabled-gray;
-    }
+  }
+  &.status-DISABLED {
+    background: @disabled-gray;
+  }
 
-    .fa-exclamation-circle {
-        color: transparent;
-    }
+  .fa-exclamation-circle {
+    color: transparent;
+  }
 
 
 }
