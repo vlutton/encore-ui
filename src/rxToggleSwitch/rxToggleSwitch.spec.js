@@ -1,12 +1,14 @@
 /* jshint node: true */
 
 describe('rxToggleSwitch', function () {
-    var scope, timeout, compile, rootScope, directiveScope, el, disabledEL, customEL, postHookEL,
+    var scope, timeout, compile, rootScope, directiveScope, el, disabledEL, customEL, postHookEL, failedAsyncEL,
         validTemplate = '<rx-toggle-switch ng-model="model"></rx-toggle-switch>',
         disabledTemplate = '<rx-toggle-switch ng-model="model" disabled="true"></rx-toggle-switch>',
         postHookTemplate = '<rx-toggle-switch ng-model="model" post-hook="countMe(newVal, oldVal)"></rx-toggle-switch>',
         customTemplate =
-            '<rx-toggle-switch ng-model="customModel" true-value="TEST" false-value="TEST-FALSY"></rx-toggle-switch>';
+            '<rx-toggle-switch ng-model="customModel" true-value="TEST" false-value="TEST-FALSY"></rx-toggle-switch>',
+        failedAsyncTemplate = 
+            '<rx-toggle-switch ng-model="model" post-hook="failedAsync(initVal, finalVal)"></rx-toggle-switch>';
 
     beforeEach(function () {
         module('encore.ui.rxToggleSwitch');
@@ -18,9 +20,13 @@ describe('rxToggleSwitch', function () {
             compile = $compile;
             scope = $rootScope.$new();
             scope.countMe = sinon.stub();
+            scope.failedAsync = sinon.stub();
 
             scope.countMe.withArgs('TEST-FALSY', 'TEST').returns('custom');
             scope.model = true;
+
+            scope.failedAsync.withArgs('TEST', 'TEST').returns('custom');
+            scope.failedModel = false;
         });
 
         el = helpers.createDirective(validTemplate, compile, scope);
@@ -34,6 +40,9 @@ describe('rxToggleSwitch', function () {
 
         postHookEL = helpers.createDirective(postHookTemplate, compile, scope);
         postHookEL = helpers.getChildDiv(postHookEL, 'rx-toggle-switch', 'class');
+
+        failedAsyncEL = helpers.createDirective(failedAsyncTemplate, compile, scope);
+        failedAsyncEL = helpers.getChildDiv(failedAsyncEL, 'rx-toggle-switch', 'class');
     });
 
     afterEach(function () {
@@ -42,6 +51,7 @@ describe('rxToggleSwitch', function () {
         directiveScope = null;
         customEL = null;
         postHookEL = null;
+        failedAsyncEL = null;
     });
 
     it('should initialize the model value to the false value if undefined', function () {
@@ -115,5 +125,16 @@ describe('rxToggleSwitch', function () {
         scope.$apply();
         expect(scope.model).to.be.false;
         sinon.assert.calledOnce(scope.countMe);
+    });
+
+    it('should attempt then fail to activate asychronous operation', function () {
+        directiveScope = failedAsyncEL.scope();
+
+        expect(scope.failedModel).to.be.false;
+        directiveScope.update();
+        timeout.flush(1);
+        scope.$apply();
+        expect(scope.failedModel).to.be.false;
+        sinon.assert.calledOnce(scope.failedAsync);
     });
 });
