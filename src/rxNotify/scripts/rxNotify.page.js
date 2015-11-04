@@ -3,7 +3,6 @@ var Page = require('astrolabe').Page;
 
 var notificationTypes = /error|info|success|warning/;
 var notification = function (rootElement) {
-
     return Page.create({
 
         rootElement: {
@@ -59,11 +58,9 @@ var notification = function (rootElement) {
         }
 
     });
-
 };
 
 var rxNotify = {
-
     tblNotifications: {
         get: function () {
             return this.rootElement.all(by.repeater('message in messages'));
@@ -117,11 +114,9 @@ var rxNotify = {
             });
         }
     }
-
 };
 
 exports.rxNotify = {
-
     initialize: function (rxNotification) {
         return notification(rxNotification);
     },
@@ -149,5 +144,4 @@ exports.rxNotify = {
 
         return Page.create(rxNotify);
     })()
-
 };
