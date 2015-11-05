@@ -273,6 +273,8 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
  * @param {String=} [templateUrl] URL of template to use for modal content
  * @param {*=} [disable-esc] If the `disable-esc` attribute is present, then "Press Esc to close" will be disabled
  *                           for the modal. This attribute takes no values.
+ * @param {Expression=} [disabled=false] the `disabled` attribute takes an expression. If expression is present,
+ *                      then link for opening modal will be disabled.
  *
  * @example
  * <pre>
@@ -306,8 +308,14 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
         restrict: 'E',
         scope: true,
         link: function (scope, element, attrs) {
+            scope.isDisabled = false;
+
             // add any class passed in to scope
             scope.classes = attrs.classes;
+
+            attrs.$observe('disabled', function (newValue) {
+                scope.isDisabled = scope.$eval(newValue);
+            });
 
             var focusLink = function () {
                 element.find('a')[0].focus();
@@ -331,6 +339,10 @@ angular.module('encore.ui.rxModalAction', ['ui.bootstrap'])
 
             scope.showModal = function (evt) {
                 evt.preventDefault();
+
+                if (scope.isDisabled) {
+                    return false;
+                }
 
                 // Note: don't like having to create a 'fields' object in here,
                 // but we need it so that the child input fields can bind to the modalScope

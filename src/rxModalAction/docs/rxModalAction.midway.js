@@ -140,4 +140,21 @@ describe('rxModalAction', function () {
             defaultModal.cancel();
         });
     });
+
+    describe('when disabled', function () {
+        var defaultModal;
+
+        before(function () {
+            triggerModal = function () {
+                rxForm.slowClick($('#btnDisabledModal .modal-link'));
+            };
+            defaultModal = modal.initialize();
+        });
+
+        it('should not open modal', function () {
+            triggerModal();
+            expect(defaultModal.isDisplayed()).to.eventually.be.false;
+        });
+
+    });
 });
