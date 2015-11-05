@@ -23,7 +23,7 @@ describe('rxOptionTable', function () {
         }));
 
         describe('empty table', encore.exercise.rxOptionTable({
-            cssSelector: '#emptyOptionTable',
+            instance: encore.rxOptionTable.initialize($('#emptyOptionTable')),
             visible: true,
             empty: true
         }));
