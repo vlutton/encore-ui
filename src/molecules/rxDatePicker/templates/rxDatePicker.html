@@ -1,0 +1,54 @@
+<div class="rxDatePicker wrapper">
+  <div class="control" ng-click="toggleCalendar()">
+    <span class="displayValue">{{ displayValue }}</span>
+    <i class="icon fa fa-fw fa-calendar"></i>
+  </div>
+
+  <div class="popup" ng-if="calendarVisible">
+    <nav>
+      <span
+        class="arrow prev fa fa-lg fa-angle-double-left"
+        ng-click="navigate('prevMonth')">
+      </span>
+
+      <span class="currentMonth">
+        {{ calendarMonth.format('MMMM YYYY') }}
+      </span>
+
+      <span
+        class="arrow next fa fa-lg fa-angle-double-right"
+        ng-click="navigate('nextMonth')">
+      </span>
+    </nav>
+
+    <div class="calendar">
+      <header>
+        <h6>S</h6>
+        <h6>M</h6>
+        <h6>T</h6>
+        <h6>W</h6>
+        <h6>T</h6>
+        <h6>F</h6>
+        <h6>S</h6>
+      </header>
+
+      <div class="day {{ isMonth(day) ? 'inMonth' : 'outOfMonth' }}"
+        data-date="{{day.format('YYYY-MM-DD')}}"
+        ng-class="{ today: isToday(day), selected: isSelected(day) }"
+        ng-repeat="day in calendarDays"
+        ng-switch="isMonth(day)">
+
+        <span class="circle"
+          ng-switch-when="true"
+          ng-click="selectDate(day)">
+
+          {{ day.date() }}
+        </span>
+
+        <span ng-switch-when="false">
+          {{ day.date() }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
