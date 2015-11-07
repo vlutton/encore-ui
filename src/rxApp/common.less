@@ -322,23 +322,27 @@ h6 {
 
 // Wells
 .well {
-  background: #eeeeee;
+  background: @gray-100;
   padding: 40px 50px;
   box-shadow: 0 0 0 10px white inset;
 
   p {
     line-height: 1.5em;
-    color: @wellText;
+    color: @gray-700;
   }
 
   ul {
     display: inline-block;
     text-align: left;
   }
+
+  h2 {
+    color: @gray-700;
+  }
 }
 
 .modal-well {
-  background-color: #eeeeee;
+  background-color: @gray-100;
   padding: 20px 30px;
 
   h2 {
