@@ -1,43 +1,4 @@
-/**
- * @ngdoc overview
- * @name rxSelectFilter
- * @description
- * # rxSelectFilter component
- *
- * A component that provides a multi-select dropdown interface intended for
- * table filtering.
- *
- * ## Directives
- * * {@link rxSelectFilter.directive:rxSelectFilter rxSelectFilter}
- *
- * ## Filters
- * * {@link rxSelectFilter.filter:Apply Apply}
- *
- * ## Services
- * * {@link rxSelectFilter.service:SelectFilter SelectFilter}
- */
-angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSelect'])
-/**
- * @ngdoc filter
- * @name rxSelectFilter.filter:Apply
- * @description
- * Used to apply an instance of SelectFilter to an array.
- *
- * Merely calls the `applyTo()` method of a `SelectFilter` instance to an
- * input array.
- * <pre>
- * <tr ng-repeat="item in list | Apply:filter">
- * </pre>
- *
- * @param {Array} list The list to be filtered.
- * @param {Object} filter An instance of SelectFilter
- *
- */
-.filter('Apply', function () {
-    return function (list, filter) {
-        return filter.applyTo(list);
-    };
-})
+angular.module('encore.ui.rxSelectFilter')
 /**
  * @ngdoc service
  * @name rxSelectFilter.service:SelectFilter
@@ -217,47 +178,4 @@ angular.module('encore.ui.rxSelectFilter', ['encore.ui.rxMisc', 'encore.ui.rxSel
             return filter;
         }
     };
-})
-/**
- * @ngdoc directive
- * @name rxSelectFilter.directive:rxSelectFilter
- * @restrict E
- * @scope
- * @description
- * Automatically creates the appropriate dropdowns to manage a filter object.
- * 
- * **NOTE:** `rxSelectFilter` directive must be instaniated as a child of 
- * {@link rxForm.directive:rxFormSection rxFormSection} directive.  The {@link rxForm} component 
- * hierarchy validation enforces this relationship. 
- *
- * ## rxSelectFilter
- * Uses an instance of `SelectFilter` to create a set of `<rx-multi-select>`'s
- * that modify the instance object.
- * <pre>
- * // In the controller
- * $scope.filter = SelectFilter.create({
- *   // options...
- * });
- * </pre>
- * 
- * ## rxSelectFilter usage in rxForm 
- * <pre>
- * // rxSelectFilter must be instantiated as a child of rxFormSection
- * <rx-form-section>
- *     <rx-select-filter filter="filter"></rx-select-filter>
- * </rx-form-section>
- * </pre>
- *
- * @param {Object} filter - An instance of SelectFilter
- *
- */
-.directive('rxSelectFilter', function (rxNestedElement) {
-    return rxNestedElement({
-        parent: 'rxFormSection',
-        restrict: 'E',
-        templateUrl: 'templates/rxSelectFilter.html',
-        scope: {
-            filter: '='
-        }
-    });
 });
