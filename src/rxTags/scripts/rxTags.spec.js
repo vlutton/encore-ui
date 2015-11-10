@@ -63,7 +63,6 @@ describe('rxTags', function () {
     });
 
     describe('focusInput()', function () {
-
         it('focuses the input if the container element is clicked', function () {
             isolateScope.focusInput({ target: el.children()[0] });
             expect(input.focus).to.have.been.called;
@@ -73,7 +72,6 @@ describe('rxTags', function () {
             isolateScope.focusInput({});
             expect(input.focus).to.not.have.been.called;
         });
-
     });
 
     describe('removeIfBackspace()', function () {
@@ -136,7 +134,6 @@ describe('rxTags', function () {
     });
 
     describe('add()', function () {
-
         it('adds a new tag to the list', function () {
             var tag = { text: 'a tag' };
             isolateScope.add(tag);
@@ -148,11 +145,9 @@ describe('rxTags', function () {
             isolateScope.add();
             expect(isolateScope.newTag).to.equal('');
         });
-
     });
 
     describe('remove()', function () {
-
         it('removes a tag from the list', function () {
             var tags = scope.options;
             scope.tags = _.clone(tags);
@@ -165,7 +160,6 @@ describe('rxTags', function () {
             isolateScope.remove();
             expect(input.focus).to.have.been.called;
         });
-
     });
 
     describe('with the key attribute', function () {
@@ -187,6 +181,5 @@ describe('rxTags', function () {
             scope.$digest();
             expect(isolateScope.tags).to.eql([{ text: 'a key' }]);
         });
-
     });
 });

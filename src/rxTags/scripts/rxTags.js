@@ -1,35 +1,4 @@
-/**
- * @ngdoc overview
- * @name rxTags
- * @description
- * # rxTags component
- *
- * A component used to apply predetermined descriptions to an entity.
- *
- * ## Directives
- * * {@link rxTags.directive:rxTags rxTags}
- *
- * ## Filters
- * * {@link rxTags.filter:xor xor}
- *
- */
-angular.module('encore.ui.rxTags', ['encore.ui.rxMisc', 'ui.bootstrap'])
-/**
- * @ngdoc filter
- * @name rxTags.filter:xor
- * @description
- * Returns the exclusive or of two arrays.
- *
- * @param {Array} array The first input array
- * @param {Array} excluded The second input array
- * @returns {Array} - A new array of the unique elements in each array.
- */
-.filter('xor', function () {
-    return function () {
-        return _.xor.apply(_, arguments);
-    };
-})
-
+angular.module('encore.ui.rxTags')
 /**
  * @ngdoc directive
  * @name rxTags.directive:rxTags
