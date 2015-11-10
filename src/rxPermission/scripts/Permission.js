@@ -1,19 +1,4 @@
-/**
- * @ngdoc overview
- * @name rxPermission
- * @description
- * # rxPermission Component
- * The rxPermission component provides functionality to perform checks against existing user permissions in
- * EncoreUI.  It provides a {@link rxPermission.service:Permission Permission} service for working with roles, and
- * a {@link rxPermission.directive:rxPermission rxPermission} directive for excluding DOM content based on roles.
- *
- * ## Services
- * * {@link rxPermission.service:Permission Permission}
- *
- * ## Directives
- * * {@link rxPermission.directive:rxPermission rxPermission}
- */
-angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
+angular.module('encore.ui.rxPermission')
 /**
  * @ngdoc service
  * @name rxPermission.service:Permission
@@ -102,32 +87,4 @@ angular.module('encore.ui.rxPermission', ['encore.ui.rxSession'])
     };
 
     return permissionSvc;
-})
-/**
- * @ngdoc directive
- * @name rxPermission.directive:rxPermission
- * @restrict E
- * @scope
- * @description
- * Simple directive which will show or hide content based on whether or not the user has the specified role. See
- * the `rxPermission` component {@link /encore-ui/#/components/rxPermission demo} for an example.
- *
- * @requires rxPermission.service:Permission
- *
- * @param {String} role - Name of required role.
- */
-.directive('rxPermission', function () {
-    return {
-        restrict: 'E',
-        transclude: true,
-        scope: {
-            role: '@'
-        },
-        templateUrl: 'templates/rxPermission.html',
-        controller: function ($scope, Permission) {
-            $scope.hasRole = function (roles) {
-                return Permission.hasRole(roles);
-            };
-        }
-    };
 });
