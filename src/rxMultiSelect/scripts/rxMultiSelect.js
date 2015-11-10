@@ -1,22 +1,4 @@
-/**
- * @ngdoc overview
- * @name rxMultiSelect
- * @description
- * # rxMultiSelect Component
- * This component is a multi-select dropdown with checkboxes for each option.
- * It is a replacement for `<select multiple>` when space is an issue, such as
- * in the header of a table.
- * ## Services
- * * Links to service APIs provided by rxMultiSelect component.
- *
- * ## Directives
- * * {@link rxMultiSelect.directive:rxMultiSelect rxMultiSelect}
- * * {@link rxMultiSelect.directive:rxSelectOption rxSelectOption}
- *
- * ## Related Directives (if applicable)
- * * Links to directive APIs provided by other components.
- */
-angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
+angular.module('encore.ui.rxMultiSelect')
 /**
  * @ngdoc directive
  * @name rxMultiSelect.directive:rxMultiSelect
@@ -162,61 +144,6 @@ angular.module('encore.ui.rxMultiSelect', ['encore.ui.rxSelectFilter'])
             };
 
             selectCtrl.ngModelCtrl = ngModelCtrl;
-        }
-    };
-})
-/**
- * @ngdoc directive
- * @name rxMultiSelect.directive:rxSelectOption
- * @restrict E
- * @description
- * A single option for use within rxMultiSelect.
- *
- * `<rx-select-option>` is to `<rx-multi-select>` as `<option>` is to `<select>`.
- *
- * Just like `<option>`, it has a `value` attribute and uses the element's
- * content for the label. If the label is not provided, it defaults to a
- * titleized version of `value`.
- *
- * <pre>
- * <rx-select-option value="DISABLED">Disabled</rx-select-option>
- * </pre>
- *
- * @param {String} value The value of the option. If no transcluded content is provided,
- *                       the value will also be used as the option's text.
- */
-.directive('rxSelectOption', function (rxDOMHelper) {
-    return {
-        restrict: 'E',
-        templateUrl: 'templates/rxSelectOption.html',
-        transclude: true,
-        scope: {
-            value: '@'
-        },
-        require: '^^rxMultiSelect',
-        link: function (scope, element, attrs, selectCtrl) {
-            scope.transclusion = rxDOMHelper.find(element, '[ng-transclude] > *').length > 0;
-
-            scope.toggle = function () {
-                if (scope.isSelected) {
-                    selectCtrl.unselect(scope.value);
-                } else {
-                    selectCtrl.select(scope.value);
-                }
-            };
-
-            // The state of the input may be changed by the 'all' option.
-            scope.$watch(function () {
-                return selectCtrl.isSelected(scope.value);
-            }, function (isSelected) {
-                scope.isSelected = isSelected;
-            });
-
-            selectCtrl.addOption(scope.value);
-
-            scope.$on('$destroy', function () {
-                selectCtrl.removeOption(scope.value);
-            });
         }
     };
 });
