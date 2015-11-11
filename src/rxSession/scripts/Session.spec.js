@@ -32,7 +32,7 @@ describe('rxSession', function () {
         });
     });
 
-    describe('Session Service', function () {
+    describe('service:Session', function () {
         it('storeToken: should store token in session storage', function () {
             session.storeToken(mockToken);
             expect(storage.setObject).to.be.called;
