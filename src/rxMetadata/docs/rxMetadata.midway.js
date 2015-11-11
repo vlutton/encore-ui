@@ -1,4 +1,3 @@
-var exercise = require('../rxMetadata.exercise');
 var _ = require('lodash');
 
 var transformFns = {
@@ -52,7 +51,7 @@ describe('rxMetadata', function () {
         demoPage.go('#/component/rxMetadata');
     });
 
-    describe('Status', exercise.rxMetadata({
+    describe('Status', encore.exercise.rxMetadata({
         present: true,
         visible: true,
         transformFns: transformFns,
