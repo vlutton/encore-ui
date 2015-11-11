@@ -1,3 +1,14 @@
+<a name="1.37.0"></a>
+## 1.37.0 (2015-11-11)
+
+
+#### Features
+
+* **disableLink:** FRMW-269 - Add ability to disable modal link ([bc742f8b](git@github.com:rackerlabs/encore-ui/commit/bc742f8b9afa68c1ecd0b7130c7726f29d8d4212))
+* **flex:** FRMW-118-Document static flex items ([47dac498](git@github.com:rackerlabs/encore-ui/commit/47dac49838d8ff7589d2a06f7c01bca58694b312))
+* **test:** FRMW-425 add rxToggleSwitch failed async midway ([e7897323](git@github.com:rackerlabs/encore-ui/commit/e78973234ba1bc397f284976078259a3e88c0de8))
+
+
 <a name="1.36.0"></a>
 ## 1.36.0 (2015-11-04)
 
