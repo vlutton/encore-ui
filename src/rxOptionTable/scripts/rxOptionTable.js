@@ -1,16 +1,4 @@
-/**
- * @ngdoc overview
- * @name rxOptionTable
- * @description
- * # rxOptionTable Component
- *
- * The rxOptionTable component provides functionality to create a series of radio or checkbox inputs within a table.
- *
- * ## Directives
- * * {@link rxOptionTable.directive:rxOptionTable rxOptionTable}
- * * {@link rxOptionTable.directive:rxFormOptionTable rxFormOptionTable} (*deprecated*)
- */
-angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
+angular.module('encore.ui.rxOptionTable')
 /**
  * @ngdoc directive
  * @name rxOptionTable.directive:rxOptionTable
@@ -223,20 +211,4 @@ angular.module('encore.ui.rxOptionTable', ['ngSanitize'])
             };
         }
     };
-})
-/**
- * @deprecated
- * @ngdoc directive
- * @restrict E
- * @name rxOptionTable.directive:rxFormOptionTable
- * @description
- * **DEPRECATED**: Please use **{@link rxOptionTable.directive:rxOptionTable rxOptionTable}**
- * as a stand-in-replacement.
- */
-.directive('rxFormOptionTable', function (rxOptionTableDirective) {
-    var warnMsg = 'DEPRECATION WARNING: rxFormOptionTable has been marked as deprecated ' +
-        'and will be removed in a future release of the EncoreUI framework. ' +
-        'Please use rxOptionTable as a stand-in replacement.';
-    console.warn(warnMsg); // jshint ignore:line
-    return rxOptionTableDirective[0];
 });
