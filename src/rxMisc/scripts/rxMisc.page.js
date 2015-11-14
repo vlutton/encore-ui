@@ -25,6 +25,8 @@ exports.rxMisc = {
      * Transform `currencyStringOrArray` (USD) to an integer representing pennies or an array of integers representing
      * pennies. Built to reverse Angular's 'currency' filter. Do not pass in fractions of a penny because it will be
      * rounded with Math.round() which doesn't use bankers' rounding for negative numbers.
+     * NOTE: AngularJS representation of negative currency changes in   
+     * [AngularJS v1.4.4](https://code.angularjs.org/1.4.4/docs/api/ng/filter/currency)
      * @param {string|array<string>} currencyStringOrArray - Raw text or an array of raw texts as output by Angular's
      * `currency` filter.
      *
@@ -42,7 +44,7 @@ exports.rxMisc = {
             var resFloat = parseFloat(currencyString.split(' ')[0].replace(/[,$()]/g, '').trim());
 
             // Negative number
-            if (currencyString.indexOf('(') > -1 && currencyString.indexOf(')') > -1) {
+            if (_.first(currencyString) === '(' && _.last(currencyString) === ')') {
                 resFloat = -resFloat;
             }
 
