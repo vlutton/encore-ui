@@ -106,13 +106,16 @@ pre code {
   background-color: #eb4d5c;
 }
 .palette.blue .color.primary {
-  background-color: #3391ff;
+  background-color: #1976d2;
 }
 .palette.blue .color.secondary-100 {
   background-color: #bbdefb;
 }
-.palette.blue .color.secondary-700 {
-  background-color: #1976d2;
+.palette.blue .color.secondary-500 {
+  background-color: #3391ff;
+}
+.palette.blue .color.secondary-900 {
+  background-color: #0d47a1;
 }
 .palette.blue .color.accent {
   background-color: #00bdff;
