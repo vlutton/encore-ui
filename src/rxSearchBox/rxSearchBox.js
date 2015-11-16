@@ -76,7 +76,7 @@ angular.module('encore.ui.rxSearchBox', [])
         },
         link: function (scope, element, attrs, controllers) {
             var rxFloatingHeaderCtrl = controllers[1];
-            if (!_.isUndefined(rxFloatingHeaderCtrl)) {
+            if (_.isObject(rxFloatingHeaderCtrl)) {
                 rxFloatingHeaderCtrl.update();
             }
         }

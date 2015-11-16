@@ -110,17 +110,19 @@ describe('rxBreadcrumbs', function () {
 
         it('should have an href property', function () {
             expect(middle.isLink()).to.eventually.be.true;
-            expect(middle.href).to.eventually.equal(browser.baseUrl + '/');
+            expect(middle.href).to.eventually.equal(browser.baseUrl + '/#/components');
         });
 
         it('should visit the correct page when clicking on the breadcrumb', function () {
-            var homeHref = browser.baseUrl + '/#/overview';
+            var componentsHref = browser.baseUrl + '/#/components';
 
             middle.visit();
-            expect(browser.getCurrentUrl()).to.eventually.equal(homeHref);
+            expect(browser.getCurrentUrl()).to.eventually.equal(componentsHref);
         });
-        // Note that after this test, we are now at the /#/overview page
 
+        after(function () {
+            demoPage.go('#/components/rxBreadcrumbs');
+        });
     });
 
     describe('default breadcrumbs', function () {
