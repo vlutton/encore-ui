@@ -1,3 +1,12 @@
+<a name="1.37.1"></a>
+### 1.37.1 (2015-11-18)
+
+
+#### Bug Fixes
+
+* **rxCollapse:** expand button clickable area ([9e837df3](git@github.com:rackerlabs/encore-ui/commit/9e837df3e20b408e9dbb19b1337fb4e2f1a65e0e))
+
+
 <a name="1.37.0"></a>
 ## 1.37.0 (2015-11-11)
 
