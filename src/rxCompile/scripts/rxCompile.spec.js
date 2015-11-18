@@ -1,5 +1,4 @@
 /* jshint node: true */
-
 describe('rxCompile', function () {
     var scope, compile, rootScope, el;
     var validTemplate = '<div rx-compile="myExpression"></div>';
