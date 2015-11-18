@@ -1,5 +1,4 @@
 /* jshint node: true */
-
 describe('rxCollapse', function () {
     var scope, compile, rootScope, el, elCollapsed, elExanded;
     var validTemplate = '<rx-collapse title="Filter results"></rx-collapse>';
@@ -23,7 +22,6 @@ describe('rxCollapse', function () {
         el = helpers.createDirective(validTemplate, compile, scope);
         elCollapsed = helpers.createDirective(otherTemplate1, compile, scope);
         elExanded = helpers.createDirective(otherTemplate2, compile, scope);
-
     });
 
     it('should render template', function () {

@@ -11,7 +11,7 @@ describe('rxCollapse', function () {
     }));
 
     describe('default title', encore.exercise.rxCollapse({
-        cssSelector: '.demo-no-title',
+        instance: encore.rxCollapse.initialize($('.demo-no-title')),
         expanded: false
     }));
 });
