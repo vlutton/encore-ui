@@ -18,7 +18,7 @@ describe('rxSelect', function () {
         disabled: true,
         visible: true,
         valid: true,
-        selectedText: "Disabled by 'ng-disabled' attribute"
+        selectedText: 'Disabled by \'ng-disabled\' attribute'
     }));
 
     describe('(State) Valid Disabled', encore.exercise.rxSelect({
@@ -26,7 +26,7 @@ describe('rxSelect', function () {
         disabled: true,
         visible: true,
         valid: true,
-        selectedText: "Disabled by 'disabled' attribute"
+        selectedText: 'Disabled by \'disabled\' attribute'
     }));
 
     describe('(State) Invalid Enabled', encore.exercise.rxSelect({
@@ -42,7 +42,7 @@ describe('rxSelect', function () {
         disabled: true,
         visible: true,
         valid: false,
-        selectedText: "Disabled by 'ng-disabled' attribute"
+        selectedText: 'Disabled by \'ng-disabled\' attribute'
     }));
 
     describe('(State) Invalid Disabled', encore.exercise.rxSelect({
@@ -50,7 +50,7 @@ describe('rxSelect', function () {
         disabled: true,
         visible: true,
         valid: false,
-        selectedText: "Disabled by 'disabled' attribute"
+        selectedText: 'Disabled by \'disabled\' attribute'
     }));
 
     describe('plain HTML select elements', function () {
@@ -69,12 +69,11 @@ describe('rxSelect', function () {
         }));
 
         describe('Valid Enabled Non-Default Starting Value', encore.exercise.rxSelect({
-            cssSelector: '#plainHtmlSecondSelected',
+            instance: encore.rxSelect.initialize($('#plainHtmlSecondSelected')),
             disabled: false,
             valid: true,
             selectedText: 'Non Default Starting Option'
         }));
-
     });
 
     describe('How do you like your bacon?', function () {
@@ -184,7 +183,6 @@ describe('rxSelect', function () {
                 expect(willBeHidden.isPresent()).to.eventually.be.true;
                 expect(willBeHidden.isDisplayed()).to.eventually.be.true;
             });
-
         });
     });
 
