@@ -78,14 +78,14 @@ describe('rxRadio', function () {
     }));
 
     describe('(State) Invalid NG-Disabled Selected', encore.exercise.rxRadio({
-        cssSelector: '#radInvalidNgDisabledOne',
+        instance: encore.rxRadio.initialize($('#radInvalidNgDisabledOne')),
         disabled: true,
         selected: true,
         valid: false
     }));
 
     describe('(State) Invalid NG-Disabled Unselected', encore.exercise.rxRadio({
-        cssSelector: '#radInvalidNgDisabledTwo',
+        instance: encore.rxRadio.initialize($('#radInvalidNgDisabledTwo')),
         disabled: true,
         selected: false,
         valid: false
@@ -93,23 +93,22 @@ describe('rxRadio', function () {
 
     describe('plain HTML radio buttons', function () {
         describe('Valid Enabled Unchecked', encore.exercise.rxRadio({
-            instance: encore.rxRadio.initialize($("#plainHtmlNormal")),
+            instance: encore.rxRadio.initialize($('#plainHtmlNormal')),
             disabled: false,
             selected: false
         }));
 
         describe('Valid Disabled Unchecked', encore.exercise.rxRadio({
-            cssSelector: "#plainHtmlDisabled",
+            instance: encore.rxRadio.initialize($('#plainHtmlDisabled')),
             disabled: true,
             selected: false
         }));
 
         describe('Valid Enabled Checked', encore.exercise.rxRadio({
-            cssSelector: "#plainHtmlChecked",
+            instance: encore.rxRadio.initialize($('#plainHtmlChecked')),
             disabled: false,
             selected: true
         }));
-
     });
 
     describe('Show/Hide Input', function () {
@@ -274,5 +273,4 @@ describe('rxRadio', function () {
             });
         });
     });//Destroy Input
-
 });
