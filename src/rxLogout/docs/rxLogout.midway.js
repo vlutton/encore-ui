@@ -1,11 +1,9 @@
-var rxLogoutPage = encore.rxLogout;
-
 describe('rxLogout', function () {
     var rxLogout;
 
     before(function () {
         demoPage.go('#/components/rxLogout');
-        rxLogout = rxLogoutPage.initialize($('#rxLogout'));
+        rxLogout = encore.rxLogout.initialize($('#rxLogout'));
     });
 
     it('should show element', function () {
