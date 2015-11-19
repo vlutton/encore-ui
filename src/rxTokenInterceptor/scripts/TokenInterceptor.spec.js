@@ -1,6 +1,5 @@
 /* jshint node: true */
-
-describe('rxTokenInterceptor', function () {
+describe('service:TokenInterceptor', function () {
     var interceptor, session;
 
     beforeEach(function () {
