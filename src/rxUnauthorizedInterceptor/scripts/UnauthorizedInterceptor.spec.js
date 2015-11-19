@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-describe('rxUnauthorizedInterceptor', function () {
+describe('service:UnauthorizedInterceptor', function () {
     var interceptor,
         mockWindow = { location: '/arbitrary/path' },
         session = { logout: sinon.spy() },
