@@ -5,7 +5,6 @@ var Page = require('astrolabe').Page;
    @namespace
  */
 var rxToggleSwitch = {
-
     btnToggleSwitch: {
         get: function () {
             return this.rootElement.$('.rx-toggle-switch');
@@ -84,14 +83,12 @@ var rxToggleSwitch = {
             return this.btnToggleSwitch.$('span').getText();
         }
     }
-
 };
 
 /**
    @exports encore.rxToggleSwitch
  */
 exports.rxToggleSwitch = {
-
     /**
        @function
        @param {WebElement} rxToggleSwitchElement - WebElement to be transformed into an rxToggleSwitchElement object.
@@ -113,5 +110,4 @@ exports.rxToggleSwitch = {
         };
         return Page.create(rxToggleSwitch);
     })()
-
 };
