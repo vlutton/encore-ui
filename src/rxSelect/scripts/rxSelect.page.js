@@ -8,7 +8,6 @@ var Page = require('astrolabe').Page;
  * @namespace rxSelect.option.option
  */
 var rxSelectOptionFromElement = function (rootElement) {
-
     return Page.create({
 
         /**
@@ -65,7 +64,6 @@ var rxSelectOptionFromElement = function (rootElement) {
             }
         }
     });
-
 };//rxSelectOptionFromElement
 
 /**
