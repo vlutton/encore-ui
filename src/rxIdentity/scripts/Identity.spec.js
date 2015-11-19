@@ -9,13 +9,14 @@ describe('rxIdentity', function () {
 
     beforeEach(function () {
         module('encore.ui.rxIdentity');
+
         inject(function ($injector) {
             $httpBackend = $injector.get('$httpBackend');
             identity = $injector.get('Identity');
         });
     });
 
-    describe('Identity Service', function () {
+    describe('service:Identity', function () {
         it('Identity.loginWithJSON() should get a token', function () {
             $httpBackend.expectPOST('/api/identity/tokens').respond(token);
             var result = identity.loginWithJSON({ username: 'Batman', token: 'bat-token' });
