@@ -8,9 +8,9 @@ var rxToggleSwitch = require('./rxToggleSwitch.page').rxToggleSwitch;
    @param {rxToggleSwitch} [options.instance=] - Component to exercise.
    @param {string} [options.cssSelector=] - DEPRECATED: Fallback selector string to initialize widget with.
    @param {boolean} [options.disabled=false] - Determines if the switch can be toggled
-   @param {boolean} [options.enabledAtStart=null] Beginning state of toggle switch.  The value will be detected 
+   @param {boolean} [options.enabledAtStart=null] Beginning state of toggle switch.  The value will be detected
    automatically if not given.
-   @param {boolean} [options.enabledAtEnd=null] End state of toggle switch.  The value will be detected automatically 
+   @param {boolean} [options.enabledAtEnd=null] End state of toggle switch.  The value will be detected automatically
    if not given.
    @example
    ```js
