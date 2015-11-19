@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-describe('rxLocalStorage', function () {
+describe('service:LocalStorage', function () {
     var storage;
 
     beforeEach(function () {
