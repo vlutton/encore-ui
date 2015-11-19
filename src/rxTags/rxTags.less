@@ -37,13 +37,13 @@ rx-tags {
     line-height: @rxTag-height;
     border-radius: @rxTag-height / 2;
     vertical-align: top;
-    background-color: #e0e0e0;
+    background-color: @gray-300;
     &:hover {
       cursor: default;
     }
 
     &:focus {
-      background-color: #007bff;
+      background-color: @blue-700;
       outline: none;
       .fa,
       .text,
@@ -59,27 +59,30 @@ rx-tags {
     .text {
       font-size: 12px;
       margin: 0 7px 0 10px;
-      color: #727272;
+      color: @gray-800;
     }
 
     .category {
       font-size: 10px;
       margin-right: 20px;
-      color: #878787;
+      color: @gray-800;
     }
 
     .fa-tag {
       margin-left: @rxTag-height / 2;
-      color: #999999;
+      color: @gray-600;
     }
 
     .fa-times {
       margin-right: @rxTag-height / 2;
-      color: #b8b8b8;
+      color: @gray-600;
       &:hover {
         cursor: pointer;
-        color: @warnRedHover;
+        color: @gray-800;
       }
     }
+  }
+  .tag:focus .fa-times:hover {
+    color: @white;
   }
 }
