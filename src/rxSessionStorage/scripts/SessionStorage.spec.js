@@ -1,6 +1,6 @@
 /* jshint node: true */
 
-describe('rxSessionStorage', function () {
+describe('service:SessionStorage', function () {
     var storage;
 
     beforeEach(function () {
