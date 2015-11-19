@@ -1,11 +1,9 @@
-var typeaheadPage = encore.typeahead;
-
 describe('typeahead', function () {
     var typeahead;
 
     before(function () {
         demoPage.go('#/components/typeahead');
-        typeahead = typeaheadPage.initialize($('#typeahead'));
+        typeahead = encore.typeahead.initialize($('#typeahead'));
     });
 
     it('should show element', function () {
