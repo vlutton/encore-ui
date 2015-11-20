@@ -20,9 +20,9 @@ results
 # 3rd-party dependencies
 /node_modules/
 /demo/bower_components
-/demo/guides/rendered
-/demo/readme.html
-/demo/browser-helpers.js
+/demo/templates/guides/rendered
+/demo/templates/readme.html
+/demo/scripts/browser-helpers.js
 
 # config file with secrets
 /localConfig.js
@@ -34,6 +34,7 @@ results
 /templates/
 /index.js
 /build/
+/tmp/
 /bower/
 /dist/
 /utils/rx-page-objects/index.js

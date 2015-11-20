@@ -2,10 +2,13 @@ var config = require('../util/config');
 
 module.exports = {
     'readme': {
-        src: ['guides/using-encoreui.md', 'guides/testing.md'],
+        src: [
+            'guides/using-encoreui.md',
+            'guides/testing.md'
+        ],
         overwrite: true,
         replacements: [{
-            from: config.versionRegEx,
+            from: config.regex.version,
             to: '-<%= pkg.version %>'
         }]
     },
@@ -13,7 +16,7 @@ module.exports = {
         src: ['bower/*.css', 'bower/*.map', 'bower/*.js'],
         overwrite: true,
         replacements: [{
-            from: config.versionRegEx,
+            from: config.regex.version,
             to: ''
         }]
     }

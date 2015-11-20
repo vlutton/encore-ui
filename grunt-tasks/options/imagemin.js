@@ -10,7 +10,7 @@ module.exports = {
             expand: true,
             cwd: 'src/',
             src: '**/images/*',
-            dest: '<%= config.dist %>/images/',
+            dest: '<%= config.dir.dist %>/images/',
             // remove 'images' from path
             rename: function (dest, src) {
                 var imagePath = src.split(path.sep) // convert src to array

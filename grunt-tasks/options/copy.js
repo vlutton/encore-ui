@@ -4,18 +4,18 @@ var path = require('path');
 var config = require('../util/config');
 var marked = require('marked');
 var renderer = new marked.Renderer();
-var classes = {
-    2: ' class="page-title title lg"',
-    3: ' class="title"',
-    4: ' class="title sm"'
-};
 
 renderer.heading = function (text, level) {
+    var classes = {
+        2: 'class="page-title"'
+    };
+
     // level - Increment and append to <h> with class by lookup, or reinsert level if no class found
     // id - Anchor link target; Take out non-alphanumeric characters from header ex. '(', then kebab case
-    var compiled = _.template('<h${ lvl } id="${ id }">${ txt }</h${ lvl }>');
+    var compiled = _.template('<h${ lvl } ${klasses} id="${ id }">${ txt }</h${ lvl }>');
     return compiled({
-        lvl: ++level + (classes[level] || ''),
+        lvl: ++level,
+        klasses: classes[level] || '',
         id: text.toLowerCase().replace(/[^\w ]/g, '').replace(/ /g, '-'),
         txt: text
     });
@@ -77,48 +77,81 @@ function convertMarkdown (content) {
 }
 
 module.exports = {
+    /* Process template files for building demo app. */
     demohtml: {
         options: {
             process: grunt.template.process
         },
+        // files should be any that require processing
+        // via grunt.template
         files: [{
             expand: true,
-            src: ['**/*.html', '*.js'],
             cwd: 'demo/',
-            dest: '<%= config.docs %>'
+            src: [
+                'index.html',
+                'templates/**/*.html',
+                'scripts/**/*.js' // only scripts we control
+            ],
+            dest: '<%= config.dir.docs %>'
         }]
     },
+    /* Copy additional assets required for demo app. */
     demoassets: {
         files: [{
             expand: true,
-            //Don't re-copy html files, we process those
-            src: ['**/**/*', '!**/*.html', '!*.js'],
             cwd: 'demo/',
-            dest: '<%= config.docs %>'
+            src: [
+                'css/*.css',
+                'images/**/*',
+                'bower_components/**/*'
+            ],
+            dest: '<%= config.dir.docs %>'
         }]
     },
+    /* Copy polyfils for demo app. */
     demopolyfills: {
-        files: [{
-            src: 'utils/browser-helpers.js',
-            dest: 'demo/browser-helpers.js'
-        }]
+        files: [
+            {
+                src: 'utils/browser-helpers.js',
+                dest: '<%= config.dir.docs %>/scripts/browser-helpers.js'
+            }
+        ]
+    },
+    /* Copy examples for demo app. */
+    demoExamples: {
+        files: [
+            {
+                flatten: true,
+                expand: true,
+                src: ['src/**/examples/*'],
+                dest: '<%= config.dir.docs %>/examples/'
+            }
+        ]
     },
     demomarkdown: {
-        files: [{
-            src: 'README.md',
-            dest: 'demo/readme.html'
-        }, {
-            expand: true,
-            src: '*.md',
-            dest: 'demo/guides/rendered',
-            ext: '.html'
-        }, {
-            expand: true,
-            cwd: 'guides',
-            src: '*.md',
-            dest: 'demo/guides/rendered',
-            ext: '.html'
-        }],
+        files: [
+            {
+                src: 'README.md',
+                dest: '<%= config.dir.docs %>/templates/readme.html'
+            }, {
+                expand: true,
+                src: '*.md',
+                dest: '<%= config.dir.docs %>/templates/guides/rendered',
+                ext: '.html'
+            }, {
+                expand: true,
+                cwd: 'guides',
+                src: '*.md',
+                dest: '<%= config.dir.docs %>/templates/guides/rendered',
+                ext: '.html'
+            }, {
+                expand: true,
+                cwd: 'demo/templates/guides',
+                src: '*.md',
+                dest: '<%= config.dir.docs %>/templates/guides/rendered',
+                ext: '.html'
+            }
+        ],
         options: {
             process: convertMarkdown
         }
@@ -126,10 +159,12 @@ module.exports = {
     coverage: {
         files: [{
             expand: true,
-            src: ['Phantom*/**/*'],
+            src: [
+                'Phantom*/**/*'
+            ],
             cwd: 'coverage/',
-            dest: '<%= config.docs %>/coverage/',
-            // remove 'Phantom' from path
+            dest: '<%= config.dir.docs %>/coverage/',
+            // remove 'Phantom ...' from path
             rename: function (dest, src) {
                 var templatePath = src.split(path.sep) // convert src to array
                     .slice(1) // remove the first directory ('Phantom ...')
@@ -144,33 +179,35 @@ module.exports = {
         expand: true,
         flatten: true,
         src: 'utils/rx-page-objects/*.tgz',
-        dest: '<%= config.dist %>/'
+        dest: '<%= config.dir.dist %>/'
     },
     bower: {
-        files: [{
-            expand: true,
-            cwd: '<%= config.dist %>/',
-            src: '**/*',
-            dest: '<%= config.bower %>/',
-            // remove version number from file names
-            rename: function (dest, src) {
-                // will catch the following
-                // -0.10.11.min.js
-                // -0.9.22.css
-                // -0.1.1.js
-                // -10.11.11.min.js
-                var strippedVersion = src.replace(config.versionRegEx, '');
+        files: [
+            {
+                expand: true,
+                cwd: '<%= config.dir.dist %>/',
+                src: '**/*',
+                dest: '<%= config.dir.bower %>/',
+                // remove version number from file names
+                rename: function (dest, src) {
+                    // will catch the following
+                    // -0.10.11.min.js
+                    // -0.9.22.css
+                    // -0.1.1.js
+                    // -10.11.11.min.js
+                    var strippedVersion = src.replace(config.regex.version, '');
 
-                return dest + strippedVersion;
+                    return dest + strippedVersion;
+                }
+            }, {
+                src: 'bower.json',
+                dest: '<%= config.dir.bower %>/bower.json'
+            }, {
+                expand: true,
+                cwd: '<%= config.dir.exportableStyles %>/',
+                src: '*.less',
+                dest: '<%= config.dir.bower %>/less/'
             }
-        }, {
-            src: 'bower.json',
-            dest: '<%= config.bower %>/bower.json'
-        }, {
-            expand: true,
-            cwd: '<%= config.exportableStyles %>/',
-            src: '*.less',
-            dest: '<%= config.bower %>/less/'
-        }]
+        ]
     }
 };

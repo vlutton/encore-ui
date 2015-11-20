@@ -1,6 +1,6 @@
 /**
  * @ngdoc overview
- * @name encore.ui.quarks
+ * @name quarks
  * @description
  * # Quarks
  * Quarks are non-visual elements that support Atoms and Molecules.
@@ -12,6 +12,7 @@
  * * Constants
  *
  * ## Quarks
- * * TBD
+ * * {@link quarks.service:hotkeys hotkeys}
+ * * {@link quarks.filter:xor xor}
  */
 angular.module('encore.ui.quarks', []);

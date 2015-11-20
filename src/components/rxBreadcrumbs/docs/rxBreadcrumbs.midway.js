@@ -5,7 +5,7 @@ describe('rxBreadcrumbs', function () {
 
     before(function () {
         demoPage.go('#/components/rxBreadcrumbs');
-        breadcrumbs = rxBreadcrumbs.initialize($('.component-demo rx-breadcrumbs'));
+        breadcrumbs = rxBreadcrumbs.initialize($('.module-demo rx-breadcrumbs'));
     });
 
     it('should show the element', function () {
@@ -42,7 +42,6 @@ describe('rxBreadcrumbs', function () {
         it('should have the href "/#/overview"', function () {
             expect(first.href).to.eventually.equal(browser.baseUrl + '/#/overview');
         });
-
     });
 
     describe('last breadcrumb', function () {
@@ -77,7 +76,6 @@ describe('rxBreadcrumbs', function () {
             expect(last.isLink()).to.eventually.be.false;
             expect(last.href).to.eventually.be.null;
         });
-
     });
 
     describe('by name', function () {
@@ -134,12 +132,11 @@ describe('rxBreadcrumbs', function () {
         });
 
         it('should find the default breadcrumbs', function () {
-            expect(defaultBreadcrumbs.count()).to.eventually.equal(3);
+            expect(defaultBreadcrumbs.count()).to.eventually.equal(4);
         });
 
         it('should have the correct names', function () {
-            expect(defaultBreadcrumbs.names).to.eventually.eql(['Overview', 'Components', 'configs']);
+            expect(defaultBreadcrumbs.names).to.eventually.eql(['Overview', 'Modules', 'Components', 'configs']);
         });
     });
-
 });

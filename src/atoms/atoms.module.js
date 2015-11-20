@@ -1,11 +1,11 @@
 /**
  * @ngdoc overview
- * @name encore.ui.atoms
+ * @name atoms
  * @description
  * # Atoms
  * Atoms are the basic building blocks for all UI elements.
  *
  * ## Atoms
- * * TBD
+ * * {@link atoms.directive:rxCheckbox rxCheckbox}
  */
 angular.module('encore.ui.atoms', []);

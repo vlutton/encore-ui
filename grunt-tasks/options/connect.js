@@ -1,10 +1,15 @@
 var config = require('../util/config');
+var modRewrite = require('connect-modrewrite');
+var proxyRequest = require('grunt-connect-proxy/lib/utils').proxyRequest;
+var liveReloadPort = 1337;
+var liveReloadPage = require('connect-livereload')({ port: liveReloadPort });
+
+var mountFolder = function (connect, dir) {
+    return connect.static(require('path').resolve(dir));
+};
 
 module.exports = {
-    options: {
-        port: '<%= config.serverPort %>',
-        hostname: '<%= config.serverHostname %>'
-    },
+    options: config.server,
     proxies: [
         {
             context: '/api/identity',
@@ -30,25 +35,25 @@ module.exports = {
         options: {
             middleware: function (cnct) {
                 return [
-                    config.proxyRequest,
-                    config.modRewrite([
+                    proxyRequest,
+                    modRewrite([
                         'login.html /login.html [L]',
                         '^/login#* /login.html',
                         '^/index.html\/.* /index.html [L]',
                         '!\\.[0-9a-zA-Z_-]+$ /index.html [L]'
                     ]),
-                    config.liveReloadPage,
-                    config.mountFolder(cnct, '.tmp'),
-                    config.mountFolder(cnct, config.docs)
+                    liveReloadPage,
+                    mountFolder(cnct, '.tmp'),
+                    mountFolder(cnct, config.dir.docs)
                 ];
             },
-            livereload: 1337
+            livereload: liveReloadPort
         }
     },
     keepalive: {
         options: {
             keepalive: true,
-            base: '<%= config.docs %>'
+            base: '<%= config.dir.docs %>'
         }
     }
 };

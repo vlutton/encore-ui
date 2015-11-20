@@ -1,0 +1,7 @@
+{
+    "displayName": "xor",
+    "stability": "experimental",
+    "description": "xor filter",
+    "api": "filter:xor",
+    "keywords": []
+}

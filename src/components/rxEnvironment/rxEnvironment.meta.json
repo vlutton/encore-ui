@@ -2,5 +2,6 @@
     "displayName": "rxEnvironment",
     "stability": "unstable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

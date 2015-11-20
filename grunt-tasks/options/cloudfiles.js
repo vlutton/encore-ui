@@ -8,7 +8,7 @@ module.exports = {
         'upload': [{
             'container': 'encore-ui-alpha',
             'src': [
-                '<%= config.dist %>/**/*'
+                '<%= config.dir.dist %>/**/*'
             ],
             'dest': '/',
             // Remove '/dist/build/' from path
@@ -22,7 +22,7 @@ module.exports = {
         'upload': [{
             'container': 'encore-ui-staging',
             'src': [
-                '<%= config.dist %>/**/*'
+                '<%= config.dir.dist %>/**/*'
             ],
             'dest': '/',
             // Remove '/dist/build/' from path
@@ -36,7 +36,7 @@ module.exports = {
         'upload': [{
             'container': 'encore-ui-production',
             'src': [
-                '<%= config.dist %>/**/*'
+                '<%= config.dir.dist %>/**/*'
             ],
             'dest': '/',
             // Remove '/dist/build/' from path

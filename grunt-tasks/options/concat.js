@@ -16,14 +16,14 @@ module.exports = {
             banner: '<%= config.meta.banner %><%= config.meta.modules %>\n'
         },
         src: [], //src filled in by build task
-        dest: '<%= config.dist %>/<%= config.fileName %>.js'
+        dest: '<%= config.dir.dist %>/<%= config.dist.fileName %>.js'
     },
     distTpls: {
         options: {
             banner: '<%= config.meta.banner %><%= config.meta.all %>\n<%= config.meta.tplmodules %>\n'
         },
         src: [], //src filled in by build task
-        dest: '<%= config.dist %>/<%= config.fileNameTpl %>.js'
+        dest: '<%= config.dir.dist %>/<%= config.dist.fileNameTpl %>.js'
     },
     rxPageObjects: {
         options: {
@@ -60,24 +60,46 @@ module.exports = {
         ],
         dest: 'utils/rx-page-objects/exercise.js'
     },
-    tmpLess: {
+    tmpDemosLess: {
+        options: {
+            banner: '@import (reference) "vars";\n\n'
+        },
+        src: ['src/**/docs/*.demo.less'],
+        dest: '<%= config.tmp.less.demos %>'
+    },
+    tmpExamplesLess: {
+        options: {
+            banner: '.example {',
+            footer: '}//.example'
+        },
+        src: ['src/**/examples/*.less'],
+        dest: '<%= config.tmp.less.examples %>',
+    },
+    tmpEncoreLess: {
         // The `less` task can't properly create a source map when multiple input
         // files are present. We concat them all into a temp file here, and it
         // can work from that instead
-        src: [
-            'demo/bower_components/pure/grids-min.css',
-            'src/**/*.less',
-            '!src/components/layout/responsive.less',
-            '!src/styles/*.less'
-        ],
-        dest: '<%= config.tmpLess %>'
-    },
-    tmpLessResp: {
-        src: [
-            'demo/bower_components/pure/grids-min.css',
-            'src/**/*.less',
-            '!src/styles/*.less'
-        ],
-        dest: '<%= config.tmpLessResp %>'
+        files: [
+            /* Non-responsive Styles */
+            {
+                src: [
+                    'demo/bower_components/pure/grids-min.css',
+                    'src/**/*.less',
+                    '!src/styles/*.less',
+                    // exclude responsive, handled below
+                    '!src/components/layout/responsive.less'
+                ],
+                dest: '<%= config.tmp.less.encore %>'
+            },
+            /* Responsive Styles */
+            {
+                src: [
+                    'demo/bower_components/pure/grids-min.css',
+                    'src/**/*.less',
+                    '!src/styles/*.less'
+                ],
+                dest: '<%= config.tmp.less.encoreResp %>'
+            }
+        ]
     }
 };

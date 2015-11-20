@@ -2,5 +2,6 @@
     "displayName": "rxInfoPanel",
     "stability": "experimental",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

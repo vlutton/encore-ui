@@ -2,5 +2,6 @@
     "displayName": "rxModalAction",
     "stability": "stable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

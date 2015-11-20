@@ -2,5 +2,6 @@
     "displayName": "rxStatusColumn",
     "stability": "experimental",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

@@ -2,5 +2,6 @@
     "displayName": "rxStatus",
     "stability": "stable",
     "description": "Manages notifications for rxNotify",
+    "isLegacy": true,
     "keywords": []
 }

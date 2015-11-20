@@ -2,5 +2,6 @@
     "displayName": "rxApp",
     "stability": "unstable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

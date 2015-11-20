@@ -2,5 +2,6 @@
     "displayName": "rxToggle",
     "stability": "stable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

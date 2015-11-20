@@ -19,19 +19,31 @@ module.exports = function (grunt) {
             return markdown(text);
         }
 
+
         var globBase = ['src', category, name].join('/');
         var _srcFiles = grunt.file.expand([
-            globBase + '/' + name + '.module.js', // (NEW Manifest) Must load first ('src/components' only)
+            globBase + '.module.js', // category manifests
+            globBase + '/' + name + '.module.js', // component manifests (legacy)
             globBase + '/scripts/!(*.spec|*.page|*.exercise).js' // Load additional scripts
         ]);
         var _tplFiles = grunt.file.expand([ globBase + '/*.tpl.html' ]);
         var _tplJsFiles = grunt.file.expand([ 'templates/' + name + '/templates/*.html' ]);
         var _docMdFiles = grunt.file.expand(globBase + '/*.md');
-        var _docJsFiles = grunt.file.expand(globBase + '/docs/!(*.midway).js');
+        var _docJsFiles = grunt.file.expand([
+            globBase + '/docs/!(*.midway).js',
+            globBase + '/docs/examples/**/*.js'
+        ]);
         var _docHtmlFiles = grunt.file.expand(globBase + '/docs/*.html');
         var _docLessFiles = grunt.file.expand(globBase + '/*.less');
         var _docMidwayFiles = grunt.file.expand(globBase + '/docs/*.midway.js');
         var _docExerciseFiles = grunt.file.expand(globBase + '/**/*.exercise.js');
+
+        var _moduleName = ['encore', 'ui'];
+        if (category == 'components') {
+            _moduleName.push(name);
+        } else {
+            _moduleName.push(category);
+        }
 
         // Fetch Module Metadata
         var metadataJson = globBase + '/' + name + '.meta.json';
@@ -43,12 +55,14 @@ module.exports = function (grunt) {
         // Using Metadata as a base, add on additional information
         var module = _.defaults(metadata, {
             name: name,
-            moduleName: enquote('encore.ui.' + name),
+            moduleName: enquote(_moduleName.join('.')),
             category: category,
             description: '',
             stability: 'experimental', // should be set by <module>.meta.json
             keywords: [], // should be set by <module>.meta.json
             displayName: name, // should be set by <module>.meta.json
+            isLegacy: false, // TODO: to be removed with last of components
+            isCategory: (category == name),
             srcFiles: _srcFiles,
             tplFiles: _tplFiles,
             tplJsFiles: _tplJsFiles,
@@ -71,7 +85,7 @@ module.exports = function (grunt) {
     grunt.registerTask('modules', 'Auto-discover EncoreUI modules and load their details into config', function () {
         // Iterate over source modules to build config.modules
         grunt.file
-            .expand({ cwd: 'src/' }, '**/*.module.js')
+            .expand({ cwd: 'src/' }, ['*/*.module.js', '**/*.meta.json'])
             .forEach(function (modPath) {
                 var pathArr = modPath.split('/');
 
@@ -91,11 +105,6 @@ module.exports = function (grunt) {
         /* sorted modules array for various filtering */
         var modules = _.sortBy(grunt.config('config.modules'), 'name');
 
-        /* Fetch Atoms, Components, Molecules, and Quarks from all modules */
-        grunt.config('config.atoms', _.filter(modules, { category: 'atoms' }));
-        grunt.config('config.components', _.filter(modules, { category: 'components' }));
-        grunt.config('config.molecules', _.filter(modules, { category: 'molecules' }));
-        grunt.config('config.quarks', _.filter(modules, { category: 'quarks' }));
 
         /* Determine modules with source files */
         // used by config.meta.(modules|all)
@@ -123,7 +132,7 @@ module.exports = function (grunt) {
 
         //- used in grunt-tasks/phantomjs-checks.js
         //  - run via `grunt test:full` on TravisCI
-        grunt.config('config.demoModules', grunt.config('config.components'));
+        grunt.config('config.demoModules', _.filter(modules, { 'isCategory': false }));
 
         // Set the concat task to concatenate the given src modules
         var srcFiles = _.pluck(modules, 'srcFiles'); // OK

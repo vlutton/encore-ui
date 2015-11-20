@@ -51,7 +51,7 @@ bower install encore-ui
 
 Now that EncoreUI is installed, you may begin using its components.
 
-Very likely, the first component you'll want to get in to is `<rx-app>`. If you used the Encore Generator, rxApp is already set up in the index.html file. If not, you'll want to read through [the rxApp documentation](http://rackerlabs.github.io/encore-ui/#/component/rxApp) for more information on its use (including how to use `<rx-page>`).
+Very likely, the first component you'll want to get in to is `<rx-app>`. If you used the Encore Generator, rxApp is already set up in the index.html file. If not, you'll want to read through [the rxApp documentation](http://rackerlabs.github.io/encore-ui/#/components/rxApp) for more information on its use (including how to use `<rx-page>`).
 
 From there, just start building pages, using whatever EncoreUI component is needed.
 

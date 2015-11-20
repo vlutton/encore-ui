@@ -2,5 +2,6 @@
     "displayName": "grid",
     "stability": "deprecated",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

@@ -1,7 +1,7 @@
 describe('demo component', function () {
 
     before(function () {
-        demoPage.go('#/component/rxBreadcrumbs');
+        demoPage.go('#/components/rxBreadcrumbs');
     });
 
     it('default', function () {

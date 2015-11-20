@@ -15,7 +15,7 @@ describe('rxDiskSize', function () {
 
     before(function () {
         demoPage.go('#/components/rxDiskSize');
-        diskSizesTable = $$('.component-demo ul li');
+        diskSizesTable = $$('.module-demo ul li');
     });
 
     _.forEach(diskSizeStrings, function (testData, index) {

@@ -1,7 +1,7 @@
 module.exports = {
     ghPages: {
         options: {
-            base: '<%= config.docs %>',
+            base: '<%= config.dir.docs %>',
             message: 'docs(ghpages): release v<%= pkg.version %>'
         },
         src: '**/*'

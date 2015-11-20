@@ -1,7 +1,7 @@
 describe('demo component', function () {
 
     before(function () {
-        demoPage.go('#/component/metadata');
+        demoPage.go('#/components/metadata');
     });
 
     it('default', function () {

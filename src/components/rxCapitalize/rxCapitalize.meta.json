@@ -2,5 +2,6 @@
     "displayName": "rxCapitalize",
     "stability": "stable",
     "description": "Capitalizes the first word in a string",
+    "isLegacy": true,
     "keywords": []
 }
