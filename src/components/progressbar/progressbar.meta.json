@@ -1,0 +1,6 @@
+{
+    "displayName": "progressbar",
+    "stability": "experimental",
+    "description": "Provides feedback on the progress of a workflow or action",
+    "keywords": []
+}

@@ -1,13 +1,13 @@
 var removeFromIndex = [
-    '/*jshint node:true*/\n',
-    'var _ = require(\'lodash\');\n',
-    'var moment = require(\'moment\');\n',
+    '/*jshint node:true*/',
+    'var _ = require(\'lodash\');',
+    'var moment = require(\'moment\');',
     'var Page = require(\'astrolabe\').Page;\n'
 ];
 
 var removeFromExercises = [
-    '/*jshint node:true*/\n',
-    'var _ = require(\'lodash\');\n'
+    '/*jshint node:true*/',
+    'var _ = require(\'lodash\');'
 ];
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
     rxPageObjects: {
         options: {
             // Replace all third-party requires with a single one up top
-            banner: removeFromIndex.join(''),
+            banner: removeFromIndex.join('\n'),
             footer: '\nexports.exercise = require(\'./exercise\');',
             process: function (src) {
                 removeFromIndex.forEach(function (toRemove) {
@@ -44,7 +44,7 @@ module.exports = {
     rxPageObjectsExercises: {
         options: {
             // Replace all third-party requires with a single one up top
-            banner: removeFromExercises.join(''),
+            banner: removeFromExercises.join('\n'),
             process: function (src) {
                 // replace all exercise require statements from src/ directory to index.js (published version)
                 src = src.replace(/require\('\.\/(.\w+\.page)'\)(?:\.js)?/g, 'require(\'./index\')');
@@ -56,8 +56,7 @@ module.exports = {
             }
         },
         src: [
-            'src/*/*.exercise.js',
-            'src/*/scripts/*.exercise.js'
+            'src/**/*.exercise.js',
         ],
         dest: 'utils/rx-page-objects/exercise.js'
     },
@@ -67,8 +66,8 @@ module.exports = {
         // can work from that instead
         src: [
             'demo/bower_components/pure/grids-min.css',
-            'src/*/*.less',
-            '!src/layout/responsive.less',
+            'src/**/*.less',
+            '!src/components/layout/responsive.less',
             '!src/styles/*.less'
         ],
         dest: '<%= config.tmpLess %>'
@@ -76,7 +75,7 @@ module.exports = {
     tmpLessResp: {
         src: [
             'demo/bower_components/pure/grids-min.css',
-            'src/*/*.less',
+            'src/**/*.less',
             '!src/styles/*.less'
         ],
         dest: '<%= config.tmpLessResp %>'

@@ -370,3 +370,6 @@ rx-page.styleguide h5,
 rx-page.styleguide h6 {
   margin-top: 2em;
 }
+.align-right {
+  text-align: right;
+}

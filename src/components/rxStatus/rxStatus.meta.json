@@ -1,0 +1,6 @@
+{
+    "displayName": "rxStatus",
+    "stability": "stable",
+    "description": "Manages notifications for rxNotify",
+    "keywords": []
+}

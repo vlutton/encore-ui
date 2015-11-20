@@ -1,10 +1,9 @@
 module.exports = {
     generic: {
         src: [
-            'src/*/*.js',
-            '!src/*/*.spec.js',
-            '!src/*/*.page.js',
-            '!src/configs/configs.js'
+            'src/**/*.js',
+            '!src/**/*.spec.js',
+            '!src/**/*.page.js'
         ],
         options: {
             breakOnErrors: false
@@ -12,7 +11,7 @@ module.exports = {
     },
     pageObjects: {
         src: [
-            'src/*/*.page.js'
+            'src/**/*.page.js'
         ],
         options: {
             breakOnErrors: false

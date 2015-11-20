@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var grunt = require('grunt');
 var path = require('path');
 var config = require('../util/config');
 var marked = require('marked');
@@ -61,7 +62,6 @@ renderer.link = function (href, title, text) {
 };
 
 function convertMarkdown (content) {
-
     // Replace the [![Build Status...]] line with an empty string
     // (note that /m makes $ match newlines
     content = content.replace(/\[\!\[Build Status(.*)$/m, '');
@@ -79,9 +79,7 @@ function convertMarkdown (content) {
 module.exports = {
     demohtml: {
         options: {
-            process: function () {
-                // this function intentionally left blank (gets replaced by build task)
-            }
+            process: grunt.template.process
         },
         files: [{
             expand: true,
@@ -133,14 +131,12 @@ module.exports = {
             dest: '<%= config.docs %>/coverage/',
             // remove 'Phantom' from path
             rename: function (dest, src) {
-                // convert src to array
-                var templatePath = src.split(path.sep);
-
-                // remove the first directory ('Phantom ...')
-                templatePath.shift();
+                var templatePath = src.split(path.sep) // convert src to array
+                    .slice(1) // remove the first directory ('Phantom ...')
+                    .join(path.sep); // convert back to path string
 
                 // return dest + the rest of the path as a string
-                return dest + templatePath.join(path.sep);
+                return dest + templatePath;
             }
         }]
     },

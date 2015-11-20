@@ -11,21 +11,33 @@ module.exports = {
             },
             // remove folder name from path
             rename: function (moduleName) {
-                // convert path to array
-                var templatePath = moduleName.split(path.sep);
-
-                // remove the first directory (the module name)
-                templatePath.shift();
-
-                // return the rest of the path as a string
-                return templatePath.join(path.sep);
+                return moduleName.split(path.sep) // convert path to array
+                    .slice(2) // ignore first two directories (:category/:name)
+                    .join(path.sep); // convert back to path string
             }
         },
-        files: [{
-            expand: true,
-            cwd: 'src',
-            src: ['**/templates/*.html'],
-            dest: 'templates/'
-        }]
+        files: [
+            {
+                expand: true,
+                cwd: 'src/atoms',
+                src: ['**/templates/*.html'],
+                dest: 'templates/'
+            }, {
+                expand: true,
+                cwd: 'src/components',
+                src: ['**/templates/*.html'],
+                dest: 'templates/'
+            }, {
+                expand: true,
+                cwd: 'src/molecules',
+                src: ['**/templates/*.html'],
+                dest: 'templates/'
+            }, {
+                expand: true,
+                cwd: 'src/quarks',
+                src: ['**/templates/*.html'],
+                dest: 'templates/'
+            },
+        ]
     }
 };
