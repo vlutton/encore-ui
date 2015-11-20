@@ -6,9 +6,10 @@
 *  Based on: http://cssdeck.com/labs/css3-animation-spinner
 *  Copyright 2013 - birkof.ro
  *********************************************************/
+
 .rx-spinner {
   background-color: transparent;
-  border: 2px solid white;
+  border: 2px solid @gray-600;
   border-top-color: transparent;
   border-left-color: transparent;
   .border-radius(150px);
@@ -23,30 +24,7 @@
   -o-animation: spin 0.8s infinite linear;
   animation: spin 0.8s infinite linear;
 }
-.rx-spinner.dark {
-  border-bottom-color: @appTextColor;
-  border-right-color: @appTextColor;
-}
-.rx-spinner.mini {
-  border-width: 2px;
-  width: 4px;
-  height: 4px;
-}
-.rx-spinner.small {
-  border-width: 2px;
-  width: 8px;
-  height: 8px;
-}
-.rx-spinner.large {
-  border-width: 3px;
-  width: 22px;
-  height: 22px;
-}
-.rx-spinner.extra-large {
-  border-width: 4px;
-  width: 32px;
-  height: 32px;
-}
+
 @-webkit-keyframes spin { /* Safari and Chrome */
   from {
     -webkit-transform: rotate(0deg);
@@ -55,6 +33,7 @@
     -webkit-transform: rotate(360deg);
   }
 }
+
 @-moz-keyframes spin { /* Firefox */
   from {
     -moz-transform: rotate(0deg);
@@ -63,22 +42,7 @@
     -moz-transform: rotate(360deg);
   }
 }
-@-ms-keyframes spin { /* IE */
-  from {
-    -ms-transform: rotate(0deg);
-  }
-  to {
-    -ms-transform: rotate(360deg);
-  }
-}
-@-o-keyframes spin { /* Opera */
-  from {
-    -o-transform: rotate(0deg);
-  }
-  to {
-    -o-transform: rotate(360deg);
-  }
-}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
