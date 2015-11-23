@@ -9,7 +9,7 @@ module.exports = {
         files: [{
             expand: true,
             cwd: 'src/',
-            src: '*/images/*',
+            src: '**/images/*',
             dest: '<%= config.dist %>/images/',
             // remove 'images' from path
             rename: function (dest, src) {
