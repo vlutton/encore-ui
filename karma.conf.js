@@ -14,21 +14,15 @@ module.exports = function (config) {
 
         preprocessors: {
             'src/**/*.html': 'ng-html2js',
-            'src/*/!(*.spec).js': ['coverage'],
             'src/**/scripts/!(*.spec).js': ['coverage']
         },
 
         ngHtml2JsPreprocessor: {
             // or define a custom transform function
             cacheIdFromPath: function (filepath) {
-                // convert src to array
-                var templatePath = filepath.split(path.sep);
-
-                // remove the first two directories ('src/*/')
-                templatePath.shift();
-                templatePath.shift();
-
-                return templatePath.join(path.sep);
+                return filepath.split(path.sep) // convert src to array
+                    .slice(3) // remove first three directories (src/:category/:module)
+                    .join(path.sep); // convert back to path string
             },
         },
 

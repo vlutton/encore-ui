@@ -4,14 +4,14 @@ module.exports = {
     },
     all: [
         'Gruntfile.js',
-        'src/*/*.js',
+        'src/**/*.js',
         'grunt-tasks/**/*.js',
         '!grunt-tasks/component-template/**/*.js'
     ],
     scripts: [
-        'src/*/*.js',
+        'src/**/*.js',
     ],
     specs: [
-        'src/*/*.spec.js'
+        'src/**/*.spec.js'
     ]
 };

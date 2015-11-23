@@ -24,9 +24,10 @@ module.exports = {
     options: {
         configFile: 'karma.conf.js',
         files: files.concat([
-            'src/*/*.js',               // src/<component>/<component>.js
-            'src/*/templates/*.html',   // src/<component>/templates/<item>.html
-            'src/*/scripts/*.js'        // src/<component>/scripts/<item>.js
+            'src/*/*.module.js',         // src/:category/<category>.module.js
+            'src/**/*.module.js',        // src/:category/:component/<component>.module.js
+            'src/**/templates/*.html',   // src/:category/:component/templates/*.html
+            'src/**/scripts/*.js'        // src/:category/:component/scripts/*.js
         ])
     },
     watch: {

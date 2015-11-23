@@ -13,13 +13,11 @@ module.exports = {
             dest: '<%= config.dist %>/images/',
             // remove 'images' from path
             rename: function (dest, src) {
-                // convert src to array
-                var imagePath = src.split(path.sep);
+                var imagePath = src.split(path.sep) // convert src to array
+                    .slice(3) // remove :category, :component, and images directories
+                    .join(path.sep); // convert back to path string
 
-                // remove the componentName and images directory
-                imagePath.splice(0, 2);
-
-                return dest + imagePath.join(path.sep);
+                return dest + imagePath;
             }
         }]
     }
