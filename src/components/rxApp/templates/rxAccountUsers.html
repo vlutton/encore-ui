@@ -1,5 +1,5 @@
 <span ng-if="isCloudProduct" class="account-users field-select">
-    <select
+    <select rx-select
         ng-model="currentUser"
         ng-options="user.username as user.username for user in users"
         ng-change="switchUser(currentUser)">
