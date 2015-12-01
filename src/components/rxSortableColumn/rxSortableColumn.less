@@ -2,8 +2,6 @@
  * rxSortableColumn
  */
 .rx-sortable-column {
-  position: relative;
-
   .btn-link {
     // This needs to be set explicitly, otherwise `.table-filters button`
     // applies a font size of 93% and sortable columns have smaller headers.
@@ -11,34 +9,31 @@
   }
 
   .sort-action {
-    display: block;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    margin: 0;
-    text-align: left;
+
     &:focus {
       // since we underline on focus, we can remove the outline rectangle that sticks around
       outline: none;
     }
-  }
 
-  .sort-icon {
-    display: block;
-    height: 0;
-    width: 0;
-    border: solid transparent;
-    border-width: 6px 5px;
-    position: absolute;
-    right: 0;
-    top: 50%;
-
-    &.asc {
-      margin-top: -9px;
-      border-bottom-color: #4a4a4a;
+    .display-value {
+      flex: 1;
+      text-align: left;
     }
-    &.desc {
-      margin-top: -3px;
-      border-top-color: #4a4a4a;
+
+    .sort-icon {
+      flex: 0 0 16px;
+      width: 13px;
+      height: 13px;
+      line-height: 13px;
+
+      .bg {
+        color: #4a4a4a;
+      }
     }
   }
 }
-
