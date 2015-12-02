@@ -12,7 +12,7 @@
   min-height: 100%;
   display: flex;
   flex-direction: row;
-  background: @appBg;
+  background: @gray-50;
 
   .rx-app-content {
     flex: 1 1 0;
@@ -20,10 +20,10 @@
 
   .rx-app-menu {
     flex: 0 0 @appMenuWidth;
-    color: #fff;
+    color: @white;
     font-size: 15px;
     font-weight: 300;
-    background: @appMenuBg;
+    background: @gray-975;
     line-height: @appLineHeight;
     padding-bottom: 10em;
     position: relative;
@@ -36,11 +36,11 @@
   }
 
   .site-branding {
-    border-top: 1px solid #074285;
-    border-bottom: 1px solid #052953;
+    border-top: 1px solid @blue-700;
+    border-bottom: 1px solid @blue-700;
     padding: 5px 20px;
     overflow: hidden;
-    background: @siteBrandingBg;
+    background: @blue-900;
     position: relative;
 
     .site-title {
@@ -52,7 +52,7 @@
       margin-top: 1px;
 
       .site-option {
-        color: @menuLinkLightBlue;
+        color: @blue-100;
         display: inline-block;
         margin-left: 1em;
         &:hover,
@@ -69,9 +69,9 @@
       bottom: 0;
       right: 0;
       width: 2em;
-      border-left: 1px solid #052953;
+      border-left: 1px solid darken(@blue-900, 10%);
       &:hover {
-        background: lighten(@siteBrandingBg, 10%);
+        background: lighten(@blue-900, 10%);
       }
     }
 
@@ -84,7 +84,7 @@
       left: 0;
 
       &::before {
-        color: @menuLinkLightBlue;
+        color: @blue-100;
         content: "\00bb";
       }
 
@@ -169,7 +169,7 @@
           background: @preprodActiveBackground;
         }
         .item-content {
-          border-bottom: 1px solid #000000;
+          border-bottom: 1px solid @black;
         }
       }
 
@@ -192,13 +192,13 @@
     }
 
     .nav-section-all {
-      background: #407610;
-      border-top: 1px solid #568c26;
+      background: @green-700;
+      border-top: 1px solid @green-500;
     }
 
     .nav-section-highlight {
-      background: #0951a3;
-      border-top: 1px solid #00408f;
+      background: @blue-500;
+      border-top: 1px solid lighten(@blue-500, 10%);
     }
 
     .nav-section-no-title {
@@ -217,21 +217,21 @@
 
     // common nav styles (inactive nav, no children)
     .item-link {
-      background: #1a1a1a;
-      border-top: 1px solid #333333;
-      border-bottom: 1px solid #000000;
+      background: @gray-975;
+      border-top: 1px solid @gray-950;
+      border-bottom: 1px solid @black;
       padding: 10px 4em 10px 15px;
       display: block;
-      color: #fff;
+      color: @white;
       text-decoration: none;
       -webkit-transition: background @navTransitionDuration;
       transition: background @navTransitionDuration;
       position: relative;
       &:hover,
       &:focus {
-        background: #262626;
-        border-top: 1px solid #404040;
-        border-bottom: 1px solid #0d0d0d;
+        background: @gray-950;
+        border-top: 1px solid @gray-900;
+        border-bottom: 1px solid @black;
       }
       &:before,
       &:after {
@@ -255,10 +255,10 @@
     // active nav, no children (blue bg, arrow right)
     &.active:not(.has-children) > .item-link {
       border-color: transparent;
-      background: #0E7FFF;
+      background: @blue-700;
       &:after {
         right: -6px;
-        border-left-color: #0E7FFF;
+        border-left-color: @blue-700;
       }
     }
 
@@ -275,7 +275,7 @@
 
     // active nav, w/children (double arrow up, gray bg)
     &.active.has-children > .item-link {
-      border-top-color: #404040;
+      border-top-color: @gray-900;
       border-bottom-width: 0;
       // used to show BG of arrow (because :after is rotated)
       &:before {
@@ -283,7 +283,7 @@
         right: 0;
         top: 0;
         bottom: 0;
-        background: #333;
+        background: @gray-950;
       }
       &:after {
         // flip arrow around
@@ -291,12 +291,12 @@
         transform: rotate(90deg) scaleX(-1);
       }
       .item-content {
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid @black;
       }
     }
 
     .item-content {
-      background: #333;
+      background: @gray-950;
       padding: 10px;
     }
 
@@ -306,7 +306,7 @@
 
     .item-children {
       padding: 10px;
-      background: #4d4d4c;
+      background: @gray-900;
     }
 
     .child-header {
@@ -316,13 +316,13 @@
     .current-search {
       text-transform: uppercase;
       font-weight: bold;
-      color: #9c9c9c;
+      color: @gray-600;
       font-size: 10px;
       display: block;
     }
 
     .current-result {
-      color: #d5d5d3;
+      color: @gray-400;
       font-size: 18px;
     }
 
@@ -343,6 +343,7 @@
     }
 
     // User select element in Account section of nav
+    // TODO: Update to 2.0 Color Variables
     .account-users {
       float: right;
       width: 50%;
@@ -364,28 +365,28 @@
 
   .rx-app-nav-level-2 {
     .item-link {
-      background: #666766;
-      border-top-color: #787878;
-      border-bottom-color: #595959;
+      background: @gray-800;
+      border-top-color: @gray-700;
+      border-bottom-color: @gray-900;
       font-size: 13px;
 
       &:hover,
       &:focus {
-        background: #595959;
-        border-top: 1px solid #737373;
-        border-bottom: 1px solid #404040;
+        background: @gray-900;
+        border-top: 1px solid @gray-700;
+        border-bottom: 1px solid @gray-900;
       }
     }
     .active:not(.has-children) > .item-link {
       margin-right: -10px;
     }
     .active.has-children > .item-link {
-      background: #1a1a1a;
+      background: @gray-975;
       border-color: transparent;
     }
 
     .item-content {
-      background: #1a1a1a;
+      background: @gray-975;
       padding: 0 0 4px 4px;
     }
 
@@ -395,19 +396,19 @@
   }
 
   .rx-app-nav-level-3 .item-link {
-    background: #333333;
+    background: @gray-950;
     border-color: transparent;
     padding: 5px 15px;
 
     &:hover,
     &:focus {
-      background: #404040;
+      background: @gray-900;
       border-color: transparent;
     }
   }
   .rx-app-nav-level-3 .rx-app-nav-item {
     &:first-child {
-      border-top: 3px solid #333;
+      border-top: 3px solid @gray-950;
     }
     .item-link:after {
       border-top-width: 1em;
@@ -418,7 +419,7 @@
   .rx-app-search {
     position: relative;
     font-size: 14px;
-    color: #babab9;
+    color: @gray-500;
 
     fieldset {
       position: relative;
@@ -442,7 +443,7 @@
 
     .search-input {
       .box-sizing(border-box);
-      background: #4d4d4c;
+      background: @gray-900;
       border: 0;
       width: 100%;
       padding: 9px;
@@ -451,7 +452,7 @@
     }
 
     .search-input.ng-invalid:focus {
-      outline-color: @menuRed;
+      outline-color: @red-700;
     }
 
     .search-action {
@@ -475,8 +476,8 @@
     bottom: 0;
     left: 0;
     width: @appMenuWidth;
-    background: @appHelpBg;
-    border-top: 1px solid @appHelpBorder;
+    background: @gray-950;
+    border-top: 1px solid @gray-900;
     line-height: 3em;
     padding-bottom: 1px;
     font-size: .8em;
@@ -492,7 +493,7 @@
   }
 
   // Page Styles
-
+  // TODO: Update to 2.0 Color Variables
   .page-header {
     background: linear-gradient(to bottom, #e7e7e7 0%, #d6d6d6 100%);
     border-bottom: 1px solid #bbb;
