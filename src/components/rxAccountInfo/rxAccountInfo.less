@@ -10,10 +10,10 @@
     margin-right: 5em;
   }
   .account-info-label {
-    color: #777777;
+    color: @gray-700;
   }
   .account-info-data {
-    color: #777777;
+    color: @gray-700;
     font-size: 26px;
     img {
       height: 35px;
@@ -28,10 +28,10 @@
 .rx-page {
   .account-info-banner {
     clear: both;
-    background: #d1d1d1;
+    background: @white;
     width: 100%;
     border-top: 1px solid;
-    border-color: #b9b9b9;
+    border-color: @gray-500;
   }
 
   ul.account-info-text {
@@ -41,37 +41,28 @@
       float: left;
       padding-right: 40px;
       .label {
-        color: #797979;
-        text-shadow: 0 1px #efefef;
+        color: @gray-700;
         font-size: 9px;
       }
       .account-data {
-        color: #505050;
         font-size: 18px;
         font-weight: 300;
         .field-select {
           width: 140px;
           &:before { // background behind arrow
-            background: #959595;
             top: 4px;
             height: 80%;
-          }
-          &:after { // arrow color
-            color: #6c6c6c;
           }
         }
         select {
           font-size: 12px;
-          background: #959595; // select box background
-          border: 1px solid #6c6c6c;
-          color: @white;
         }
       }
       .msg-warn {
-        color: #cb2124;
+        color: @red-700;
       }
       .msg-info {
-        color: #dd7800;
+        color: @orange-700;
       }
     }
     li.badges {
