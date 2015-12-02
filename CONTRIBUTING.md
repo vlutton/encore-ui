@@ -91,6 +91,65 @@ Topics outside of the scope of the PR should be left for later. If a component a
 
 It is much better to ask for feedback on an unfinished idea than to receive feedback on a finished one. If you are developing a new component, or updating an old one, feel free to post code as you write it. But please add "DO NOT MERGE" to the title of the PR, to let people know it is not quite ready.
 
+### Request a check for color contrast with Tota11y
+
+Another point of feedback a hybrid or designer may provide on a pull request concerns color contrast. Patterns in the Framework have been carefully vetted by
+designers for adequate color contrast to comply with a11y standards for accessibility. To confirm that ratios of color contrast for critical text comply with
+standards, we use [Tota11y](http://khan.github.io/tota11y/), a bookmarklet tool that can be run in a development environment. To demonstrate that a new
+feature or design complies, post an additional screen shot with Tota11y contrast ratios showing along with the usual "before" and "after" screen shots. When
+contrast is adequate, all checks on the page that Tota11y provides should show as green, with a ratio of 4.5 or higher.
+
+* Go to [http://khan.github.io/tota11y/](http://khan.github.io/tota11y/) and follow the installation option for dragging the tota11y button to your bookmarks bar.
+* Load your browser with the application/environment that displays the page before any code or color changes.
+* Click the tota11y bookmark on your browser bar.
+* Click the icon at the bottom of your screen that looks like a set of eye glasses.
+* Click the "Contrast" option from the menu that appears.
+* Take a screenshot of the page/section that displays the desired area you are focused on.
+* Load your browser with the application/environment that displays the page after any code or color changes.
+* Click the icon at the bottom of your screen that looks like a set of eye glasses.
+* Click the "Contrast" option from the menu that appears.
+* Take a screenshot of the page/section that displays the desired area you are focused on.
+* Save the "Before" and "After" images on your computer.
+* Submit your Pull Request to the appropriate github repository.
+* Include the "Before" and "After" images in your initial comment of the Pull Request.
+* Include a small description of the initial problem and solution displayed in the images. Including before and after shots show the contrast ratio improvements clearly to those reviewing your pull request.
+
+## How to Review Pull Requests for Design
+
+Even when mock-ups are provided, minor discrepancies and inconsistencies may creep into pull requests
+as developers make their best guess at the designer's intent. Translating mock-ups and visuals into
+precise measurements and class names in code can be tricky. If you are submitting a pull request to the
+Framework, or if your project consumes the Framework and your team includes designers or hybrids,
+require a "Design LGTM" before merge on each pull request that involves changes to the interface, HTML mark-up,
+or CSS.
+
+Design LGTMs can only be given by people in a traditional design role, or by hybrids that do design and
+development. However, adopting similar review methods on teams without designers or hybrids is advisable,
+but may be tricky depending on your team's experience and eye for design and small visual discrepancies.
+
+An initial design mockup should be referenced during review. This is usually documented in the initial
+JIRA story, or may be a link to InVision. If additional specs are needed, then please obtain additional
+feedback from the initial designer. Most common patterns and UI elements can be referenced in the framework Style Guide.
+
+When reviewing a pull request for design, designers and hybrids look to see that the screenshots provided
+on a pull request are as close to mock-ups as can be reasonably expected. Common areas to check include:
+* Text size and decoration
+    * Is text underlined where it should be? Is text size using the same proportions the mock-up indicated?
+* Color usage
+    * Did the developer use colors provided by [the Framework's color palette](http://rackerlabs.github.io/encore-ui/#/styles/color), rather than sampling colors or introducing new hex codes?
+    * Is color contrast compliant with A11y standards ([see "Request a check for color contrast with Tota11y" above](#using-tota11y-to-check-for-adequate-contrast))?
+* Margins and padding
+* Proper usage of layout guidelines and any other patterns and standards provided by the Framework
+* Consistency with similar elements or pages within the same application or within the Encore ecosystem
+    * Even when mock-ups are implemented and the screenshots match, there's still a possibility that the new work doesn't match existing precendents that have already been coded.
+
+When hybrids review a pull request, they may be able to provide additional feedback, like:
+* Were the correct classes used in conjunction with mark-up?
+* Does the mark-up match the order and execution outlined for patterns in the Framework?
+* Were any edits or changes to CSS made that were unnecessary (like creating properties we already have a class for)
+
+Some feedback or suggestions can be put off and covered in a separate pull request ([see "Non-Requested Feedback" above](#non-requested-feedback)).
+
 ## EncoreUI Developer Setup
 
 [EncoreUI Developer Setup](./guides/ui-setup.md) - How to install the EncoreUI codebase
@@ -170,7 +229,7 @@ Many times, pull requests will touch resources that render visually. These are s
 0. New screenshots are added, exactly how they were outlined above. Copy any pre-existing "before" screenshots from the old screenshot collection. Tag the designer reviewing this pull request.
 0. Previous screenshots are edited to no longer render inline. This prevents confusion while retaining accurate historical records of visual feedback during review.
 
-#### Editing previous screenshots
+### Editing previous screenshots
 
 Here is an example of how you should edit the old screenshot comments to change them from inline rendered to non-rendered.
 
@@ -193,6 +252,7 @@ Occasionally a PR will receive comments and/or requests for changes before it is
 Once EncoreUI developers are happy with the final state of the PR, they will write "LGTM" or "Looks good to me" as a comment, and ask that you squash all of your commits down into one or two.
 
 ### Squashing Commits
+
 Commits are normally squashed as follows:
 
 0. `git rebase -i HEAD~x` where x is the number of commits you have made on the branch/PR (The "Commits" tab on the PR page will display how many commits have been made)
