@@ -28,7 +28,7 @@ describe('rxCharacterCount', function () {
     }));
 
     describe('with highlighting', encore.exercise.rxCharacterCount({
-        cssSelector: '.demo-highlighting',
+        instance: encore.rxCharacterCount.initialize($('.demo-highlighting')),
         maxCharacters: 10,
         highlight: true
     }));
