@@ -2,7 +2,7 @@
 
 .nav-tabs {
   display: flex;
-  border-bottom: 9px solid @tabBorder;
+  border-bottom: 9px solid @blue-700;
   clear: both;
 
   li {
@@ -13,12 +13,12 @@
 
   a {
     display: block;
-    background: #3f6085;
-    color: #cccccc;
+    background: @blue-900;
+    color: @gray-300;
     padding: 10px 20px;
 
     .subdued {
-      color: @subduedTextHover;
+      color: @gray-500;
     }
 
     &:hover:not(.active),
@@ -28,17 +28,17 @@
       text-decoration: none;
 
       .subdued {
-        color: @subduedText;
+        color: @gray-500;
       }
     }
   }
 
   .active a {
-    background: @tabBorder;
+    background: @blue-700;
     color: @white;
 
     .subdued {
-      color: @subduedText;
+      color: @gray-500;
     }
   }
 }
@@ -48,9 +48,9 @@
   display: none;
   background: @white;
   padding: 10px;
-  border-left: 2px solid @tabBorder;
-  border-right: 2px solid @tabBorder;
-  border-bottom: 2px solid @tabBorder;
+  border-left: 2px solid @blue-700;
+  border-right: 2px solid @blue-700;
+  border-bottom: 2px solid @blue-700;
 
   &.active {
     display: block;
