@@ -14,7 +14,7 @@ angular.module('encore.ui.rxPaginate')
  * @param {Number} numberOfPages This is the maximum number of pages that the
  * page object will display at a time.
  * @param {Object} [serverInterface] An object with a `getItems()` method. The requirements
- * of this method are described in the rxPaginate README
+ * of this method are described in the rxPaginate module documentation
  * @param {Object} [filterText] The model for the table filter input, if any. This directive
  * will watch that model for changes, and request new results from the paginated API, on change
  * @param {Object} [selections] The `selected` property of a SelectFilter instance, if one is being used.
