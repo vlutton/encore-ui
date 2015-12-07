@@ -17,7 +17,7 @@ angular.module('encore.ui.rxAge')
         }
 
         var now = moment();
-        var date = moment(dateString);
+        var date = moment(new Date(dateString));
         var diff = now.diff(date);
         var duration = moment.duration(diff);
         var days = parseInt(duration.asDays(), 10);
