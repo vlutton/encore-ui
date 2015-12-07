@@ -44,7 +44,7 @@ describe('rxForm', function () {
         }));
 
         describe('"Required Textarea"', encore.exercise.rxFieldName({
-            cssSelector: '#fieldNameRequiredTextarea',
+            instance: encore.rxForm.fieldName.initialize($('#fieldNameRequiredTextarea')),
             visible: true,
             required: true
         }));

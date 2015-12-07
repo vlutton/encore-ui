@@ -13,7 +13,7 @@ describe('rxSearchBox', function () {
     }));
 
     describe('custom, wide rxSearchBox', encore.exercise.rxSearchBox({
-        cssSelector: '.wide-search-box',
+        instance: encore.rxSearchBox.initialize($('.wide-search-box')),
         placeholder: 'Filter by any...'
     }));
 });

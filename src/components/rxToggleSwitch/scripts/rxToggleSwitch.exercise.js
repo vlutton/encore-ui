@@ -15,7 +15,7 @@ var rxToggleSwitch = require('./rxToggleSwitch.page').rxToggleSwitch;
    @example
    ```js
    describe('default exercises', encore.exercise.rxToggleSwitch({
-       cssSelector: myPage.emailPreference // select one of many widgets from your page objects
+       instance: myPage.emailPreference // select one of many widgets from your page objects
    }));
    ```
  */

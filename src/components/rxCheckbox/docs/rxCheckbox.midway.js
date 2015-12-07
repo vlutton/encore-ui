@@ -83,7 +83,7 @@ describe('rxCheckbox', function () {
     }));
 
     describe('(State) Invalid Disabled Unchecked', encore.exercise.rxCheckbox({
-        cssSelector: '#chkInvalidDisabledTwo',
+        instance: encore.rxCheckbox.initialize($('#chkInvalidDisabledTwo')),
         disabled: true,
         selected: false,
         valid: false
@@ -91,21 +91,21 @@ describe('rxCheckbox', function () {
 
     describe('plain HTML checkboxes', function () {
         describe('Valid Enabled Unchecked', encore.exercise.rxCheckbox({
-            cssSelector: '#plainHtmlNormal',
+            instance: encore.rxCheckbox.initialize($('#plainHtmlNormal')),
             disabled: false,
             selected: false,
             valid: false
         }));
 
         describe('Valid Disabled Unchecked', encore.exercise.rxCheckbox({
-            cssSelector: '#plainHtmlDisabled',
+            instance: encore.rxCheckbox.initialize($('#plainHtmlDisabled')),
             disabled: true,
             selected: false,
             valid: false
         }));
 
         describe('Valid Enabled Checked', encore.exercise.rxCheckbox({
-            cssSelector: '#plainHtmlChecked',
+            instance: encore.rxCheckbox.initialize($('#plainHtmlChecked')),
             disabled: false,
             selected: true,
             valid: false
