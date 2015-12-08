@@ -2,5 +2,6 @@
     "displayName": "rxAppRoutes",
     "stability": "unstable",
     "description": "Manage application routes and states of routes",
+    "isLegacy": true,
     "keywords": []
 }

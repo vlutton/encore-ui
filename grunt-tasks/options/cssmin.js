@@ -3,15 +3,15 @@ module.exports = {
         options: {
             report: 'gzip'
         },
-        dest: '<%= config.dist %>/<%= config.fileName %>.min.css',
-        src: '<%= config.dist %>/<%= config.fileName %>.css'
+        dest: '<%= config.dir.dist %>/<%= config.dist.fileName %>.min.css',
+        src: '<%= config.dir.dist %>/<%= config.dist.fileName %>.css'
     },
 
     encoreResp: {
         options: {
             report: 'gzip'
         },
-        dest: '<%= config.dist %>/<%= config.fileNameResp %>.min.css',
-        src: '<%= config.dist %>/<%= config.fileNameResp %>.css'
+        dest: '<%= config.dir.dist %>/<%= config.dist.fileNameResp %>.min.css',
+        src: '<%= config.dir.dist %>/<%= config.dist.fileNameResp %>.css'
     }
 };

@@ -2,5 +2,6 @@
     "displayName": "rxFeedback",
     "stability": "unstable",
     "description": "Gather and send user feedback",
+    "isLegacy": true,
     "keywords": []
 }

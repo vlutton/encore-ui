@@ -41,7 +41,7 @@
  *
  * * {@link rxButton}
  * * {@link rxCharacterCount}
- * * {@link rxCheckbox}
+ * * {@link atoms.directive:rxCheckbox rxCheckbox}
  * * {@link rxMultiSelect}
  * * {@link rxOptionTable}
  * * {@link rxRadio}
@@ -209,7 +209,7 @@
  * ### Related Directives
  * * {@link rxButton.directive:rxButton rxButton}
  * * {@link rxCharacterCount.directive:rxCharacterCount rxCharacterCount}
- * * {@link rxCheckbox.directive:rxCheckbox rxCheckbox}
+ * * {@link atoms.directive:rxCheckbox rxCheckbox}
  * * {@link rxOptionTable.directive:rxOptionTable rxOptionTable}
  * * {@link rxRadio.directive:rxRadio rxRadio}
  * * {@link rxSelect.directive:rxSelect rxSelect}

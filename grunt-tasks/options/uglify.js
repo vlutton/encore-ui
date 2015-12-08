@@ -8,8 +8,8 @@ module.exports = {
         files: [{
             expand: true,
             flatten: true,
-            src: '<%= config.dist %>/*.js',
-            dest: '<%= config.dist %>/',
+            src: '<%= config.dir.dist %>/*.js',
+            dest: '<%= config.dir.dist %>/',
             ext: '.min.js',
             extDot: 'last'
         }]

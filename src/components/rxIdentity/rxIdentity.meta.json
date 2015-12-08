@@ -2,5 +2,6 @@
     "displayName": "rxIdentity",
     "stability": "unstable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

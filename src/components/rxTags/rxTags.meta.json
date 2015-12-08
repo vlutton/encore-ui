@@ -2,5 +2,6 @@
     "displayName": "rxTags",
     "stability": "experimental",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

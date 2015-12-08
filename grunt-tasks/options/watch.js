@@ -5,6 +5,7 @@ module.exports = {
     scripts: {
         files: [
             'src/**/*.js',
+            'src/**/*.meta.json',
             '!src/**/*.spec.js',
             '!src/**/*.midway.js',
             '!src/**/*.page.js',
@@ -42,7 +43,9 @@ module.exports = {
             'src/**/*.less'
         ],
         tasks: [
-            'concat:tmpLess',
+            'concat:tmpEncoreLess',
+            'concat:tmpDemosLess',
+            'concat:tmpExamplesLess',
             'less'
         ]
     },
@@ -52,6 +55,14 @@ module.exports = {
         ],
         tasks: [
             'imagemin'
+        ]
+    },
+    exampleMarkup: {
+        files: [
+            'src/**/examples/*.html'
+        ],
+        tasks: [
+            'copy:demoExamples'
         ]
     },
     demoSite: {

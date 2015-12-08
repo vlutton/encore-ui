@@ -2,5 +2,6 @@
     "displayName": "rxSession",
     "stability": "unstable",
     "description": "Manages user session",
+    "isLegacy": true,
     "keywords": []
 }

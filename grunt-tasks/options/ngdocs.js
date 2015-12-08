@@ -1,6 +1,6 @@
 module.exports = {
     options: {
-        'dest': '<%= config.docs %>/ngdocs',
+        'dest': '<%= config.dir.docs %>/ngdocs',
         'title': 'Encore UI Developer Documentation',
         'html5Mode': false
     },

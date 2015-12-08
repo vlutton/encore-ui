@@ -79,10 +79,11 @@ describe('tabs', function () {
 
     });
 
+    /* NOTE: This test may become moot/unnecessary with Quarks/Atoms/Molecules refactor */
     describe('main tabs', function () {
 
         before(function () {
-            demoPage.go('#/components/hotkeys');
+            demoPage.go('#/components/rxCapitalize');
         });
 
         it('should find the only tabs on the page', function () {

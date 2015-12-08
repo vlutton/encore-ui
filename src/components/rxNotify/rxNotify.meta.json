@@ -2,5 +2,6 @@
     "displayName": "rxNotify",
     "stability": "stable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

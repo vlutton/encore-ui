@@ -1,27 +1,25 @@
 module.exports = {
-    app: 'src',
-    build: 'build',
-    dist: '<%= config.build %>/dist', // used for js/css files pushed to CDN/bower
-    docs: 'build', // used for demo, coverage, jsdocs files to go to gh-pages (same a 'build' folder, but a
-                   // different variable in case they're later changed)
-    exportableStyles: '<%= config.app %>/styles',
-    bower: 'bower',
-    liveReloadPage: require('connect-livereload')({ port: 1337 }),
-    proxyRequest: require('grunt-connect-proxy/lib/utils').proxyRequest,
-    modRewrite: require('connect-modrewrite'),
-    mountFolder: function (connect, dir) {
-        return connect.static(require('path').resolve(dir));
+    dir: {
+        app: 'src',
+        bower: 'bower',
+        build: 'build',
+        dist: '<%= config.dir.build %>/dist', // used for js/css files pushed to CDN/bower
+        docs: 'build', // used for demo, coverage, and jsdocs files to go to gh-pages
+        exportableStyles: '<%= config.dir.app %>/styles',
     },
-    fileName: 'encore-ui-<%= pkg.version %>',
-    fileNameResp: 'encore-ui-resp-<%= pkg.version %>',
-    fileNameTpl: 'encore-ui-tpls-<%= pkg.version %>',
-    cssMapName: '<%= config.fileName %>.css.map',
-    cssMapNameResp: '<%= config.fileNameResp %>.css.map',
-
-    // Will be filled in by shipit task
-    latestTag: '',
+    /* BOWER OUTPUT/DISTRIBUTION */
+    dist: {
+        fileName: 'encore-ui-<%= pkg.version %>',
+        fileNameResp: 'encore-ui-resp-<%= pkg.version %>',
+        fileNameTpl: 'encore-ui-tpls-<%= pkg.version %>'
+    },
+    server: {
+        hostname: 'localhost',
+        port: 9001
+    },
+    latestTag: '', // filled in by shipit task
     moduleName: 'encore.ui',
-    modules: [],
+    modules: [], // filled in by modules task
     dependencies: ['cfp.hotkeys', 'ui.bootstrap'],
     meta: {
         modules: 'angular.module(\'<%= config.moduleName %>\', [<%= config.srcModules %>, ' +
@@ -39,14 +37,26 @@ module.exports = {
             ' */\n'
         ].join('\n')
     },
-    serverHostname: 'localhost',
-    serverPort: 9001,
-    styleguideCssFilename: 'generated_demo.css',
-    styleguideCss: 'demo/assets/<%= config.styleguideCssFilename %>',
-    styleguideLess: 'demo/assets/demo.less',
-    tmp: '<%= config.build %>/tmp',
-    tmpLess: '<%= config.tmp %>/encore-ui.less',
-    tmpLessResp: '<%= config.tmp %>/encore-ui-resp.less',
-    // http://www.regexr.com/395kl
-    versionRegEx: /-(?:\d+\.){2}\d+(?:-\d+)*/g
+    css: {
+        demoApp: 'css/demoApp.css',
+        demos: 'css/demos.css',
+        examples: 'css/examples.css',
+        map: {
+            encore: '<%= config.dist.fileName %>.css.map',
+            encoreResp: '<%= config.dist.fileNameResp %>.css.map'
+        }
+    },
+    tmp: {
+        dir: 'tmp',
+        less: {
+            dir: '<%= config.tmp.dir %>/less',
+            encore: '<%= config.tmp.less.dir %>/encore-ui.less',
+            encoreResp: '<%= config.tmp.less.dir %>/encore-ui-resp.less',
+            demos: '<%= config.tmp.less.dir %>/demos.less',
+            examples: '<%= config.tmp.less.dir %>/examples.less'
+        }
+    },
+    regex: {
+        version: /-(?:\d+\.){2}\d+(?:-\d+)*/g // http://www.regexr.com/395kl
+    }
 };

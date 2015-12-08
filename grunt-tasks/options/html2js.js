@@ -1,5 +1,20 @@
 var path = require('path');
 
+var srcDirs = [
+    'src/atoms',
+    'src/components',
+    'src/molecules',
+    'src/quarks'
+];
+var exportFiles = srcDirs.map(function (dir) {
+    return {
+        expand: true,
+        cwd: dir,
+        src: ['**/templates/*.html'],
+        dest: 'templates'
+    };
+});
+
 module.exports = {
     dist: {
         options: {
@@ -16,28 +31,6 @@ module.exports = {
                     .join(path.sep); // convert back to path string
             }
         },
-        files: [
-            {
-                expand: true,
-                cwd: 'src/atoms',
-                src: ['**/templates/*.html'],
-                dest: 'templates/'
-            }, {
-                expand: true,
-                cwd: 'src/components',
-                src: ['**/templates/*.html'],
-                dest: 'templates/'
-            }, {
-                expand: true,
-                cwd: 'src/molecules',
-                src: ['**/templates/*.html'],
-                dest: 'templates/'
-            }, {
-                expand: true,
-                cwd: 'src/quarks',
-                src: ['**/templates/*.html'],
-                dest: 'templates/'
-            },
-        ]
+        files: exportFiles
     }
 };

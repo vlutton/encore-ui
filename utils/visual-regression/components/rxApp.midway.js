@@ -1,7 +1,7 @@
 describe('demo component', function () {
 
     before(function () {
-        demoPage.go('#/component/rxApp');
+        demoPage.go('#/components/rxApp');
     });
 
     it('custom app', function () {

@@ -12,7 +12,7 @@ describe('rxSortableColumn', function () {
 
     before(function () {
         demoPage.go('#/components/rxSortableColumn');
-        columns = rxSortableColumn.byTable($('.component-demo table'));
+        columns = rxSortableColumn.byTable($('.module-demo table'));
         nameColumn = column('Name', 'resource in talentPool');
         roleColumn = column('Occupation');
     });

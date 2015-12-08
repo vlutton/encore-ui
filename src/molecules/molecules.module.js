@@ -1,6 +1,6 @@
 /**
  * @ngdoc overview
- * @name encore.ui.molecules
+ * @name molecules
  * @description
  * # Molecules
  * Molecules are complex elements made up of various Atoms.

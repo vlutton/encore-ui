@@ -29,14 +29,15 @@ module.exports = function (grunt) {
 
 
     var spawn = function (done, encoreModule) {
-        var urlString = 'http://<%= config.serverHostname %>';
-        if (grunt.config('config.serverPort')) {
-            urlString += ':<%= config.serverPort %>/';
+        var urlString = 'http://<%= config.server.hostname %>';
+        if (grunt.config('config.server.port')) {
+            urlString += ':<%= config.server.port %>/';
         }
         var url = grunt.template.process(urlString);
         if (!_.isUndefined(encoreModule)) {
-            url += '#/component/' + encoreModule;
+            url += '#/modules/' + encoreModule; // use generic /modules/:module route
         }
+        grunt.log.writeln('Checking ' + url + ' for console errors.');
         phantomjs.spawn(url, {
             options: {
                 timeout: 5000,
@@ -48,7 +49,6 @@ module.exports = function (grunt) {
                 done(err || !hasErrors);
             }
         });
-        
     };
 
     grunt.registerTask('phantomjs-check',
@@ -69,6 +69,5 @@ module.exports = function (grunt) {
                 var done = this.async();
                 spawn(done, moduleName);
             }
-
         });
 };

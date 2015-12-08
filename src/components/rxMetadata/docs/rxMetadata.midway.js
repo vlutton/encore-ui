@@ -48,7 +48,7 @@ var transformFns = {
 describe('rxMetadata', function () {
 
     before(function () {
-        demoPage.go('#/component/rxMetadata');
+        demoPage.go('#/components/rxMetadata');
     });
 
     describe('Status', encore.exercise.rxMetadata({

@@ -1,7 +1,7 @@
 describe('demo component', function () {
 
     before(function () {
-        demoPage.go('#/component/rxSpinner');
+        demoPage.go('#/components/rxSpinner');
     });
 
     it('default', function () {

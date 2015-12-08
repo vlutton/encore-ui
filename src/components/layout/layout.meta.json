@@ -2,5 +2,6 @@
     "displayName": "layout",
     "stability": "unstable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

@@ -25,7 +25,7 @@ module.exports = {
         configFile: 'karma.conf.js',
         files: files.concat([
             'src/*/*.module.js',         // src/:category/<category>.module.js
-            'src/**/*.module.js',        // src/:category/:component/<component>.module.js
+            'src/*/**/*.module.js',      // src/:category/:component/<component>.module.js
             'src/**/templates/*.html',   // src/:category/:component/templates/*.html
             'src/**/scripts/*.js'        // src/:category/:component/scripts/*.js
         ])
@@ -47,7 +47,7 @@ module.exports = {
         options: {
             files: files.concat([
                 'src/**/*.spec.js',
-                '<%= config.dist %>/<%= config.fileNameTpl %>.min.js'
+                '<%= config.dir.dist %>/<%= config.dist.fileNameTpl %>.min.js'
             ])
         },
         singleRun: true,

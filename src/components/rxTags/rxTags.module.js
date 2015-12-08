@@ -9,11 +9,9 @@
  * ## Directives
  * * {@link rxTags.directive:rxTags rxTags}
  *
- * ## Filters
- * * {@link rxTags.filter:xor xor}
- *
  */
 angular.module('encore.ui.rxTags', [
+    'encore.ui.quarks',
     'encore.ui.rxMisc',
     'ui.bootstrap'
 ]);

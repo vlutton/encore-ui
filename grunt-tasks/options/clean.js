@@ -1,9 +1,9 @@
 module.exports = {
     bower: {
-        src: '<%= config.bower %>'
+        src: '<%= config.dir.bower %>'
     },
     build: {
-        src: ['<%= config.build %>']
+        src: ['<%= config.dir.build %>']
     },
     templates: {
         src: ['templates']

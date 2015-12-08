@@ -2,5 +2,6 @@
     "displayName": "rxMisc",
     "stability": "unstable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

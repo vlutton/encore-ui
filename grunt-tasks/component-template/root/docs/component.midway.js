@@ -4,7 +4,7 @@ describe('{%= name %}', function () {
     var {%= name %};
 
     before(function () {
-        demoPage.go('#/component/{%= name %}');
+        demoPage.go('#/components/{%= name %}');
         {%= name %} = {%= name %}Page.initialize($('#{%= name %}'));
     });
 

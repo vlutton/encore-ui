@@ -2,5 +2,6 @@
     "displayName": "config",
     "stability": "stable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }

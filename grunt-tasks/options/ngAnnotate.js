@@ -3,11 +3,11 @@ module.exports = {
         banner: '<%= config.meta.banner %>'
     },
     dist: {
-        src: ['<%= config.dist %>/<%= config.fileName %>.js'],
-        dest: '<%= config.dist %>/<%= config.fileName %>.js'
+        src: ['<%= config.dir.dist %>/<%= config.dist.fileName %>.js'],
+        dest: '<%= config.dir.dist %>/<%= config.dist.fileName %>.js'
     },
     distTpls: {
-        src: ['<%= config.dist %>/<%= config.fileNameTpl %>.js'],
-        dest: '<%= config.dist %>/<%= config.fileNameTpl %>.js'
+        src: ['<%= config.dir.dist %>/<%= config.dist.fileNameTpl %>.js'],
+        dest: '<%= config.dir.dist %>/<%= config.dist.fileNameTpl %>.js'
     }
 };

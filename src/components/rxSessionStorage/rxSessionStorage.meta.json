@@ -2,5 +2,6 @@
     "displayName": "rxSessionStorage",
     "stability": "unstable",
     "description": "",
+    "isLegacy": true,
     "keywords": []
 }
