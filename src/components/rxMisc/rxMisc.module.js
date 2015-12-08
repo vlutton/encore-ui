@@ -16,5 +16,5 @@
  */
 angular.module('encore.ui.rxMisc', [
     'debounce',
-    'encore.ui.rxSessionStorage'
+    'encore.ui.quarks'
 ]);

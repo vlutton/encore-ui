@@ -103,8 +103,13 @@ module.exports = function (grunt) {
             });
 
         /* sorted modules array for various filtering */
-        var modules = _.sortBy(grunt.config('config.modules'), 'name');
+        var sortedModules = _.sortBy(grunt.config('config.modules'), function (mod) {
+            return mod.name.toLowerCase();
+        });
 
+        var categoryModules = _.filter(sortedModules, { isCategory: true });
+        var nonCategoryModules = _.filter(sortedModules, { isCategory: false });
+        var modules = categoryModules.concat(nonCategoryModules);
 
         /* Determine modules with source files */
         // used by config.meta.(modules|all)

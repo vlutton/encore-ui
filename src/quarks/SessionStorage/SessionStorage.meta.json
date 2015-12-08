@@ -1,7 +1,6 @@
 {
-    "displayName": "rxSessionStorage",
+    "displayName": "SessionStorage",
     "stability": "unstable",
     "description": "",
-    "isLegacy": true,
     "keywords": []
 }

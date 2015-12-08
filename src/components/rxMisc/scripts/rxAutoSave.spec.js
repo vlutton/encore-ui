@@ -29,7 +29,7 @@ describe('rxAutoSave', function () {
     beforeEach(function () {
         module('encore.ui.rxMisc');
         module('encore.ui.rxLocalStorage');
-        module('encore.ui.rxSessionStorage');
+        module('encore.ui.quarks');
 
         module(function ($provide) {
             $provide.value('$location', $location);
