@@ -22,6 +22,7 @@ describe('Breadcrumbs', function () {
     beforeEach(function () {
         // Load the service's module
         module('encore.ui.rxBreadcrumbs');
+        module('encore.ui.quarks');
         module('encore.ui.rxApp');
 
         // load the template

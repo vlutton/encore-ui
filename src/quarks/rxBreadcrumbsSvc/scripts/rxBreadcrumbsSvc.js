@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxBreadcrumbs')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc service
- * @name rxBreadcrumbs.service:rxBreadcrumbsSvc
+ * @name quarks.service:rxBreadcrumbsSvc
  * @description
  * `rxBreadcrumbsSvc` provides various methods to manipulate breadcrumbs.
  *
@@ -38,10 +38,11 @@ angular.module('encore.ui.rxBreadcrumbs')
         }
         return copy;
     };
+
     /**
      * @ngdoc function
      * @name rxBreadcrumbsSvc.setHome
-     * @methodOf rxBreadcrumbs.service:rxBreadcrumbsSvc
+     * @methodOf quarks.service:rxBreadcrumbsSvc
      * @description
      * By default, the first breadcrumb will always have an URL of `'/'` and a name of `'Home'`.  This can be changed
      * with the `rxBreadcrumbsSvc.setHome` method.

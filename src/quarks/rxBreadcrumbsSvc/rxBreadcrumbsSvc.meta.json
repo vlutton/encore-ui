@@ -1,0 +1,7 @@
+{
+    "displayName": "rxBreadcrumbsSvc",
+    "stability": "unstable",
+    "description": "",
+    "api": "service:rxBreadcrumbsSvc",
+    "keywords": []
+}

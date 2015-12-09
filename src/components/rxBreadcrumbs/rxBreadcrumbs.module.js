@@ -8,9 +8,6 @@
  *
  * ## Directives
  * * {@link rxBreadcrumbs.directive:rxBreadcrumbs rxBreadcrumbs}
- *
- * ## Services
- * * {@link rxBreadcrumbs.service:rxBreadcrumbsSvc rxBreadcrumbsSvc}
  */
 angular.module('encore.ui.rxBreadcrumbs', [
     'ngSanitize'
