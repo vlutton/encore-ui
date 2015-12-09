@@ -12,6 +12,7 @@
  * * {@link quarks.filter:xor xor}
  * * {@link quarks.filter:rxCapitalize rxCapitalize}
  * * {@link quarks.filter:rxDiskSize rxDiskSize}
+ * * {@link quarks.filter:rxAge rxAge}
  *
  * ## Services
  * * {@link quarks.service:hotkeys hotkeys}

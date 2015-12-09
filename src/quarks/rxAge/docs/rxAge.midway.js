@@ -22,8 +22,8 @@ describe('rxAge', function () {
     ];
 
     before(function () {
-        demoPage.go('#/components/rxAge');
-        momentsTable = $$('.module-demo ul li');
+        demoPage.go('#/quarks/rxAge');
+        momentsTable = $$('#rxAge-demo ol li');
     });
 
     _.forEach(ageStrings, function (testData, index) {

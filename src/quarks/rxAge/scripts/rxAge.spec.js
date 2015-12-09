@@ -4,7 +4,7 @@ describe('rxAge', function () {
     var age, clock;
 
     beforeEach(function () {
-        module('encore.ui.rxAge');
+        module('encore.ui.quarks');
 
         inject(function ($filter) {
             age = $filter('rxAge');
