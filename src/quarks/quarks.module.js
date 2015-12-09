@@ -5,14 +5,13 @@
  * # Quarks
  * Quarks are non-visual elements that support Atoms and Molecules.
  *
- * Items that fall within this category would include:
- * * Services
- * * Filters
- * * Values
- * * Constants
+ * ## Values & Constants
+ * * TBD
  *
- * ## Quarks
- * * {@link quarks.service:hotkeys hotkeys}
+ * ## Filters
  * * {@link quarks.filter:xor xor}
+ *
+ * ## Services
+ * * {@link quarks.service:hotkeys hotkeys}
  */
 angular.module('encore.ui.quarks', []);
