@@ -1,3 +1,12 @@
+<a name="1.41.0-0"></a>
+### 1.41.0-0 (2015-12-09)
+
+
+#### Bug Fixes
+
+* **styles:** correct styling for user select in nav ([76e24e30](git@github.com:rackerlabs/encore-ui/commit/76e24e3045d5a38f5bf380e8d492d759877c911c))
+
+
 <a name="1.40.0"></a>
 ## 1.40.0 (2015-12-03)
 
