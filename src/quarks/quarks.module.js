@@ -10,6 +10,7 @@
  *
  * ## Filters
  * * {@link quarks.filter:xor xor}
+ * * {@link quarks.filter:rxCapitalize rxCapitalize}
  *
  * ## Services
  * * {@link quarks.service:hotkeys hotkeys}

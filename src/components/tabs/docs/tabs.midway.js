@@ -83,11 +83,11 @@ describe('tabs', function () {
     describe('main tabs', function () {
 
         before(function () {
-            demoPage.go('#/components/rxCapitalize');
+            demoPage.go('#/quarks/rxCapitalize');
         });
 
         it('should find the only tabs on the page', function () {
-            expect(tabsPage.main.names).to.eventually.eql(['Demo', 'Markup', 'JavaScript', 'Protractor']);
+            expect(tabsPage.main.names).to.eventually.eql(['Demo', 'Markup', 'JavaScript']);
         });
 
     });
