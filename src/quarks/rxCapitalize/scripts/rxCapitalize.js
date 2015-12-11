@@ -1,9 +1,9 @@
-angular.module('encore.ui.rxCapitalize')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc filter
- * @name rxCapitalize.filter:rxCapitalize
+ * @name quarks.filter:rxCapitalize
  * @description
- * The `rxCapitalize` filter capitalizes the first word in a string.
+ * The `rxCapitalize` filter capitalizes the first word in a string via an Angular filter.
  */
 .filter('rxCapitalize', function () {
     return function (input) {

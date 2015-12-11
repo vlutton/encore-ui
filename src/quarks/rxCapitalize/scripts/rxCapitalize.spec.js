@@ -4,7 +4,7 @@ describe('rxCapitalize', function () {
     var capitalize;
 
     beforeEach(function () {
-        module('encore.ui.rxCapitalize');
+        module('encore.ui.quarks');
 
         inject(function ($filter) {
             capitalize = $filter('rxCapitalize');
