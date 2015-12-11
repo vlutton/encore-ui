@@ -29,10 +29,10 @@
 // Outer container
 .progress {
   overflow: hidden;
-  height: @line-height-computed;
-  margin-bottom: @line-height-computed;
-  background-color: @progress-bg;
-  border: 1px solid @gray-400;
+  height: @progressbar-line-height-computed;
+  margin-bottom: @progressbar-line-height-computed;
+  background-color: @progressbar-background-color;
+  border: 1px solid @progressbar-border-color;
   padding: 1px;
 }
 
@@ -41,11 +41,11 @@
   float: left;
   width: 0%;
   height: 100%;
-  font-size: @font-size-small;
-  line-height: @line-height-computed;
-  color: @gray-900;
+  font-size: @progressbar-font-size;
+  line-height: @progressbar-line-height-computed;
+  color: @progressbar-default-text-color;
   text-align: center;
-  background-color: @progress-bar-bg;
+  background-color: @progressbar-default-background-color;
   .transition(width .6s ease);
 }
 
@@ -73,13 +73,13 @@
 // -------------------------
 
 .progress-bar-secondary {
-  .progress-bar-variant(@progress-bar-secondary-bg);
-  color: @white;
+  .progress-bar-variant(@progressbar-secondary-background-color);
+  color: @progressbar-secondary-text-color;
 }
 
 .progress-bar-tertiary {
-  .progress-bar-variant(@progress-bar-tertiary-bg);
-  color: @white;
+  .progress-bar-variant(@progressbar-tertiary-background-color);
+  color: @progressbar-tertiary-text-color;
 }
 
 #gradient {
