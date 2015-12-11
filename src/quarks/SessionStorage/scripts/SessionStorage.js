@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxSessionStorage')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc service
- * @name rxSessionStorage.service:SessionStorage
+ * @name quarks.service:SessionStorage
  * @description
  *
  * A simple wrapper for injecting the global variable sessionStorage

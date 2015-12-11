@@ -4,7 +4,7 @@ describe('service:SessionStorage', function () {
     var storage;
 
     beforeEach(function () {
-        module('encore.ui.rxSessionStorage');
+        module('encore.ui.quarks');
         inject(function (SessionStorage) {
             storage = SessionStorage;
         });

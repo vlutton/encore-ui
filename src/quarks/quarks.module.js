@@ -13,5 +13,6 @@
  *
  * ## Services
  * * {@link quarks.service:hotkeys hotkeys}
+ * * {@link quarks.service:SessionStorage SessionStorage}
  */
 angular.module('encore.ui.quarks', []);
