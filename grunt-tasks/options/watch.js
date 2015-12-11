@@ -40,12 +40,12 @@ module.exports = {
     },
     componentLess: {
         files: [
-            'src/**/*.less'
+            'src/**/*.less',
+            '!src/**/examples/*.less'
         ],
         tasks: [
             'concat:tmpEncoreLess',
             'concat:tmpDemosLess',
-            'concat:tmpExamplesLess',
             'less'
         ]
     },
@@ -59,10 +59,21 @@ module.exports = {
     },
     exampleMarkup: {
         files: [
-            'src/**/examples/*.html'
+            'src/**/examples/*.html',
+            'demo/examples/*.html'
         ],
         tasks: [
             'copy:demoExamples'
+        ]
+    },
+    exampleLess: {
+        files: [
+            'src/**/examples/*.less',
+            'demo/examples/*.less'
+        ],
+        tasks: [
+            'concat:tmpExamplesLess',
+            'less'
         ]
     },
     demoSite: {

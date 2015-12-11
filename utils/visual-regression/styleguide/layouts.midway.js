@@ -1,9 +1,7 @@
 describe('layouts', function () {
-
     describe('details', function () {
-
         before(function () {
-            demoPage.go('#/styleguide/layouts/1');
+            demoPage.go('#/layout/page/detail');
         });
 
         it('page actions', function () {
@@ -17,23 +15,21 @@ describe('layouts', function () {
         it('data tables', function () {
             screenshot.snap(this, $('.data-section'));
         });
-
     });
 
     describe('data table', function () {
         before(function () {
-            demoPage.go('#/styleguide/layouts/2');
+            demoPage.go('#/layout/page/data-table');
         });
 
         it('full table', function () {
             screenshot.snap(this, $('.page-body'));
         });
-
     });
 
     describe('create form', function () {
         before(function () {
-            demoPage.go('#/styleguide/layouts/3');
+            demoPage.go('#/layout/page/form');
         });
 
         it('form area', function () {
@@ -48,7 +44,5 @@ describe('layouts', function () {
             encore.tabs.main.byName('Tab 2').visit();
             screenshot.snap(this, $('.tab-area'));
         });
-
     });
-
 });

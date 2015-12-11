@@ -123,7 +123,10 @@ module.exports = {
             {
                 flatten: true,
                 expand: true,
-                src: ['src/**/examples/*'],
+                src: [
+                    'src/**/examples/*',
+                    'demo/examples/*'
+                ],
                 dest: '<%= config.dir.docs %>/examples/'
             }
         ]

@@ -62,6 +62,7 @@ module.exports = function (grunt) {
             keywords: [], // should be set by <module>.meta.json
             displayName: name, // should be set by <module>.meta.json
             isLegacy: false, // TODO: to be removed with last of components
+            hasApi: true,
             isCategory: (category == name),
             srcFiles: _srcFiles,
             tplFiles: _tplFiles,
