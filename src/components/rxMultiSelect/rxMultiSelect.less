@@ -20,13 +20,13 @@ rx-multi-select {
     top: -1px;
     left: -1px;
     width: 100%;
-    border: 1px solid @inputBorderColor;
-    background: @white;
+    border: 1px solid @rxForm-input-border-color;
+    background: @rxForm-input-background-color;
     box-shadow: 0 3px 15px 0 rgba(0, 0, 0, 0.35);
   }
 
   rx-select-option[value="all"] label {
-    border-bottom: 1px solid @inputBorderColor;
+    border-bottom: 1px solid @rxForm-input-border-color;
   }
 }
 
@@ -36,8 +36,7 @@ rx-multi-select {
     padding: 4px 6px;
 
     &:hover {
-      background: @optionHighlightBg;
-      color: @white;
+      background: @blue-100;
       cursor: pointer;
     }
   }
