@@ -8,7 +8,7 @@
 .counted-input-wrapper {
   width: 375px;
   position: relative;
-  background-color: #ffffff;
+  background-color: @rxForm-input-background-color;
 
   // These two selectors must always be styled with the same width.
   .input-highlighting,
@@ -34,20 +34,20 @@
     color: transparent;
 
     .over-limit-text {
-      background-color: @warnRed;
+      background-color: @rxForm-error-text-color;
       opacity: 0.3;
     }
   }
 
   .character-countdown {
     text-align: right;
-    color: @subduedTitle;
+    color: @rxFieldName-color;
 
     &.near-limit {
-      color: @orange;
+      color: @orange-700;
     }
     &.over-limit {
-      color: @red;
+      color: @rxForm-error-text-color;
     }
   }
 }
