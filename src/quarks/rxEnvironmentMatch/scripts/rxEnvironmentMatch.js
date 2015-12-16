@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxEnvironment')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc filter
- * @name rxEnvironment.filter:rxEnvironmentMatch
+ * @name quarks.filter:rxEnvironmentMatch
  * @description
  * Checks if current environment matches target environment
  *

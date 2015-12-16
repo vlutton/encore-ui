@@ -3,8 +3,9 @@ describe('rxEnvironmentUrl', function () {
     var urlFilter, envSvc;
 
     beforeEach(function () {
+        module('encore.ui.quarks');
         module('encore.ui.rxEnvironment');
-
+ 
         inject(function ($filter, Environment) {
             urlFilter = $filter('rxEnvironmentUrl');
             envSvc = Environment;

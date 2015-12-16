@@ -63,13 +63,10 @@
  * ## Directives
  * * {@link rxEnvironment.directive:rxEnvironment rxEnvironment}
  *
- * ## Filters
- * * {@link rxEnvironment.filter:rxEnvironmentMatch rxEnvironmentMatch}
- * * {@link rxEnvironment.filter:rxEnvironmentUrl rxEnvironmentUrl}
- *
  * ## Services
  * * {@link rxEnvironment.service:Environment Environment}
  */
 angular.module('encore.ui.rxEnvironment', [
-    'ngSanitize'
+    'ngSanitize',
+    'encore.ui.quarks'
 ]);

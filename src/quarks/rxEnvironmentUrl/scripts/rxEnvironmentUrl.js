@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxEnvironment')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc filter
- * @name rxEnvironment.filter:rxEnvironmentUrl
+ * @name quarks.filter:rxEnvironmentUrl
  * @description
  * Builds a URL based on current environment.
  * Note: if value passed in isn't an object, it will simply return that value
