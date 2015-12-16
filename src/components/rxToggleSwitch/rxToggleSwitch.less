@@ -1,30 +1,15 @@
-/*
- * rxToggleSwitch
- */
-@textColor: @white;
-@offStateColor: #b3b3b3;
-@borderColor: darken(@offStateColor, 10%);
-@onStateColor: #00ac31;
-@knobColor: @white;
-@knobBorderColor: darken(@knobColor, 10%);
-@knobSize: 1.2em;
-@edgeSpacing: @knobSize * 0.9;
-@lineHeight: @knobSize * 1.25;
-@blurDist: @edgeSpacing;
-@blurSpread: (@edgeSpacing/3) * -1;
-
 .rx-toggle-switch {
   font-size: 0.8em;
-  line-height: @lineHeight;
+  line-height: @rxToggleSwitch-line-height;
 
   display: inline-block;
 
-  border: 1px @borderColor solid;
+  border: 1px @rxToggleSwitch-border-color solid;
   border-radius: 9px;
-  background-color: @offStateColor;
-  color: @textColor;
+  background-color: @rxToggleSwitch-off-state-color;
+  color: @rxToggleSwitch-text-color;
 
-  padding: 0 @edgeSpacing 0 @edgeSpacing;
+  padding: 0 @rxToggleSwitch-padding 0 @rxToggleSwitch-padding;
 
   width: 5em;
 
@@ -32,24 +17,25 @@
   position: relative;
   text-align: right;
 
-  .box-shadow(inset 1px 2px @blurDist @blurSpread rgba(0,0,0,0.50));
+  .box-shadow(inset 1px 2px @rxToggleSwitch-blur-dist @rxToggleSwitch-blur-spread rgba(0,0,0,0.50));
   .user-select(none);
   .box-sizing(border-box);
 
   &[disabled] {
-    background-color: desaturate(lighten(@offStateColor, 7%), 80%);
-    color: #666666;
+    background-color: @disabled-background-color;
+    color: @disabled-text-color;
     &.on {
-      background-color: desaturate(lighten(@onStateColor, 33%), 80%);
+      background-color: desaturate(lighten(@rxToggleSwitch-on-state-color, 40%), 30%);
+      color: darken(@disabled-text-color, 10%);
     }
     cursor: not-allowed;
     .knob {
-      background-color: #adadad;
-      border: 1px #999999 solid;
+      background-color: @disabled-background-color;
+      border: 1px @disabled-text-color solid;
     }
   }
   &.on {
-    background-color: @onStateColor;
+    background-color: @rxToggleSwitch-on-state-color;
     text-align: left;
     .knob {
       left: 100%;
@@ -66,13 +52,13 @@
     top: 0;
     left: 0;
 
-    width: @knobSize;
-    height: @knobSize;
-    border-radius: (@knobSize/2)+1;
-    background-color: @knobColor;
-    border: 1px @knobBorderColor solid;
+    width: @rxToggleSwitch-knob-size;
+    height: @rxToggleSwitch-knob-size;
+    border-radius: (@rxToggleSwitch-knob-size/2)+1;
+    background-color: @rxToggleSwitch-knob-color;
+    border: 1px @rxToggleSwitch-knob-border-color solid;
 
-    .box-shadow(0 0 @blurDist @blurSpread rgba(0,0,0,0.55));
+    .box-shadow(0 0 @rxToggleSwitch-blur-dist @rxToggleSwitch-blur-spread rgba(0,0,0,0.55));
     overflow: hidden;
   }
 }
