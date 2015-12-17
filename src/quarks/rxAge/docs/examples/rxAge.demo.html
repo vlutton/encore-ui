@@ -1,5 +1,5 @@
-<div ng-controller="rxAgeCtrl">
-    <ul>
+<div ng-controller="rxAgeCtrl" id="rxAge-demo">
+    <ol class="list">
         <li>{{ageHours}} &rarr; {{ageHours | rxAge}}</li>
         <li>{{ageDays}} &rarr; {{ageDays | rxAge}}</li>
         <li>{{ageMonths}} &rarr; {{ageMonths | rxAge}}</li>
@@ -12,5 +12,5 @@
         <li>{{ageDays}} &rarr; {{ageDays | rxAge:2:true}}</li>
         <li>{{ageMonths}} &rarr; {{ageMonths | rxAge:3:true}}</li>
         <li>{{ageYears}} &rarr; {{ageYears | rxAge:3:true}}</li>
-    </ul>
+    </ol>
 </div>
