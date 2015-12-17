@@ -4,7 +4,7 @@ describe('rxDiskSize', function () {
     var disksize;
 
     beforeEach(function () {
-        module('encore.ui.rxDiskSize');
+        module('encore.ui.quarks');
 
         inject(function ($filter) {
             disksize = $filter('rxDiskSize');

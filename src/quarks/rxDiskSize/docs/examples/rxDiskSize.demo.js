@@ -1,4 +1,3 @@
-/*jshint unused:false*/
 angular.module('demoApp')
 .controller('rxDiskSizeCtrl', function ($scope) {
     $scope.sizeGB = 420;

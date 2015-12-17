@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxDiskSize')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc filter
- * @name rxDiskSize.filter:rxDiskSize
+ * @name quarks.filter:rxDiskSize
  * @description
  *
  * Converts GB disk size into a more readable format (e.g. GBs, TBs, PBs)

@@ -14,8 +14,8 @@ describe('rxDiskSize', function () {
     ];
 
     before(function () {
-        demoPage.go('#/components/rxDiskSize');
-        diskSizesTable = $$('.module-demo ul li');
+        demoPage.go('#/quarks/rxDiskSize');
+        diskSizesTable = $$('#rx-disk-size-demo ul li');
     });
 
     _.forEach(diskSizeStrings, function (testData, index) {
