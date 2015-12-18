@@ -14,7 +14,9 @@
  * * {@link quarks.filter:rxDiskSize rxDiskSize}
  * * {@link quarks.filter:rxAge rxAge}
  * * {@link quarks.filter:titleize titleize}
- * 
+ * * {@link quarks.filter:rxEnvironmentMatch rxEnvironmentMatch}
+ * * {@link quarks.filter:rxEnvironmentUrl rxEnvironmentUrl}
+ *
  * ## Services
  * * {@link quarks.service:hotkeys hotkeys}
  * * {@link quarks.service:SessionStorage SessionStorage}

@@ -3,6 +3,7 @@ describe('rxEnvironmentMatch', function () {
     var urlMatch, envSvc, _location, setUrl;
 
     beforeEach(function () {
+        module('encore.ui.quarks');
         module('encore.ui.rxEnvironment');
 
         inject(function ($filter, Environment, $location) {
