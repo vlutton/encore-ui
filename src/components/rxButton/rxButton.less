@@ -5,8 +5,8 @@
 
 .button {
   display: inline-block;
-  background: @buttonDefaultBg;
-  color: @buttonColor;
+  background: @rxButton-default-background-color;
+  color: @rxButton-default-text-color;
   border: 0;
   font-size: 14px;
   padding: 7px 13px;
@@ -15,10 +15,10 @@
 
   &:hover,
   &:focus {
-    background: @buttonDefaultBgHover;
+    background: @rxButton-default-hover-background-color;
     cursor: pointer;
     // in case the buttons are created using the <a> tag
-    color: @buttonColor;
+    color: @rxButton-default-text-color;
     text-decoration: none;
   }
 
@@ -47,41 +47,41 @@
   // Color Variations
   &.positive,
   &.submit {
-    background: @buttonPositiveBg;
+    background: @rxButton-positive-background-color;
 
     &:hover,
     &:focus {
-      background: @buttonPositiveBgHover;
+      background: @rxButton-positive-hover-background-color;
     }
   }
 
   &.negative {
-    background: @buttonNegativeBg;
+    background: @rxButton-negative-background-color;
 
     &:hover,
     &:focus {
-      background: @buttonNegativeBgHover;
+      background: @rxButton-negative-hover-background-color;
     }
   }
 
   &.finish {
     background: #fff;
-    color: @buttonDefaultBg;
-    .box-shadow(inset 0 0 0 2px @buttonDefaultBg);
+    color: @rxButton-default-background-color;
+    .box-shadow(inset 0 0 0 2px @rxButton-default-background-color);
 
     &:hover,
     &:focus {
-      color: @buttonDefaultBgHover;
-      .box-shadow(inset 0 0 0 2px @buttonDefaultBgHover);
+      color: @rxButton-default-hover-background-color;
+      .box-shadow(inset 0 0 0 2px @rxButton-default-hover-background-color);
     }
   }
 
   &.cancel {
-    background: @buttonCancelBg;
+    background: @rxButton-cancel-background-color;
 
     &:hover,
     &:focus {
-      background: @buttonCancelBgHover;
+      background: @rxButton-cancel-hover-background-color;
     }
   }
 
@@ -90,8 +90,8 @@
   &[disabled],
   &[disabled]:hover {
     cursor: not-allowed;
-    color: @buttonColorDisabled;
-    background: @buttonDisabledBg;
+    color: @rxButton-disabled-text-color;
+    background: @rxButton-disabled-background-color;
   }
 
   &.inline {
@@ -107,7 +107,7 @@
     i {
       width: 5px;
       height: 5px;
-      background: @buttonSpinnerBg;
+      background: @rxButton-spinner-background-color;
 
       .border-radius(100%);
       display: inline-block;
@@ -171,7 +171,7 @@
   &[disabled],
   &[disabled]:hover {
     cursor: not-allowed;
-    color: @buttonDisabledBg;
+    color: @rxButton-disabled-background-color;
   }
 }
 
@@ -185,8 +185,8 @@ thead th .btn-link {
 
 .button-group {
   display: flex;
-  border: @buttonGroupBorder;
-  border-radius: @buttonGroupBorderRadius + 2;
+  border: @rxButton-button-group-border;
+  border-radius: @rxButton-button-group-border-radius + 2;
   font-size: 1.1em;
 
   input {
@@ -200,24 +200,24 @@ thead th .btn-link {
     color: @gray-700;
 
     &:first-of-type {
-      border-top-left-radius: @buttonGroupBorderRadius;
-      border-bottom-left-radius: @buttonGroupBorderRadius;
+      border-top-left-radius: @rxButton-button-group-border-radius;
+      border-bottom-left-radius: @rxButton-button-group-border-radius;
     }
 
     &:last-of-type {
-      border-top-right-radius: @buttonGroupBorderRadius;
-      border-bottom-right-radius: @buttonGroupBorderRadius;
+      border-top-right-radius: @rxButton-button-group-border-radius;
+      border-bottom-right-radius: @rxButton-button-group-border-radius;
     }
 
     &:not(:last-of-type) {
-      border-right: @buttonGroupBorder;
+      border-right: @rxButton-button-group-border;
     }
 
     &:hover,
     &:focus {
       cursor: pointer;
       color: @white;
-      background: @buttonCancelBgHover;
+      background: @rxButton-cancel-hover-background-color;
     }
   }//label
 
