@@ -7,8 +7,8 @@
  * # Molecules
  * Molecules are complex elements made up of various Atoms.
  *
- * ## Molecules
- * * TBD
+ * ## Directives
+ * * {@link molecules.directive:rxDatePicker rxDatePicker}
  */
 angular.module('encore.ui.molecules', [
     'encore.ui.quarks',
