@@ -1,3 +1,17 @@
+<a name="1.42.0"></a>
+## 1.42.0 (2015-12-18)
+
+
+#### Bug Fixes
+
+* **rxSortableColumn:** FRMW-457-fix sort icon overlapping title ([20065b2f](git@github.com:rackerlabs/encore-ui/commit/20065b2f7d6e4109d2db5b3b853f1aabd5ae2b09))
+
+
+#### Features
+
+* **rxDatePicker:** Add rxDatePicker Molecule ([771b6b99](git@github.com:rackerlabs/encore-ui/commit/771b6b99380235b4483df2f92579630592bf9a4b))
+
+
 <a name="1.41.1"></a>
 ### 1.41.1 (2015-12-16)
 
