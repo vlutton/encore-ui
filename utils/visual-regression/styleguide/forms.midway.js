@@ -1,11 +1,9 @@
 describe('forms', function () {
-
     before(function () {
-        demoPage.go('#/styleguide/forms');
+        demoPage.go('#/molecules/forms');
     });
 
     describe('manual saving', function () {
-
         it('form', function () {
             screenshot.snap(this, $('rx-styleguide[code-url$="manual-saving.html"]'));
         });
@@ -14,7 +12,5 @@ describe('forms', function () {
             element(by.model('text')).sendKeys('input');
             screenshot.snap(this, encore.rxNotify.main.rootElement);
         });
-
     });
-
 });

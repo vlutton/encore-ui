@@ -8,6 +8,9 @@ module.exports = {
     templates: {
         src: ['templates']
     },
+    tmp: {
+        src: ['tmp']
+    },
     coverage: {
         src: ['coverage']
     },

@@ -64,15 +64,20 @@ module.exports = {
         options: {
             banner: '@import (reference) "vars";\n\n'
         },
-        src: ['src/**/docs/*.demo.less'],
+        src: [
+            'src/**/docs/*.demo.less'
+        ],
         dest: '<%= config.tmp.less.demos %>'
     },
     tmpExamplesLess: {
         options: {
-            banner: '.example {',
-            footer: '}//.example'
+            banner: '.example {\n',
+            footer: '\n}//.example'
         },
-        src: ['src/**/examples/*.less'],
+        src: [
+            'src/**/examples/*.less',
+            'demo/examples/*.less'
+        ],
         dest: '<%= config.tmp.less.examples %>',
     },
     tmpEncoreLess: {
