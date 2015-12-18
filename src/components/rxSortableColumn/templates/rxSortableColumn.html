@@ -1,11 +1,17 @@
 <div class="rx-sortable-column">
-    <button class="sort-action btn-link" ng-click="sortMethod({property:sortProperty})">
-        <span class="visually-hidden">Sort by&nbsp;</span>
-        <span ng-transclude></span>
-        <i class="sort-icon"
-            ng-style="{visibility: predicate === '{{sortProperty}}' && 'visible' || 'hidden'}"
-            ng-class="{'desc': reverse, 'asc': !reverse}">
-            <span class="visually-hidden">Sorted {{reverse ? 'ascending' : 'descending'}}</span>
-        </i>
-    </button>
+  <div class="sort-action btn-link" ng-click="sortMethod({property:sortProperty})">
+    <span class="visually-hidden">Sort by&nbsp;</span>
+    <span class="display-value" ng-transclude></span>
+    <span class="visually-hidden">Sorted {{reverse ? 'ascending' : 'descending'}}</span>
+    <span class="sort-icon fa-stack">
+      <i class="bg fa fa-stack-1x fa-sort"></i>
+      <span ng-if="predicate === sortProperty" 
+        class="sort-direction-icon" 
+        ng-class="{ 'ascending': !reverse, 'descending': reverse }">
+
+        <i ng-if="reverse" class="fa fa-stack-1x fa-sort-desc"></i>
+        <i ng-if="!reverse" class="fa fa-stack-1x fa-sort-asc"></i>
+      </span>
+    </span>
+  </div>
 </div>

@@ -6,16 +6,16 @@ var Page = require('astrolabe').Page;
    @private
  */
 var currentSortDirection = function (columnElement) {
-    var imgSortIcon = columnElement.$('.sort-icon');
-    return imgSortIcon.getAttribute('style').then(function (style) {
-        if (style.indexOf('hidden') > -1) {
-            // Sort arrow hidden; not sorted.
-            return -1;
-        } else {
-            return imgSortIcon.getAttribute('class').then(function (className) {
-                return className.indexOf('asc') > -1 ? 1 : 0;
-            });
-        }
+    var spanSortDirection = columnElement.$('.sort-direction-icon');
+
+    return spanSortDirection.isPresent().then(function (isPresent) {
+      if (isPresent) {
+        return spanSortDirection.getAttribute('class').then(function (klass) {
+          return (klass.indexOf('ascending') > -1 ? 1 : -1);
+        });
+      } else {
+        return 0;
+      }
     });
 };
 
@@ -32,7 +32,7 @@ var rxSortableColumn = {
 
     name: {
         get: function () {
-            return this.rootElement.$('.sort-action .ng-scope').getText();
+            return this.rootElement.$('.sort-action .display-value').getText();
         }
     },
 
@@ -43,7 +43,7 @@ var rxSortableColumn = {
      */
     sortAscending: {
         value: function () {
-            this.sort({ isAscending: true });
+            this.sort({ sortValue: 1 });
         }
     },
 
@@ -54,7 +54,7 @@ var rxSortableColumn = {
      */
     sortDescending: {
         value: function () {
-            this.sort({ isAscending: false });
+            this.sort({ sortValue: -1 });
         }
     },
 
@@ -78,7 +78,7 @@ var rxSortableColumn = {
                 // Coercing -1 to Boolean results in -1 === true. We don't want that.
                 // It's easier to leave as is since -1 != true and -1 != false.
                 // Meaning we'll always sort the list at least once if it's currently unsorted.
-                if (sortDirection != namedParams.isAscending) {
+                if (sortDirection != namedParams.sortValue) {
                     page.btnSort.click();
                     attempts += 1;
                     page.sort(namedParams, attempts);
@@ -202,7 +202,7 @@ var rxSortableColumns = {
     names: {
         get: function () {
             return this.getNamesUsing(function (columnElement) {
-                return columnElement.$('.sort-action .ng-scope').getText();
+                return columnElement.$('.sort-action .display-value').getText();
             });
         }
     },
@@ -271,8 +271,8 @@ exports.rxSortableColumn = {
      */
     sortDirections: {
         ascending: 1,
-        descending: 0,
-        notSorted: -1,
+        notSorted: 0,
+        descending: -1
     }
 
 };
