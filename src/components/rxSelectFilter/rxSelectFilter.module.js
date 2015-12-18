@@ -9,11 +9,9 @@
  *
  * ## Directives
  * * {@link rxSelectFilter.directive:rxSelectFilter rxSelectFilter}
- *
- * ## Filters
- * * {@link rxSelectFilter.filter:Apply Apply}
  */
 angular.module('encore.ui.rxSelectFilter', [
+    'encore.ui.quarks',
     'encore.ui.rxMisc',
     'encore.ui.rxSelect'
 ]);

@@ -65,7 +65,7 @@ angular.module('encore.ui.quarks')
  * Instances of `SelectFilter` have an `applyTo()` method, which applies the
  * filter's internal state of selected options to the array. This will not
  * often be called directly, but instead used by the
- * {@link rxSelectFilter.filter:Apply Apply} filter. As stated previously,
+ * {@link quarks.filter:Apply Apply} filter. As stated previously,
  * the first call of `applyTo()` will initialize any
  * `properties` that have not been defined in `available` or `selected`.
  * <pre>

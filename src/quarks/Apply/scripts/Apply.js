@@ -1,9 +1,9 @@
-angular.module('encore.ui.rxSelectFilter')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc filter
- * @name rxSelectFilter.filter:Apply
+ * @name quarks.filter:Apply
  * @description
- * Used to apply an instance of SelectFilter to an array.
+ * Used to apply an instance of {@link quarks.service:SelectFilter SelectFilter} to an array.
  *
  * Merely calls the `applyTo()` method of a `SelectFilter` instance to an
  * input array.
