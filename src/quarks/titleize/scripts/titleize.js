@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxMisc')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc filter
- * @name rxMisc.filter:titleize
+ * @name quarks.filter:titleize
  * @description
  * Convert a string to title case, stripping out underscores and capitalizing words.
  *

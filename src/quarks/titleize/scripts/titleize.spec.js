@@ -4,8 +4,8 @@ describe('titleize', function () {
     var titleize;
 
     beforeEach(function () {
-        module('encore.ui.rxMisc');
-
+        module('encore.ui.quarks');
+  
         inject(function (titleizeFilter) {
             titleize = titleizeFilter;
         });
