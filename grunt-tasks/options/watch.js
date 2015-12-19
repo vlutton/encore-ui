@@ -95,8 +95,8 @@ module.exports = {
         tasks: [
             'concat:rxPageObjects',
             'concat:rxPageObjectsExercises',
-            'jsdoc2md:rxPageObjects',
-            'shell:rxPageObjectsDemoDocs'
+            'jsdoc:rxPageObjects',
+            'copy:rxPageObjectsDocs'
         ]
     }
 };

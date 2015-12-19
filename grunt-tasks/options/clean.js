@@ -13,8 +13,5 @@ module.exports = {
     },
     coverage: {
         src: ['coverage']
-    },
-    rxPageObjects: {
-        src: ['utils/rx-page-objects/*.tgz']
     }
 };

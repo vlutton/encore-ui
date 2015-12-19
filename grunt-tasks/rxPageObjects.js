@@ -4,9 +4,8 @@ module.exports = function (grunt) {
             'concat:rxPageObjects',
             'concat:rxPageObjectsExercises',
             'shell:rxPageObjects',
-            'copy:rxPageObjects',
-            'jsdoc2md:rxPageObjects',
-            'shell:rxPageObjectsDemoDocs'
+            'jsdoc:rxPageObjects',
+            'copy:rxPageObjectsDocs'
         ];
 
         if (publishType === 'hotfix') {

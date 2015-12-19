@@ -19,8 +19,8 @@ module.exports = function (grunt) {
             'imagemin',
             'concat:rxPageObjects',
             'concat:rxPageObjectsExercises',
-            'jsdoc2md:rxPageObjects',
-            'shell:rxPageObjectsDemoDocs',
+            'jsdoc:rxPageObjects',
+            'copy:rxPageObjectsDocs',
             'ngdocs'
         ]);
     });

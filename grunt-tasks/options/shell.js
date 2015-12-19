@@ -12,15 +12,6 @@ module.exports = function (grunt) {
             }
         },
 
-        rxPageObjectsDemoDocs: {
-            // run this after running `grunt jsdoc2md:rxPageObjects`
-            command: [
-                'mkdir -p <%= config.dir.build %>/rx-page-objects;',
-                './node_modules/.bin/marked -i utils/rx-page-objects/API.md',
-                '-o <%= config.dir.build %>/rx-page-objects/index.html --gfm'
-            ].join(' ')
-        },
-
         npmPublish: {
             command: 'npm publish ./rx-page-objects',
             options: {
