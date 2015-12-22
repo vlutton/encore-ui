@@ -3,7 +3,7 @@ describe('rxUnsafeRemoveHTML', function () {
     var unsafeRemove;
 
     beforeEach(function () {
-        module('encore.ui.rxPageTitle');
+        module('encore.ui.quarks');
 
         inject(function ($filter) {
             unsafeRemove = $filter('rxUnsafeRemoveHTML');

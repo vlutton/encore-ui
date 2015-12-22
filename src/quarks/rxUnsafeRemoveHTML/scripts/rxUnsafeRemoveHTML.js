@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxPageTitle')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc filter
- * @name rxPageTitle.filter:rxUnsafeRemoveHTML
+ * @name quarks.filter:rxUnsafeRemoveHTML
  * @description
  * Given a string, it removes all HTML tags from the string, using the
  * browser's own parsing engine. Any content inside of tags will be kept.
