@@ -9,8 +9,5 @@
  *
  * ## Directives
  * * {@link rxSortableColumn.directive:rxSortableColumn rxSortableColumn}
- *
- * ## Filters
- * * {@link rxSortableColumn.filter:rxSortEmptyTop rxSortEmptyTop}
  */
 angular.module('encore.ui.rxSortableColumn', []);
