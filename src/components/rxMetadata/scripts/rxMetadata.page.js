@@ -38,6 +38,19 @@ var rxMetadata = {
 
     /**
      * @function
+     * @returns {ElementFinder} The definition web element matching the term, whether it be an rx-meta or
+       rx-meta-show-hide element.
+     */
+    definitionElementByTerm: {
+        value: function (term) {
+            var rxMetaSelector = 'rx-meta[label="' + term  + '"] .definition';
+            var rxMetaShowHideSelector = 'rx-meta-show-hide[label="' + term  + '"] .definition';
+            return $(rxMetaSelector + ', ' + rxMetaShowHideSelector);
+        }
+    },
+
+    /**
+     * @function
      * @returns {Boolean} Whether or not the root element is currently displayed.
      */
     isDisplayed: {
