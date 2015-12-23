@@ -6,7 +6,7 @@
  * Quarks are non-visual elements that support Atoms and Molecules.
  *
  * ## Values & Constants
- * * TBD
+ * * {@link quarks.value:devicePaths devicePaths}
  *
  * ## Filters
  * * {@link quarks.filter:xor xor}

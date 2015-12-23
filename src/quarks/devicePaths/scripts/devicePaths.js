@@ -1,4 +1,11 @@
-angular.module('encore.ui.configs')
+angular.module('encore.ui.quarks')
+/**
+ * @ngdoc parameters
+ * @name quarks.value:devicePaths
+ * @description
+ * Provides configuration for device paths.
+ *
+ */
 .value('devicePaths', [
     { value: '/dev/xvdb', label: '/dev/xvdb' },
     { value: '/dev/xvdd', label: '/dev/xvdd' },
