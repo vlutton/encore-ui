@@ -9,7 +9,6 @@
  * ## Services
  * * {@link rxMisc.service:rxAutoSave rxAutoSave}
  * * {@link rxMisc.service:rxDOMHelper rxDOMHelper}
- * * {@link rxMisc.service:rxNestedElement rxNestedElement}
  */
 angular.module('encore.ui.rxMisc', [
     'debounce',
