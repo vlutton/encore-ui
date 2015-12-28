@@ -18,7 +18,6 @@
 
  * ## Services
  * * {@link rxNotify.service:rxNotify rxNotify}
- * * {@link rxNotify.service:rxPromiseNotifications rxPromiseNotifications}
  *
  * ## Directives
  * * {@link rxNotify.directive:rxNotification rxNotification}
@@ -81,5 +80,6 @@
  */
 angular.module('encore.ui.rxNotify', [
     'ngSanitize',
-    'ngAnimate'
+    'ngAnimate',
+    'encore.ui.quarks'
 ]);

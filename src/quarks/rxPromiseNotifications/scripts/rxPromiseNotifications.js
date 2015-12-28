@@ -1,11 +1,12 @@
-angular.module('encore.ui.rxNotify')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc service
- * @name rxNotify.service:rxPromiseNotifications
- * @description Manages displaying messages for a promise
+ * @name quarks.service:rxPromiseNotifications
+ * @description Manages displaying messages for a promise.
  *
- * It is a common pattern with API requests that you'll show a loading message, followed by either a success or failure
- * message depending on the result of the call.  `rxPromiseNotifications` is the service created for this pattern.
+ * It is a common pattern with API requests that you show a loading message when an action is requested, followed
+ * by either a _success_ or _failure_ message depending on the result of the call.  `rxPromiseNotifications` is the
+ * service created for this pattern.
  *
  * @example
  * <pre>
@@ -31,7 +32,7 @@ angular.module('encore.ui.rxNotify')
     };
 
     /**
-     * shows either a success or error message
+     * Shows either a success or error message
      * @private
      * @this Scope used for storing messages data
      * @param {string} msgType Message type to be displayed
@@ -57,7 +58,7 @@ angular.module('encore.ui.rxNotify')
     };
 
     /**
-     * cancels all messages from displaying
+     * Cancels all messages from displaying
      * @private
      * @this Scope used for storing messages data
      */
@@ -69,7 +70,7 @@ angular.module('encore.ui.rxNotify')
     /**
      * @name add
      * @ngdoc method
-     * @methodOf rxNotify.service:rxPromiseNotifications
+     * @methodOf quarks.service:rxPromiseNotifications
      * @description
      * @param {Object} promise
      * The promise to attach to for showing success/error messages

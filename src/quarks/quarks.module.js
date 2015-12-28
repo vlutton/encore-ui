@@ -25,5 +25,6 @@
  * * {@link quarks.service:SelectFilter SelectFilter}
  * * {@link quarks.service:rxNestedElement rxNestedElement}
  * * {@link quarks.service:Environment Environment}
+ * * {@link quarks.service:rxPromiseNotifications rxPromiseNotifications}
  */
 angular.module('encore.ui.quarks', []);
