@@ -12,7 +12,7 @@ it('should have actually sorted the column ascending', function () {
     var column = element(by.cssContainingText('rx-sortable-column', 'Name'));
     column.$('i.sort-icon').click();
     column.$('i.sort-icon').click();
-    var data = element.all(by.repeater('user in users').column('Name')).getText().then(function (names) {
+    element.all(by.repeater('user in users').column('Name')).getText().then(function (names) {
         expect(names).to.eql(names.sort());
     });
 });
@@ -153,7 +153,7 @@ var form = Page.create({
 
 it('should fill out the form correctly', function () {
     form.fill({
-        name: 'Charlie Day';
+        name: 'Charlie Day',
         country: 'United States'
     });
     expect(encore.rxNotify.all.exists('Success')).to.eventually.be.true;
@@ -161,7 +161,7 @@ it('should fill out the form correctly', function () {
 
 it('should show an error message when submitting a foreign country', function () {
     form.fill({
-        name: 'Lāčplēsis';
+        name: 'Lāčplēsis',
         country: 'Latvia'
     });
     expect(encore.rxNotify.all.exists('Error')).to.eventually.be.true;
