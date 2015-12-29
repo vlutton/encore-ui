@@ -1,10 +1,10 @@
 /* jshint node: true */
 
-describe('rxSelectFilter', function () {
+describe('quarks:SelectFilter', function () {
     var filter;
 
     beforeEach(function () {
-        module('encore.ui.rxSelectFilter');
+        module('encore.ui.quarks');
 
         inject(function (SelectFilter) {
             filter = SelectFilter.create({

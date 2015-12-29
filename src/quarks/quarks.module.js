@@ -21,5 +21,6 @@
  * * {@link quarks.service:hotkeys hotkeys}
  * * {@link quarks.service:SessionStorage SessionStorage}
  * * {@link quarks.service:rxBreadcrumbsSvc rxBreadcrumbsSvc}
+ * * {@link quarks.service:SelectFilter SelectFilter}
  */
 angular.module('encore.ui.quarks', []);

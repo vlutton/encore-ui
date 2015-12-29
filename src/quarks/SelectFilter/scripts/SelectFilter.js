@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxSelectFilter')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc service
- * @name rxSelectFilter.service:SelectFilter
+ * @name quarks.service:SelectFilter
  * @description
  * A prototype for creating objects that can be used for filtering arrays.
  *
@@ -98,7 +98,7 @@ angular.module('encore.ui.rxSelectFilter')
        /**
         * @ngdoc method
         * @name create
-        * @methodOf rxSelectFilter.service:SelectFilter
+        * @methodOf quarks.service:SelectFilter
         * @param {Object} options
         * Options object
         * @param {Object} options.properties

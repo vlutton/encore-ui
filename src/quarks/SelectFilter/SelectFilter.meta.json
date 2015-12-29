@@ -1,0 +1,7 @@
+{
+    "displayName": "SelectFilter",
+    "stability": "experimental",
+    "description": "A prototype for creating objects that can be used for filtering arrays.",
+    "api": "service:SelectFilter",
+    "keywords": []
+}
