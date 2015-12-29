@@ -1,9 +1,9 @@
 /* jshint node: true */
-describe('rxSortUtil', function () {
+describe('quarks:rxSortUtil', function () {
     var util;
 
     beforeEach(function () {
-        module('encore.ui.rxSortableColumn');
+        module('encore.ui.quarks');
 
         inject(function (rxSortUtil) {
             util = rxSortUtil;
