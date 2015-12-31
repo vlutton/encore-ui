@@ -1,8 +1,8 @@
-describe('rxStatus: ErrorFormatter', function () {
+describe('quarks: ErrorFormatter', function () {
     var errorFormatter;
 
     beforeEach(function () {
-        module('encore.ui.rxStatus');
+        module('encore.ui.quarks');
 
         inject(function (ErrorFormatter) {
             errorFormatter = ErrorFormatter;
