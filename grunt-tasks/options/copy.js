@@ -178,11 +178,11 @@ module.exports = {
             }
         }]
     },
-    rxPageObjects: {
+    rxPageObjectsDocs: {
         expand: true,
-        flatten: true,
-        src: 'utils/rx-page-objects/*.tgz',
-        dest: '<%= config.dir.dist %>/'
+        cwd: 'utils/rx-page-objects/doc/',
+        src: '**',
+        dest: '<%= config.dir.build %>/rx-page-objects/'
     },
     bower: {
         files: [
