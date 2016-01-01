@@ -13,8 +13,7 @@
  *
  * ## Objects/Values
  * * {@link rxStatusColumn.object:rxStatusColumnIcons rxStatusColumnIcons}
- *
- * ## Services
- * * {@link rxStatusColumn.service:rxStatusMappings rxStatusMappings}
  */
-angular.module('encore.ui.rxStatusColumn', []);
+angular.module('encore.ui.rxStatusColumn', [
+    'encore.ui.quarks'
+]);

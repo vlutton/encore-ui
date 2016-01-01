@@ -3,7 +3,7 @@ describe('rxStatusMappings', function () {
     var rxstatusMappings;
 
     beforeEach(function () {
-        module('encore.ui.rxStatusColumn');
+        module('encore.ui.quarks');
 
         inject(function (rxStatusMappings) {
             rxstatusMappings = rxStatusMappings;
