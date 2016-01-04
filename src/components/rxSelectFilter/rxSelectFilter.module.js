@@ -12,9 +12,6 @@
  *
  * ## Filters
  * * {@link rxSelectFilter.filter:Apply Apply}
- *
- * ## Services
- * * {@link rxSelectFilter.service:SelectFilter SelectFilter}
  */
 angular.module('encore.ui.rxSelectFilter', [
     'encore.ui.rxMisc',
