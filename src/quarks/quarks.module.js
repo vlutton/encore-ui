@@ -23,5 +23,6 @@
  * * {@link quarks.service:rxBreadcrumbsSvc rxBreadcrumbsSvc}
  * * {@link quarks.service:SelectFilter SelectFilter}
  * * {@link quarks.service:rxNestedElement rxNestedElement}
+ * * {@link quarks.service:Environment Environment}
  */
 angular.module('encore.ui.quarks', []);

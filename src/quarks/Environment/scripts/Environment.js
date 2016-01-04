@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxEnvironment')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc service
- * @name rxEnvironment.service:Environment
+ * @name quarks.service:Environment
  * @description
  *
  * Allows defining environments and retrieving the current environment based on location
