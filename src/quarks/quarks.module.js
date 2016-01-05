@@ -22,5 +22,6 @@
  * * {@link quarks.service:SessionStorage SessionStorage}
  * * {@link quarks.service:rxBreadcrumbsSvc rxBreadcrumbsSvc}
  * * {@link quarks.service:SelectFilter SelectFilter}
+ * * {@link quarks.service:rxNestedElement rxNestedElement}
  */
 angular.module('encore.ui.quarks', []);

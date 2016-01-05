@@ -4,7 +4,7 @@ describe('rxNestedElement', function () {
     var subject, result;
 
     beforeEach(function () {
-        module('encore.ui.rxMisc');
+        module('encore.ui.quarks');
 
         inject(function (rxNestedElement) {
             subject = rxNestedElement;

@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxMisc')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc service
- * @name rxMisc.service:rxNestedElement
+ * @name quarks.service:rxNestedElement
  * @description
  * Helper function to aid in the creation of boilerplate DDO definitions
  * required to validate nested custom elements.
