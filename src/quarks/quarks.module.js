@@ -17,6 +17,7 @@
  * * {@link quarks.filter:rxEnvironmentMatch rxEnvironmentMatch}
  * * {@link quarks.filter:rxEnvironmentUrl rxEnvironmentUrl}
  * * {@link quarks.filter:rxUnsafeRemoveHTML rxUnsafeRemoveHTML}
+ * * {@link quarks.filter:rxSortEmptyTop rxSortEmptyTop}
  *
  * ## Services
  * * {@link quarks.service:hotkeys hotkeys}

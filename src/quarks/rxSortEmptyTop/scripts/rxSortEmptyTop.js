@@ -1,20 +1,32 @@
-angular.module('encore.ui.rxSortableColumn')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc filter
- * @name rxSortableColumn.filter:rxSortEmptyTop
+ * @name quarks.filter:rxSortEmptyTop
  * @description
  *
  * Filter that moves rows with an empty predicate to the top of the column in
  * ascending order, and to the bottom in descending order.
  *
  * @example
+ * ### Empty Sort
  * <pre>
- * [{ name: { firstName: 'Adam' } }, { }] | rxSortEmptyTop 'name.firstName':false
+ * var emptySort = [
+ *     { name: { firstName: 'Adam' } }, 
+ *     { }
+ * ];	
+ * emptySort | rxSortEmptyTop 'name.firstName':false
+ * </pre>
  * Will sort as [{}, { name: { firstName: 'Adam' } }].
  *
- * [{ name: { firstName: 'Adam' } }, { name: { firstName: null } ] | rxSortEmptyTop 'name.firstName':true
- * Will sort as [{ name: { firstName: 'Adam' } }, {}]
+ * ### Null Sort
+ * <pre>
+ * var nullSort = [
+ *     { name: { firstName: 'Adam' } }, 
+ *     { name: { firstName: null }
+ * ];
+ * nullSort | rxSortEmptyTop 'name.firstName':true
  * </pre>
+ * Will sort as [{ name: { firstName: 'Adam' } }, {}]
  */
 .filter('rxSortEmptyTop', ['$filter', '$parse', function ($filter, $parse) {
     return function (array, key, reverse) {

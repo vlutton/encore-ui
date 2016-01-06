@@ -28,8 +28,8 @@ describe('rxSortEmptyTop', function () {
     ];
 
     beforeEach(function () {
-        module('encore.ui.rxSortableColumn');
-
+        module('encore.ui.quarks');
+ 
         inject(function ($filter) {
             sortEmptyTop = $filter('rxSortEmptyTop');
         });
