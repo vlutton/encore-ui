@@ -12,8 +12,5 @@
  *
  * ## Filters
  * * {@link rxSortableColumn.filter:rxSortEmptyTop rxSortEmptyTop}
- *
- * ## Services
- * * {@link rxSortableColumn.service:rxSortUtil rxSortUtil}
  */
 angular.module('encore.ui.rxSortableColumn', []);

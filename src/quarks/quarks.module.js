@@ -26,5 +26,6 @@
  * * {@link quarks.service:rxNestedElement rxNestedElement}
  * * {@link quarks.service:Environment Environment}
  * * {@link quarks.service:rxPromiseNotifications rxPromiseNotifications}
+ * * {@link quarks.service:rxSortUtil rxSortUtil}
  */
 angular.module('encore.ui.quarks', []);

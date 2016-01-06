@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxSortableColumn')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc service
- * @name rxSortableColumn.service:rxSortUtil
+ * @name quarks.service:rxSortUtil
  * @description
  * Service which provided utility methods for sorting collections.
  *
