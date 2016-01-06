@@ -14,8 +14,6 @@ module.exports = function (grunt) {
             tasks.push('shell:npmPublish');
         }
 
-        tasks.push('clean:rxPageObjects');
         grunt.task.run(tasks);
-
     });
 };
