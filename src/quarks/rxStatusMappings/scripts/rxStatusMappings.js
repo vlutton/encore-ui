@@ -1,7 +1,7 @@
-angular.module('encore.ui.rxStatusColumn')
+angular.module('encore.ui.quarks')
 /**
  * @ngdoc service
- * @name rxStatusColumn.service:rxStatusMappings
+ * @name quarks.service:rxStatusMappings
  * @description
  *
  * A set of methods for creating mappings between a product's notion
@@ -74,7 +74,7 @@ angular.module('encore.ui.rxStatusColumn')
     /**
      * @ngdoc function
      * @name rxStatusMappings.addGlobal
-     * @methodOf rxStatusColumn.service:rxStatusMappings
+     * @methodOf quarks.service:rxStatusMappings
      * @description
      *
      * Takes a full set of mappings to be used globally
@@ -104,7 +104,7 @@ angular.module('encore.ui.rxStatusColumn')
     /**
      * @ngdoc function
      * @name rxStatusMappings.addAPI
-     * @methodOf rxStatusColumn.service:rxStatusMappings
+     * @methodOf quarks.service:rxStatusMappings
      * @description
      *
      * Create a mapping specific to a particular API. This will
@@ -180,7 +180,7 @@ angular.module('encore.ui.rxStatusColumn')
     /**
      * @ngdoc function
      * @name rxStatusMappings.getInternalMapping
-     * @methodOf rxStatusColumn.service:rxStatusMappings
+     * @methodOf quarks.service:rxStatusMappings
      * @description
      *
      * `rxStatusMappings` defines a `getInternalMapping(statusString, api)` method,
