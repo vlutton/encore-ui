@@ -5,6 +5,7 @@ describe('rxNotify', function () {
     var otherStack = 'other';
 
     beforeEach(function () {
+        module('encore.ui.quarks');
         module('encore.ui.rxNotify');
 
         inject(function ($rootScope, $interval, rxNotify) {
