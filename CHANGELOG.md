@@ -1,3 +1,12 @@
+<a name="1.42.2"></a>
+### 1.42.2 (2016-01-06)
+
+
+#### Bug Fixes
+
+* **grunt:** remove reference to clean:rxPageObjects ([c40d152a](git@github.com:rackerlabs/encore-ui/commit/c40d152a0ed1741b1d5260929394f88b7c9b43db))
+
+
 <a name="1.42.1"></a>
 ### 1.42.1 (2016-01-06)
 
